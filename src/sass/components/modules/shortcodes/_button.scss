@@ -1,3 +1,4 @@
+
 .edgtf-btn {
 	display: inline-block;
 	position: relative;
@@ -21,17 +22,14 @@
 		color: #fff;
 
 		&:not(.edgtf-btn-custom-hover-color):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			color: #fff !important;
 		}
 
 		&:not(.edgtf-btn-custom-hover-bg):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			background-color: $elements-dark-background-color !important;
 		}
 
 		&:not(.edgtf-btn-custom-border-hover):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			border-color: $elements-dark-background-color !important;
 		}
 	}
@@ -41,17 +39,14 @@
 		color: $elements-dark-background-color;
 
 		&:not(.edgtf-btn-custom-hover-color):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			color: #fff !important;
 		}
 
 		&:not(.edgtf-btn-custom-hover-bg):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			background-color: $first-main-color !important;
 		}
 
 		&:not(.edgtf-btn-custom-border-hover):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			border-color: $first-main-color !important;
 		}
 	}
@@ -61,17 +56,14 @@
 		background-color: transparent;
 
 		&:not(.edgtf-btn-custom-hover-color):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			color: #fff !important;
 		}
 
 		&:not(.edgtf-btn-custom-hover-bg):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			background-color: $elements-dark-background-color !important;
 		}
 
 		&:not(.edgtf-btn-custom-border-hover):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			border-color: $elements-dark-background-color !important;
 		}
 	}
@@ -81,17 +73,14 @@
 		background-color: transparent;
 
 		&:not(.edgtf-btn-custom-hover-color):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			color: #fff !important;
 		}
 
 		&:not(.edgtf-btn-custom-hover-bg):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			background-color: $first-main-color !important;
 		}
 
 		&:not(.edgtf-btn-custom-border-hover):hover {
-			//important because of inline color attribute. :not is used so we don't have to use important in JS
 			border-color: $first-main-color !important;
 		}
 	}
