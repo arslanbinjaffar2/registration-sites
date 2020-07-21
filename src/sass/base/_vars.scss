@@ -1,0 +1,54 @@
+$grid-width: 1300px;
+$grid-width-laptop-wide-landscape: 1100px;
+$grid-width-laptop-landscape: 950px;
+$grid-width-ipad-landscape: 768px;
+$grid-width-ipad-portrait: 600px;
+$grid-width-phone-landscape: 420px;
+$grid-width-phone-portrait: 300px;
+$grid-width-smaller-phone-portrait: 95%;
+
+$grid-width-boxed: 1390px;
+$grid-width-laptop-wide-landscape-boxed: 1200px;
+$grid-width-laptop-landscape-boxed: 1000px;
+$grid-width-ipad-landscape-boxed: 818px;
+$grid-width-ipad-portrait-boxed: 650px;
+$grid-width-phone-landscape-boxed: 470px;
+$grid-width-phone-portrait-boxed: 350px;
+$grid-width-smaller-phone-portrait-boxed: 96%;
+
+$grid-width-1300: 1300px;
+$grid-width-1200: 1200px;
+$grid-width-1000: 1000px;
+$grid-width-800: 800px;
+
+$first-main-color: #0f58fb;
+$second-main-color: #ec008c;
+$elements-dark-background-color: #212121;
+$default-background-color: #fff;
+$default-elements-background-color: #efefef;
+$default-text-color: #888888;
+$default-heading-color: #313131;
+$default-border-color: #d9d9d9;
+$default-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.06);
+$header-light-color: #ffffff;
+$header-dark-color: #000000;
+
+$first-font:'Open Sans', sans-serif;
+$second-font: 'Rubik', sans-serif;
+
+//responsive breakpoints
+$laptop-wide-landscape: 1400px;
+$laptop-mid-landscape: 1280px;
+$laptop-landscape: 1200px;
+$ipad-landscape: 1024px;
+$ipad-portrait: 768px;
+$phone-landscape: 600px;
+$phone-portrait: 480px;
+$smaller-phone-portrait: 320px;
+
+$vertical-menu-width: 290px;
+
+// responsive breakpoints vertical menu
+$vertical-menu-laptop-wide-landscape: 1650px;
+$vertical-menu-laptop-landscape: 1490px;
+$vertical-menu-ipad-landscape: 1314px
