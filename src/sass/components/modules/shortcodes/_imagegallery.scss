@@ -11,7 +11,7 @@
 		-moz-filter: grayscale(100%);
 		filter: gray;
 		filter: grayscale(100%);
-		filter: url(img/desaturate.svg#grayscale);
+		filter: url(../img/desaturate.svg#grayscale);
 	}
 
 	.edgtf-grayscale .edgtf-gallery-image:hover img {
@@ -34,7 +34,7 @@
 		img {
 			display: block;
 		}
-		a{
+		a,span{
 			display: block;
 			position: relative;
 
@@ -67,7 +67,7 @@
     		    @include edgtfTransition(all 0.3s cubic-bezier(0.13, 0.53, 0.25, 1));
     		}
 
-    		a:hover {
+    		a:hover,span:hover {
     			img {
 			    	@include edgtfTransform(scale(1.05) translateZ(0));
 		    	}

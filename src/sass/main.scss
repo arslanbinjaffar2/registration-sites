@@ -1,11 +1,20 @@
 
-:global {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
 // Base
 @import './base/vars';
+@import './vendors/bootstrap/vars';
+@import './vendors/bootstrap/index';
 
 @import './base/mixins';
 
+// Fonts
+@import './font-awesome/css/font-awesome.min.css';
+@import './elegant-icons/style.min.css';
+
+// React Slick
+
+@import './react-slick/slick.min.css';
+@import './react-slick/slick-theme.min.css';
 /*------------------------------------------------------------------
  * This is main css file for theme. It is broken into following sections:
  * 1.  Global styles and reset
@@ -49,18 +58,235 @@
 @import './base/spinners';
 
 
+/* ==========================================================================
+   4. Title area styles
+   ========================================================================== */
 @import './components/modules/title/title';
+
+/* ==========================================================================
+   4. Timetable styles
+   ========================================================================== */
+@import './components/modules/timetable-schedule/timetable';
+@import './components/modules/timetable-schedule/single-event';
+@import './components/modules/timetable-schedule/widgets';
+
+/* ==========================================================================
+   5. Side area styles
+   ========================================================================== */
+@import './components/modules/sidearea/sidearea';
+
+/* ==========================================================================
+   6. Fullscreen Menu area styles
+   ========================================================================== */
+@import './components/modules/fullscreenmenu/fullscreenmenu';
+
+/* ==========================================================================
+   7. Search functionality styles
+   ========================================================================== */
+@import './components/modules/search/search';
+
+/* ==========================================================================
+   8. Portfolio styles
+   ========================================================================== */
+@import './components/modules/portfolio/portfolio';
+/* ==========================================================================
+  9. Team styles
+========================================================================== */
+@import './components/modules/team/team-list';
+
+/* ==========================================================================
+   2. Overlapping content styles
+   ========================================================================== */
+@import './components/modules/overlapping-content/overlapping-content';
+
+
+/* ==========================================================================
+   2. Content Bottom styles
+   ========================================================================== */
+@import './components/modules/content-bottom/content-bottom';
+
+/* ==========================================================================
+   9. Shortcodes styles
+   ========================================================================== */
+
+/* Elements holders styles
+   ========================================================================== */
+@import './components/modules/shortcodes/elements-holder';
+
+/* Team styles
+   ========================================================================== */
+@import './components/modules/shortcodes/team';
+
+/* Call To Action styles
+   ========================================================================== */
+@import './components/modules/shortcodes/calltoaction';
+
+/* Counter styles
+   ========================================================================== */
+@import './components/modules/shortcodes/counter';
+
+/* Icon styles
+   ========================================================================== */
+@import './components/modules/shortcodes/icon';
+
+/* Countdown styles
+   ========================================================================== */
+@import './components/modules/shortcodes/countdown';
+
+/* Message styles
+   ========================================================================== */
+@import './components/modules/shortcodes/message';
+
+/* Ordered List styles
+   ========================================================================== */
+@import './components/modules/shortcodes/ordered-list';
+
+/* Unordered List styles
+   ========================================================================== */
+@import './components/modules/shortcodes/unordered-list';
+
+/* Icon List Item styles
+   ========================================================================== */
+@import './components/modules/shortcodes/icon-list-item';
+
+/* Progress Bar styles
+   ========================================================================== */
+@import './components/modules/shortcodes/progress-bar';
+
+/* Testimonials styles
+   ========================================================================== */
+@import './components/modules/shortcodes/testimonials';
+
+/* Pricing Tables styles
+   ========================================================================== */
+@import './components/modules/shortcodes/pricing-tables';
+
+/* Pie Chart Basic styles
+   ========================================================================== */
+@import './components/modules/shortcodes/piechartbasic';
+
+/* Pie Chart With Icon styles
+   ========================================================================== */
+@import './components/modules/shortcodes/piechartwithicon';
+
+/* Pie Chart Doughnut styles
+   ========================================================================== */
+@import './components/modules/shortcodes/piechartdoughnut';
+
+/* Pie Chart Pie styles
+   ========================================================================== */
+@import './components/modules/shortcodes/piechartpie';
+
+/* Pie Chart Pie styles
+   ========================================================================== */
+@import './components/modules/shortcodes/process';
+
+/* Tabs styles
+   ========================================================================== */
+@import './components/modules/shortcodes/tabs';
+
+/* Timetable styles
+   ========================================================================== */
+@import './components/modules/shortcodes/timetable';
+
+/* Accordions styles
+   ========================================================================== */
+@import './components/modules/shortcodes/accordions';
 
 /* Title with dots styles
    ========================================================================== */
 @import './components/modules/shortcodes/title-with-dots';
-@import './components/modules/shortcodes/_button.scss';
 
+/* Title with number styles
+   ========================================================================== */
+@import './components/modules/shortcodes/title-with-number';
 
+/* Google Map styles
+   ========================================================================== */
+@import './components/modules/shortcodes/_google-map';
+
+/* Separator styles
+   ========================================================================== */
+@import './components/modules/shortcodes/separator';
+
+/* Blog List styles
+   ========================================================================== */
+@import './components/modules/shortcodes/blog-list';
+
+/* Blog Slider styles
+   ========================================================================== */
+@import './components/modules/shortcodes/blog-slider';
+
+/* Button styles
+   ========================================================================== */
+@import './components/modules/shortcodes/button';
+
+/* Carousel styles
+   ========================================================================== */
+@import './components/modules/shortcodes/carousels';
+
+/* Custom Fonr styles
+   ========================================================================== */
+@import './components/modules/shortcodes/custom-font';
+
+/* Blockquote styles
+   ========================================================================== */
+@import './components/modules/shortcodes/blockquote';
+
+/* Image Gallery styles
+   ========================================================================== */
+@import './components/modules/shortcodes/imagegallery';
+
+/* Image Gallery styles
+   ========================================================================== */
+@import './components/modules/shortcodes/image-with-text';
+
+/* Item Showcase
+   ========================================================================== */
+@import './components/modules/shortcodes/item-showcase';
+
+/* Video Button styles
+   ========================================================================== */
+@import './components/modules/shortcodes/videobutton';
+
+/* Dropcaps styles
+   ========================================================================== */
+@import './components/modules/shortcodes/dropcaps';
+
+/* Portfolio styles
+   ========================================================================== */
+@import './components/modules/shortcodes/portfolio';
+
+/* Icon With Text styles
+   ========================================================================== */
+@import './components/modules/shortcodes/icon-with-text';
+
+/* Banner styles
+   ========================================================================== */
+@import './components/modules/shortcodes/banner';
+
+/* Social Share styles
+   ========================================================================== */
+@import './components/modules/shortcodes/socialshare';
+
+/* Slider styles
+   ========================================================================== */
+@import './components/modules/shortcodes/slider';
+
+/* Shop Masonry styles
+   ========================================================================== */
+@import './components/modules/shortcodes/shop-masonry';
+
+/* Project presentation styles
+   ========================================================================== */
+@import './components/modules/shortcodes/project-presentation';
 /* ==========================================================================
    #Comments styles - start
    ========================================================================== */
 
+#App {
+	min-height: 100vh;
+}
 .edgtf-comment-holder {
 	margin: 0 0 73px;
 	padding-top: 8px;
@@ -923,4 +1149,3 @@ $z-index:$back-to-top-size / 2;
 /* ==========================================================================
    #Image link style- end
    ========================================================================== */
-}

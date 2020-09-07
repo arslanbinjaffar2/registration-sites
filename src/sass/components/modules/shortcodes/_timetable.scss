@@ -1,3 +1,188 @@
+/* --- timetable --- */
+table.tt_timetable
+{
+	width: 100%;
+	font-size: 11px;
+	color: #666;
+	border: none;
+	letter-spacing: normal;
+	font-size: 11px;
+	line-height: normal;
+	font-family: 'Lato', Helvetica, Arial, sans-serif;
+	border-collapse: separate !important;
+	border-spacing: 2px !important;
+	background: $white !important;
+}
+.tt_timetable .event {
+    color: $gray;
+    line-height: 140%;
+    text-align: center;
+}
+.tt_timetable th,
+.tt_timetable td
+{
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	line-height: normal;
+	text-transform: none;
+	border: none !important;
+}
+.tt_timetable th,
+.tt_timetable td.tt_hours_column
+{
+	text-align: center;
+	vertical-align: middle;
+}
+.tt_timetable th
+{
+	width: 12.5%;
+	padding: 10px 15px 12px;
+	letter-spacing: normal;
+}
+.tt_timetable .event_container
+{
+	padding: 7px 10px;
+	position: relative;
+}
+.tt_timetable .hours
+{
+	font-weight: bold;
+}
+/* Tooltips are handled differently in RTL mode. */
+body.rtl .tt_timetable .event_container
+{
+	position: static;
+}
+.tt_timetable td
+{
+	width: 12.5%;
+	vertical-align: top;
+	height: 31px;
+	border: none;
+	padding: 0;
+	position: relative;
+}
+/* On Firefox there are problems with RTL mode when table cell uses relative position. */
+body.rtl .tt_timetable td
+{
+	position: static;
+}
+.tt_timetable td .event_hour_booking_wrapper,
+.tt_timetable td .event_hour_booking_wrapper *,
+.tt_event_hours .event_hour_booking_wrapper,
+.tt_event_hours .event_hour_booking_wrapper *
+{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	overflow: hidden;
+}
+.tt_timetable td .event_hour_booking_wrapper.always
+{
+	margin: 15px 0 3px;
+}
+.tt_timetable td.tt_single_event .event_hour_booking_wrapper.always
+{
+	padding: 0 10px;
+	margin: 9px 0 10px;
+}
+.tt_timetable .event span.available_slots+.event_hour_booking_wrapper.always
+{
+	margin: 16px 0 3px 0;
+}
+.tt_timetable td .event_hour_booking_wrapper.on_hover
+{
+	position: absolute;
+	top: auto;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+}
+
+/* --- tip/tooltip/qtip --- */
+.tt_tooltip
+{
+	cursor: pointer;
+}
+.tt_tooltip .tt_tooltip_text
+{
+	display: block;
+	/*padding-bottom: 15px;*/
+	visibility: hidden;
+    opacity: 0;
+	position: absolute;
+	z-index: 1000;
+  left: 50%;
+  margin-left: -105px;
+	bottom: 80%;
+	line-height: 1;
+  text-align: center;
+  min-width: 210px;
+  margin-top: 25px;
+	/* CSS3 Transitions */
+	-webkit-transition-duration: 0.25s;
+	-moz-transition-duration: 0.25s;
+	-o-transition-duration: 0.25s;
+	-ms-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	-webkit-transition-timing-function: cubic-bezier(0.35,0,0.35,1);
+	-moz-transition-timing-function: cubic-bezier(0.35,0,0.35,1);
+	-o-transition-timing-function: cubic-bezier(0.35,0,0.35,1);
+	-ms-transition-timing-function: cubic-bezier(0.35,0,0.35,1);
+	transition-timing-function: cubic-bezier(0.35,0,0.35,1);
+	/* CSS3 Transitions */
+	-webkit-transition-property: opacity, visibility;
+	-moz-transition-property: opacity, visibility;
+	-o-transition-property: opacity, visibility;
+	-ms-transition-property: opacity, visibility;
+	transition-property: opacity, visibility;
+	/*background: url('images/tooltip_arrow.png') no-repeat 15px bottom;*/
+}
+.rtl .tt_tooltip .tt_tooltip_text 
+{
+	left: auto;
+	/*right: -19px;*/
+}
+.tt_tooltip .tt_tooltip_content
+{
+  background: $black;
+	color: $white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 7px 10px 10px;
+	line-height: 150%;
+	font-size: 11px;
+	text-align: left;
+}
+.rtl .tt_tooltip .tt_tooltip_content 
+{
+	text-align: right;
+}
+.tt_tooltip:hover .tt_tooltip_text
+{	
+	visibility: visible;
+	opacity: 1;
+}
+.tt_tooltip .tt_tooltip_arrow
+{
+	content: '';
+	position: relative;
+	border-color: $black transparent;
+	border-style: solid;
+	border-width: 5px 5px 0;
+	bottom: -6px;
+	left: 0;
+	display: inline;
+}
+.rtl .tt_tooltip .tt_tooltip_arrow 
+{
+	left: auto;
+	right: 0;
+}
+// 
 .tt_tabs{
 
   .tt_tabs_navigation{
@@ -115,6 +300,7 @@ table.tt_timetable{
       font-size: 18px!important;
       font-weight: 500!important;
       margin-bottom: 13px;
+      display: block;
     }
     .before_hour_text{
       color:#888888!important;

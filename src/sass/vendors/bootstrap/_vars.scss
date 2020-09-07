@@ -1,6 +1,11 @@
 //
 // Color system
 //
+$container-max-widths: (
+  md: 720px,
+  lg: 960px,
+  xl: 1300px
+);
 
 // stylelint-disable
 $white:    #fff !default;
