@@ -1,33 +1,26 @@
 import * as React from 'react';
-class Speakerv2 extends React.Component {
+class Speakerv4 extends React.Component {
     render() {
         return (
-            <div style={{ padding: '50px 0' }} className="edgtf-parallax-section-holder">
-                <div className="container">
+            <div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder">
+                <div className="container-fluid">
                     <div className="row d-flex mb-5">
-                        <div className="col-8 offset-md-2 text-center">
-                            <div className="edgtf-title-section-holder">
-                                <h2 className="edgtf-title-with-dots edgtf-appeared">
+                        <div className="col-12">
+                            <div className="edgtf-title-section-holder text-center">
+                                <h2 style={{ color: "#ffffff" }} className="edgtf-title-with-dots edgtf-appeared">
                                     Build your base		</h2>
                                 <span className="edge-title-separator edge-enable-separator"></span>
                             </div>
-                            <div className="edgtf-title-section-holder">
-                                <h6 className="edgtf-section-subtitle">Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad his suavitate complectitur ruis dicant facilisi </h6>
-                            </div>
                         </div>
                     </div>
-                    <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
+                    <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -36,6 +29,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -52,16 +49,12 @@ class Speakerv2 extends React.Component {
                         </div>
                         {/* Grid */}
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -70,6 +63,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -86,16 +83,12 @@ class Speakerv2 extends React.Component {
                         </div>
                         {/* Grid */}
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -104,6 +97,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -120,16 +117,12 @@ class Speakerv2 extends React.Component {
                         </div>
                         {/* Grid */}
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -138,6 +131,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -154,16 +151,12 @@ class Speakerv2 extends React.Component {
                         </div>
                         {/* Grid */}
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-5.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-5.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-5-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-5-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -172,6 +165,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -188,16 +185,12 @@ class Speakerv2 extends React.Component {
                         </div>
                         {/* Grid */}
                         {/* Grid */}
-                        <div className="col-12 col-md-4 pl-0 pr-0">
+                        <div className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team mb-5">
+                                <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
-                                            <div className="edgtf-team-social-holder">
-                                                <div className="edgtf-team-social-holder-inner">
-                                                </div>
-                                            </div>
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-6.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-6.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-6-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-6-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -206,6 +199,10 @@ class Speakerv2 extends React.Component {
                                                     Ana Hernandez
                         </h3>
                                                 <span className="edgtf-team-position">Founder</span>
+                                                <div className="edgtf-team-social-holder">
+                                                    <div className="edgtf-team-social-holder-inner">
+                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">
@@ -221,6 +218,7 @@ class Speakerv2 extends React.Component {
                             </div>
                         </div>
                         {/* Grid */}
+
                     </div>
                 </div>
             </div>
@@ -228,4 +226,4 @@ class Speakerv2 extends React.Component {
     }
 }
 
-export default Speakerv2;
+export default Speakerv4;
