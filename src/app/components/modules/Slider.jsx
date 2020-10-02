@@ -5,7 +5,7 @@ import shortid from "shortid";
 
 const in_array = require("in_array");
 
-class Banner extends React.Component {
+class Slider extends React.Component {
     _isMounted = false;
 
     constructor(props) {
@@ -23,7 +23,7 @@ class Banner extends React.Component {
         //active theme variation
         if (this.state.theme && this.state.theme.theme_info && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.module_info.alias, ["banner"]);
+                return in_array(module.module_info.alias, ["slider"]);
             });
 
             this.setState({
@@ -37,7 +37,7 @@ class Banner extends React.Component {
     }
 
     addComponent = async (theme, variation) => {
-        import(`@/themes/${theme}/banner/${variation}`)
+        import(`@/themes/${theme}/slider/${variation}`)
             .then(component =>
                 this.setState({
                     components: this.state.components.concat(component.default)
@@ -69,4 +69,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(withRouter(Banner));
+export default connect(mapStateToProps)(withRouter(Slider));
