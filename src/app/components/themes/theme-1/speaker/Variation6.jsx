@@ -92,9 +92,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -117,9 +117,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -142,9 +142,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -167,9 +167,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -192,9 +192,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -217,9 +217,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -242,9 +242,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"
@@ -267,9 +267,9 @@ export default class Variation6 extends Component {
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
                                         alt="j"
-                                        srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
+                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
                                         sizes="(max-width: 800px) 100vw, 800px"
                                         width="800"
                                         height="575"

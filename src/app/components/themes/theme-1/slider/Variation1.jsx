@@ -28,13 +28,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client100.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client100.jpg"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client100-hover.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client100-hover.jpg"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -42,13 +42,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-6.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-6.png"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client6-hover.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client6-hover.png"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -56,13 +56,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-2-1.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-2-1.png"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-2-hover.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-2-hover.png"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -70,13 +70,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-4.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-4.png"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client4-hover.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client4-hover.png"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -84,13 +84,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client100.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client100.jpg"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client100-hover.jpg"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client100-hover.jpg"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -98,13 +98,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-3.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-3.png"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client3-hover.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client3-hover.png"
                                         alt="Client 11"
                                     />
                                 </span>
@@ -112,13 +112,13 @@ class Variation1 extends React.Component {
                             <div className="edgtf-carousel-item-holder">
                                 <span className="edgtf-carousel-first-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-1-1.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-1-1.png"
                                         alt="Client 11"
                                     />
                                 </span>
                                 <span className="edgtf-carousel-second-image-holder edgtf-has-hover-image edgtf-image-change">
                                     <img
-                                        src="http://localhost/xpo/wp-content/uploads/2017/01/client-1-hover.png"
+                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2017/01/client-1-hover.png"
                                         alt="Client 11"
                                     />
                                 </span>

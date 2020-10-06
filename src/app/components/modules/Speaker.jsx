@@ -23,13 +23,13 @@ class Speaker extends React.Component {
         //active theme variation
         if (this.state.theme && this.state.theme.theme_info && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.module_info.alias, ["speakers"]);
+                return in_array(module.module_info.alias, ["speaker"]);
             });
 
             this.setState({
                 module: (module ? module[0] : false),
             }, () => {
-                if (module && module[0]['module_info']['slug'] && this.state.theme.theme_info.slug) {
+                if (module && module.length > 0 && module[0]['module_info']['slug'] && this.state.theme.theme_info.slug) {
                     this.addComponent(this.state.theme.theme_info.slug, module[0]['module_info']['slug']);
                 }
             });

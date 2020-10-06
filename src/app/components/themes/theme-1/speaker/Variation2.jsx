@@ -23,7 +23,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>
@@ -57,7 +57,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>
@@ -91,7 +91,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>
@@ -125,7 +125,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-3-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>
@@ -159,7 +159,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-2-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>
@@ -193,7 +193,7 @@ class Variation2 extends React.Component {
                                 <div className="edgtf-team mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                             <div className="edgtf-team-social-holder">
                                                 <div className="edgtf-team-social-holder-inner">
                                                 </div>

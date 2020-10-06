@@ -29,7 +29,7 @@ class Banner extends React.Component {
             this.setState({
                 module: (module ? module[0] : false),
             }, () => {
-                if (module && module[0]['module_info']['slug'] && this.state.theme.theme_info.slug) {
+                if (module && module.length > 0 && module[0]['module_info']['slug'] && this.state.theme.theme_info.slug) {
                     this.addComponent(this.state.theme.theme_info.slug, module[0]['module_info']['slug']);
                 }
             });

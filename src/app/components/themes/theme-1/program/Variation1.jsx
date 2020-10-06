@@ -39,7 +39,7 @@ class Variation1 extends React.Component {
                                             <div style={{ marginTop: '35px' }} className="edgtf-team-list-holder edgtf-team-info-in-tooltip" data-type="info_in_tooltip" data-order-by="date" data-order="ASC" data-category="team-2"> <div className="edgtf-tl-inner clearfix"><div className="edgtf-team">
                                                 <div className="edgtf-team-inner" data-member-id="9058">
                                                     <div className="edgtf-team-image">
-                                                        <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-2-imag-1.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
+                                                        <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-2-imag-1.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
                                                     <div className="edgtf-team-info">
                                                         <div className="edgtf-team-title-holder">
                                                             <h6 className="edgtf-team-name">Yasmine Blee</h6>
@@ -50,7 +50,7 @@ class Variation1 extends React.Component {
                                                 <div className="edgtf-team">
                                                     <div className="edgtf-team-inner" data-member-id="9059">
                                                         <div className="edgtf-team-image">
-                                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-2-imag-2.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
+                                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-2-imag-2.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
                                                         <div className="edgtf-team-info">
                                                             <div className="edgtf-team-title-holder">
                                                                 <h6 className="edgtf-team-name">Kate Burton</h6>
@@ -61,7 +61,7 @@ class Variation1 extends React.Component {
                                                 <div className="edgtf-team">
                                                     <div className="edgtf-team-inner" data-member-id="9060">
                                                         <div className="edgtf-team-image">
-                                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-2-imag-3.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
+                                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-2-imag-3.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
                                                         <div className="edgtf-team-info">
                                                             <div className="edgtf-team-title-holder">
                                                                 <h6 className="edgtf-team-name">
@@ -95,7 +95,7 @@ class Variation1 extends React.Component {
                                             <div style={{ marginTop: '35px' }} className="edgtf-team-list-holder edgtf-team-info-in-tooltip" data-type="info_in_tooltip" data-order-by="date" data-order="ASC" data-category="team-2"> <div className="edgtf-tl-inner clearfix"><div className="edgtf-team">
                                                 <div className="edgtf-team-inner" data-member-id="9058">
                                                     <div className="edgtf-team-image">
-                                                        <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-2-imag-1.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
+                                                        <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-2-imag-1.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
                                                     <div className="edgtf-team-info">
                                                         <div className="edgtf-team-title-holder">
                                                             <h6 className="edgtf-team-name">Yasmine Blee</h6>
@@ -106,7 +106,7 @@ class Variation1 extends React.Component {
                                                 <div className="edgtf-team">
                                                     <div className="edgtf-team-inner" data-member-id="9060">
                                                         <div className="edgtf-team-image">
-                                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-2-imag-3.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
+                                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-2-imag-3.png" className="attachment-81x81 size-81x81 wp-post-image" alt="v" width="81" height="81" />                </div>
                                                         <div className="edgtf-team-info">
                                                             <div className="edgtf-team-title-holder">
                                                                 <h6 className="edgtf-team-name">

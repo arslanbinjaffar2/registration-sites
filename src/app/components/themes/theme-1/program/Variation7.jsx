@@ -2,7 +2,7 @@ import * as React from 'react';
 class Variation7 extends React.Component {
     render() {
         return (
-            <div style={{ backgroundImage: `url(http://localhost/xpo/wp-content/uploads/revslider/backup-home-3/h3-slide4.jpg)`, padding: '50px 0 100px', color: '#ffffff' }} className="edgtf-parallax-wrapper edgtf-parallax-section-holder">
+            <div style={{ backgroundImage: `url(https://xpo.qodeinteractive.com/wp-content/uploads/revslider/backup-home-3/h3-slide4.jpg)`, padding: '50px 0 100px', color: '#ffffff' }} className="edgtf-parallax-wrapper edgtf-parallax-section-holder">
                 <div className="container">
                     <div className="edgtf-title-section-holder text-center pb-5">
                         <h2 className="edgtf-title-with-dots edgtf-appeared">This Year Schedule</h2>

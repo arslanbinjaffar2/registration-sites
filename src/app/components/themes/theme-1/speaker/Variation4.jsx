@@ -20,7 +20,7 @@ class Variation4 extends React.Component {
                                 <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -54,7 +54,7 @@ class Variation4 extends React.Component {
                                 <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-2-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-2.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-2.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-2-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-2-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-2-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -88,7 +88,7 @@ class Variation4 extends React.Component {
                                 <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-3-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-3.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-3.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-3-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-3-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-3-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -122,7 +122,7 @@ class Variation4 extends React.Component {
                                 <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4.jpg 800w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-600x431.jpg 600w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-300x216.jpg 300w, http://localhost/xpo/wp-content/uploads/2016/12/team-3-img-4-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
+                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-4.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="f" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-4.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-4-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-4-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-img-4-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
