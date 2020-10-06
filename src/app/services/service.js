@@ -1,4 +1,4 @@
-import { authHeader, handleResponse, handleThirdPartyResponse } from 'helpers';
+import { header, handleResponse, handleThirdPartyResponse } from 'helpers';
 
 export const service = {
     get, put, post, _import, destroy, download, eventCenterAutoLogin
@@ -19,7 +19,7 @@ function post(url, request_data) {
     });
     const requestOptions = {
         method: "POST",
-        headers: authHeader(),
+        headers: header(),
         body: form
     };
     return fetch(
@@ -31,7 +31,7 @@ function post(url, request_data) {
 function put(url, request_data) {
     const requestOptions = {
         method: "PUT",
-        headers: authHeader('PUT'),
+        headers: header('PUT'),
         body: JSON.stringify(request_data)
     };
     return fetch(
@@ -43,7 +43,7 @@ function put(url, request_data) {
 function get(url) {
     const requestOptions = {
         method: "GET",
-        headers: authHeader('GET'),
+        headers: header('GET'),
     };
     return fetch(
         url,
@@ -54,7 +54,7 @@ function get(url) {
 function destroy(url, request_data = null) {
     const requestOptions = {
         method: "DELETE",
-        headers: authHeader('DELETE'),
+        headers: header('DELETE'),
         body: JSON.stringify(request_data ? request_data : [])
     };
     return fetch(
@@ -74,7 +74,7 @@ function _import(url, request_data) {
     });
     const requestOptions = {
         method: "POST",
-        headers: authHeader(),
+        headers: header(),
         body: form
     };
     return fetch(
@@ -86,7 +86,7 @@ function _import(url, request_data) {
 function download(url) {
     const requestOptions = {
         method: "GET",
-        headers: authHeader('GET'),
+        headers: header('GET'),
     };
     return fetch(
         url,
