@@ -31,7 +31,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x350/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -39,7 +39,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x250/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -47,7 +47,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x450/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -55,7 +55,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x550/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -63,7 +63,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x150/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -71,7 +71,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x300/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -79,7 +79,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x400/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -87,7 +87,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x150/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -95,7 +95,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x250/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -103,7 +103,7 @@ class Variation4 extends React.Component {
                                 <figure>
                                     <img src="https://via.placeholder.com/350x150/" alt="" />
                                     <figcaption>
-                                        <div class="icon" aria-hidden="true" data-icon="L"></div>
+                                        <div className="icon" aria-hidden="true" data-icon="L"></div>
                                     </figcaption>
                                 </figure>
                             </div>

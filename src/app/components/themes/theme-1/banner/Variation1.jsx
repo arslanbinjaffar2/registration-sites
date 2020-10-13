@@ -70,7 +70,7 @@ export default class Variation1 extends Component {
                     <div className="container-fluid">
                         <div className="row d-flex">
                             <div style={{ height: '100vh', padding: '5% 15%' }} className="col-12 align-items-center d-flex">
-                                <div style={{ position: 'relative' }} class="parallax-text">
+                                <div style={{ position: 'relative' }} className="parallax-text">
                                     <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
                                         3<span style={{ color: '#fff' }}> Days</span>
                                     </div>
