@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import shortid from "shortid";
+import { service } from '../../services/service';
+
 
 const in_array = require("in_array");
 
@@ -13,24 +15,25 @@ class Video extends React.Component {
         this.state = {
             theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
             module: false,
+            videos: [],
             components: []
         }
     }
 
     async componentDidMount() {
         this._isMounted = true;
-
+        this.loadVideos();
         //active theme variation
-        if (this.state.theme && this.state.theme.theme_info && this.state.theme.modules) {
+        if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.module_info.alias, ["video"]);
+                return in_array(module.alias, ["video"]);
             });
 
             this.setState({
                 module: (module ? module[0] : false),
             }, () => {
-                if (module && module.length > 0 && module[0]['module_info']['slug'] && this.state.theme.theme_info.slug) {
-                    this.addComponent(this.state.theme.theme_info.slug, module[0]['module_info']['slug']);
+                if (module && module.length > 0) {
+                    this.addComponent(this.state.theme.slug, module[0]['slug']);
                 }
             });
         }
@@ -52,11 +55,20 @@ class Video extends React.Component {
         this._isMounted = false;
     }
 
+    loadVideos(){
+        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/videos`).then(
+            response => {
+                this.state.videos = response.data;
+                console.log('videos : ' ,this.state.videos);
+            }
+        )
+    }
+
     render() {
         const { components } = this.state;
         if (components.length === 0) return <div>Loading...</div>;
         const componentsElements = components.map(Component => (
-            <Component key={shortid.generate()} />
+            <Component videos={this.state.videos} key={shortid.generate()} />
         ));
         return <div className="App">{componentsElements}</div>;
     }

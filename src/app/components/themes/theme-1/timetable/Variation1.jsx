@@ -46,8 +46,11 @@ class Variation1 extends React.Component {
                             <table className="tt_timetable">
                                 <thead>
                                     <tr className="row_gray">
-                                        <th></th> <th>Wednesday</th> <th>Thursday</th>
-                                        <th>Friday</th> <th>Saturday</th>
+                                        <th></th> 
+                                        <th>Wednesday</th> 
+                                        <th>Thursday</th>
+                                        <th>Friday</th> 
+                                        <th>Saturday</th>
                                     </tr>
                                 </thead>
                                 <tbody>

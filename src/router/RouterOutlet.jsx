@@ -41,19 +41,17 @@ class RouterOutlet extends React.Component {
   loadEvent() {
     this._isMounted = true;
     this.setState({ preLoader: true });
-    service.get(`${process.env.REACT_APP_URL}/event/fetch/api-event`)
+    service.get(`${process.env.REACT_APP_URL}/event/api-event-task-2371`)
       .then(
         response => {
-          if (response.success) {
-            if (this._isMounted) {
-              if (response.data) {
-                this.setState({
-                  event: response.data.event,
-                  preLoader: false
-                }, () => {
-                  this.props.dispatch(GeneralAction.eventInfo(response.data.event));
-                });
-              }
+          if (this._isMounted) {
+            if (response.data) {
+              this.setState({
+                event: response.data,
+                preLoader: false
+              }, () => {
+                this.props.dispatch(GeneralAction.eventInfo(response.data));
+              });
             }
           }
         },
