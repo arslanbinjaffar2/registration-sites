@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Variation1 extends Component {
     componentDidMount() {
-        this.typeWriter();
+        // this.typeWriter();
         window.addEventListener('scroll', function (e) {
             var scrolled = window.pageYOffset;
             const background = document.querySelector('.parallax-backgroud');
@@ -65,6 +65,8 @@ export default class Variation1 extends Component {
     }
     render() {
         const banner = this.props.banners[0];
+
+       
         return (
             <React.Fragment>
                 <div style={{ backgroundImage: `url(${banner && Number(banner.video_type) === 1  ? process.env.REACT_APP_EVENTCENTER_URL+ banner.image : require('img/h1-parallax1.jpg')})` }} className="edgtf-parallax-section-holder full-height-banners parallax-backgroud">
@@ -73,18 +75,18 @@ export default class Variation1 extends Component {
                             <div style={{ height: '100vh', padding: '5% 15%' }} className="col-12 align-items-center d-flex">
                                 <div style={{ position: 'relative' }} className="parallax-text">
                                     <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-                                        3<span style={{ color: '#fff' }}> Days</span>
+                                        <span style={{ color: '#fff' }}> {banner && banner.info ? banner.info.title : 'Event Banner'}</span>
                                     </div>
-                                    <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
+                                    {/* <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
                                         8<span style={{ color: '#fff' }}> Speeches</span>
-                                    </div>
-                                    <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-                                        2&nbsp;
+                                    </div> */}
+                                    {/* <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
+                                        &nbsp;
                                         <span className="edgtf-typed-wrap">
                                             <span id="typewriter" className="edgtf-typed" style={{ color: '#fff' }}></span>
                                             <span className="typed-cursor" style={{ color: '#fff' }}>_</span>
                                         </span>
-                                    </div>
+                                    </div> */}
                                     <div className="edgtf-custom-font-holder"
                                         style={{ marginTop: '15px', fontFamily: 'Open Sans', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
                                        {banner && banner.info ? banner.info.message : '' }

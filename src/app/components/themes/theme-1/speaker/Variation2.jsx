@@ -9,7 +9,7 @@ class Variation2 extends React.Component {
                         <div className="col-8 offset-md-2 text-center">
                             <div className="edgtf-title-section-holder">
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
-                                    Build your base		</h2>
+                                    Speakers		</h2>
                                 <span className="edge-title-separator edge-enable-separator"></span>
                             </div>
                             <div className="edgtf-title-section-holder">
@@ -22,12 +22,12 @@ class Variation2 extends React.Component {
                         {
                             speakers.map((speaker, i) => {
                                 return(
-                                    <div className="col-12 col-md-4 pl-0 pr-0">
+                                    <div className="col-12 col-md-4 pl-0 pr-0" key={i} >
                                         <div className="edgtf-team-list-holder-inner info_box">
                                             <div className="edgtf-team mb-5">
                                                 <div className="edgtf-team-inner">
                                                     <div className="edgtf-team-image">
-                                                        <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1-300x240.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                                        <img src={ (speaker.image && speaker.image != '') ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image  : 'https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg'} className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                                         <div className="edgtf-team-social-holder">
                                                             <div className="edgtf-team-social-holder-inner">
                                                             </div>
@@ -56,7 +56,6 @@ class Variation2 extends React.Component {
                                     </div>
                                 );
                             })
-                        
                         }
                         
                     </div>

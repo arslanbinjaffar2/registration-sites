@@ -60,7 +60,6 @@ class Banner extends React.Component {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/banner`).then(
             response => {
                 this.state.banners = response.data;
-                console.log('Banner Top', this.state.banners[0]);
             }
         )
     }
