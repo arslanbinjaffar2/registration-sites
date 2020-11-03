@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+<<<<<<< HEAD
 import Home from '@/Home';
 import ScheduleWrapper from '@/ScheduleWrapper';
 import ScheduleWrapperv2 from '@/ScheduleWrapperv2';
@@ -25,18 +26,22 @@ import ImageGalleryv1 from '@/ImageGalleryv1';
 import ImageGalleryv2 from '@/ImageGalleryv2';
 import ImageGalleryv3 from '@/ImageGalleryv3';
 import ImageGalleryv4 from '@/ImageGalleryv4';
+=======
+import MasterLayoutRoute from "@/layout/MasterLayoutRoute";
+import Index from '@/Index';
+>>>>>>> 81d58f1deaabfbd3062278088278ec169ba4d04c
 import FullPage from '@/FullPage';
-import Bannerv1 from '@/Bannerv1';
-import Bannerv2 from '@/Bannerv2';
-import Bannerv3 from '@/Bannerv3';
-import Bannerv4 from '@/Bannerv4';
-import Bannerv5 from '@/Bannerv5';
+import Home from '@/Home';
 import Error404 from '@/Error404';
+import { connect } from 'react-redux';
+
 class RouterOutlet extends React.Component {
+
   render() {
     return (
       <BrowserRouter>
         <Switch>
+<<<<<<< HEAD
           <Route path="/" component={Home} exact={true} />
           <Route path="/schedule" component={ScheduleWrapper} exact={true} /> 
           <Route path="/schedulev2" component={ScheduleWrapperv2} exact={true} />
@@ -68,6 +73,11 @@ class RouterOutlet extends React.Component {
           <Route path="/Bannerv3" component={Bannerv3} exact={true} />
           <Route path="/Bannerv4" component={Bannerv4} exact={true} />
           <Route path="/Bannerv5" component={Bannerv5} exact={true} />
+=======
+          <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
+          <MasterLayoutRoute component={Home} exact path="/home" />
+          <MasterLayoutRoute component={Index} exact path="/:event_url?" />
+>>>>>>> 81d58f1deaabfbd3062278088278ec169ba4d04c
           <Route component={Error404} />
         </Switch>
       </BrowserRouter>
@@ -75,4 +85,11 @@ class RouterOutlet extends React.Component {
   }
 }
 
-export default RouterOutlet;
+function mapStateToProps(state) {
+  const { event } = state;
+  return {
+    event
+  };
+}
+
+export default connect(mapStateToProps)(RouterOutlet);

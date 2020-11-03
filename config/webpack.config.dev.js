@@ -93,9 +93,12 @@ module.exports = {
       'router': resolve('src/router'),
       'db': resolve('src/db'),
       '@': resolve('src/app/components'),
+      'services': resolve('src/app/services/'),
+      'actions': resolve('src/app/actions/'),
+      'helpers': resolve('src/app/helpers/'),
       'bootstrap': resolve('node_modules/bootstrap'),
       'modules': resolve('node_modules'),
-      'store': resolve('src/store'),
+      'store': resolve('src/store'), 
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
