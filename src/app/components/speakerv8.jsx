@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class speakerv7 extends Component {
+export default class speakerv8 extends Component {
   render() {
     return (
       <div style={{ padding: "80px 0" }} className="module-section">
@@ -29,235 +29,179 @@ export default class speakerv7 extends Component {
         <div className="container">
           <div className="row d-flex algin-items-center">
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="speakerv7-wrapper">
-                <div className="speakerv7-image">
+              <div className="speakerv8-wrapper">
+                <div className="speakerv8-image">
                   <span>
                     <img
                       src={require('img/square.jpg')}
                       alt="j"
                     />
                   </span>
-                </div>
-                <div className="speakerv7-caption">
-                  <h3>Emerson Anderson</h3>
-                  <p>Human Resources</p>
-                  <div className="speakerv7-phone">
-                    <a href="tel:+923317145536">+92 03317145536</a>
-                  </div>
-                  <div className="d-flex align-items-baseline">
                     <div className="social-icons">
                       <a href="#!"><span data-icon="&#xe0aa;"></span></a>
                       <a href="#!"><span data-icon="&#xe0ab;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b1;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
-                    </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
-                  </div>
+                    </div> 
                 </div>
+                <div className="speakerv8-caption">
+                  <h3>Emerson Anderson</h3>
+                  </div>
               </div>
             </div>
           </div>

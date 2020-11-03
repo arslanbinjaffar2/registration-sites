@@ -16,6 +16,7 @@ import Speakerv4 from '@/Speakerv4';
 import speakerv5 from '@/speakerv5';
 import speakerv6 from '@/speakerv6';
 import speakerv7 from '@/speakerv7';
+import speakerv8 from '@/speakerv8';
 import Slidercarousel from '@/Slidercarousel';
 import Sponsorsgrid from '@/Sponsorsgrid';
 import Sponsorsgridv2 from '@/Sponsorsgridv2';
@@ -52,6 +53,7 @@ class RouterOutlet extends React.Component {
           <Route path="/speakerv5" component={speakerv5} exact={true} />
           <Route path="/speakerv6" component={speakerv6} exact={true} />
           <Route path="/speakerv7" component={speakerv7} exact={true} />
+          <Route path="/speakerv8" component={speakerv8} exact={true} />
           <Route path="/slider" component={Slidercarousel} exact={true} />
           <Route path="/sponsors" component={Sponsorsgrid} exact={true} />
           <Route path="/sponsorsv2" component={Sponsorsgridv2} exact={true} />
