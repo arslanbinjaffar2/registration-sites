@@ -1,4 +1,10 @@
-export function formatString(fmt, ...args) {
+function ltrim(str, chr) {
+    var rgxtrim = (!chr) ? new RegExp('^\\s+') : new RegExp('^' + chr + '+');
+    return str.replace(rgxtrim, '');
+}
+
+
+function formatString(fmt, ...args) {
     if (!fmt.match(/^(?:(?:(?:[^{}]|(?:\{\{)|(?:\}\}))+)|(?:\{[0-9]+\}))+$/)) {
         throw new Error('invalid format string.');
     }
@@ -13,3 +19,8 @@ export function formatString(fmt, ...args) {
         }
     });
 }
+
+export {
+    formatString,
+    ltrim
+};
