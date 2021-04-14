@@ -854,16 +854,121 @@
   margin-bottom: 30px;
   .speakerv7-image {
     text-align: left;
+    margin-bottom: 25px;
     span {
       display: inline-block;
       overflow: hidden;
       background: $black;
       max-width: 128px;
       border-radius: 100%;
+      img {
+        transition: all 0.2s linear;
+      }
     }
   }
   .speakerv7-caption {
-    
+    h3 {
+      margin: 0 0 20px 0;
+      font-weight: 400;
+      text-transform: none;
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .speakerv7-phone {
+      margin-bottom: 2px;
+      a {
+       font-weight: 700;
+       font-size: 20px;
+       color: $link;
+      }
+    }
+    .social-icons {
+      width: 100%;
+      a {
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 4px;
+        color: rgba($gray, 0.4);
+      }
+    }
+    .email {
+      a {
+        font-size: 34px;
+        color: rgba($gray, 0.4);
+        i {
+          line-height: 20px;
+        }
+      }
+    }
+  }
+  &:hover {
+    .speakerv7-image {
+      span {
+        img {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+.speakerv8-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+  .speakerv8-image {
+    position: relative;
+    width: 100%;
+    border-radius: 100%;
+    overflow: hidden;
+    span {
+      img {
+        width: 100%;
+      }
+    }
+    .social-icons {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      top: 0;
+      height: 100%;
+      background: rgba($link,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s linear;
+      opacity: 0;
+      visibility: hidden;
+      a {
+        color: $white;
+        display: inline-block;
+        margin: 0 4px;
+        font-size: 24px;
+        transform: translateY(40px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s linear;
+      }
+    }
+  }
+  .speakerv8-caption {
+    h3 {
+      text-transform: none;
+    }
+  }
+  &:hover {
+    .speakerv8-image {
+      .social-icons {
+        opacity: 1;
+        visibility: visible;
+        a {
+          visibility: visible;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
   }
 }
 @media (max-width: 991px) {
