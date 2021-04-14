@@ -23,6 +23,7 @@ class Video extends React.Component {
     async componentDidMount() {
         this._isMounted = true;
         this.loadVideos();
+        
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
@@ -55,11 +56,12 @@ class Video extends React.Component {
         this._isMounted = false;
     }
 
-    loadVideos(){
+    loadVideos() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/videos`).then(
             response => {
-                this.state.videos = response.data;
-                console.log('videos : ' ,this.state.videos);
+                this.setState({
+                    videos: response.data
+                });
             }
         )
     }

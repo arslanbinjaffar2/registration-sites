@@ -14,14 +14,16 @@ class Speaker extends React.Component {
         this.state = {
             theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
             module: false,
-            speakers:[],
+            speakers: [],
             components: []
         }
     }
 
     async componentDidMount() {
         this._isMounted = true;
+
         this.loadSpeakers();
+        
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
@@ -54,11 +56,12 @@ class Speaker extends React.Component {
         this._isMounted = false;
     }
 
-    loadSpeakers(){
+    loadSpeakers() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/speakers`).then(
             response => {
-                this.state.speakers = response.data;
-                console.log('speakers : ' ,this.state.speakers);
+                this.setState({
+                    speakers: response.data
+                });
             }
         )
     }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import shortid from "shortid";
+import { service } from '../../services/service';
 
 const in_array = require("in_array");
 
@@ -13,12 +14,15 @@ class Program extends React.Component {
         this.state = {
             theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
             module: false,
-            components: []
+            components: [],
+            programs: [],
         }
     }
 
     async componentDidMount() {
         this._isMounted = true;
+
+        //this.loadPrograms();
 
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
@@ -52,11 +56,21 @@ class Program extends React.Component {
         this._isMounted = false;
     }
 
+    loadPrograms() {
+        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/programs`).then(
+            response => {
+                this.setState({
+                    programs: response.data
+                });
+            }
+        )
+    }
+
     render() {
         const { components } = this.state;
         if (components.length === 0) return <div>Loading...</div>;
         const componentsElements = components.map(Component => (
-            <Component key={shortid.generate()} />
+            <Component programs={this.state.programs} key={shortid.generate()} />
         ));
         return <div className="App">{componentsElements}</div>;
     }

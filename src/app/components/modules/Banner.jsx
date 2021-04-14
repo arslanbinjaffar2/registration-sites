@@ -59,7 +59,9 @@ class Banner extends React.Component {
     loadBanners() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/banner`).then(
             response => {
-                this.state.banners = response.data;
+                this.setState({
+                    banners: response.data
+                });
             }
         )
     }
@@ -67,7 +69,6 @@ class Banner extends React.Component {
 
     render() {
         const { components } = this.state;
-        console.log(components);
         if (components.length === 0) return <div>Loading...</div>;
         const componentsElements = components.map(Component => (
             <Component banners={this.state.banners} key={shortid.generate()} />

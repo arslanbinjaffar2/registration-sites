@@ -21,8 +21,9 @@ class Sponsor extends React.Component {
 
     async componentDidMount() {
         this._isMounted = true;
-        
+
         this.loadSponsors();
+        
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
@@ -58,8 +59,9 @@ class Sponsor extends React.Component {
     loadSponsors() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/sponsors`).then(
             response => {
-                this.state.sponsors = response.data;
-                console.log('Sponsors : ' ,this.state.sponsors);
+                this.setState({
+                    sponsors: response.data
+                });
             }
         )
     }

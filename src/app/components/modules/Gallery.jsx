@@ -23,6 +23,7 @@ class Gallery extends React.Component {
         this._isMounted = true;
 
         this.loadPhotos();
+        
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
@@ -56,10 +57,11 @@ class Gallery extends React.Component {
     }
 
     loadPhotos() {
-        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/photos`).then( 
+        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/photos`).then(
             response => {
-                this.state.photos = response.data;
-                console.log('Photo: ',this.state.photos);
+                this.setState({
+                    photos: response.data
+                });
             }
         )
     }

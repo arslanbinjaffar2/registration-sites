@@ -22,7 +22,9 @@ class Exhibitor extends React.Component {
 
     async componentDidMount() {
         this._isMounted = true;
+
         this.loadExhibitor();
+        
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {
             let module = this.state.theme.modules.filter(function (module, i) {
@@ -58,8 +60,9 @@ class Exhibitor extends React.Component {
     loadExhibitor() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/exhibitors`).then(
             response => {
-                this.state.exhibitors = response.data;
-                console.log('Exhibitors : ' ,this.state.exhibitors);
+                this.setState({
+                    exhibitors: response.data
+                });
             }
         )
     }
