@@ -22,7 +22,7 @@ class Program extends React.Component {
     async componentDidMount() {
         this._isMounted = true;
 
-        //this.loadPrograms();
+        this.loadPrograms();
 
         //active theme variation
         if (this.state.theme && this.state.theme.modules) {

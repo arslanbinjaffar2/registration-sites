@@ -59,6 +59,7 @@ export default class Variation6 extends Component {
         });
     }
     render() {
+			const speakers = this.props.speakers;
         return (
             <div style={{ padding: "80px 0" }} className="module-section">
                 {this.state.popupDetail && (
@@ -72,23 +73,21 @@ export default class Variation6 extends Component {
                                 className="edgtf-title-section-holder"
                             >
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
-                                    Our Speakers
-                </h2>
-                                <h6
-                                    style={{ fontSize: "16px", lineHeight: "1.5" }}
-                                    className="edgtf-section-subtitle"
-                                >
+                                  Our Speakers
+                								</h2>
+                                <h6 style={{ fontSize: "16px", lineHeight: "1.5" }}
+                                    className="edgtf-section-subtitle">
                                     A schedule at a glance is listed below. Check the program for
                                     this year's conference and learn about the speakers and
                                     sessions in store for tech enthusiasts.
-                </h6>
+                								</h6>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="container">
                     <div className="row d-flex algin-items-center">
-                        <div className="col-md-3">
+                        {speakers && speakers.map((speaker, i) => <div key={i} className="col-md-3">
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
                                     <img
@@ -104,190 +103,15 @@ export default class Variation6 extends Component {
                                     </div>
                                 </div>
                                 <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
+                                    <h3>{ speaker.first_name} { speaker.last_name}</h3>
                                     <span
                                         style={{ display: "inline-block" }}
                                         className="edge-title-separator"
                                     ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
+                                    <p>{ speaker.email}</p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="speakerv6-wrapper">
-                                <div className="speakerv6-image">
-                                    <img
-                                        src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg"
-                                        alt="j"
-                                        srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w"
-                                        sizes="(max-width: 800px) 100vw, 800px"
-                                        width="800"
-                                        height="575"
-                                    />
-                                    <div onClick={this.handleOpenpopup.bind(this)} className="caption">
-                                        <span className="plus"></span>
-                                    </div>
-                                </div>
-                                <div className="speakerv6-caption text-center">
-                                    <h3>Lorem, ipsum dolor.</h3>
-                                    <span
-                                        style={{ display: "inline-block" }}
-                                        className="edge-title-separator"
-                                    ></span>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </div>
-                        </div>
+                        </div>)}
                     </div>
                 </div>
             </div>

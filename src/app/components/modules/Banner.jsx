@@ -71,7 +71,7 @@ class Banner extends React.Component {
         const { components } = this.state;
         if (components.length === 0) return <div>Loading...</div>;
         const componentsElements = components.map(Component => (
-            <Component banners={this.state.banners} key={shortid.generate()} />
+            <Component event={this.props.event} banners={this.state.banners} key={shortid.generate()} />
         ));
         return <div className="App">{componentsElements}</div>;
     }
