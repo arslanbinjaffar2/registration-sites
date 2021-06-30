@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Variation7 extends Component {
     render() {
-			const speakers = this.props.speakers;
+        const speakers = this.props.speakers;
         return (
             <div style={{ padding: "80px 0" }} className="module-section">
                 <div className="container mb-4">
@@ -38,8 +38,8 @@ export default class Variation7 extends Component {
                                     </span>
                                 </div>
                                 <div className="speakerv7-caption">
-                                    <h3>{ speaker.first_name} { speaker.last_name}</h3>
-                                    <p>{ speaker.email}</p>
+                                    <h3>{speaker.first_name} {speaker.last_name}</h3>
+                                    <p>{speaker.email}</p>
                                     <div className="speakerv7-phone">
                                         <a href="tel:+923317145536">+92 03317145536</a>
                                     </div>
@@ -56,7 +56,7 @@ export default class Variation7 extends Component {
                                 </div>
                             </div>
                         </div>)}
-                        
+
                     </div>
                 </div>
             </div>

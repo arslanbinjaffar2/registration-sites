@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Variation2 extends Component {
-    
+
     render() {
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
@@ -102,7 +102,7 @@ export default class Variation2 extends Component {
                                                 <div className="col-2">
                                                     <div className="sc-time">
                                                         <i className="fa fa-clock-o"></i> 10:00
-                                                </div>
+                                                    </div>
                                                 </div>
                                                 <div className="col-10">
                                                     <h4>
@@ -135,7 +135,7 @@ export default class Variation2 extends Component {
                                                 <div className="col-2">
                                                     <div className="sc-time">
                                                         <i className="fa fa-clock-o"></i> 10:00
-                                                </div>
+                                                    </div>
                                                 </div>
                                                 <div className="col-10">
                                                     <h4>

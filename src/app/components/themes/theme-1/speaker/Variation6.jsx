@@ -59,7 +59,7 @@ export default class Variation6 extends Component {
         });
     }
     render() {
-			const speakers = this.props.speakers;
+        const speakers = this.props.speakers;
         return (
             <div style={{ padding: "80px 0" }} className="module-section">
                 {this.state.popupDetail && (
@@ -73,14 +73,14 @@ export default class Variation6 extends Component {
                                 className="edgtf-title-section-holder"
                             >
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
-                                  Our Speakers
-                								</h2>
+                                    Our Speakers
+                                </h2>
                                 <h6 style={{ fontSize: "16px", lineHeight: "1.5" }}
                                     className="edgtf-section-subtitle">
                                     A schedule at a glance is listed below. Check the program for
                                     this year's conference and learn about the speakers and
                                     sessions in store for tech enthusiasts.
-                								</h6>
+                                </h6>
                             </div>
                         </div>
                     </div>
@@ -103,12 +103,12 @@ export default class Variation6 extends Component {
                                     </div>
                                 </div>
                                 <div className="speakerv6-caption text-center">
-                                    <h3>{ speaker.first_name} { speaker.last_name}</h3>
+                                    <h3>{speaker.first_name} {speaker.last_name}</h3>
                                     <span
                                         style={{ display: "inline-block" }}
                                         className="edge-title-separator"
                                     ></span>
-                                    <p>{ speaker.email}</p>
+                                    <p>{speaker.email}</p>
                                 </div>
                             </div>
                         </div>)}

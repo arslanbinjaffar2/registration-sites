@@ -24,7 +24,7 @@ class Variation1 extends React.Component {
                         {/* Grid */}
 
                         {speakers.map((speaker, i) => {
-                              return (
+                            return (
                                 <div key={i} className="col-12 col-md-4 pl-0 pr-0">
                                     <div className="edgtf-team-list-holder-inner info_box">
                                         <div className="edgtf-team edgtf-team-light mb-5">
@@ -40,9 +40,9 @@ class Variation1 extends React.Component {
                                                 <div className="edgtf-team-info">
                                                     <div className="edgtf-team-title-holder">
                                                         <h3 className="edgtf-team-name">
-                                                            { speaker.first_name} { speaker.last_name}
+                                                            {speaker.first_name} {speaker.last_name}
                                                         </h3>
-                                                        <span className="edgtf-team-position">{ speaker.email }</span>
+                                                        <span className="edgtf-team-position">{speaker.email}</span>
                                                     </div>
                                                     <div className="edgtf-team-social-holder-between">
                                                         <div className="edgtf-team-social">
@@ -57,9 +57,9 @@ class Variation1 extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                              )  
-                        }) }
-                        
+                            )
+                        })}
+
                         {/* Grid */}
                     </div>
                 </div>

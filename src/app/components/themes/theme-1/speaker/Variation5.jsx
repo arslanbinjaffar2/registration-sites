@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Variation5 extends Component {
     render() {
-			const speakers = this.props.speakers;
+        const speakers = this.props.speakers;
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
                 <div className="container">
@@ -23,12 +23,12 @@ export default class Variation5 extends Component {
                                 <div className="speakerv5-area text-center">
                                     <div className="speakerv5-image">
                                         <img src={require('img/square.jpg')} alt="" />
-                                        <h5>{ speaker.first_name} { speaker.last_name}</h5>
-                                        <span className="sc-desciption">{ speaker.email}</span>
+                                        <h5>{speaker.first_name} {speaker.last_name}</h5>
+                                        <span className="sc-desciption">{speaker.email}</span>
                                     </div>
                                     <div className="speakerv5-caption">
-                                        <h5>{ speaker.first_name} { speaker.last_name}</h5>
-                                        <span className="sc-desciption">{ speaker.email}</span>
+                                        <h5>{speaker.first_name} {speaker.last_name}</h5>
+                                        <span className="sc-desciption">{speaker.email}</span>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat cum ad odit qui voluptate doloribus aliquam beatae, molestiae eligendi!</p>
                                         <div className="sc-social">
                                             <a href=""><i className="fa fa-twitter-square"></i></a>

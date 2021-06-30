@@ -9,7 +9,7 @@ class Variation3 extends React.Component {
                             <div className="edgtf-title-section-holder mb-5">
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
                                     Conference Gallery
-                </h2>
+                                </h2>
                                 <span className="edge-title-separator edge-enable-separator"></span>
                             </div>
                         </div>

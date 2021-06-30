@@ -9,14 +9,14 @@ class Variation2 extends React.Component {
                             <div className="edgtf-title-section-holder mb-5">
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
                                     Conference Gallery
-                </h2>
+                                </h2>
                                 <span className="edge-title-separator edge-enable-separator"></span>
 
                                 <h6 className="edgtf-section-subtitle">
                                     Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad
                                     his suavitate complectitur ruis dicant facilisi atvimsed eu
                                     justo evertitur
-                </h6>
+                                </h6>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     New Ideas
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Conference</span></div>
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     Startup Nation
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Event</span></div>
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     Web Summit
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Congress</span></div>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     Design Work
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Conference</span></div>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     Marketing
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Convention</span></div>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@ class Variation2 extends React.Component {
                                             <div className="edgtf-item-text-holder">
                                                 <h4 className="edgtf-item-title">
                                                     Startup
-                        </h4>
+                                                </h4>
                                                 <div className="edgtf-ptf-category-holder"><span>Event</span></div>
                                             </div>
                                         </div>

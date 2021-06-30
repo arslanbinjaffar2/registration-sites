@@ -27,9 +27,9 @@ class Variation3 extends React.Component {
                                         <div className="edgtf-team-info">
                                             <div className="edgtf-team-title-holder">
                                                 <h3 className="edgtf-team-name">
-																								{ speaker.first_name} { speaker.last_name}
-                       													 </h3>
-                                                <span className="edgtf-team-position">{ speaker.email}</span>
+                                                    {speaker.first_name} {speaker.last_name}
+                                                </h3>
+                                                <span className="edgtf-team-position">{speaker.email}</span>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">
                                                 <div className="edgtf-team-social">

@@ -1,7 +1,7 @@
 import * as React from 'react';
 class Variation4 extends React.Component {
     render() {
-			const speakers = this.props.speakers;
+        const speakers = this.props.speakers;
         return (
             <div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder">
                 <div className="container-fluid">
@@ -27,9 +27,9 @@ class Variation4 extends React.Component {
                                         <div className="edgtf-team-info">
                                             <div className="edgtf-team-title-holder">
                                                 <h3 className="edgtf-team-name">
-																								{ speaker.first_name} { speaker.last_name}
+                                                    {speaker.first_name} {speaker.last_name}
                                                 </h3>
-                                                <span className="edgtf-team-position">{ speaker.email}</span>
+                                                <span className="edgtf-team-position">{speaker.email}</span>
                                                 <div className="edgtf-team-social-holder">
                                                     <div className="edgtf-team-social-holder-inner">
                                                         <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>

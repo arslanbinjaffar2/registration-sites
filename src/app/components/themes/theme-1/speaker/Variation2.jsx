@@ -21,13 +21,13 @@ class Variation2 extends React.Component {
                         {/* Grid */}
                         {
                             speakers.map((speaker, i) => {
-                                return(
+                                return (
                                     <div className="col-12 col-md-4 pl-0 pr-0" key={i} >
                                         <div className="edgtf-team-list-holder-inner info_box">
                                             <div className="edgtf-team mb-5">
                                                 <div className="edgtf-team-inner">
                                                     <div className="edgtf-team-image">
-                                                        <img src={ (speaker.image && speaker.image != '') ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image  : 'https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg'} className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                                        <img src={(speaker.image && speaker.image != '') ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : 'https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg'} className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
                                                         <div className="edgtf-team-social-holder">
                                                             <div className="edgtf-team-social-holder-inner">
                                                             </div>
@@ -37,9 +37,9 @@ class Variation2 extends React.Component {
                                                     <div className="edgtf-team-info">
                                                         <div className="edgtf-team-title-holder">
                                                             <h3 className="edgtf-team-name">
-                                                               {speaker.first_name} {speaker.last_name}
+                                                                {speaker.first_name} {speaker.last_name}
                                                             </h3>
-                                                            <span className="edgtf-team-position">{ speaker.email }</span>
+                                                            <span className="edgtf-team-position">{speaker.email}</span>
                                                         </div>
                                                         <div className="edgtf-team-social-holder-between">
                                                             <div className="edgtf-team-social">
@@ -57,7 +57,7 @@ class Variation2 extends React.Component {
                                 );
                             })
                         }
-                        
+
                     </div>
                 </div>
             </div>

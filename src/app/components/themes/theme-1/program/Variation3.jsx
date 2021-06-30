@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Variation3 extends Component {
-    
+
     render() {
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
@@ -34,10 +34,10 @@ export default class Variation3 extends Component {
                                         <div className="sc-accordion-header">
                                             <div className="sc-time">
                                                 10:00
-                      </div>
+                                            </div>
                                             <h4>
                                                 Badge pick-up &amp; breakfast
-                      </h4>
+                                            </h4>
                                         </div>
                                         <div className="sc-accordion-content">
                                             <div className="row">
@@ -65,10 +65,10 @@ export default class Variation3 extends Component {
                                         <div className="sc-accordion-header">
                                             <div className="sc-time">
                                                 10:00
-                      </div>
+                                            </div>
                                             <h4>
                                                 Badge pick-up &amp; breakfast
-                      </h4>
+                                            </h4>
                                         </div>
                                         <div className="sc-accordion-content">
                                             <div className="row">
@@ -91,10 +91,10 @@ export default class Variation3 extends Component {
                                         <div className="sc-accordion-header">
                                             <div className="sc-time">
                                                 10:00
-                      </div>
+                                            </div>
                                             <h4>
                                                 Badge pick-up &amp; breakfast
-                      </h4>
+                                            </h4>
                                         </div>
                                         <div className="sc-accordion-content">
                                             <div className="row">
@@ -117,10 +117,10 @@ export default class Variation3 extends Component {
                                         <div className="sc-accordion-header">
                                             <div className="sc-time">
                                                 10:00
-                      </div>
+                                            </div>
                                             <h4>
                                                 Badge pick-up &amp; breakfast
-                      </h4>
+                                            </h4>
                                         </div>
                                         <div className="sc-accordion-content">
                                             <div className="row">
@@ -143,10 +143,10 @@ export default class Variation3 extends Component {
                                         <div className="sc-accordion-header">
                                             <div className="sc-time">
                                                 10:00
-                      </div>
+                                            </div>
                                             <h4>
                                                 Badge pick-up &amp; breakfast
-                      </h4>
+                                            </h4>
                                         </div>
                                         <div className="sc-accordion-content">
                                             <div className="row">

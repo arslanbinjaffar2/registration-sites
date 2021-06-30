@@ -11,27 +11,27 @@ class Variation1 extends React.Component {
                                     <li className="ui-state-default ui-corner-top ui-tabs-active ui-state-active">
                                         <a href="#!" className="ui-tabs-anchor">
                                             All Events
-                    </a>
+                                        </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
                                         <a href="#!" className="ui-tabs-anchor">
                                             Festivity
-                    </a>
+                                        </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
                                         <a href="#!" className="ui-tabs-anchor">
                                             Masterclass
-                    </a>
+                                        </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
                                         <a href="#!" className="ui-tabs-anchor">
                                             Seminar
-                    </a>
+                                        </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
                                         <a href="#!" className="ui-tabs-anchor">
                                             Workshop
-                    </a>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -46,10 +46,10 @@ class Variation1 extends React.Component {
                             <table className="tt_timetable">
                                 <thead>
                                     <tr className="row_gray">
-                                        <th></th> 
-                                        <th>Wednesday</th> 
+                                        <th></th>
+                                        <th>Wednesday</th>
                                         <th>Thursday</th>
-                                        <th>Friday</th> 
+                                        <th>Friday</th>
                                         <th>Saturday</th>
                                     </tr>
                                 </thead>
@@ -64,7 +64,7 @@ class Variation1 extends React.Component {
                                                     title="Registration with Coffee"
                                                 >
                                                     Registration with Coffee
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">09.00 - 10.00</span>
                                                 </div>
@@ -76,9 +76,9 @@ class Variation1 extends React.Component {
                                                         title="Registration with Coffee"
                                                     >
                                                         Registration with Coffee
-                          </a>
-                          Festivity
-                        </div>
+                                                    </a>
+                                                    Festivity
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -90,13 +90,13 @@ class Variation1 extends React.Component {
                                                     title="Conference meeting"
                                                 >
                                                     Conference meeting
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">09.00 - 10.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     How startups can work effectively with corporates
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -105,9 +105,9 @@ class Variation1 extends React.Component {
                                                         title="Conference meeting"
                                                     >
                                                         Conference meeting
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -119,13 +119,13 @@ class Variation1 extends React.Component {
                                                     title="Team building"
                                                 >
                                                     Team building
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">09.00 - 10.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Designing the next industry transformation
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -134,9 +134,9 @@ class Variation1 extends React.Component {
                                                         title="Team building"
                                                     >
                                                         Team building
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -154,7 +154,7 @@ class Variation1 extends React.Component {
                                                     title="Company presentation"
                                                 >
                                                     Company presentation
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">11.00 - 12.00</span>
                                                 </div>
@@ -169,9 +169,9 @@ class Variation1 extends React.Component {
                                                         title="Company presentation"
                                                     >
                                                         Company presentation
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -183,13 +183,13 @@ class Variation1 extends React.Component {
                                                     title="Press"
                                                 >
                                                     Press
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">11.00 - 12.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Finding your calling in the digital economy
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -198,9 +198,9 @@ class Variation1 extends React.Component {
                                                         title="Press"
                                                     >
                                                         Press
-                          </a>
-                          Masterclass
-                        </div>
+                                                    </a>
+                                                    Masterclass
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -213,13 +213,13 @@ class Variation1 extends React.Component {
                                                     title="Meet up"
                                                 >
                                                     Meet up
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">11.00 - 12.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Small business with big ambitions?
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -228,9 +228,9 @@ class Variation1 extends React.Component {
                                                         title="Meet up"
                                                     >
                                                         Meet up
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -245,13 +245,13 @@ class Variation1 extends React.Component {
                                                     title="Meet up"
                                                 >
                                                     Meet up
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">14.00 - 15.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Fight for Your Right to Privacy
-                        </div>
+                                                </div>
                                             </div>
                                         </td>
                                         <td className="event tt_tooltip tt_single_event">
@@ -262,13 +262,13 @@ class Variation1 extends React.Component {
                                                     title="Meet up"
                                                 >
                                                     Meet up
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">14.00 - 15.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Building your brand
-                        </div>
+                                                </div>
                                             </div>
                                             <div
                                                 className="tt_tooltip_text"
@@ -279,9 +279,9 @@ class Variation1 extends React.Component {
                                                         title="Meet up"
                                                     >
                                                         Meet up
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -293,13 +293,13 @@ class Variation1 extends React.Component {
                                                     title="Workshop"
                                                 >
                                                     Workshop
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">14.00 - 15.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Building your brand in a mobile world
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -308,9 +308,9 @@ class Variation1 extends React.Component {
                                                         title="Workshop"
                                                     >
                                                         Workshop
-                          </a>
-                          Workshop
-                        </div>
+                                                    </a>
+                                                    Workshop
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -322,13 +322,13 @@ class Variation1 extends React.Component {
                                                     title="Company presentation"
                                                 >
                                                     Company presentation
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">14.00 - 15.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     The one constant in the marketing mix
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -337,9 +337,9 @@ class Variation1 extends React.Component {
                                                         title="Company presentation"
                                                     >
                                                         Company presentation
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -356,13 +356,13 @@ class Variation1 extends React.Component {
                                                     title="Seminar"
                                                 >
                                                     Seminar
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">18.00 - 19.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Building great products is three steps away
-                        </div>
+                                                </div>
                                             </div>
                                             <div
                                                 className="tt_tooltip_text"
@@ -373,9 +373,9 @@ class Variation1 extends React.Component {
                                                         title="Seminar"
                                                     >
                                                         Seminar
-                          </a>
-                          Workshop
-                        </div>
+                                                    </a>
+                                                    Workshop
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -388,13 +388,13 @@ class Variation1 extends React.Component {
                                                     title="Registration"
                                                 >
                                                     Registration
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">18.00 - 19.00</span>
                                                 </div>
                                                 <div className="after_hour_text">
                                                     Building a brand on and off the field
-                        </div>
+                                                </div>
                                             </div>
                                             <div className="tt_tooltip_text">
                                                 <div className="tt_tooltip_content">
@@ -403,9 +403,9 @@ class Variation1 extends React.Component {
                                                         title="Registration"
                                                     >
                                                         Registration
-                          </a>
-                          Seminar
-                        </div>
+                                                    </a>
+                                                    Seminar
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
@@ -417,7 +417,7 @@ class Variation1 extends React.Component {
                                                     title="Final word &amp; Party"
                                                 >
                                                     Final word &amp; Party
-                        </a>
+                                                </a>
                                                 <div className="hours_container">
                                                     <span className="hours">18.00 - 19.00</span>
                                                 </div>
@@ -431,9 +431,9 @@ class Variation1 extends React.Component {
                                                         title="Final word &amp; Party"
                                                     >
                                                         Final word &amp; Party
-                          </a>
-                          Party
-                        </div>
+                                                    </a>
+                                                    Party
+                                                </div>
                                                 <div className="tt_tooltip_arrow"></div>
                                             </div>
                                         </td>
