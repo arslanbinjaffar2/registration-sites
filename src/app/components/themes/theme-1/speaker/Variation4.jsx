@@ -21,7 +21,7 @@ class Variation4 extends React.Component {
                                 <div style={{ width: '100%' }} className="edgtf-team edgtf-team-light mb-0">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg" className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="j" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1.jpg 800w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-600x431.jpg 600w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-300x216.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-3-imge-1-768x552.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" width="800" height="575" />
+                                        <img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"} alt="g"  />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">
@@ -32,7 +32,11 @@ class Variation4 extends React.Component {
                                                 <span className="edgtf-team-position">{speaker.email}</span>
                                                 <div className="edgtf-team-social-holder">
                                                     <div className="edgtf-team-social-holder-inner">
-                                                        <a href="http://www.facebook.com " ><span className="social_facebook_circle" aria-hidden="true"></span> </a><a href="https://twitter.com" ><span className="social_twitter_circle" aria-hidden="true"></span> </a><a href="https://www.linkedin.com" ><span className="social_linkedin_circle" aria-hidden="true"></span> </a> </div>
+                                                        {speaker.info.facebook && <a target="_blank" href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}><span className="social_facebook_circle" aria-hidden="true"></span> </a>}
+                                                        {speaker.info.twitter && <a target="_blank" href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}><span className="social_twitter_circle" aria-hidden="true"></span> </a>}
+                                                        {speaker.info.linkedin && <a target="_blank" href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}><span className="social_linkedin_circle" aria-hidden="true"></span> </a>}
+                                                        {speaker.info.website && <a target="_blank" href={`${speaker.info.website_protocol}${speaker.info.website}`}><span className="social_share_circle" aria-hidden="true"></span> </a>}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="edgtf-team-social-holder-between">

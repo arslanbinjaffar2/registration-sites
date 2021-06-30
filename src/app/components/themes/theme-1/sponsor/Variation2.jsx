@@ -22,9 +22,6 @@ class Variation2 extends React.Component {
                                         src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
                                         className="vc_single_image-img attachment-full"
                                         alt="x"
-                                        sizes="(max-width: 304px) 100vw, 304px"
-                                        width="304"
-                                        height="250"
                                     />
                                 </figure>
                             </div>)

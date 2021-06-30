@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export default class Variation7 extends Component {
     render() {
         const speakers = this.props.speakers;
+				console.log(speakers)
         return (
             <div style={{ padding: "80px 0" }} className="module-section">
                 <div className="container mb-4">
@@ -27,31 +28,26 @@ export default class Variation7 extends Component {
                 </div>
                 <div className="container">
                     <div className="row d-flex algin-items-center">
-                        {speakers && speakers.map((speaker, i) => <div key={i} className="col-md-4">
-                            <div className="speakerv7-wrapper">
+                        {speakers && speakers.map((speaker, i) => <div key={i} style={{marginBottom: '30px'}} className="col-md-4">
+                            <div style={{height: '100%',marginBottom: 0}} className="speakerv7-wrapper">
                                 <div className="speakerv7-image">
                                     <span>
-                                        <img
-                                            src={require('img/square.jpg')}
-                                            alt="j"
-                                        />
+																		<img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : require('img/square.jpg')} alt="g"  />
                                     </span>
                                 </div>
                                 <div className="speakerv7-caption">
                                     <h3>{speaker.first_name} {speaker.last_name}</h3>
                                     <p>{speaker.email}</p>
-                                    <div className="speakerv7-phone">
-                                        <a href="tel:+923317145536">+92 03317145536</a>
-                                    </div>
+                                    {speaker.info.phone && <div className="speakerv7-phone">
+                                        <a href={`tel:${speaker.info.phone}`}>{speaker.info.phone}</a>
+                                    </div>}
                                     <div className="d-flex">
                                         <div className="social-icons">
-                                            <a href=""><span data-icon="&#xe0aa;"></span></a>
-                                            <a href=""><span data-icon="&#xe0ab;"></span></a>
-                                            <a href=""><span data-icon="&#xe0b1;"></span></a>
-                                            <a href=""><span data-icon="&#xe0b4;"></span></a>
-                                            <a href=""><span data-icon="&#xe0b9;"></span></a>
+                                            {speaker.info.facebook && <a target="_blank" href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}><span data-icon="&#xe0aa;"></span></a>}
+                                            {speaker.info.twitter && <a target="_blank" href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}><span data-icon="&#xe0ab;"></span></a>}
+                                            {speaker.info.linkedin && <a target="_blank" href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}><span data-icon="&#xe0b1;"></span></a>}
+                                            {speaker.info.website && <a target="_blank" href={`${speaker.info.website_protocol}${speaker.info.website}`}><span data-icon="&#xe0b7;"></span></a>}
                                         </div>
-                                        <span className="email"><a href="" data-icon="&#xe010;"></a></span>
                                     </div>
                                 </div>
                             </div>

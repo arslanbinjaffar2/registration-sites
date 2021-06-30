@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class Variation5 extends Component {
     render() {
         const speakers = this.props.speakers;
+        console.log(speakers)
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
                 <div className="container">
@@ -22,18 +23,19 @@ export default class Variation5 extends Component {
                             <div className="speakerv5-wrapper">
                                 <div className="speakerv5-area text-center">
                                     <div className="speakerv5-image">
-                                        <img src={require('img/square.jpg')} alt="" />
+                                         <img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : require('img/square.jpg')} alt="g"  />
                                         <h5>{speaker.first_name} {speaker.last_name}</h5>
                                         <span className="sc-desciption">{speaker.email}</span>
                                     </div>
                                     <div className="speakerv5-caption">
                                         <h5>{speaker.first_name} {speaker.last_name}</h5>
                                         <span className="sc-desciption">{speaker.email}</span>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat cum ad odit qui voluptate doloribus aliquam beatae, molestiae eligendi!</p>
+                                        <p>{speaker.info.about ? speaker.info.about : '' }</p>
                                         <div className="sc-social">
-                                            <a href=""><i className="fa fa-twitter-square"></i></a>
-                                            <a href=""><i className="fa fa-facebook-square"></i></a>
-                                            <a href=""><i className="fa fa-linkedin-square"></i></a>
+                                            {speaker.info.twitter && <a target="_blank" href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}><i className="fa fa-twitter-square"></i></a>}
+                                            {speaker.info.facebook && <a target="_blank" href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}><i className="fa fa-facebook-square"></i></a>}
+                                            {speaker.info.linkedin && <a target="_blank" href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}><i className="fa fa-linkedin-square"></i></a>}
+                                            {speaker.info.website && <a target="_blank" href={`${speaker.info.website_protocol}${speaker.info.website}`}><i className="fa fa-external-link"></i></a>}
                                         </div>
                                     </div>
                                 </div>

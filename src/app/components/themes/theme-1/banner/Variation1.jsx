@@ -77,24 +77,10 @@ export default class Variation1 extends Component {
                                     <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
                                         <span style={{ color: '#fff' }}> {banner && banner.info ? banner.info.title : 'Event Banner'}</span>
                                     </div>
-                                    {/* <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-                                        8<span style={{ color: '#fff' }}> Speeches</span>
-                                    </div> */}
-                                    {/* <div className="edgtf-custom-font-holder" style={{ fontFamily: 'Rubik', fontSize: '127px', lineHeight: '127px', fontWeight: '500', letterSpacing: '1.3px', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-                                        &nbsp;
-                                        <span className="edgtf-typed-wrap">
-                                            <span id="typewriter" className="edgtf-typed" style={{ color: '#fff' }}></span>
-                                            <span className="typed-cursor" style={{ color: '#fff' }}>_</span>
-                                        </span>
-                                    </div> */}
                                     <div className="edgtf-custom-font-holder"
                                         style={{ marginTop: '15px', fontFamily: 'Open Sans', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
                                        {banner && banner.info ? banner.info.message : '' }
                                     </div>
-                                    {/* <div className="edgtf-custom-font-holder"
-                                        style={{ fontFamily: 'Open Sans', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
-                                        nihil expetendis in an pericula euripidis.
-                                    </div> */}
                                 </div>
                             </div>
                         </div>

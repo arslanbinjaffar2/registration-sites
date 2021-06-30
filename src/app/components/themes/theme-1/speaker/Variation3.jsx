@@ -18,10 +18,10 @@ class Variation3 extends React.Component {
                         {/* Grid */}
                         {speakers && speakers.map((speaker, i) => <div key={i} className="col-12 col-sm-6 col-md-3 pl-0 pr-0">
                             <div className="edgtf-team-list-holder-inner info_box">
-                                <div className="edgtf-team edgtf-team-light mb-5">
+                                <div className="edgtf-team edgtf-team-light w-100 mb-5">
                                     <div className="edgtf-team-inner">
                                         <div className="edgtf-team-image">
-                                            <img src="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-3-team-img-1.jpg" className="vc_single_image-img attachment-full" alt="e" srcSet="https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-3-team-img-1.jpg 305w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-3-team-img-1-300x300.jpg 300w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-3-team-img-1-100x100.jpg 100w, https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-3-team-img-1-150x150.jpg 150w" sizes="(max-width: 305px) 100vw, 305px" width="305" height="305" />
+                                        <img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"} alt="g"  />
                                         </div>
                                         {/* Description */}
                                         <div className="edgtf-team-info">

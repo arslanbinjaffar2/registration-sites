@@ -19,15 +19,14 @@ class Variation2 extends React.Component {
                     </div>
                     <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
                         {/* Grid */}
-                        {
-                            speakers.map((speaker, i) => {
+                        {speakers &&  speakers.map((speaker, i) => {
                                 return (
                                     <div className="col-12 col-md-4 pl-0 pr-0" key={i} >
                                         <div className="edgtf-team-list-holder-inner info_box">
-                                            <div className="edgtf-team mb-5">
+                                            <div className="edgtf-team mb-5 w-100">
                                                 <div className="edgtf-team-inner">
                                                     <div className="edgtf-team-image">
-                                                        <img src={(speaker.image && speaker.image != '') ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : 'https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/team-1-img-1.jpg'} className="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="d" sizes="(max-width: 600px) 100vw, 600px" width="600" height="481" />
+                                                    <img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"} alt="g"  />
                                                         <div className="edgtf-team-social-holder">
                                                             <div className="edgtf-team-social-holder-inner">
                                                             </div>
