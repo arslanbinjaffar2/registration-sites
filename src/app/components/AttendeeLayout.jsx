@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Attendees from '@/modules/Attendee';
+import Attendee from '@/modules/Attendee';
 
-export default class Attendee extends Component {
+export default class AttendeeLayout extends Component {
   render() {
     return (
       <React.Fragment>
-        <Attendees />
+        <Attendee />
       </React.Fragment>
     )
   }
