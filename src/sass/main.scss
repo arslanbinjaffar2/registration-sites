@@ -57,6 +57,15 @@
 @import './base/animations';
 @import './base/spinners';
 
+/* ==========================================================================
+	 3. News Styles
+	 ========================================================================== */
+
+@import './components/modules/blog/blog-basic';
+@import './components/modules/blog/blog-standard-list';
+@import './components/modules/blog/blog-masonry-list';
+@import './components/modules/blog/blog-split-column';
+@import './components/modules/blog/blog-single';
 
 /* ==========================================================================
    4. Title area styles
@@ -1149,3 +1158,10 @@ $z-index:$back-to-top-size / 2;
 /* ==========================================================================
    #Image link style- end
    ========================================================================== */
+
+	//  
+	.ebs-main-header {
+		box-shadow: 0 4px 8px rgba($black,0.1);
+		position: relative;
+		z-index: 999;
+	}
