@@ -1165,3 +1165,14 @@ $z-index:$back-to-top-size / 2;
 		position: relative;
 		z-index: 999;
 	}
+	.blog-post-social {
+    max-width: 50px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-60%);
+    margin-left: -80px;
+		svg {
+			margin-bottom: 10px;
+		}
+}

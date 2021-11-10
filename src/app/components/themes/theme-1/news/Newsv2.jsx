@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Newsv2 extends Component {
   state = {
-    sidebar: false
+    sidebar: true
   }
   render() {
     const {sidebar} = this.state
