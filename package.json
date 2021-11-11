@@ -1,6 +1,6 @@
 {
   "name": "eventbuizz-registration-sites",
-  "version": "0.1.0",
+  "version": "0.1.02",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
@@ -31,6 +31,7 @@
     "in_array": "^1.1.0",
     "jest": "20.0.4",
     "moment": "^2.29.1",
+    "node-sass": "^6.0.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
@@ -43,11 +44,12 @@
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
     "react-i18next": "^11.3.1",
-    "react-masonry-css": "^1.0.14",
+    "react-masonry-css": "1.0.10",
     "react-page-scroller": "^2.0.7-beta",
     "react-portal": "^4.2.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^4.2.2",
+    "react-share": "^4.4.0",
     "react-slick": "^0.27.11",
     "reactstrap": "^5.0.0-beta",
     "redux": "^3.7.2",
@@ -110,7 +112,6 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-notifier": "^1.5.1"

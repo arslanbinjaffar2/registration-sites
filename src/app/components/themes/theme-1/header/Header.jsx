@@ -24,11 +24,24 @@ class Header extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     this.loadMenu();
-    window.addEventListener('resize', this.handleResize.bind(this),false)
+    window.addEventListener('resize', this.handleResize.bind(this),false);
+    window.addEventListener('scroll', this.handleScroll.bind(this),false);
+
   }
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("resize", this.handleResize.bind(this));
+    window.removeEventListener("scroll", this.handleScroll.bind(this));
+  }
+  handleScroll = () => {
+    const _app = document.getElementById('App');
+    const _headerHeight = document.querySelectorAll('#App > .ebs-main-header')[0] ? document.querySelectorAll('#App > .ebs-main-header')[0].offsetHeight : 102;
+    if (window.scrollY >= _headerHeight) {
+      _app.classList.add('ebs-header-fixed');
+    } else {
+      _app.classList.remove('ebs-header-fixed');
+    }
+    
   }
   handleResize = () => {
     clearTimeout(window.resizedFinished);

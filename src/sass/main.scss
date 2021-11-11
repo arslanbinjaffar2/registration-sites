@@ -57,6 +57,15 @@
 @import './base/animations';
 @import './base/spinners';
 
+/* ==========================================================================
+	 3. News Styles
+	 ========================================================================== */
+
+@import './components/modules/blog/blog-basic';
+@import './components/modules/blog/blog-standard-list';
+@import './components/modules/blog/blog-masonry-list';
+@import './components/modules/blog/blog-split-column';
+@import './components/modules/blog/blog-single';
 
 /* ==========================================================================
    4. Title area styles
@@ -280,9 +289,12 @@
 /* Project presentation styles
    ========================================================================== */
 @import './components/modules/shortcodes/project-presentation';
+@import './base/global-responsive';
 /* ==========================================================================
    #Comments styles - start
    ========================================================================== */
+_global-responsive
+
 
 #App {
 	min-height: 100vh;
@@ -733,6 +745,7 @@ div.wpcf7 img.ajax-loader {
 		padding: 0 !important;
 		margin-top: 0 !important;
 		margin-bottom: 0 !important;
+		max-width: 100%;
 	}
 
 }
@@ -1149,3 +1162,30 @@ $z-index:$back-to-top-size / 2;
 /* ==========================================================================
    #Image link style- end
    ========================================================================== */
+
+	//  
+	.ebs-main-header {
+		box-shadow: 0 4px 8px rgba($black,0.1);
+		position: relative;
+		z-index: 999;
+	}
+	.blog-post-social {
+    max-width: 50px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-60%);
+    margin-left: -80px;
+		svg {
+			margin-bottom: 10px;
+		}
+		@media (max-width: 991px) {
+			position: static;
+			margin: 0 0 30px 0;
+			max-width: 100%;
+			svg {
+				margin-bottom: 0;
+				margin-right: 10px;
+			}
+		}
+}
