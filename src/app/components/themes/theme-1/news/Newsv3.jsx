@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import Masonry from "react-masonry-css";
+import {Link} from "react-router-dom";
 
 
-export default class Newsv3 extends Component {
-  state = {
-    sidebar: true
+class Newsv3 extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      sidebar: false,
+      news: props.news,
+      event_url: props.event_url
+    }
   }
+
   render() {
-    const {sidebar} = this.state;
+
+    const {sidebar, news, event_url} = this.state;
+
     const breakpointColumnsObj = {
       default: sidebar ? 2 : 3,
       1100: 2,
       700: 2,
       500: 1,
   };
+
     return (
       <div style={{paddingTop: '80px'}} className='edgtf-container'>
        <div className="edgtf-container-inner">
          <div className={`${sidebar ? 'edgtf-two-columns-75-25' : 'edgtf-full-width-inner'} clearfix`}>
+
            <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
@@ -26,214 +38,47 @@ export default class Newsv3 extends Component {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
                 >
-                {/* List */}
-                <article>
-                  {/* for Image */}
+                {news.map(item=>(
+                <article key={item.id}>
                   <div className="edgtf-post-content">
                     <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
+                      <Link itemProp="url" to={this.props.makeNewDetailURL(event_url,item.id)}>
+                        <img src={item.image && item.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/eventsite_news/" + item.image : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
+                      </Link>
                     </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
                   <div className="edgtf-post-text">
                     <div className="edgtf-post-text-inner">
                       <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
+                        <Link itemProp="url" to={this.props.makeNewDetailURL(event_url,item.id)}>
+                          {item.title}
+                        </Link>
                       </h3> 
                       <div className="edgtf-post-info">
                         <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
+                          {item.created_at}
                         </div> 
                       </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> 
+                      <p itemProp="description" className="edgtf-post-excerpt"  dangerouslySetInnerHTML = {{__html:item.body}} />
                     </div>
                   </div>
-                  {/* Content Post Close */}
                   </div>
                 </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti, aperiam excepturi enim tempora exercitationem! Suscipit impedit accusamus odio! Lorem.</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti.</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti, aperiam excepturi enim tempora exercitationem! Suscipit impedit accusamus odio! Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum iste impedit quae doloremque pariatur blanditiis nobis minus sunt quidem atque!</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti, aperiam excepturi enim tempora exercitationem! Suscipit impedit accusamus odio! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, pariatur.</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti, aperiam excepturi enim tempora exercitationem! Suscipit impedit accusamus odio! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla saepe necessitatibus earum hic, vero quod, praesentium voluptatem, soluta quae odio non debitis iure. Tenetur ducimus facere animi rem, quo aspernatur.</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
-                {/* List */}
-                <article>
-                  {/* for Image */}
-                  <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
-                      <a itemProp="url" href="#!">
-                        <img src="https://via.placeholder.com/1500x500.png" className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
-                      </a>
-                    </div>
-                  {/* For Image Close */}
-                  {/* Content Post */}
-                  <div className="edgtf-post-text">
-                    <div className="edgtf-post-text-inner">
-                      <h3 itemProp="name" className="entry-title edgtf-post-title">
-                        <a itemProp="url" href="#!" title="Web Analytics Made Easy">Web Analytics Made Easy</a>
-                      </h3> 
-                      <div className="edgtf-post-info">
-                        <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">
-                          March 3, 2016
-                        </div> 
-                      </div>
-                      <p itemProp="description" className="edgtf-post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus fuga consectetur sequi at officia assumenda deleniti, aperiam excepturi enim tempora exercitationem! Suscipit impedit accusamus odio! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe soluta aliquam obcaecati iure asperiores fugit animi repellat voluptatibus esse atque, corporis quaerat modi ut. Est fuga officia placeat eaque modi sed repellendus esse mollitia nisi, labore quasi eum asperiores provident.</p> 
-                    </div>
-                  </div>
-                  {/* Content Post Close */}
-                  </div>
-                </article>
-                {/* List End */}
+                ))}
                 </Masonry>
               </div>
             </div>
            </div>
+
            {sidebar && <div className="edgtf-column2">
              <div className="edgtf-sidebar">
                <h4 className="edgtf-widget-title">Sidebar</h4>
              </div>
            </div>}
+
          </div>
        </div>
       </div>
     )
   }
 }
+export default Newsv3
