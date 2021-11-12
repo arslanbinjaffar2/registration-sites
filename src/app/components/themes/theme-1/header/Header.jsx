@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 class Header extends React.Component {
   _isMounted = false;
@@ -139,20 +139,20 @@ class Header extends React.Component {
                   <ul className="nav navbar-nav m-0">
                     {menus["top_menu"].map((menu) => (
                       <li className="nav-item" key={menu.id}>
-                        <Link className="nav-link" aria-current="page" to="/">
+                        <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
                           {menu.module}
-                        </Link>
+                        </NavLink>
                         {menu.alias === "gallery" && (
                           <ul>
                             {menus["gallery_sub_menu"].map((myaccount, k) => (
                               <li key={k}>
-                                <Link
+                                <NavLink
                                   aria-current="page"
-                                  to="/"
+                                  to={'/' + this.props.event.url + '/' + myaccount.alias}
                                   key={myaccount.id}
                                 >
                                   {myaccount.module}
-                                </Link>
+                                </NavLink>
                               </li>
                             ))}
                           </ul>
@@ -162,13 +162,13 @@ class Header extends React.Component {
                             {menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li key={k}>
-                                  <Link
+                                  <NavLink
                                     aria-current="page"
-                                    to="/"
+                                    to={'/' + this.props.event.url + '/' + myaccount.alias}
                                     key={myaccount.id}
                                   >
                                     {myaccount.module}
-                                  </Link>
+                                  </NavLink>
                                 </li>
                               )
                             )}

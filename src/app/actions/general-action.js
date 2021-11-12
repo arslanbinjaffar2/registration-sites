@@ -1,4 +1,4 @@
-export const GeneralAction = {
+export const npm = {
     errors, redirect, update, eventInfo
 };
 
