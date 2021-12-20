@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
-class Header extends React.Component {
+class Headerv1 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -89,7 +89,7 @@ class Header extends React.Component {
 			_item.appendChild(_itemancor);
       _list.forEach(element => {
         if (_total < (_container.offsetWidth - 220)) {
-          _total = _total + element.offsetWidth + 5;
+          _total = _total + element.offsetWidth + 45;
         } else {
           _element = true;
           _ul.appendChild(element);
@@ -105,11 +105,11 @@ class Header extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2">
+      <div className="ebs-main-header-v1 ebs-main-header-v2">
         <div className="container">
           <div className="row d-flex align-items-center">
-            <div className="col-lg-3 col-6">
-              <div style={{padding: '7px 0',border: 'none'}} className="ebs-logo-main">
+            <div className="col-lg-12 col-6">
+              <div className="ebs-logo-main">
                 <Link to="/">
                   {event.settings.header_logo ? (
                     <img
@@ -123,8 +123,8 @@ class Header extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-9 col-6 d-flex justify-content-end">
-            <nav className="navbar navbar-expand-lg navbar-light">
+            <div className="col-lg-12 col-6 d-flex justify-content-center">
+              <nav className="navbar navbar-expand-lg navbar-light">
               {!this.state.showMenu && <button
                   className="navbar-toggler"
                   type="button"
@@ -200,4 +200,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps)(withRouter(Headerv1));
