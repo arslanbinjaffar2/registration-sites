@@ -1489,3 +1489,34 @@ $z-index:$back-to-top-size / 2;
 		}
 	}
 }
+.ebs-social-share {
+	svg {
+		margin: 0 4px;
+		cursor: pointer;
+	}
+}
+.ebs-google-map {
+	font-size: 0;
+	line-height: 0;
+	iframe {
+		width: 100%;
+	}
+}
+
+
+.ebs-custom-section-html figure.image {
+	margin: 0 0 20px 0;
+	padding: 10px;
+	background: rgba(0,0,0,0.05);
+	outline: solid 1px #ccc;
+	text-align: center;
+	}
+.ebs-custom-section-html figure.image[style="float: left;"] {
+	margin: 0 20px 20px 0;
+}
+.ebs-custom-section-html figure.image[style="float: right;"] {
+	margin: 0 0 20px 20px;
+}
+.ebs-custom-section-html figure.image figcaption {
+	padding-top: 10px;
+}

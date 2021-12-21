@@ -8,6 +8,9 @@ import Sponsor from '@/modules/Sponsor';
 import Timetable from '@/modules/Timetable';
 import Video from '@/modules/Video';
 import Exhibitor from '@/modules/Exhibitor';
+import SocialShare from "@/themes/theme-1/social/SocialShare";
+import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
+import Map from "@/themes/theme-1/map/Map";
 import { connect } from 'react-redux';
 
 class Index extends React.Component {
@@ -17,6 +20,9 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
+                <CustomSection />
+                <SocialShare />
+                <Map />
                 <Banner />
                 {
                     this.props.event && eventsiteSections && eventsiteSections.map((section, i) => {
@@ -65,6 +71,7 @@ class Index extends React.Component {
                 <Sponsor />
                 <Timetable />
                 <Video /> */}
+
             </React.Fragment>
         );
     }
