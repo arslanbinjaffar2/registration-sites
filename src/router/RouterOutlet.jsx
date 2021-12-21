@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import AttendeeLayout from '@/AttendeeLayout';
 import NewsDetail from "@/modules/news/NewsDetail";
 import News from '@/modules/news/News';
+import Header from "@/themes/theme-1/header/Header";
 
 
 class RouterOutlet extends React.Component {
@@ -16,6 +17,8 @@ class RouterOutlet extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <React.Fragment>
+        <Header />
         <Switch>
           <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
           <MasterLayoutRoute component={Home} exact path="/home" />
@@ -25,6 +28,7 @@ class RouterOutlet extends React.Component {
           <Route component={News} exact path="/:event_url/news" />
           <Route component={Error404} />
         </Switch>
+        </React.Fragment>
       </BrowserRouter>
     );
   }

@@ -294,7 +294,9 @@
    #Comments styles - start
    ========================================================================== */
 _global-responsive
-
+html,body {
+	min-height: 100%;
+}
 
 #App {
 	min-height: 100vh;

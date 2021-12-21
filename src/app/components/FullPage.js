@@ -1,5 +1,5 @@
 import React from "react";
-// import Pagination  from "react-bootstrap/Pagination";
+import Pagination  from "react-bootstrap/Pagination";
 
 import ReactPageScroller from "@/scroller";
 
@@ -18,9 +18,9 @@ export default class FullPage extends React.Component {
 
     for (let i = 1; i <= 4; i++) {
       pageNumbers.push(
-        // <Pagination.Item key={i} eventKey={i - 1} onSelect={this.handlePageChange}>
-        //   {i}
-        // </Pagination.Item>
+        <Pagination.Item key={i} eventKey={i - 1} onSelect={this.handlePageChange}>
+          {i}
+        </Pagination.Item>
       );
     }
 
@@ -64,9 +64,9 @@ export default class FullPage extends React.Component {
             Lorem ipsum dolor sit.
           </div>
         </ReactPageScroller>
-        {/* <Pagination className="pagination-additional-class tp-bullet" bsSize="large">
+        <Pagination className="pagination-additional-class tp-bullet" bsSize="large">
           {pagesNumbers}
-        </Pagination> */}
+        </Pagination>
       </React.Fragment>
     );
   }
