@@ -5,23 +5,13 @@ export default class Variation2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
             activeIndex: 0,
             tabIndex: 0
         };
     }
-    componentDidMount() {
-        this.setState(
-            {
-                data: this.props.programs ? this.props.programs : null,
-            },
-            () => {
-                console.log(this.state.data);
-            }
-        );
-    }
     render() {
-        const { data, activeIndex, tabIndex } = this.state;
+        const {activeIndex, tabIndex } = this.state;
+        const {programs} = this.props;
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
                 <div className="container">
@@ -36,10 +26,10 @@ export default class Variation2 extends Component {
                     </div>
                 </div>
                 <div className="container">
-                    {data && (<div className="schedulev2-wrapper">
+                    {programs && (<div className="schedulev2-wrapper">
                         <div className="schedule-tab-wrapper">
                             <ul>
-                                {data && data.length > 0 && data.map((element, k) =>
+                                {programs && programs.length > 0 && programs.map((element, k) =>
                                     <li key={k}>
                                         <a style={{ pointerEvents: k === activeIndex ? 'none' : '' }} onClick={() => this.setState({ tabIndex: 0, activeIndex: k })} className={k === activeIndex ? 'active' : ''} href="#!">
                                             {moment(new Date(element[0].start_date)).format(
@@ -54,7 +44,7 @@ export default class Variation2 extends Component {
                         <div className="schedule-content-wrapper">
                             <div className="schdedule-target">
                                 <div className="schdedule-accordion">
-                                    {data[activeIndex] && data[activeIndex].map((element, k) =>
+                                    {programs[activeIndex] && programs[activeIndex].map((element, k) =>
                                     (<div key={k} className="schdedule-accordion-wrapper">
                                         <div onClick={() => this.setState({ tabIndex: k })} className="sc-accordion-header">
                                             <div className="row align-item-center">
@@ -63,12 +53,12 @@ export default class Variation2 extends Component {
                                                         <i className="fa fa-clock-o"></i> {" "}
                                                         {moment(element.start_time, "HH:mm:ss").format("HH:mm")}
                                                         –
-                                                        {moment(element.detail.end_time, "HH:mm:ss").format("HH:mm")}
+                                                        {moment(element.info.end_time, "HH:mm:ss").format("HH:mm")}
                                                     </div>
                                                 </div>
                                                 <div className="col-10">
                                                     <h4>
-                                                        {element.detail.topic}
+                                                        {element.info.topic}
                                                         <i className={k === tabIndex ? 'fa fa-angle-up' : 'fa fa-angle-down'}></i>
                                                     </h4>
                                                 </div>
@@ -78,16 +68,16 @@ export default class Variation2 extends Component {
                                             <div className="row">
                                                 <div className="col-2"></div>
                                                 <div className="col-10">
-                                                    {element.detail.description && (
+                                                    {element.info.description && (
                                                         <div
                                                             dangerouslySetInnerHTML={{
-                                                                __html: element.detail.description,
+                                                                __html: element.info.description,
                                                             }}
                                                         />
                                                     )}
-                                                    {element.program_speakers && element.program_speakers.length > 0 && <div className="d-flex row mt-4">
+                                                    {element.speakers && element.speakers.length > 0 && <div className="d-flex row mt-4">
                                                         <div className="col-12 mb-3"><h5>SPEAKERS</h5></div>
-                                                        {element.program_speakers.map((speaker, k) =>
+                                                        {element.speakers.map((speaker, k) =>
                                                             <div key={k} className="sc-speaker-container col-md-3 col-sm-4 col-xs-6">
                                                                 <img
                                                                     src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : require('img/square.jpg')}

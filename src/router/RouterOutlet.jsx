@@ -23,9 +23,9 @@ class RouterOutlet extends React.Component {
           <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
           <MasterLayoutRoute component={Home} exact path="/home" />
           <Route component={AttendeeLayout} exact path="/:event_url/attendees" />
-          <MasterLayoutRoute component={Index} exact path="/:event_url?" />
-          <Route component={NewsDetail} exact path="/:event_url/news-detail/:id" />
-          <Route component={News} exact path="/:event_url/news" />
+          <MasterLayoutRoute component={Index} exact path="/:event_url" />
+          {/* <Route component={NewsDetail} exact path="/:event_url/news-detail/:id" /> */}
+          {/* <Route component={News} exact path="/:event_url/news" /> */}
           <Route component={Error404} />
         </Switch>
         </React.Fragment>

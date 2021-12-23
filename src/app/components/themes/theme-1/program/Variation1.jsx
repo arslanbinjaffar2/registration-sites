@@ -5,50 +5,41 @@ class Variation1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
       activeIndex: 0,
     };
   }
-  componentDidMount() {
-    this.setState(
-      {
-        data: this.props.programs ? this.props.programs.slice(0, 5) : null,
-      },
-      () => {
-        console.log(this.state.data);
-      }
-    );
-  }
   render() {
-    const {data, activeIndex} = this.state;
+    const {activeIndex} = this.state;
+    const {programs} = this.props;
     return (
-      <React.Fragment>
-        {data && (
+      <React.Fragment >
+        {programs && (
           <div style={{padding: "80px 0"}} className="module-section">
             <div className="container">
               <div className="edgtf-tabs edgtf-horizontal-tab edgtf-tab-without-icon clearfix ui-tabs ui-widget ui-widget-content ui-corner-all">
                 <ul className="edgtf-tabs-nav ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-                  {data.map((element, k) => (
-                    <li
-                      key={k}
-                      className={`ui-state-default ui-corner-top ${
-                        k === activeIndex && "ui-tabs-active ui-state-active"
-                      }`}>
-                      <a href="#!" onClick={() => this.setState({activeIndex: k})} className="ui-tabs-anchor">
-                        <span className="edgtf-tab-text-after-icon">
-                          {moment(new Date(element[0].start_date)).format(
-                            "DD MMM"
-                          )}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
+                  {programs.map((element, k) => (
+                        <li
+                            key={k}
+                            className={`ui-state-default ui-corner-top ${
+                              k === activeIndex && "ui-tabs-active ui-state-active"
+                            }`}>
+                            <a href="#!" onClick={() => this.setState({activeIndex: k})} className="ui-tabs-anchor">
+                              <span className="edgtf-tab-text-after-icon">
+                                {moment(new Date(element[0].start_date)).format(
+                                  "DD MMM"
+                                )}
+                              </span>
+                            </a>
+                          </li>
+                    ))
+                  }
                 </ul>
                 <div
                   style={{paddingTop: "0"}}
                   className="edgtf-tab-container ui-tabs-panel ui-widget-content ui-corner-bottom">
-                  {data[activeIndex] &&
-                    data[activeIndex].map((element, k) => (
+                  {programs[activeIndex] &&
+                    programs[activeIndex].map((element, k) => (
                       <React.Fragment key={k}>
                         <div
                           style={{
@@ -62,26 +53,26 @@ class Variation1 extends React.Component {
                                 <span style={{color: "#808080"}}>
                                   {moment(element.start_time, "HH:mm:ss").format("HH:mm")}
                                   –
-                                  {moment(element.detail.end_time,"HH:mm:ss").format("HH:mm")}
+                                  {moment(element.info.end_time,"HH:mm:ss").format("HH:mm")}
                                 </span>
                               </h4>
                             </div>
                             <div className="col-12 col-md-9 col-lg-10">
                               <div className="edgtf-elements-holder-item-content">
-                                {element.detail.topic && (
+                                {element.info.topic && (
                                   <h4 className="mt-3 mb-4">
-                                    {element.detail.topic}
+                                    {element.info.topic}
                                   </h4>
                                 )}
-                                {element.detail.description && (
+                                {element.info.description && (
                                   <div
                                     dangerouslySetInnerHTML={{
-                                      __html: element.detail.description,
+                                      __html: element.info.description,
                                     }}
                                   />
                                 )}
 
-                                {element.program_speakers && element.program_speakers.length > 0 && <div
+                                {element.speakers && element.speakers.length > 0 && <div
                                   style={{marginTop: "35px"}}
                                   className="edgtf-team-list-holder edgtf-team-info-in-tooltip"
                                   data-type="info_in_tooltip"
@@ -90,7 +81,7 @@ class Variation1 extends React.Component {
                                   data-category="team-2">
                                   <div className="edgtf-tl-inner clearfix">
 
-                                    {element.program_speakers.map((speaker,k) =>
+                                    {element.speakers.map((speaker,k) =>
 																			<div key={k} className="edgtf-team">
 																				<div
 																					className="edgtf-team-inner"

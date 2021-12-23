@@ -59,9 +59,13 @@ class Program extends React.Component {
     loadPrograms() {
         service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/programs`).then(
             response => {
+                var agenda = [];
+                for (const [key, value] of Object.entries(response.data)) {
+                    agenda.push(value);
+                }
                 this.setState({
-                    programs: response.data
-                });
+                    programs:agenda
+                }); 
             }
         )
     }

@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
+import moment from "moment";
 
 export default class Variation4 extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeIndex: 0,
+        };
+    }
     render() {
+        const {activeIndex, tabIndex } = this.state;
+        const {programs} = this.props;
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
                 <div className="container">
@@ -16,117 +25,51 @@ export default class Variation4 extends Component {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="schedulev4-wrapper">
+                {programs && ( <div className="schedulev4-wrapper">
                         <div className="schedule-tab-wrapper">
                             <ul>
-                                <li><a className="active" href="#!">Day 1</a></li>
-                                <li><a href="#!">Day 2</a></li>
-                                <li><a href="#!">Day 3</a></li>
-                                <li><a href="#!">Day 4</a></li>
+                            {programs && programs.length > 0 && programs.map((element, k) =>
+                                    <li key={k}>
+                                        <a style={{ pointerEvents: k === activeIndex ? 'none' : '' }} onClick={() => this.setState({ tabIndex: 0, activeIndex: k })} className={k === activeIndex ? 'active' : ''} href="#!">
+                                            {moment(new Date(element[0].start_date)).format(
+                                                "DD MMM"
+                                            )}
+                                        </a>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                         <div className="schedule-content-wrapper">
                             <div className="schdedule-target">
                                 <div className="schdedule-accordion">
-                                    <div className="schdedule-accordion-wrapper">
+                                {programs[activeIndex] && programs[activeIndex].map((element, k) =>
+                                    (<div className="schdedule-accordion-wrapper">
                                         <div className="sc-accordion-content">
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="sc-left-description">
-                                                        <h4>Mauris rhoncus scelerisque lacus</h4>
-                                                        <p>Sed facilisis justo vitae risus viverra vulputate. Mauris vel ipsum dignissim diam viverra condimentum. Donec sodales, diam eget mattis condimentum, quam neque tempus purus, dictum viverra risus nisl quis metus.</p>
-                                                        <div className="schedule-info">
-                                                            <ul>
+                                                        {element.info.topic && (<h4 >{element.info.topic}</h4>)}
+                                                        {element.info.description && (<p >{element.info.description}</p>)}
+                                                        {element.speakers && element.speakers.length > 0 && <div className="schedule-info">
+                                                        {element.speakers.map((speaker, k) =>(<ul>
                                                                 <li className="time"><span className="icon_clock_alt "></span>12:30 am – 14:30 am</li>
                                                                 <li className="speakername"><span className="icon_mic_alt "></span>Jhonny Bravo</li>
                                                                 <li className="designation">CEO</li>
                                                             </ul>
+                                                        ))}
                                                         </div>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <div className="sc-left-description">
-                                                        <h4>Mauris rhoncus scelerisque lacus</h4>
-                                                        <p>Sed facilisis justo vitae risus viverra vulputate. Mauris vel ipsum dignissim diam viverra condimentum. Donec sodales, diam eget mattis condimentum, quam neque tempus purus, dictum viverra risus nisl quis metus.</p>
-                                                        <div className="schedule-info">
-                                                            <ul>
-                                                                <li className="time"><span className="icon_clock_alt "></span>12:30 am – 14:30 am</li>
-                                                                <li className="speakername"><span className="icon_mic_alt "></span>Jhonny Bravo</li>
-                                                                <li className="designation">CEO</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <div className="sc-left-description">
-                                                        <h4>Mauris rhoncus scelerisque lacus</h4>
-                                                        <p>Sed facilisis justo vitae risus viverra vulputate. Mauris vel ipsum dignissim diam viverra condimentum. Donec sodales, diam eget mattis condimentum, quam neque tempus purus, dictum viverra risus nisl quis metus.</p>
-                                                        <div className="schedule-info">
-                                                            <ul>
-                                                                <li className="time"><span className="icon_clock_alt "></span>12:30 am – 14:30 am</li>
-                                                                <li className="speakername"><span className="icon_mic_alt "></span>Jhonny Bravo</li>
-                                                                <li className="designation">CEO</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <div className="sc-left-description">
-                                                        <h4>Mauris rhoncus scelerisque lacus</h4>
-                                                        <p>Sed facilisis justo vitae risus viverra vulputate. Mauris vel ipsum dignissim diam viverra condimentum. Donec sodales, diam eget mattis condimentum, quam neque tempus purus, dictum viverra risus nisl quis metus.</p>
-                                                        <div className="schedule-info">
-                                                            <ul>
-                                                                <li className="time"><span className="icon_clock_alt "></span>12:30 am – 14:30 am</li>
-                                                                <li className="speakername"><span className="icon_mic_alt "></span>Jhonny Bravo</li>
-                                                                <li className="designation">CEO</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <div className="sc-left-description">
-                                                        <h4>Mauris rhoncus scelerisque lacus</h4>
-                                                        <p>Sed facilisis justo vitae risus viverra vulputate. Mauris vel ipsum dignissim diam viverra condimentum. Donec sodales, diam eget mattis condimentum, quam neque tempus purus, dictum viverra risus nisl quis metus.</p>
-                                                        <div className="schedule-info">
-                                                            <ul>
-                                                                <li className="time"><span className="icon_clock_alt "></span>12:30 am – 14:30 am</li>
-                                                                <li className="speakername"><span className="icon_mic_alt "></span>Jhonny Bravo</li>
-                                                                <li className="designation">CEO</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
+                )}
                 </div>
             </div>
         )

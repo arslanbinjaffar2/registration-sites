@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-
+import moment from "moment";
 export default class Variation3 extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeIndex: 0,
+            tabIndex: 0
+        };
+    }
     render() {
+        const {activeIndex, tabIndex } = this.state;
+        const {programs} = this.props;
         return (
             <div style={{ padding: '80px 0' }} className="module-section">
                 <div className="container">
@@ -17,29 +25,38 @@ export default class Variation3 extends Component {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="schedulev3-wrapper">
+                {programs && ( <div className="schedulev3-wrapper">
                         <div className="schedule-tab-wrapper">
                             <ul>
-                                <li><a className="active" href="#!">Day 1</a></li>
-                                <li><a href="#!">Day 2</a></li>
-                                <li><a href="#!">Day 3</a></li>
-                                <li><a href="#!">Day 4</a></li>
-                                <li><a href="#!">Day 5</a></li>
+                            {programs && programs.length > 0 && programs.map((element, k) =>
+                                    <li key={k}>
+                                        <a style={{ pointerEvents: k === activeIndex ? 'none' : '' }} onClick={() => this.setState({ tabIndex: 0, activeIndex: k })} className={k === activeIndex ? 'active' : ''} href="#!">
+                                            {moment(new Date(element[0].start_date)).format(
+                                                "DD MMM"
+                                            )}
+                                        </a>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                         <div className="schedule-content-wrapper">
                             <div className="schdedule-target">
                                 <div className="schdedule-accordion">
+                                {programs[activeIndex] && programs[activeIndex].map((element, k) =>
+                                    ( 
                                     <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-header">
+                                        <div onClick={() => this.setState({ tabIndex: k })} className="sc-accordion-header">
                                             <div className="sc-time">
-                                                10:00
+                                            {moment(element.start_time, "HH:mm:ss").format("HH:mm")}
                                             </div>
-                                            <h4>
-                                                Badge pick-up &amp; breakfast
-                                            </h4>
+                                            {element.info.topic && (
+                                                <h4>
+                                                    {element.info.topic}
+                                                </h4>
+                                            )}
+
                                         </div>
-                                        <div className="sc-accordion-content">
+                                       {k === tabIndex && <div style={{ display: 'block' }} className="sc-accordion-content">
                                             <div className="row">
                                                 <div className="col-lg-2 col-md-2 col-sm-2">
                                                     <div className="sc-speaker-container">
@@ -60,115 +77,14 @@ export default class Variation3 extends Component {
                                                 </div>
                                             </div>
                                         </div>
+                                        }
                                     </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-header">
-                                            <div className="sc-time">
-                                                10:00
-                                            </div>
-                                            <h4>
-                                                Badge pick-up &amp; breakfast
-                                            </h4>
-                                        </div>
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="sc-speaker-container">
-                                                        <img src={require('img/team-1-img-2.jpg')} alt="" />
-                                                        <div className="cs-speaker-name">Bruce Sutton</div>
-                                                        <div className="cs-speaker-description">CTO - Appsperia</div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-10">
-                                                    <h4>Location: San Francisco, CA</h4>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-header">
-                                            <div className="sc-time">
-                                                10:00
-                                            </div>
-                                            <h4>
-                                                Badge pick-up &amp; breakfast
-                                            </h4>
-                                        </div>
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="sc-speaker-container">
-                                                        <img src={require('img/team-1-img-2.jpg')} alt="" />
-                                                        <div className="cs-speaker-name">Bruce Sutton</div>
-                                                        <div className="cs-speaker-description">CTO - Appsperia</div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-10">
-                                                    <h4>Location: San Francisco, CA</h4>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-header">
-                                            <div className="sc-time">
-                                                10:00
-                                            </div>
-                                            <h4>
-                                                Badge pick-up &amp; breakfast
-                                            </h4>
-                                        </div>
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="sc-speaker-container">
-                                                        <img src={require('img/team-1-img-2.jpg')} alt="" />
-                                                        <div className="cs-speaker-name">Bruce Sutton</div>
-                                                        <div className="cs-speaker-description">CTO - Appsperia</div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-10">
-                                                    <h4>Location: San Francisco, CA</h4>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="schdedule-accordion-wrapper">
-                                        <div className="sc-accordion-header">
-                                            <div className="sc-time">
-                                                10:00
-                                            </div>
-                                            <h4>
-                                                Badge pick-up &amp; breakfast
-                                            </h4>
-                                        </div>
-                                        <div className="sc-accordion-content">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="sc-speaker-container">
-                                                        <img src={require('img/team-1-img-2.jpg')} alt="" />
-                                                        <div className="cs-speaker-name">Bruce Sutton</div>
-                                                        <div className="cs-speaker-description">CTO - Appsperia</div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-10">
-                                                    <h4>Location: San Francisco, CA</h4>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia explicabo voluptates, vero labore repellat, corporis impedit blanditiis, minima aliquid fugit alias ipsam dolorem ullam nostrum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    )) }     
                                 </div>
                             </div>
                         </div>
                     </div>
+                )}
                 </div>
             </div>
         )

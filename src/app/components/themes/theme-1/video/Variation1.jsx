@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Videopopup from "@/Videopopup";
 import { PortalWithState } from "react-portal";
-import Video from '../../../modules/Video';
+// import Video from '../../../modules/Video';
 class Variation1 extends React.Component {
     render() {
         const video_data = this.props.videos[0];
