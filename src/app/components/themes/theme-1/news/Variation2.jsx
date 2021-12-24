@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 
-class Newsv2 extends Component {
+class Variation2 extends Component {
 
   constructor(props) {
     super(props);
@@ -68,4 +68,4 @@ class Newsv2 extends Component {
   }
 }
 
-export default Newsv2
+export default Variation2

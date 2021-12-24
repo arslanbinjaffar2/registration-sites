@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
-class Newsv1 extends Component {
+class Variation1 extends Component {
 
   constructor(props) {
     super(props);
@@ -68,4 +68,4 @@ class Newsv1 extends Component {
   }
 }
 
-export default withRouter(Newsv1);
+export default withRouter(Variation1);

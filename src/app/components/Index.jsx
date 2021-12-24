@@ -5,13 +5,13 @@ import Speaker from '@/modules/Speaker';
 import Banner from '@/modules/Banner';
 import Gallery from '@/modules/Gallery';
 import Sponsor from '@/modules/Sponsor';
-// import Timetable from '@/modules/Timetable';
+import Timetable from '@/modules/Timetable';
 import Video from '@/modules/Video';
 import Exhibitor from '@/modules/Exhibitor';
 import SocialShare from "@/themes/theme-1/social/SocialShare";
 import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
-import Map from "@/themes/theme-1/map/Map";
 import { connect } from 'react-redux';
+import Map from './modules/Map';
 
 class Index extends React.Component {
 
@@ -20,10 +20,10 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
+                <Banner />
                 <CustomSection />
                 <SocialShare />
-                <Map />
-                <Banner />
+                <Map/>
                 {
                     this.props.event && eventsiteSections && eventsiteSections.map((section, i) => {
                         return (() => {
@@ -71,6 +71,7 @@ class Index extends React.Component {
                 <Sponsor />
                 <Timetable />
                 <Video /> */}
+                <Timetable />
 
             </React.Fragment>
         );

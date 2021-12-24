@@ -58,7 +58,7 @@ export default class Variation6 extends Component {
         });
     }
     render() {
-        const speakers = this.props.speakers;
+        const attendees = this.props.attendees;
         return (
             <div style={{ padding: "80px 0" }} className="module-section">
                 {this.state.popupDetail && (
@@ -72,12 +72,12 @@ export default class Variation6 extends Component {
                                 className="edgtf-title-section-holder"
                             >
                                 <h2 className="edgtf-title-with-dots edgtf-appeared">
-                                    Our Speakers
+                                    Our attendees
                                 </h2>
                                 <h6 style={{ fontSize: "16px", lineHeight: "1.5" }}
                                     className="edgtf-section-subtitle">
                                     A schedule at a glance is listed below. Check the program for
-                                    this year's conference and learn about the speakers and
+                                    this year's conference and learn about the attendees and
                                     sessions in store for tech enthusiasts.
                                 </h6>
                             </div>
@@ -86,21 +86,21 @@ export default class Variation6 extends Component {
                 </div>
                 <div className="container">
                     <div className="row d-flex algin-items-center">
-                        {speakers && speakers.map((speaker, i) => <div key={i} className="col-md-3">
+                        {attendees && attendees.map((attendee, i) => <div key={i} className="col-md-3">
                             <div className="speakerv6-wrapper">
                                 <div className="speakerv6-image">
-																<img style={{width: '100%'}}  src={speaker.image && speaker.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + speaker.image : require('img/square.jpg')} alt="g"  />
-                                    <div onClick={(e) => this.handleOpenpopup(e,speaker)} className="caption">
+																<img style={{width: '100%'}}  src={attendee.image && attendee.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/attendees/' + attendee.image : require('img/square.jpg')} alt="g"  />
+                                    <div onClick={(e) => this.handleOpenpopup(e,attendee)} className="caption">
                                         <span className="plus"></span>
                                     </div>
                                 </div>
                                 <div className="speakerv6-caption text-center">
-                                    <h3>{speaker.first_name} {speaker.last_name}</h3>
+                                    <h3>{attendee.first_name} {attendee.last_name}</h3>
                                     <span
                                         style={{ display: "inline-block" }}
                                         className="edge-title-separator"
                                     ></span>
-                                    <p>{speaker.email}</p>
+                                    <p>{attendee.email}</p>
                                 </div>
                             </div>
                         </div>)}

@@ -7,9 +7,21 @@ import Home from '@/Home';
 import Error404 from '@/Error404';
 import { connect } from 'react-redux';
 import AttendeeLayout from '@/AttendeeLayout';
-import NewsDetail from "@/modules/news/NewsDetail";
-import News from '@/modules/news/News';
-import Header from "@/themes/theme-1/header/Header";
+import Header from '../app/components/modules/Header';
+import EventInformation from "../app/components/modules/EventInformation";
+import AttendeesPage from '../app/components/pages/AttendeesPage';
+import GalleryPage from '../app/components/pages/GalleryPage';
+import ExhibitorPage from '../app/components/pages/ExhibitorPage';
+import PhotosPage from '../app/components/pages/PhotosPage';
+import ProgramPage from '../app/components/pages/ProgramPage';
+import SpeakerPage from '../app/components/pages/SpeakerPage';
+import SponsorPage from '../app/components/pages/SponsorPage';
+import StreamingPage from '../app/components/pages/StreamingPage';
+import TimetablePage from '../app/components/pages/TimetablePage';
+import VideoPage from '../app/components/pages/VideoPage';
+import CmsPage from '../app/components/pages/CmsPage';
+import NewsPage from '../app/components/pages/news/NewsPage';
+import NewsDetailPage from '../app/components/pages/news/NewsDetailPage';
 
 
 class RouterOutlet extends React.Component {
@@ -18,14 +30,28 @@ class RouterOutlet extends React.Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-        <Header />
+          <Header/>
         <Switch>
           <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
           <MasterLayoutRoute component={Home} exact path="/home" />
-          <Route component={AttendeeLayout} exact path="/:event_url/attendees" />
           <MasterLayoutRoute component={Index} exact path="/:event_url" />
-          {/* <Route component={NewsDetail} exact path="/:event_url/news-detail/:id" /> */}
-          {/* <Route component={News} exact path="/:event_url/news" /> */}
+          {/* <Route component={AttendeeLayout} exact path="/:event_url/attendees" /> */}
+          <MasterLayoutRoute component={AttendeesPage} exact path="/:event_url/attendees" />
+          <MasterLayoutRoute component={NewsDetailPage} exact path="/:event_url/news-detail/:id" />
+          <MasterLayoutRoute component={NewsPage} exact path="/:event_url/news" />
+          <MasterLayoutRoute component={GalleryPage} exact path="/:event_url/gallery" />
+          <MasterLayoutRoute component={PhotosPage} exact path="/:event_url/photos" />
+          <MasterLayoutRoute component={VideoPage} exact path="/:event_url/videos" />
+          <MasterLayoutRoute component={CmsPage} exact path="/:event_url/additional_information" />
+          <MasterLayoutRoute component={CmsPage} exact path="/:event_url/general_information" />
+          <MasterLayoutRoute component={CmsPage} exact path="/:event_url/practicalinformation" />
+          <MasterLayoutRoute component={ProgramPage} exact path="/:event_url/program" />
+          <MasterLayoutRoute component={SpeakerPage} exact path="/:event_url/speakers" />
+          <MasterLayoutRoute component={SponsorPage} exact path="/:event_url/sponsors" />
+          <MasterLayoutRoute component={ExhibitorPage} exact path="/:event_url/exhibitors" />
+          <MasterLayoutRoute component={StreamingPage} exact path="/:event_url/streaming" />
+          <MasterLayoutRoute component={TimetablePage} exact path="/:event_url/Timetable" />
+          <MasterLayoutRoute component={EventInformation} exact path="/:event_url/event_information" />
           <Route component={Error404} />
         </Switch>
         </React.Fragment>

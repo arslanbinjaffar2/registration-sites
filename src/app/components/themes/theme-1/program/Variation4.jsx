@@ -9,7 +9,7 @@ export default class Variation4 extends Component {
         };
     }
     render() {
-        const {activeIndex, tabIndex } = this.state;
+        const {activeIndex} = this.state;
         const {programs} = this.props;
         return (
             <div style={{ padding: '80px 0' }} className="module-section">

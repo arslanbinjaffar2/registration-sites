@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
- class Map extends Component {
+ class Variation1 extends Component {
   render() {
     return (
           <div style={{paddingTop: '80px'}} className='edgtf-container'>
@@ -22,11 +20,4 @@ import { withRouter } from "react-router-dom";
   }
 }
 
-function mapStateToProps(state) {
-  const { event } = state;
-  return {
-    event,
-  };
-}
-
-export default connect(mapStateToProps)(withRouter(Map));
+export default Variation1;

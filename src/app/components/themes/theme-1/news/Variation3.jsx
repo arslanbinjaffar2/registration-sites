@@ -3,7 +3,7 @@ import Masonry from "react-masonry-css";
 import {Link} from "react-router-dom";
 
 
-class Newsv3 extends Component {
+class Variation3 extends Component {
 
   constructor(props) {
     super(props);
@@ -81,4 +81,4 @@ class Newsv3 extends Component {
     )
   }
 }
-export default Newsv3
+export default Variation3

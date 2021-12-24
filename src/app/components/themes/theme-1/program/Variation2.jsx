@@ -29,15 +29,13 @@ export default class Variation2 extends Component {
                     {programs && (<div className="schedulev2-wrapper">
                         <div className="schedule-tab-wrapper">
                             <ul>
-                                {programs && programs.length > 0 && programs.map((element, k) =>
+                                {programs && programs.length > 0 && programs.map((element, k) =>(
                                     <li key={k}>
                                         <a style={{ pointerEvents: k === activeIndex ? 'none' : '' }} onClick={() => this.setState({ tabIndex: 0, activeIndex: k })} className={k === activeIndex ? 'active' : ''} href="#!">
-                                            {moment(new Date(element[0].start_date)).format(
-                                                "DD MMM"
-                                            )}
+                                            {moment(new Date(element[0].start_date)).format("DD MMM")}
                                         </a>
                                     </li>
-                                )}
+                                ))}
 
                             </ul>
                         </div>
