@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React from "react";
+import { connect } from "react-redux";
 
-export class EventInformation extends Component {
-    render() {
-        return (
-            <div>
-                <h3>Event Info</h3>
-            </div>
-        )
-    }
-}
+const EventInformation = () => {
+  return (
+    <div>
+      <h3>General Infromation</h3>
+    </div>
+  );
+};
+const mapStateToProps = (state) => {
+  const { event } = state;
+  return {
+    event,
+  };
+};
 
-export default EventInformation
+export default connect(mapStateToProps)(EventInformation);

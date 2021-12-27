@@ -22,7 +22,7 @@ class MasterLayoutRoute extends React.Component {
             <Route {...rest} render={matchProps => (
                 <MasterLayout history={this.props.history}>
                     <Component
-                        {...matchProps} />
+                        {...matchProps} event={this.props.event} />
                 </MasterLayout>
             )} />
         )

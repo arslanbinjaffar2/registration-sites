@@ -1,12 +1,18 @@
-import * as React from "react";
-class PracticalInformation extends React.Component {
-  render() {
-    return (
-      <div className="edgtf-image-gallery">
-        <h3>Practical Info</h3>
-      </div>
-    );
-  }
-}
+import React from "react";
+import { connect } from "react-redux";
 
-export default PracticalInformation;
+const PracticalInformation = () => {
+  return (
+    <div>
+      <h3>Practical Infromation</h3>
+    </div>
+  );
+};
+const mapStateToProps = (state) => {
+  const { event } = state;
+  return {
+    event,
+  };
+};
+
+export default connect(mapStateToProps)(PracticalInformation);

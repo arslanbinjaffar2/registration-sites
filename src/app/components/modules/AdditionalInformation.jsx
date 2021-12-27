@@ -1,13 +1,18 @@
-import * as React from 'react';
-class AdditionalInformation extends React.Component {
+import React from "react";
+import { connect } from "react-redux";
 
-    render() {
-        return (
-            <div className="edgtf-image-gallery">
-                <h3>Addtional Info</h3>
-            </div>
-        );
-    }
-}
+const AdditionalInformation = () => {
+  return (
+    <div>
+      <h3>Addtional Infromation</h3>
+    </div>
+  );
+};
+const mapStateToProps = (state) => {
+  const { event } = state;
+  return {
+    event,
+  };
+};
 
-export default AdditionalInformation;
+export default connect(mapStateToProps)(AdditionalInformation);
