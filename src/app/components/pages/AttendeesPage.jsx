@@ -3,7 +3,7 @@ import Attendee from '../modules/Attendee'
 const AttendeesPage = () => {
     return (
         <div>
-            <Attendee/>
+            <Attendee pagination={true}/>
         </div>
     )
 }

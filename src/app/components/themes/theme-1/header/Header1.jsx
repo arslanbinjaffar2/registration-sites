@@ -261,7 +261,7 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { event } = state;
+  const { event } = state.event;
   return {
     event,
   };

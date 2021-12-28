@@ -5,8 +5,7 @@ import Index from "@/Index";
 import FullPage from "@/FullPage";
 import Home from "@/Home";
 import Error404 from "@/Error404";
-import { connect } from "react-redux";
-import AttendeeLayout from "@/AttendeeLayout";
+// import AttendeeLayout from "@/AttendeeLayout";
 import Header from "../app/components/modules/Header";
 // import EventInformation from "../app/components/modules/EventInformation";
 import AttendeesPage from "../app/components/pages/AttendeesPage";
@@ -26,7 +25,7 @@ import NewsDetailPage from "../app/components/pages/news/NewsDetailPage";
 
 class RouterOutlet extends React.Component {
   render() {
-    const event = this.props.event;
+    // const event = this.props.event;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -35,7 +34,6 @@ class RouterOutlet extends React.Component {
             <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
             <MasterLayoutRoute component={Home} exact path="/home" />
             <MasterLayoutRoute component={Index} exact path="/:event_url" />
-            {/* <Route component={AttendeeLayout} exact path="/:event_url/attendees" /> */}
             <MasterLayoutRoute
               component={AttendeesPage}
               exact
@@ -52,7 +50,6 @@ class RouterOutlet extends React.Component {
               path="/:event_url/news"
             />
             <MasterLayoutRoute
-              event={event}
               component={GalleryPage}
               exact
               path="/:event_url/gallery"
@@ -130,11 +127,4 @@ class RouterOutlet extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { event } = state;
-  return {
-    event,
-  };
-}
-
-export default connect(mapStateToProps)(RouterOutlet);
+export default RouterOutlet;

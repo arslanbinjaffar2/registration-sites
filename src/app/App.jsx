@@ -13,17 +13,24 @@ const App = () => {
      dispatch(fetchEvent(params.length > 0 ? params[0]: ''))
    }, [dispatch])
 
+   if(error !== null && loading !== true){
+     return (
+      <div id="App">
+        <h3>Could not Fetch the Event...</h3>
+      </div>
+     );
+   }
    if(loading === true){
      return (
       <div id="App">
-        <div>Loading...</div>
+        <h3>Loading...</h3>
       </div>
      );
    }
     return (
       <div id="App">
         {loading !== true && event !== null &&
-            <RouterOutlet event={event}/>
+            <RouterOutlet/>
         }
         </div>
     );

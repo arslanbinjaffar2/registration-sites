@@ -3,9 +3,9 @@ import News from '../../modules/news/News';
 
 const NewsPage = () => {
     return (
-        <div>
+        <React.Fragment>
             <News/>
-        </div>
+        </React.Fragment>
     )
 }
 

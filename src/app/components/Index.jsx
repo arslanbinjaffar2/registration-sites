@@ -2,10 +2,10 @@ import * as React from 'react';
 // import Slider from '@/modules/Slider';
 import Program from '@/modules/Program';
 import Speaker from '@/modules/Speaker';
-import Banner from '@/modules/Banner';
+// import Banner from '@/modules/Banner';
 import Gallery from '@/modules/Gallery';
 import Sponsor from '@/modules/Sponsor';
-import Timetable from '@/modules/Timetable';
+// import Timetable from '@/modules/Timetable';
 import Video from '@/modules/Video';
 import Exhibitor from '@/modules/Exhibitor';
 import SocialShare from "@/themes/theme-1/social/SocialShare";
@@ -20,7 +20,7 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
-                <Banner />
+                {/* <Banner event = {this.props.event.event}/> */}
                 <CustomSection />
                 <SocialShare />
                 <Map/>
@@ -40,7 +40,7 @@ class Index extends React.Component {
                             else if (section.alias === 'agendas')
                                 return (<Program key={i} />)
                             else if (section.alias === 'sponsors')
-                                return (<Sponsor key={i} />)
+                                return (<Sponsor key={i}  />)
                             // else if (section.alias === 'bottom_banner')
                             //   return ()
                             else if (section.alias === 'register_now')
@@ -71,7 +71,7 @@ class Index extends React.Component {
                 <Sponsor />
                 <Timetable />
                 <Video /> */}
-                <Timetable />
+                {/* <Timetable /> */}
 
             </React.Fragment>
         );

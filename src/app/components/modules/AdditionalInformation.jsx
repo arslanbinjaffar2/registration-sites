@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-
 const AdditionalInformation = () => {
   return (
     <div>
@@ -8,11 +6,6 @@ const AdditionalInformation = () => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  const { event } = state;
-  return {
-    event,
-  };
-};
 
-export default connect(mapStateToProps)(AdditionalInformation);
+
+export default AdditionalInformation;

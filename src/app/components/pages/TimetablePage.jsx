@@ -4,7 +4,7 @@ import Timetable from '../modules/Timetable'
 const TimetablePage = () => {
     return (
         <div>
-            <Timetable/>
+            <Timetable />
         </div>
     )
 }

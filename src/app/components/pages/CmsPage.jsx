@@ -4,7 +4,7 @@ function loadModule(name) {
   const Component = React.lazy(() => import(`@/modules/${name}`));
   return Component;
 }
-const CmsPage = ({ match }) => {
+const CmsPage = ({ match, event }) => {
   const currentModuleName = match.url.split("/")[2];
   const informationModules = {
     additional_information: "AdditionalInformation",

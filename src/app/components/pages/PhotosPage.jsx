@@ -4,7 +4,7 @@ import Gallery from '../modules/Gallery'
 const PhotosPage = () => {
     return (
         <div>
-            <Gallery/>
+            <Gallery />
         </div>
     )
 }

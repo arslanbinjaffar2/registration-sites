@@ -61,7 +61,7 @@ export default class Variation1 extends Component {
     loop();
   };
   render() {
-    const banner = this.props.banners[0];
+    const banner = this.props.banner ? this.props.banners[0] :'';
 
     return (
       <React.Fragment>

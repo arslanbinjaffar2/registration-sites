@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 const GeneralInformation = () => {
   return (
@@ -8,11 +7,6 @@ const GeneralInformation = () => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  const { event } = state;
-  return {
-    event,
-  };
-};
 
-export default connect(mapStateToProps)(GeneralInformation);
+
+export default GeneralInformation;
