@@ -1,87 +1,113 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import shortid from "shortid";
-import { service } from "../../services/service"
-
-
+import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
+import { eventSelector } from "../../../store/Slices/EventSlice";
+import { useGetExhibitorsQuery } from "../../../store/services/exhibitor";
+import UiFullPagination from "../ui-components/UiFullPagination";
+import UiPagination from "../ui-components/UiPagination";
+import { useSelector } from "react-redux";
+import { withRouter } from "react-router";
 const in_array = require("in_array");
 
-class Exhibitor extends React.Component {
-    _isMounted = false;
+const loadModule = (theme, variation) => {
+  const Component = React.lazy(() =>
+    import(`@/themes/${theme}/exhibitor/${variation}`)
+  );
+  return Component;
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
-            module: false,
-            components: [],
-            exhibitors: []
-        }
+const Exhibitor = (props) => {
+  const initialMount = useRef(true);
+  const { event } = useSelector(eventSelector);
+  const eventUrl = event.url;
+  let moduleVariation = event.theme.modules.filter(function (module, i) {
+    return in_array(module.alias, ["exhibitors"]);
+  });
+  const showPagination = props.pagination ? props.pagination : false;
+
+  const Component = useMemo(
+    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    [event]
+  );
+
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const queryPage = new URLSearchParams(props.location.search).get("page");
+    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
+      setPage(parseInt(queryPage, 10));
+      console.log("params", queryPage);
     }
+  }, []);
 
-    async componentDidMount() {
-        this._isMounted = true;
-
-        this.loadExhibitor();
-        
-        //active theme variation
-        if (this.state.theme && this.state.theme.modules) {
-            let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.alias, ["exhibitors"]);
-            });
-
-            this.setState({
-                module: (module ? module[0] : false),
-            }, () => {
-                if (module && module.length > 0) {
-                    this.addComponent(this.state.theme.slug, module[0]['slug']);
-                }
-            });
-        }
+  useEffect(() => {
+    if (initialMount.current) {
+      initialMount.current = false;
+      return;
     }
+    const handler = setTimeout(() => {
+      setSearch(value);
+      setPage(1);
+    }, 500);
 
-    addComponent = async (theme, variation) => {
-        import(`@/themes/${theme}/exhibitor/${variation}`)
-            .then(component =>
-                this.setState({
-                    components: this.state.components.concat(component.default)
-                })
-            )
-            .catch(error => {
-                console.error(`Variation of this "${theme}" not yet supported`);
-            });
+    return () => {
+      clearTimeout(handler);
     };
+  }, [value]);
 
-    componentWillUnmount() {
-        this._isMounted = false;
+  const { data, isFetching } = useGetExhibitorsQuery({ eventUrl, page, search });
+
+  const onPageChange = (page) => {
+    if (page > 0) {
+      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
+        setPage(page);
+        setQueryParams(page);
+      }
     }
+  };
 
-    loadExhibitor() {
-        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/exhibitors`).then(
-            response => {
-                this.setState({
-                    exhibitors: response.data
-                });
-            }
-        )
-    }
+  const setQueryParams = (page) => {
+    props.history.replace({
+      search: `?page=${page}`,
+    }); 
+  };
 
-    render() {
-        const { components } = this.state;
-        if (components.length === 0) return <div>Loading...</div>;
-        const componentsElements = components.map(Component => (
-            <Component exhibitors={this.state.exhibitors} key={shortid.generate()} />
-        ));
-        return <div className="App">{componentsElements}</div>;
-    }
-}
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      {data ? (
+        <React.Fragment>
+          {showPagination && (
+            <input type="text" onChange={(e) => setValue(e.target.value)} />
+          )}
+          {showPagination && (
+            <UiPagination
+              total={data.meta.total}
+              perPage={data.meta.per_page}
+              currentPage={page}
+              onPageChange={(page) => {
+                onPageChange(page);
+              }}
+              fetchingData={isFetching}
+            />
+          )}
+           <Component exhibitors={data.data} /> 
+          {showPagination && (
+            <UiFullPagination
+              total={data.meta.total}
+              perPage={data.meta.per_page}
+              currentPage={page}
+              onPageChange={(page) => {
+                onPageChange(page);
+              }}
+              fetchingData={isFetching}
+            />
+          )}
+        </React.Fragment>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </Suspense>
+  );
+};
 
-function mapStateToProps(state) {
-    const { event } = state.event;
-    return {
-        event
-    };
-}
-
-export default connect(mapStateToProps)(withRouter(Exhibitor));
+export default withRouter(Exhibitor);

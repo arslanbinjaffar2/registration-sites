@@ -4,7 +4,7 @@ import Exhibitor from '../modules/Exhibitor'
 const ExhibitorPage = () => {
     return (
         <div>
-            <Exhibitor />
+            <Exhibitor pagination={true} />
         </div>
     )
 }

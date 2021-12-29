@@ -4,7 +4,7 @@ import Speaker from '../modules/Speaker'
 const SpeakerPage = () => {
     return (
         <div>
-            <Speaker/>
+            <Speaker pagination={true}/>
         </div>
     )
 }

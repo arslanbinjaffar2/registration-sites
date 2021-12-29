@@ -26,7 +26,7 @@ class Variation1 extends React.Component {
                             }`}>
                             <a href="#!" onClick={() => this.setState({activeIndex: k})} className="ui-tabs-anchor">
                               <span className="edgtf-tab-text-after-icon">
-                                {moment(new Date(element[0].start_date)).format(
+                                {moment(new Date(element[0].date)).format(
                                   "DD MMM"
                                 )}
                               </span>
@@ -53,21 +53,21 @@ class Variation1 extends React.Component {
                                 <span style={{color: "#808080"}}>
                                   {moment(element.start_time, "HH:mm:ss").format("HH:mm")}
                                   –
-                                  {moment(element.info.end_time,"HH:mm:ss").format("HH:mm")}
+                                  {moment(element.end_time,"HH:mm:ss").format("HH:mm")}
                                 </span>
                               </h4>
                             </div>
                             <div className="col-12 col-md-9 col-lg-10">
                               <div className="edgtf-elements-holder-item-content">
-                                {element.info.topic && (
+                                {element.topic && (
                                   <h4 className="mt-3 mb-4">
-                                    {element.info.topic}
+                                    {element.topic}
                                   </h4>
                                 )}
-                                {element.info.description && (
+                                {element.description && (
                                   <div
                                     dangerouslySetInnerHTML={{
-                                      __html: element.info.description,
+                                      __html: element.description,
                                     }}
                                   />
                                 )}

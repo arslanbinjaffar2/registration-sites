@@ -4,7 +4,7 @@ import Sponsor from '../modules/Sponsor'
 const SponsorPage = () => {
     return (
         <div>
-            <Sponsor/>
+            <Sponsor pagination={true}/>
         </div>
     )
 }
