@@ -1,14 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
-
-const objectToArray =(obj) =>{
-  var arr = [];
-  for (const [key, value] of Object.entries(obj)) {
-      arr.push(value);
-  }
-  return arr;
-}
-
+import { objectToArray } from '../../app/helpers/helper'
 
 // Define a service using a base URL and expected endpoints
 export const programApi = createApi({
@@ -23,9 +14,9 @@ export const programApi = createApi({
         return `/event/${path.eventUrl}/programs?page=${path.page}`
       },
       transformResponse: (response) => {
-       const data = objectToArray(response.data)
-       const meta =  response.meta
-       const links = response.links
+        const data = objectToArray(response.data)
+        const meta =  response.meta ? response.meta : {}
+        const links = response.links ? response.links : {}
         return  {data,meta,links};
       }
     }),

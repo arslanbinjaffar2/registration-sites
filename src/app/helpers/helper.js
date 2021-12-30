@@ -20,7 +20,17 @@ function formatString(fmt, ...args) {
     });
 }
 
+const objectToArray =(obj) =>{
+    var arr = [];
+    console.log(obj);
+    for (const [key, value] of Object.entries(obj)) {
+        arr.push(value);
+    }
+    return arr;
+}
+
 export {
     formatString,
-    ltrim
+    ltrim,
+    objectToArray,
 };

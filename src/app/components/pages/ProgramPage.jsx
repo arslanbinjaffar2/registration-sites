@@ -4,7 +4,7 @@ import Program from '../modules/Program'
 const PragramPage = () => {
     return (
         <div>
-            <Program/>
+            <Program pagination={false}/>
         </div>
     )
 }

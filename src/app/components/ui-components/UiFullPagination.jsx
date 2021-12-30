@@ -42,18 +42,18 @@ const UiFullPagination = ({ total, perPage, currentPage, onPageChange, fetchingD
     }
     return (
         <Pagination>
-         <Pagination.Item disabled={fetchingData} onClick={()=>{onPageChange(1)}}>
+         <Pagination.Item disabled={fetchingData || currentPage === 1 ? true : false}  onClick={()=>{onPageChange(1)}}>
            First
          </Pagination.Item >
-         <Pagination.Prev disabled={fetchingData} onClick={()=>{onPageChange(currentPage - 1)}} />
+         <Pagination.Prev disabled={fetchingData || currentPage === 1 ? true : false}  onClick={()=>{onPageChange(currentPage - 1)}} />
             {
               pageArray.map((link, index)=>{
                 return <Pagination.Item key={index} disabled={fetchingData} active={link === currentPage ? true : false}  onClick={()=>{onPageChange(link)}} >
                   {link}</Pagination.Item>
                 })
             } 
-        <Pagination.Next disabled={fetchingData}  onClick={()=>{onPageChange(currentPage + 1)}} /> 
-        <Pagination.Item disabled={fetchingData} onClick={()=>{onPageChange(totalPages)}}>
+        <Pagination.Next disabled={fetchingData || currentPage === totalPages ? true : false}  onClick={()=>{onPageChange(currentPage + 1)}} /> 
+        <Pagination.Item disabled={fetchingData || currentPage === totalPages ? true : false}  onClick={()=>{onPageChange(totalPages)}}>
            Last
         </Pagination.Item >  
     </Pagination>

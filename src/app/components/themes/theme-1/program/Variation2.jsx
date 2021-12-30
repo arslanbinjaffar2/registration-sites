@@ -32,7 +32,7 @@ export default class Variation2 extends Component {
                                 {programs && programs.length > 0 && programs.map((element, k) =>(
                                     <li key={k}>
                                         <a style={{ pointerEvents: k === activeIndex ? 'none' : '' }} onClick={() => this.setState({ tabIndex: 0, activeIndex: k })} className={k === activeIndex ? 'active' : ''} href="#!">
-                                            {moment(new Date(element[0].start_date)).format("DD MMM")}
+                                            {moment(new Date(element[0].date)).format("DD MMM")}
                                         </a>
                                     </li>
                                 ))}
@@ -51,12 +51,12 @@ export default class Variation2 extends Component {
                                                         <i className="fa fa-clock-o"></i> {" "}
                                                         {moment(element.start_time, "HH:mm:ss").format("HH:mm")}
                                                         –
-                                                        {moment(element.info.end_time, "HH:mm:ss").format("HH:mm")}
+                                                        {moment(element.end_time, "HH:mm:ss").format("HH:mm")}
                                                     </div>
                                                 </div>
                                                 <div className="col-10">
                                                     <h4>
-                                                        {element.info.topic}
+                                                        {element.topic}
                                                         <i className={k === tabIndex ? 'fa fa-angle-up' : 'fa fa-angle-down'}></i>
                                                     </h4>
                                                 </div>
@@ -66,10 +66,10 @@ export default class Variation2 extends Component {
                                             <div className="row">
                                                 <div className="col-2"></div>
                                                 <div className="col-10">
-                                                    {element.info.description && (
+                                                    {element.description && (
                                                         <div
                                                             dangerouslySetInnerHTML={{
-                                                                __html: element.info.description,
+                                                                __html: element.description,
                                                             }}
                                                         />
                                                     )}

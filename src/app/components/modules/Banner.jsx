@@ -1,87 +1,42 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import shortid from "shortid";
-import { service } from '../../services/service';
-
+import React, { Suspense, useEffect, useMemo } from "react";
+import { eventSelector } from "../../../store/Slices/EventSlice";
+import { globalSelector, fetchBanner } from "../../../store/Slices/GlobalSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { withRouter } from "react-router";
 const in_array = require("in_array");
 
-class Banner extends React.Component {
-    _isMounted = false;
+const loadModule = (theme, variation) => {
+  const Component = React.lazy(() =>
+    import(`@/themes/${theme}/attendee/${variation}`)
+  );
+  return Component;
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
-            module: false,
-            components: [],
-            banners: []
-        }
-    }
+const Banner = () => {
+  const { event } = useSelector(eventSelector);
+  const {
+    global
+  } = useSelector(globalSelector);
+  const dispatch = useDispatch();
 
-    async componentDidMount() {
-        this._isMounted = true;
+  const eventUrl = event.url;
+  let moduleVariation = event.theme.modules.filter(function (module, i) {
+    return in_array(module.alias, ["banner"]);
+  });
+  const CustomComponent = useMemo(
+    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    [event]
+  );
 
-        this.loadBanners();
+  useEffect(() => {
+    dispatch(fetchBanner(eventUrl));
+  }, [dispatch]);
 
-        //active theme variation
-        if (this.state.theme && this.state.theme.modules) {
-            let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.alias, ["banner"]);
-            });
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      {global ? <CustomComponent banner={global.banner} /> : <div>Loading...</div>}
+    </Suspense>
+  );
+};
 
-            this.setState({
-                module: (module ? module[0] : false),
-            }, () => {
-                if (module && module.length > 0) {
-                    this.addComponent(this.state.theme.slug, module[0]['slug']);
-                }
-            });
-        }
-    }
-
-    addComponent = async (theme, variation) => {
-        import(`@/themes/${theme}/banner/${variation}`)
-            .then(component =>
-                this.setState({
-                    components: this.state.components.concat(component.default)
-                })
-            )
-            .catch(error => {
-                console.error(`Variation of this "${theme}" not yet supported`);
-            });
-    };
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
-    loadBanners() {
-        service.get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/banner`).then(
-            response => {
-                this.setState({
-                    banners: response.data
-                });
-            }
-        )
-    }
-
-
-    render() {
-        const { components } = this.state;
-        if (components.length === 0) return <div>Loading...</div>;
-        const componentsElements = components.map(Component => (
-            <Component event={this.props.event} banners={this.state.banners} key={shortid.generate()} />
-        ));
-        return <div className="App">{componentsElements}</div>;
-    }
-}
-
-function mapStateToProps(state) {
-    const { event } = state.event;
-    return {
-        event
-    };
-}
-
-export default connect(mapStateToProps)(withRouter(Banner));
+export default withRouter(Banner);

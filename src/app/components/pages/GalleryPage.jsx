@@ -4,7 +4,7 @@ import Gallery from '../modules/Gallery'
 const GalleryPage = () => {
     return (
         <div>
-            <Gallery />
+            <Gallery pagination={true} />
         </div>
     )
 }

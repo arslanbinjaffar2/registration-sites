@@ -82,6 +82,8 @@ const Attendee = (props) => {
           )}
           {showPagination && (
             <UiPagination
+              total={data.meta.total}
+              perPage={data.meta.per_page}
               currentPage={page}
               onPageChange={(page) => {
                 onPageChange(page);

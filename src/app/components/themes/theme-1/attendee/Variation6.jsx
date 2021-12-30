@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Scrollbars } from "react-custom-scrollbars";
 
 const SpeakerDetail = ({ data, onClose }) => {
@@ -39,30 +39,27 @@ const SpeakerDetail = ({ data, onClose }) => {
     );
 }
 
-export default class Variation6 extends Component {
-    state = {
-        popupDetail: false,
-				popupData: null
-    };
-    handleClose = e => {
+const Variation6 = ({attendees}) => {
+
+    const [popupData, setPopupData] = useState(null);
+    const [popupDetail, setPopupDetail] = useState(false);
+
+    const handleClose = e => {
         e.preventDefault();
-        this.setState({
-            popupDetail: false,
-        });
+        setPopupDetail(false)
     }
-    handleOpenpopup = (e,data) => {
-        e.preventDefault();
-        this.setState({
-            popupDetail: true,
-						popupData: data
-        });
+    const handleOpenpopup = (e,data) => {
+        setPopupData(data);
+        setPopupDetail(true)
     }
-    render() {
-        const attendees = this.props.attendees;
-        return (
-            <div style={{ padding: "80px 0" }} className="module-section">
-                {this.state.popupDetail && (
-                    <SpeakerDetail data={this.state.popupData} onClose={this.handleClose.bind(this)} />
+
+
+
+    return (
+        <div>
+             <div style={{ padding: "80px 0" }} className="module-section">
+                {popupDetail && (
+                    <SpeakerDetail data={popupData} onClose={handleClose} />
                 )}
                 <div className="container">
                     <div className="row">
@@ -107,6 +104,8 @@ export default class Variation6 extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    )
 }
+
+export default Variation6

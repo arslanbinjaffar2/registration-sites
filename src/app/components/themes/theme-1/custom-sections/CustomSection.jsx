@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const CustomSection = ({ pageData }) => {
-  if (pageData === null) {
+const CustomSection = ({ data }) => {
+  if (data === null) {
     return <div>Loading...</div>;
   }
   // return (

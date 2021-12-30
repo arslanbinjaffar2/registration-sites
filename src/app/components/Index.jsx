@@ -2,7 +2,7 @@ import * as React from 'react';
 // import Slider from '@/modules/Slider';
 import Program from '@/modules/Program';
 import Speaker from '@/modules/Speaker';
-// import Banner from '@/modules/Banner';
+import Banner from '@/modules/Banner';
 import Gallery from '@/modules/Gallery';
 import Sponsor from '@/modules/Sponsor';
 // import Timetable from '@/modules/Timetable';
@@ -20,7 +20,7 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
-                {/* <Banner event = {this.props.event.event}/> */}
+                <Banner/>
                 <CustomSection />
                 <SocialShare />
                 <Map/>
@@ -70,9 +70,9 @@ class Index extends React.Component {
                 <Gallery />
                 <Sponsor />
                 <Timetable />
+                <Slider />
                 <Video /> */}
                 {/* <Timetable /> */}
-
             </React.Fragment>
         );
     }
