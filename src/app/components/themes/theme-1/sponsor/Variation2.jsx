@@ -1,9 +1,8 @@
-import * as React from 'react';
-class Variation2 extends React.Component {
-    render() {
-        const sponsors = this.props.sponsors;
-        return (
-            <div style={{ padding: "80px 0" }} className="module-section">
+import React from 'react'
+
+const Variation2 = ({sponsors}) => {
+    return (
+        <div style={{ padding: "80px 0" }} className="module-section">
                 <div className="container">
                     <div className="edgtf-title-section-holder pb-3">
                         <h2 style={{ marginBottom: '5px' }} className="edgtf-title-with-dots edgtf-appeared">
@@ -28,10 +27,9 @@ class Variation2 extends React.Component {
                         })
                         }
                     </div>
-                </div>
+                </div> 
             </div>
-        );
-    }
+    )
 }
 
-export default Variation2;
+export default Variation2

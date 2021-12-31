@@ -7,7 +7,7 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/attendee/${variation}`)
+    import(`@/themes/${theme}/banner/${variation}`)
   );
   return Component;
 };
@@ -15,7 +15,7 @@ const loadModule = (theme, variation) => {
 const Banner = () => {
   const { event } = useSelector(eventSelector);
   const {
-    global
+    banner
   } = useSelector(globalSelector);
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const Banner = () => {
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["banner"]);
   });
-  const CustomComponent = useMemo(
+  const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
   );
@@ -31,10 +31,10 @@ const Banner = () => {
   useEffect(() => {
     dispatch(fetchBanner(eventUrl));
   }, [dispatch]);
-
+console.log("global",banner);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {global ? <CustomComponent banner={global.banner} /> : <div>Loading...</div>}
+      {banner ? <Component banner={banner} event={event} /> : <div>Loading...</div>}
     </Suspense>
   );
 };

@@ -1,9 +1,11 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import { useGetAttendeesQuery } from "../../../store/services/attendee";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import PageLoader from "../ui-components/PageLoader";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -17,6 +19,7 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["attendee"]);
@@ -55,7 +58,17 @@ const Attendee = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching } = useGetAttendeesQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetAttendeesQuery({
+    eventUrl,
+    page,
+    search,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(incrementLoadedSection());
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     console.log(page);
@@ -70,7 +83,7 @@ const Attendee = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (

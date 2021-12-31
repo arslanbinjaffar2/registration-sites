@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import { useGetSpeakersQuery } from "../../../store/services/speaker";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -17,6 +18,7 @@ const loadModule = (theme, variation) => {
 const Speaker = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["speaker"]);
@@ -55,7 +57,17 @@ const Speaker = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching } = useGetSpeakersQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetSpeakersQuery({
+    eventUrl,
+    page,
+    search,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(incrementLoadedSection());
+    }
+  }, [data]);
 
   const onPageChange = (page) => {
     if (page > 0) {
@@ -69,7 +81,7 @@ const Speaker = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (
@@ -90,7 +102,7 @@ const Speaker = (props) => {
               fetchingData={isFetching}
             />
           )}
-           <Component speakers={data.data} /> 
+          <Component speakers={data.data} />
           {showPagination && (
             <UiFullPagination
               total={data.meta.total}

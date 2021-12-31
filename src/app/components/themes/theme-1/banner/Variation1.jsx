@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, {useEffect} from 'react'
 
-export default class Variation1 extends Component {
-  componentDidMount() {
-    // this.typeWriter();
+const Variation1 = ({ banner }) => {
+
+  useEffect(() => {
+
     window.addEventListener("scroll", function (e) {
       var scrolled = window.pageYOffset;
       const background = document.querySelector(".parallax-backgroud");
@@ -12,8 +13,10 @@ export default class Variation1 extends Component {
         text.style.top = `${scrolled * 0.3}px`;
       }
     });
-  }
-  typeWriter = () => {
+    // typeWriter();
+  }, [])
+
+  const typeWriter = () => {
     function write(obj, sentence, i, cb) {
       if (i !== sentence.length) {
         setTimeout(function () {
@@ -60,16 +63,14 @@ export default class Variation1 extends Component {
 
     loop();
   };
-  render() {
-    const banner = this.props.banner ? this.props.banners[0] :'';
-
-    return (
-      <React.Fragment>
+  let data = banner ? banner[0] : [];
+  return (
+    <React.Fragment>
         <div
           style={{
             backgroundImage: `url(${
-              banner && Number(banner.video_type) === 1
-                ? process.env.REACT_APP_EVENTCENTER_URL + banner.image
+              data && Number(data.video_type) === 1
+                ? process.env.REACT_APP_EVENTCENTER_URL + data.image
                 : require("img/h1-parallax1.jpg")
             })`,
           }}
@@ -97,8 +98,8 @@ export default class Variation1 extends Component {
                   >
                     <span style={{ color: "#fff" }}>
                       {" "}
-                      {banner && banner.info
-                        ? banner.info.title
+                      {data && data.info
+                        ? data.info.title
                         : "Event Banner"}
                     </span>
                   </div>
@@ -115,7 +116,7 @@ export default class Variation1 extends Component {
                       color: "#ffffff",
                     }}
                   >
-                    {banner && banner.info ? banner.info.message : ""}
+                    {data && data.info ? data.info.message : ""}
                   </div>
                 </div>
               </div>
@@ -123,6 +124,7 @@ export default class Variation1 extends Component {
           </div>
         </div>
       </React.Fragment>
-    );
-  }
+  )
 }
+
+export default Variation1
