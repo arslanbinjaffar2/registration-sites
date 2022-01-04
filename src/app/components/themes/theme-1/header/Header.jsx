@@ -105,7 +105,7 @@ class Header extends React.Component {
 	}
   render() {
     const { menus, event, LoginToggle } = this.state;
-    if (menus.length === 0) return <div>Loading...</div>;
+    if (menus && menus.length === 0) return <div>Loading...</div>;
     return (
       <React.Fragment>
        {LoginToggle && <LoginScreen onClick={() => this.setState({LoginToggle: !LoginToggle})} />} 
@@ -115,7 +115,7 @@ class Header extends React.Component {
               <div className="col-lg-3 col-6">
                 <div style={{padding: '7px 0',border: 'none'}} className="ebs-logo-main">
                   <Link to="/">
-                    {event.settings.header_logo ? (
+                    {event.settings && event.settings.header_logo ? (
                       <img
                         src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
                         alt=""
@@ -145,7 +145,7 @@ class Header extends React.Component {
                     id="navbarSupportedContent">
                       <div onClick={() => this.setState({showMenu: !this.state.showMenu})} id="btn-menu-close"></div>
                       <ul className="nav navbar-nav m-0">
-                      {menus["top_menu"].map((menu) => (
+                      {menus && menus["top_menu"].map((menu) => (
                         <li className="nav-item" key={menu.id}>
                           <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
                             {menu.module}
