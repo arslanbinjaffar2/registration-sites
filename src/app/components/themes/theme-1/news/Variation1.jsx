@@ -1,24 +1,9 @@
-import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-import { withRouter } from 'react-router-dom';
-
-class Newsv1 extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      sidebar: false,
-      news: props.news,
-      event_url: props.event_url
-    }
-  }
-
-  render() {
-
-    const {sidebar, news, event_url} = this.state
-
-    return (
-      <div style={{paddingTop: '80px'}} className='edgtf-container'>
+import React,{useState} from 'react'
+const Variation1 = ({news, event_url, makeNewDetailURL}) => {
+  const [sidebar, setSidebar] = useState(false)
+  return (
+    <div style={{paddingTop: '80px'}} className='edgtf-container'>
        <div className="edgtf-container-inner">
          <div className={`${sidebar ? 'edgtf-two-columns-75-25' : 'edgtf-full-width-inner'} clearfix`}>
 
@@ -29,14 +14,14 @@ class Newsv1 extends Component {
                     <article key={item.id}>
                       <div className="edgtf-post-content">
                         <div className="edgtf-post-image">
-                          <Link itemProp="url" to={this.props.makeNewDetailURL(event_url,item.id)}>
+                          <Link itemProp="url" to={makeNewDetailURL(event_url,item.id)}>
                             <img src={item.image && item.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/eventsite_news/" + item.image : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
                           </Link>
                         </div>
                         <div className="edgtf-post-text">
                           <div className="edgtf-post-text-inner">
                             <h3 itemProp="name" className="entry-title edgtf-post-title">
-                              <Link itemProp="url" to={this.props.makeNewDetailURL(event_url,item.id)}>
+                              <Link itemProp="url" to={makeNewDetailURL(event_url,item.id)}>
                                 {item.title}
                               </Link>
                             </h3>
@@ -64,8 +49,7 @@ class Newsv1 extends Component {
          </div>
        </div>
       </div>
-    )
-  }
+  )
 }
 
-export default withRouter(Newsv1);
+export default Variation1

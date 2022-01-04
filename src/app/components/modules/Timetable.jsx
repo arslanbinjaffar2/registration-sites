@@ -1,72 +1,32 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import shortid from "shortid";
-
+import React, { Suspense, useMemo } from "react";
+import { eventSelector } from "../../../store/Slices/EventSlice";
+import { useSelector } from "react-redux";
+import { withRouter } from "react-router";
 const in_array = require("in_array");
 
-class Timetable extends React.Component {
-    _isMounted = false;
+const loadModule = (theme, variation) => {
+  const Component = React.lazy(() =>
+    import(`@/themes/${theme}/timetable/${variation}`)
+  );
+  return Component;
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: (this.props.event !== undefined && this.props.event.theme ? this.props.event.theme : ''),
-            module: false,
-            components: []
-        }
-    }
+const Timetable = () => {
+  const { event } = useSelector(eventSelector);
+  let moduleVariation = event.theme.modules.filter(function (module, i) {
+    return in_array(module.alias, ["timetable"]);
+  });
 
-    async componentDidMount() {
-        this._isMounted = true;
+  const Component = useMemo(
+    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    [event]
+  );
 
-        //active theme variation
-        if (this.state.theme && this.state.theme.modules) {
-            let module = this.state.theme.modules.filter(function (module, i) {
-                return in_array(module.alias, ["timetable"]);
-            });
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Component />
+    </Suspense>
+  );
+};
 
-            this.setState({
-                module: (module ? module[0] : false),
-            }, () => {
-                if (module && module.length > 0) {
-                    this.addComponent(this.state.theme.slug, module[0]['slug']);
-                }
-            });
-        }
-    }
-
-    addComponent = async (theme, variation) => {
-        import(`@/themes/${theme}/timetable/${variation}`)
-            .then(component =>
-                this.setState({
-                    components: this.state.components.concat(component.default)
-                })
-            )
-            .catch(error => {
-                console.error(`Variation of this "${theme}" not yet supported`);
-            });
-    };
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
-    render() {
-        const { components } = this.state;
-        if (components.length === 0) return <div>Loading...</div>;
-        const componentsElements = components.map(Component => (
-            <Component key={shortid.generate()} />
-        ));
-        return <div className="App">{componentsElements}</div>;
-    }
-}
-
-function mapStateToProps(state) {
-    const { event } = state;
-    return {
-        event
-    };
-}
-
-export default connect(mapStateToProps)(withRouter(Timetable));
+export default withRouter(Timetable);
