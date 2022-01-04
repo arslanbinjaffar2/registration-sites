@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MasterLayoutRoute from "@/layout/MasterLayoutRoute";
+import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
 import Index from '@/Index';
 import FullPage from '@/FullPage';
 import Home from '@/Home';
@@ -10,6 +11,8 @@ import AttendeeLayout from '@/AttendeeLayout';
 import NewsDetail from "@/modules/news/NewsDetail";
 import News from '@/modules/news/News';
 import Header from "@/themes/theme-1/header/Header";
+import MyProfile from "@/themes/theme-1/profile/MyProfile";
+import MyProfileEdit from "@/themes/theme-1/profile/MyProfileEdit";
 
 
 class RouterOutlet extends React.Component {
@@ -26,6 +29,8 @@ class RouterOutlet extends React.Component {
           <MasterLayoutRoute component={Index} exact path="/:event_url" />
           {/* <Route component={NewsDetail} exact path="/:event_url/news-detail/:id" /> */}
           {/* <Route component={News} exact path="/:event_url/news" /> */}
+          <MasterLayoutMyAccount component={MyProfile} exact path="/:event_url/profile" />
+          <MasterLayoutMyAccount component={MyProfileEdit} exact path="/:event_url/profile/edit" />
           <Route component={Error404} />
         </Switch>
         </React.Fragment>

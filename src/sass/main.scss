@@ -290,10 +290,15 @@
    ========================================================================== */
 @import './components/modules/shortcodes/project-presentation';
 @import './base/global-responsive';
+
+
+/* My Account CSS
+   ========================================================================== */
+@import './profile/profile';
 /* ==========================================================================
    #Comments styles - start
    ========================================================================== */
-_global-responsive
+
 html,body {
 	min-height: 100%;
 }
@@ -1519,4 +1524,160 @@ $z-index:$back-to-top-size / 2;
 }
 .ebs-custom-section-html figure.image figcaption {
 	padding-top: 10px;
+}
+.ebs-login-screen {
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	background: rgba($black,0.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.ebs-login-wrapp {
+		width: 100%;
+		max-width: 460px;
+		border-radius: 30px;
+		background: $white;
+		padding: 40px;
+		color: $text;
+		.ebs-login-wrapp-inner {
+			max-width: 320px;
+			margin: auto;
+			position: relative;
+			.btn-inner-close {
+				position: absolute;
+				right: -20px;
+				top: 0;
+				cursor: pointer;
+				img {
+					max-width: 20px;
+				}
+			}
+		}
+		.ebs-login-title {
+			font-size: 48px;
+			font-weight: 700;
+			margin: 0 0 15px 0;
+			line-height: 1;
+			color: $darkblue;
+		}
+		.ebs-login-desc {
+			font-size: 14px;
+		}
+		.ebs-login-from {
+			padding-top: 12px;
+			.ebs-label-input {
+				display: block;
+				padding-bottom: 12px;
+				padding-top: 15px;
+				.ebs-label-title {
+					display: block;
+					font-size: 13px;
+					padding-bottom: 0;
+					cursor: pointer;
+				}
+				.ebs-input {
+					width: 100%;
+					background: none;
+					border: none;
+					height: 45px;
+					color: $black;
+					font-size: 18px;
+					font-weight: 600;
+					border-bottom: 1px solid $border;
+					vertical-align: top;
+					&:focus {
+						outline: none;
+						box-shadow: none;
+						border-bottom-color: $themeblue;
+					}
+				}
+			}
+			.ebs-forgot-password {
+				padding-bottom: 12px;
+				span {
+					cursor: pointer;
+					font-size: 12px;
+					color: $themeblue;
+					font-weight: 600;
+					line-height: 1.2;
+				}	
+			}
+			.ebs-form-accept {
+				padding-bottom: 15px;
+				position: relative;
+				.ebs-label-accept {
+					input[type="checkbox"] {
+						display: none;
+						opacity: 0;
+						visibility: hidden;
+						&:checked ~ .ebs-accept-text {
+							&::before {
+								background: url(../img/ico-checkmark.svg) no-repeat center center $themeblue;
+								border-color: $themeblue;
+								background-size: 14px;
+							}
+						}
+					}
+				}
+				.ebs-accept-text {
+					padding-left: 38px;
+					display: block;
+					position: relative;
+					font-size: 14px;
+					line-height: 24px;
+					cursor: pointer;
+					&::before {
+						content: '';
+						width: 24px;
+						height: 24px;
+						border: 1px solid $border;
+						display: block;
+						border-radius: 5px;
+						position: absolute;
+						left: 0;
+						top: 0;
+					}
+				}
+			
+			}
+		}
+		.ebs-btn-wrapp {
+			.btn {
+				width: 100%;
+				height: 60px;
+				border-radius: 8px;
+				background: $themeblue;
+				cursor: pointer;
+				border: none;
+				color: $white;
+				font-size: 18px;
+				font-weight: 600;
+				&:hover {
+					background: $darkblue;
+				}
+			}
+		}
+		.ebs-social-meida-login {
+			padding-top: 15px;
+			p {
+				margin-bottom: 15px;
+			}
+			.ebs-ico-social {
+				padding: 0 45px;
+				border-left: 1px solid $borderlight;
+				img {
+					cursor: pointer;
+					&:hover {
+						opacity: 0.9;
+					}
+				}
+				&:first-child {
+					border: none;
+				}
+			}
+		} 
+	}
+
 }

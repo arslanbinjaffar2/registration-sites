@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
+import LoginScreen from "@/themes/theme-1/header/LoginScreen";
 
 class Header extends React.Component {
   _isMounted = false;
@@ -12,6 +13,7 @@ class Header extends React.Component {
     this.state = {
       module: false,
       menus: [],
+      LoginToggle: false,
       showMenu: false,
       menuresponsive: [],
 			width: window.innerWidth,
@@ -102,70 +104,55 @@ class Header extends React.Component {
     }
 	}
   render() {
-    const { menus, event } = this.state;
+    const { menus, event, LoginToggle } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2">
-        <div className="container">
-          <div className="row d-flex align-items-center">
-            <div className="col-lg-3 col-6">
-              <div style={{padding: '7px 0',border: 'none'}} className="ebs-logo-main">
-                <Link to="/">
-                  {event.settings.header_logo ? (
-                    <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
-                      alt=""
-                    />):(
-                    <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
-                      alt=""
-                    />)}
-                </Link>
+      <React.Fragment>
+       {LoginToggle && <LoginScreen onClick={() => this.setState({LoginToggle: !LoginToggle})} />} 
+        <div className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2">
+          <div className="container">
+            <div className="row d-flex align-items-center">
+              <div className="col-lg-3 col-6">
+                <div style={{padding: '7px 0',border: 'none'}} className="ebs-logo-main">
+                  <Link to="/">
+                    {event.settings.header_logo ? (
+                      <img
+                        src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
+                        alt=""
+                      />):(
+                      <img
+                        src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
+                        alt=""
+                      />)}
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-9 col-6 d-flex justify-content-end">
-            <nav className="navbar navbar-expand-lg navbar-light">
-              {!this.state.showMenu && <button
-                  className="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  onClick={() => this.setState({showMenu: !this.state.showMenu})}
-                  aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>}
-                <div
-                  className={`collapse navbar-collapse ${this.state.showMenu ? 'show' : ''}`}
-                  id="navbarSupportedContent">
-                    <div onClick={() => this.setState({showMenu: !this.state.showMenu})} id="btn-menu-close"></div>
-                    <ul className="nav navbar-nav m-0">
-                    {menus["top_menu"].map((menu) => (
-                      <li className="nav-item" key={menu.id}>
-                        <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
-                          {menu.module}
-                        </NavLink>
-                        {menu.alias === "gallery" && (
-                          <ul className="dropdown-menu">
-                            {menus["gallery_sub_menu"].map((myaccount, k) => (
-                              <li className="nav-item" key={k}>
-                                <NavLink
-                                  aria-current="page"
-                                  className="nav-link"
-                                  to={'/' + this.props.event.url + '/' + myaccount.alias}
-                                  key={myaccount.id}
-                                >
-                                  {myaccount.module}
-                                </NavLink>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {menu.alias === "myaccount" && (
-                          <ul className="dropdown-menu">
-                            {menus["my_account_sub_menu"].map(
-                              (myaccount, k) => (
+              <div className="col-lg-9 col-6 d-flex justify-content-end">
+              <nav className="navbar navbar-expand-lg navbar-light">
+                {!this.state.showMenu && <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    onClick={() => this.setState({showMenu: !this.state.showMenu})}
+                    aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>}
+                  <div
+                    className={`collapse navbar-collapse ${this.state.showMenu ? 'show' : ''}`}
+                    id="navbarSupportedContent">
+                      <div onClick={() => this.setState({showMenu: !this.state.showMenu})} id="btn-menu-close"></div>
+                      <ul className="nav navbar-nav m-0">
+                      {menus["top_menu"].map((menu) => (
+                        <li className="nav-item" key={menu.id}>
+                          <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
+                            {menu.module}
+                          </NavLink>
+                          {menu.alias === "gallery" && (
+                            <ul className="dropdown-menu">
+                              {menus["gallery_sub_menu"].map((myaccount, k) => (
                                 <li className="nav-item" key={k}>
                                   <NavLink
                                     aria-current="page"
@@ -176,19 +163,53 @@ class Header extends React.Component {
                                     {myaccount.module}
                                   </NavLink>
                                 </li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </nav>
+                              ))}
+                            </ul>
+                          )}
+                          {menu.alias === "myaccount" && (
+                            <ul className="dropdown-menu">
+                              {menus["my_account_sub_menu"].map(
+                                (myaccount, k) => {
+                                if (myaccount.alias === 'login') {
+                                  return (
+                                    <li className="nav-item" key={k}>
+                                      <span
+                                        onClick={() => this.setState({LoginToggle: !LoginToggle})}
+                                        className="nav-link"
+                                        key={myaccount.id}
+                                      >
+                                        {myaccount.module}
+                                      </span>
+                                    </li>
+                                  )
+                                } else {
+                                  return (
+                                    <li className="nav-item" key={k}>
+                                      <NavLink
+                                        aria-current="page"
+                                        className="nav-link"
+                                        to={'/' + this.props.event.url + '/' + myaccount.alias}
+                                        key={myaccount.id}
+                                      >
+                                        {myaccount.module}
+                                      </NavLink>
+                                    </li>
+                                  )
+                                }
+                                }
+                              )}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
