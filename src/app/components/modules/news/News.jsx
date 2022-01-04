@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo} from "react";
 import { eventSelector } from "../../../../store/Slices/EventSlice";
+import { incrementLoadedSection } from "../../../../store/Slices/GlobalSlice";
 import { useGetNewsQuery } from "../../../../store/services/news";
 import UiFullPagination from "../../ui-components/UiFullPagination";
 import UiPagination from "../../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -16,6 +17,7 @@ const loadModule = (theme, variation) => {
 
 const News = (props) => {
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["news"]);
@@ -27,6 +29,7 @@ const News = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -37,7 +40,16 @@ const News = (props) => {
     }
   }, []);
 
-  const { data, isFetching } = useGetNewsQuery({ eventUrl, page });
+  const { data, isFetching, isSuccess } = useGetNewsQuery({ eventUrl, page });
+
+  useEffect(() => { 
+    if (isSuccess) {
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     console.log(page);

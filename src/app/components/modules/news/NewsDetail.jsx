@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { eventSelector } from "../../../../store/Slices/EventSlice";
 import { useGetNewsSingleQuery } from "../../../../store/services/news";
 import { useSelector } from "react-redux";
+import PageLoader from "../../ui-components/PageLoader";
 import {
   EmailIcon,
   FacebookIcon,
@@ -16,7 +17,7 @@ const NewsDetail = (props) => {
   const eventUrl = event.url;
   const [sidebar, setSidebar] = useState(false);
   const { data, isFetching } = useGetNewsSingleQuery({ eventUrl, id });
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <PageLoader />;
   console.log(data);
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">

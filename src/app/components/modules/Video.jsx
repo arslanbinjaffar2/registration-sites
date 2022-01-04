@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import { useGetPhotosQuery } from "../../../store/services/photo";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -16,6 +17,7 @@ const loadModule = (theme, variation) => {
 
 const Video = (props) => {
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["video"]);
@@ -27,17 +29,31 @@ const Video = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     const queryPage = new URLSearchParams(props.location.search).get("page");
-    if (queryPage && typeof parseInt(queryPage, 10) === "number" && showPagination) {
+    if (
+      queryPage &&
+      typeof parseInt(queryPage, 10) === "number" &&
+      showPagination
+    ) {
       setPage(parseInt(queryPage, 10));
       console.log("params", queryPage);
     }
   }, []);
 
-  const { data, isFetching } = useGetPhotosQuery({ eventUrl, page,});
+  const { data, isFetching, isSuccess } = useGetPhotosQuery({ eventUrl, page });
+
+  useEffect(() => { 
+    if (isSuccess) {
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     if (page > 0) {
@@ -51,7 +67,7 @@ const Video = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (
@@ -69,7 +85,7 @@ const Video = (props) => {
               fetchingData={isFetching}
             />
           )}
-           <Component videos={data.data} /> 
+          <Component videos={data.data} />
           {showPagination && (
             <UiFullPagination
               total={data.meta.total}

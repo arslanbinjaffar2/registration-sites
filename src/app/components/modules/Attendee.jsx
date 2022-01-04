@@ -4,7 +4,6 @@ import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import { useGetAttendeesQuery } from "../../../store/services/attendee";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import PageLoader from "../ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -31,15 +30,15 @@ const Attendee = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
+  const queryPage = new URLSearchParams(props.location.search).get("page");
   useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
     if (queryPage && typeof parseInt(queryPage, 10) === "number") {
       setPage(parseInt(queryPage, 10));
-      console.log("params", queryPage);
     }
   }, []);
 
@@ -64,9 +63,12 @@ const Attendee = (props) => {
     search,
   });
 
-  useEffect(() => {
+  useEffect(() => { 
     if (isSuccess) {
-      dispatch(incrementLoadedSection());
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
     }
   }, [isSuccess]);
 

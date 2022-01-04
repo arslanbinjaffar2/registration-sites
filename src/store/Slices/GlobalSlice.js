@@ -28,12 +28,30 @@ export const globalSlice = createSlice({
     incrementLoadedSection: (state) => {
       state.loadedSections = state.loadedSections + 1;
     },
+    incrementLoadCount: (state) => {
+      state.loadCount = state.loadCount + 1;
+    },
+    setLoadedSections: (state, { payload }) => {
+      state.loadedSections = payload;
+    },
+    setLSandLC: (state, { payload }) => {
+      state.loadedSections = payload.ls;
+      state.loadCount = payload.lc;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getBanner, setBanner, setError, setLoadCount, incrementLoadedSection } =
-  globalSlice.actions;
+export const {
+  getBanner,
+  setBanner,
+  setError,
+  setLoadCount,
+  incrementLoadedSection,
+  setLoadedSections,
+  setLSandLC,
+  incrementLoadCount,
+} = globalSlice.actions;
 
 export const globalSelector = (state) => state.global;
 
@@ -48,7 +66,6 @@ export const fetchBanner = (url) => {
       );
       const res = await response.json();
       dispatch(setBanner(res.data));
-      dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError());
     }

@@ -30,6 +30,7 @@ const Speaker = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
@@ -63,11 +64,14 @@ const Speaker = (props) => {
     search,
   });
 
-  useEffect(() => {
+  useEffect(() => { 
     if (isSuccess) {
-      dispatch(incrementLoadedSection());
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
     }
-  }, [data]);
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     if (page > 0) {

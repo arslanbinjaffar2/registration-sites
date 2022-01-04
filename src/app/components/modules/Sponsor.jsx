@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
 import { useGetSponsorsQuery } from "../../../store/services/sponsor";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -17,6 +18,7 @@ const loadModule = (theme, variation) => {
 const Sponsor = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["sponsor"]);
@@ -28,6 +30,7 @@ const Sponsor = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
@@ -55,7 +58,20 @@ const Sponsor = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching } = useGetSponsorsQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetSponsorsQuery({
+    eventUrl,
+    page,
+    search,
+  });
+
+  useEffect(() => { 
+    if (isSuccess) {
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     if (page > 0) {
@@ -69,7 +85,7 @@ const Sponsor = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (
@@ -90,7 +106,7 @@ const Sponsor = (props) => {
               fetchingData={isFetching}
             />
           )}
-           <Component sponsors={data.data} /> 
+          <Component sponsors={data.data} />
           {showPagination && (
             <UiFullPagination
               total={data.meta.total}

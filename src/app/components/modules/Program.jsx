@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
 import { useGetProgramsQuery } from "../../../store/services/program";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -17,6 +18,7 @@ const loadModule = (theme, variation) => {
 const Program = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["program"]);
@@ -27,7 +29,8 @@ const Program = (props) => {
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
   );
-
+  
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
@@ -55,7 +58,16 @@ const Program = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching } = useGetProgramsQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetProgramsQuery({ eventUrl, page, search });
+
+  useEffect(() => { 
+    if (isSuccess) {
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     console.log(page);

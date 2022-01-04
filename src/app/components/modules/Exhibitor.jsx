@@ -3,7 +3,8 @@ import { eventSelector } from "../../../store/Slices/EventSlice";
 import { useGetExhibitorsQuery } from "../../../store/services/exhibitor";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { useSelector } from "react-redux";
+import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
@@ -17,6 +18,7 @@ const loadModule = (theme, variation) => {
 const Exhibitor = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["exhibitors"]);
@@ -28,12 +30,12 @@ const Exhibitor = (props) => {
     [event]
   );
 
+  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
-
+  const queryPage = new URLSearchParams(props.location.search).get("page");
   useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
     if (queryPage && typeof parseInt(queryPage, 10) === "number") {
       setPage(parseInt(queryPage, 10));
       console.log("params", queryPage);
@@ -55,7 +57,20 @@ const Exhibitor = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching } = useGetExhibitorsQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetExhibitorsQuery({
+    eventUrl,
+    page,
+    search,
+  });
+
+  useEffect(() => { 
+    if (isSuccess) {
+      if(!querySuccess){
+        dispatch(incrementLoadedSection());
+        setQuerySuccess(true);
+      }
+    }
+  }, [isSuccess]);
 
   const onPageChange = (page) => {
     if (page > 0) {
@@ -69,7 +84,7 @@ const Exhibitor = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (
@@ -90,7 +105,7 @@ const Exhibitor = (props) => {
               fetchingData={isFetching}
             />
           )}
-           <Component exhibitors={data.data} /> 
+          <Component exhibitors={data.data} />
           {showPagination && (
             <UiFullPagination
               total={data.meta.total}
