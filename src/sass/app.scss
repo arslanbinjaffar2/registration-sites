@@ -402,69 +402,40 @@
 .speakerv5-wrapper {
   .speakerv5-area {
     position: relative;
-    margin-top: 40px;
+    margin-top: 70px;
     .speakerv5-image {
-      max-width: 190px;
-      margin: 10px auto;
+      max-width: 300px;
+      margin: 10px auto 25px;
       img {
         border-radius: 100%;
-        box-shadow: 0 6px 20px rgba($black,.07);
-      }
-      h5 {
-        margin-bottom: 0;
-      }
-      .sc-desciption {
-        font-style: italic;
+        box-shadow: 0 6px 20px rgba($black,.18);
       }
     }
-    .speakerv5-caption {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      background: $darkcolor;
-      padding: 40px 30px;
-      color: $white;
-      border-radius: 12px;
-      width: 100%;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-120px) scale(0.1);
-      transition: all 0.25s linear;
-      h5 {
-        color: $white;
-        margin-top: 0;
-        margin-bottom: 5px;  
-      }
-      .sc-desciption {
-        font-style: italic;
-        display: block;
-        line-height: 16px;
-        margin-bottom: 12px;
-      }
-      p {
-        min-height: 90px;
-        max-height: 90px;
-        text-overflow: ellipsis;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-      .sc-social {
-        margin-top: 15px;
-        a {
-          color: $white;
-          font-size: 18px;
-          margin: 0 5px;
-        }  
+    h5 {
+      margin-bottom: 6px;
+      font-size: 22px;
+      font-weight: 700;
+      a {
+        color: $text555;
       }
     }
-    &:hover {
-      .speakerv5-caption {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0%) scale(1) rotate(0);
+    .ebs-attendee-designation {
+      color: $text555;
+      padding-bottom: 6px;
+    }
+    .ebs-email-phone  {
+      color: $text555;
+      font-size: 14px;
+      padding-bottom: 4px;
+      font-style: italic;
+      a {
+        color: $text555;
+      }
+    }
+    .social-icons {
+      padding-top: 8px;
+      a {
+        color: $text555;
       }
     }
   }
@@ -540,16 +511,31 @@
       vertical-align: top;
     }
     h3 {
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 18px;
+      font-weight: 700;
       margin: 0;
     }
-    p {
-      margin: 0;
-      font-size: 13px;
-      letter-spacing: 1px;
-      line-height: 16px;
-    }
+   .ebs-attendee-designation {
+     font-size: 14px;
+     color: $text555;
+     padding-bottom: 4px;
+   }
+   .ebs-email-phone  {
+     display: flex;
+     color: $text555;
+     font-size: 12px;
+     padding-bottom: 4px;
+     span {
+       margin-right: 5px;
+       font-size: 14px;
+     }
+     a {
+       color: $text555;
+     }
+   }
+   .social-icons {
+     padding-top: 10px;
+   }
   }  
 }
 .speaker-popup-detail {
@@ -847,57 +833,62 @@
     }
   }
 }
+.social-icons {
+  width: 100%;
+  a {
+    display: inline-block;
+    font-size: 25px;
+    margin: 0 5px !important;
+    color: $link;
+  }
+}
 .speakerv7-wrapper {
-  padding: 50px 30px;
+  padding: 35px 30px;
   position: relative;
   border: 1px solid rgba($lightgray, 0.8);
   margin-bottom: 30px;
+  text-align: center;
   .speakerv7-image {
-    text-align: left;
     margin-bottom: 25px;
     span {
       display: inline-block;
       overflow: hidden;
       background: $black;
-      max-width: 128px;
+      max-width: 250px;
       border-radius: 100%;
       img {
         transition: all 0.2s linear;
       }
     }
   }
+  
   .speakerv7-caption {
     h3 {
-      margin: 0 0 20px 0;
+      margin: 0 0 10px 0;
       font-weight: 400;
       text-transform: none;
       font-size: 24px;
     }
     p {
       font-size: 14px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .speakerv7-phone {
-      margin-bottom: 2px;
+      margin-bottom: 10px;
+      line-height: 1;
       a {
-       font-weight: 700;
-       font-size: 20px;
        color: $link;
+       font-size: 12px;
       }
     }
-    .social-icons {
-      width: 100%;
-      a {
-        display: inline-block;
-        font-size: 18px;
-        margin-right: 4px;
-        color: rgba($gray, 0.4);
-      }
-    }
+
     .email {
+      padding-bottom: 10px;
+      line-height: 1;
       a {
-        font-size: 34px;
-        color: rgba($gray, 0.4);
+        color: $link;
+        font-size: 12px;
+        font-weight: 600;
         i {
           line-height: 20px;
         }

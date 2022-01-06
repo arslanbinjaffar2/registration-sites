@@ -1,36 +1,16 @@
-import React, { Component } from 'react'
-import SliderBanner from '@/SliderBanner';
+import React from 'react'
+import SliderBanner from './components/SliderBanner';
 import moment from 'moment';
-
-export default class Variation2 extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			event: '',
-			data: '',
-			eventdate: ''
-		}
-	}
-	async componentDidMount() {
-		let momentObj = moment(this.props.event.start_date + this.props.event.start_time, 'YYYY-MM-DDLT');
-		let dateTime = momentObj.toDate();
-		this.setState({
-			eventdate: dateTime,
-			event: this.props.event,
-			data: this.props.banners,
-		}, () => {
-			console.log(this.state.data);
-		})
-	}
-
-	render() {
-		return (
-			<div className="main-slider-wrapper">
-				{this.state.data && <SliderBanner
-					countdown="Apr 19 2021, 17:00" //{this.state.eventdate}
+const Variation2 = ({ event, banner }) => {
+	let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
+	let dateTime = momentObj.toDate();
+	return (
+		<div data-fixed="true" className="main-slider-wrapper">
+				{banner && <SliderBanner
+					countdown="Apr 19 2022, 17:00" //{dateTime}
 					fullscreen
 				>
-					{this.state.data.map((slides, i) =>
+					{banner.map((slides, i) =>
 						<div key={i} className="slide-wrapper">
 							<div style={{ backgroundImage: `url(${slides && Number(slides.video_type) === 1 ? process.env.REACT_APP_EVENTCENTER_URL + slides.image : require('img/h1-parallax1.jpg')})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
 								{Number(slides.video_type) === 2 &&
@@ -61,6 +41,8 @@ export default class Variation2 extends Component {
 					)}
 				</SliderBanner>}
 			</div>
-		)
-	}
+	)
 }
+
+export default Variation2
+
