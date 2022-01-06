@@ -11,7 +11,7 @@ const Variation7 = ({ attendees }) => {
               className="edgtf-title-section-holder"
             >
               <h2 className="edgtf-title-with-dots edgtf-appeared">
-                Our attendees{" "}
+                Our attendees
               </h2>
               <h6
                 style={{ fontSize: "16px", lineHeight: "1.5" }}
@@ -19,7 +19,7 @@ const Variation7 = ({ attendees }) => {
               >
                 A schedule at a glance is listed below. Check the program for
                 this year's conference and learn about the attendees and
-                sessions in store for tech enthusiasts.{" "}
+                sessions in store for tech enthusiasts.
               </h6>
             </div>
           </div>
@@ -57,16 +57,48 @@ const Variation7 = ({ attendees }) => {
                     <h3>
                       {attendee.first_name} {attendee.last_name}
                     </h3>
-                    <p>{attendee.email}</p>
-                    {attendee.info.phone && (
+                    <p>Technical Manager , <br />Welltec</p>
+                    <div className="email"><a href={`mailto:${attendee.email}`}>{attendee.email}</a></div>
+                    <div className="speakerv7-phone">
+                      <a href="#!">
+                        +78-54-897666
+                      </a>
+                    </div>
+                    {/* {attendee.info.phone && (
                       <div className="speakerv7-phone">
                         <a href={`tel:${attendee.info.phone}`}>
                           {attendee.info.phone}
                         </a>
                       </div>
-                    )}
+                    )} */}
                     <div className="d-flex">
                       <div className="social-icons">
+                          <a
+                            target="_blank"
+                            href="#!"
+                          >
+                            <span data-icon="&#xe0aa;"></span>
+                          </a>
+                          <a
+                            target="_blank"
+                            href="#!"
+                          >
+                            <span data-icon="&#xe0ab;"></span>
+                          </a>
+                          <a
+                            target="_blank"
+                            href="#!"
+                          >
+                            <span data-icon="&#xe0b1;"></span>
+                          </a>
+                          <a
+                            target="_blank"
+                            href="#!"
+                          >
+                            <span data-icon="&#xe0b7;"></span>
+                          </a>
+                      </div>
+                      {/* <div className="social-icons">
                         {attendee.info.facebook && (
                           <a
                             target="_blank"
@@ -99,7 +131,7 @@ const Variation7 = ({ attendees }) => {
                             <span data-icon="&#xe0b7;"></span>
                           </a>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

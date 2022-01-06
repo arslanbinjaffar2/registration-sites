@@ -125,7 +125,7 @@ class Header extends React.Component {
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
               <div
-                style={{ padding: "7px 0", border: "none" }}
+                style={{ padding: "0", border: "none" }}
                 className="ebs-logo-main"
               >
                 <Link to={`/${event.url}`}>

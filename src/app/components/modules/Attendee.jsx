@@ -93,7 +93,9 @@ const Attendee = (props) => {
       {data ? (
         <React.Fragment>
           {showPagination && (
-            <input type="text" onChange={(e) => setValue(e.target.value)} />
+            <div className="container pt-5 pb-5">
+              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
+            </div>
           )}
           {showPagination && (
             <UiPagination

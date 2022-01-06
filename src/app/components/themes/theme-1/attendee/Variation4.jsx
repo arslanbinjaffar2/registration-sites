@@ -27,11 +27,11 @@ const Variation4 = ({ attendees }) => {
           {/* Grid */}
           {attendees &&
             attendees.map((attendee, i) => (
-              <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0">
+              <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-4">
                 <div className="edgtf-team-list-holder-inner info_box">
                   <div
                     style={{ width: "100%" }}
-                    className="edgtf-team edgtf-team-light mb-0"
+                    className="edgtf-team edgtf-team-light"
                   >
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
@@ -42,7 +42,7 @@ const Variation4 = ({ attendees }) => {
                               ? process.env.REACT_APP_EVENTCENTER_URL +
                                 "/assets/attendees/" +
                                 attendee.image
-                              : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"
+                              : require("img/square.jpg")
                           }
                           alt="g"
                         />
@@ -53,11 +53,51 @@ const Variation4 = ({ attendees }) => {
                           <h3 className="edgtf-team-name">
                             {attendee.first_name} {attendee.last_name}
                           </h3>
-                          <span className="edgtf-team-position">
-                            {attendee.email}
-                          </span>
+                          <div className="ebs-attendee-designation">
+                            <span className="edgtf-team-position">
+                            Technical Manager Welltec
+                            </span>
+                            </div>
+                            <div className="ebs-email-phone">
+                              <a href={`mailto:${attendee.email}`} className="edgtf-team-position">
+                                {attendee.email}
+                              </a>
+                            </div>
+                            <div className="ebs-email-phone">
+                              <a href={`tel: +78-54-897666`} className="edgtf-team-position">
+                                +78-54-897666
+                              </a>
+                            </div>
                           <div className="edgtf-team-social-holder">
                             <div className="edgtf-team-social-holder-inner">
+                            <div className="edgtf-team-social-wrapp">
+                                <div className="social-icons">
+                                      <a
+                                        target="_blank"
+                                        href="#!"
+                                      >
+                                        <span data-icon="&#xe0aa;"></span>
+                                      </a>
+                                      <a
+                                        target="_blank"
+                                        href="#!"
+                                      >
+                                        <span data-icon="&#xe0ab;"></span>
+                                      </a>
+                                      <a
+                                        target="_blank"
+                                        href="#!"
+                                      >
+                                        <span data-icon="&#xe0b1;"></span>
+                                      </a>
+                                      <a
+                                        target="_blank"
+                                        href="#!"
+                                      >
+                                        <span data-icon="&#xe0b7;"></span>
+                                      </a>
+                                  </div>
+                                </div>
                               {attendee.info.facebook && (
                                 <a
                                   target="_blank"

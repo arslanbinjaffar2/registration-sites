@@ -6,7 +6,7 @@ const Variation5 = ({ banner, event }) => {
   let momentObj = moment(event.start_date + event.start_time, "YYYY-MM-DDLT");
   let eventDate = momentObj.toDate();
   return (
-    <div className="main-slider-wrapper">
+    <div data-fixed="true" className="main-slider-wrapper">
       {banner && (
         <SliderBanner>
           {banner.map((slides, i) => (

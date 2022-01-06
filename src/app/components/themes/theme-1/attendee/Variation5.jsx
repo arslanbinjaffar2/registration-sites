@@ -13,6 +13,7 @@ const Variation5 = ({ attendees }) => {
               <h2 className="edgtf-title-with-dots edgtf-appeared">
                 Our attendees{" "}
               </h2>
+              <span class="edge-title-separator edge-enable-separator"></span>
               <h6
                 style={{ fontSize: "16px", lineHeight: "1.5" }}
                 className="edgtf-section-subtitle"
@@ -44,52 +45,29 @@ const Variation5 = ({ attendees }) => {
                         }
                         alt="g"
                       />
-                      <h5>
-                        {attendee.first_name} {attendee.last_name}
-                      </h5>
-                      <span className="sc-desciption">{attendee.email}</span>
                     </div>
-                    <div className="speakerv5-caption">
                       <h5>
                         {attendee.first_name} {attendee.last_name}
                       </h5>
-                      <span className="sc-desciption">{attendee.email}</span>
-                      <p>{attendee.info.about ? attendee.info.about : ""}</p>
-                      <div className="sc-social">
-                        {attendee.info.twitter && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
-                          >
-                            <i className="fa fa-twitter-square"></i>
-                          </a>
-                        )}
-                        {attendee.info.facebook && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
-                          >
-                            <i className="fa fa-facebook-square"></i>
-                          </a>
-                        )}
-                        {attendee.info.linkedin && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
-                          >
-                            <i className="fa fa-linkedin-square"></i>
-                          </a>
-                        )}
-                        {attendee.info.website && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.website_protocol}${attendee.info.website}`}
-                          >
-                            <i className="fa fa-external-link"></i>
-                          </a>
-                        )}
+                      <div className="ebs-attendee-designation">
+                        Technical Manager Welltec
                       </div>
-                    </div>
+                      <div className="ebs-email-phone">
+                        <a href={`mailto:${attendee.email}`} className="edgtf-team-position">
+                          {attendee.email}
+                        </a>
+                      </div>
+                      <div className="ebs-email-phone">
+                        <a href={`tel: +78-54-897666`} className="edgtf-team-position">
+                          +78-54-897666
+                        </a>
+                      </div>
+                      <div className="social-icons">
+												<a target="_blank" href="#!"><span data-icon="&#xe0aa;"></span></a>
+												<a target="_blank" href="#!"><span data-icon="&#xe0ab;"></span></a>
+												<a target="_blank" href="#!"><span data-icon="&#xe0b1;"></span></a>
+												<a target="_blank" href="#!"><span data-icon="&#xe0b7;"></span></a>
+											</div>
                   </div>
                 </div>
               </div>

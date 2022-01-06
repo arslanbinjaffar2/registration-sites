@@ -5,9 +5,9 @@ const Variation2 = ({ event, banner }) => {
 	let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
 	let dateTime = momentObj.toDate();
 	return (
-		<div className="main-slider-wrapper">
+		<div data-fixed="true" className="main-slider-wrapper">
 				{banner && <SliderBanner
-					countdown="Apr 19 2021, 17:00" //{dateTime}
+					countdown="Apr 19 2022, 17:00" //{dateTime}
 					fullscreen
 				>
 					{banner.map((slides, i) =>

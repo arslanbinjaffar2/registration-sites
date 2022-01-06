@@ -13,7 +13,7 @@ const Variation4 = ({ banner, event }) => {
       <div className="main-slider-wrapper">
         {banner && (
           <SliderBanner
-            countdown="Apr 19 2021, 17:00" //{this.state.eventdate}
+            countdown="Apr 19 2022, 17:00" //{this.state.eventdate}
           >
             {banner.map((slides, i) => (
               <div key={i} className="slide-wrapper">

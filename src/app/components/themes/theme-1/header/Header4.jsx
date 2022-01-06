@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
-class Headerv3 extends React.Component {
+class Header4 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -133,10 +133,10 @@ class Headerv3 extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { event } = state;
+  const { event } = state.event;
   return {
     event,
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Headerv3));
+export default connect(mapStateToProps)(withRouter(Header4));

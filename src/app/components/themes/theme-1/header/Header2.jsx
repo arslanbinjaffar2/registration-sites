@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
-class Headerv1 extends React.Component {
+class Header2 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -103,7 +103,7 @@ class Headerv1 extends React.Component {
 	}
   render() {
     const { menus, event } = this.state;
-    if (menus.length === 0) return <div>Loading...</div>;
+    if (menus && menus.length === 0) return <div>Loading...</div>;
     return (
       <div className="ebs-main-header-v1 ebs-main-header-v2">
         <div className="container">
@@ -111,7 +111,7 @@ class Headerv1 extends React.Component {
             <div className="col-lg-12 col-6">
               <div className="ebs-logo-main">
                 <Link to="/">
-                  {event.settings.header_logo ? (
+                  {event.settings && event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
                       alt=""
@@ -141,7 +141,7 @@ class Headerv1 extends React.Component {
                   id="navbarSupportedContent">
                     <div onClick={() => this.setState({showMenu: !this.state.showMenu})} id="btn-menu-close"></div>
                     <ul className="nav navbar-nav m-0">
-                    {menus["top_menu"].map((menu) => (
+                    {menus && menus["top_menu"].map((menu) => (
                       <li className="nav-item" key={menu.id}>
                         <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
                           {menu.module}
@@ -194,10 +194,10 @@ class Headerv1 extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { event } = state;
+  const { event } = state.event;
   return {
     event,
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Headerv1));
+export default connect(mapStateToProps)(withRouter(Header2));

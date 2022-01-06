@@ -13,7 +13,7 @@ const Variation1 = ({ banner }) => {
         text.style.top = `${scrolled * 0.3}px`;
       }
     });
-    // typeWriter();
+    typeWriter();
   }, [])
 
   const typeWriter = () => {
@@ -67,6 +67,7 @@ const Variation1 = ({ banner }) => {
   return (
     <React.Fragment>
         <div
+        data-fixed="true"
           style={{
             backgroundImage: `url(${
               data && Number(data.video_type) === 1
@@ -106,6 +107,22 @@ const Variation1 = ({ banner }) => {
                   <div
                     className="edgtf-custom-font-holder"
                     style={{
+                      fontFamily: "Rubik",
+                      fontSize: "127px",
+                      lineHeight: "127px",
+                      fontWeight: "500",
+                      letterSpacing: "1.3px",
+                      textTransform: "uppercase",
+                      textAlign: "left",
+                      color: "#ec008c",
+                      minHeight: 151
+                    }}
+                  >
+                    <div id="typewriter"></div>
+                  </div>
+                  <div
+                    className="edgtf-custom-font-holder"
+                    style={{
                       marginTop: "15px",
                       fontFamily: "Open Sans",
                       fontSize: "26px",
@@ -118,6 +135,7 @@ const Variation1 = ({ banner }) => {
                   >
                     {data && data.info ? data.info.message : ""}
                   </div>
+                  
                 </div>
               </div>
             </div>

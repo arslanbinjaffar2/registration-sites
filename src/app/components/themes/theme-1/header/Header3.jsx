@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
-class Headerv2 extends React.Component {
+class Header3 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -89,7 +89,7 @@ class Headerv2 extends React.Component {
 			_item.appendChild(_itemancor);
       _list.forEach(element => {
         if (_total < (_container.offsetWidth - 220)) {
-          _total = _total + element.offsetWidth + 30;
+          _total = _total + element.offsetWidth + 40;
         } else {
           _element = true;
           _ul.appendChild(element);
@@ -194,10 +194,10 @@ class Headerv2 extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { event } = state;
+  const { event } = state.event;
   return {
     event,
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Headerv2));
+export default connect(mapStateToProps)(withRouter(Header3));

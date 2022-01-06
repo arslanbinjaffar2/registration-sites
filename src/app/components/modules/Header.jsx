@@ -11,7 +11,7 @@ const loadModule = (theme, variation) => {
   return Component;
 };
 
-const Header = () => {
+const Header = ({location}) => {
   const { event } = useSelector(eventSelector);
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["header"]);
@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Component />
+      <Component  location={location} />
     </Suspense>
   );
 };
