@@ -52,7 +52,7 @@ const Variation1 = ({ banner }) => {
       });
     }
 
-    var sentences = ["Parties", "Lectures", "Developer", "Designer"];
+    var sentences = ["abc", "def", "ef", "abcedee"];
 
     var counter = 0;
     function loop() {

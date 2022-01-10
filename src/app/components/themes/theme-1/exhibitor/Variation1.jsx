@@ -14,7 +14,7 @@ const Variation1 = ({ exhibitors }) => {
   return (
     <div
       style={{ padding: "80px 5%", backgroundColor: "#f2f2f2 " }}
-      className="module-section"
+      className="module-section ebs-colored-logo-grid"
     >
       <div className="container">
         <div className="edgtf-title-section-holder text-center mb-4">

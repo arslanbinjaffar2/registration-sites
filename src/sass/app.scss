@@ -127,22 +127,72 @@
 	&.slider-fullscreen {
 	.inner-caption-wrapp {
     height: 100vh;
-    padding: 5% 15%;
+    padding: 5% 50px;
+    
+
   }
 	}
   .inner-caption-wrapp {
-		padding: 5% 15%;
+		padding: 5% 50px;
 		min-height: 700px;
+    > .parallax-text {
+      max-width: 1300px;
+      margin: auto;
+    }
+    
+    @include laptop-landscape {
+      .ebs-banner-title {
+        font-size: 50px !important;
+        line-height: 1.2 !important;
+      }
+      .ebs-banner-subtitle {
+        font-size: 24px !important;
+        line-height: 1.5 !important;
+      }
+    }
+    @include ipad-portrait {
+      .ebs-banner-title {
+        font-size: 40px !important;
+      }
+      .ebs-banner-subtitle {
+        font-size: 20px !important;
+      }
+    }
+    @include phone-portrait {
+      .ebs-banner-title {
+        font-size: 30px !important;
+        text-align: center !important;
+      }
+      .ebs-banner-subtitle {
+        font-size: 16px !important;
+      }
+      .edgtf-custom-font-holder {
+        text-align: center !important;
+      }
+    }
   }
   &.countdown {
     .inner-caption-wrapp {
-      padding: 0 15% 10%;
+      padding: 0 50px 10%;
+      @include phone-portrait {
+        padding: 0 50px 10%;
+      }
+      > .parallax-text {
+        max-width: 1300px;
+        margin: auto;
+      }
     }
     .slick-dots {
-      bottom: 250px;
+      bottom: 190px;
+      @include ipad-portrait {
+        display: none;
+      }
     }
 	}
 	.slick-arrow {
+    @include phone-portrait {
+      display: none !important;
+    }
 		&.slick-prev {
 			left: 25px;
 			z-index: 99;
@@ -221,21 +271,38 @@
   background: rgba($black, 0.8);
   width: 100%;
   .row {
-    height: 200px;
+    padding: 30px 0;
     h2 {
       margin: 0;
       font-size: 35px;
       line-height: 40px;
       color: $white;
+      @include ipad-portrait {
+        text-align: center;
+        font-size: 25px;
+      }
+    }
+    @include phone-portrait {
+      line-height: 1;
+      h2 {
+        text-align: center;
+        font-size: 20px;
+      }
     }
   }
   .countdown-wrapp {
+    @include ipad-portrait { 
+      justify-content: center;
+    }
     span {
       color: $white;
       &.edgtf-countdown {
         padding: 0 10px;
         min-width: 130px;
         text-align: center;
+        @media (max-width: 991px) {
+          min-width: 1px;
+        }
       }
     }
   }
@@ -971,5 +1038,13 @@
 @media (max-width: 991px) {
   .edgtf-elements-holder .edgtf-elements-holder-item.edgtf-width-1-1 {
     display: block;
+  }
+}
+
+.ebs-colored-logo-grid  img {
+  filter: grayscale(100%);
+  transition: all linear 0.2s;
+  &:hover {
+    filter: grayscale(0);
   }
 }

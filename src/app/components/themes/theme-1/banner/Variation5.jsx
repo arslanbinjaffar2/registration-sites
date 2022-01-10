@@ -6,7 +6,7 @@ const Variation5 = ({ banner, event }) => {
   let momentObj = moment(event.start_date + event.start_time, "YYYY-MM-DDLT");
   let eventDate = momentObj.toDate();
   return (
-    <div data-fixed="true" className="main-slider-wrapper">
+    <div className="main-slider-wrapper">
       {banner && (
         <SliderBanner>
           {banner.map((slides, i) => (
@@ -41,7 +41,7 @@ const Variation5 = ({ banner, event }) => {
                     >
                       {slides.info.title && (
                         <div
-                          className="edgtf-custom-font-holder"
+                          className="edgtf-custom-font-holder ebs-banner-title"
                           style={{
                             fontFamily: "Rubik",
                             fontSize: "100px",
@@ -60,7 +60,7 @@ const Variation5 = ({ banner, event }) => {
                       )}
                       {slides.info.message && (
                         <div
-                          className="edgtf-custom-font-holder"
+                          className="edgtf-custom-font-holder ebs-banner-subtitle"
                           style={{
                             marginTop: "15px",
                             fontFamily: "Open Sans",
@@ -93,7 +93,7 @@ const Variation5 = ({ banner, event }) => {
                           href=""
                           style={{
                             fontFamily: "Rubik",
-                            marginRight: "30px",
+                            marginRight: "0",
                             fontSize: "15px",
                             fontWeight: "500",
                             background: "#fff",
