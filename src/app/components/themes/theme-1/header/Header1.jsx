@@ -49,22 +49,16 @@ class Header extends React.Component {
   handleResize = () => {
     clearTimeout(window.resizedFinished);
     window.resizedFinished = setTimeout(() => {
-      this.setState(
-        {
-          width: window.innerWidth,
-          menus: [],
-        },
-        () => {
-          this.setState(
-            {
-              menus: this.state.menuresponsive,
-            },
-            () => {
-              this.handleMenu();
-            }
-          );
-        }
-      );
+      this.setState({
+        width: window.innerWidth,
+        menus: [],
+      }, () => {
+        this.setState({
+          menus: this.state.menuresponsive,
+        },() => {
+            this.handleMenu();
+          });
+      });
     }, 100);
   };
   loadMenu() {

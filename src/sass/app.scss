@@ -840,6 +840,12 @@
     font-size: 25px;
     margin: 0 5px !important;
     color: $link;
+    &:first-child {
+      margin-left: 0 !important;
+    }
+    &:last-child {
+      margin-right: 0 !important;
+    }
   }
 }
 .speakerv7-wrapper {

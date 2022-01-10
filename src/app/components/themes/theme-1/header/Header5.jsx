@@ -46,7 +46,7 @@ class Header5 extends React.Component {
             document.getElementById("ebs-header-master").classList.add('ebs-light-header');
           }
         }
-      }, 200);
+      }, 2000);
     }
   }
   
