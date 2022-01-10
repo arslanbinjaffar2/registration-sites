@@ -24,6 +24,7 @@ import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
 import AttendeeLayout from "@/AttendeeLayout";
 import MyProfile from "@/themes/theme-1/profile/MyProfile";
 import MyProfileEdit from "@/themes/theme-1/profile/MyProfileEdit";
+import attendeeDetail from "@/themes/theme-1/attendee/attendeeDetail";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -135,6 +136,11 @@ class RouterOutlet extends React.Component {
               component={AttendeeLayout}
               exact
               path="/:event_url/attendees"
+            />
+            <Route
+              component={attendeeDetail}
+              exact
+              path="/:event_url/attendees/detail"
             />
             <Route component={Error404} />
           </Switch>

@@ -47,7 +47,7 @@ const Variation4 = ({ banner, event }) => {
                       >
                         {slides.info.title && (
                           <div
-                            className="edgtf-custom-font-holder text-center"
+                            className="edgtf-custom-font-holder text-center ebs-banner-title"
                             style={{
                               fontFamily: "Rubik",
                               fontSize: "80px",
@@ -66,14 +66,15 @@ const Variation4 = ({ banner, event }) => {
                         )}
                         {slides.info.message && (
                           <div
-                            className="edgtf-custom-font-holder text-center"
+                            className="edgtf-custom-font-holder text-center ebs-banner-subtitle"
                             style={{
-                              marginTop: "10px",
+                              margin: "10px auto 0",
                               fontFamily: "Open Sans",
                               fontSize: "26px",
                               lineHeight: "37px",
                               fontWeight: "400",
                               letterSpacing: "0px",
+                              maxWidth: 900,
                               textAlign: "left",
                               color: "#ffffff",
                             }}
@@ -98,7 +99,7 @@ const Variation4 = ({ banner, event }) => {
                             href=""
                             style={{
                               fontFamily: "Rubik",
-                              marginRight: "30px",
+                              marginRight: "0",
                               fontSize: "15px",
                               fontWeight: "500",
                               background: "#fff",

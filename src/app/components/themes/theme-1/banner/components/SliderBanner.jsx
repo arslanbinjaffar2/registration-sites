@@ -16,8 +16,8 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
     // Render a countdown
     return (
       <React.Fragment>
-         <div className="col-7">
-          <div className="countdown-wrapp d-flex">
+         <div className="col-md-7">
+          <div style={{margin: '0 -15px'}} className="countdown-wrapp d-flex">
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(days)}</span>
               <span className="countdown-period">Days</span>
@@ -36,7 +36,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
             </span>
           </div>
          </div>
-         <div className="col-5"><h2>Countdown to Conference </h2></div>
+         <div className="col-md-5"><h2>Countdown to Conference </h2></div>
       </React.Fragment>
     );
   }
@@ -46,7 +46,7 @@ const SliderBanner = (props) => {
     var settings = {
         dots: true,
         fade: true,
-        autoplay: true,
+        autoplay: false,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -59,7 +59,7 @@ const SliderBanner = (props) => {
             const background = document.querySelectorAll(".parallax-backgroud");
             for (let i = 0; i < background.length; i++) {
               const element = background[i];
-              element.style.backgroundPosition = `50%  ${-(scrolled * 0.2)}px`;
+              element.style.backgroundPosition = `50%  ${(scrolled * 0.2)}px`;
               
             }
           });

@@ -17,7 +17,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
     return (
       <React.Fragment>
          <div className="col-7">
-          <div className="countdown-wrapp d-flex">
+          <div style={{margin: '0 -15px'}} className="countdown-wrapp d-flex">
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(days)}</span>
               <span className="countdown-period">Days</span>
@@ -48,7 +48,7 @@ export default class SliderBanner extends Component {
       const background = document.querySelectorAll(".parallax-backgroud");
       for (let i = 0; i < background.length; i++) {
         const element = background[i];
-        element.style.backgroundPosition = `50%  ${-(scrolled * 0.2)}px`;
+        element.style.backgroundPosition = `50%  ${(scrolled * 0.2)}px`;
         
       }
     });
@@ -57,7 +57,7 @@ export default class SliderBanner extends Component {
     var settings = {
       dots: true,
       fade: true,
-      autoplay: true,
+      autoplay: false,
       infinite: true,
       slidesToShow: 1,
       slidesToScroll: 1,
