@@ -37,34 +37,83 @@ const Variation6 = ({ attendees }) => {
                         }
                         alt="g"
                       />
-                      <div className="caption">
+                      {/* <div className="caption">
                         <span className="plus"></span>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="speakerv6-caption">
-                      <h3>{attendee.first_name} {attendee.last_name}</h3>
-                      <span style={{ display: "inline-block" }} className="edge-title-separator"></span>
-                      <div className="ebs-attendee-designation">
-												Technical Manager Welltec
-											</div>
-											<div className="ebs-email-phone">
-											<span data-icon="&#xe076;"></span>
-												<a href={`mailto:${attendee.email}`} className="edgtf-team-position">
-													{attendee.email}
-												</a>
-											</div>
-											<div className="ebs-email-phone">
-											<span data-icon="&#xe090;"></span>
-												<a href={`tel: +78-54-897666`} className="edgtf-team-position">
-													+78-54-897666
-												</a>
-											</div>
-											<div className="social-icons">
-												<a target="_blank" href="#!"><span data-icon="&#xe0aa;"></span></a>
-												<a target="_blank" href="#!"><span data-icon="&#xe0ab;"></span></a>
-												<a target="_blank" href="#!"><span data-icon="&#xe0b1;"></span></a>
-												<a target="_blank" href="#!"><span data-icon="&#xe0b7;"></span></a>
-											</div>
+                      <h3>
+                        {attendee.first_name} {attendee.last_name}
+                      </h3>
+                      <span
+                        style={{ display: "inline-block" }}
+                        className="edge-title-separator"
+                      ></span>
+                      {attendee.info && attendee.info.company_name && (
+                        <div className="ebs-attendee-designation">
+                          {attendee.info.title && attendee.info.title}{" "}
+                          {attendee.info.company_name &&
+                            attendee.info.company_name}
+                        </div>
+                      )}
+                      {attendee.email && (
+                        <div className="ebs-email-phone">
+                          <span data-icon="&#xe076;"></span>
+                          <a
+                            href={`mailto:${attendee.email}`}
+                            className="edgtf-team-position"
+                          >
+                            {attendee.email}
+                          </a>
+                        </div>
+                      )}
+                      {attendee.phone && (
+                        <div className="ebs-email-phone">
+                          <span data-icon="&#xe090;"></span>
+                          <a
+                            href={`tel: ${attendee.phone}`}
+                            className="edgtf-team-position"
+                          >
+                            {attendee.phone}
+                          </a>
+                        </div>
+                      )}
+                      {attendee.info && (
+                        <div className="social-icons">
+                          {attendee.info.facebook && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                            >
+                              <span data-icon="&#xe0aa;"></span>
+                            </a>
+                          )}
+                          {attendee.info.twitter && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                            >
+                              <span data-icon="&#xe0ab;"></span>
+                            </a>
+                          )}
+                          {attendee.info.linkedin && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                            >
+                              <span data-icon="&#xe0b1;"></span>
+                            </a>
+                          )}
+                          {attendee.info.website && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.website_protocol}${attendee.info.website}`}
+                            >
+                              <span data-icon="&#xe0b7;"></span>
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

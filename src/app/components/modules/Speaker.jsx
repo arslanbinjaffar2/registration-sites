@@ -20,11 +20,13 @@ const Speaker = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["speaker"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -62,6 +64,8 @@ const Speaker = (props) => {
     eventUrl,
     page,
     search,
+    home,
+    limit,
   });
 
   useEffect(() => { 
@@ -106,7 +110,7 @@ const Speaker = (props) => {
               fetchingData={isFetching}
             />
           )}
-          <Component speakers={data.data} />
+          <Component speakers={data.data} listing={!home} />
           {showPagination && (
             <UiFullPagination
               total={data.meta.total}

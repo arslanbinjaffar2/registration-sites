@@ -1,7 +1,4 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
 class Header3 extends React.Component {
@@ -12,8 +9,8 @@ class Header3 extends React.Component {
     this.state = {
       module: false,
       showMenu: false,
-      menus: [],
-      menuresponsive: [],
+      menus: this.props.event.header_data,
+      menuresponsive: this.props.event.header_data,
 			width: window.innerWidth,
       event:
         this.props.event !== undefined && this.props.event
@@ -24,7 +21,7 @@ class Header3 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.loadMenu();
+    this.handleMenu();
     window.addEventListener('resize', this.handleResize.bind(this),false);
     window.addEventListener('scroll', this.handleScroll.bind(this),false);
 
@@ -59,18 +56,7 @@ class Header3 extends React.Component {
       })
     }, 100);
   }
-  loadMenu() {
-    service
-      .get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/menu`)
-      .then((response) => {
-        this.setState({
-          menus: response.data,
-          menuresponsive: response.data,
-        },()=>{
-					this.handleMenu()
-				});
-      });
-  }
+ 
 	handleMenu = () => {
     if (window.innerWidth >= 991) {
       var _total = 0;
@@ -193,11 +179,6 @@ class Header3 extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { event } = state.event;
-  return {
-    event,
-  };
-}
 
-export default connect(mapStateToProps)(withRouter(Header3));
+
+export default Header3;

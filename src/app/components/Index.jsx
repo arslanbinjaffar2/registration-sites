@@ -23,6 +23,7 @@ class Index extends React.Component {
                 <Banner/>
                 <CustomSection />
                 <SocialShare />
+                <Speaker homePage={true} />
                 <Map/>
                 {
                     this.props.event && eventsiteSections && eventsiteSections.map((section, i) => {
