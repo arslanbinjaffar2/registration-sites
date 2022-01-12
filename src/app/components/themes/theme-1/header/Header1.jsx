@@ -120,7 +120,7 @@ class Header extends React.Component {
             <div className="col-lg-3 col-6">
               <div
                 style={{ padding: "0", border: "none" }}
-                className="ebs-logo-main"
+                className="ebs-logo-main text-left"
               >
                 <Link to={`/${event.url}`}>
                   {event.settings.header_logo ? (

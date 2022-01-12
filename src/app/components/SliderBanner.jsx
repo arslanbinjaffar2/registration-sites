@@ -8,7 +8,7 @@ const Completionist = () =>
 ;
 
 // Renderer callback with condition
-const renderer = ({ days,hours, minutes, seconds, completed }) => {
+const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
   if (completed) {
     // Render a complete state
     return <Completionist />;

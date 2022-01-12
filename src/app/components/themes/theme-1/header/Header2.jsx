@@ -89,7 +89,7 @@ class Header2 extends React.Component {
 			_item.appendChild(_itemancor);
       _list.forEach(element => {
         if (_total < (_container.offsetWidth - 220)) {
-          _total = _total + element.offsetWidth + 45;
+          _total = _total + element.offsetWidth + 25;
         } else {
           _element = true;
           _ul.appendChild(element);

@@ -94,7 +94,6 @@ html {
   height: 100%;
   margin: 0 !important;
   @include edgtfTransition(all 0.33s ease-out);
-  overflow-y: scroll !important; /* to prevent page jumping on ajax and when there is not enough content */
 }
 
 body {
