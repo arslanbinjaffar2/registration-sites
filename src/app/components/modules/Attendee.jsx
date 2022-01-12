@@ -24,6 +24,8 @@ const Attendee = (props) => {
     return in_array(module.alias, ["attendee"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
+  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+  const home = props.homePage ? props.homePage : false;
 
   const CustomComponent = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
@@ -92,12 +94,12 @@ const Attendee = (props) => {
     <Suspense fallback={<div>Loading...</div>}>
       {data ? (
         <React.Fragment>
-          {showPagination && (
+          {/* {showPagination && (
             <div className="container pt-5 pb-5">
               <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
             </div>
-          )}
-          {showPagination && (
+          )} */}
+          {/* {showPagination && (
             <UiPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -107,9 +109,15 @@ const Attendee = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
-          <CustomComponent attendees={data.data} />
-          {showPagination && (
+          )} */}
+          <CustomComponent attendees={data.data} searchBar={()=>{
+            return (
+              <div className="container pt-5 pb-5">
+              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
+            </div>
+            )
+          }} />
+          {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -119,7 +127,7 @@ const Attendee = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
+          )} */}
         </React.Fragment>
       ) : (
         <div>Loading...</div>

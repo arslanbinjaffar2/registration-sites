@@ -20,11 +20,13 @@ const Speaker = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["speaker"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -62,6 +64,8 @@ const Speaker = (props) => {
     eventUrl,
     page,
     search,
+    home,
+    limit,
   });
 
   useEffect(() => { 
@@ -92,10 +96,7 @@ const Speaker = (props) => {
     <Suspense fallback={<div>Loading...</div>}>
       {data ? (
         <React.Fragment>
-          {showPagination && (
-            <input type="text" onChange={(e) => setValue(e.target.value)} />
-          )}
-          {showPagination && (
+          {/* {showPagination && (
             <UiPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -105,9 +106,15 @@ const Speaker = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
-          <Component speakers={data.data} />
-          {showPagination && (
+          )} */}
+          <Component speakers={data.data} listing={!home} searchBar={()=>{
+            return (
+              <div className="container pt-5 pb-5">
+              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
+            </div>
+            )
+          }} />
+          {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -117,7 +124,7 @@ const Speaker = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
+          )} */}
         </React.Fragment>
       ) : (
         <div>Loading...</div>

@@ -1,7 +1,4 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -13,8 +10,8 @@ class Header4 extends React.Component {
     this.state = {
       module: false,
       showMenu: false,
-      menus: [],
-      menuresponsive: [],
+      menus: this.props.event.header_data,
+      menuresponsive: this.props.event.header_data,
 			width: window.innerWidth,
       event:
         this.props.event !== undefined && this.props.event
@@ -25,7 +22,7 @@ class Header4 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.loadMenu();
+    this.handleMenu()
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -46,23 +43,7 @@ class Header4 extends React.Component {
       }, 2000);
     }
   }
-  loadMenu() {
-    service
-      .get(`${process.env.REACT_APP_URL}/event/${this.props.event.url}/menu`)
-      .then((response) => {
-        this.setState({
-          menus: response.data,
-          menuresponsive: response.data,
-        },() => {
-          var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-          if (_nextSibling === 'true') {
-            document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
-          } else {
-            document.getElementById("ebs-header-master").classList.add('ebs-light-header');
-          }
-        });
-      });
-  }
+
   handleMenu = () => {
     this.setState({showMenu: !this.state.showMenu},()=>{
       const _body = document.getElementsByTagName('body')[0];
@@ -175,11 +156,5 @@ class Header4 extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { event } = state.event;
-  return {
-    event,
-  };
-}
 
-export default connect(mapStateToProps)(withRouter(Header4));
+export default Header4;

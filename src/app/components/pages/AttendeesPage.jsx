@@ -10,7 +10,7 @@ const AttendeesPage = () => {
   const dispatch = useDispatch();
   const { loadedSections, loadCount } = useSelector(globalSelector);
   useEffect(() => {
-    dispatch(incrementLoadCount(1));
+    dispatch(incrementLoadCount());
   }, []);
   return (
     <React.Fragment>

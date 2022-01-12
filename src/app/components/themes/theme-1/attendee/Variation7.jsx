@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation7 = ({ attendees }) => {
+const Variation7 = ({ attendees, searchBar }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container mb-4">
@@ -25,6 +25,7 @@ const Variation7 = ({ attendees }) => {
           </div>
         </div>
       </div>
+      { searchBar() }
       <div className="container">
         <div className="row d-flex algin-items-center">
           {attendees &&
@@ -57,82 +58,63 @@ const Variation7 = ({ attendees }) => {
                     <h3>
                       {attendee.first_name} {attendee.last_name}
                     </h3>
-                    <p>Technical Manager , <br />Welltec</p>
-                    <div className="email"><a href={`mailto:${attendee.email}`}>{attendee.email}</a></div>
-                    <div className="speakerv7-phone">
-                      <a href="#!">
-                        +78-54-897666
-                      </a>
-                    </div>
-                    {/* {attendee.info.phone && (
-                      <div className="speakerv7-phone">
-                        <a href={`tel:${attendee.info.phone}`}>
-                          {attendee.info.phone}
+                    {attendee.info && attendee.info.company_name && (
+                      <p>
+                        {(attendee.info.title && attendee.info.title, (<br />))}{" "}
+                        {attendee.info.company_name}{" "}
+                      </p>
+                    )}
+                    {attendee.email && (
+                      <div className="email">
+                        <a href={`mailto:${attendee.email}`}>
+                          {attendee.email}
                         </a>
                       </div>
-                    )} */}
-                    <div className="d-flex">
-                      <div className="social-icons">
-                          <a
-                            target="_blank"
-                            href="#!"
-                          >
-                            <span data-icon="&#xe0aa;"></span>
-                          </a>
-                          <a
-                            target="_blank"
-                            href="#!"
-                          >
-                            <span data-icon="&#xe0ab;"></span>
-                          </a>
-                          <a
-                            target="_blank"
-                            href="#!"
-                          >
-                            <span data-icon="&#xe0b1;"></span>
-                          </a>
-                          <a
-                            target="_blank"
-                            href="#!"
-                          >
-                            <span data-icon="&#xe0b7;"></span>
-                          </a>
+                    )}
+
+                    {attendee.phone && (
+                      <div className="speakerv7-phone">
+                        <a href={`tel:${attendee.phone}`}>{attendee.phone}</a>
                       </div>
-                      {/* <div className="social-icons">
-                        {attendee.info.facebook && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
-                          >
-                            <span data-icon="&#xe0aa;"></span>
-                          </a>
-                        )}
-                        {attendee.info.twitter && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
-                          >
-                            <span data-icon="&#xe0ab;"></span>
-                          </a>
-                        )}
-                        {attendee.info.linkedin && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
-                          >
-                            <span data-icon="&#xe0b1;"></span>
-                          </a>
-                        )}
-                        {attendee.info.website && (
-                          <a
-                            target="_blank"
-                            href={`${attendee.info.website_protocol}${attendee.info.website}`}
-                          >
-                            <span data-icon="&#xe0b7;"></span>
-                          </a>
-                        )}
-                      </div> */}
-                    </div>
+                    )}
+                    {attendee.info && (
+                      <div className="d-flex">
+                        <div className="social-icons">
+                          {attendee.info.facebook && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                            >
+                              <span data-icon="&#xe0aa;"></span>
+                            </a>
+                          )}
+                          {attendee.info.twitter && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                            >
+                              <span data-icon="&#xe0ab;"></span>
+                            </a>
+                          )}
+                          {attendee.info.linkedin && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                            >
+                              <span data-icon="&#xe0b1;"></span>
+                            </a>
+                          )}
+                          {attendee.info.website && (
+                            <a
+                              target="_blank"
+                              href={`${attendee.info.website_protocol}${attendee.info.website}`}
+                            >
+                              <span data-icon="&#xe0b7;"></span>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

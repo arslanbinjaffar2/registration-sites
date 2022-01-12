@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Exhibitor from "../modules/Exhibitor";
-import { globalSelector, incrementLoadCount,  } from "../../../store/Slices/GlobalSlice";
+import { globalSelector, incrementLoadCount  } from "../../../store/Slices/GlobalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PageLoader from "../ui-components/PageLoader";
 const ExhibitorPage = () => {
