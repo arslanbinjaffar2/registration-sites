@@ -22,28 +22,30 @@ class Header4 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.handleMenu()
+    this.handleFunction()
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
   async componentDidUpdate(prevProps) {
     if (prevProps.location !== this.props.location) {
-      setTimeout(() => {
-        document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
-        document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
-        if (window.innerWidth >= 991) {
-          var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-          if (_nextSibling === 'true') {
-            document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
-          } else {
-            document.getElementById("ebs-header-master").classList.add('ebs-light-header');
-          }
-        }
-      }, 2000);
+      this.handleFunction()
     }
   }
-
+handleFunction = () => {
+  setTimeout(() => {
+    document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
+    document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
+    if (window.innerWidth >= 991) {
+      var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+      if (_nextSibling === 'true') {
+        document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
+      } else {
+        document.getElementById("ebs-header-master").classList.add('ebs-light-header');
+      }
+    }
+  }, 1000);
+}
   handleMenu = () => {
     this.setState({showMenu: !this.state.showMenu},()=>{
       const _body = document.getElementsByTagName('body')[0];
@@ -56,16 +58,7 @@ class Header4 extends React.Component {
        }, 400);
       }
     })
-    document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
-    document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
-    if (window.innerWidth >= 991) {
-      var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-      if (_nextSibling === 'true') {
-        document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
-      } else {
-        document.getElementById("ebs-header-master").classList.add('ebs-light-header');
-      }
-    }
+
   }
   render() {
     const { menus, event } = this.state;
