@@ -1,5 +1,5 @@
 import React from "react";
-const Variation5 = ({ speakers, listing }) => {
+const Variation5 = ({ speakers, listing, searchBar }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
@@ -25,6 +25,7 @@ const Variation5 = ({ speakers, listing }) => {
           </div>
         </div>
       </div>
+      {listing && searchBar() }
       <div className="container">
         <div className="row">
           {speakers &&

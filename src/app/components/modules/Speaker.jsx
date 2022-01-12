@@ -96,10 +96,7 @@ const Speaker = (props) => {
     <Suspense fallback={<div>Loading...</div>}>
       {data ? (
         <React.Fragment>
-          {showPagination && (
-            <input type="text" onChange={(e) => setValue(e.target.value)} />
-          )}
-          {showPagination && (
+          {/* {showPagination && (
             <UiPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -109,9 +106,15 @@ const Speaker = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
-          <Component speakers={data.data} listing={!home} />
-          {showPagination && (
+          )} */}
+          <Component speakers={data.data} listing={!home} searchBar={()=>{
+            return (
+              <div className="container pt-5 pb-5">
+              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
+            </div>
+            )
+          }} />
+          {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}
               perPage={data.meta.per_page}
@@ -121,7 +124,7 @@ const Speaker = (props) => {
               }}
               fetchingData={isFetching}
             />
-          )}
+          )} */}
         </React.Fragment>
       ) : (
         <div>Loading...</div>

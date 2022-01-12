@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation2 = ({ attendees }) => {
+const Variation2 = ({ attendees, searchBar }) => {
   return (
     <div
       style={{ padding: "50px 0" }}
@@ -23,6 +23,7 @@ const Variation2 = ({ attendees }) => {
             </div>
           </div>
         </div>
+        { searchBar() }
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
           {/* Grid */}
           {attendees &&

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation4 = ({ speakers, listing }) => {
+const Variation4 = ({ speakers, listing, searchBar }) => {
   return (
     <div
       style={{
@@ -23,6 +23,7 @@ const Variation4 = ({ speakers, listing }) => {
             </div>
           </div>
         </div>
+        { listing && searchBar() }
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
           {/* Grid */}
           {speakers &&

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation6 = ({ speakers, listing }) => {
+const Variation6 = ({ speakers, listing, searchBar }) => {
   return (
     <div>
       <div style={{ padding: "80px 0" }} className="module-section">
@@ -19,6 +19,7 @@ const Variation6 = ({ speakers, listing }) => {
             </div>
           </div>
         </div>
+        {listing && searchBar() }
         <div className="container">
           <div className="row d-flex algin-items-center">
             {speakers &&
@@ -50,7 +51,7 @@ const Variation6 = ({ speakers, listing }) => {
                         className="edge-title-separator"
                       ></span>
 
-                      {speaker.info.company_name && (
+                      {speaker.info && speaker.info.company_name && (
                         <div className="ebs-attendee-designation">
                           {speaker.info.title && speaker.info.title}{" "}
                           {speaker.info.company_name &&
@@ -80,7 +81,7 @@ const Variation6 = ({ speakers, listing }) => {
                           </a>
                         </div>
                       )}
-                      {speaker.info && (
+                      {speaker.info && listing && (
                         <div className="social-icons">
                           {speaker.info.facebook && (
                             <a

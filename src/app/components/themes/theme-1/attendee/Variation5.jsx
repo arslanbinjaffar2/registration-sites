@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation5 = ({ attendees }) => {
+const Variation5 = ({ attendees, searchBar }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
@@ -26,6 +26,7 @@ const Variation5 = ({ attendees }) => {
           </div>
         </div>
       </div>
+      { searchBar() }
       <div className="container">
         <div className="row">
           {attendees &&
