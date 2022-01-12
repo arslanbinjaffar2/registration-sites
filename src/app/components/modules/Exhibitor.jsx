@@ -3,7 +3,10 @@ import { eventSelector } from "../../../store/Slices/EventSlice";
 import { useGetExhibitorsQuery } from "../../../store/services/exhibitor";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadedSection,
+  incrementLoadCount,
+} from "../../../store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -44,6 +47,7 @@ const Exhibitor = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -63,9 +67,9 @@ const Exhibitor = (props) => {
     search,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }

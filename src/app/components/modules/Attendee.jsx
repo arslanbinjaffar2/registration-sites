@@ -1,6 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadedSection,
+  incrementLoadCount,
+} from "../../../store/Slices/GlobalSlice";
 import { useGetAttendeesQuery } from "../../../store/services/attendee";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
@@ -24,7 +27,9 @@ const Attendee = (props) => {
     return in_array(module.alias, ["attendee"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+  const limit = props.homePage
+    ? event.speaker_settings.registration_site_limit
+    : 10;
   const home = props.homePage ? props.homePage : false;
 
   const CustomComponent = useMemo(
@@ -46,6 +51,7 @@ const Attendee = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -65,9 +71,9 @@ const Attendee = (props) => {
     search,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }
@@ -110,13 +116,20 @@ const Attendee = (props) => {
               fetchingData={isFetching}
             />
           )} */}
-          <CustomComponent attendees={data.data} searchBar={()=>{
-            return (
-              <div className="container pt-5 pb-5">
-              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
-            </div>
-            )
-          }} />
+          <CustomComponent
+            attendees={data.data}
+            searchBar={() => {
+              return (
+                <div className="container pt-5 pb-5">
+                  <input
+                    className="form-control"
+                    type="text"
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                </div>
+              );
+            }}
+          />
           {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}

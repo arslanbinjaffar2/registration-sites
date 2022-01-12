@@ -1,6 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadCount,
+  incrementLoadedSection,
+} from "../../../store/Slices/GlobalSlice";
 import { useGetSpeakersQuery } from "../../../store/services/speaker";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
@@ -25,7 +28,9 @@ const Speaker = (props) => {
     return in_array(module.alias, ["speaker"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+  const limit = props.homePage
+    ? event.speaker_settings.registration_site_limit
+    : 10;
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
@@ -47,6 +52,7 @@ const Speaker = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -68,9 +74,9 @@ const Speaker = (props) => {
     limit,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }
@@ -107,13 +113,21 @@ const Speaker = (props) => {
               fetchingData={isFetching}
             />
           )} */}
-          <Component speakers={data.data} listing={!home} searchBar={()=>{
-            return (
-              <div className="container pt-5 pb-5">
-              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
-            </div>
-            )
-          }} />
+          <Component
+            speakers={data.data}
+            listing={!home}
+            searchBar={() => {
+              return (
+                <div className="container pt-5 pb-5">
+                  <input
+                    className="form-control"
+                    type="text"
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                </div>
+              );
+            }}
+          />
           {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}
