@@ -24,7 +24,7 @@ const Header = ({location}) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Component  location={location} />
+      <Component event={event} location={location} />
     </Suspense>
   );
 };

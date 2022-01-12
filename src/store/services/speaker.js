@@ -7,9 +7,12 @@ export const speakerApi = createApi({
     getSpeakers: builder.query({
       query: (path) => {
         if (path.search !== "") {
-          return `/event/${path.eventUrl}/speakers?query=${path.search}&page=${path.page}`;
+          return `/event/${path.eventUrl}/speakers?query=${path.search}&page=${path.page}&limit=${path.limit}`;
         }
-        return `/event/${path.eventUrl}/speakers?page=${path.page}`;
+        if(path.home === true){
+          return `/event/${path.eventUrl}/speakers?page=${path.page}&limit=${path.limit}&home=true`;
+        }
+        return `/event/${path.eventUrl}/speakers?page=${path.page}&limit=${path.limit}`;
       },
     }),
   }),
