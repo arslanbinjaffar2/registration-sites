@@ -1,7 +1,4 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { service } from "app/services/service";
 import { NavLink, Link } from "react-router-dom";
 
 class Header5 extends React.Component {

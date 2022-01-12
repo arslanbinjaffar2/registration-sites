@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation3 = ({ speakers, listing }) => {
+const Variation3 = ({ speakers, listing, searchBar }) => {
   return (
     <div
       style={{
@@ -17,12 +17,13 @@ const Variation3 = ({ speakers, listing }) => {
                 style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
-                Build your base{" "}
+                Speakers{" "}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
           </div>
         </div>
+        { listing && searchBar() }
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
           {/* Grid */}
           {speakers &&

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation4 = ({ attendees }) => {
+const Variation4 = ({ attendees, searchBar }) => {
   return (
     <div
       style={{
@@ -17,12 +17,13 @@ const Variation4 = ({ attendees }) => {
                 style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
-                Build your base{" "}
+                Attendees{" "}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
           </div>
         </div>
+        { searchBar() }
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
           {/* Grid */}
           {attendees &&

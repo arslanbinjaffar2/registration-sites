@@ -11,7 +11,6 @@ const App = () => {
   let params = path.split("/");
   const dispatch = useDispatch();
   const { event, loading, error } = useSelector(eventSelector);
-  const { loadedSections, loadCount } = useSelector(globalSelector);
   useEffect(() => {
     dispatch(fetchEvent(params.length > 0 ? params[0] : ""));
   }, [dispatch]);
