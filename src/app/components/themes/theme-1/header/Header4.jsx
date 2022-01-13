@@ -22,7 +22,7 @@ class Header4 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.handleFunction()
+    this.handleFunction();
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -31,6 +31,9 @@ class Header4 extends React.Component {
     if (prevProps.location !== this.props.location) {
       this.handleFunction()
     }
+  }
+  handleToggle = (e) => {
+    console.log(e.target);
   }
 handleFunction = () => {
   setTimeout(() => {
@@ -106,9 +109,14 @@ handleFunction = () => {
                       <ul className="nav navbar-nav m-0">
                         {menus["top_menu"].map((menu) => (
                           <li className="nav-item" key={menu.id}>
-                            <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
+                            {(menu.alias === 'gallery' || menu.alias === 'myaccount') && 
+                              <span onClick={this.handleToggle.bind(this)} className="nav-link">
+                                <span className="ebs-nav-item">{menu.module}</span>
+                              </span>}
+                            {(menu.alias !== 'gallery' && menu.alias !== 'myaccount') && 
+                              <NavLink className="nav-link" aria-current="page" to={'/' + this.props.event.url + '/' + menu.alias}>
                               <span className="ebs-nav-item">{menu.module}</span>
-                            </NavLink>
+                              </NavLink>}
                             {menu.alias === "gallery" && (
                               <ul className="dropdown-menu">
                                 {menus["gallery_sub_menu"].map((myaccount, k) => (

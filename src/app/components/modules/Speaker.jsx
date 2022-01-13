@@ -109,8 +109,10 @@ const Speaker = (props) => {
           )} */}
           <Component speakers={data.data} listing={!home} searchBar={()=>{
             return (
-              <div className="container pt-5 pb-5">
-              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
+              <div className="container pb-5">
+              <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
+              <em className="fa fa-search"></em>
+              </div>
             </div>
             )
           }} />

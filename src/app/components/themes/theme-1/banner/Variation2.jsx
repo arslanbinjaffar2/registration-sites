@@ -8,7 +8,7 @@ const Variation2 = ({ event, banner }) => {
 	return (
 		<div data-fixed="true" className="main-slider-wrapper">
 				{banner && <SliderBanner
-					countdown="Jan 19 2022, 17:00" //{dateTime}
+					countdown="Feb 19 2022, 17:00" //{dateTime}
 					fullscreen
 				>
 					{banner.map((slides, i) =>
