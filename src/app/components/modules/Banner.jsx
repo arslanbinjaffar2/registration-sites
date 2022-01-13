@@ -37,7 +37,7 @@ const Banner = () => {
 console.log("global",banner);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {banner ? <Component banner={banner} event={event} /> : <div>Loading...</div>}
+      {banner ? <Component banner={banner} event={event} /> : null}
     </Suspense>
   );
 };

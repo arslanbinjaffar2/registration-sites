@@ -52,18 +52,18 @@ const { eventsiteSections } = event;
             else if (section.alias === "custom_html1")
               return <div key={i}></div>;
             else if (section.alias === "event_info") return <div key={i}></div>;
-            else if (section.alias === "agendas") return <Program key={i} />;
-            else if (section.alias === "sponsors") return <Sponsor key={i} />;
+            else if (section.alias === "agendas") return <Program homePage={true} key={i} />;
+            else if (section.alias === "sponsors") return <Sponsor homePage={true} key={i} />;
             // else if (section.alias === 'bottom_banner')
             //   return ()
             else if (section.alias === "register_now")
               return <div key={i}></div>;
             else if (section.alias === "exhibitors")
-              return <Exhibitor key={i} />;
+              return <Exhibitor homePage={true} key={i} />;
             else if (section.alias === "speakers") return <Speaker homePage={true} key={i} />;
             else if (section.alias === "maps") return <div key={i}></div>;
-            else if (section.alias === "videos") return <Video key={i} />;
-            else if (section.alias === "photos") return <Gallery key={i} />;
+            else if (section.alias === "videos") return <Video homePage={true} key={i} />;
+            else if (section.alias === "photos") return <Gallery homePage={true} key={i} />;
             else if (section.alias === "streaming") return <div key={i}></div>;
             else if (section.alias === "waiting_list")
               return <div key={i}></div>;

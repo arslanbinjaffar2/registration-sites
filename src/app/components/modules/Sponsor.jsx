@@ -27,7 +27,7 @@ const Sponsor = (props) => {
     return in_array(module.alias, ["sponsor"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -94,7 +94,7 @@ const Sponsor = (props) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
             <input type="text" onChange={(e) => setValue(e.target.value)} />
@@ -123,8 +123,8 @@ const Sponsor = (props) => {
             />
           )}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Sponsors found</div>
       )}
     </Suspense>
   );

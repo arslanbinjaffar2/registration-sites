@@ -27,7 +27,7 @@ const Gallery = (props) => {
     return in_array(module.alias, ["gallery"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -76,7 +76,7 @@ const Gallery = (props) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
             <UiPagination
@@ -102,8 +102,8 @@ const Gallery = (props) => {
             />
           )}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Photos found</div>
       )}
     </Suspense>
   );

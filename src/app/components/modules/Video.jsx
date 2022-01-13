@@ -27,7 +27,7 @@ const Video = (props) => {
     return in_array(module.alias, ["video"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -80,7 +80,7 @@ const Video = (props) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0  ? (
         <React.Fragment>
           {showPagination && (
             <UiPagination
@@ -106,8 +106,8 @@ const Video = (props) => {
             />
           )}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No videos found</div>
       )}
     </Suspense>
   );

@@ -98,7 +98,7 @@ const Attendee = (props) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0 ? (
         <React.Fragment>
           {/* {showPagination && (
             <div className="container pt-5 pb-5">
@@ -116,22 +116,6 @@ const Attendee = (props) => {
               fetchingData={isFetching}
             />
           )} */}
-<<<<<<< HEAD
-          <CustomComponent
-            attendees={data.data}
-            searchBar={() => {
-              return (
-                <div className="container pt-5 pb-5">
-                  <input
-                    className="form-control"
-                    type="text"
-                    onChange={(e) => setValue(e.target.value)}
-                  />
-                </div>
-              );
-            }}
-          />
-=======
           <CustomComponent attendees={data.data} searchBar={()=>{
             return (
               <div className="container pb-5">
@@ -141,7 +125,6 @@ const Attendee = (props) => {
               </div>
             )
           }} />
->>>>>>> b6a53ef80e5b89af3a99ea26d9627dcf5fa4e517
           {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}
@@ -154,8 +137,8 @@ const Attendee = (props) => {
             />
           )} */}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Attendees found</div>
       )}
     </Suspense>
   );
