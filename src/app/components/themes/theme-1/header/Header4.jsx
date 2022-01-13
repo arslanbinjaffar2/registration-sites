@@ -23,6 +23,7 @@ class Header4 extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     this.handleFunction();
+    this.accordionToggle();
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -32,9 +33,44 @@ class Header4 extends React.Component {
       this.handleFunction()
     }
   }
-  handleToggle = (e) => {
-    console.log(e.target);
-  }
+accordionToggle = () => {
+  	//this is the button
+	var acc = document.getElementsByClassName("ebs-accordion-button");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+		//when one of the buttons are clicked run this function
+	  acc[i].onclick = function() {
+		//variables
+		var panel = this.nextElementSibling;
+		var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
+		var courseAccordionActive = document.getElementsByClassName("ebs-accordion-button active");
+
+		/*if pannel is already open - minimize*/
+		if (panel.style.maxHeight){
+			//minifies current pannel if already open
+			panel.style.maxHeight = null;
+			//removes the 'active' class as toggle didnt work on browsers minus chrome
+			this.classList.remove("active");
+		} else { //pannel isnt open...
+			//goes through the buttons and removes the 'active' css (+ and -)
+			for (var ii = 0; ii < courseAccordionActive.length; ii++) {
+				courseAccordionActive[ii].classList.remove("active");
+			}
+			//Goes through and removes 'activ' from the css, also minifies any 'panels' that might be open
+			for (var iii = 0; iii < coursePanel.length; iii++) {
+			  this.classList.remove("active");
+			  coursePanel[iii].style.maxHeight = null;
+			}
+		  //opens the specified pannel
+		  panel.style.maxHeight = panel.scrollHeight + "px";
+		  //adds the 'active' addition to the css.
+		  this.classList.add("active");
+		} 
+	  }//closing to the acc onclick function
+	}//closing to the for loop.
+
+}
 handleFunction = () => {
   setTimeout(() => {
     document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
@@ -110,7 +146,7 @@ handleFunction = () => {
                         {menus["top_menu"].map((menu) => (
                           <li className="nav-item" key={menu.id}>
                             {(menu.alias === 'gallery' || menu.alias === 'myaccount') && 
-                              <span onClick={this.handleToggle.bind(this)} className="nav-link">
+                              <span className="nav-link ebs-accordion-button">
                                 <span className="ebs-nav-item">{menu.module}</span>
                               </span>}
                             {(menu.alias !== 'gallery' && menu.alias !== 'myaccount') && 
@@ -118,7 +154,7 @@ handleFunction = () => {
                               <span className="ebs-nav-item">{menu.module}</span>
                               </NavLink>}
                             {menu.alias === "gallery" && (
-                              <ul className="dropdown-menu">
+                              <ul className="dropdown-menu ebs-accordion-dropdown">
                                 {menus["gallery_sub_menu"].map((myaccount, k) => (
                                   <li className="nav-item" key={k}>
                                     <NavLink

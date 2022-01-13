@@ -24,7 +24,7 @@ const App = () => {
   }
   return (
     <div id="App" style={{postion:'relative'}}>
-      {loading === true && <PageLoader/>}
+      {loading === true && <PageLoader />}
       {loading !== true && event !== null && <RouterOutlet />}
     </div>
   );
