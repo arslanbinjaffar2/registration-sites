@@ -8,7 +8,7 @@ const Completionist = () =>
 ;
 
 // Renderer callback with condition
-const renderer = ({ days,hours, minutes, seconds, completed }) => {
+const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
   if (completed) {
     // Render a complete state
     return <Completionist />;
@@ -16,10 +16,14 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
     // Render a countdown
     return (
       <React.Fragment>
-         <div className="col-7">
+         <div className="col-md-7">
           <div style={{margin: '0 -15px'}} className="countdown-wrapp d-flex">
+            {Math.floor(days/30) > 0 &&<span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(Math.floor(days/30))}</span>
+              <span className="countdown-period">Months</span>
+            </span>}
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(days)}</span>
+              <span className="countdown-amount">{zeroPad(Math.floor(days%30))}</span>
               <span className="countdown-period">Days</span>
             </span>
             <span className="edgtf-countdown is-countdown">
@@ -36,7 +40,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
             </span>
           </div>
          </div>
-         <div className="col-5"><h2>Countdown to Conference </h2></div>
+         <div className="col-md-5"><h2>Countdown to Conference </h2></div>
       </React.Fragment>
     );
   }

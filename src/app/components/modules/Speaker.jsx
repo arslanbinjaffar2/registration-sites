@@ -113,6 +113,7 @@ const Speaker = (props) => {
               fetchingData={isFetching}
             />
           )} */}
+<<<<<<< HEAD
           <Component
             speakers={data.data}
             listing={!home}
@@ -128,6 +129,17 @@ const Speaker = (props) => {
               );
             }}
           />
+=======
+          <Component speakers={data.data} listing={!home} searchBar={()=>{
+            return (
+              <div className="container pb-5">
+              <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
+              <em className="fa fa-search"></em>
+              </div>
+            </div>
+            )
+          }} />
+>>>>>>> b6a53ef80e5b89af3a99ea26d9627dcf5fa4e517
           {/* {showPagination && (
             <UiFullPagination
               total={data.meta.total}

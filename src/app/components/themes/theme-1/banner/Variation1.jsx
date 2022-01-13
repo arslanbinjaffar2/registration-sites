@@ -36,7 +36,7 @@ const Variation1 = ({ banner }) => {
           sentence = sentence.substr(0, sentence.length - 1);
           obj.innerText = sentence;
           erase(obj, cb);
-        }, 80);
+        }, 160);
       } else {
         obj.innerText = " ";
         cb();
@@ -52,7 +52,7 @@ const Variation1 = ({ banner }) => {
       });
     }
 
-    var sentences = ["abc", "def", "ef", "abcedee"];
+    var sentences = ["Parties", "Lectures"];
 
     var counter = 0;
     function loop() {
@@ -114,11 +114,12 @@ const Variation1 = ({ banner }) => {
                       letterSpacing: "1.3px",
                       textTransform: "uppercase",
                       textAlign: "left",
-                      color: "#ec008c",
+                      color: "#fff",
                       minHeight: 151
                     }}
                   >
                     <div id="typewriter"></div>
+                    <span style={{animation: 'blink .7s infinite'}} className="typed-cursor">_</span>
                   </div>
                   <div
                     className="edgtf-custom-font-holder"
