@@ -95,22 +95,7 @@ const Variation4 = ({ banner, event }) => {
                             color: "#ffffff",
                           }}
                         >
-                          <a
-                            href=""
-                            style={{
-                              fontFamily: "Rubik",
-                              marginRight: "0",
-                              fontSize: "15px",
-                              fontWeight: "500",
-                              background: "#fff",
-                              borderColor: "#fff",
-                              color: "#444",
-                              padding: "17px 48px 15px",
-                            }}
-                            className="edgtf-btn edgtf-btn-huge edgtf-btn-solid edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"
-                          >
-                            REGISTER
-                          </a>
+                          <a href="" style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">REGISTER</a>
                         </div>
                       </div>
                     </div>
