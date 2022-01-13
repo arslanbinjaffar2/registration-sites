@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
-import { globalSelector, fetchBanner } from "../../../store/Slices/GlobalSlice";
+import { globalSelector, fetchBanner, incrementLoadedSection, incrementLoadCount } from "../../../store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -29,12 +29,15 @@ const Banner = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchBanner(eventUrl));
+    if(banner===null){
+      dispatch(incrementLoadCount());
+      dispatch(fetchBanner(eventUrl));
+    }
   }, [dispatch]);
 console.log("global",banner);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {banner ? <Component banner={banner} event={event} /> : <div>Loading...</div>}
+      {banner ? <Component banner={banner} event={event} /> : null}
     </Suspense>
   );
 };

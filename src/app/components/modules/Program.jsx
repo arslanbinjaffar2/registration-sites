@@ -1,6 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadedSection,
+  incrementLoadCount,
+} from "../../../store/Slices/GlobalSlice";
 import { useGetProgramsQuery } from "../../../store/services/program";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
@@ -24,12 +27,12 @@ const Program = (props) => {
     return in_array(module.alias, ["program"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
   );
-  
+
   const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -45,6 +48,7 @@ const Program = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -58,11 +62,15 @@ const Program = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching, isSuccess } = useGetProgramsQuery({ eventUrl, page, search });
+  const { data, isFetching, isSuccess } = useGetProgramsQuery({
+    eventUrl,
+    page,
+    search,
+  });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }
@@ -82,12 +90,12 @@ const Program = (props) => {
   const setQueryParams = (page) => {
     props.history.replace({
       search: `?page=${page}`,
-    }); 
+    });
   };
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
             <input type="text" onChange={(e) => setValue(e.target.value)} />
@@ -114,8 +122,8 @@ const Program = (props) => {
             />
           )}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Programs found</div>
       )}
     </Suspense>
   );
