@@ -2125,3 +2125,63 @@ $z-index:$back-to-top-size / 2;
 	}
 
 }
+
+.ebs-main-header-v7 {
+	#navbarSupportedContentFixed {
+		max-width: 380px;
+		transform: none;
+		left: -100%;
+		transition: left ease-in 0.3s;
+		transition-delay: 0.8s;
+		#btn-menu-close {
+			left: 20px;
+		}
+		.ebs-scroll-container {
+			background: #EFEFEF;
+			padding: 70px 30px 30px 50px;
+			position: relative;
+			z-index: 9;
+		}
+		&::before {
+			position: fixed;
+			backdrop-filter: blur(4px);
+			background: rgba($black, 0.6);
+			z-index: -1;
+			width: 0;
+		}
+		&.show {
+			left: 0;
+			&::before {
+				width: 100%;
+			}
+		}
+		.navbar-nav {
+			text-align: left;
+			.nav-item {
+				.nav-link {
+					padding: 15px 0;
+					font-size: 16px;
+					font-weight: 600;
+				}
+				span.nav-link {
+					padding-right: 22px;
+					&::after {
+						font-size: 16px;
+					}
+				}
+				.dropdown-menu {
+					padding: 0;
+					padding-left: 20px;
+					.nav-item {
+						text-align: left;
+						.nav-link {
+							font-size: 15px;
+							padding: 6px 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
