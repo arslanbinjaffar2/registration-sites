@@ -6,12 +6,14 @@ import FullPage from "@/FullPage";
 import Home from "@/Home";
 import Header from "@/modules/Header";
 import Error404 from "@/Error404";
-import AttendeesPage from "@/pages/AttendeesPage";
+import AttendeesPage from "@/pages/attendees/AttendeesPage";
+import AttendeeDetailPage from "@/pages/attendees/AttendeeDetailPage";
 import GalleryPage from "@/pages/GalleryPage";
 import ExhibitorPage from "@/pages/ExhibitorPage";
 import PhotosPage from "@/pages/PhotosPage";
 import ProgramPage from "@/pages/ProgramPage";
-import SpeakerPage from "@/pages/SpeakerPage";
+import SpeakerPage from "@/pages/speakers/SpeakerPage";
+import SpeakerDetailPage from "@/pages/speakers/SpeakerDetailPage";
 import SponsorPage from "@/pages/SponsorPage";
 import StreamingPage from "@/pages/StreamingPage";
 import TimetablePage from "@/pages/TimetablePage";
@@ -21,10 +23,8 @@ import CustomPage from "@/pages/CustomPage";
 import NewsPage from "@/pages/news/NewsPage";
 import NewsDetailPage from "@/pages/news/NewsDetailPage";
 import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
-import AttendeeLayout from "@/AttendeeLayout";
 import MyProfile from "@/themes/theme-1/profile/MyProfile";
 import MyProfileEdit from "@/themes/theme-1/profile/MyProfileEdit";
-import attendeeDetail from "@/themes/theme-1/attendee/attendeeDetail";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -133,14 +133,19 @@ class RouterOutlet extends React.Component {
               path="/:event_url/profile/edit"
             />
             <Route
-              component={AttendeeLayout}
+              component={AttendeesPage}
               exact
               path="/:event_url/attendees"
             />
             <Route
-              component={attendeeDetail}
+              component={AttendeeDetailPage}
               exact
-              path="/:event_url/attendees/detail"
+              path="/:event_url/attendees/:id"
+            />
+            <Route
+              component={SpeakerDetailPage}
+              exact
+              path="/:event_url/speakers/:id"
             />
             <Route component={Error404} />
           </Switch>

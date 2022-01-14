@@ -13,14 +13,14 @@ export const attendeeSlice = createSlice({
   name: "attendee",
   initialState,
   reducers: {
-    getattendees: (state, {payload}) => {
+    getAttendees: (state, {payload}) => {
       state.loading = true;
       state.currentPage = payload.page;
       if(payload.mount){
        state.attendees = null;
       }
     },
-    setattendees: (state, { payload }) => {
+    setAttendees: (state, { payload }) => {
       state.attendees = state.currentPage > 1 ? [...state.attendees, ...payload.data]: payload.data;
       state.total = payload.meta.total;
       state.totalPages = Math.ceil(payload.meta.total / payload.meta.per_page);
@@ -33,7 +33,7 @@ export const attendeeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getattendees, setattendees, setError } = attendeeSlice.actions;
+export const { getAttendees, setAttendees, setError } = attendeeSlice.actions;
 
 export const attendeeSelector = (state) => state.attendee;
 
@@ -41,7 +41,7 @@ export default attendeeSlice.reducer;
 
 export const fetchAttendees = (url, page, limit, search, mount) => {
     return async (dispatch) => {
-    dispatch(getattendees({page, mount}));
+    dispatch(getAttendees({page, mount}));
     let endPoint = `/event/${url}/attendees?page=${page}&limit=${limit}`;
     if (search !== "") {
       endPoint = `/event/${url}/attendees?query=${search}&page=${page}&limit=${limit}`;
@@ -49,7 +49,7 @@ export const fetchAttendees = (url, page, limit, search, mount) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
-      dispatch(setattendees(res));
+      dispatch(setAttendees(res));
       if (mount) {
         dispatch(incrementLoadedSection());
       }
