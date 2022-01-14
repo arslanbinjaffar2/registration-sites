@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Attendee from '@/modules/Attendee';
+import Attendee from '@/modules/attendees/Attendee';
 
 export default class AttendeeLayout extends Component {
   render() {

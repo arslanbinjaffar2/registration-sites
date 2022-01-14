@@ -1,18 +1,16 @@
 import React from "react";
-import Attendee from "@/modules/Attendee";
-import {
-  globalSelector,
-} from "store/Slices/GlobalSlice";
-import {  useSelector } from "react-redux";
+import Speaker from "@/modules/speakers/Speaker";
+import { globalSelector } from "store/Slices/GlobalSlice";
+import { useSelector } from "react-redux";
 import PageLoader from "@/ui-components/PageLoader";
-const AttendeesPage = () => {
+const SpeakerPage = () => {
   const { loadedSections, loadCount } = useSelector(globalSelector);
   return (
     <React.Fragment>
       {loadedSections !== loadCount && <PageLoader />}
-      <Attendee pagination={true} />
+      <Speaker />
     </React.Fragment>
   );
 };
 
-export default AttendeesPage;
+export default SpeakerPage;
