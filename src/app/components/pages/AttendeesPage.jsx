@@ -1,10 +1,10 @@
 import React from "react";
-import Attendee from "../modules/Attendee";
+import Attendee from "@/modules/Attendee";
 import {
   globalSelector,
-} from "../../../store/Slices/GlobalSlice";
+} from "store/Slices/GlobalSlice";
 import {  useSelector } from "react-redux";
-import PageLoader from "../ui-components/PageLoader";
+import PageLoader from "@/ui-components/PageLoader";
 const AttendeesPage = () => {
   const { loadedSections, loadCount } = useSelector(globalSelector);
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation1 = ({ attendees, searchBar }) => {
+const Variation1 = ({ attendees, searchBar, loadMore }) => {
   return (
     <div
       style={{
@@ -152,6 +152,8 @@ const Variation1 = ({ attendees, searchBar }) => {
 
           {/* Grid */}
         </div>
+        {attendees.length === 0 && <div>No Attendees Found...</div> }
+        {attendees.length > 0 && loadMore() }
       </div>
     </div>
   );

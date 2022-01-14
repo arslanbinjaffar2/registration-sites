@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
 import {

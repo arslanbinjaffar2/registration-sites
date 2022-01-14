@@ -1,8 +1,8 @@
 import React from "react";
-import Program from "../modules/Program";
-import { globalSelector } from "../../../store/Slices/GlobalSlice";
+import Program from "@/modules/Program";
+import { globalSelector } from "store/Slices/GlobalSlice";
 import { useSelector } from "react-redux";
-import PageLoader from "../ui-components/PageLoader";
+import PageLoader from "@/ui-components/PageLoader";
 const PragramPage = () => {
   const { loadedSections, loadCount } = useSelector(globalSelector);
 

@@ -1,12 +1,12 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
-import { useGetExhibitorsQuery } from "../../../store/services/exhibitor";
+import { eventSelector } from "store/Slices/EventSlice";
+import { useGetExhibitorsQuery } from "store/services/exhibitor";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
 import {
   incrementLoadedSection,
   incrementLoadCount,
-} from "../../../store/Slices/GlobalSlice";
+} from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -92,7 +92,7 @@ const Exhibitor = (props) => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (

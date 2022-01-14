@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation6 = ({ speakers, listing, searchBar }) => {
+const Variation6 = ({ speakers, listing, searchBar, loadMore }) => {
   return (
     <div>
       <div style={{ padding: "80px 0" }} className="module-section">
@@ -122,6 +122,8 @@ const Variation6 = ({ speakers, listing, searchBar }) => {
                 </div>
               ))}
           </div>
+          {listing && speakers.length === 0 && <div>No Speakers Found...</div> }
+        {listing && speakers.length > 0 && loadMore()}
         </div>
       </div>
     </div>

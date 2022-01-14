@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import {
   incrementLoadedSection,
   incrementLoadCount,
-} from "../../../store/Slices/GlobalSlice";
-import { useGetPhotosQuery } from "../../../store/services/photo";
+} from "store/Slices/GlobalSlice";
+import { useGetPhotosQuery } from "store/services/photo";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
@@ -75,7 +75,7 @@ const Gallery = (props) => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
