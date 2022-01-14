@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+  background: rgba($white, 0.8);
   &.fixed {
     position: fixed;
     left: 0;
@@ -35,7 +36,6 @@
   }
   &.popup-fixed {
     position: fixed;
-    background: rgba($white, 0.8);
   }
 }
 #loader {

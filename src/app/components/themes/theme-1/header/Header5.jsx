@@ -31,7 +31,7 @@ class Header5 extends React.Component {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
   async componentDidUpdate(prevProps) {
-    if (prevProps.location !== this.props.location) {
+    if (prevProps.loaded !== this.props.loaded) {
       setTimeout(() => {
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
         document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
@@ -108,7 +108,7 @@ class Header5 extends React.Component {
       _item.appendChild(_itemancor);
       _list.forEach((element) => {
         if (_total < _container.offsetWidth - 220) {
-          _total = _total + element.offsetWidth + 5;
+          _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
           _ul.appendChild(element);
