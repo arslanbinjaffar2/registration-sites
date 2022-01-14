@@ -17,7 +17,7 @@ const NewsDetail = (props) => {
   const eventUrl = event.url;
   const [sidebar, setSidebar] = useState(false);
   const { data, isFetching } = useGetNewsSingleQuery({ eventUrl, id });
-  if (!data) return <PageLoader />;
+  if (!data) return <PageLoader className="fixed" />;
   console.log(data);
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">

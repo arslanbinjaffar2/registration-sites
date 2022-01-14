@@ -156,6 +156,7 @@ const Variation1 = ({ speakers, listing, searchBar }) => {
 
           {/* Grid */}
         </div>
+        
       </div>
     </div>
   );

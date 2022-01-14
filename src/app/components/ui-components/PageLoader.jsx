@@ -1,27 +1,20 @@
-import React from "react";
+import * as React from 'react';
 
-const PageLoader = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-        position: "absolute",
-        zIndex: 111,
-        backgroundColor: "#fff",
-        top: 0,
-      }}
-    >
-      <img
-        style={{ width: "25%" }}
-        src={require("img/fullPageLoader.gif")}
-        alt=""
-      />
-    </div>
-  );
-};
+const PageLoader = ({ className, fixed, title, description }) => {
+    return (
+        <div id="loader-wrapper" className={`${className ? className : ''} ${fixed && 'popup-fixed'}`}>
+            {className ? (
+                <div className="wrapper_laoder">
+                    {title && <h2>{title}</h2>}
+                    {description && <p>{description} </p>}
+                    <div id="loader"></div>
+                </div>
+            ) : (
+                <div id="loader"></div>
+            )}
+        </div>
+    );
+}
 
 export default PageLoader;
+

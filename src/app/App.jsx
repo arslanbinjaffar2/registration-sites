@@ -15,7 +15,7 @@ const App = () => {
     dispatch(fetchEvent(params.length > 0 ? params[0] : ""));
   }, [dispatch]);
 
-  if (error !== null && loading !== true) {
+  if (error && loading) {
     return (
       <div id="App">
         <h3>Could not Fetch the Event...</h3>
@@ -24,8 +24,8 @@ const App = () => {
   }
   return (
     <div id="App" style={{postion:'relative'}}>
-      {loading === true && <PageLoader/>}
-      {loading !== true && event !== null && <RouterOutlet />}
+      {loading && <PageLoader className="fixed" />}
+      {!loading && event && <RouterOutlet />}
     </div>
   );
 };

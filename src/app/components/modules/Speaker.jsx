@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadCount,
+  incrementLoadedSection,
+} from "../../../store/Slices/GlobalSlice";
 import { useGetSpeakersQuery } from "../../../store/services/speaker";
-import UiFullPagination from "../ui-components/UiFullPagination";
-import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -24,8 +25,11 @@ const Speaker = (props) => {
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["speaker"]);
   });
-  const showPagination = props.pagination ? props.pagination : false;
-  const limit = props.homePage ? event.speaker_settings.registration_site_limit : 10; 
+
+  const limit = props.homePage
+    ? event.speaker_settings.registration_site_limit
+    : 2;
+  
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
@@ -38,15 +42,8 @@ const Speaker = (props) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
-    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
-      setPage(parseInt(queryPage, 10));
-      console.log("params", queryPage);
-    }
-  }, []);
-
-  useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -68,9 +65,9 @@ const Speaker = (props) => {
     limit,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }
@@ -81,55 +78,35 @@ const Speaker = (props) => {
     if (page > 0) {
       if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
         setPage(page);
-        setQueryParams(page);
       }
     }
   };
 
-  const setQueryParams = (page) => {
-    props.history.replace({
-      search: `?page=${page}`,
-    });
-  };
-
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
-        <React.Fragment>
-          {/* {showPagination && (
-            <UiPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )} */}
+    <Suspense fallback={<div></div>}>
+      {data && data.data.length > 0 ? (
+        <React.Fragment>  
           <Component speakers={data.data} listing={!home} searchBar={()=>{
             return (
-              <div className="container pb-5">
+            <div className="container pb-5">
               <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
               <em className="fa fa-search"></em>
               </div>
             </div>
             )
-          }} />
-          {/* {showPagination && (
-            <UiFullPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )} */}
+          }}
+          // loadMore={()=>{
+          //   return (
+          //     <div className="container pb-5">
+          //       <button  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+          //     </div>
+          //   )
+          // }}
+          />
+         
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Speaker found</div>
       )}
     </Suspense>
   );

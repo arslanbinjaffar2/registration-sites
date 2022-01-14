@@ -1,7 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
 import { useGetSponsorsQuery } from "../../../store/services/sponsor";
-import { incrementLoadedSection } from "../../../store/Slices/GlobalSlice";
+import {
+  incrementLoadedSection,
+  incrementLoadCount,
+} from "../../../store/Slices/GlobalSlice";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +27,7 @@ const Sponsor = (props) => {
     return in_array(module.alias, ["sponsor"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
-
+  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -45,6 +48,7 @@ const Sponsor = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
+      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }
@@ -64,9 +68,9 @@ const Sponsor = (props) => {
     search,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     if (isSuccess) {
-      if(!querySuccess){
+      if (!querySuccess) {
         dispatch(incrementLoadedSection());
         setQuerySuccess(true);
       }
@@ -90,7 +94,7 @@ const Sponsor = (props) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {data ? (
+      {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
             <input type="text" onChange={(e) => setValue(e.target.value)} />
@@ -119,8 +123,8 @@ const Sponsor = (props) => {
             />
           )}
         </React.Fragment>
-      ) : (
-        <div>Loading...</div>
+      ) :  home ? null : (
+        <div>No Sponsors found</div>
       )}
     </Suspense>
   );

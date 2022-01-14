@@ -31,6 +31,9 @@ export const globalSlice = createSlice({
     incrementLoadCount: (state) => {
       state.loadCount = state.loadCount + 1;
     },
+    incrementLoadCountBy: (state, { payload }) => {
+      state.loadCount = state.loadCount + payload;
+    },
     setLoadedSections: (state, { payload }) => {
       state.loadedSections = payload;
     },
@@ -51,6 +54,7 @@ export const {
   setLoadedSections,
   setLSandLC,
   incrementLoadCount,
+  incrementLoadCountBy
 } = globalSlice.actions;
 
 export const globalSelector = (state) => state.global;
@@ -66,6 +70,7 @@ export const fetchBanner = (url) => {
       );
       const res = await response.json();
       dispatch(setBanner(res.data));
+      dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError());
     }
