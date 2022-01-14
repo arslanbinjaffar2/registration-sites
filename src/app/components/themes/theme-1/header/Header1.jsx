@@ -32,15 +32,12 @@ class Header1 extends React.Component {
   }
   handleScroll = () => {
     const _app = document.getElementById("App");
-    const _headerHeight = document.querySelectorAll(
-      "#App > .ebs-main-header"
-    )[0]
-      ? document.querySelectorAll("#App > .ebs-main-header")[0].offsetHeight
-      : 102;
-    if (window.scrollY >= _headerHeight) {
-      _app.classList.add("ebs-header-fixed");
+    if (window.scrollY > 350) {
+      _app.classList.add("ebs-header-sticky");
+      _app.style.paddingTop = document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight +'px'
     } else {
-      _app.classList.remove("ebs-header-fixed");
+      _app.classList.remove("ebs-header-sticky");
+      _app.style.paddingTop = 0+'px'
     }
   };
   handleResize = () => {
@@ -96,7 +93,7 @@ class Header1 extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2">
+      <div className="ebs-main-header ebs-header-main-wrapper ebs-main-header-v1 ebs-main-header-v2">
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
