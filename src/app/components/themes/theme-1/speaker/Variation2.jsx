@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation2 = ({ speakers, listing, searchBar }) => {
+const Variation2 = ({ speakers, listing, searchBar, loadMore }) => {
   return (
     <div
       style={{ padding: "50px 0" }}
@@ -127,6 +127,8 @@ const Variation2 = ({ speakers, listing, searchBar }) => {
               );
             })}
         </div>
+        {listing && speakers.length === 0 && <div>No Speakers Found...</div> }
+        {listing && speakers.length > 0 && loadMore()}
       </div>
     </div>
   );

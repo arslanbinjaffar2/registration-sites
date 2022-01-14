@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -23,7 +23,7 @@ const Header = ({location}) => {
   );
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       <Component event={event} location={location} />
     </Suspense>
   );

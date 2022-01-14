@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation6 = ({ attendees, searchBar }) => {
+const Variation6 = ({ attendees, searchBar, loadMore }) => {
   return (
     <div>
       <div style={{ padding: "80px 0" }} className="module-section">
@@ -120,6 +120,8 @@ const Variation6 = ({ attendees, searchBar }) => {
                 </div>
               ))}
           </div>
+          {attendees.length === 0 && <div>No Attendees Found...</div> }
+        {attendees.length > 0 && loadMore() }
         </div>
       </div>
     </div>

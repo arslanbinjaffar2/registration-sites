@@ -1,12 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
+import { attendeeSelector, fetchAttendees } from "store/Slices/AttendeeSlice";
 import {
-  incrementLoadedSection,
   incrementLoadCount,
-} from "../../../store/Slices/GlobalSlice";
-import { useGetAttendeesQuery } from "../../../store/services/attendee";
-import UiFullPagination from "../ui-components/UiFullPagination";
-import UiPagination from "../ui-components/UiPagination";
+} from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -21,33 +18,28 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const { attendees, loading, error, totalPages } = useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["attendee"]);
   });
-  const showPagination = props.pagination ? props.pagination : false;
   const limit = props.homePage
     ? event.speaker_settings.registration_site_limit
     : 10;
   const home = props.homePage ? props.homePage : false;
-
   const CustomComponent = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
   );
 
-  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
-  const queryPage = new URLSearchParams(props.location.search).get("page");
   useEffect(() => {
-    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
-      setPage(parseInt(queryPage, 10));
-    }
-  }, []);
+    dispatch(fetchAttendees(eventUrl, page, limit, search, initialMount.current, home));
+  }, [page, limit, search]);
 
   useEffect(() => {
     if (initialMount.current) {
@@ -65,58 +57,23 @@ const Attendee = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching, isSuccess } = useGetAttendeesQuery({
-    eventUrl,
-    page,
-    search,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
-      if (!querySuccess) {
-        dispatch(incrementLoadedSection());
-        setQuerySuccess(true);
-      }
-    }
-  }, [isSuccess]);
 
   const onPageChange = (page) => {
     console.log(page);
     if (page > 0) {
-      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
+      if (page <= totalPages) {
         setPage(page);
-        setQueryParams(page);
       }
     }
   };
 
-  const setQueryParams = (page) => {
-    props.history.replace({
-      search: `?page=${page}`,
-    });
-  };
+ 
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {data && data.data.length > 0 ? (
+    <Suspense fallback={<div></div>}>
+      {attendees ? (
         <React.Fragment>
-          {/* {showPagination && (
-            <div className="container pt-5 pb-5">
-              <input className="form-control" type="text" onChange={(e) => setValue(e.target.value)} />
-            </div>
-          )} */}
-          {/* {showPagination && (
-            <UiPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )} */}
-          <CustomComponent attendees={data.data} searchBar={()=>{
+          <CustomComponent attendees={attendees} searchBar={()=>{
             return (
               <div className="container pb-5">
                 <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
@@ -124,22 +81,17 @@ const Attendee = (props) => {
                 </div>
               </div>
             )
-          }} />
-          {/* {showPagination && (
-            <UiFullPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )} */}
+          }} 
+          loadMore={()=>{
+            return (
+              <div className="container pb-5">
+                <button disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+              </div>
+            )
+          }}
+          />
         </React.Fragment>
-      ) :  home ? null : (
-        <div>No Attendees found</div>
-      )}
+      ) : null}
     </Suspense>
   );
 };

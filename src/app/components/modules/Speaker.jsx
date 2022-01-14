@@ -1,10 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
+import { speakerSelector, fetchSpeakers } from "store/Slices/SpeakerSlice";
 import {
   incrementLoadCount,
-  incrementLoadedSection,
-} from "../../../store/Slices/GlobalSlice";
-import { useGetSpeakersQuery } from "../../../store/services/speaker";
+} from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -19,6 +18,7 @@ const loadModule = (theme, variation) => {
 const Speaker = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const { speakers, loading, error, totalPages,  } = useSelector(speakerSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
@@ -28,7 +28,7 @@ const Speaker = (props) => {
 
   const limit = props.homePage
     ? event.speaker_settings.registration_site_limit
-    : 2;
+    : 10;
   
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
@@ -36,10 +36,15 @@ const Speaker = (props) => {
     [event]
   );
 
-  const [querySuccess, setQuerySuccess] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchSpeakers(eventUrl, page, limit, search, initialMount.current, home));
+  }, [page, limit, search])
+
+
 
   useEffect(() => {
     if (initialMount.current) {
@@ -57,26 +62,9 @@ const Speaker = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching, isSuccess } = useGetSpeakersQuery({
-    eventUrl,
-    page,
-    search,
-    home,
-    limit,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
-      if (!querySuccess) {
-        dispatch(incrementLoadedSection());
-        setQuerySuccess(true);
-      }
-    }
-  }, [isSuccess]);
-
   const onPageChange = (page) => {
     if (page > 0) {
-      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
+      if (page <= totalPages) {
         setPage(page);
       }
     }
@@ -84,9 +72,9 @@ const Speaker = (props) => {
 
   return (
     <Suspense fallback={<div></div>}>
-      {data && data.data.length > 0 ? (
+      {speakers && ((speakers.length > 0 && home) || !home) ? (
         <React.Fragment>  
-          <Component speakers={data.data} listing={!home} searchBar={()=>{
+          <Component speakers={speakers} listing={!home} searchBar={()=>{
             return (
             <div className="container pb-5">
               <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
@@ -95,19 +83,17 @@ const Speaker = (props) => {
             </div>
             )
           }}
-          // loadMore={()=>{
-          //   return (
-          //     <div className="container pb-5">
-          //       <button  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
-          //     </div>
-          //   )
-          // }}
+          loadMore={()=>{
+            return (
+              <div className="container pb-5">
+                <button disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+              </div>
+            )
+          }}
           />
          
         </React.Fragment>
-      ) :  home ? null : (
-        <div>No Speaker found</div>
-      )}
+      ) :  null }
     </Suspense>
   );
 };

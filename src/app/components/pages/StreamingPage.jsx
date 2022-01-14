@@ -1,5 +1,5 @@
 import React from 'react'
-import Streaming from '../modules/Streaming'
+import Streaming from '@/modules/Streaming'
 
 const StreamingPage = () => {
     return (
