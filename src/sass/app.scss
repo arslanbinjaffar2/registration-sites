@@ -138,6 +138,7 @@
     > .parallax-text {
       max-width: 1300px;
       margin: auto;
+      width: 100%;
     }
     
     @include laptop-landscape {

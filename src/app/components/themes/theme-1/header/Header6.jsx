@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars';
 
-class Header4 extends React.Component {
+class Header6 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -11,7 +11,7 @@ class Header4 extends React.Component {
       module: false,
       showMenu: false,
       menus: this.props.event.header_data,
-      menuresponsive: this.props.event.header_data,
+      menuresponsive: null,
 			width: window.innerWidth,
       event:
         this.props.event !== undefined && this.props.event
@@ -23,6 +23,13 @@ class Header4 extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     this.handleFunction();
+    const rows = this.state.menus['top_menu'].reduce(function (rows, key, index) { 
+      return (index % 8 === 0 ? rows.push([key]) 
+        : rows[rows.length-1].push(key)) && rows;
+    }, []);
+    this.setState({
+      menuresponsive: rows
+    })
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -32,34 +39,34 @@ class Header4 extends React.Component {
       this.handleFunction()
     }
   }
-  accordionToggle = (e) => {
-    //variables
-    var _this = e.target;
-    var panel = _this.nextElementSibling;
-    var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
-    var courseAccordionActive = document.getElementsByClassName("ebs-accordion-button active");
-
-    /*if pannel is already open - minimize*/
-    if (panel.style.maxHeight){
-      //minifies current pannel if already open
-      panel.style.maxHeight = null;
-      //removes the 'active' class as toggle didnt work on browsers minus chrome
-      _this.classList.remove("active");
-    } else { //pannel isnt open...
-      //goes through the buttons and removes the 'active' css (+ and -)
-      for (var ii = 0; ii < courseAccordionActive.length; ii++) {
-        courseAccordionActive[ii].classList.remove("active");
-      }
-      //Goes through and removes 'activ' from the css, also minifies any 'panels' that might be open
-      for (var iii = 0; iii < coursePanel.length; iii++) {
+accordionToggle = (e) => {
+ 		//variables
+     var _this = e.target;
+     var panel = _this.nextElementSibling;
+     var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
+     var courseAccordionActive = document.getElementsByClassName("ebs-accordion-button active");
+ 
+     /*if pannel is already open - minimize*/
+     if (panel.style.maxHeight){
+       //minifies current pannel if already open
+       panel.style.maxHeight = null;
+       //removes the 'active' class as toggle didnt work on browsers minus chrome
        _this.classList.remove("active");
-        coursePanel[iii].style.maxHeight = null;
-      }
-      //opens the specified pannel
-      panel.style.maxHeight = panel.scrollHeight + "px";
-      //adds the 'active' addition to the css.
-      _this.classList.add("active");
-    } 
+     } else { //pannel isnt open...
+       //goes through the buttons and removes the 'active' css (+ and -)
+       for (var ii = 0; ii < courseAccordionActive.length; ii++) {
+         courseAccordionActive[ii].classList.remove("active");
+       }
+       //Goes through and removes 'activ' from the css, also minifies any 'panels' that might be open
+       for (var iii = 0; iii < coursePanel.length; iii++) {
+        _this.classList.remove("active");
+         coursePanel[iii].style.maxHeight = null;
+       }
+       //opens the specified pannel
+       panel.style.maxHeight = panel.scrollHeight + "px";
+       //adds the 'active' addition to the css.
+       _this.classList.add("active");
+     } 
 }
 handleFunction = () => {
   setTimeout(() => {
@@ -87,10 +94,9 @@ handleFunction = () => {
        }, 400);
       }
     })
-
-  }
+  };
   render() {
-    const { menus, event } = this.state;
+    const { menus, event , menuresponsive} = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
       <div id="ebs-header-master" className="ebs-main-header-v3">
@@ -117,8 +123,8 @@ handleFunction = () => {
                   className="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContentFixed"
-                  aria-controls="navbarSupportedContentFixed"
+                  data-bs-target="#navbarSupportedContentFixedTheme"
+                  aria-controls="navbarSupportedContentFixedTheme"
                   aria-expanded="false"
                   style={{display: 'inline-block'}}
                   onClick={this.handleMenu.bind(this)}
@@ -127,14 +133,17 @@ handleFunction = () => {
                 </button>
                 <div
                   className={`collapse  ${this.state.showMenu ? 'show' : ''}`}
-                  id="navbarSupportedContentFixed">
+                  id="navbarSupportedContentFixedTheme">
                     <div className="ebs-scroll-container">
                     <div onClick={this.handleMenu.bind(this)} id="btn-menu-close"></div>
                     <Scrollbars className="ebs-scorll" style={{ width: '100%', height: '100%' }}>
                       <div className="ebs-scorll-inner">
-                      <ul className="nav navbar-nav m-0">
-                        {menus["top_menu"].map((menu) => (
-                          <li className="nav-item" key={menu.id}>
+                      <div className="container d-flex ebs-container-flex w-100 h-100">
+                        <div className="row w-100 d-flex">
+                        {menuresponsive && menuresponsive.map((menues,k) => (
+                          <div  key={k}  className={`col-md-${12/(menuresponsive.length)}`}>
+                          <ul key={k} className="nav navbar-nav m-0">
+                         { menues.map((menu)=>(<li className="nav-item" key={menu.id}>
                             {(menu.alias === 'gallery' || menu.alias === 'myaccount') && 
                               <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
                                 <span className="ebs-nav-item">{menu.module}</span>
@@ -177,9 +186,12 @@ handleFunction = () => {
                                 )}
                               </ul>
                             )}
-                          </li>
+                          </li>))}
+                          </ul>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
+                      </div>
                     </div>
                   </Scrollbars>
                   </div>
@@ -194,4 +206,4 @@ handleFunction = () => {
 }
 
 
-export default Header4;
+export default Header6;

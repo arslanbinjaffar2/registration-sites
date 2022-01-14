@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+  background: rgba($white, 0.8);
   &.fixed {
     position: fixed;
     left: 0;
@@ -35,7 +36,6 @@
   }
   &.popup-fixed {
     position: fixed;
-    background: rgba($white, 0.8);
   }
 }
 #loader {
@@ -86,36 +86,26 @@
 
 @-webkit-keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    -webkit-transform: rotate(360deg) scale(1);
-    -ms-transform: rotate(360deg) scale(1);
-    transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    -webkit-transform: rotate(360deg) scale(1);
-    -ms-transform: rotate(360deg) scale(1);
-    transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 

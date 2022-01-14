@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars';
 
-class Header4 extends React.Component {
+class Header7 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -93,7 +93,7 @@ handleFunction = () => {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div id="ebs-header-master" className="ebs-main-header-v3">
+      <div id="ebs-header-master" className="ebs-main-header-v3 ebs-main-header-v7">
         <div className="container">
           <div className="row d-flex align-items-center">
           <div className="col-lg-3 col-6">
@@ -194,4 +194,4 @@ handleFunction = () => {
 }
 
 
-export default Header4;
+export default Header7;
