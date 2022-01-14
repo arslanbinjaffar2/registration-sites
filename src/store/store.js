@@ -2,8 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import eventReducer from "./Slices/EventSlice";
 import globalReducer from "./Slices/GlobalSlice";
-import { attendeeApi } from "./services/attendee";
-import { speakerApi } from "./services/speaker";
+import speakerReducer from "./Slices/SpeakerSlice";
+import attendeeReducer from "./Slices/AttendeeSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -14,8 +14,8 @@ export const store = configureStore({
   reducer: {
     event: eventReducer,
     global: globalReducer,
-    [attendeeApi.reducerPath]: attendeeApi.reducer,
-    [speakerApi.reducerPath]: speakerApi.reducer,
+    speaker: speakerReducer,
+    attendee: attendeeReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,
@@ -25,11 +25,9 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
-      attendeeApi.middleware,
       programApi.middleware,
       exhibitorApi.middleware,
       sponsorApi.middleware,
-      speakerApi.middleware,
       cmsPageApi.middleware,
       photoApi.middleware,
       newsApi.middleware

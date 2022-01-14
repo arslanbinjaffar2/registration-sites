@@ -93,6 +93,7 @@ module.exports = {
       'router': resolve('src/router'),
       'db': resolve('src/db'),
       '@': resolve('src/app/components'),
+      'store': resolve('src/store'),
       'services': resolve('src/app/services/'),
       'actions': resolve('src/app/actions/'),
       'helpers': resolve('src/app/helpers/'),

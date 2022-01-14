@@ -1,7 +1,11 @@
 import React, { Suspense, useMemo } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
+import {
+  globalSelector
+} from "../../../store/Slices/GlobalSlice";
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -13,6 +17,7 @@ const loadModule = (theme, variation) => {
 
 const Header = ({location}) => {
   const { event } = useSelector(eventSelector);
+  const { loadedSections } = useSelector(globalSelector);
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["header"]);
   });
@@ -24,7 +29,7 @@ const Header = ({location}) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Component event={event} location={location} />
+      <Component event={event} loaded={loadedSections}  location={location} />
     </Suspense>
   );
 };

@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
-import { useGetSponsorsQuery } from "../../../store/services/sponsor";
+import { eventSelector } from "store/Slices/EventSlice";
+import { useGetSponsorsQuery } from "store/services/sponsor";
 import {
   incrementLoadedSection,
   incrementLoadCount,
-} from "../../../store/Slices/GlobalSlice";
+} from "store/Slices/GlobalSlice";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
@@ -93,7 +93,7 @@ const Sponsor = (props) => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (

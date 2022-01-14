@@ -1,5 +1,5 @@
 import React from 'react'
-import Timetable from '../modules/Timetable'
+import Timetable from '@/modules/Timetable'
 
 const TimetablePage = () => {
     return (

@@ -75,7 +75,7 @@ class Header3 extends React.Component {
 			_item.appendChild(_itemancor);
       _list.forEach(element => {
         if (_total < (_container.offsetWidth - 220)) {
-          _total = _total + element.offsetWidth + 5;
+          _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
           _ul.appendChild(element);
@@ -96,7 +96,7 @@ class Header3 extends React.Component {
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
               <div className="ebs-logo-main">
-                <Link to="/">
+                <Link to={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}

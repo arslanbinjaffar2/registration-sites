@@ -35,7 +35,7 @@ class Header6 extends React.Component {
     this._isMounted = false;
   }
   async componentDidUpdate(prevProps) {
-    if (prevProps.location !== this.props.location) {
+    if (prevProps.loaded !== this.props.loaded) {
       this.handleFunction()
     }
   }
@@ -104,7 +104,7 @@ handleFunction = () => {
           <div className="row d-flex align-items-center">
           <div className="col-lg-3 col-6">
               <div className="ebs-logo-main">
-                <Link to="/">
+                <Link to={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -141,7 +141,7 @@ handleFunction = () => {
                       <div className="container d-flex ebs-container-flex w-100 h-100">
                         <div className="row w-100 d-flex">
                         {menuresponsive && menuresponsive.map((menues,k) => (
-                          <div  key={k}  className={`col-md-${12/(menuresponsive.length)}`}>
+                          <div  key={k}  className={`col-md-6 col-lg-${12/(menuresponsive.length)}`}>
                           <ul key={k} className="nav navbar-nav m-0">
                          { menues.map((menu)=>(<li className="nav-item" key={menu.id}>
                             {(menu.alias === 'gallery' || menu.alias === 'myaccount') && 
