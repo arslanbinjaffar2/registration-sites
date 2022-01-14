@@ -141,7 +141,7 @@ handleFunction = () => {
                       <div className="container d-flex ebs-container-flex w-100 h-100">
                         <div className="row w-100 d-flex">
                         {menuresponsive && menuresponsive.map((menues,k) => (
-                          <div  key={k}  className={`col-md-${12/(menuresponsive.length)}`}>
+                          <div  key={k}  className={`col-md-6 col-lg-${12/(menuresponsive.length)}`}>
                           <ul key={k} className="nav navbar-nav m-0">
                          { menues.map((menu)=>(<li className="nav-item" key={menu.id}>
                             {(menu.alias === 'gallery' || menu.alias === 'myaccount') && 

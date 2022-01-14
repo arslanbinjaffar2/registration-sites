@@ -62,7 +62,6 @@ class Header7 extends React.Component {
     } 
 }
 handleFunction = () => {
-  setTimeout(() => {
     document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
     document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
     if (window.innerWidth >= 991) {
@@ -73,18 +72,16 @@ handleFunction = () => {
         document.getElementById("ebs-header-master").classList.add('ebs-light-header');
       }
     }
-  }, 1000);
+
 }
   handleMenu = () => {
     this.setState({showMenu: !this.state.showMenu},()=>{
       const _body = document.getElementsByTagName('body')[0];
-      const _scroll = document.body.classList.contains('ebs-scroll-menu');
+      const _scroll = document.body.classList.contains('ebs-scroll-body-content');
       if (_scroll) {
-        _body.classList.remove('ebs-scroll-menu')
+        _body.classList.remove('ebs-scroll-body-content');
       } else {
-       setTimeout(() => {
-        _body.classList.add('ebs-scroll-menu')
-       }, 400);
+        _body.classList.add('ebs-scroll-body-content');
       }
     })
 

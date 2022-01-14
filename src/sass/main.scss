@@ -2057,12 +2057,34 @@ $z-index:$back-to-top-size / 2;
 			transform: rotate(90deg);
 		}
 	}
+	.col-md-6:first-child {
+		.navbar-nav {
+			&::after {
+				display: none;
+			}
+		}	
+	}
 	.navbar-nav {
 		flex-direction: column;
 		position: relative;
 		z-index: 99;
 		backface-visibility: hidden;
 		perspective: 1000;
+		@include laptop-landscape-min {
+			height: 100%;
+			padding-right: 20px;
+			&::after {
+				content: '';
+				width: 0;
+				height: 0;
+				position: absolute;
+				left: -45px;
+				background: #1994A2;
+				top: 0;
+				transition: all linear 0.3s;
+
+			}
+		}
 		 > .nav-item {
 			@media (min-width: 991px) {
 				opacity: 0;
@@ -2139,6 +2161,12 @@ $z-index:$back-to-top-size / 2;
 	&.show {
 		top: 0;
 		.navbar-nav {
+			&::after {
+				height: 100%;
+				width: 2px;
+				transition: all 0.3s linear;
+				transition-delay: 1s;
+			}
 			> .nav-item {
 				opacity: 1;
 				transform: translate3d(0,0,0);
@@ -2153,34 +2181,28 @@ $z-index:$back-to-top-size / 2;
 
 }
 
+
 .ebs-main-header-v7 {
 	#navbarSupportedContentFixed {
 		max-width: 380px;
 		transform: none;
 		left: -100%;
-		transition: left ease-in 0.3s;
-		transition-delay: 0.8s;
+		transition: left 0.3s linear 0.4s;
 		#btn-menu-close {
 			right: 20px;
 		}
 		.ebs-scroll-container {
 			background: #EFEFEF;
-			padding: 70px 30px 30px 50px;
+			padding: 70px 15px 30px 50px;
 			position: relative;
 			z-index: 9;
 		}
 		&::before {
-			position: fixed;
-			backdrop-filter: blur(4px);
-			background: rgba($black, 0.6);
-			z-index: -1;
-			width: 0;
+			display: none;
 		}
 		&.show {
 			left: 0;
-			&::before {
-				width: 100%;
-			}
+			transition: left 0.3s linear;
 		}
 		.navbar-nav {
 			text-align: left;
@@ -2212,7 +2234,19 @@ $z-index:$back-to-top-size / 2;
 	}
 
 }
-
+#App {
+	> div:not(#ebs-header-master),.ebs-logo-main,.navbar-toggler {
+		transition: all 0.3s linear;
+	}
+}
+.ebs-scroll-body-content {
+	#App {
+		> div:not(#ebs-header-master),.ebs-logo-main,.navbar-toggler {
+			transform: translateX(380px);
+			transition: all 0.3s linear;
+		}
+	}
+}
 #ebs-header-master {
 	z-index: 999;
 }
