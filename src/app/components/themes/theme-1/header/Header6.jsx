@@ -29,10 +29,12 @@ class Header6 extends React.Component {
     }, []);
     this.setState({
       menuresponsive: rows
-    })
+    });
+    window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
   componentWillUnmount() {
     this._isMounted = false;
+    window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
   async componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
@@ -42,7 +44,18 @@ class Header6 extends React.Component {
         showMenu: false
       })
     }
-  }
+  };
+  handleScroll = () => {
+    const _app = document.getElementById("App");
+    const _theme = document.getElementById("ebs-header-master").classList.contains('ebs-fixed-header');
+    if (window.scrollY > 350) {
+      _app.classList.add("ebs-header-sticky");
+      _app.style.paddingTop = (_theme) ? 0 :  document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight +'px'
+    } else {
+      _app.classList.remove("ebs-header-sticky");
+      _app.style.paddingTop = 0+'px'
+    }
+  };
 accordionToggle = (e) => {
  		//variables
      var _this = e.target;
@@ -101,7 +114,7 @@ handleFunction = () => {
     const { menus, event , menuresponsive} = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div id="ebs-header-master" className="ebs-main-header-v3">
+      <div id="ebs-header-master" className="ebs-main-header-v3 ebs-header-main-wrapper ebs-header-shadow">
         <div className="container">
           <div className="row d-flex align-items-center">
           <div className="col-lg-3 col-6">
