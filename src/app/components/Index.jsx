@@ -1,6 +1,6 @@
 // import Slider from '@/modules/Slider';
 import Program from "@/modules/Program";
-import Speaker from "@/modules/Speaker";
+import Speaker from "@/modules/speakers/Speaker";
 import Banner from "@/modules/Banner";
 import Gallery from "@/modules/Gallery";
 import Sponsor from "@/modules/Sponsor";
@@ -10,28 +10,21 @@ import Exhibitor from "@/modules/Exhibitor";
 import SocialShare from "@/themes/theme-1/social/SocialShare";
 import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
 import Map from "./modules/Map";
-import React, {useEffect} from "react";
+import React from "react";
 import {
     globalSelector,
-    incrementLoadCountBy,
   } from "../../store/Slices/GlobalSlice";
 import {
     eventSelector
   } from "../../store/Slices/EventSlice";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
 
 const Index = () => {
-const dispatch = useDispatch();
 const { event } = useSelector(eventSelector);
 const { loadedSections, loadCount } = useSelector(globalSelector);
-// useEffect(() => {
-//     // dispatch(incrementLoadCountBy(2));
-// }, []);
+
 const { eventsiteSections } = event;
-
-  
-
   return (
     <React.Fragment>
       {loadedSections !== loadCount && <PageLoader />}

@@ -32,15 +32,15 @@ class Header3 extends React.Component {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
   handleScroll = () => {
-    const _app = document.getElementById('App');
-    const _headerHeight = document.querySelectorAll('#App > .ebs-main-header')[0] ? document.querySelectorAll('#App > .ebs-main-header')[0].offsetHeight : 102;
-    if (window.scrollY >= _headerHeight) {
-      _app.classList.add('ebs-header-fixed');
+    const _app = document.getElementById("App");
+    if (window.scrollY > 350) {
+      _app.classList.add("ebs-header-sticky");
+      _app.style.paddingTop = document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight +'px'
     } else {
-      _app.classList.remove('ebs-header-fixed');
+      _app.classList.remove("ebs-header-sticky");
+      _app.style.paddingTop = 0+'px'
     }
-    
-  }
+  };
   handleResize = () => {
     clearTimeout(window.resizedFinished);
     window.resizedFinished = setTimeout(() => {
@@ -91,7 +91,7 @@ class Header3 extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header-v2">
+      <div className="ebs-main-header-v2 ebs-header-main-wrapper">
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">

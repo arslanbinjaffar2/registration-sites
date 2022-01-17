@@ -133,7 +133,7 @@ handleFunction = () => {
                   id="navbarSupportedContentFixed">
                     <div className="ebs-scroll-container">
                     <div onClick={this.handleMenu.bind(this)} id="btn-menu-close"></div>
-                    <Scrollbars className="ebs-scorll" style={{ width: '100%', height: '100%' }}>
+                    <Scrollbars autoHide className="ebs-scorll" style={{ width: '100%', height: '100%' }}>
                       <div className="ebs-scorll-inner">
                       <ul className="nav navbar-nav m-0">
                         {menus["top_menu"].map((menu) => (

@@ -2185,9 +2185,15 @@ $z-index:$back-to-top-size / 2;
 .ebs-main-header-v7 {
 	#navbarSupportedContentFixed {
 		max-width: 380px;
-		transform: none;
-		left: -100%;
-		transition: left 0.3s linear 0.4s;
+		transform: translateX(-100%);
+		transition: all 0.3s linear 0s;
+		opacity: 1;
+		height: 100%;
+		top: 0;
+		visibility: visible;
+		@include ipad-portrait{
+			max-width: 100%;
+		} 
 		#btn-menu-close {
 			right: 20px;
 		}
@@ -2201,12 +2207,13 @@ $z-index:$back-to-top-size / 2;
 			display: none;
 		}
 		&.show {
-			left: 0;
-			transition: left 0.3s linear;
+			transform: translateX(0);
 		}
 		.navbar-nav {
 			text-align: left;
 			.nav-item {
+				transform: none;
+				opacity: 1;
 				.nav-link {
 					padding: 15px 0;
 					font-size: 16px;
@@ -2240,13 +2247,50 @@ $z-index:$back-to-top-size / 2;
 	}
 }
 .ebs-scroll-body-content {
+	@include ipad-portrait {
+		overflow: hidden;
+	} 
 	#App {
+		overflow: hidden;
 		> div:not(#ebs-header-master),.ebs-logo-main,.navbar-toggler {
 			transform: translateX(380px);
 			transition: all 0.3s linear;
+			@include ipad-portrait {
+				transform: none;
+			}
 		}
 	}
 }
 #ebs-header-master {
 	z-index: 999;
+}
+
+.ebs-header-sticky {
+	.ebs-header-main-wrapper {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 9999;
+		left: 0;
+		animation: menu-popup 0.8s ease-out forwards;
+	}
+}
+@keyframes menu-popup {
+	0% {
+		opacity: 0;
+		top: -100%;
+	}
+	40% {
+		opacity: 0.4;
+		top: -60%;
+	}
+	80% {
+		opacity: 0.8;
+		top: -20%;
+	}
+	100% {
+		opacity: 1;
+		top: 0;
+	}
+	
 }

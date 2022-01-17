@@ -75,17 +75,17 @@ const Variation1 = ({ banner }) => {
                 : require("img/h1-parallax1.jpg")
             })`,
           }}
-          className="edgtf-parallax-section-holder full-height-banners parallax-backgroud"
+          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud"
         >
-          <div className="container-fluid">
+          <div className="container">
             <div className="row d-flex">
               <div
-                style={{ height: "100vh", padding: "5% 15%" }}
+                style={{ height: "100vh", padding: "5% 15px" }}
                 className="col-12 align-items-center d-flex"
               >
                 <div style={{ position: "relative" }} className="parallax-text">
                   <div
-                    className="edgtf-custom-font-holder"
+                    className="edgtf-custom-font-holder ebs-banner-title"
                     style={{
                       fontFamily: "Rubik",
                       fontSize: "127px",
@@ -105,7 +105,7 @@ const Variation1 = ({ banner }) => {
                     </span>
                   </div>
                   <div
-                    className="edgtf-custom-font-holder"
+                    className="edgtf-custom-font-holder ebs-banner-title"
                     style={{
                       fontFamily: "Rubik",
                       fontSize: "127px",
@@ -122,7 +122,7 @@ const Variation1 = ({ banner }) => {
                     <span style={{animation: 'blink .7s infinite'}} className="typed-cursor">_</span>
                   </div>
                   <div
-                    className="edgtf-custom-font-holder"
+                    className="edgtf-custom-font-holder ebs-banner-subtitle"
                     style={{
                       marginTop: "15px",
                       fontFamily: "Open Sans",
