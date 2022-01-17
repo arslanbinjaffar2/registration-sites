@@ -1,6 +1,10 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { globalSelector, fetchBanner, incrementLoadCount } from "store/Slices/GlobalSlice";
+import {
+  globalSelector,
+  fetchBanner,
+  incrementLoadCount,
+} from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -14,9 +18,7 @@ const loadModule = (theme, variation) => {
 
 const Banner = () => {
   const { event } = useSelector(eventSelector);
-  const {
-    banner
-  } = useSelector(globalSelector);
+  const { banner } = useSelector(globalSelector);
   const dispatch = useDispatch();
 
   const eventUrl = event.url;
@@ -29,12 +31,11 @@ const Banner = () => {
   );
 
   useEffect(() => {
-    if(banner===null){
+    if (banner === null) {
       dispatch(incrementLoadCount());
       dispatch(fetchBanner(eventUrl));
     }
   }, [dispatch]);
-console.log("global",banner);
   return (
     <Suspense fallback={<div></div>}>
       {banner ? <Component banner={banner} event={event} /> : null}
