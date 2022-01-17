@@ -75,7 +75,7 @@ const Attendee = (props) => {
         <React.Fragment>
           <CustomComponent attendees={attendees} event={event} searchBar={()=>{
             return (
-              <div className="container pb-5">
+              <div className={`container pb-5`}>
                 <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
                 <em className="fa fa-search"></em>
                 </div>
@@ -84,8 +84,8 @@ const Attendee = (props) => {
           }} 
           loadMore={()=>{
             return (
-              <div className="container pb-5">
-                <button disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+              <div className="container pb-5 p-0 pt-5 text-center">
+                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color" style={{color: '#888'}} disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
               </div>
             )
           }}

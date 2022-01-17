@@ -1285,9 +1285,6 @@ $z-index:$back-to-top-size / 2;
 				color: $white !important;
 				font-size: 15px;
 			}
-			.navbar .nav-item:hover > .nav-link {
-				background: $first-main-color !important;
-			}
 			.dropdown-menu {
 				.nav-item {
 					.nav-link {
@@ -1684,9 +1681,12 @@ $z-index:$back-to-top-size / 2;
 	.ebs-attendee-designation {
 		font-size: 14px;
 		padding-bottom: 6px;
-		margin-bottom: 5px;
 		color: $offwhite;
-		border-bottom: 1px solid $offwhite;
+		+ .ebs-email-phone {
+			border-top: 1px solid $offwhite;
+			margin-top: 4px;
+
+		}
 	}
 	.social-icons {
 		padding-top: 8px;
@@ -1986,8 +1986,9 @@ $z-index:$back-to-top-size / 2;
 	position: relative;
 	.form-control {
 		box-shadow: none;
-		border-radius: 0;
+		border-radius: 6px;
 		height: 60px;
+		padding-left: 28px;
 		padding-right: 60px;	
 	}
 	.fa-search {
@@ -2261,7 +2262,7 @@ $z-index:$back-to-top-size / 2;
 	}
 }
 #ebs-header-master {
-	z-index: 999;
+	z-index: 9999;
 }
 
 .ebs-header-sticky {
@@ -2345,7 +2346,6 @@ $z-index:$back-to-top-size / 2;
 .ebs-scroll-body-content .ebs-hide-header {
 	background: transparent !important;
 	box-shadow: none !important;
-	max-height: 0;
 	.ebs-logo-main,.navbar-light .navbar-toggler {
 		opacity: 0;
 		visibility: hidden;

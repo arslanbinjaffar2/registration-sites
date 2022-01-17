@@ -6,6 +6,7 @@ import "sass/app.scss";
 import { ltrim } from "helpers";
 import RouterOutlet from "router/RouterOutlet";
 import PageLoader from "./components/ui-components/PageLoader";
+import Theme from "./components/Theme";
 const App = () => {
   let path = ltrim(window.location.pathname, "/");
   let params = path.split("/");
@@ -14,7 +15,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchEvent(params.length > 0 ? params[0] : ""));
   }, [dispatch]);
-
+  
   if (error && loading) {
     return (
       <div id="App">
@@ -26,6 +27,7 @@ const App = () => {
     <div id="App" style={{postion:'relative'}}>
       {loading && <PageLoader className="fixed" />}
       {!loading && event && <RouterOutlet />}
+      {event && <Theme data={event} />}
     </div>
   );
 };
