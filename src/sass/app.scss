@@ -301,8 +301,11 @@
         padding: 0 10px;
         min-width: 130px;
         text-align: center;
-        @media (max-width: 991px) {
+        @media (max-width: 1200px) {
           min-width: 1px;
+          .countdown-amount {
+            font-size: 50px;
+          }
         }
       }
     }
@@ -1052,4 +1055,39 @@
 
 .main-slider-wrapper {
   overflow: hidden;
+}
+
+.edgtf-parallax-section-banner {
+  @include laptop-landscape {
+    .ebs-banner-title {
+      font-size: 50px !important;
+      line-height: 1.2 !important;
+      min-height: 1px !important;
+    }
+    .ebs-banner-subtitle {
+      font-size: 24px !important;
+      line-height: 1.5 !important;
+    }
+  }
+  @include ipad-portrait {
+    .ebs-banner-title {
+      font-size: 50px !important;
+      min-height: 1px !important;
+    }
+    .ebs-banner-subtitle {
+      font-size: 20px !important;
+    }
+  }
+  @include phone-portrait {
+    .ebs-banner-title {
+      font-size: 40px !important;
+      text-align: center !important;
+    }
+    .ebs-banner-subtitle {
+      font-size: 16px !important;
+    }
+    .edgtf-custom-font-holder {
+      text-align: center !important;
+    }
+  }
 }

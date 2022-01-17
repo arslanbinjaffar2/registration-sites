@@ -2185,9 +2185,15 @@ $z-index:$back-to-top-size / 2;
 .ebs-main-header-v7 {
 	#navbarSupportedContentFixed {
 		max-width: 380px;
-		transform: none;
-		left: -100%;
-		transition: left 0.3s linear 0.4s;
+		transform: translateX(-100%);
+		transition: all 0.3s linear 0s;
+		opacity: 1;
+		height: 100%;
+		top: 0;
+		visibility: visible;
+		@include ipad-portrait{
+			max-width: 100%;
+		} 
 		#btn-menu-close {
 			right: 20px;
 		}
@@ -2201,12 +2207,13 @@ $z-index:$back-to-top-size / 2;
 			display: none;
 		}
 		&.show {
-			left: 0;
-			transition: left 0.3s linear;
+			transform: translateX(0);
 		}
 		.navbar-nav {
 			text-align: left;
 			.nav-item {
+				transform: none;
+				opacity: 1;
 				.nav-link {
 					padding: 15px 0;
 					font-size: 16px;
@@ -2240,13 +2247,81 @@ $z-index:$back-to-top-size / 2;
 	}
 }
 .ebs-scroll-body-content {
+	@include ipad-portrait {
+		overflow: hidden;
+	} 
 	#App {
+		overflow: hidden;
 		> div:not(#ebs-header-master),.ebs-logo-main,.navbar-toggler {
 			transform: translateX(380px);
 			transition: all 0.3s linear;
+			@include ipad-portrait {
+				transform: none;
+			}
 		}
 	}
 }
 #ebs-header-master {
 	z-index: 999;
+}
+
+.ebs-header-sticky {
+	.ebs-header-main-wrapper {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 9999;
+		left: 0;
+		animation: menu-popup 0.8s ease-out forwards;
+		.navbar {
+			.navbar-nav > .nav-item {
+				padding-top: 8px !important;
+				padding-bottom: 8px !important;
+				> .nav-link {
+					line-height: 1.2;
+				}
+			}
+		}
+		.ebs-logo-main {
+			img {
+				max-height: 45px;
+				transition: all 0.3s linear;
+			}
+		}
+		&.ebs-header-shadow {
+			background: $white;
+			box-shadow: 0 6px 13px rgba($black, 0.2);
+				.navbar {
+					.navbar-nav > .nav-item {
+						padding-top: 0px !important;
+						padding-bottom: 0px !important;
+						> .nav-link {
+							line-height: 1.2;
+						}
+					}
+				}
+		}
+		.navbar-light .navbar-toggler-icon {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+	}
+	}
+}
+@keyframes menu-popup {
+	0% {
+		opacity: 0;
+		top: -100%;
+	}
+	40% {
+		opacity: 0.4;
+		top: -60%;
+	}
+	80% {
+		opacity: 0.8;
+		top: -20%;
+	}
+	100% {
+		opacity: 1;
+		top: 0;
+	}
+	
 }

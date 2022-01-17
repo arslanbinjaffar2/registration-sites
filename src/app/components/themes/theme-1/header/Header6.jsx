@@ -36,7 +36,11 @@ class Header6 extends React.Component {
   }
   async componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
-      this.handleFunction()
+      this.handleFunction();
+      document.getElementsByTagName('body')[0].classList.remove('ebs-scroll-menu');
+      this.setState({
+        showMenu: false
+      })
     }
   }
 accordionToggle = (e) => {
@@ -69,7 +73,6 @@ accordionToggle = (e) => {
      } 
 }
 handleFunction = () => {
-  setTimeout(() => {
     document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
     document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
     if (window.innerWidth >= 991) {
@@ -80,7 +83,6 @@ handleFunction = () => {
         document.getElementById("ebs-header-master").classList.add('ebs-light-header');
       }
     }
-  }, 1000);
 }
   handleMenu = () => {
     this.setState({showMenu: !this.state.showMenu},()=>{
@@ -136,7 +138,7 @@ handleFunction = () => {
                   id="navbarSupportedContentFixedTheme">
                     <div className="ebs-scroll-container">
                     <div onClick={this.handleMenu.bind(this)} id="btn-menu-close"></div>
-                    <Scrollbars className="ebs-scorll" style={{ width: '100%', height: '100%' }}>
+                    <Scrollbars autoHide className="ebs-scorll" style={{ width: '100%', height: '100%' }}>
                       <div className="ebs-scorll-inner">
                       <div className="container d-flex ebs-container-flex w-100 h-100">
                         <div className="row w-100 d-flex">
