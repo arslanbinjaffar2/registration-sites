@@ -109,7 +109,7 @@ handleFunction = () => {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div id="ebs-header-master" className="ebs-main-header-v3 ebs-header-main-wrapper ebs-header-shadow ebs-not-header">
+      <div id="ebs-header-master" className="ebs-main-header-v3 ebs-header-main-wrapper ebs-header-shadow ebs-no-padding">
         <div className="container">
           <div className="row d-flex align-items-center">
           <div className="col-lg-3 col-6">

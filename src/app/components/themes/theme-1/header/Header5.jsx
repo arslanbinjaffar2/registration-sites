@@ -49,15 +49,13 @@ class Header5 extends React.Component {
   
   handleScroll = () => {
     const _app = document.getElementById("App");
-    const _headerHeight = document.querySelectorAll(
-      "#App > .ebs-main-header"
-    )[0]
-      ? document.querySelectorAll("#App > .ebs-main-header")[0].offsetHeight
-      : 102;
-    if (window.scrollY >= _headerHeight) {
-      _app.classList.add("ebs-header-fixed");
+    const _theme = document.getElementById("ebs-header-master").classList.contains('ebs-fixed-header');
+    if (window.scrollY > 350) {
+      _app.classList.add("ebs-header-sticky");
+      _app.style.paddingTop = (_theme) ? 0 :  document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight +'px'
     } else {
-      _app.classList.remove("ebs-header-fixed");
+      _app.classList.remove("ebs-header-sticky");
+      _app.style.paddingTop = 0+'px'
     }
   };
   handleResize = () => {
@@ -126,7 +124,7 @@ class Header5 extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div id="ebs-header-master" className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2">
+      <div id="ebs-header-master" className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2 ebs-header-main-wrapper ebs-header-shadow ebs-main-light-header">
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
