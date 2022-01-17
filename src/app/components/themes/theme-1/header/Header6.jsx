@@ -73,7 +73,6 @@ accordionToggle = (e) => {
      } 
 }
 handleFunction = () => {
-  setTimeout(() => {
     document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
     document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
     if (window.innerWidth >= 991) {
@@ -84,7 +83,6 @@ handleFunction = () => {
         document.getElementById("ebs-header-master").classList.add('ebs-light-header');
       }
     }
-  }, 1000);
 }
   handleMenu = () => {
     this.setState({showMenu: !this.state.showMenu},()=>{
