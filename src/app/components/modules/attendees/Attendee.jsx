@@ -85,7 +85,7 @@ const Attendee = (props) => {
           loadMore={()=>{
             return (
               <div className="container pb-5">
-                <button disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+                <button disabled={page >= totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
               </div>
             )
           }}
