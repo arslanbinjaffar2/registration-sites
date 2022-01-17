@@ -1,6 +1,6 @@
 import React from "react";
-
-const Variation1 = ({ attendees, searchBar, loadMore }) => {
+import { Link } from "react-router-dom";
+const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
                 style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
-                Attendees
+                {event.labels.EVENTSITE_ATTENDEES}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
@@ -29,13 +29,12 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
                 className="edgtf-section-subtitle"
                 style={{ color: "#ffffff" }}
               >
-                Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad
-                his suavitate complectitur ruis dicant facilisi
+                {event.labels.EVENT_ATTENDEES_LOWER_HEAD}
               </h6>
             </div>
           </div>
         </div>
-        { searchBar() }
+        {searchBar()}
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
           {/* Grid */}
 
@@ -50,17 +49,19 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
                     <div className="edgtf-team edgtf-team-light mb-5 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
-                          <img
-                            style={{ width: "100%" }}
-                            src={
-                              attendee.image && attendee.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  "/assets/attendees/" +
-                                  attendee.image
-                                : require("img/square.jpg")
-                            }
-                            alt="g"
-                          />
+                          <Link to={`/${event.url}/attendees/${attendee.id}`}>
+                            <img
+                              style={{ width: "100%" }}
+                              src={
+                                attendee.image && attendee.image !== ""
+                                  ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    "/assets/attendees/" +
+                                    attendee.image
+                                  : require("img/square.jpg")
+                              }
+                              alt="g"
+                            />
+                          </Link>
                           <div className="edgtf-team-social-holder">
                             <div className="edgtf-team-social-holder-inner"></div>
                           </div>
@@ -68,16 +69,28 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
                         {/* Description */}
                         <div className="edgtf-team-info">
                           <div className="edgtf-team-title-holder">
-                            <h3 className="edgtf-team-name">
-                              {attendee.first_name} {attendee.last_name}
-                            </h3>
-                            {attendee.info && attendee.info.company_name && (
-                              <div className="ebs-attendee-designation">
-                                {attendee.info.company_name &&
-                                  attendee.info.company_name}{" "}
-                                {attendee.info.title && attendee.info.title}
-                              </div>
+                            {(attendee.first_name || attendee.last_name) && (
+                              <Link
+                                to={`/${event.url}/attendees/${attendee.id}`}
+                              >
+                                <h3 className="edgtf-team-name">
+                                  {attendee.first_name && attendee.first_name}{" "}
+                                  {attendee.last_name && attendee.last_name}
+                                </h3>
+                              </Link>
                             )}
+                            {attendee.info &&
+                              (attendee.info.company_name ||
+                                attendee.info.title) && (
+                                <div className="ebs-attendee-designation">
+                                  {attendee.info.company_name &&
+                                    attendee.info.company_name}
+                                  {attendee.info.company_name &&
+                                    attendee.info.title &&
+                                    " "}
+                                  {attendee.info.title && attendee.info.title}
+                                </div>
+                              )}
                             {attendee.email && (
                               <div className="ebs-email-phone">
                                 <a
@@ -99,48 +112,58 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
                               </div>
                             )}
                           </div>
-                          <div className="edgtf-team-social-holder-between">
-                            <div className="edgtf-team-social">
-                              <div className="edgtf-team-social-inner">
-                                <div className="edgtf-team-social-wrapp">
-                                  <div className="social-icons">
-                                    {attendee.info && attendee.info.facebook && (
-                                      <a
-                                        target="_blank"
-                                        href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
-                                      >
-                                        <span data-icon="&#xe0aa;"></span>
-                                      </a>
-                                    )}
-                                    {attendee.info && attendee.info.twitter && (
-                                      <a
-                                        target="_blank"
-                                        href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
-                                      >
-                                        <span data-icon="&#xe0ab;"></span>
-                                      </a>
-                                    )}
-                                    {attendee.info && attendee.info.linkedin && (
-                                      <a
-                                        target="_blank"
-                                        href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
-                                      >
-                                        <span data-icon="&#xe0b1;"></span>
-                                      </a>
-                                    )}
-                                    {attendee.info && attendee.info.website && (
-                                      <a
-                                        target="_blank"
-                                        href={`${attendee.info.website_protocol}${attendee.info.website}`}
-                                      >
-                                        <span data-icon="&#xe0b7;"></span>
-                                      </a>
-                                    )}
+                          {attendee.info &&
+                            (attendee.info.facebook ||
+                              attendee.info.twitter ||
+                              attendee.info.linkedin ||
+                              attendee.info.website) && (
+                              <div className="edgtf-team-social-holder-between">
+                                <div className="edgtf-team-social">
+                                  <div className="edgtf-team-social-inner">
+                                    <div className="edgtf-team-social-wrapp">
+                                      <div className="social-icons">
+                                        {attendee.info &&
+                                          attendee.info.facebook && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                                            >
+                                              <span data-icon="&#xe0aa;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.twitter && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                                            >
+                                              <span data-icon="&#xe0ab;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.linkedin && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                                            >
+                                              <span data-icon="&#xe0b1;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.website && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.website_protocol}${attendee.info.website}`}
+                                            >
+                                              <span data-icon="&#xe0b7;"></span>
+                                            </a>
+                                          )}
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
+                            )}
                         </div>
                         {/* Description */}
                       </div>
@@ -152,8 +175,8 @@ const Variation1 = ({ attendees, searchBar, loadMore }) => {
 
           {/* Grid */}
         </div>
-        {attendees.length === 0 && <div>No Attendees Found...</div> }
-        {attendees.length > 0 && loadMore() }
+        {attendees.length === 0 && <div>No Attendees Found...</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-
-const Variation7 = ({ speakers, listing, searchBar, loadMore }) => {
+import { Link } from "react-router-dom";
+const Variation7 = ({ speakers, listing, searchBar, loadMore, event }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container mb-4">
@@ -11,21 +11,19 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore }) => {
               className="edgtf-title-section-holder"
             >
               <h2 className="edgtf-title-with-dots edgtf-appeared">
-                Our Speakers
+                {event.labels.EVENTSITE_SPEAKERS}
               </h2>
               <h6
                 style={{ fontSize: "16px", lineHeight: "1.5" }}
                 className="edgtf-section-subtitle"
               >
-                A schedule at a glance is listed below. Check the program for
-                this year's conference and learn about the attendees and
-                sessions in store for tech enthusiasts.
+                {event.labels.EVENT_SPEAKERS_LOWER_HEAD}
               </h6>
             </div>
           </div>
         </div>
       </div>
-      {listing && searchBar() }
+      {listing && searchBar()}
       <div className="container">
         <div className="row d-flex algin-items-center">
           {speakers &&
@@ -41,30 +39,41 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore }) => {
                 >
                   <div className="speakerv7-image">
                     <span>
-                      <img
-                        style={{ width: "100%" }}
-                        src={
-                          speaker.image && speaker.image !== ""
-                            ? process.env.REACT_APP_EVENTCENTER_URL +
-                              "/assets/attendees/" +
-                              speaker.image
-                            : require("img/square.jpg")
-                        }
-                        alt="g"
-                      />
+                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                        <img
+                          style={{ width: "100%" }}
+                          src={
+                            speaker.image && speaker.image !== ""
+                              ? process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                speaker.image
+                              : require("img/square.jpg")
+                          }
+                          alt="g"
+                        />
+                      </Link>
                     </span>
                   </div>
                   <div className="speakerv7-caption">
-                    <h3>
-                      {speaker.first_name} {speaker.last_name}
-                    </h3>
-
-                    {speaker.info && speaker.info.company_name && (
-                      <p>
-                        {(speaker.info.title && speaker.info.title, (<br />))}{" "}
-                        {speaker.info.company_name}{" "}
-                      </p>
+                    {(speaker.first_name || speaker.last_name) && (
+                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                        <h3>
+                          {speaker.first_name && speaker.first_name}{" "}
+                          {speaker.last_name && speaker.last_name}
+                        </h3>
+                      </Link>
                     )}
+
+                    {speaker.info &&
+                      (speaker.info.company_name || speaker.info.title) && (
+                        <p>
+                          {speaker.info.title && speaker.info.title}
+                          {speaker.info.company_name &&
+                            speaker.info.company_name && <br />}
+                          {speaker.info.company_name &&
+                            speaker.info.company_name}
+                        </p>
+                      )}
                     {listing && speaker.email && (
                       <div className="email">
                         <a href={`mailto:${speaker.email}`}>{speaker.email}</a>
@@ -76,50 +85,55 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore }) => {
                         <a href={`tel:${speaker.phone}`}>{speaker.phone}</a>
                       </div>
                     )}
-                    {listing && speaker.info && (
-                      <div className="d-flex">
-                        <div className="social-icons">
-                          {speaker.info.facebook && (
-                            <a
-                              target="_blank"
-                              href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
-                            >
-                              <span data-icon="&#xe0aa;"></span>
-                            </a>
-                          )}
-                          {speaker.info.twitter && (
-                            <a
-                              target="_blank"
-                              href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
-                            >
-                              <span data-icon="&#xe0ab;"></span>
-                            </a>
-                          )}
-                          {speaker.info.linkedin && (
-                            <a
-                              target="_blank"
-                              href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
-                            >
-                              <span data-icon="&#xe0b1;"></span>
-                            </a>
-                          )}
-                          {speaker.info.website && (
-                            <a
-                              target="_blank"
-                              href={`${speaker.info.website_protocol}${speaker.info.website}`}
-                            >
-                              <span data-icon="&#xe0b7;"></span>
-                            </a>
-                          )}
+                    {listing &&
+                      speaker.info &&
+                      (speaker.info.facebook ||
+                        speaker.info.twitter ||
+                        speaker.info.linkedin ||
+                        speaker.info.website) && (
+                        <div className="d-flex">
+                          <div className="social-icons">
+                            {speaker.info.facebook && (
+                              <a
+                                target="_blank"
+                                href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                              >
+                                <span data-icon="&#xe0aa;"></span>
+                              </a>
+                            )}
+                            {speaker.info.twitter && (
+                              <a
+                                target="_blank"
+                                href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                              >
+                                <span data-icon="&#xe0ab;"></span>
+                              </a>
+                            )}
+                            {speaker.info.linkedin && (
+                              <a
+                                target="_blank"
+                                href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                              >
+                                <span data-icon="&#xe0b1;"></span>
+                              </a>
+                            )}
+                            {speaker.info.website && (
+                              <a
+                                target="_blank"
+                                href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                              >
+                                <span data-icon="&#xe0b7;"></span>
+                              </a>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
                   </div>
                 </div>
               </div>
             ))}
         </div>
-        {listing && speakers.length === 0 && <div>No Speakers Found...</div> }
+        {listing && speakers.length === 0 && <div>No Speakers Found...</div>}
         {listing && speakers.length > 0 && loadMore()}
       </div>
     </div>
