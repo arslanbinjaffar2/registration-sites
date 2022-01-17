@@ -73,7 +73,7 @@ const Attendee = (props) => {
     <Suspense fallback={<div></div>}>
       {attendees ? (
         <React.Fragment>
-          <CustomComponent attendees={attendees} searchBar={()=>{
+          <CustomComponent attendees={attendees} event={event} searchBar={()=>{
             return (
               <div className="container pb-5">
                 <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
