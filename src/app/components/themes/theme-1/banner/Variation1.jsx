@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 
 const Variation1 = ({ banner }) => {
-
+  let data = banner ? banner[0] : [];
   useEffect(() => {
 
     window.addEventListener("scroll", function (e) {
@@ -52,7 +52,8 @@ const Variation1 = ({ banner }) => {
       });
     }
 
-    var sentences = ["Parties", "Lectures"];
+    // var sentences = ["Parties", "Lectures"];
+    var sentences = (data && data.info) ? data.info.message.split(" ") : [];
 
     var counter = 0;
     function loop() {
@@ -63,7 +64,6 @@ const Variation1 = ({ banner }) => {
 
     loop();
   };
-  let data = banner ? banner[0] : [];
   return (
     <React.Fragment>
         <div
@@ -121,7 +121,7 @@ const Variation1 = ({ banner }) => {
                     <div id="typewriter"></div>
                     <span style={{animation: 'blink .7s infinite'}} className="typed-cursor">_</span>
                   </div>
-                  <div
+                  {/* <div
                     className="edgtf-custom-font-holder ebs-banner-subtitle"
                     style={{
                       marginTop: "15px",
@@ -135,7 +135,7 @@ const Variation1 = ({ banner }) => {
                     }}
                   >
                     {data && data.info ? data.info.message : ""}
-                  </div>
+                  </div> */}
                   
                 </div>
               </div>

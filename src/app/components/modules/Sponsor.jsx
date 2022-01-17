@@ -97,30 +97,38 @@ const Sponsor = (props) => {
       {data && data.data.length > 0 ? (
         <React.Fragment>
           {showPagination && (
-            <input type="text" onChange={(e) => setValue(e.target.value)} />
+            <div className={`container pb-5`}>
+              <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
+                <em className="fa fa-search"></em>
+              </div>
+          </div>
           )}
           {showPagination && (
-            <UiPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
+            <div className={`container pb-5`}>
+              <UiPagination
+                total={data.meta.total}
+                perPage={data.meta.per_page}
+                currentPage={page}
+                onPageChange={(page) => {
+                  onPageChange(page);
+                }}
+                fetchingData={isFetching}
+              />
+            </div>
           )}
           <Component sponsors={data.data} />
           {showPagination && (
-            <UiFullPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
+            <div className={`container pb-5`}>
+              <UiFullPagination
+                total={data.meta.total}
+                perPage={data.meta.per_page}
+                currentPage={page}
+                onPageChange={(page) => {
+                  onPageChange(page);
+                }}
+                fetchingData={isFetching}
+              />
+            </div>
           )}
         </React.Fragment>
       ) :  home ? null : (
