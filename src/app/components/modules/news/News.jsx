@@ -75,29 +75,39 @@ const News = (props) => {
     <Suspense fallback={<div>Loading...</div>}>
       {data ? (
         <React.Fragment>
-          {showPagination && (
-            <UiPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )}
+          <div style={{paddingTop: 40}} className="edgtf-container">
+            <div className="edgtf-container-inner">
+              {showPagination && (
+                <UiPagination
+                  total={data.meta.total}
+                  perPage={data.meta.per_page}
+                  currentPage={page}
+                  onPageChange={(page) => {
+                    onPageChange(page);
+                  }}
+                  fetchingData={isFetching}
+                />
+              )}
+            </div>
+          </div>
+         
           <CustomComponent news={data.data} event_url={eventUrl} makeNewDetailURL={makeNewDetailURL} />
-          {showPagination && (
-            <UiFullPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )}
+          <div style={{paddingBottom: 40}} className="edgtf-container">
+            <div className="edgtf-container-inner">
+              {showPagination && (
+                <UiFullPagination
+                  total={data.meta.total}
+                  perPage={data.meta.per_page}
+                  currentPage={page}
+                  onPageChange={(page) => {
+                    onPageChange(page);
+                  }}
+                  fetchingData={isFetching}
+                />
+              )}              
+            </div>
+          </div>
+
         </React.Fragment>
       ) : (
         <div>Loading...</div>
