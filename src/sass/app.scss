@@ -488,6 +488,9 @@
       font-weight: 700;
       a {
         color: $text555;
+        &:hover {
+          color: $first-main-color;
+        }
       }
     }
     .ebs-attendee-designation {
@@ -501,12 +504,18 @@
       font-style: italic;
       a {
         color: $text555;
+        &:hover {
+          color: $first-main-color;
+        }
       }
     }
     .social-icons {
       padding-top: 8px;
       a {
         color: $text555;
+        &:hover {
+          color: $first-main-color;
+        }
       }
     }
   }
@@ -910,7 +919,7 @@
     display: inline-block;
     font-size: 25px;
     margin: 0 5px !important;
-    color: $link;
+    color: $first-main-color;
     &:first-child {
       margin-left: 0 !important;
     }
@@ -954,7 +963,7 @@
       margin-bottom: 10px;
       line-height: 1;
       a {
-       color: $link;
+       color: $first-main-color;
        font-size: 12px;
       }
     }
@@ -963,7 +972,7 @@
       padding-bottom: 10px;
       line-height: 1;
       a {
-        color: $link;
+        color: $first-main-color;
         font-size: 12px;
         font-weight: 600;
         i {
@@ -1001,7 +1010,7 @@
       width: 100%;
       top: 0;
       height: 100%;
-      background: rgba($link,0.8);
+      background: rgba($first-main-color-rgb,0.8);
       display: flex;
       align-items: center;
       justify-content: center;

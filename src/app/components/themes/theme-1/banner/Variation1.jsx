@@ -83,7 +83,7 @@ const Variation1 = ({ banner }) => {
                 style={{ height: "100vh", padding: "5% 15px" }}
                 className="col-12 align-items-center d-flex"
               >
-                <div style={{ position: "relative" }} className="parallax-text">
+                <div style={{ position: "relative", width: '100%' }} className="parallax-text">
                   <div
                     className="edgtf-custom-font-holder ebs-banner-title"
                     style={{
