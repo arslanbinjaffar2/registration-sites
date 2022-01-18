@@ -39,7 +39,7 @@ const Index = () => {
               return <Program homePage={true} key={i} />;
             else if (section.alias === "sponsors")
               return <Sponsor homePage={true} key={i} />;
-            else if (section.alias === "banner") return <Banner />;
+            else if (section.alias === "bottom_banner") return <Banner key={i} />;
             else if (section.alias === "register_now")
               return <div key={i}></div>;
             else if (section.alias === "exhibitors")
