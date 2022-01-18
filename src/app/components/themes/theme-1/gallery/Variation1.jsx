@@ -2,7 +2,7 @@ import React from "react";
 
 const Variation1 = ({ photos }) => {
   return (
-    <div className="edgtf-image-gallery">
+    <div className="edgtf-image-gallery clearfix">
       <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
         {photos &&
           photos.map((photo, i) => {
