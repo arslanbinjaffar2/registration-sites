@@ -14,7 +14,7 @@ const CustomSection = ({ data }) => {
   //   </React.Fragment>
   // )
   return (
-    <div style={{ paddingTop: "80px" }} className="edgtf-container">
+    <div style={{ paddingTop: "80px" }} className="edgtf-container pb-5">
       <div className="edgtf-container-inner">
         <div className="ebs-custom-section-html">
           <section>
