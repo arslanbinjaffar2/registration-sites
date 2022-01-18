@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
+import TruncateMarkup from 'react-truncate-markup';
 
 const Variation3 = ({ news, event_url, makeNewDetailURL }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -11,7 +12,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL }) => {
     500: 1,
   };
   return (
-    <div style={{ paddingTop: "80px" }} className="edgtf-container">
+    <div style={{ paddingTop: "30px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
         <div
           className={`${
@@ -73,11 +74,9 @@ const Variation3 = ({ news, event_url, makeNewDetailURL }) => {
                                 {item.created_at}
                               </div>
                             </div>
-                            <p
-                              itemProp="description"
-                              className="edgtf-post-excerpt"
-                              dangerouslySetInnerHTML={{ __html: item.body }}
-                            />
+                            <TruncateMarkup lines={3}>
+                              <p className="edgtf-post-excerpt">{item.body.replace(/<(.|\n)*?>/g, '')}</p>
+                            </TruncateMarkup>
                           </div>
                         </div>
                       </div>

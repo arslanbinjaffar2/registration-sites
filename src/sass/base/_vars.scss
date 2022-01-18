@@ -21,8 +21,10 @@ $grid-width-1200: 1200px;
 $grid-width-1000: 1000px;
 $grid-width-800: 800px;
 
-$first-main-color: #0f58fb;
-$second-main-color: #ec008c;
+$first-main-color: var(--primary);
+$first-main-color-rgb: var(--primaryrgb);
+$second-main-color: var(--secondary);
+$second-main-color-rgb: var(--secondaryrgb);
 $elements-dark-background-color: #212121;
 $default-background-color: #fff;
 $default-elements-background-color: #efefef;
