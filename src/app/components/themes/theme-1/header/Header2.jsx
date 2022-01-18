@@ -23,13 +23,13 @@ class Header2 extends React.Component {
     this._isMounted = true;
     this.handleMenu();
     window.addEventListener('resize', this.handleResize.bind(this),false);
-    window.addEventListener('scroll', this.handleScroll.bind(this),false);
+    // window.addEventListener('scroll', this.handleScroll.bind(this),false);
 
   }
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("resize", this.handleResize.bind(this));
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
+    // window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
   handleScroll = () => {
     const _app = document.getElementById("App");

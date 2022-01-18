@@ -307,6 +307,17 @@ html,body {
 #App {
 	min-height: 100vh;
 }
+.edgtf-btn.edgtf-btn-outline {
+	color: $default-text-color;
+}
+.edgtf-btn.edgtf-btn-outline:hover {
+	background: $first-main-color;
+	border-color: $first-main-color;
+	color: $white;
+}
+.edgtf-parallax-section-holder {
+	transition: none !important;
+}
 .edgtf-comment-holder {
 	margin: 0 0 73px;
 	padding-top: 8px;
@@ -326,6 +337,7 @@ html,body {
 			padding: 0;
 		}
 	}
+
 	.edgtf-comment-text {
 		padding: 0 0 0 110px;
 		min-height: 85px;
@@ -1335,8 +1347,7 @@ $z-index:$back-to-top-size / 2;
 		}
 		&:hover {
 		> .nav-link {
-			background: $white;
-			color: $black;
+			background: $first-main-color;
 			}	
 		}
 	}
@@ -1693,7 +1704,7 @@ $z-index:$back-to-top-size / 2;
 		a {
 			color: $white;
 			&:hover {
-				color: $link;
+				color: $first-main-color;
 			}
 		}
 	}
@@ -1716,7 +1727,6 @@ $z-index:$back-to-top-size / 2;
 .ebs-scroll-menu {
 	overflow: hidden;
 	#App {
-		background: $black;
 		> div:not(#ebs-header-master),.ebs-logo-main,.navbar-toggler {
 			filter: blur(20px);
 		}
@@ -2014,7 +2024,7 @@ $z-index:$back-to-top-size / 2;
 	overflow: hidden;
 	transition: all ease-in-out 0.4s;
 	z-index: 9999;
-	background: rgba(#0C1536,0.75);
+	background: rgba($black,0.75);
 	.ebs-container-flex {
 		@media (min-width: 991px) {
 		align-items: center;
@@ -2349,5 +2359,11 @@ $z-index:$back-to-top-size / 2;
 	.ebs-logo-main,.navbar-light .navbar-toggler {
 		opacity: 0;
 		visibility: hidden;
+	}
+}
+#typewriter {
+	color: $first-main-color;
+	+ span {
+		color: $first-main-color;
 	}
 }

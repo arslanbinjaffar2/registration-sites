@@ -32,7 +32,7 @@ class Header1 extends React.Component {
   }
   handleScroll = () => {
     const _app = document.getElementById("App");
-    if (window.scrollY > 350) {
+    if (window.scrollY > 250) {
       _app.classList.add("ebs-header-sticky");
       _app.style.paddingTop = document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight +'px'
     } else {
