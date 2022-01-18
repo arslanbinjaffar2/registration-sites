@@ -307,6 +307,9 @@ html,body {
 #App {
 	min-height: 100vh;
 }
+a:hover {
+	color: $second-main-color;
+}
 .edgtf-btn.edgtf-btn-outline {
 	color: $default-text-color;
 }
@@ -314,6 +317,11 @@ html,body {
 	background: $first-main-color;
 	border-color: $first-main-color;
 	color: $white;
+}
+.edgtf-btn.edgtf-btn-custom-hover-color:hover {
+	background: $first-main-color !important;
+	border-color: $first-main-color !important;
+	color: $white !important;
 }
 .edgtf-parallax-section-holder {
 	transition: none !important;
@@ -1513,20 +1521,28 @@ $z-index:$back-to-top-size / 2;
 }
 
 
-.ebs-custom-section-html figure.image {
+.ebs-custom-section-html figure.image,
+.edgtf-post-text-inner figure.image {
 	margin: 0 0 20px 0;
 	padding: 10px;
 	background: rgba(0,0,0,0.05);
 	outline: solid 1px #ccc;
 	text-align: center;
 	}
-.ebs-custom-section-html figure.image[style="float: left;"] {
+.ebs-custom-section-html figure.image[style="float: left;"],
+.edgtf-post-text-inner figure.image[style="float: left;"],
+.ebs-custom-section-html figure.image[style="float: left"],
+.edgtf-post-text-inner figure.image[style="float:left"] {
 	margin: 0 20px 20px 0;
 }
-.ebs-custom-section-html figure.image[style="float: right;"] {
+.ebs-custom-section-html figure.image[style="float: right;"],
+.edgtf-post-text-inner figure.image[style="float: right;"],
+.ebs-custom-section-html figure.image[style="float: right"],
+.edgtf-post-text-inner figure.image[style="float:right"] {
 	margin: 0 0 20px 20px;
 }
-.ebs-custom-section-html figure.image figcaption {
+.ebs-custom-section-html figure.image figcaption,
+.edgtf-post-text-inner figure.image figcaption {
 	padding-top: 10px;
 }
 .ebs-login-screen {
@@ -2366,4 +2382,11 @@ $z-index:$back-to-top-size / 2;
 	+ span {
 		color: $first-main-color;
 	}
+}
+.page-item.active .page-link {
+	background-color: $first-main-color;
+	border-color: $first-main-color;
+}
+.page-link {
+	color: $first-main-color;
 }

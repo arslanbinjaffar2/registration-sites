@@ -1,9 +1,11 @@
 import {Link} from "react-router-dom";
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import TruncateMarkup from 'react-truncate-markup';
+
 const Variation1 = ({news, event_url, makeNewDetailURL}) => {
   const [sidebar, setSidebar] = useState(false)
   return (
-    <div style={{paddingTop: '80px'}} className='edgtf-container'>
+    <div style={{paddingTop: '30px'}} className='edgtf-container'>
        <div className="edgtf-container-inner">
          <div className={`${sidebar ? 'edgtf-two-columns-75-25' : 'edgtf-full-width-inner'} clearfix`}>
 
@@ -30,7 +32,10 @@ const Variation1 = ({news, event_url, makeNewDetailURL}) => {
                                 {item.created_at}
                               </div>
                             </div>
-                            <p itemProp="description" className="edgtf-post-excerpt" dangerouslySetInnerHTML = {{__html:item.body}} />
+                            
+                            <TruncateMarkup lines={3}>
+                              <p className="edgtf-post-excerpt">{item.body.replace(/<(.|\n)*?>/g, '')}</p>
+                            </TruncateMarkup>
                           </div>
                         </div>
                       </div>
