@@ -9,13 +9,12 @@ import Video from "@/modules/Video";
 import Exhibitor from "@/modules/Exhibitor";
 import SocialShare from "@/themes/theme-1/social/SocialShare";
 import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
-import Map from "./modules/Map";
+import Map from "@/modules/Map";
 import React from "react";
-import { globalSelector } from "../../store/Slices/GlobalSlice";
-import { eventSelector } from "../../store/Slices/EventSlice";
+import { globalSelector } from "store/Slices/GlobalSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
-import { Helmet } from "react-helmet";
 const Index = () => {
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
@@ -40,7 +39,7 @@ const Index = () => {
               return <Program homePage={true} key={i} />;
             else if (section.alias === "sponsors")
               return <Sponsor homePage={true} key={i} />;
-            else if (section.alias === "top_banner") return <Banner />;
+            else if (section.alias === "banner") return <Banner />;
             else if (section.alias === "register_now")
               return <div key={i}></div>;
             else if (section.alias === "exhibitors")
