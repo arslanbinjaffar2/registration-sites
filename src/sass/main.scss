@@ -298,8 +298,9 @@
 /* ==========================================================================
    #Comments styles - start
    ========================================================================== */
-	 @import 'loader.scss';
-
+	@import 'loader.scss';
+	@import './photoswipe/photoswipe.css';
+	@import './photoswipe/default-skin/default-skin.css';
 html,body {
 	min-height: 100%;
 }
