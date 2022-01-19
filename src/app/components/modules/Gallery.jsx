@@ -79,20 +79,17 @@ const Gallery = (props) => {
       {data && data.data.length > 0 ? (
         <React.Fragment>
           <Component photos={data.data} />
-
-          <div className="container pb-5 p-0 pt-5 text-center">
-            {showPagination && (
-              <UiFullPagination
-                total={data.meta.total}
-                perPage={data.meta.per_page}
-                currentPage={page}
-                onPageChange={(page) => {
-                  onPageChange(page);
-                }}
-                fetchingData={isFetching}
-              />
-            )}
-          </div>
+          {showPagination && (
+            <UiFullPagination
+              total={data.meta.total}
+              perPage={data.meta.per_page}
+              currentPage={page}
+              onPageChange={(page) => {
+                onPageChange(page);
+              }}
+              fetchingData={isFetching}
+            />
+          )}
         </React.Fragment>
       ) :  home ? null : (
         <div>No Photos found</div>
