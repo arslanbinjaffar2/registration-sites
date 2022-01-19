@@ -15,6 +15,7 @@ import { programApi } from "./services/program";
 import { photoApi } from "./services/photo";
 import { cmsPageApi } from "./services/cmspage";
 import { newsApi } from "./services/news";
+import { videoApi } from "./services/video";
 export const store = configureStore({
   reducer: {
     event: eventReducer,
@@ -30,6 +31,7 @@ export const store = configureStore({
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,
     [photoApi.reducerPath]: photoApi.reducer,
+    [videoApi.reducerPath]: videoApi.reducer,
     [cmsPageApi.reducerPath]: cmsPageApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },
@@ -40,7 +42,8 @@ export const store = configureStore({
       sponsorApi.middleware,
       cmsPageApi.middleware,
       photoApi.middleware,
-      newsApi.middleware
+      newsApi.middleware,
+      videoApi.middleware
     ),
 });
 setupListeners(store.dispatch);

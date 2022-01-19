@@ -22,7 +22,7 @@ const News = (props) => {
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["news"]);
   });
-  const limit = 1;
+  const limit = 10;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]

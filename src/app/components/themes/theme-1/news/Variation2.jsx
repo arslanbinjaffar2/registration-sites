@@ -74,7 +74,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
               </div>
             </div>
           </div>
-
+          {news.length > 0 &&  loadMore()}
           {sidebar && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
