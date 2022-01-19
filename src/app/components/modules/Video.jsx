@@ -4,7 +4,7 @@ import {
   incrementLoadedSection,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import { useGetPhotosQuery } from "store/services/photo";
+import { useGetVideosQuery } from "store/services/video";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,7 +48,7 @@ const Video = (props) => {
     }
   }, []);
 
-  const { data, isFetching, isSuccess } = useGetPhotosQuery({ eventUrl, page });
+  const { data, isFetching, isSuccess } = useGetVideosQuery({ eventUrl, page });
 
   useEffect(() => {
     if (initialMount.current) {
