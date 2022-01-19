@@ -78,29 +78,21 @@ const Gallery = (props) => {
     <Suspense fallback={<div></div>}>
       {data && data.data.length > 0 ? (
         <React.Fragment>
-          {showPagination && (
-            <UiPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )}
           <Component photos={data.data} />
-          {showPagination && (
-            <UiFullPagination
-              total={data.meta.total}
-              perPage={data.meta.per_page}
-              currentPage={page}
-              onPageChange={(page) => {
-                onPageChange(page);
-              }}
-              fetchingData={isFetching}
-            />
-          )}
+
+          <div className="container pb-5 p-0 pt-5 text-center">
+            {showPagination && (
+              <UiFullPagination
+                total={data.meta.total}
+                perPage={data.meta.per_page}
+                currentPage={page}
+                onPageChange={(page) => {
+                  onPageChange(page);
+                }}
+                fetchingData={isFetching}
+              />
+            )}
+          </div>
         </React.Fragment>
       ) :  home ? null : (
         <div>No Photos found</div>
