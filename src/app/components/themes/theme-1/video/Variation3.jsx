@@ -1,20 +1,23 @@
 import React from "react";
-const Variation3 = ({ photos }) => {
+import { PortalWithState } from "react-portal";
+import Videopopup from "../../../Videopopup";
+
+const Variation3 = ({ videos }) => {
   const imgUrl = (photo) => {
-    if (photo.image && photo.image !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
+    if (photo.thumnail && photo.thumnail !== "") {
+      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
     } else {
       return "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"
     }
   };
   return (
-    <div style={{ padding: "80px 0 0" }} className="module-section">
+    <div style={{ padding: "40px 0" }} className="module-section">
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2 text-center">
             <div className="edgtf-title-section-holder mb-5">
               <h2 className="edgtf-title-with-dots edgtf-appeared">
-                Conference Gallery
+                Conference Video Gallery
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
@@ -22,10 +25,16 @@ const Variation3 = ({ photos }) => {
         </div>
         <div className="edgtf-portfolio-list-holder-outer">
           <div className="edgtf-portfolio-list-holder d-flex row">
-              {photos &&
-                photos.map((photo, i) => (
+              {videos &&
+                videos.map((photo, i) => (
                   <div key={i} className="col-md-4 col-sm-6">
-                        <div className="edgtf-image-with-text edgtf-image-with-text-above mb-30px">
+                        <PortalWithState closeOnOutsideClick closeOnEsc>
+                          {({ openPortal, closePortal, isOpen, portal }) => (
+                        <React.Fragment>
+                        <div onClick={openPortal} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px">
+                         <div className="ebs-video-button-inner ebs-right-top">
+                                <i className="fa fa-play-circle" aria-hidden="true"></i>
+                            </div>
                           <div className="edgtf-link-holder">
                             <div className="edgtf-iwt-image">
                               <img
@@ -47,6 +56,14 @@ const Variation3 = ({ photos }) => {
                             </div>
                           </div>
                         </div>
+                        {portal(
+                            <Videopopup
+                                url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
+                                onClose={closePortal} />
+                          )}
+                        </React.Fragment>
+                        )}
+                      </PortalWithState>
                   </div>
                 ))}
           </div>

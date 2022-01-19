@@ -1,11 +1,13 @@
 
 import React from "react";
 import Masonry from "react-masonry-css";
+import { PortalWithState } from "react-portal";
+import Videopopup from "../../../Videopopup";
 
-const Variation4 = ({ photos }) => {
+const Variation4 = ({ videos }) => {
   const imgUrl = (photo) => {
-    if (photo.image && photo.image !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
+    if (photo.thumnail && photo.thumnail !== "") {
+      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
     } else {
       return "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"
     }
@@ -30,22 +32,28 @@ const Variation4 = ({ photos }) => {
           </div>
         </div>
         <div className="gallerMasonry">
-          {photos && (
+          {videos && (
             <Masonry
               breakpointCols={breakpointColumnsObj}
               className="my-masonry-grid"
               columnClassName="my-masonry-grid_column"
             >
-              {photos &&
-                photos.map((photo, i) => (
+              {videos &&
+                videos.map((photo, i) => (
+                  // 
                   <div key={i} className="gallerMasonry">
-                 
-                      <figure> 
+                 <PortalWithState closeOnOutsideClick closeOnEsc>
+                    {({ openPortal, closePortal, isOpen, portal }) => (
+                     <React.Fragment>
+                      <figure onClick={openPortal}> 
                         <img
+                        style={{width: '100%'}}
                           src={imgUrl(photo)}
                           alt="g"
                         />
-                        
+                        <div className="ebs-video-button-inner ebs-right-top">
+                          <i className="fa fa-play-circle" aria-hidden="true"></i>
+                        </div>
                         <figcaption>
                           {photo.info && (
                             <div
@@ -63,7 +71,17 @@ const Variation4 = ({ photos }) => {
                           )}
                         </figcaption>
                       </figure>
+                      {portal(
+                            <Videopopup
+                                url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
+                                onClose={closePortal} />
+                          )}
+                        </React.Fragment>
+                        )}
+                      </PortalWithState>
+
                   </div>
+                  // 
                 ))}
             </Masonry>
           )}
