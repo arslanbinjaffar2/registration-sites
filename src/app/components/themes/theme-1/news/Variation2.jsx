@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, {useState} from "react";
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation2 = ({ news, event_url, makeNewDetailURL }) => {
+const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
   const [sidebar, setSidebar] = useState(false);
   return (
     <div style={{ paddingTop: "30px" }} className="edgtf-container">

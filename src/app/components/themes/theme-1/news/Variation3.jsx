@@ -3,7 +3,7 @@ import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation3 = ({ news, event_url, makeNewDetailURL }) => {
+const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
   const [sidebar, setSidebar] = useState(false);
   const breakpointColumnsObj = {
     default: sidebar ? 2 : 3,
