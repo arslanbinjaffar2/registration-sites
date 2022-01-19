@@ -7,6 +7,8 @@ import attendeeReducer from "./Slices/AttendeeSlice";
 import attendeeDetailReducer from "./Slices/AttendeeDetailSlice";
 import speakerDetailReducer from "./Slices/SpeakerDetailSlice";
 import mapReducer from "./Slices/MapSlice";
+import newsDetailReducer from "./Slices/NewsDetailSlice";
+import newsReducer from "./Slices/NewsSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -22,6 +24,8 @@ export const store = configureStore({
     attendeeDetail: attendeeDetailReducer,
     speakerDetail: speakerDetailReducer,
     map: mapReducer,
+    newsDetail: newsDetailReducer,
+    news: newsReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,

@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import React,{useState} from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation1 = ({news, event_url, makeNewDetailURL}) => {
+const Variation1 = ({news, event_url, makeNewDetailURL, loadMore}) => {
   const [sidebar, setSidebar] = useState(false)
   return (
     <div style={{paddingTop: '30px'}} className='edgtf-container'>
@@ -44,7 +44,7 @@ const Variation1 = ({news, event_url, makeNewDetailURL}) => {
               </div>
             </div>
            </div>
-
+           {news.length > 0 &&  loadMore()}
            {sidebar && <div className="edgtf-column2">
              <div className="edgtf-sidebar">
                <h4 className="edgtf-widget-title">Sidebar</h4>

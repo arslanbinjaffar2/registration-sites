@@ -1,9 +1,7 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { attendeeSelector, fetchAttendees } from "store/Slices/AttendeeSlice";
-import {
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
+import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -18,16 +16,14 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { attendees, loading, error, totalPages } = useSelector(attendeeSelector);
+  const { attendees, loading, error, totalPages } =
+    useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["attendee"]);
   });
-  const limit = props.homePage
-    ? event.speaker_settings.registration_site_limit
-    : 10;
-  const home = props.homePage ? props.homePage : false;
+  const limit = 10;
   const CustomComponent = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
     [event]
@@ -38,7 +34,9 @@ const Attendee = (props) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    dispatch(fetchAttendees(eventUrl, page, limit, search, initialMount.current, home));
+    dispatch(
+      fetchAttendees(eventUrl, page, limit, search, initialMount.current)
+    );
   }, [page, limit, search]);
 
   useEffect(() => {
@@ -57,7 +55,6 @@ const Attendee = (props) => {
     };
   }, [value]);
 
-
   const onPageChange = (page) => {
     console.log(page);
     if (page > 0) {
@@ -67,28 +64,41 @@ const Attendee = (props) => {
     }
   };
 
- 
-
   return (
     <Suspense fallback={<div></div>}>
       {attendees ? (
         <React.Fragment>
-          <CustomComponent attendees={attendees} event={event} searchBar={()=>{
-            return (
-              <div className={`container pb-5`}>
-                <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
-                <em className="fa fa-search"></em>
+          <CustomComponent
+            attendees={attendees}
+            event={event}
+            searchBar={() => {
+              return (
+                <div className={`container pb-5`}>
+                  <div className="ebs-form-control-search">
+                    <input
+                      className="form-control"
+                      placeholder="Search..."
+                      type="text"
+                      onChange={(e) => setValue(e.target.value)}
+                    />
+                    <em className="fa fa-search"></em>
+                  </div>
                 </div>
-              </div>
-            )
-          }} 
-          loadMore={()=>{
-            return (
-              <div className="container pb-5 p-0 pt-5 text-center">
-                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color" disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
-              </div>
-            )
-          }}
+              );
+            }}
+            loadMore={() => {
+              return (
+                <div className="container pb-5 p-0 pt-5 text-center">
+                  <button
+                    className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
+                    disabled={page > totalPages ? true : false}
+                    onClick={(e) => onPageChange(page + 1)}
+                  >
+                    Load More
+                  </button>
+                </div>
+              );
+            }}
           />
         </React.Fragment>
       ) : null}

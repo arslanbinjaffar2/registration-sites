@@ -7,7 +7,7 @@ import Sponsor from "@/modules/Sponsor";
 // import Timetable from '@/modules/Timetable';
 import Video from "@/modules/Video";
 import Exhibitor from "@/modules/Exhibitor";
-import SocialShare from "@/themes/theme-1/social/SocialShare";
+import SocialShare from "@/modules/SocialShare";
 import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
 import Map from "@/modules/Map";
 import React from "react";
