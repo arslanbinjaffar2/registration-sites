@@ -298,8 +298,9 @@
 /* ==========================================================================
    #Comments styles - start
    ========================================================================== */
-	 @import 'loader.scss';
-
+@import 'loader.scss';
+@import './photoswipe/photoswipe.css';
+@import './photoswipe/default-skin/default-skin.css';
 html,body {
 	min-height: 100%;
 }
@@ -2288,7 +2289,7 @@ $z-index:$back-to-top-size / 2;
 	}
 }
 #ebs-header-master {
-	z-index: 9999;
+	z-index: 200;
 }
 
 .ebs-header-sticky {
@@ -2296,7 +2297,7 @@ $z-index:$back-to-top-size / 2;
 		position: fixed !important;
 		width: 100%;
 		top: 0;
-		z-index: 9999;
+		z-index: 200;
 		left: 0;
 		animation: menu-popup 0.8s ease-out forwards;
 		.navbar {
