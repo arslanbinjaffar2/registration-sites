@@ -15,6 +15,7 @@ import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
+import RegisterNow from "@/modules/RegisterNow";
 const Index = () => {
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
@@ -41,7 +42,7 @@ const Index = () => {
               return <Sponsor homePage={true} key={i} />;
             else if (section.alias === "bottom_banner") return <Banner key={i} />;
             else if (section.alias === "register_now")
-              return <div key={i}></div>;
+              return <RegisterNow key={i}/>;
             else if (section.alias === "exhibitors")
               return <Exhibitor homePage={true} key={i} />;
             else if (section.alias === "speakers")
