@@ -1878,6 +1878,11 @@ $z-index:$back-to-top-size / 2;
 					margin-top: -7px;
 				}
 			}
+			&.active {
+				&::after {
+					content: '\f077';
+				}
+			}
 		}
 		.dropdown-menu {
 			position: static;
@@ -1898,6 +1903,27 @@ $z-index:$back-to-top-size / 2;
 					color: #888;
 					@include phone-landscape {
 						font-size: 14px;
+					}
+					&.active {
+						color: $first-main-color
+					}
+				}
+				span.nav-link {
+					&::after {
+						font-size: 16px;
+						@include phone-landscape {
+							font-size: 12px;
+						}
+					}
+				}
+			}
+			.dropdown-menu {
+				.nav-item {
+					.nav-link {
+						font-size: 16px;
+						@include phone-landscape {
+							font-size: 13px;
+						}
 					}
 				}
 			}
@@ -2161,6 +2187,11 @@ $z-index:$back-to-top-size / 2;
 					font-weight: 400;
 					margin-top: -8px;	
 				}
+				&.active {
+					&::after {
+						content: '\f077';
+					}
+				}
 			}
 			.dropdown-menu {
 				position: static;
@@ -2171,15 +2202,32 @@ $z-index:$back-to-top-size / 2;
 				display: block;
 				text-align: left;
 				max-height: 0;
-				padding: 0;
+				padding: 0 0 0 30px;
 				overflow: hidden;
 				transition: max-height 0.2s ease-out;
 				.nav-item {
 					.nav-link {
-						padding-left: 30px;
 						font-size: 18px;
 						font-weight: 400;
 						color: #1994A2;
+					}
+					span.nav-link {
+						&::after {
+							font-size: 16px;
+						}
+						&.active {
+							color: $white;
+						}
+					}
+				}
+				.dropdown-menu { 
+					padding-left: 15px;
+					.nav-item {
+						.nav-link {
+							font-size: 15px;
+							padding-top: 6px;
+							padding-bottom: 6px;
+						}
 					}
 				}
 			}
@@ -2207,7 +2255,14 @@ $z-index:$back-to-top-size / 2;
 	}
 
 }
-
+.ebs-header-sticky .ebs-header-main-wrapper.ebs-header-shadow  {
+	#navbarSupportedContentFixedTheme {
+		.navbar-nav > .nav-item {
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+		}
+	}
+}
 
 .ebs-main-header-v7 {
 	#navbarSupportedContentFixed {
@@ -2260,6 +2315,12 @@ $z-index:$back-to-top-size / 2;
 						.nav-link {
 							font-size: 15px;
 							padding: 6px 0;
+						}
+						span.nav-link {
+							padding-right: 22px;
+							&::after {
+								font-size: 14px;
+							}
 						}
 					}
 				}

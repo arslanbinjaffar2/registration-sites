@@ -1148,6 +1148,16 @@
         padding-top: 90px;
       }
     }
+    .ebs-ticket-remaning .ebs-ticket-counter {
+      @include ipad-portrait-min {
+        font-size: 80px;
+      }
+    }
+    @include ipad-portrait {
+      .ebs-countdown-wrapp {
+        padding: 0 0 40px 0;
+      }
+    }
   }
   &.ebs-register-v3 {
     @include ipad-portrait-min {
@@ -1157,7 +1167,7 @@
         }
       
       .ebs-description-area {
-        text-align-last: left;
+        text-align: left;
       }
     }
   }

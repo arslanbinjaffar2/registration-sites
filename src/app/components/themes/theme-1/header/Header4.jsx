@@ -62,34 +62,27 @@ class Header4 extends React.Component {
     var panel = _this.nextElementSibling;
     var panelParent = _this.parentElement.parentElement;
     var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
-    var courseAccordionActive = document.getElementsByClassName(
-      "ebs-accordion-button active"
-    );
-
-
-    /*if pannel is already open - minimize*/
-    if(panel)
-    { 
+    if (panel) {
+      /*if pannel is already open - minimize*/
       if (panel.style.maxHeight) {
-        //minifies current pannel if already open
-        panel.style.maxHeight = null;
-        //removes the 'active' class as toggle didnt work on browsers minus chrome
+          panel.style.maxHeight = null;
         _this.classList.remove("active");
-    } else {
-     
-      for (let i = 0; i < courseAccordionActive.length; i++) {
-          
-          courseAccordionActive[i].classList.remove('active');
-      }
-      panel.style.maxHeight = panel.scrollHeight + "px";
-      //adds the 'active' addition to the css.
-      for (let i = 0; i < coursePanel.length; i++) {
-        if(coursePanel[i] === panelParent){
-          coursePanel[i].style.maxHeight = (coursePanel[i].scrollHeight + panel.scrollHeight) + "px";
+      } else {
+
+        //opens the specified pannel
+        panel.style.maxHeight = panel.scrollHeight + "px";
+
+        for (var iii = 0; iii < coursePanel.length; iii++) {
+          // coursePanel[iii].style.maxHeight = null;
+          if (coursePanel[iii] === panelParent) {
+            coursePanel[iii].style.maxHeight =
+              coursePanel[iii].scrollHeight + panel.scrollHeight + "px";
+          }
         }
+        //adds the 'active' addition to the css.
+        _this.classList.add("active");
       }
-      _this.classList.add("active");
-    }}
+    }
   };
   handleFunction = () => {
     document

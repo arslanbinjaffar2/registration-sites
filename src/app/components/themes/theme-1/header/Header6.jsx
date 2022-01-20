@@ -77,23 +77,13 @@ class Header6 extends React.Component {
     var panel = _this.nextElementSibling;
     var panelParent = _this.parentElement.parentElement;
     var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
-    var courseAccordionActive = document.getElementsByClassName(
-      "ebs-accordion-button active"
-    );
     if (panel) {
       /*if pannel is already open - minimize*/
       if (panel.style.maxHeight) {
-        //minifies current pannel if already open
-        panel.style.maxHeight = null;
-        //removes the 'active' class as toggle didnt work on browsers minus chrome
+          panel.style.maxHeight = null;
         _this.classList.remove("active");
       } else {
-        //pannel isnt open...
-        //goes through the buttons and removes the 'active' css (+ and -)
-        for (var ii = 0; ii < courseAccordionActive.length; ii++) {
-          courseAccordionActive[ii].classList.remove("active");
-        }
-        //Goes through and removes 'activ' from the css, also minifies any 'panels' that might be open
+
         //opens the specified pannel
         panel.style.maxHeight = panel.scrollHeight + "px";
 
@@ -222,9 +212,7 @@ class Header6 extends React.Component {
                                           menu.alias ===
                                             "general_information") && (
                                           <span
-                                            onClick={this.accordionToggle.bind(
-                                              this
-                                            )}
+                                            onClick={this.accordionToggle.bind(this)}
                                             className="nav-link ebs-accordion-button"
                                           >
                                             <span className="ebs-nav-item">
@@ -323,9 +311,7 @@ class Header6 extends React.Component {
                                                     key={pItem.id}
                                                   >
                                                     <span
-                                                      onClick={this.accordionToggle.bind(
-                                                        this
-                                                      )}
+                                                      onClick={this.accordionToggle.bind(this)}
                                                       className="nav-link ebs-accordion-button"
                                                     >
                                                       <span className="ebs-nav-item">
@@ -414,9 +400,7 @@ class Header6 extends React.Component {
                                                     key={aItem.id}
                                                   >
                                                     <span
-                                                      onClick={this.accordionToggle.bind(
-                                                        this
-                                                      )}
+                                                      onClick={this.accordionToggle.bind(this)}
                                                       className="nav-link ebs-accordion-button"
                                                     >
                                                       <span className="ebs-nav-item">
@@ -505,9 +489,7 @@ class Header6 extends React.Component {
                                                     key={gItem.id}
                                                   >
                                                     <span
-                                                      onClick={this.accordionToggle.bind(
-                                                        this
-                                                      )}
+                                                      onClick={this.accordionToggle.bind(this)}
                                                       className="nav-link ebs-accordion-button"
                                                     >
                                                       <span className="ebs-nav-item">
