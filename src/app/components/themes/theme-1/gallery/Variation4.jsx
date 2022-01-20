@@ -55,7 +55,7 @@ const Variation4 = ({ photos }) => {
                     <Item 
                       original={imgUrl(photo)}
                       thumbnail={imgUrl(photo)}
-                      title={Object.keys(photo.info)}
+                      title={`${Object.keys(photo.info)}`}
                       width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
                       height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                       >
@@ -78,7 +78,7 @@ const Variation4 = ({ photos }) => {
                                 lineHeight: "1.2",
                               }}
                             >
-                              {Object.keys(photo.info)}
+                              {`${Object.keys(photo.info)}`}
                             </div>
                           )}
                         </figcaption>

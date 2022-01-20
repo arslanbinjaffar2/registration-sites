@@ -141,6 +141,11 @@
         @content;
     }
 }
+@mixin ipad-portrait-min {
+    @media only screen and (min-width: $ipad-portrait) {
+        @content;
+    }
+}
 
 @mixin phone-landscape {
     @media only screen and (max-width: $phone-landscape) {

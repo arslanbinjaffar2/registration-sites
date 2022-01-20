@@ -1100,3 +1100,65 @@
     }
   }
 }
+
+.ebs-register-now-sec {
+  text-align: center;
+  .ebs-ticket-remaning {
+    padding-bottom: 25px;
+    .ebs-ticket-counter {
+      font-size: 65px;
+      font-weight: 600;
+      color: $first-main-color;
+      line-height: 1;
+      padding-bottom: 10px;
+    }
+    .ebs-ticket-status {
+      font-size: 18px;
+      color: $default-text-color;
+    }
+  }
+  .ebs-countdown-wrapp {
+    max-width: 750px;
+    padding: 50px 0;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+    .edgtf-countdown {
+      display: inline-block;
+      padding: 0 15px;
+      @include ipad-landscape-min {
+        min-width: 150px;
+      }
+    }
+  }
+  .ebs-caption-box {
+    .ebs-description-area {
+      padding-bottom: 50px; 
+    }
+  }
+  &.ebs-register-v2 {
+    color: $white;
+    .ebs-countdown-wrapp {
+      .countdown-amount {
+        color: rgba($white, 0.8);
+      }
+    }
+    .ebs-countdown-wrapp {
+      @include ipad-portrait-min {
+        padding-top: 90px;
+      }
+    }
+  }
+  &.ebs-register-v3 {
+    @include ipad-portrait-min {
+      .ebs-description-area, 
+        .ebs-ticket-remaning {
+          padding-bottom: 0;
+        }
+      
+      .ebs-description-area {
+        text-align-last: left;
+      }
+    }
+  }
+}

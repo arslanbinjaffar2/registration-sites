@@ -2,7 +2,6 @@ import React from "react";
 import { PortalWithState } from "react-portal";
 import Videopopup from "../../../Videopopup";
 const Variation1 = ({ videos }) => {
-  console.log(videos)
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
