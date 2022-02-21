@@ -18,7 +18,7 @@ const loadModule = (theme, variation) => {
 const Speaker = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { speakers, loading, error, totalPages,  } = useSelector(speakerSelector);
+  const { speakers, totalPages,  } = useSelector(speakerSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 

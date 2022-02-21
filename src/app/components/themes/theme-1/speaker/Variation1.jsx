@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Attendee from "../../../modules/attendees/Attendee";
 const Variation1 = ({ speakers, listing, searchBar, loadMore, event }) => {
   return (
     <div

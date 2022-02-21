@@ -6,7 +6,6 @@ import {
 } from "store/Slices/GlobalSlice";
 import { useGetPhotosQuery } from "store/services/photo";
 import UiFullPagination from "../ui-components/UiFullPagination";
-import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");

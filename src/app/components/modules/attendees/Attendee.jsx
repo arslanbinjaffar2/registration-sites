@@ -16,7 +16,7 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { attendees, loading, error, totalPages } =
+  const { attendees, totalPages } =
     useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;

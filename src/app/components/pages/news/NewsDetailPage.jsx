@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import NewsDetail from '../../modules/news/NewsDetail';
 import {
     globalSelector,

@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { attendeeDetailSelector, fetchAttendeeDetail } from "store/Slices/AttendeeDetailSlice";
 import {
@@ -17,7 +17,7 @@ const loadModule = (theme, variation) => {
 const AttendeeDetail = (props) => {
   const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
-  const { attendee, loading, error,  } = useSelector(attendeeDetailSelector);
+  const { attendee } = useSelector(attendeeDetailSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   // let moduleVariation = event.theme.modules.filter(function (module, i) {

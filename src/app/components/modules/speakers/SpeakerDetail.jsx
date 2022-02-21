@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { speakerDetailSelector, fetchSpeakerDetail } from "store/Slices/SpeakerDetailSlice";
 import {

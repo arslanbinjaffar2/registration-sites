@@ -1,9 +1,9 @@
-import React, { Suspense, useEffect, useMemo } from "react";
+import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 // import {
 //   incrementLoadCount,
 // } from "store/Slices/GlobalSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 

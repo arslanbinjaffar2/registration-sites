@@ -3,7 +3,6 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { newsDetailSelector, fetchNewsDetail } from "store/Slices/NewsDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
-import PageLoader from "@/ui-components/PageLoader";
 
 import { withRouter } from "react-router";
 const loadModule = (theme, variation) => {
@@ -15,7 +14,7 @@ const loadModule = (theme, variation) => {
 const NewsDetail = (props) => {
   const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
-  const { news, loading, error } = useSelector(newsDetailSelector);
+  const { news } = useSelector(newsDetailSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
    // let moduleVariation = event.theme.modules.filter(function (module, i) {
