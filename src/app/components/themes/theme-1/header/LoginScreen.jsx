@@ -25,6 +25,9 @@ class LoginScreen extends React.Component {
               <label className="ebs-label-input">
                 <span className="ebs-label-title">Password</span>
                 <input className="ebs-input" type="password" autoComplete="false" placeholder="*********" />
+                <span className="ebs-show-password">
+                  <img src={require('img/ico-eye.svg')} alt="" />
+                </span>
               </label>
               <div className="ebs-forgot-password"><span onClick={() => this.setState({step: 2})}>Forgot password</span></div>
               <div className="ebs-form-accept">
@@ -60,7 +63,7 @@ class LoginScreen extends React.Component {
                 <span className="ebs-label-title">Email Address</span>
                 <input className="ebs-input" type="email" autoComplete="false" placeholder="Youraddres@email.com" />
               </label>
-              <div style={{paddingTop: 50,paddingBottom: 50}} className="ebs-btn-wrapp">
+              <div style={{paddingTop: 40,paddingBottom: 20}} className="ebs-btn-wrapp">
                 <button onClick={() => this.setState({step: 3})} className="btn btn-default">Send</button>
               </div>
             </div>
@@ -70,16 +73,29 @@ class LoginScreen extends React.Component {
             <span onClick={() => this.props.onClick()} className="btn-inner-close">
               <img src={require('img/remove-icon-x2.png')} alt="" />
             </span>
-            <h2 className="ebs-login-title">Reset password</h2>
+            <h2 className="ebs-login-title">Verification</h2>
             <p className="ebs-login-desc">Enter the code you will receive a code to reset the password , if you don’t get and any code click on resend code again.</p>
             <div className="ebs-login-from">
               <label className="ebs-label-input">
                 <span className="ebs-label-title">Enter code</span>
-                <input className="ebs-input" type="text" autoComplete="false"  />
+                <div className="ebs-verfication-code">
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                  <input className="ebs-input" type="text" autoComplete="false"  />
+                </div>
               </label>
-              <div style={{paddingTop: 50,paddingBottom: 35}} className="ebs-btn-wrapp">
+              <div style={{padding: 5}} className="ebs-label-input">
+                <span className="ebs-label-title">Code will expire after</span>
+                <div className="ebs-verfication-timer">
+                 <strong>O4 : 48</strong>
+                </div>
+              </div>
+              <div style={{paddingTop: 10,paddingBottom: 20}} className="ebs-btn-wrapp">
+                <div style={{paddingBottom: 10}} className="ebs-forgot-password"><span>Resend code again</span></div>
                 <button onClick={() => this.setState({step: 4})} className="btn btn-default">Reset Password</button>
-                <div style={{paddingTop: 10}} className="ebs-forgot-password"><span>Resend code again</span></div>
               </div>
             </div>
           </div>}

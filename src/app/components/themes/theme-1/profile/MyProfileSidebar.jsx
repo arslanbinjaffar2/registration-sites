@@ -8,16 +8,16 @@ const MyProfileSidebar = () =>  {
       console.log('un mounted');
     }
 }, [])
-this.handleClick = () => {
+const handleClick = () => {
   setstatetoggleMenu(!toggleMenu);
 }
   return (
     <React.Fragment>
-     {!toggleMenu && <div onClick={this.handleClick.bind(this)} className="ebs-sideber-icon">
+     {!toggleMenu && <div onClick={handleClick} className="ebs-sideber-icon">
        <img src={require('img/ico-menu.svg')} alt="" />
      </div>}
      {toggleMenu && <div className="ebs-sidebar-account">
-      <div onClick={this.handleClick.bind(this)} className="ebs-sideber-icon-inner">
+      <div onClick={handleClick} className="ebs-sideber-icon-inner">
         <img src={require('img/ico-menu.svg')} alt="" />
         My Account
       </div>

@@ -25,6 +25,7 @@ import NewsDetailPage from "@/pages/news/NewsDetailPage";
 import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
 import MyProfile from "@/themes/theme-1/profile/MyProfile";
 import MyProfileEdit from "@/themes/theme-1/profile/MyProfileEdit";
+import MyBilling from "@/themes/theme-1/profile/MyBilling";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -131,6 +132,11 @@ class RouterOutlet extends React.Component {
               component={MyProfileEdit}
               exact
               path="/:event_url/profile/edit"
+            />
+            <MasterLayoutMyAccount
+              component={MyBilling}
+              exact
+              path="/:event_url/profile/my-billing"
             />
             <Route
               component={AttendeesPage}

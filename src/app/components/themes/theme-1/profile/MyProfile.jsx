@@ -71,37 +71,6 @@ const MyProfile = () =>  {
                           <strong>Passport no:</strong>
                           <span>87UI87-786775GH</span>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="ebs-profile-information">
-                        <div className="ebs-info-row">
-                          <strong>Birthday:</strong>
-                          <span>August 02, 1986</span>
-                        </div>
-                        <div className="ebs-info-row">
-                          <strong>Place of birth:</strong>
-                          <span>Denmark</span>
-                        </div>
-                        <div className="ebs-info-row">
-                          <strong>Last name Passport:</strong>
-                          <span>Noten</span>
-                        </div>
-                        <div className="ebs-info-row">
-                          <strong>Date of Expiry Passport:</strong>
-                          <span>June 08, 2020</span>
-                        </div>
-                        <div className="ebs-info-row">
-                          <strong>Spoken Languages :</strong>
-                          <span>English,    Danish,    Arabic</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="ebs-title">Professional Details:</h3>
-                  <div className="row d-flex">
-                    <div className="col-sm-6">
-                      <div className="ebs-profile-information">
                         <div className="ebs-info-row">
                           <strong>Age:</strong>
                           <span>27 years</span>
@@ -146,16 +115,26 @@ const MyProfile = () =>  {
                           <strong>Spoken Languages :</strong>
                           <span>English,    Danish,    Arabic</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="ebs-title">Address:</h3>
-                  <div className="row d-flex">
-                    <div className="col-sm-6">
-                      <div className="ebs-profile-information">
-                        <p className="ebs-address-profile">
-                        2229 Spruce Drive Bridgeville, Pennsylvania 15017, <br /> United States of America.
-                        </p>
+                        <div className="ebs-info-row">
+                          <strong>Birthday:</strong>
+                          <span>August 02, 1986</span>
+                        </div>
+                        <div className="ebs-info-row">
+                          <strong>Place of birth:</strong>
+                          <span>Denmark</span>
+                        </div>
+                        <div className="ebs-info-row">
+                          <strong>Last name Passport:</strong>
+                          <span>Noten</span>
+                        </div>
+                        <div className="ebs-info-row">
+                          <strong>Date of Expiry Passport:</strong>
+                          <span>June 08, 2020</span>
+                        </div>
+                        <div className="ebs-info-row">
+                          <strong>Spoken Languages :</strong>
+                          <span>English,    Danish,    Arabic</span>
+                        </div>
                       </div>
                     </div>
                   </div>

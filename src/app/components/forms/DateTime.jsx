@@ -1,22 +1,14 @@
-import React, { ReactElement, FC} from 'react';
+import React from 'react';
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 
-type Props = {
-  value: any;
-  onChange: any;
-  onBlur: any;
-  placeholder: any;
-  required: any;
-  showtime: boolean;
-  showdate: boolean;
-}
 
-class MyDTPicker extends React.Component<Props> {
+
+class MyDTPicker extends React.Component {
   render() {
     return <Datetime onChange={this.props.onChange} value={this.props.value} timeFormat={this.props.showtime} dateFormat={this.props.showdate} inputProps={{ placeholder: this.props.placeholder, required: this.props.required }} renderInput={this.renderInput} />;
   }
-  renderInput(props:any) {
+  renderInput(props) {
     return (
       <div className="DayPickerInput">
       <label className="label-input">
@@ -28,20 +20,11 @@ class MyDTPicker extends React.Component<Props> {
   }
 }
 
-type DateTimeProps = {
-  label?: any;
-  value?: any;
-  showtime?: boolean;
-  showdate?: boolean;
-  onChange?: any;
-  required?: any;
-  toDate?: any;
-  fromDate?: any;
-}
 
-const DateTime: FC<DateTimeProps> = (props): ReactElement => {
+
+const DateTime = ({label,value,showtime,showdate,onChange,required,toDate,fromDate}) => {
   return (
-    <MyDTPicker onChange={props.onChange} value={props.value} showtime={props.showtime !== undefined ? props.showtime : false} showdate={props.showdate !== undefined ? props.showdate : true} placeholder={props.label} />
+    <MyDTPicker onChange={onChange} value={value} showtime={showtime !== undefined ? showtime : false} showdate={showdate !== undefined ? showdate : true} placeholder={label} />
   )
 };
 

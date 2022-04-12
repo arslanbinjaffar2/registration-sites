@@ -1,56 +1,43 @@
 /** @jsx jsx */
-import React, { ReactElement, FC, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Select from 'react-select';
 import { defaultTheme } from 'react-select';
 import { jsx } from '@emotion/react'
 
 const { colors } = defaultTheme;
 
-type MyProps = {
-  label?: any;
-  listitems?: any;
-  required?: any;
-  className?: any;
-  onChange?: any;
-  isSearchable?: any;
-  isDisabled?: any;
-  isMulti?: any;
-  selected?: any;
-  selectedlabel?: any;
-};
 
-const DropDown: FC<MyProps> = (props): ReactElement => {
 
-  const { label, listitems, required, onChange, className } = props;
+const DropDown = ({  label,  listitems,  required,  className,  onChange,  isSearchable,  isDisabled,  isMulti,  selected,  selectedlabel}) => {
 
   const [open, setOpen] = useState(false);
 
-  const [selected, setSelected] = useState(props.selected);
+  const [is_selected, setSelected] = useState(selected);
 
-  const [selectedlabel, setSelectedLabel] = useState(props.selectedlabel);
+  const [is_selectedlabel, setSelectedLabel] = useState(selectedlabel);
 
-  const [selectedOption, setSelectedOption] = useState(selected ? { label: props.selectedlabel, value: props.selected } : null);
+  const [selectedOption, setSelectedOption] = useState(selected ? { label: selectedlabel, value: selected } : null);
 
   const toggleOpen = () => {
     setOpen(!open);
   };
 
-  const isSearchable =
-    props.isSearchable !== undefined
-      ? props.isSearchable
+  const is_isSearchable =
+    isSearchable !== undefined
+      ? isSearchable
       : true;
 
-  const isDisabled =
-    props.isDisabled !== undefined
-      ? props.isDisabled
+  const is_isDisabled =
+    isDisabled !== undefined
+      ? isDisabled
       : false;
 
-  const isMulti =
-    props.isMulti !== undefined
-      ? props.isMulti
+  const is_isMulti =
+    isMulti !== undefined
+      ? isMulti
       : false;
 
-  const options = listitems.map((item: any, index: any) => {
+  const options = listitems.map((item, index) => {
     return {
       label: item.name,
       value: item.id,
@@ -59,14 +46,14 @@ const DropDown: FC<MyProps> = (props): ReactElement => {
   });
 
   const style = {
-    control: (base: any) => ({
+    control: (base) => ({
       ...base,
       border: 0,
       boxShadow: 'none'
     })
   };
 
-  const Blanket = (props: any) => (
+  const Blanket = (props) => (
     <div
       className="blanket-wrapper"
       {...props}
@@ -85,7 +72,7 @@ const DropDown: FC<MyProps> = (props): ReactElement => {
     </div>
   );
 
-  const Svg = (p: any) => (
+  const Svg = (p) => (
     <svg
       width="24"
       height="24"
@@ -97,26 +84,26 @@ const DropDown: FC<MyProps> = (props): ReactElement => {
   );
 
   useEffect(() => {
-    if (selected !== props.selected || selectedlabel !== props.selectedlabel) {
-      setSelected(props.selected);
-      setSelectedLabel(props.selectedlabel);
-      setSelectedOption({ label: props.selectedlabel, value: props.selected });
+    if (is_selected !== selected || is_selectedlabel !== selectedlabel) {
+      setSelected(selected);
+      setSelectedLabel(selectedlabel);
+      setSelectedOption({ label: selectedlabel, value: selected });
       setOpen(false);
     }
-  }, [props, selected, selectedlabel]);
+  }, [ is_selected, is_selectedlabel]);
 
   return (
     <React.Fragment>
       {!isMulti ? (
-        <div className={`${selectedOption && !label ? 'no-label wrapper-select isSelected' : selectedOption ? 'wrapper-select isSelected' : 'wrapper-select'} ${open && 'isOpen'} ${isDisabled && 'isDisabled'} ${!isSearchable && 'searchFalse'}`}>
+        <div className={`${selectedOption && !label ? 'no-label wrapper-select isSelected' : selectedOption ? 'wrapper-select isSelected' : 'wrapper-select'} ${open && 'isOpen'} ${is_isDisabled && 'isDisabled'} ${!is_isSearchable && 'searchFalse'}`}>
           <label
             onClick={toggleOpen}
             className="label-wrapper-select">
             <div className="btn-wrapper">{selectedOption ? selectedOption.label : label}</div>
             {label && <span className="label-text">{label} {required && <em className="req">*</em>} </span>}
-            <i className='icon-right material-icons'>{isDisabled ? 'lock' : 'keyboard_arrow_down'}</i>
+            <i className='icon-right material-icons'>{is_isDisabled ? 'lock' : 'keyboard_arrow_down'}</i>
           </label>
-          {open && !isDisabled && (
+          {open && !is_isDisabled && (
             <Select
               autoFocus
               backspaceRemovesValue={false}
@@ -128,21 +115,21 @@ const DropDown: FC<MyProps> = (props): ReactElement => {
               promptTextCreator={false}
               placeholder='search'
               styles={style}
-              controlShouldRenderValue={isMulti ? true : false}
+              controlShouldRenderValue={is_isMulti ? true : false}
               hideSelectedOptions={false}
               isClearable={false}
-              isSearchable={isSearchable}
-              isDisabled={isDisabled}
-              isMulti={isMulti}
+              isSearchable={is_isSearchable}
+              isDisabled={is_isDisabled}
+              isMulti={is_isMulti}
               menuIsOpen
             />
           )}
-          {open && !isDisabled ? <Blanket onClick={toggleOpen} /> : null}
+          {open && !is_isDisabled ? <Blanket onClick={toggleOpen} /> : null}
         </div>
       ) : (
-        <label className={`${isDisabled && "isDisabled"} wrapper-select select-multi`}>
+        <label className={`${is_isDisabled && "isDisabled"} wrapper-select select-multi`}>
           <Select
-            autoFocus={isDisabled ? false : true}
+            autoFocus={is_isDisabled ? false : true}
             components={{ IndicatorSeparator: null }}
             backspaceRemovesValue={false}
             className={className}
@@ -152,11 +139,11 @@ const DropDown: FC<MyProps> = (props): ReactElement => {
             promptTextCreator={false}
             placeholder={label ? label : 'Search'}
             styles={style}
-            controlShouldRenderValue={isMulti ? true : false}
+            controlShouldRenderValue={is_isMulti ? true : false}
             hideSelectedOptions={false}
             isClearable={false}
             isSearchable={true}
-            isMulti={isMulti}
+            isMulti={is_isMulti}
           />
         </label>
       )}
