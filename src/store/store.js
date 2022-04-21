@@ -9,6 +9,7 @@ import speakerDetailReducer from "./Slices/SpeakerDetailSlice";
 import mapReducer from "./Slices/MapSlice";
 import newsDetailReducer from "./Slices/NewsDetailSlice";
 import newsReducer from "./Slices/NewsSlice";
+import profileReducer from "./Slices/myAccount/profileSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -27,6 +28,7 @@ export const store = configureStore({
     map: mapReducer,
     newsDetail: newsDetailReducer,
     news: newsReducer,
+    profile: profileReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,

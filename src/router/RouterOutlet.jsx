@@ -23,9 +23,9 @@ import CustomPage from "@/pages/CustomPage";
 import NewsPage from "@/pages/news/NewsPage";
 import NewsDetailPage from "@/pages/news/NewsDetailPage";
 import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
-import MyProfile from "@/themes/theme-1/profile/MyProfile";
-import MyProfileEdit from "@/themes/theme-1/profile/MyProfileEdit";
-import MyBilling from "@/themes/theme-1/profile/MyBilling";
+import MyProfile from "@/myAccount/profile/MyProfile";
+import MyProfileEdit from "@/myAccount/profile/MyProfileEdit";
+import MyBilling from "@/myAccount/profile/MyBilling";
 
 class RouterOutlet extends React.Component {
   render() {

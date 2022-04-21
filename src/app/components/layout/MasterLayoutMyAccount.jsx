@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Translation } from "react-i18next";
-import MyProfileSidebar from "@/themes/theme-1/profile/MyProfileSidebar";
+import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
 
 const MasterLayout = ({ children, ...rest, history }) => {
     return (

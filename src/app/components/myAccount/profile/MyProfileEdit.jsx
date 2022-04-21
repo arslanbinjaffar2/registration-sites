@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Input from '@/forms/Input';
 import TextArea from '@/forms/TextArea';
 import DateTime from '@/forms/DateTime';
 import DropDown from '@/forms/DropDown';
-
+import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
+import { eventSelector } from "store/Slices/EventSlice";
+import { useSelector, useDispatch } from "react-redux";
 const options = [
   { id: 1, name: 'Chocolate' },
   { id: 2, name: 'Strawberry' },
   { id: 3, name: 'Vanilla' }
 ]
 const MyProfileEdit = () =>  {
+  const { event } = useSelector(eventSelector);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProfileData(event.url));
+  }, [])
+  const { attendee } = useSelector(profileSelector);
   return (
     <div  className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner">
