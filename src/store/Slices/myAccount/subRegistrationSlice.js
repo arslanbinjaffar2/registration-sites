@@ -35,11 +35,11 @@ export default eventSlice.reducer
 
 export const fetchSubRegistrationData = (url) => {
     return async dispatch => {
-      dispatch(getNewsletterData())
+      dispatch(getSubRegistrationData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration-after-login/45756`)
         const res = await response.json()
-        dispatch(setNewsletterData(res.data))
+        dispatch(setSubRegistrationData(res.data))
       } catch (error) {
         dispatch(setError(error))
       }
@@ -47,7 +47,7 @@ export const fetchSubRegistrationData = (url) => {
   }
 export const updateSubRegistrationData = ({url, data}) => {
     return async dispatch => {
-      dispatch(getNewsletterData())
+      dispatch(getSubRegistrationData())
       try {
         const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/update-sub-registration/45756`, data)
         const res = await response.json()

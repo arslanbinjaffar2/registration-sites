@@ -28,6 +28,7 @@ import MyProfileEdit from "@/myAccount/profile/MyProfileEdit";
 import MyBilling from "@/myAccount/profile/MyBilling";
 import ManageKeywords from "@/myAccount/profile/ManageKeywords";
 import ManageNewsLetter from "@/myAccount/profile/ManageNewsLetter";
+import AfterLoginSubRegistration from "@/myAccount/profile/AfterLoginSubRegistration";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -144,6 +145,11 @@ class RouterOutlet extends React.Component {
               component={ManageNewsLetter}
               exact
               path="/:event_url/news-letter-subscription"
+            />
+            <MasterLayoutMyAccount
+              component={AfterLoginSubRegistration}
+              exact
+              path="/:event_url/sub-registration-after-login"
             />
             <MasterLayoutMyAccount
               component={MyBilling}

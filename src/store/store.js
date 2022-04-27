@@ -12,6 +12,7 @@ import newsReducer from "./Slices/NewsSlice";
 import profileReducer from "./Slices/myAccount/profileSlice";
 import interestReducer from "./Slices/myAccount/networkInterestSlice";
 import newsletterReducer from "./Slices/myAccount/newsletterSlice";
+import subRegistrationReducer from "./Slices/myAccount/subRegistrationSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -33,6 +34,7 @@ export const store = configureStore({
     profile: profileReducer,
     networkInterest: interestReducer,
     newsletter: newsletterReducer,
+    subRegistration: subRegistrationReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,
