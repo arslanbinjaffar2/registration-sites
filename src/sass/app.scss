@@ -1172,3 +1172,176 @@
     }
   }
 }
+
+.network-category-sec {
+  padding-top: 25px !important;
+}
+
+.network-cateogry-list {
+  margin-bottom: 20px;
+  h5 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      margin-bottom: 8px;
+      display: inline-block;
+      margin-right: 8px;
+      label {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        span {
+          display: inline-block;
+          line-height: 15px;
+          border-radius: 50px;
+          padding: 8px 14px 8px 35px;
+          white-space: nowrap;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          &::before {
+            content: "\e145";
+            font-family: "Material Icons";
+            position: absolute;
+            left: 10px;
+            top: 9px;
+            font-size: 24px;
+            font-weight: 400;
+          }
+        }
+        input {
+          position: absolute;
+          left: -100%;
+          &:checked + span {
+            &::before {
+              content: "\e876";
+            }
+          }
+        }
+      }
+    }
+  }
+  &.ebs-cateogry-filter {
+    padding-bottom: 8px;
+    ul {
+      li {
+        span {
+          padding-left: 14px;
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+.ebs-keyword-search {
+  margin-bottom: 20px;
+  label {
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    input[type='text'] {
+      width: 100%;
+      height: 32px;
+      border: 1px solid $border;
+      border-radius: 5px;
+      padding: 5px 40px 5px 10px;
+      font-size: 13px;
+    }
+    i.material-icons {
+      position: absolute;
+      right: 8px;
+      top: 4px;
+      font-size: 24px;
+      color: $border;
+    }
+  }
+}
+
+.radio-check-field {
+  &.inline {
+    padding: 6px 20px 6px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    h5 {
+      margin-bottom: 5px;
+      font-weight: 400;
+      font-size: 12px;
+    }
+    label {
+      margin-bottom: 0px;
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  h5 {
+    margin-bottom: 12px;
+  }
+  label {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+    position: relative;
+    line-height: 17px;
+    min-height: 18px;
+    padding-left: 28px;
+    overflow: hidden;
+    cursor: pointer;
+    mark {
+      padding: 0;
+      background-color: transparent;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    span:before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: "Material Icons";
+      text-align: center;
+      line-height: 15px;
+      font-size: 14px;
+    }
+    &.checked {
+      span:before {
+        content: "\e876";
+      }
+    }
+  }
+  &.style-radio {
+    label {
+      span:before {
+        border-radius: 100%;
+      }
+    }
+  }
+  &.ebs-radio-lg {
+    label {
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-left: 34px;
+      line-height: 18px;
+      span {
+        &::before {
+          width: 24px;
+          height: 24px;
+          border-radius: 5px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}

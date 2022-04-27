@@ -26,6 +26,8 @@ import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
 import MyProfile from "@/myAccount/profile/MyProfile";
 import MyProfileEdit from "@/myAccount/profile/MyProfileEdit";
 import MyBilling from "@/myAccount/profile/MyBilling";
+import ManageKeywords from "@/myAccount/profile/ManageKeywords";
+import ManageNewsLetter from "@/myAccount/profile/ManageNewsLetter";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -132,6 +134,16 @@ class RouterOutlet extends React.Component {
               component={MyProfileEdit}
               exact
               path="/:event_url/profile/edit"
+            />
+            <MasterLayoutMyAccount
+              component={ManageKeywords}
+              exact
+              path="/:event_url/keyword-interest"
+            />
+            <MasterLayoutMyAccount
+              component={ManageNewsLetter}
+              exact
+              path="/:event_url/news-letter-subscription"
             />
             <MasterLayoutMyAccount
               component={MyBilling}

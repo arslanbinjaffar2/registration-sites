@@ -10,7 +10,8 @@ import mapReducer from "./Slices/MapSlice";
 import newsDetailReducer from "./Slices/NewsDetailSlice";
 import newsReducer from "./Slices/NewsSlice";
 import profileReducer from "./Slices/myAccount/profileSlice";
-import editProfileReducer from "./Slices/myAccount/editProfileSlice";
+import interestReducer from "./Slices/myAccount/networkInterestSlice";
+import newsletterReducer from "./Slices/myAccount/newsletterSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -30,7 +31,8 @@ export const store = configureStore({
     newsDetail: newsDetailReducer,
     news: newsReducer,
     profile: profileReducer,
-    editProfile: editProfileReducer,
+    networkInterest: interestReducer,
+    newsletter: newsletterReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,
@@ -40,7 +42,7 @@ export const store = configureStore({
     [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
+    getDefaultMiddleware({serializableCheck: false}).concat(
       programApi.middleware,
       exhibitorApi.middleware,
       sponsorApi.middleware,
