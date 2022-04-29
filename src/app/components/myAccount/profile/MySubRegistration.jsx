@@ -4,10 +4,10 @@ import {
     fetchSubRegistrationData,
     subRegistrationSelector,
     updateSubRegistrationData,
-  } from "store/Slices/myAccount/subRegistrationSlice";
+  } from "store/Slices/myAccount/mysubRegistrationSlice";
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
-const AfterLoginSubRegistration = () => {
+const MySubRegistration = () => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -21,11 +21,11 @@ const AfterLoginSubRegistration = () => {
             <h2>My Subscriptions</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                {subRegistration && <SubRegForm subRegistration={subRegistration} eventUrl={event.url} afterLogin={true} />}
+                {subRegistration && <SubRegForm subRegistration={subRegistration} eventUrl={event.url} />}
           </div>
         </div>
       </div>
   )
 }
 
-export default AfterLoginSubRegistration
+export default MySubRegistration

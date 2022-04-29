@@ -38,7 +38,7 @@ export const fetchSubRegistrationData = (url) => {
     return async dispatch => {
       dispatch(getSubRegistrationData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration-after-login/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/my-sub-registration/45756`)
         const res = await response.json()
         dispatch(setSubRegistrationData(res.data))
       } catch (error) {
