@@ -47,7 +47,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, eventUr
       SPOKEN_LANGUAGE: languages
         .filter(
           (item) =>
-            attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) != -1
+            attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
         )
         .map((item, index) => ({
           label: item.name,

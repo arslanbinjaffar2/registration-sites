@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 const initialState = {
-  survey: null,
+  surveyDetail: null,
+  surveyResult: null,
   loading:false,
   error:null,
   alert:null,
@@ -14,7 +16,8 @@ export const eventSlice = createSlice({
       state.loading = true
     },
     setSurveyData: (state, { payload}) => {
-        state.survey = payload,
+        state.surveyDetail = payload.survey_details,
+        state.surveyResult = payload.survey_result,
         state.loading = false
     },
     setError: (state, { payload }) => {
@@ -29,11 +32,11 @@ export const eventSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { getSurveyData, setSurveyData, setError, setAlert } = eventSlice.actions
 
-export const interestSelector = state => state.survey
+export const surveySelector = state => state.survey
 
 export default eventSlice.reducer
 
-export const fetchSurveyData = ({url,survey_id}) => {
+export const fetchSurveyData = (url,survey_id) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
@@ -45,13 +48,12 @@ export const fetchSurveyData = ({url,survey_id}) => {
       }
     }
   }
-export const updateSurveyData = ({url, data, survey_id}) => {
+export const updateSurveyData = (url, survey_id, data) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/save-survey/${survey_id}/45756`, data)
-        const res = await response.json()
-        dispatch(setAlert(res.data))
+        const response =  await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-survey/${survey_id}/45756`, data)
+        dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))
       }

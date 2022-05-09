@@ -8,10 +8,7 @@ export const programApi = createApi({
   endpoints: (builder) => ({
     getPrograms: builder.query({
       query: (path) => {
-       if(path.search !== ""){
-          return  `/event/${path.eventUrl}/programs?query=${path.search}&page=${path.page}`
-        }
-        return `/event/${path.eventUrl}/programs?page=${path.page}`
+        return `/event/${path.eventUrl}/programs?page=${path.page}${path.search !== "" ? `&query=${path.search}`: ""}${path.attendee_id !== "" ? `&attendee_id=${path.attendee_id}`: ""}`
       },
       transformResponse: (response) => {
         const data = objectToArray(response.data)
