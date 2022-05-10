@@ -4,7 +4,7 @@ import {
   incrementLoadedSection,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import { useGetProgramsQuery } from "store/services/program";
+import { useGetAttendeeProgramsQuery } from "store/services/attendeePrograms";
 import UiFullPagination from "@/ui-components/UiFullPagination";
 import UiPagination from "@/ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
@@ -62,7 +62,7 @@ const MyProgram = (props) => {
     };
   }, [value]);
 
-  const { data, isFetching, isSuccess } = useGetProgramsQuery({
+  const { data, isFetching, isSuccess } = useGetAttendeeProgramsQuery({
     eventUrl,
     page,
     search,
@@ -102,7 +102,7 @@ const MyProgram = (props) => {
         </div>
         <div className="wrapper-inner-content network-category-sec">
           <Suspense fallback={<div></div>}>
-            {data && data.data.length > 0 ? (
+            {data ? (data.data.length > 0 ? (
               <React.Fragment>
                 {showPagination && (
                   <input
@@ -134,7 +134,7 @@ const MyProgram = (props) => {
               </React.Fragment>
             ) : home ? null : (
               <div>No Programs found</div>
-            )}
+              )): <div>Loading...</div> }
           </Suspense>
         </div>
       </div>

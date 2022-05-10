@@ -19,6 +19,7 @@ import surveyReducer from "./Slices/myAccount/surveySlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
+import { attendeeProgramApi } from "./services/attendeePrograms";
 import { photoApi } from "./services/photo";
 import { cmsPageApi } from "./services/cmspage";
 import { newsApi } from "./services/news";
@@ -44,6 +45,7 @@ export const store = configureStore({
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,
+    [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
     [photoApi.reducerPath]: photoApi.reducer,
     [videoApi.reducerPath]: videoApi.reducer,
     [cmsPageApi.reducerPath]: cmsPageApi.reducer,
@@ -52,6 +54,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({serializableCheck: false}).concat(
       programApi.middleware,
+      attendeeProgramApi.middleware,
       exhibitorApi.middleware,
       sponsorApi.middleware,
       cmsPageApi.middleware,
