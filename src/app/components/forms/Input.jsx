@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ onChange, label, type, value, required, className, tooltip, min, pattern }) => {
+const Input = ({ onChange, label, type, value, placeholder, required, className, tooltip, min, pattern, name }) => {
   return (
     <label className={`${className} label-input`}>
       {tooltip &&
@@ -8,7 +8,7 @@ const Input = ({ onChange, label, type, value, required, className, tooltip, min
           <i className="material-icons">info</i>
           <div className="app-tooltipwrapper">{tooltip}</div>
         </em>}
-      <input onChange={onChange} pattern={pattern} type={type} placeholder=" " min={min} value={value} />
+      <input onChange={onChange} pattern={pattern} type={type} placeholder={placeholder} min={min} value={value} name={name} />
       {label && (
         <span>{label}{required && (<em className='req'>*</em>)}</span>
       )}

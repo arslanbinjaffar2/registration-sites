@@ -27,6 +27,13 @@ import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
 import MyProfile from "@/myAccount/profile/MyProfile";
 import MyProfileEdit from "@/myAccount/profile/MyProfileEdit";
 import MyBilling from "@/myAccount/profile/MyBilling";
+import ManageKeywords from "@/myAccount/profile/ManageKeywords";
+import ManageNewsLetter from "@/myAccount/profile/ManageNewsLetter";
+import AfterLoginSubRegistration from "@/myAccount/profile/AfterLoginSubRegistration";
+import MySubRegistration from "@/myAccount/profile/MySubRegistration";
+import SurveyList from "@/myAccount/profile/SurveyList";
+import surveyDetail from "@/myAccount/profile/surveyDetail";
+import MyProgram from "@/myAccount/profile/MyProgram";
 
 class RouterOutlet extends React.Component {
   render() {
@@ -138,6 +145,41 @@ class RouterOutlet extends React.Component {
               component={MyProfileEdit}
               exact
               path="/:event_url/profile/edit"
+            />
+            <MasterLayoutMyAccount
+              component={ManageKeywords}
+              exact
+              path="/:event_url/keyword-interest"
+            />
+            <MasterLayoutMyAccount
+              component={ManageNewsLetter}
+              exact
+              path="/:event_url/news-letter-subscription"
+            />
+            <MasterLayoutMyAccount
+              component={SurveyList}
+              exact
+              path="/:event_url/surveys"
+            />
+            <MasterLayoutMyAccount
+              component={surveyDetail}
+              exact
+              path="/:event_url/survey/:survey_id"
+            />
+            <MasterLayoutMyAccount
+              component={MyProgram}
+              exact
+              path="/:event_url/my-program/"
+            />
+            <MasterLayoutMyAccount
+              component={AfterLoginSubRegistration}
+              exact
+              path="/:event_url/sub-registration-after-login"
+            />
+            <MasterLayoutMyAccount
+              component={MySubRegistration}
+              exact
+              path="/:event_url/my-sub-registration"
             />
             <MasterLayoutMyAccount
               component={MyBilling}

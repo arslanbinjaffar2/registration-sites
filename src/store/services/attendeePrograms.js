@@ -2,13 +2,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { objectToArray } from '../../app/helpers/helper'
 
 // Define a service using a base URL and expected endpoints
-export const programApi = createApi({
-  reducerPath: 'programApi',
+export const attendeeProgramApi = createApi({
+  reducerPath: 'attendeeProgramApi',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_URL}),
   endpoints: (builder) => ({
-    getPrograms: builder.query({
+    getAttendeePrograms: builder.query({
       query: (path) => {
-        return `/event/${path.eventUrl}/programs?page=${path.page}${path.search !== "" ? `&query=${path.search}`: ""}`
+        return `/event/${path.eventUrl}/get-attendee-programs?page=${path.page}${path.search !== "" ? `&query=${path.search}`: ""}${path.attendee_id !== "" ? `&attendee_id=${path.attendee_id}`: ""}`
       },
       transformResponse: (response) => {
         const data = objectToArray(response.data)
@@ -22,4 +22,4 @@ export const programApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetProgramsQuery } = programApi
+export const { useGetAttendeeProgramsQuery } = attendeeProgramApi
