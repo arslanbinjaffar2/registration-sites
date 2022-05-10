@@ -17,6 +17,7 @@ import SpeakerDetailPage from "@/pages/speakers/SpeakerDetailPage";
 import SponsorPage from "@/pages/SponsorPage";
 import StreamingPage from "@/pages/StreamingPage";
 import TimetablePage from "@/pages/TimetablePage";
+import TimeLine from "@/pages/TimeLine";
 import VideoPage from "@/pages/VideoPage";
 import CmsPage from "@/pages/CmsPage";
 import CustomPage from "@/pages/CustomPage";
@@ -112,6 +113,11 @@ class RouterOutlet extends React.Component {
               component={TimetablePage}
               exact
               path="/:event_url/Timetable"
+            />
+            <MasterLayoutRoute
+              component={TimeLine}
+              exact
+              path="/:event_url/timeline"
             />
             <MasterLayoutRoute
               component={CmsPage}

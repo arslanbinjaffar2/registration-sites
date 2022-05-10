@@ -1172,3 +1172,129 @@
     }
   }
 }
+
+.ebs-timeline-area {
+  .ebs-top-area {
+    padding-bottom: 30px;
+    .ebs-select-box  {
+      padding-right: 20px;
+      width: 230px;
+    }
+  }
+  .right-panel-area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .ebs-date-carousel {
+      width: 310px;
+      margin-right: 28px;
+      position: relative;
+      .ebs-date-carousel-wrapp {
+        padding: 0 40px;
+        .ebs-date-carousel-box {
+          padding: 3px 0;
+          text-align: center;
+          font-weight: 600;
+          color: $text;
+          font-size: 16px;
+        }
+      }
+      .ebs-date-carousel-button {
+        .btn {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 32px;
+          height: 32px;
+          border: 1px solid $border;
+          padding: 6px 0 0 0;
+          line-height: 30px;
+          &:focus,&:active {
+            box-shadow: none;
+            outline: none;
+          }
+          &:hover {
+            border-color: $darkcolor;
+            color: $darkcolor;
+          }
+          i {
+            font-size: 24px;
+            line-height: 0;
+          }
+          &.right {
+            left: auto;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.ebs-timeline-wrapper {
+  overflow: hidden;
+  width: 100%;
+  min-height: 70vh;
+  position: relative;
+  #currentTimeline {
+      width: 2px;
+      height: 100%;
+      position: absolute;
+      left: 15px;
+      top: 2px;
+      background: $darkcolor;
+      pointer-events: none;
+      z-index: 9;
+      display: none;
+      &::before {
+        content: '\e5c5';
+        font-family: 'Material Icons';
+        font-size: 30px;
+        position: absolute;
+        left: -14px;
+        top: -12px;
+        color: $darkcolor;
+      }
+  }
+  #timelineheader {
+    position: relative;
+    font-size: 0;
+    border-top: 1px solid $lightbackground;
+    border-bottom: 1px solid $lightbackground;
+    span {
+      display: inline-block;
+      font-size: 12px;
+      padding: 8px 0;
+      position: relative;
+      &::after {
+        content: '';
+        width: 1px;
+        background: $lightbackground;
+        position: absolute;
+        left: 14px;
+        top: 100%;
+        height: 99999em;
+      }
+    }
+  }
+  #timelinecontent {
+    .datarow {
+    position: relative;
+    min-height: 100px;
+    margin-bottom: 10px;
+    .datawrapp {
+      position: absolute;
+      background: #F5F4FF;
+      min-height: 100px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba($black, 0.08);
+      border-left: 7px solid #6554C0;
+      padding: 6px;
+      &.ebs-workshop {
+        border-color: #54C09F;
+        background-color: #F4FFFA;
+      }
+    }
+  }
+  }
+}
