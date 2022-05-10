@@ -10,7 +10,7 @@ const ManageNewsLetter = () => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(fetchNewsletterData(event.url));
+      dispatch(fetchNewsletterData(event.id, event.url));
     }, []);
     const { newsletter } = useSelector(newsLetterSelector);
     return (
@@ -20,7 +20,7 @@ const ManageNewsLetter = () => {
             <h2>My Subscriptions</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                {newsletter && <ManageNewsLetterList newsletter={newsletter} eventUrl={event.url} />}
+                {newsletter && <ManageNewsLetterList newsletter={newsletter} event={event} />}
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@ const ManageNewsLetter = () => {
 export default ManageNewsLetter
 
 
-const ManageNewsLetterList = ({newsletter, eventUrl}) => {
+const ManageNewsLetterList = ({newsletter, event}) => {
   const [subsriberList, setsubsriberList] = useState(newsletter.subscriber_detail.subscriber_list);
   const [mySubscriberListPrev, setmySubscriberListPrev] = useState(newsletter.subscriber_detail.subscriber_list.filter((item)=>(item.isExists)).map((item)=>(item.id)));
   const [mySubscriberListNew, setmySubscriberListNew] = useState(newsletter.subscriber_detail.subscriber_list.filter((item)=>(item.isExists)).map((item)=>(item.id)));
@@ -44,7 +44,7 @@ const ManageNewsLetterList = ({newsletter, eventUrl}) => {
       }
   }
   const handleSave = () =>{
-    dispatch(updateNewsLetterData(eventUrl, { previous_ids:mySubscriberListPrev, subscriber_ids:mySubscriberListNew }));
+    dispatch(updateNewsLetterData(event.id, event.url, { previous_ids:mySubscriberListPrev, subscriber_ids:mySubscriberListNew }));
   }
   return (
     <div className='radio-check-field'>

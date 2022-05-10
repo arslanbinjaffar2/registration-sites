@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { header } from '../../../app/helpers/header'
 import axios from 'axios'
 const initialState = {
   subRegistration: null,
@@ -34,11 +35,11 @@ export const subRegistrationSelector = state => state.subRegistration
 
 export default eventSlice.reducer
 
-export const fetchSubRegistrationData = (url) => {
+export const fetchSubRegistrationData = (id, url) => {
     return async dispatch => {
       dispatch(getSubRegistrationData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration-after-login/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration-after-login`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSubRegistrationData(res.data))
       } catch (error) {
@@ -46,12 +47,12 @@ export const fetchSubRegistrationData = (url) => {
       }
     }
   }
-export const updateSubRegistrationData = (url, data) => {
+export const updateSubRegistrationData = (id, url, data) => {
     return async dispatch => {
       dispatch(getSubRegistrationData())
       try {
         console.log(data)
-        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-sub-registration/45756`, data)
+        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-sub-registration`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

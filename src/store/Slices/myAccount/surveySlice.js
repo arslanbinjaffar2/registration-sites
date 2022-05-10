@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { header } from '../../../app/helpers/header'
 import axios from 'axios'
 const initialState = {
   surveyDetail: null,
@@ -36,11 +37,11 @@ export const surveySelector = state => state.survey
 
 export default eventSlice.reducer
 
-export const fetchSurveyData = (url,survey_id) => {
+export const fetchSurveyData = (id, url,survey_id) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-detail/${survey_id}/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-detail/${survey_id}`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSurveyData(res.data))
       } catch (error) {
@@ -48,11 +49,11 @@ export const fetchSurveyData = (url,survey_id) => {
       }
     }
   }
-export const updateSurveyData = (url, survey_id, data) => {
+export const updateSurveyData = (id, url, survey_id, data) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
-        const response =  await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-survey/${survey_id}/45756`, data)
+        const response =  await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

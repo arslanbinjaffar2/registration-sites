@@ -15,7 +15,7 @@ const MyProfileEdit = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProfileData(event.url));
+    dispatch(fetchProfileData(event.id, event.url));
   }, []);
   const { attendee, languages, callingCodes, countries, loading, alert, error } =
     useSelector(profileSelector);
@@ -27,7 +27,7 @@ const MyProfileEdit = () => {
         languages={languages}
         callingCodes={callingCodes}
         countries={countries}
-        eventUrl={event.url}
+        event={event}
         loading={loading}
         alert={alert}
         error={error}
@@ -38,7 +38,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, eventUrl, loading, alert, error }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error }) => {
   const dispatch = useDispatch();
   const [attendeeData, setAttendeeData] = useState(attendee);
   useEffect(() => {
@@ -150,7 +150,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, eventUr
       settings,
       infoObj
     };
-    dispatch(updateProfileData(eventUrl, data));
+    dispatch(updateProfileData(event.id,event.url, data));
   };
 
   return (

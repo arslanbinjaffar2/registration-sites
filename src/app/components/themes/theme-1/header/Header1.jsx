@@ -210,19 +210,23 @@ class Header1 extends React.Component {
                             {menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
-                                  <NavLink
-                                    aria-current="page"
-                                    className="nav-link"
-                                    to={
-                                      "/" +
-                                      this.props.event.url +
-                                      "/" +
-                                      myaccount.alias
-                                    }
-                                    key={myaccount.id}
-                                  >
-                                    {myaccount.module}
-                                  </NavLink>
+                                  {myaccount.alias !== "login" ? (<NavLink
+                                          aria-current="page"
+                                          className="nav-link"
+                                          to={
+                                            "/" +
+                                            this.props.event.url +
+                                            "/" +
+                                            myaccount.alias
+                                          }
+                                          key={myaccount.id}
+                                        >
+                                            {myaccount.module}
+                                        </NavLink>):
+                                        <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
+                                            {myaccount.module}
+                                        </div> 
+                                        }
                                 </li>
                               )
                             )}

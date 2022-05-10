@@ -279,7 +279,7 @@ class Header6 extends React.Component {
                                                   className="nav-item"
                                                   key={k}
                                                 >
-                                                  <NavLink
+                                                 {myaccount.alias !== "login" ? (<NavLink
                                                     aria-current="page"
                                                     className="nav-link"
                                                     to={
@@ -293,7 +293,13 @@ class Header6 extends React.Component {
                                                     <span className="ebs-nav-item">
                                                       {myaccount.module}
                                                     </span>
-                                                  </NavLink>
+                                                  </NavLink>):
+                                                  <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
+                                                    <span className="ebs-nav-item">
+                                                      {myaccount.module}
+                                                    </span>
+                                                  </div> 
+                                                  }
                                                 </li>
                                               )
                                             )}

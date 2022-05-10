@@ -10,7 +10,7 @@ const ManageKeywords = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchKeywordsData(event.url));
+    dispatch(fetchKeywordsData(event.id, event.url));
   }, []);
   const { keywords } = useSelector(interestSelector);
   return (
@@ -20,7 +20,7 @@ const ManageKeywords = () => {
           <h2>My Keywords</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-          {keywords && <ManageKeywordsList keywords={keywords} eventUrl={event.url} />}
+          {keywords && <ManageKeywordsList keywords={keywords} event={event} />}
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@ const ManageKeywords = () => {
 
 export default ManageKeywords;
 
-const ManageKeywordsList = ({ keywords, eventUrl }) => {
+const ManageKeywordsList = ({ keywords, event }) => {
   const [interestkeywords, setInterestKeywords] = useState(keywords);
   const [mykeywords, setMyKeywords] = useState(keywords.reduce((ack, item)=>{
     const childern = item.children.reduce((ack2, item2)=>{
@@ -85,7 +85,7 @@ const ManageKeywordsList = ({ keywords, eventUrl }) => {
     }
   }
   const handleSave = (e) =>{
-    dispatch(updateKeywordData(eventUrl, mykeywords));
+    dispatch(updateKeywordData(event.id, event.url, mykeywords));
   }
   return (
     <React.Fragment>

@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   loadCount: 0,
   loadedSections: 0,
+  showLogin:false,
 };
 
 export const globalSlice = createSlice({
@@ -41,6 +42,9 @@ export const globalSlice = createSlice({
       state.loadedSections = payload.ls;
       state.loadCount = payload.lc;
     },
+    setShowLogin:(state, {payload})=>{
+      state.showLogin = payload;
+    }
   },
 });
 
@@ -54,7 +58,8 @@ export const {
   setLoadedSections,
   setLSandLC,
   incrementLoadCount,
-  incrementLoadCountBy
+  incrementLoadCountBy,
+  setShowLogin
 } = globalSlice.actions;
 
 export const globalSelector = (state) => state.global;

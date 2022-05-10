@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { header } from '../../../app/helpers/header'
 import axios from 'axios'
 const initialState = {
   keywords: null,
@@ -34,11 +35,11 @@ export const interestSelector = state => state.networkInterest
 
 export default eventSlice.reducer
 
-export const fetchKeywordsData = (url) => {
+export const fetchKeywordsData = (id, url) => {
     return async dispatch => {
       dispatch(getInterestKeywordsData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/network-interest/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/network-interest`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setInterestKeywordsData(res.data))
       } catch (error) {
@@ -46,11 +47,11 @@ export const fetchKeywordsData = (url) => {
       }
     }
   }
-export const updateKeywordData = (url, data) => {
+export const updateKeywordData = (id, url, data) => {
     return async dispatch => {
       dispatch(getInterestKeywordsData())
       try {
-        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-network-interest/45756`, {keywords:data})
+        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-network-interest`, {keywords:data}, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

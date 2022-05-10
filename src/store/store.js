@@ -16,6 +16,7 @@ import subRegistrationReducer from "./Slices/myAccount/subRegistrationSlice";
 import mysubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice";
 import surveyListReducer from "./Slices/myAccount/surveyListSlice";
 import surveyReducer from "./Slices/myAccount/surveySlice";
+import userReducer from "./Slices/myAccount/userSlice";
 import { sponsorApi } from "./services/sponsor";
 import { exhibitorApi } from "./services/exhibitor";
 import { programApi } from "./services/program";
@@ -42,6 +43,7 @@ export const store = configureStore({
     mysubRegistration: mysubRegistrationReducer,
     surveyList: surveyListReducer,
     survey: surveyReducer,
+    user: userReducer,
     [sponsorApi.reducerPath]: sponsorApi.reducer,
     [exhibitorApi.reducerPath]: exhibitorApi.reducer,
     [programApi.reducerPath]: programApi.reducer,

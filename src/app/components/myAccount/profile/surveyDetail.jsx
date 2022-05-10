@@ -11,7 +11,7 @@ const surveyDetail = ({match}) => {
   const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(fetchSurveyData(event.url, match.params.survey_id));
+      dispatch(fetchSurveyData(event.id, event.url, match.params.survey_id));
     }, []);
     const { surveyDetail, surveyResult } = useSelector(surveySelector);
     return (
@@ -21,7 +21,7 @@ const surveyDetail = ({match}) => {
         <h2>Surveys</h2>
       </div>
       <div className="wrapper-inner-content network-category-sec">
-      {surveyDetail && <SurveyForm surveyDetail={surveyDetail} eventUrl={event.url} surveyResults={surveyResult} survey_id={match.params.survey_id} />}
+      {surveyDetail && <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={match.params.survey_id} />}
       </div>
     </div>
   </div>

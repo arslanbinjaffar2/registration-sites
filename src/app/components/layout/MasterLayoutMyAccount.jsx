@@ -1,9 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { Translation } from "react-i18next";
 import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
+import { useSelector } from "react-redux";
+
+import {
+    eventSelector
+  } from "store/Slices/EventSlice";
 
 const MasterLayout = ({ children, ...rest, history }) => {
     return (
@@ -14,27 +17,19 @@ const MasterLayout = ({ children, ...rest, history }) => {
         </Translation>
     );
 }
+function MasterLayoutMyAccount({ component: Component,history, ...rest }) {
+  const {event} = useSelector(eventSelector);
+  const isAuthenticated = localStorage.getItem(`event${event.id}User`);
+  console.log("this", isAuthenticated);
 
-class MasterLayoutMyAccount extends React.Component {
-
-    render() {
-        const { component: Component, ...rest } = this.props;
-        return (
-            <Route {...rest} render={matchProps => (
-                <MasterLayout history={this.props.history}>
-                <MyProfileSidebar />
-                    <Component {...matchProps} />
-                </MasterLayout>
-            )} />
-        )
-    }
-};
-
-function mapStateToProps(state) {
-    const { event } = state;
-    return {
-        event
-    };
+  return (
+    <Route {...rest} render={matchProps => (
+        isAuthenticated ? <MasterLayout history={history}>
+        <MyProfileSidebar />
+            <Component {...matchProps} />
+        </MasterLayout> : <Redirect to={`/${event.url}`} />
+    )} />
+  );
 }
 
-export default connect(mapStateToProps)(withRouter(MasterLayoutMyAccount));
+export default MasterLayoutMyAccount;

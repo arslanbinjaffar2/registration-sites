@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { header } from '../../../app/helpers/header'
 const initialState = {
   surveyList: null,
   loading:false,
@@ -33,11 +34,11 @@ export const surveyListSelector = state => state.surveyList
 
 export default eventSlice.reducer
 
-export const fetchSurveyListData = (url) => {
+export const fetchSurveyListData = (id, url) => {
     return async dispatch => {
       dispatch(getSurveyListData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-listing/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSurveyListData(res.data))
       } catch (error) {

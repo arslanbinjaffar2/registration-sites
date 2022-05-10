@@ -233,7 +233,7 @@ class Header5 extends React.Component {
                             {menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
-                                  <NavLink
+                                  {myaccount.alias !== "login" ? (<NavLink
                                     aria-current="page"
                                     className="nav-link"
                                     to={
@@ -245,7 +245,11 @@ class Header5 extends React.Component {
                                     key={myaccount.id}
                                   >
                                     {myaccount.module}
-                                  </NavLink>
+                                  </NavLink>):
+                                  <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
+                                    {myaccount.module}
+                                  </div>
+                                  }
                                 </li>
                               )
                             )}

@@ -11,7 +11,7 @@ const MySubRegistration = () => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(fetchSubRegistrationData(event.url));
+      dispatch(fetchSubRegistrationData(event.id, event.url));
     }, []);
     const { subRegistration } = useSelector(subRegistrationSelector);
     return (
@@ -21,7 +21,7 @@ const MySubRegistration = () => {
             <h2>My Subscriptions</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                {subRegistration && <SubRegForm subRegistration={subRegistration} eventUrl={event.url} />}
+                {subRegistration && <SubRegForm subRegistration={subRegistration} event={event} />}
           </div>
         </div>
       </div>

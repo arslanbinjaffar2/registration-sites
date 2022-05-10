@@ -8,7 +8,7 @@ import {
   updateSubRegistrationData,
 } from "store/Slices/myAccount/subRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
-const SubRegForm = ({ subRegistration, eventUrl, afterLogin }) => {
+const SubRegForm = ({ subRegistration, event, afterLogin }) => {
   const dispatch = useDispatch();
   const [subRegResult, setSubRegResult] = useState(afterLogin ? {} : subRegistration.questions.question
     .reduce(
@@ -180,7 +180,7 @@ const SubRegForm = ({ subRegistration, eventUrl, afterLogin }) => {
       simpleValidator.current.showMessages()
     }else{
       if(afterLogin){
-        dispatch(updateSubRegistrationData(eventUrl, {
+        dispatch(updateSubRegistrationData(event.id, event.url, {
             first_time:"yes",
             sub_reg_id: subRegId,
             optionals,
@@ -190,7 +190,7 @@ const SubRegForm = ({ subRegistration, eventUrl, afterLogin }) => {
           }))
       }
       else{
-        dispatch(updateSubRegistrationData(eventUrl, {
+        dispatch(updateSubRegistrationData(event.id, event.url, {
           first_time:"no",
           sub_reg_id: subRegId,
           optionals,

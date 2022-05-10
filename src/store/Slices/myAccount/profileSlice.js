@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { header } from '../../../app/helpers/header'
 const initialState = {
   attendee: null,
   countries: null,
@@ -57,25 +58,27 @@ export const profileSelector = state => state.profile
 
 export default eventSlice.reducer
 
-export const fetchProfileData = (url) => {
+export const fetchProfileData = (id, url) => {
     return async dispatch => {
       dispatch(getProfileData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/attendee/45756/profile`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/attendee/profile`, { headers:header("GET", id)})
         const res = await response.json()
+        console.log(res);
         dispatch(clearError())
         dispatch(setProfileData(res.data))
       } catch (error) {
+        console.log(error)
         dispatch(setError(error))
       }
     }
   }
-export const updateProfileData = (url, data) => {
+export const updateProfileData = (id, url, data) => {
     return async dispatch => {
       console.log(data)
       dispatch(getProfileData())
       try {
-        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/attendee/45756/profile/update`, data)
+        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/attendee/45756/profile/update`, data, { headers:header("POST", id)})
         if(response.data.status === 1){
           dispatch(setAlert(response.data.message))
           dispatch(setLoading())

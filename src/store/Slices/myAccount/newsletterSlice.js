@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { header } from '../../../app/helpers/header'
 import axios from 'axios'
 const initialState = {
   newsletter: null,
@@ -34,11 +35,11 @@ export const newsLetterSelector = state => state.newsletter
 
 export default eventSlice.reducer
 
-export const fetchNewsletterData = (url) => {
+export const fetchNewsletterData = (id, url) => {
     return async dispatch => {
       dispatch(getNewsletterData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/newsletter-subscription/45756`)
+        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/newsletter-subscription`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setNewsletterData(res.data))
       } catch (error) {
@@ -46,11 +47,11 @@ export const fetchNewsletterData = (url) => {
       }
     }
   }
-export const updateNewsLetterData = (url, data) => {
+export const updateNewsLetterData = (id, url, data) => {
     return async dispatch => {
       dispatch(getNewsletterData())
       try {
-        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-newsletter-subscription/45756`, data)
+        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-newsletter-subscription`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

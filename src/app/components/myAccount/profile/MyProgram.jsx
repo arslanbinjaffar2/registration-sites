@@ -23,6 +23,7 @@ const MyProgram = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+  const eventId = event.id;
   let moduleVariation = event.theme.modules.filter(function (module, i) {
     return in_array(module.alias, ["program"]);
   });
@@ -63,10 +64,10 @@ const MyProgram = (props) => {
   }, [value]);
 
   const { data, isFetching, isSuccess } = useGetAttendeeProgramsQuery({
+    eventId,
     eventUrl,
     page,
     search,
-    attendee_id: 45756,
   });
 
   useEffect(() => {

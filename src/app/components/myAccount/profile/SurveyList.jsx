@@ -10,7 +10,7 @@ const SurveyList = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSurveyListData(event.url));
+    dispatch(fetchSurveyListData(event.id, event.url));
   }, []);
   const { surveyList } = useSelector(surveyListSelector);
 

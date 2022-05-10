@@ -7,7 +7,7 @@ import {
     updateSurveyData,
   } from "store/Slices/myAccount/surveySlice";
 import { useDispatch } from "react-redux";
-const SurveyForm = ({ surveyDetail, eventUrl, surveyResults, survey_id }) => {
+const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
   const dispatch = useDispatch();
   const [surveyResult, setSurveyResult] = useState({});
   const [surveyId, setSurveyId] = useState(survey_id);
@@ -139,7 +139,7 @@ const SurveyForm = ({ surveyDetail, eventUrl, surveyResults, survey_id }) => {
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{ 
-        dispatch(updateSurveyData(eventUrl,surveyId, {
+        dispatch(updateSurveyData(event.id, event.url ,surveyId, {
           survey_id: surveyId,
           optionals,
           questionsType,

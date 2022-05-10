@@ -1550,6 +1550,7 @@ $z-index:$back-to-top-size / 2;
 	position: fixed;
 	z-index: 9999;
 	width: 100%;
+	top:0px;
 	height: 100%;
 	background: rgba($black,0.8);
 	display: flex;
