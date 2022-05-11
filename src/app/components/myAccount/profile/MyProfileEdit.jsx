@@ -3,6 +3,7 @@ import Input from "@/forms/Input";
 import TextArea from "@/forms/TextArea";
 import DateTime from "@/forms/DateTime";
 import DropDown from "@/forms/DropDown";
+import Select from "react-select";
 import {
   fetchProfileData,
   profileSelector,
@@ -47,7 +48,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       SPOKEN_LANGUAGE: languages
         .filter(
           (item) =>
-            attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
+          attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
         )
         .map((item, index) => ({
           label: item.name,
@@ -55,12 +56,12 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
           key: index,
         })),
       calling_code: {
-        label: attendeeData.phone.split("-")[0],
-        value: attendeeData.phone.split("-")[0],
+        label: attendeeData.phone && attendeeData.phone.split("-")[0],
+        value: attendeeData.phone && attendeeData.phone.split("-")[0],
       },
-      phone: attendeeData.phone.split("-")[1],
-      gdpr: attendeeData.current_event_attendee.gdpr,
-      country: countries.find((item) => item.id === attendeeData.info.country),
+      phone: attendeeData.phone && attendeeData.phone.split("-")[1],
+      gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
+      country: countries.find((item) => (item.id === attendeeData.info.country)),
     });
   }, []);
   const updateAttendeeFeild = (e) => {
@@ -159,7 +160,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
         <div className="ebs-header">
           <h2>Edit profile</h2>
         </div>
-        <form onSubmit={(e)=> updateAttendee(e)}>
+        <form onSubmit={(e) => updateAttendee(e)}>
           <div
             style={{ background: "transparent" }}
             className="ebs-my-account-container"
@@ -409,9 +410,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               {attendeeData.info && attendeeData.info.country && (
-                <DropDown
-                  label="Select Country"
-                  listitems={countries}
+                <Select
+                  placeholder="Select Country"
+                  components={{ IndicatorSeparator: null }}
+                  options={countries.map((item, index) => {
+                    return {
+                      label: item.name,
+                      value: item.id,
+                      key: index,
+                    };
+                  })}
+                  value={
+                    attendeeData.country !== undefined && {
+                      label: attendeeData.country.label,
+                      value: attendeeData.country.value,
+                    }
+                  }
                   onChange={(item) => {
                     updateSelect({ item, name: "country" });
                   }}
@@ -537,22 +551,36 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   <div className="form-phone-field">
                     {attendeeData.calling_code && (
                       <React.Fragment>
-                        <DropDown
-                          listitems={callingCodes}
-                          name="calling_code"
-                          required={false}
-                          selectedlabel={attendeeData.calling_code.value}
-                          selected={attendeeData.calling_code.value}
+                        <Select
+                          placeholder=".."
+                          components={{ IndicatorSeparator: null }}
+                          options={callingCodes.map((item, index) => {
+                            return {
+                              label: item.name,
+                              value: item.id,
+                              key: index,
+                            };
+                          })}
+                          value={
+                            attendeeData.calling_code !== undefined && {
+                              label: attendeeData.calling_code.label,
+                              value: attendeeData.calling_code.value,
+                            }
+                          }
                           onChange={(item) => {
                             updateSelect({ item, name: "calling_code" });
                           }}
                         />
+
                         <Input
                           label="Phone"
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
-                          value={attendeeData.phone.split("-")[1]}
+                          value={
+                            attendeeData.phone &&
+                            attendeeData.phone.split("-")[1]
+                          }
                         />
                       </React.Fragment>
                     )}
@@ -650,9 +678,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
             </div>
           </div>
           <input type="submit" value="Update" />
-          {
-            loading && attendee !== null && "updating..."
-          }
+          {loading && attendee !== null && "updating..."}
         </form>
       </div>
     </div>
