@@ -18,7 +18,7 @@ const MySubRegistration = () => {
         <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner">
           <div className="ebs-header">
-            <h2>My Subscriptions</h2>
+            <h2>My subregistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
                 {subRegistration && <SubRegForm subRegistration={subRegistration} event={event} />}

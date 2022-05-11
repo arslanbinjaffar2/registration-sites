@@ -149,7 +149,7 @@ class Header2 extends React.Component {
                         )}
                         {menu.alias === "myaccount" && (
                           <ul className="dropdown-menu">
-                            {menus["my_account_sub_menu"].map(
+                            {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
                                   {myaccount.alias !== "login" ? (<NavLink
@@ -171,7 +171,16 @@ class Header2 extends React.Component {
                                         }
                                 </li>
                               )
-                            )}
+                            ):(<li className="nav-item">
+                            <NavLink
+                              aria-current="page"
+                              className="nav-link"
+                              to={ `/${event.url}/profile`}
+                            >
+                                My Profile
+                            </NavLink>
+                          </li>
+                    )}
                           </ul>
                         )}
                         {menu.alias === "practicalinformation" && (
