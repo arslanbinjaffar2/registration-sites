@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ const MyProfile = () =>  {
         <div className="edgtf-container-inner">
           <div className="ebs-header">
             <h2>My profile</h2>
+            <Link className='btn-link' to={`/${event.url}/profile/edit`}>Edit profile</Link>
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">

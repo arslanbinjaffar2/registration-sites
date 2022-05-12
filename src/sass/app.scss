@@ -1300,15 +1300,18 @@
 }
 
 .network-category-sec {
-  padding-top: 25px !important;
+ padding: 25px;
+ background: rgba($lightf4, 0.5);
+ border-radius: 10px;
 }
 
 .network-cateogry-list {
   margin-bottom: 20px;
   h5 {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 14px;
+    color: $themeblue;
   }
   ul {
     padding: 0;
@@ -1331,6 +1334,8 @@
           font-size: 14px;
           font-weight: 600;
           cursor: pointer;
+          border: 1px solid $themeblue;
+          color: $themeblue;
           &::before {
             content: "\e145";
             font-family: "Material Icons";
@@ -1345,6 +1350,8 @@
           position: absolute;
           left: -100%;
           &:checked + span {
+            color: $white;
+            background: $themeblue;
             &::before {
               content: "\e876";
             }
@@ -1355,12 +1362,16 @@
   }
   &.ebs-cateogry-filter {
     padding-bottom: 8px;
+    margin: 0;
     ul {
       li {
-        span {
-          padding-left: 14px;
-          &::before {
-            display: none;
+        label {
+          span {
+            padding-left: 22px;
+            padding-right: 22px;
+            &::before {
+              display: none;
+            }
           }
         }
       }
@@ -1369,9 +1380,11 @@
 }
 .ebs-keyword-search {
   margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border;
   label {
     width: 100%;
-    max-width: 300px;
+    max-width: 420px;
     margin: 0;
     display: inline-block;
     position: relative;
@@ -1422,6 +1435,13 @@
     padding-left: 28px;
     overflow: hidden;
     cursor: pointer;
+    input[type="checkbox"],
+    input[type="radio"] {
+      position: absolute;
+      left: -100%;
+      opacity: 0;
+      visibility: hidden;
+    }
     mark {
       padding: 0;
       background-color: transparent;
@@ -1441,11 +1461,14 @@
       line-height: 15px;
       font-size: 14px;
     }
-    &.checked {
-      span:before {
+    input[type="checkbox"]:checked ~ span:before,
+    input[type="radio"]:checked ~ span:before {
         content: "\e876";
+        background: $themeblue;
+        color: $white;
+        border-color: $themeblue;
       }
-    }
+    
   }
   &.style-radio {
     label {
@@ -1498,8 +1521,10 @@
       margin-bottom: 14px;
     }
     .matrix-box {
-      min-width: 100px;
+      min-width: 120px;
+      max-width: 120px;
       text-align: center;
+      color: $black;
       padding: 0 20px;
       &.matrix-heading {
         text-align: left;
@@ -1540,9 +1565,14 @@
     font-size: 14px;
     display: inline-block;
     vertical-align: middle;
+    border: 1px solid #bbb;
+    background: $white;
   }
   input:checked + span:before {
     content: "\e876";
+    background: $themeblue;
+    color: $white;
+    border-color: $themeblue;
   }
 }
 .error-message{

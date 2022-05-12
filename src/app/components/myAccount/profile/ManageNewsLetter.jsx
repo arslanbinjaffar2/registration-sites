@@ -53,7 +53,9 @@ const ManageNewsLetterList = ({newsletter, event}) => {
            <label key={item.id} onClick={()=>{addSubscription(item.id)}} className={ mySubscriberListNew.indexOf(item.id) !== -1 ? 'checked': ''}><span>{item.name}</span></label>
         )) 
     }    
-      <button className="btn btn-primary btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+        <div className="bottom-button">
+              <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+          </div>
     </div>
 
   )

@@ -21,12 +21,18 @@ const SurveyList = () => {
           <h2>Surveys</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
+          <div className="ebs-survey-heading d-flex">
+            <h4>Available Surveys</h4>
+            <a className="btn-view-result" href="#!">View results</a>
+          </div>
           {surveyList && (
-            <ul>
-              {surveyList.map((survey) => (
-                <li key={survey.id}> <Link to={`/${event.url}/survey/${survey.id}`} >{survey.info[0].value}</Link> </li>
-              ))}
-            </ul>
+            <div className="ebs-survey-list">
+              <ul>
+                {surveyList.map((survey) => (
+                  <li key={survey.id}> <Link to={`/${event.url}/survey/${survey.id}`} >{survey.info[0].value}</Link> </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </div>

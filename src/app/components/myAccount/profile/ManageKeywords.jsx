@@ -89,12 +89,6 @@ const ManageKeywordsList = ({ keywords, event }) => {
   }
   return (
     <React.Fragment>
-      <div className="ebs-keyword-search">
-        <label>
-          <input placeholder="Search" type="text" value={searchTerm} onChange={(e)=>{ setSearch(e) }} />
-          <i className="material-icons">search</i>
-        </label>
-      </div>
       <div className="ebs-keywords-filter">
         <div className="network-cateogry-list ebs-cateogry-filter">
           <ul>
@@ -113,37 +107,47 @@ const ManageKeywordsList = ({ keywords, event }) => {
           </ul>
         </div>
       </div>
-      {filteredkeywords.length > 0 ? filteredkeywords.map((item) => (
-      <div className="network-cateogry-list" key={item.id}>
-        <h5>{item.name}</h5>
-        <ul>
-          {item.children.map((child) => (
-            <li key={child.id}>
-              <label>
-                <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} />
-                <span>{child.name}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
+      <div className="ebs-keyword-search">
+        <label>
+          <input placeholder="Search" type="text" value={searchTerm} onChange={(e)=>{ setSearch(e) }} />
+          <i className="material-icons">search</i>
+        </label>
       </div>
-      )):
-      interestkeywords.map((item) => (
-        <div className="network-cateogry-list" key={item.id}>
-          <h5>{item.name}</h5>
-          <ul>
-            {item.children.map((child) => (
-              <li key={child.id}>
-                <label>
-                  <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} onChange={()=>{addMyKeyword(child.id)}} />
-                  <span>{child.name}</span>
-                </label>
-              </li>
+        <div className="ebs-keyword-wrapper">
+          {filteredkeywords.length > 0 ? filteredkeywords.map((item) => (
+          <div className="network-cateogry-list" key={item.id}>
+            <h5>{item.name}</h5>
+            <ul>
+              {item.children.map((child) => (
+                <li key={child.id}>
+                  <label>
+                    <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} />
+                    <span>{child.name}</span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+          )):
+          interestkeywords.map((item) => (
+            <div className="network-cateogry-list" key={item.id}>
+              <h5>{item.name}</h5>
+              <ul>
+                {item.children.map((child) => (
+                  <li key={child.id}>
+                    <label>
+                      <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} onChange={()=>{addMyKeyword(child.id)}} />
+                      <span>{child.name}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
             ))}
-          </ul>
+            <div className="bottom-button">
+              <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+            </div>
         </div>
-        ))}
-      <button className="btn btn-primary btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
     </React.Fragment>
   );
 };

@@ -624,7 +624,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
           </div>
         </React.Fragment>
       </div>
-      <button className="btn btn-primary btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+      <div className="bottom-button">
+        <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+      </div>
     </React.Fragment>
   );
 };

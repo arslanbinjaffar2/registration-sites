@@ -158,6 +158,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       <div className="edgtf-container-inner">
         <div className="ebs-header">
           <h2>Edit profile</h2>
+          <span className='btn-link'>Save Changes</span>
         </div>
         <form onSubmit={(e)=> updateAttendee(e)}>
           <div
@@ -233,7 +234,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       checked={attendeeData.info.gender === "male"}
                     />
-                    Male
+                    <span>Male</span>
                   </label>
                   <label>
                     <input
@@ -245,7 +246,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       checked={attendeeData.info.gender === "female"}
                     />
-                    Female
+                    <span>Female</span>
                   </label>
                 </div>
               )}
@@ -552,7 +553,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
-                          value={attendeeData.phone.split("-")[1]}
+                          value={attendeeData.phone && attendeeData.phone.split("-")[1]}
                         />
                       </React.Fragment>
                     )}
@@ -649,10 +650,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
             </div>
           </div>
-          <input type="submit" value="Update" />
+          <div className="bottom-button">
+          <input className="btn btn-save-next btn-loader" type="submit" value="Update" />
           {
             loading && attendee !== null && "updating..."
           }
+
+          </div>
         </form>
       </div>
     </div>
