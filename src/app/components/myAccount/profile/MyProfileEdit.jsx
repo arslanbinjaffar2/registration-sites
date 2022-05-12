@@ -3,6 +3,7 @@ import Input from "@/forms/Input";
 import TextArea from "@/forms/TextArea";
 import DateTime from "@/forms/DateTime";
 import DropDown from "@/forms/DropDown";
+import Select from "react-select";
 import {
   fetchProfileData,
   profileSelector,
@@ -47,7 +48,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       SPOKEN_LANGUAGE: languages
         .filter(
           (item) =>
-            attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
+          attendeeData.SPOKEN_LANGUAGE && attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
         )
         .map((item, index) => ({
           label: item.name,
@@ -55,12 +56,12 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
           key: index,
         })),
       calling_code: {
-        label: attendeeData.phone.split("-")[0],
-        value: attendeeData.phone.split("-")[0],
+        label: attendeeData.phone && attendeeData.phone.split("-")[0],
+        value: attendeeData.phone && attendeeData.phone.split("-")[0],
       },
-      phone: attendeeData.phone.split("-")[1],
-      gdpr: attendeeData.current_event_attendee.gdpr,
-      country: countries.find((item) => item.id === attendeeData.info.country),
+      phone: attendeeData.phone && attendeeData.phone.split("-")[1],
+      gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
+      country: countries.find((item) => (item.id === attendeeData.info.country)),
     });
   }, []);
   const updateAttendeeFeild = (e) => {
@@ -160,7 +161,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
           <h2>Edit profile</h2>
           <span className='btn-link'>Save Changes</span>
         </div>
-        <form onSubmit={(e)=> updateAttendee(e)}>
+        <form onSubmit={(e) => updateAttendee(e)}>
           <div
             style={{ background: "transparent" }}
             className="ebs-my-account-container"
@@ -410,9 +411,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               {attendeeData.info && attendeeData.info.country && (
-                <DropDown
-                  label="Select Country"
-                  listitems={countries}
+                <Select
+                  placeholder="Select Country"
+                  components={{ IndicatorSeparator: null }}
+                  options={countries.map((item, index) => {
+                    return {
+                      label: item.name,
+                      value: item.id,
+                      key: index,
+                    };
+                  })}
+                  value={
+                    attendeeData.country !== undefined && {
+                      label: attendeeData.country.label,
+                      value: attendeeData.country.value,
+                    }
+                  }
                   onChange={(item) => {
                     updateSelect({ item, name: "country" });
                   }}
@@ -533,21 +547,33 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
+                {attendeeData.phone && 
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-phone.svg")} alt="" />
                   <div className="form-phone-field">
                     {attendeeData.calling_code && (
                       <React.Fragment>
-                        <DropDown
-                          listitems={callingCodes}
-                          name="calling_code"
-                          required={false}
-                          selectedlabel={attendeeData.calling_code.value}
-                          selected={attendeeData.calling_code.value}
+                        <Select
+                          placeholder=".."
+                          components={{ IndicatorSeparator: null }}
+                          options={callingCodes.map((item, index) => {
+                            return {
+                              label: item.name,
+                              value: item.id,
+                              key: index,
+                            };
+                          })}
+                          value={
+                            attendeeData.calling_code !== undefined && {
+                              label: attendeeData.calling_code.label,
+                              value: attendeeData.calling_code.value,
+                            }
+                          }
                           onChange={(item) => {
                             updateSelect({ item, name: "calling_code" });
                           }}
                         />
+
                         <Input
                           label="Phone"
                           onChange={(e) => {
@@ -558,10 +584,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </React.Fragment>
                     )}
                   </div>
-                </div>
+                </div>}
+                  {attendeeData.email && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-envelope.svg")} alt="" />
-                  {attendeeData.email && (
                     <Input
                       label="E-mail"
                       required
@@ -571,11 +597,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.email}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.website && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-web.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.website && (
                     <Input
                       label="E-mail"
                       required
@@ -585,11 +611,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.website}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.facebook && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-facebook.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.facebook && (
                     <Input
                       label="E-mail"
                       required
@@ -599,11 +625,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.facebook}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.twitter && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-twitter.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.twitter && (
                     <Input
                       label="E-mail"
                       required
@@ -613,22 +639,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.twitter}
                     />
-                  )}
                 </div>
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-linkedin.svg")} alt="" />
+                  )}
                   {attendeeData.info && attendeeData.info.linkedin && (
-                    <Input
-                      label="E-mail"
-                      required
-                      name="linkedin"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.linkedin}
-                    />
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("img/ico-linkedin.svg")} alt="" />
+                      <Input
+                        label="E-mail"
+                        required
+                        name="linkedin"
+                        onChange={(e) => {
+                          updateAttendeeInfoFeild(e);
+                        }}
+                        value={attendeeData.info.linkedin}
+                      />
+                  </div>
                   )}
-                </div>
               </div>
               {attendeeData.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">

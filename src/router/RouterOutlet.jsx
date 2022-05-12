@@ -34,7 +34,7 @@ import MySubRegistration from "@/myAccount/profile/MySubRegistration";
 import SurveyList from "@/myAccount/profile/SurveyList";
 import surveyDetail from "@/myAccount/profile/surveyDetail";
 import MyProgram from "@/myAccount/profile/MyProgram";
-import LoginScreen from "@/myAccount/profile/LoginScreen"
+import LoginScreen from "@/myAccount/login/LoginScreen"
 import { useSelector } from "react-redux";
 import {
   globalSelector
