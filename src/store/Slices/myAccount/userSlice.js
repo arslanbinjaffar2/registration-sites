@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { header } from "../../../app/helpers/header";
 import axios from "axios";
 const initialState = {
   userData: null,
@@ -10,6 +11,7 @@ const initialState = {
   attendee:null,
   ms:null,
   error: null,
+  loggedout:false,
 };
 
 export const userSlice = createSlice({
@@ -45,6 +47,7 @@ export const userSlice = createSlice({
       state.redirect = payload.redirect;
       state.ms = payload.data.ms;
       state.error = false;
+      state.loading= false;
     },
     setRedirect: (state, { payload }) => {
       state.redirect = payload.redirect;
@@ -60,12 +63,15 @@ export const userSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
+    setLoggedOut: (state, { payload }) => {
+      state.loggedout = payload;
+    },
     reset: () => initialState
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setLoading, setLoginData, setError, setForgotPasswordCode, setAttendeeData, setAuthId, setEmail, setRedirect, setProvider, setMs, reset } = userSlice.actions;
+export const { setLoading, setLoginData, setError, setForgotPasswordCode, setAttendeeData, setAuthId, setEmail, setRedirect, setProvider, setMs, reset, setLoggedOut } = userSlice.actions;
 
 export const userSelector = (state) => state.user;
 
@@ -188,6 +194,25 @@ export const resetPassword = (id, url, data) => {
         dispatch(setRedirect(response.data));
       }else{
         dispatch(setError(response.data.message));
+      }
+    } catch (error) {
+      if(error.response.data.message){
+        dispatch(setError(error.response.data.message));
+      }else{
+        dispatch(setError(error.message));
+      }
+    }
+  };
+};
+
+export const logOut = (id, url) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
+      console.log(response);
+      if(response.data.success){
+        localStorage.removeItem(`event${id}User`);
+        dispatch(setLoggedOut(true));
       }
     } catch (error) {
       if(error.response.data.message){

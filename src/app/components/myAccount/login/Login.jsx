@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import SimpleReactValidator from "simple-react-validator";
 import AlertMessage from './AlertMessage';
 
-const Login = ({setStep, onCancel, onformSubmit, event, error}) => {
+const Login = ({setStep, onCancel, onformSubmit, event, error, loading}) => {
     const [, forceUpdate] = useState(0);
     const simpleValidator = useRef(new SimpleReactValidator({
       element: (message) => <p className="error-message">{message}</p>,
@@ -72,7 +72,7 @@ const onSubmit = (e) =>{
               </label>
             </div>
             <div className="ebs-btn-wrapp">
-              <button className="btn btn-default" type="submit" disabled={!valid ? true : false}>Login</button>
+              <button className="btn btn-default" type="submit" disabled={(!valid || loading) ? true : false}>{loading ? 'Loading...': "Login"}</button>
             </div>
           </div>}
           {(Number(event.attendee_settings.linkedin_registration) === 1 || Number(event.attendee_settings.facebook_enable) === 1) && <div className="ebs-social-meida-login">

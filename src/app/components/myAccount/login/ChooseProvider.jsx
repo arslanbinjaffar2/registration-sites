@@ -7,7 +7,8 @@ const ChooseProvider = ({
   authenticationId,
   attendee,
   event,
-  error
+  error,
+  loading
 }) => {
   const [provider, setProvider] = useState("email");
   useEffect(() => {
@@ -53,8 +54,8 @@ const ChooseProvider = ({
         </React.Fragment>
       )}
       <div className="ebs-btn-wrapp">
-        <button className="btn btn-default" type="submit" disabled={attendee ? false : true} onClick={()=>{verification(event.id, "choose-provider", provider, null, event.url, authenticationId)}}>
-          Send
+        <button className="btn btn-default" type="submit" disabled={(attendee && !loading) ? false : true} onClick={()=>{verification(event.id, "choose-provider", provider, null, event.url, authenticationId)}}>
+        {loading ? "Loading...":"Send"}
         </button>
       </div>
     </div>

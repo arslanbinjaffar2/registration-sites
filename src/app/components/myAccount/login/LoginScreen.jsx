@@ -70,15 +70,15 @@ const LoginScreen = ({history}) => {
   return (
     <div className="ebs-login-screen">
       <div className="ebs-login-wrapp">
-        {step === "login" && <Login setStep={setStep} onCancel={onCancel} onformSubmit={onSubmit} event={event} error={error}/>}
+        {step === "login" && <Login setStep={setStep} onCancel={onCancel} onformSubmit={onSubmit} event={event} error={error} loading={loading} />}
         {step === "requestResetPassword" &&
-        <RequestResetPassword setStep={setStep} onCancel={onCancel} onformSubmit={submitResetPasswordRequest} error={error}/>}
+        <RequestResetPassword setStep={setStep} onCancel={onCancel} onformSubmit={submitResetPasswordRequest} error={error} loading={loading} />}
         {step === "chooseProvider" &&
-        <ChooseProvider onCancel={onCancel} authenticationId={authenticationId} getAttendee={getAttendee} attendee={attendee} verification={verification} event={event} error={error}/>}
+        <ChooseProvider onCancel={onCancel} authenticationId={authenticationId} getAttendee={getAttendee} attendee={attendee} verification={verification} event={event} error={error} loading={loading} />}
         {step === "verification" &&
-        <Verification setStep={setStep} onCancel={onCancel} ms={ms} verification={verification} authenticationId={authenticationId} provider={provider}  event={event} error={error}/>}
+        <Verification setStep={setStep} onCancel={onCancel} ms={ms} verification={verification} authenticationId={authenticationId} provider={provider}  event={event} error={error} loading={loading} />}
         {step === "resetPassord" &&
-        <ResetPassword onCancel={onCancel} email={email} onformSubmit={resetPword} />}
+        <ResetPassword onCancel={onCancel} email={email} onformSubmit={resetPword} loading={loading} />}
       </div>
     </div>
   )

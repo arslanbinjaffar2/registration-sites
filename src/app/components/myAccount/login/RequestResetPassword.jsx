@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react'
 import SimpleReactValidator from "simple-react-validator";
 import AlertMessage from './AlertMessage';
-const RequestResetPassword = ({onCancel, setStep, onformSubmit, error}) => {
+const RequestResetPassword = ({onCancel, setStep, onformSubmit, error, loading}) => {
     const [, forceUpdate] = useState(0);
     const simpleValidator = useRef(new SimpleReactValidator({
       element: (message) => <p className="error-message">{message}</p>,
@@ -42,7 +42,7 @@ const onSubmit = () =>{
               {simpleValidator.current.message('email', email, 'required|email')}
             </label>
             <div style={{paddingTop: 40,paddingBottom: 20}} className="ebs-btn-wrapp">
-              <button disabled={valid ? false : true} onClick={() => { onSubmit()}} className="btn btn-default">Send</button>
+              <button disabled={(valid && !loading) ? false : true} onClick={() => { onSubmit()}} className="btn btn-default">{loading ? "Loading...":"Send"}</button>
             </div>
           </div>
         </div>

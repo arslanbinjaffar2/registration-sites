@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import SimpleReactValidator from "simple-react-validator";
 import AlertMessage from './AlertMessage';
-const ResetPassword = ({onCancel, onformSubmit, email, error}) => {
+const ResetPassword = ({onCancel, onformSubmit, email, error,loading}) => {
     const [, forceUpdate] = useState(0);
     const simpleValidator = useRef(new SimpleReactValidator({
       element: (message) => <p className="error-message">{message}</p>,
@@ -62,7 +62,7 @@ const onSubmit = () =>{
                     Passwords don't match..
             </div>}
             <div style={{paddingTop: 40,paddingBottom: 30}}  className="ebs-btn-wrapp">
-              <button onClick={()=>{onSubmit()}} disabled={valid ? false : true} className="btn btn-default">Save</button>
+              <button onClick={()=>{onSubmit()}} disabled={(valid && !loading) ? false : true} className="btn btn-default">{loading ? "Loading...":"Save"}</button>
             </div>
           </div>
         </div>

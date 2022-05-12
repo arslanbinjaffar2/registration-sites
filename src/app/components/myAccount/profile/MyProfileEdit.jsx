@@ -48,7 +48,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       SPOKEN_LANGUAGE: languages
         .filter(
           (item) =>
-          attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
+          attendeeData.SPOKEN_LANGUAGE && attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
         )
         .map((item, index) => ({
           label: item.name,
@@ -546,6 +546,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
+                {attendeeData.phone && 
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-phone.svg")} alt="" />
                   <div className="form-phone-field">
@@ -585,10 +586,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </React.Fragment>
                     )}
                   </div>
-                </div>
+                </div>}
+                  {attendeeData.email && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-envelope.svg")} alt="" />
-                  {attendeeData.email && (
                     <Input
                       label="E-mail"
                       required
@@ -598,11 +599,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.email}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.website && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-web.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.website && (
                     <Input
                       label="E-mail"
                       required
@@ -612,11 +613,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.website}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.facebook && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-facebook.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.facebook && (
                     <Input
                       label="E-mail"
                       required
@@ -626,11 +627,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.facebook}
                     />
-                  )}
                 </div>
+                  )}
+                  {attendeeData.info && attendeeData.info.twitter && (
                 <div className="ebs-contact-row d-flex align-items-center">
                   <img src={require("img/ico-twitter.svg")} alt="" />
-                  {attendeeData.info && attendeeData.info.twitter && (
                     <Input
                       label="E-mail"
                       required
@@ -640,22 +641,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.twitter}
                     />
-                  )}
                 </div>
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-linkedin.svg")} alt="" />
+                  )}
                   {attendeeData.info && attendeeData.info.linkedin && (
-                    <Input
-                      label="E-mail"
-                      required
-                      name="linkedin"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.linkedin}
-                    />
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("img/ico-linkedin.svg")} alt="" />
+                      <Input
+                        label="E-mail"
+                        required
+                        name="linkedin"
+                        onChange={(e) => {
+                          updateAttendeeInfoFeild(e);
+                        }}
+                        value={attendeeData.info.linkedin}
+                      />
+                  </div>
                   )}
-                </div>
               </div>
               {attendeeData.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">

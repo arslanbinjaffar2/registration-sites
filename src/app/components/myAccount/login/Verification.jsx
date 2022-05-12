@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Countdown from "react-countdown";
 import ReactCodeInput from 'react-verification-code-input';
 import AlertMessage from "./AlertMessage";
-const Verification = ({ onCancel, setStep, ms, verification, event, authenticationId, provider, error }) => {
+const Verification = ({ onCancel, setStep, ms, verification, event, authenticationId, provider, error, loading }) => {
   const [code, setCode] = useState()
   return (
     <div className="ebs-login-wrapp-inner">
@@ -14,6 +14,7 @@ const Verification = ({ onCancel, setStep, ms, verification, event, authenticati
         Enter the code you will receive a code to reset the password , if you
         don’t get and any code click on resend code again.
       </p>
+      {error && <AlertMessage message={error}/>}
       <div className="ebs-login-from">
         <label className="ebs-label-input">
           <span className="ebs-label-title">Enter code</span>
@@ -57,8 +58,8 @@ const Verification = ({ onCancel, setStep, ms, verification, event, authenticati
           <div onClick={()=>{verification(event.id, "choose-provider", provider, null, event.url, authenticationId)}} style={{ paddingBottom: 10 }} className="ebs-forgot-password">
             <span >Resend code again</span>
           </div>
-          <button disabled={code && code.length === 6 ? false : true} onClick={() => verification(event.id, "verification", provider, code, event.url, authenticationId)} className="btn btn-default">
-            Verify
+          <button disabled={(code && code.length === 6 && !loading) ? false : true} onClick={() => verification(event.id, "verification", provider, code, event.url, authenticationId)} className="btn btn-default">
+          {loading ? "Loading...":"Verify"}
           </button>
         </div>
       </div>
