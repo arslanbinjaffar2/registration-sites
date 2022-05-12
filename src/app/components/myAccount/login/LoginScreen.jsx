@@ -74,7 +74,7 @@ const LoginScreen = ({history}) => {
         {step === "requestResetPassword" &&
         <RequestResetPassword setStep={setStep} onCancel={onCancel} onformSubmit={submitResetPasswordRequest} error={error} loading={loading} />}
         {step === "chooseProvider" &&
-        <ChooseProvider onCancel={onCancel} authenticationId={authenticationId} getAttendee={getAttendee} attendee={attendee} verification={verification} event={event} error={error} loading={loading} />}
+        <ChooseProvider onCancel={onCancel} provider={provider} authenticationId={authenticationId} getAttendee={getAttendee} attendee={attendee} verification={verification} event={event} error={error} loading={loading} />}
         {step === "verification" &&
         <Verification setStep={setStep} onCancel={onCancel} ms={ms} verification={verification} authenticationId={authenticationId} provider={provider}  event={event} error={error} loading={loading} />}
         {step === "resetPassord" &&

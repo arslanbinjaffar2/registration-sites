@@ -1601,21 +1601,24 @@ $z-index:$back-to-top-size / 2;
 					cursor: pointer;
 				}
 				.ebs-verfication-code {
+					width: 100% !important;
 					padding-top: 10px;
-					display: grid;
-					column-gap: 12px;
-					grid-auto-columns: 1fr;
-					grid-auto-flow: column;
-					.ebs-input {
-						height: 50px;
-						border: 1px solid $border;
-						border-radius: 7px;
-						text-align: center;
-						font-size: 30px;
-						&:focus {
-							border-color: $themeblue;
+					div {
+						display: grid;
+						column-gap: 12px;
+						grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+						input[type="tel"] {
+							height: 50px;
+							border: 1px solid $border;
+							border-radius: 7px;
+							text-align: center;
+							font-size: 30px;
+							width: auto !important;
+							&:focus {
+								border-color: $themeblue;
+							}
+							
 						}
-						
 					}
 				}
 				.ebs-show-password {
@@ -1659,44 +1662,6 @@ $z-index:$back-to-top-size / 2;
 					line-height: 1.2;
 				}	
 			}
-			.ebs-form-accept {
-				padding-bottom: 15px;
-				position: relative;
-				.ebs-label-accept {
-					input[type="checkbox"] {
-						display: none;
-						opacity: 0;
-						visibility: hidden;
-						&:checked ~ .ebs-accept-text {
-							&::before {
-								background: url(../img/ico-checkmark.svg) no-repeat center center $themeblue;
-								border-color: $themeblue;
-								background-size: 14px;
-							}
-						}
-					}
-				}
-				.ebs-accept-text {
-					padding-left: 38px;
-					display: block;
-					position: relative;
-					font-size: 14px;
-					line-height: 24px;
-					cursor: pointer;
-					&::before {
-						content: '';
-						width: 24px;
-						height: 24px;
-						border: 1px solid $border;
-						display: block;
-						border-radius: 5px;
-						position: absolute;
-						left: 0;
-						top: 0;
-					}
-				}
-			
-			}
 		}
 		.ebs-btn-wrapp {
 			.btn {
@@ -1733,6 +1698,44 @@ $z-index:$back-to-top-size / 2;
 				}
 			}
 		} 
+	}
+
+}
+.ebs-form-accept {
+	padding-bottom: 15px;
+	position: relative;
+	.ebs-label-accept {
+		input[type="checkbox"] {
+			display: none;
+			opacity: 0;
+			visibility: hidden;
+			&:checked ~ .ebs-accept-text {
+				&::before {
+					background: url(../img/ico-checkmark.svg) no-repeat center center $themeblue;
+					border-color: $themeblue;
+					background-size: 14px;
+				}
+			}
+		}
+	}
+	.ebs-accept-text {
+		padding-left: 38px;
+		display: block;
+		position: relative;
+		font-size: 14px;
+		line-height: 24px;
+		cursor: pointer;
+		&::before {
+			content: '';
+			width: 24px;
+			height: 24px;
+			border: 1px solid $border;
+			display: block;
+			border-radius: 5px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
 	}
 
 }

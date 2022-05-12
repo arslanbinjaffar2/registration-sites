@@ -26,7 +26,7 @@ const Verification = ({ onCancel, setStep, ms, verification, event, authenticati
             <input className="ebs-input" type="text" autoComplete="false" />
             <input className="ebs-input" type="text" autoComplete="false" />
           </div> */}
-          <ReactCodeInput type='number' fields={6} onChange={(code)=>{setCode(code)}} fieldHeight={40} fieldWidth={50} />
+          <ReactCodeInput className="ebs-verfication-code" type='number' fields={6} onChange={(code)=>{setCode(code)}}  fieldHeight={50}  />
         </label>
         <div style={{ padding: 5 }} className="ebs-label-input">
           <span className="ebs-label-title">Code will expire after</span>

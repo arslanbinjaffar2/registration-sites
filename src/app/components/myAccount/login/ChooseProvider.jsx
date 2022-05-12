@@ -8,9 +8,10 @@ const ChooseProvider = ({
   attendee,
   event,
   error,
+  provider,
   loading
 }) => {
-  const [provider, setProvider] = useState("email");
+  const [providerloc, setProviderLoc] = useState(provider);
   useEffect(() => {
     getAttendee(authenticationId);
   }, []);
@@ -30,9 +31,9 @@ const ChooseProvider = ({
               <input
                 type="checkbox"
                 name="email"
-                checked={provider === "email" ? true :false}
+                checked={providerloc === "email" ? true :false}
                 onChange={(e) => {
-                  setProvider(e.target.value);
+                  setProviderLoc(e.target.value);
                 }}
               />
               <span className="ebs-accept-text">{attendee.email}</span>
@@ -43,9 +44,9 @@ const ChooseProvider = ({
               <input
                 type="checkbox"
                 name="phone"
-                checked={provider === "phone" ? true: false}
+                checked={providerloc === "phone" ? true: false}
                 onChange={(e) => {
-                  setProvider(e.target.value);
+                  setProviderLoc(e.target.value);
                 }}
               />
               <span className="ebs-accept-text">{attendee.phone}</span>
@@ -54,7 +55,7 @@ const ChooseProvider = ({
         </React.Fragment>
       )}
       <div className="ebs-btn-wrapp">
-        <button className="btn btn-default" type="submit" disabled={(attendee && !loading) ? false : true} onClick={()=>{verification(event.id, "choose-provider", provider, null, event.url, authenticationId)}}>
+        <button className="btn btn-default" type="submit" disabled={(attendee && !loading) ? false : true} onClick={()=>{verification(event.id, "choose-provider", providerloc, null, event.url, authenticationId)}}>
         {loading ? "Loading...":"Send"}
         </button>
       </div>
