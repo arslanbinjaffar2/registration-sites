@@ -23,13 +23,13 @@ const Video = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["video"]);
   });
   const showPagination = props.pagination ? props.pagination : false;
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 

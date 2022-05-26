@@ -14,12 +14,12 @@ const loadModule = (theme, variation) => {
 
 const SocialShare = () => {
   const { event } = useSelector(eventSelector);
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["social_media_share"]);
   });
 
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 

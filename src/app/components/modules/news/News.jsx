@@ -19,12 +19,12 @@ const News = (props) => {
   const { news, totalPages } = useSelector(newsSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["news"]);
   });
   const limit = 10;
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
   const [page, setPage] = useState(1);

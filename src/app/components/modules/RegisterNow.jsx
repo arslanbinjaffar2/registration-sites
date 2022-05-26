@@ -18,11 +18,11 @@ const RegisterNow = () => {
   const { event } = useSelector(eventSelector);
   // const dispatch = useDispatch();
   // const eventUrl = event.url;
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["register_now"]);
   });
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
   // useEffect(() => {

@@ -20,12 +20,12 @@ const Attendee = (props) => {
     useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["attendee"]);
   });
   const limit = 10;
   const CustomComponent = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 

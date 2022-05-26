@@ -20,7 +20,7 @@ const Header = ({location, history}) => {
   const dispatch = useDispatch();
   const { loadedSections } = useSelector(globalSelector);
   const [userExist, setUserExist] = useState(localStorage.getItem(`event${event.id}User`) ? true : false);
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
+  let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["header"]);
   });
   useEffect(() => {
@@ -34,7 +34,7 @@ const Header = ({location, history}) => {
   }, [])
   
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 
