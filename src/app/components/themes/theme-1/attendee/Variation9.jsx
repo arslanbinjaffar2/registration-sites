@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation4 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
@@ -9,7 +9,7 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
       }}
       className="edgtf-parallax-section-holder"
     >
-      <div className="container">
+      <div className="container-fluid">
         <div className="row d-flex mb-5">
           <div className="col-12">
             <div className="edgtf-title-section-holder text-center">
@@ -24,16 +24,16 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
           </div>
         </div>
         {searchBar()}
-        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
+        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
           {/* Grid */}
           {attendees &&
             attendees.map((attendee, i) => (
-              <div
-                key={i}
-                className="col-12 col-sm-6 col-md-3 pl-0 pr-0 ebs-attendee-v1"
-              >
+              <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-4">
                 <div className="edgtf-team-list-holder-inner info_box">
-                  <div className="edgtf-team edgtf-team-light w-100 mb-5">
+                  <div
+                    style={{ width: "100%" }}
+                    className="edgtf-team edgtf-team-light"
+                  >
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link to={`/${event.url}/attendees/${attendee.id}`}>
@@ -65,12 +65,14 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                             (attendee.info.company_name ||
                               attendee.info.title) && (
                               <div className="ebs-attendee-designation">
-                                {attendee.info.title && attendee.info.title}
-                                {attendee.info.company_name &&
-                                  attendee.info.title &&
-                                  " "}
-                                {attendee.info.company_name &&
-                                  attendee.info.company_name}
+                                <span className="edgtf-team-position">
+                                  {attendee.info.title && attendee.info.title}
+                                  {attendee.info.title &&
+                                    attendee.info.company_name &&
+                                    " "}
+                                  {attendee.info.company_name &&
+                                    attendee.info.company_name}
+                                </span>
                               </div>
                             )}
                           {attendee.email && (
@@ -83,7 +85,6 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                               </a>
                             </div>
                           )}
-
                           {attendee.phone && (
                             <div className="ebs-email-phone">
                               <a
@@ -94,15 +95,13 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                               </a>
                             </div>
                           )}
-                        </div>
-                        {attendee.info &&
-                          (attendee.info.facebook ||
-                            attendee.info.twitter ||
-                            attendee.info.linkedin ||
-                            attendee.info.website) && (
-                            <div className="edgtf-team-social-holder-between">
-                              <div className="edgtf-team-social">
-                                <div className="edgtf-team-social-inner">
+                          {attendee.info &&
+                            (attendee.info.facebook ||
+                              attendee.info.twitter ||
+                              attendee.info.linkedin ||
+                              attendee.info.website) && (
+                              <div className="edgtf-team-social-holder">
+                                <div className="edgtf-team-social-holder-inner">
                                   <div className="edgtf-team-social-wrapp">
                                     <div className="social-icons">
                                       {attendee.info.facebook && (
@@ -141,8 +140,15 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                                   </div>
                                 </div>
                               </div>
+                            )}
+                        </div>
+                        {/* <div className="edgtf-team-social-holder-between">
+                          <div className="edgtf-team-social">
+                            <div className="edgtf-team-social-inner">
+                              <div className="edgtf-team-social-wrapp"></div>
                             </div>
-                          )}
+                          </div>
+                        </div> */}
                       </div>
                       {/* Description */}
                     </div>
@@ -159,4 +165,4 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation3;
+export default Variation4;

@@ -1,39 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
-      style={{ padding: "50px 0" }}
+      style={{
+        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+        padding: "50px 0",
+      }}
       className="edgtf-parallax-section-holder"
     >
       <div className="container">
         <div className="row d-flex mb-5">
-          <div className="col-8 offset-md-2 text-center">
+          <div className="col-4">
             <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
+              <h2
+                style={{ color: "#ffffff" }}
+                className="edgtf-title-with-dots edgtf-appeared"
+              >
                 {event.labels.EVENTSITE_ATTENDEES}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
+          </div>
+          <div className="col-8">
             <div className="edgtf-title-section-holder">
-              <h6 className="edgtf-section-subtitle">
+              <span className="edge-title-separator edge-disable-separator"></span>
+              <h6
+                className="edgtf-section-subtitle"
+                style={{ color: "#ffffff" }}
+              >
                 {event.labels.EVENT_ATTENDEES_LOWER_HEAD}
               </h6>
             </div>
           </div>
         </div>
         {searchBar()}
-        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
+        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
           {/* Grid */}
+
           {attendees &&
             attendees.map((attendee, i) => {
               return (
                 <div
-                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v2"
                   key={i}
+                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v1"
                 >
                   <div className="edgtf-team-list-holder-inner info_box">
-                    <div className="edgtf-team mb-5 w-100">
+                    <div className="edgtf-team edgtf-team-light mb-5 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link to={`/${event.url}/attendees/${attendee.id}`}>
@@ -49,6 +62,9 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
                               alt="g"
                             />
                           </Link>
+                          <div className="edgtf-team-social-holder">
+                            <div className="edgtf-team-social-holder-inner"></div>
+                          </div>
                         </div>
                         {/* Description */}
                         <div className="edgtf-team-info">
@@ -67,12 +83,12 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
                               (attendee.info.company_name ||
                                 attendee.info.title) && (
                                 <div className="ebs-attendee-designation">
-                                  {attendee.info.title && attendee.info.title}
-                                  {attendee.info.title &&
-                                    attendee.info.company_name &&
-                                    " "}
                                   {attendee.info.company_name &&
                                     attendee.info.company_name}
+                                  {attendee.info.company_name &&
+                                    attendee.info.title &&
+                                    " "}
+                                  {attendee.info.title && attendee.info.title}
                                 </div>
                               )}
                             {attendee.email && (
@@ -88,7 +104,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
                             {attendee.phone && (
                               <div className="ebs-email-phone">
                                 <a
-                                  href={`tel:${attendee.phone}`}
+                                  href={`tel: ${attendee.phone}`}
                                   className="edgtf-team-position"
                                 >
                                   {attendee.phone}
@@ -106,38 +122,42 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
                                   <div className="edgtf-team-social-inner">
                                     <div className="edgtf-team-social-wrapp">
                                       <div className="social-icons">
-                                        {attendee.info.facebook && (
-                                          <a
-                                            target="_blank"
-                                            href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
-                                          >
-                                            <span data-icon="&#xe0aa;"></span>
-                                          </a>
-                                        )}
-                                        {attendee.info.twitter && (
-                                          <a
-                                            target="_blank"
-                                            href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
-                                          >
-                                            <span data-icon="&#xe0ab;"></span>
-                                          </a>
-                                        )}
-                                        {attendee.info.linkedin && (
-                                          <a
-                                            target="_blank"
-                                            href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
-                                          >
-                                            <span data-icon="&#xe0b1;"></span>
-                                          </a>
-                                        )}
-                                        {attendee.info.website && (
-                                          <a
-                                            target="_blank"
-                                            href={`${attendee.info.website_protocol}${attendee.info.website}`}
-                                          >
-                                            <span data-icon="&#xe0b7;"></span>
-                                          </a>
-                                        )}
+                                        {attendee.info &&
+                                          attendee.info.facebook && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                                            >
+                                              <span data-icon="&#xe0aa;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.twitter && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                                            >
+                                              <span data-icon="&#xe0ab;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.linkedin && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                                            >
+                                              <span data-icon="&#xe0b1;"></span>
+                                            </a>
+                                          )}
+                                        {attendee.info &&
+                                          attendee.info.website && (
+                                            <a
+                                              target="_blank"
+                                              href={`${attendee.info.website_protocol}${attendee.info.website}`}
+                                            >
+                                              <span data-icon="&#xe0b7;"></span>
+                                            </a>
+                                          )}
                                       </div>
                                     </div>
                                   </div>
@@ -152,6 +172,8 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
                 </div>
               );
             })}
+
+          {/* Grid */}
         </div>
         {attendees.length === 0 && <div>No Attendees Found...</div>}
         {attendees.length > 0 && loadMore()}
@@ -160,4 +182,4 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation2;
+export default Variation1;
