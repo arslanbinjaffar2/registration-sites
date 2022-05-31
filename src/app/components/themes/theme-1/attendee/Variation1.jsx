@@ -43,10 +43,10 @@ const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
               return (
                 <div
                   key={i}
-                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v1"
+                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
                 >
                   <div className="edgtf-team-list-holder-inner info_box">
-                    <div className="edgtf-team edgtf-team-light mb-5 w-100">
+                    <div className="edgtf-team edgtf-team-light mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link to={`/${event.url}/attendees/${attendee.id}`}>
