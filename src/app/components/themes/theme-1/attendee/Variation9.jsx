@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation4 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation9 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
@@ -165,4 +165,4 @@ const Variation4 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation4;
+export default Variation9;

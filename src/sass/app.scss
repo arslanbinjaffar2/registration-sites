@@ -487,23 +487,23 @@
       font-size: 22px;
       font-weight: 700;
       a {
-        color: $text555;
+        color: $text2b;
         &:hover {
           color: $first-main-color;
         }
       }
     }
     .ebs-attendee-designation {
-      color: $text555;
+      color: $text2b;
       padding-bottom: 6px;
     }
     .ebs-email-phone  {
-      color: $text555;
+      color: $text2b;
       font-size: 14px;
       padding-bottom: 4px;
       font-style: italic;
       a {
-        color: $text555;
+        color: $text2b;
         &:hover {
           color: $first-main-color;
         }
@@ -512,7 +512,7 @@
     .social-icons {
       padding-top: 8px;
       a {
-        color: $text555;
+        color: var(--primary);
         &:hover {
           color: $first-main-color;
         }

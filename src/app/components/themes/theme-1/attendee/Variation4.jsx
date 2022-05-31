@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation4 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
         padding: "50px 0",
       }}
       className="edgtf-parallax-section-holder"
@@ -14,7 +13,6 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
           <div className="col-12">
             <div className="edgtf-title-section-holder text-center">
               <h2
-                style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
                 {event.labels.EVENTSITE_ATTENDEES}
@@ -74,10 +72,11 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                               </div>
                             )}
                           {attendee.email && (
-                            <div className="ebs-email-phone">
+                            <div style={{color: '#666666'}} className="ebs-email-phone">
                               <a
                                 href={`mailto:${attendee.email}`}
                                 className="edgtf-team-position"
+                                style={{color: '#666666'}}
                               >
                                 {attendee.email}
                               </a>
@@ -85,10 +84,11 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
                           )}
 
                           {attendee.phone && (
-                            <div className="ebs-email-phone">
+                            <div style={{color: '#666666'}} className="ebs-email-phone">
                               <a
                                 href={`tel: ${attendee.phone}`}
                                 className="edgtf-team-position"
+                                style={{color: '#666666'}}
                               >
                                 {attendee.phone}
                               </a>
@@ -159,4 +159,4 @@ const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation3;
+export default Variation4;

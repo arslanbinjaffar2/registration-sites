@@ -1,21 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
         padding: "50px 0",
       }}
       className="edgtf-parallax-section-holder"
     >
-      <div className="container-fluid">
+      <div className="container">
         <div className="row d-flex mb-5">
           <div className="col-12">
             <div className="edgtf-title-section-holder text-center">
               <h2
-                style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
                 {event.labels.EVENTSITE_SPEAKERS}
@@ -25,16 +22,17 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
           </div>
         </div>
         {listing && searchBar()}
-        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
+
+        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
           {/* Grid */}
           {speakers &&
             speakers.map((speaker, i) => (
-              <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-4">
+              <div
+                key={i}
+                className="col-12 col-sm-6 col-md-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
+              >
                 <div className="edgtf-team-list-holder-inner info_box">
-                  <div
-                    style={{ width: "100%" }}
-                    className="edgtf-team edgtf-team-light"
-                  >
+                  <div className="edgtf-team w-100 mb-3">
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link to={`/${event.url}/speakers/${speaker.id}`}>
@@ -65,45 +63,48 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
                           {speaker.info &&
                             (speaker.info.company_name ||
                               speaker.info.title) && (
-                              <div className="ebs-attendee-designation">
-                                <span className="edgtf-team-position">
-                                  {speaker.info.title && speaker.info.title}
-                                  {speaker.info.company_name &&
-                                    speaker.info.title &&
-                                    " "}
-                                  {speaker.info.company_name &&
-                                    speaker.info.company_name}
-                                </span>
+                              <div style={{color: '#666666'}} className="ebs-attendee-designation">
+                                {speaker.info.title && speaker.info.title}
+                                {speaker.info.title &&
+                                  speaker.info.company_name &&
+                                  " "}
+                                {speaker.info.company_name &&
+                                  speaker.info.company_name}
                               </div>
                             )}
                           {listing && speaker.email && (
-                            <div className="ebs-email-phone">
+                            <div style={{color: '#666666'}} className="ebs-email-phone">
                               <a
                                 href={`mailto:${speaker.email}`}
                                 className="edgtf-team-position"
+                                style={{color: '#666666'}}
                               >
                                 {speaker.email}
                               </a>
                             </div>
                           )}
+
                           {listing && speaker.phone && (
-                            <div className="ebs-email-phone">
+                            <div style={{color: '#666666'}} className="ebs-email-phone">
                               <a
                                 href={`tel: ${speaker.phone}`}
                                 className="edgtf-team-position"
+                                style={{color: '#666666'}}
                               >
                                 {speaker.phone}
                               </a>
                             </div>
                           )}
-                          {listing &&
-                            speaker.info &&
-                            (speaker.info.facebook ||
-                              speaker.info.twitter ||
-                              speaker.info.linkedin ||
-                              speaker.info.website) && (
-                              <div className="edgtf-team-social-holder">
-                                <div className="edgtf-team-social-holder-inner">
+                        </div>
+                        {listing &&
+                          speaker.info &&
+                          (speaker.info.facebook ||
+                            speaker.info.twitter ||
+                            speaker.info.linkedin ||
+                            speaker.info.website) && (
+                            <div className="edgtf-team-social-holder-between">
+                              <div className="edgtf-team-social">
+                                <div className="edgtf-team-social-inner">
                                   <div className="edgtf-team-social-wrapp">
                                     <div className="social-icons">
                                       {speaker.info.facebook && (
@@ -142,15 +143,8 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
                                   </div>
                                 </div>
                               </div>
-                            )}
-                        </div>
-                        {/* <div className="edgtf-team-social-holder-between">
-                          <div className="edgtf-team-social">
-                            <div className="edgtf-team-social-inner">
-                              <div className="edgtf-team-social-wrapp"></div>
                             </div>
-                          </div>
-                        </div> */}
+                          )}
                       </div>
                       {/* Description */}
                     </div>

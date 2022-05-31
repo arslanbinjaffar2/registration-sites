@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{
@@ -42,11 +42,11 @@ const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
             attendees.map((attendee, i) => {
               return (
                 <div
+                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
                   key={i}
-                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v1"
                 >
                   <div className="edgtf-team-list-holder-inner info_box">
-                    <div className="edgtf-team edgtf-team-light mb-5 w-100">
+                    <div className="edgtf-team mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link to={`/${event.url}/attendees/${attendee.id}`}>
@@ -182,4 +182,4 @@ const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation1;
+export default Variation2;

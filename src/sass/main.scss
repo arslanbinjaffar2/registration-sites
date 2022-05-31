@@ -1764,8 +1764,16 @@ $z-index:$back-to-top-size / 2;
 	}
 }
 .ebs-attendee-v2 {
+	 .edgtf-team-info {
+		margin-top: 10px !important;
+	}
+	.edgtf-team-name {
+		margin-bottom: 8px !important;
+		margin-top: 0 !important;
+	}
 	.ebs-attendee-designation {
 		color: $text555;
+		padding-bottom: 0;
 	}
 	.ebs-email-phone {
 		a {
@@ -1776,6 +1784,31 @@ $z-index:$back-to-top-size / 2;
 		a {
 			color: $text555;
 		}
+	}
+}
+.ebs-dark-attendee {
+	.ebs-email-phone {
+		a.edgtf-team-position {
+			color: $text666 !important;
+			&.alt {
+				color: $text2b !important;
+			}
+		}
+	}
+	.social-icons a {
+		color: $text2b !important;
+	}
+}
+.ebs-attendee-v3 {
+	.edgtf-team-info {
+		margin-top: 10px !important;
+	}
+	.edgtf-team-name {
+		margin-bottom: 8px !important;
+		margin-top: 0 !important;
+	}
+	.ebs-attendee-designation {
+		padding-bottom: 0;
 	}
 }
 .ebs-scroll-menu {
@@ -2509,4 +2542,10 @@ $z-index:$back-to-top-size / 2;
 		font-size: 45px;
 		padding: 15px;
 	}
+}
+.pr-0 {
+	padding-right: 0 !important;
+}
+.pl-0 {
+	padding-left: 0 !important;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
+const Variation3 = ({ attendees, searchBar, loadMore, event }) => {
   return (
     <div
       style={{ padding: "50px 0" }}
@@ -160,4 +160,4 @@ const Variation2 = ({ attendees, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation2;
+export default Variation3;

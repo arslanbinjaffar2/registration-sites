@@ -1,39 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
+
+const Variation8 = ({ speakers, listing, searchBar, loadMore, event }) => {
   return (
     <div
-      style={{ padding: "50px 0" }}
+      style={{
+        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+        padding: "50px 0",
+      }}
       className="edgtf-parallax-section-holder"
     >
-      <div className="container">
+      <div className="container-fluid">
         <div className="row d-flex mb-5">
-          <div className="col-8 offset-md-2 text-center">
-            <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
+          <div className="col-12">
+            <div className="edgtf-title-section-holder text-center">
+              <h2
+                style={{ color: "#ffffff" }}
+                className="edgtf-title-with-dots edgtf-appeared"
+              >
                 {event.labels.EVENTSITE_SPEAKERS}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>
-            <div className="edgtf-title-section-holder">
-              <h6 className="edgtf-section-subtitle">
-                {event.labels.EVENT_SPEAKERS_LOWER_HEAD}
-              </h6>
-            </div>
           </div>
         </div>
         {listing && searchBar()}
-        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
-          {/* Grid */}
-          {speakers &&
-            speakers.map((speaker, i) => {
-              return (
-                <div
-                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
-                  key={i}
-                >
+        <div className="container">
+          <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
+            {/* Grid */}
+            {speakers &&
+              speakers.map((speaker, i) => (
+                <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-0">
                   <div className="edgtf-team-list-holder-inner info_box">
-                    <div className="edgtf-team mb-3 w-100">
+                    <div
+                      style={{ width: "100%" }}
+                      className="edgtf-team edgtf-team-light"
+                    >
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link to={`/${event.url}/speakers/${speaker.id}`}>
@@ -65,12 +67,14 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
                               (speaker.info.company_name ||
                                 speaker.info.title) && (
                                 <div className="ebs-attendee-designation">
-                                  {speaker.info.title && speaker.info.title}
-                                  {speaker.info.title &&
-                                    speaker.info.company_name &&
-                                    " "}
-                                  {speaker.info.company_name &&
-                                    speaker.info.company_name}
+                                  <span className="edgtf-team-position">
+                                    {speaker.info.title && speaker.info.title}
+                                    {speaker.info.company_name &&
+                                      speaker.info.title &&
+                                      " "}
+                                    {speaker.info.company_name &&
+                                      speaker.info.company_name}
+                                  </span>
                                 </div>
                               )}
                             {listing && speaker.email && (
@@ -86,23 +90,21 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
                             {listing && speaker.phone && (
                               <div className="ebs-email-phone">
                                 <a
-                                  href={`tel:${speaker.phone}`}
-                                  className="edgtf-team-position alt"
+                                  href={`tel: ${speaker.phone}`}
+                                  className="edgtf-team-position"
                                 >
                                   {speaker.phone}
                                 </a>
                               </div>
                             )}
-                          </div>
-                          {listing &&
-                            speaker.info &&
-                            (speaker.info.facebook ||
-                              speaker.info.twitter ||
-                              speaker.info.linkedin ||
-                              speaker.info.website) && (
-                              <div className="edgtf-team-social-holder-between">
-                                <div className="edgtf-team-social">
-                                  <div className="edgtf-team-social-inner">
+                            {listing &&
+                              speaker.info &&
+                              (speaker.info.facebook ||
+                                speaker.info.twitter ||
+                                speaker.info.linkedin ||
+                                speaker.info.website) && (
+                                <div className="edgtf-team-social-holder">
+                                  <div className="edgtf-team-social-holder-inner">
                                     <div className="edgtf-team-social-wrapp">
                                       <div className="social-icons">
                                         {speaker.info.facebook && (
@@ -141,16 +143,24 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
                                     </div>
                                   </div>
                                 </div>
+                              )}
+                          </div>
+                          {/* <div className="edgtf-team-social-holder-between">
+                            <div className="edgtf-team-social">
+                              <div className="edgtf-team-social-inner">
+                                <div className="edgtf-team-social-wrapp"></div>
                               </div>
-                            )}
+                            </div>
+                          </div> */}
                         </div>
                         {/* Description */}
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            {/* Grid */}
+          </div>
         </div>
         {listing && speakers.length === 0 && <div>No Speakers Found...</div>}
         {listing && speakers.length > 0 && loadMore()}
@@ -159,4 +169,4 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
   );
 };
 
-export default Variation2;
+export default Variation8;
