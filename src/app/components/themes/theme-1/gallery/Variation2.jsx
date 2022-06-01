@@ -1,5 +1,9 @@
+
 import React from "react";
+import Masonry from "react-masonry-css";
 import { Gallery, Item } from 'react-photoswipe-gallery'
+
+
 
 const Variation2 = ({ photos }) => {
   const imgUrl = (photo) => {
@@ -18,6 +22,12 @@ const Variation2 = ({ photos }) => {
       return img.height
     }
   };
+    const breakpointColumnsObj = {
+      default: 4,
+      1100: 3,
+      700: 2,
+      500: 1,
+    };
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
@@ -28,60 +38,58 @@ const Variation2 = ({ photos }) => {
                 Conference Gallery
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
-
-              <h6 className="edgtf-section-subtitle">
-                Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad
-                his suavitate complectitur ruis dicant facilisi atvimsed eu
-                justo evertitur
-              </h6>
             </div>
           </div>
         </div>
-        <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+        <div className="gallerMasonry">
+          {photos && (
             <Gallery shareButton={false} id="my-gallery">
-                {photos &&
-                  photos.map((photo, i) => (
-                    <div key={i} className="col-md-4 col-sm-6">
-                      <Item
-                        key={i} 
-                        original={imgUrl(photo)}
-                        thumbnail={imgUrl(photo)}
-                        title={`${Object.keys(photo.info)}`}
-                        width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
-                        height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
-                        >
-                        {({ ref, open }) => (
-                          <article
-                            ref={ref} onClick={open}
-                            className="edgtf-portfolio-item mix"
-                            style={{ display: "block", visibility: "visible" }}
-                          >
-                            <div className="edgtf-item-image-holder">
-                              <img
-                                style={{ width: "100%" }}
-                                src={imgUrl(photo)}
-                                alt="g"
-                              />
+            <Masonry
+              breakpointCols={breakpointColumnsObj}
+              className="my-masonry-grid"
+              columnClassName="my-masonry-grid_column"
+            >
+              {photos &&
+                photos.map((photo, i) => (
+                  <div key={i} className="gallerMasonry">
+                    <Item 
+                      original={imgUrl(photo)}
+                      thumbnail={imgUrl(photo)}
+                      title={`${Object.keys(photo.info)}`}
+                      width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
+                      height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
+                      >
+                      {({ ref, open }) => (
+                      <figure ref={ref} onClick={open}> 
+                        <img
+                          src={imgUrl(photo)}
+                          alt="g"
+                        />
+                        
+                        <figcaption>
+                          {photo.info && (
+                            <div
+                              className="icon"
+                              style={{
+                                border: "none",
+                                padding: "10px",
+                                textAlign: "center",
+                                fontSize: "20px",
+                                lineHeight: "1.2",
+                              }}
+                            >
+                              {`${Object.keys(photo.info)}`}
                             </div>
-                            <div className="edgtf-item-text-overlay">
-                              <div className="edgtf-item-text-overlay-inner">
-                                <div className="edgtf-item-text-holder">
-                                  {photo.info && (
-                                    <h4 className="edgtf-item-title">
-                                      {Object.keys(photo.info)}
-                                    </h4>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          </article>
-                        )}
-                      </Item>
-                    </div>
-                  ))}
-              </Gallery>
-          </div>
+                          )}
+                        </figcaption>
+                      </figure>
+                      )}
+                    </Item>
+                  </div>
+                ))}
+            </Masonry>
+            </Gallery>
+          )}
         </div>
       </div>
     </div>
