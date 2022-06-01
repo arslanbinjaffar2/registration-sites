@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 
-class Header1 extends React.Component {
+class Variation1 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -452,4 +452,4 @@ class Header1 extends React.Component {
   }
 }
 
-export default Header1;
+export default Variation1;
