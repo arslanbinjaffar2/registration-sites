@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 
-class Variation6 extends React.Component {
+class Variation4 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -601,4 +601,4 @@ class Variation6 extends React.Component {
   }
 }
 
-export default Variation6;
+export default Variation4;
