@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 
-class Header4 extends React.Component {
+class Variation6 extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -11,7 +11,7 @@ class Header4 extends React.Component {
       module: false,
       showMenu: false,
       menus: this.props.event.header_data,
-      menuresponsive: this.props.event.header_data,
+      menuresponsive: null,
       width: window.innerWidth,
       event:
         this.props.event !== undefined && this.props.event
@@ -23,6 +23,21 @@ class Header4 extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     this.handleFunction();
+    const rows = this.state.menus["top_menu"].reduce(function (
+      rows,
+      key,
+      index
+    ) {
+      return (
+        (index % 8 === 0
+          ? rows.push([key])
+          : rows[rows.length - 1].push(key)) && rows
+      );
+    },
+    []);
+    this.setState({
+      menuresponsive: rows,
+    });
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
   componentWillUnmount() {
@@ -119,12 +134,12 @@ class Header4 extends React.Component {
     });
   };
   render() {
-    const { menus, event } = this.state;
+    const { menus, event, menuresponsive } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
       <div
         id="ebs-header-master"
-        className="ebs-main-header-v3 ebs-header-main-wrapper ebs-header-shadow ebs-no-padding"
+        className="ebs-main-header-v3 ebs-header-main-wrapper ebs-header-shadow"
       >
         <div className="container">
           <div className="row d-flex align-items-center">
@@ -151,8 +166,8 @@ class Header4 extends React.Component {
                   className="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContentFixed"
-                  aria-controls="navbarSupportedContentFixed"
+                  data-bs-target="#navbarSupportedContentFixedTheme"
+                  aria-controls="navbarSupportedContentFixedTheme"
                   aria-expanded="false"
                   style={{ display: "inline-block" }}
                   onClick={this.handleMenu.bind(this)}
@@ -162,7 +177,7 @@ class Header4 extends React.Component {
                 </button>
                 <div
                   className={`collapse  ${this.state.showMenu ? "show" : ""}`}
-                  id="navbarSupportedContentFixed"
+                  id="navbarSupportedContentFixedTheme"
                 >
                   <div className="ebs-scroll-container">
                     <div
@@ -175,328 +190,404 @@ class Header4 extends React.Component {
                       style={{ width: "100%", height: "100%" }}
                     >
                       <div className="ebs-scorll-inner">
-                        <ul className="nav navbar-nav m-0">
-                          {menus["top_menu"].map((menu) => (
-                            <li className="nav-item" key={menu.id}>
-                              {(menu.alias === "gallery" ||
-                                menu.alias === "myaccount" ||
-                                menu.alias === "practicalinformation" ||
-                                menu.alias === "additional_information" ||
-                                menu.alias === "general_information") && (
-                                <span
-                                  onClick={this.accordionToggle.bind(this)}
-                                  className="nav-link ebs-accordion-button"
+                        <div className="container d-flex ebs-container-flex w-100 h-100">
+                          <div className="row w-100 d-flex">
+                            {menuresponsive &&
+                              menuresponsive.map((menues, k) => (
+                                <div
+                                  key={k}
+                                  className={`col-md-6 col-lg-${
+                                    12 / menuresponsive.length
+                                  }`}
                                 >
-                                  <span className="ebs-nav-item">
-                                    {menu.module}
-                                  </span>
-                                </span>
-                              )}
-                              {menu.alias !== "gallery" &&
-                                menu.alias !== "myaccount" &&
-                                menu.alias !== "practicalinformation" &&
-                                menu.alias !== "additional_information" &&
-                                menu.alias !== "general_information" && (
-                                  <NavLink
-                                    className="nav-link"
-                                    aria-current="page"
-                                    to={
-                                      "/" +
-                                      this.props.event.url +
-                                      "/" +
-                                      menu.alias
-                                    }
-                                  >
-                                    <span className="ebs-nav-item">
-                                      {menu.module}
-                                    </span>
-                                  </NavLink>
-                                )}
-                              {menu.alias === "gallery" && (
-                                <ul className="dropdown-menu ebs-accordion-dropdown">
-                                  {menus["gallery_sub_menu"].map(
-                                    (myaccount, k) => (
-                                      <li className="nav-item" key={k}>
-                                        <NavLink
-                                          aria-current="page"
-                                          className="nav-link"
-                                          to={
-                                            "/" +
-                                            this.props.event.url +
-                                            "/" +
-                                            myaccount.alias
-                                          }
-                                          key={myaccount.id}
-                                        >
-                                          <span className="ebs-nav-item">
-                                            {myaccount.module}
+                                  <ul key={k} className="nav navbar-nav m-0">
+                                    {menues.map((menu) => (
+                                      <li className="nav-item" key={menu.id}>
+                                        {(menu.alias === "gallery" ||
+                                          menu.alias === "myaccount" ||
+                                          menu.alias ===
+                                            "practicalinformation" ||
+                                          menu.alias ===
+                                            "additional_information" ||
+                                          menu.alias ===
+                                            "general_information") && (
+                                          <span
+                                            onClick={this.accordionToggle.bind(this)}
+                                            className="nav-link ebs-accordion-button"
+                                          >
+                                            <span className="ebs-nav-item">
+                                              {menu.module}
+                                            </span>
                                           </span>
-                                        </NavLink>
+                                        )}
+                                        {menu.alias !== "gallery" &&
+                                          menu.alias !== "myaccount" &&
+                                          menu.alias !==
+                                            "practicalinformation" &&
+                                          menu.alias !==
+                                            "additional_information" &&
+                                          menu.alias !==
+                                            "general_information" && (
+                                            <NavLink
+                                              className="nav-link"
+                                              aria-current="page"
+                                              to={
+                                                "/" +
+                                                this.props.event.url +
+                                                "/" +
+                                                menu.alias
+                                              }
+                                            >
+                                              <span className="ebs-nav-item">
+                                                {menu.module}
+                                              </span>
+                                            </NavLink>
+                                          )}
+                                        {menu.alias === "gallery" && (
+                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                            {menus["gallery_sub_menu"].map(
+                                              (myaccount, k) => (
+                                                <li
+                                                  className="nav-item"
+                                                  key={k}
+                                                >
+                                                  <NavLink
+                                                    aria-current="page"
+                                                    className="nav-link"
+                                                    to={
+                                                      "/" +
+                                                      this.props.event.url +
+                                                      "/" +
+                                                      myaccount.alias
+                                                    }
+                                                    key={myaccount.id}
+                                                  >
+                                                    <span className="ebs-nav-item">
+                                                      {myaccount.module}
+                                                    </span>
+                                                  </NavLink>
+                                                </li>
+                                              )
+                                            )}
+                                          </ul>
+                                        )}
+                                        {menu.alias === "myaccount" && (
+                                          <ul className="dropdown-menu">
+                                            {!this.props.userExist ? menus["my_account_sub_menu"].map(
+                                              (myaccount, k) => (
+                                                <li
+                                                  className="nav-item"
+                                                  key={k}
+                                                >
+                                                 {myaccount.alias !== "login" ? (<NavLink
+                                                    aria-current="page"
+                                                    className="nav-link"
+                                                    to={
+                                                      "/" +
+                                                      this.props.event.url +
+                                                      "/" +
+                                                      myaccount.alias
+                                                    }
+                                                    key={myaccount.id}
+                                                  >
+                                                    <span className="ebs-nav-item">
+                                                      {myaccount.module}
+                                                    </span>
+                                                  </NavLink>):
+                                                  <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
+                                                    <span className="ebs-nav-item">
+                                                      {myaccount.module}
+                                                    </span>
+                                                  </div> 
+                                                  }
+                                                </li>
+                                              )
+                                            ):(<li className="nav-item">
+                                            <NavLink
+                                              aria-current="page"
+                                              className="nav-link"
+                                              to={ `/${event.url}/profile`}
+                                            >
+                                                My Profile
+                                            </NavLink>
+                                          </li>
+                                    )}
+                                          </ul>
+                                        )}
+                                        {menu.alias ===
+                                          "practicalinformation" && (
+                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                            {menus["practical_info_menu"].map(
+                                              (pItem, k) =>
+                                                pItem.page_type &&
+                                                pItem.page_type === "menu" ? (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={pItem.id}
+                                                  >
+                                                    <span
+                                                      onClick={this.accordionToggle.bind(this)}
+                                                      className="nav-link ebs-accordion-button"
+                                                    >
+                                                      <span className="ebs-nav-item">
+                                                        {pItem.info.name}
+                                                      </span>
+                                                    </span>
+                                                    {pItem.submenu.length >
+                                                      0 && (
+                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                        {pItem.submenu.map(
+                                                          (subitem, k) => (
+                                                            <li
+                                                              className="nav-item"
+                                                              key={k}
+                                                            >
+                                                              <NavLink
+                                                                aria-current="page"
+                                                                className="nav-link"
+                                                                to={
+                                                                  "/" +
+                                                                  this.props
+                                                                    .event.url +
+                                                                  "/" +
+                                                                  menu.alias +
+                                                                  "/" +
+                                                                  subitem.id
+                                                                }
+                                                                key={subitem.id}
+                                                              >
+                                                                {
+                                                                  subitem.info
+                                                                    .name
+                                                                }
+                                                              </NavLink>
+                                                            </li>
+                                                          )
+                                                        )}
+                                                      </ul>
+                                                    )}
+                                                  </li>
+                                                ) : (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={k}
+                                                  >
+                                                    {pItem.page_type &&
+                                                    pItem.page_type === 2 ? (
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${pItem.website_protocol}${pItem.url}`}
+                                                      >
+                                                        {pItem.info.name}
+                                                      </a>
+                                                    ) : (
+                                                      <NavLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        to={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          pItem.id
+                                                        }
+                                                        key={pItem.id}
+                                                      >
+                                                        {pItem.info.name}
+                                                      </NavLink>
+                                                    )}
+                                                  </li>
+                                                )
+                                            )}
+                                          </ul>
+                                        )}
+                                        {menu.alias ===
+                                          "additional_information" && (
+                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                            {menus["additional_info_menu"].map(
+                                              (aItem, k) =>
+                                                aItem.page_type &&
+                                                aItem.page_type === "menu" ? (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={aItem.id}
+                                                  >
+                                                    <span
+                                                      onClick={this.accordionToggle.bind(this)}
+                                                      className="nav-link ebs-accordion-button"
+                                                    >
+                                                      <span className="ebs-nav-item">
+                                                        {aItem.info.name}
+                                                      </span>
+                                                    </span>
+                                                    {aItem.submenu.length >
+                                                      0 && (
+                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                        {aItem.submenu.map(
+                                                          (subitem, k) => (
+                                                            <li
+                                                              className="nav-item"
+                                                              key={k}
+                                                            >
+                                                              <NavLink
+                                                                aria-current="page"
+                                                                className="nav-link"
+                                                                to={
+                                                                  "/" +
+                                                                  this.props
+                                                                    .event.url +
+                                                                  "/" +
+                                                                  menu.alias +
+                                                                  "/" +
+                                                                  subitem.id
+                                                                }
+                                                                key={subitem.id}
+                                                              >
+                                                                {
+                                                                  subitem.info
+                                                                    .name
+                                                                }
+                                                              </NavLink>
+                                                            </li>
+                                                          )
+                                                        )}
+                                                      </ul>
+                                                    )}
+                                                  </li>
+                                                ) : (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={k}
+                                                  >
+                                                    {aItem.page_type &&
+                                                    aItem.page_type === 2 ? (
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${aItem.website_protocol}${aItem.url}`}
+                                                      >
+                                                        {aItem.info.name}
+                                                      </a>
+                                                    ) : (
+                                                      <NavLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        to={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          aItem.id
+                                                        }
+                                                        key={aItem.id}
+                                                      >
+                                                        {aItem.info.name}
+                                                      </NavLink>
+                                                    )}
+                                                  </li>
+                                                )
+                                            )}
+                                          </ul>
+                                        )}
+                                        {menu.alias ===
+                                          "general_information" && (
+                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                            {menus["general_info_menu"].map(
+                                              (gItem, k) =>
+                                                gItem.page_type &&
+                                                gItem.page_type === "menu" ? (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={gItem.id}
+                                                  >
+                                                    <span
+                                                      onClick={this.accordionToggle.bind(this)}
+                                                      className="nav-link ebs-accordion-button"
+                                                    >
+                                                      <span className="ebs-nav-item">
+                                                        {gItem.info.name}
+                                                      </span>
+                                                    </span>
+                                                    {gItem.submenu.length >
+                                                      0 && (
+                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                        {gItem.submenu.map(
+                                                          (subitem, k) => (
+                                                            <li
+                                                              className="nav-item"
+                                                              key={k}
+                                                            >
+                                                              <NavLink
+                                                                aria-current="page"
+                                                                className="nav-link"
+                                                                to={
+                                                                  "/" +
+                                                                  this.props
+                                                                    .event.url +
+                                                                  "/" +
+                                                                  menu.alias +
+                                                                  "/" +
+                                                                  subitem.id
+                                                                }
+                                                                key={subitem.id}
+                                                              >
+                                                                {
+                                                                  subitem.info
+                                                                    .name
+                                                                }
+                                                              </NavLink>
+                                                            </li>
+                                                          )
+                                                        )}
+                                                      </ul>
+                                                    )}
+                                                  </li>
+                                                ) : (
+                                                  <li
+                                                    className="nav-item"
+                                                    key={k}
+                                                  >
+                                                    {gItem.page_type &&
+                                                    gItem.page_type === 2 ? (
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${gItem.website_protocol}${gItem.url}`}
+                                                      >
+                                                        {gItem.info.name}
+                                                      </a>
+                                                    ) : (
+                                                      <NavLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        to={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          gItem.id
+                                                        }
+                                                        key={gItem.id}
+                                                      >
+                                                        {gItem.info.name}
+                                                      </NavLink>
+                                                    )}
+                                                  </li>
+                                                )
+                                            )}
+                                          </ul>
+                                        )}
                                       </li>
-                                    )
-                                  )}
-                                </ul>
-                              )}
-                              {menu.alias === "myaccount" && (
-                                <ul className="dropdown-menu">
-                                  {!this.props.userExist ? menus["my_account_sub_menu"].map(
-                                    (myaccount, k) => (
-                                      <li className="nav-item" key={k}>
-                                        {myaccount.alias !== "login" ? (<NavLink
-                                          aria-current="page"
-                                          className="nav-link"
-                                          to={
-                                            "/" +
-                                            this.props.event.url +
-                                            "/" +
-                                            myaccount.alias
-                                          }
-                                          key={myaccount.id}
-                                        >
-                                          <span className="ebs-nav-item">
-                                            {myaccount.module}
-                                          </span>
-                                        </NavLink>):
-                                        <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
-                                          <span className="ebs-nav-item">
-                                            {myaccount.module}
-                                          </span>
-                                        </div> 
-                                        }
-                                      </li>
-                                    )
-                                  ):(<li className="nav-item">
-                                  <NavLink
-                                    aria-current="page"
-                                    className="nav-link"
-                                    to={ `/${event.url}/profile`}
-                                  >
-                                      My Profile
-                                  </NavLink>
-                                </li>
-                          )}
-                                </ul>
-                              )}
-
-                              {menu.alias === "practicalinformation" && (
-                                <ul className="dropdown-menu ebs-accordion-dropdown">
-                                  {menus["practical_info_menu"].map(
-                                    (pItem, k) =>
-                                      pItem.page_type &&
-                                      pItem.page_type === "menu" ? (
-                                        <li className="nav-item" key={pItem.id}>
-                                          <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
-                                            <span className="ebs-nav-item">{pItem.info.name}</span>
-                                          </span>
-                                          {pItem.submenu.length > 0 && (
-                                            <ul className="dropdown-menu ebs-accordion-dropdown">
-                                              {pItem.submenu.map(
-                                                (subitem, k) => (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    <NavLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      to={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </NavLink>
-                                                  </li>
-                                                )
-                                              )}
-                                            </ul>
-                                          )}
-                                        </li>
-                                      ) : (
-                                        <li className="nav-item" key={k}>
-                                          {pItem.page_type &&
-                                          pItem.page_type === 2 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              href={`${pItem.website_protocol}${pItem.url}`}
-                                            >
-                                              {pItem.info.name}
-                                            </a>
-                                          ) : (
-                                            <NavLink
-                                              aria-current="page"
-                                              className="nav-link"
-                                              to={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                pItem.id
-                                              }
-                                              key={pItem.id}
-                                            >
-                                              {pItem.info.name}
-                                            </NavLink>
-                                          )}
-                                        </li>
-                                      )
-                                  )}
-                                </ul>
-                              )}
-                              {menu.alias === "additional_information" && (
-                                <ul className="dropdown-menu ebs-accordion-dropdown">
-                                  {menus["additional_info_menu"].map(
-                                    (aItem, k) =>
-                                      aItem.page_type &&
-                                      aItem.page_type === "menu" ? (
-                                        <li className="nav-item" key={aItem.id}>
-                                          <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
-                                            <span className="ebs-nav-item">{aItem.info.name}</span>
-                                          </span>
-                                          {aItem.submenu.length > 0 && (
-                                            <ul className="dropdown-menu ebs-accordion-dropdown">
-                                              {aItem.submenu.map(
-                                                (subitem, k) => (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    <NavLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      to={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </NavLink>
-                                                  </li>
-                                                )
-                                              )}
-                                            </ul>
-                                          )}
-                                        </li>
-                                      ) : (
-                                        <li className="nav-item" key={k}>
-                                          {aItem.page_type &&
-                                          aItem.page_type === 2 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              href={`${aItem.website_protocol}${aItem.url}`}
-                                            >
-                                              {aItem.info.name}
-                                            </a>
-                                          ) : (
-                                            <NavLink
-                                              aria-current="page"
-                                              className="nav-link"
-                                              to={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                aItem.id
-                                              }
-                                              key={aItem.id}
-                                            >
-                                              {aItem.info.name}
-                                            </NavLink>
-                                          )}
-                                        </li>
-                                      )
-                                  )}
-                                </ul>
-                              )}
-                              {menu.alias === "general_information" && (
-                                <ul className="dropdown-menu ebs-accordion-dropdown">
-                                  {menus["general_info_menu"].map(
-                                    (gItem, k) =>
-                                      gItem.page_type &&
-                                      gItem.page_type === "menu" ? (
-                                        <li className="nav-item" key={gItem.id}>
-                                          <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
-                                            <span className="ebs-nav-item">{gItem.info.name}</span>
-                                          </span>
-                                          {gItem.submenu.length > 0 && (
-                                            <ul className="dropdown-menu ebs-accordion-dropdown">
-                                              {gItem.submenu.map(
-                                                (subitem, k) => (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    <NavLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      to={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </NavLink>
-                                                  </li>
-                                                )
-                                              )}
-                                            </ul>
-                                          )}
-                                        </li>
-                                      ) : (
-                                        <li className="nav-item" key={k}>
-                                          {gItem.page_type &&
-                                          gItem.page_type === 2 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              href={`${gItem.website_protocol}${gItem.url}`}
-                                            >
-                                              {gItem.info.name}
-                                            </a>
-                                          ) : (
-                                            <NavLink
-                                              aria-current="page"
-                                              className="nav-link"
-                                              to={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                gItem.id
-                                              }
-                                              key={gItem.id}
-                                            >
-                                              {gItem.info.name}
-                                            </NavLink>
-                                          )}
-                                        </li>
-                                      )
-                                  )}
-                                </ul>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                          </div>
+                        </div>
                       </div>
                     </Scrollbars>
                   </div>
@@ -510,4 +601,4 @@ class Header4 extends React.Component {
   }
 }
 
-export default Header4;
+export default Variation6;
