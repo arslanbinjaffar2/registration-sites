@@ -26,11 +26,11 @@ const Variation9 = ({ speakers, listing, searchBar, loadMore, event }) => {
         </div>
         {listing && searchBar()}
         <div className="container">
-          <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover ebs-team-vairation-9">
+          <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
             {/* Grid */}
             {speakers &&
               speakers.map((speaker, i) => (
-                <div key={i} className="col-12 col-sm-6 col-md-4 pb-4">
+                <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-0">
                   <div className="edgtf-team-list-holder-inner info_box">
                     <div
                       style={{ width: "100%" }}
@@ -57,7 +57,7 @@ const Variation9 = ({ speakers, listing, searchBar, loadMore, event }) => {
                           <div className="edgtf-team-title-holder">
                             {(speaker.first_name || speaker.last_name) && (
                               <Link to={`/${event.url}/speakers/${speaker.id}`}>
-                                <h3 style={{lineHeight: 1}} className="edgtf-team-name">
+                                <h3 className="edgtf-team-name">
                                   {speaker.first_name && speaker.first_name}{" "}
                                   {speaker.last_name && speaker.last_name}
                                 </h3>
@@ -66,7 +66,7 @@ const Variation9 = ({ speakers, listing, searchBar, loadMore, event }) => {
                             {speaker.info &&
                               (speaker.info.company_name ||
                                 speaker.info.title) && (
-                                <div style={{paddingBottom: 4}} className="ebs-attendee-designation">
+                                <div className="ebs-attendee-designation">
                                   <span className="edgtf-team-position">
                                     {speaker.info.title && speaker.info.title}
                                     {speaker.info.company_name &&
@@ -77,81 +77,73 @@ const Variation9 = ({ speakers, listing, searchBar, loadMore, event }) => {
                                   </span>
                                 </div>
                               )}
-                            <div className="d-flex ebs-box-bottom">
-                              <div className="col-6">
-                                  {listing && speaker.email && (
-                                  <div className="ebs-email-phone">
-                                    <a
-                                      href={`mailto:${speaker.email}`}
-                                      className="edgtf-team-position"
-                                    >
-                                      {speaker.email}
-                                    </a>
-                                  </div>
-                                )}
-                                {listing && speaker.phone && (
-                                  <div className="ebs-email-phone">
-                                    <a
-                                      href={`tel: ${speaker.phone}`}
-                                      className="edgtf-team-position"
-                                    >
-                                      {speaker.phone}
-                                    </a>
-                                  </div>
-                                )}
+                            {listing && speaker.email && (
+                              <div className="ebs-email-phone">
+                                <a
+                                  href={`mailto:${speaker.email}`}
+                                  className="edgtf-team-position"
+                                >
+                                  {speaker.email}
+                                </a>
                               </div>
-                              <div className="col-6">
-                                {listing &&
-                                speaker.info &&
-                                (speaker.info.facebook ||
-                                  speaker.info.twitter ||
-                                  speaker.info.linkedin ||
-                                  speaker.info.website) && (
-                                  <div className="edgtf-team-social-holder">
-                                    <div className="edgtf-team-social-holder-inner">
-                                      <div className="edgtf-team-social-wrapp">
-                                        <div className="social-icons text-right">
-                                          {speaker.info.facebook && (
-                                            <a
-                                              target="_blank"
-                                              href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
-                                            >
-                                              <span data-icon="&#xe0aa;"></span>
-                                            </a>
-                                          )}
-                                          {speaker.info.twitter && (
-                                            <a
-                                              target="_blank"
-                                              href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
-                                            >
-                                              <span data-icon="&#xe0ab;"></span>
-                                            </a>
-                                          )}
-                                          {speaker.info.linkedin && (
-                                            <a
-                                              target="_blank"
-                                              href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
-                                            >
-                                              <span data-icon="&#xe0b1;"></span>
-                                            </a>
-                                          )}
-                                          {speaker.info.website && (
-                                            <a
-                                              target="_blank"
-                                              href={`${speaker.info.website_protocol}${speaker.info.website}`}
-                                            >
-                                              <span data-icon="&#xe0b7;"></span>
-                                            </a>
-                                          )}
-                                        </div>
+                            )}
+                            {listing && speaker.phone && (
+                              <div className="ebs-email-phone">
+                                <a
+                                  href={`tel: ${speaker.phone}`}
+                                  className="edgtf-team-position"
+                                >
+                                  {speaker.phone}
+                                </a>
+                              </div>
+                            )}
+                            {listing &&
+                              speaker.info &&
+                              (speaker.info.facebook ||
+                                speaker.info.twitter ||
+                                speaker.info.linkedin ||
+                                speaker.info.website) && (
+                                <div className="edgtf-team-social-holder">
+                                  <div className="edgtf-team-social-holder-inner">
+                                    <div className="edgtf-team-social-wrapp">
+                                      <div className="social-icons">
+                                        {speaker.info.facebook && (
+                                          <a
+                                            target="_blank"
+                                            href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                                          >
+                                            <span data-icon="&#xe0aa;"></span>
+                                          </a>
+                                        )}
+                                        {speaker.info.twitter && (
+                                          <a
+                                            target="_blank"
+                                            href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                                          >
+                                            <span data-icon="&#xe0ab;"></span>
+                                          </a>
+                                        )}
+                                        {speaker.info.linkedin && (
+                                          <a
+                                            target="_blank"
+                                            href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                                          >
+                                            <span data-icon="&#xe0b1;"></span>
+                                          </a>
+                                        )}
+                                        {speaker.info.website && (
+                                          <a
+                                            target="_blank"
+                                            href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                                          >
+                                            <span data-icon="&#xe0b7;"></span>
+                                          </a>
+                                        )}
                                       </div>
                                     </div>
                                   </div>
-                                )}
-                              </div>
-                            </div>
-                            
-                            
+                                </div>
+                              )}
                           </div>
                           {/* <div className="edgtf-team-social-holder-between">
                             <div className="edgtf-team-social">
