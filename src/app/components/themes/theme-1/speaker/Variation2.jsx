@@ -1,35 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation2 = ({ speakers, listing, searchBar, loadMore, event }) => {
+import HeadingElement from "@/ui-components/HeadingElement";
+const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings }) => {
   return (
     <div
       style={{ padding: "50px 0" }}
       className="edgtf-parallax-section-holder"
     >
       <div className="container">
-        <div className="row d-flex mb-5">
-          <div className="col-8 offset-md-2 text-center">
-            <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
-                {event.labels.EVENTSITE_SPEAKERS}
-              </h2>
-              <span className="edge-title-separator edge-enable-separator"></span>
-            </div>
-            <div className="edgtf-title-section-holder">
-              <h6 className="edgtf-section-subtitle">
-                {event.labels.EVENT_SPEAKERS_LOWER_HEAD}
-              </h6>
-            </div>
-          </div>
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENT_SPEAKERS_LOWER_HEAD} align={settings.text_align} />
         </div>
         {listing && searchBar()}
+        <div className="container">
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
           {/* Grid */}
           {speakers &&
             speakers.map((speaker, i) => {
               return (
                 <div
-                  className="col-12 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
+                  className="col-12 col-sm-6 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
                   key={i}
                 >
                   <div className="edgtf-team-list-holder-inner info_box">

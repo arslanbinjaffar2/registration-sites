@@ -1,27 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation8 = ({ speakers, listing, searchBar, loadMore, event }) => {
+import HeadingElement from "@/ui-components/HeadingElement";
+const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
-      <div className="container mb-4">
-        <div className="row">
-          <div className="col-md-8 offset-md-2 text-center">
-            <div
-              style={{ marginBottom: "30px" }}
-              className="edgtf-title-section-holder"
-            >
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
-                {event.labels.EVENTSITE_SPEAKERS}
-              </h2>
-              <h6
-                style={{ fontSize: "16px", lineHeight: "1.5" }}
-                className="edgtf-section-subtitle"
-              >
-                {event.labels.EVENT_SPEAKERS_LOWER_HEAD}
-              </h6>
-            </div>
-          </div>
-        </div>
+      <div className="container">
+      <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENT_SPEAKERS_LOWER_HEAD} align={settings.text_align} />
       </div>
       {listing && searchBar()}
       <div className="container">
@@ -31,7 +15,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event }) => {
               <div
                 key={i}
                 style={{ marginBottom: "30px" }}
-                className="col-md-4"
+                className="col-md-4 col-sm-6"
               >
                 <div
                   style={{ height: "100%", marginBottom: 0 }}
@@ -45,8 +29,8 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event }) => {
                           src={
                             speaker.image && speaker.image !== ""
                               ? process.env.REACT_APP_EVENTCENTER_URL +
-                                "/assets/attendees/" +
-                                speaker.image
+                              "/assets/attendees/" +
+                              speaker.image
                               : require("img/square.jpg")
                           }
                           alt="g"

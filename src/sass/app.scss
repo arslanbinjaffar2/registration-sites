@@ -1736,3 +1736,100 @@
     }
   } 
 }
+
+.ebs-filter-box,.ebs-top-filter-container  {
+  h4 {
+    color: $first-main-color;
+    margin: 0 0 15px 0;
+    font-size: 16px;
+  }
+  ul {
+    padding: 0;
+    margin: 0 -3px;
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 5px 3px;
+      a {
+        display: block;
+        padding: 1px 20px;
+        color: $text;
+        border: 1px solid $offwhite;
+        font-size: 16px;
+        border-radius: 20px;
+        transition: all 0.3s linear;
+        &:hover,&.active {
+          background: $first-main-color;
+          color: $white;
+          border-color: $first-main-color;
+        }
+      }
+    }
+  }
+}
+.ebs-top-filter-container {
+  ul {
+    li.alpha {
+      a {
+        padding: 0;
+        height: 30px;
+        line-height: 28px;
+        min-width: 30px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.ebs-sponsor-listing {
+  padding: 15px;
+  background: $lightf4;
+  .ebs-sponsor-item {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $border;
+    .ebs-img-listing {
+      width: 230px;
+      background: $white;
+      padding: 15px;
+      box-shadow: 0 3px 6px rgba($black, 0.16) ;
+      position: relative;
+      height: 170px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      figure {
+        margin: 0;
+        img {
+          width: 100%;
+          max-width: 210px;
+        }
+      }
+    }
+    .ebs-detail-listing {
+      width: 100%;
+      padding-left: 30px;
+      h2 {
+        color: $first-main-color;
+        font-size: 30px;
+        margin: 0 0 25px;
+      }
+      .ebs-box {
+        font-size: 16px;
+        width: 33.33%;
+        padding-right: 10px;
+        color: $text2b;
+        i {
+          color: $first-main-color;
+          margin-right: 8px;
+        }
+        @media (max-width: 1200px) {
+          width: 100%;
+          padding-bottom: 3px;
+        }
+      }
+    }
+  }
+}

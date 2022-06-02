@@ -1,28 +1,38 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
+import HeadingElement from "@/ui-components/HeadingElement";
 
-const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
+const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings }) => {
+  const _parallax = useRef(null); 
+  const _bgimage =
+    settings && settings.background_image !== ""
+      ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`
+      : require("img/h1-parallax1.jpg");
+      useEffect(() => {
+        window.addEventListener("scroll",scollEffect);
+        return () => {
+          window.removeEventListener("scroll",scollEffect);
+        }
+      }, [])
+      
+       function scollEffect () {
+        const scrolled = window.pageYOffset;
+        const itemOffset = _parallax.current.offsetTop;
+        const itemHeight = _parallax.current.getBoundingClientRect();
+        if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+        _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+      };
   return (
     <div
       style={{
-        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+        backgroundImage: `url(${_bgimage})`,
         padding: "50px 0",
       }}
       className="edgtf-parallax-section-holder"
+      ref={_parallax}
     >
-      <div className="container-fluid">
-        <div className="row d-flex mb-5">
-          <div className="col-12">
-            <div className="edgtf-title-section-holder text-center">
-              <h2
-                style={{ color: "#ffffff" }}
-                className="edgtf-title-with-dots edgtf-appeared"
-              >
-                {event.labels.EVENTSITE_SPEAKERS}
-              </h2>
-              <span className="edge-title-separator edge-enable-separator"></span>
-            </div>
-          </div>
+      <div className="container">
+      <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENT_SPEAKERS_LOWER_HEAD} align={settings.text_align} />
         </div>
         {listing && searchBar()}
         <div className="container">
@@ -169,11 +179,10 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event }) => {
               ))}
             {/* Grid */}
           </div>
+          {listing && speakers.length === 0 && <div>No Speakers Found...</div>}
+          {listing && speakers.length > 0 && loadMore()}
         </div>
-        {listing && speakers.length === 0 && <div>No Speakers Found...</div>}
-        {listing && speakers.length > 0 && loadMore()}
       </div>
-    </div>
   );
 };
 

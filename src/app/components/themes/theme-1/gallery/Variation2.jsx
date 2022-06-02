@@ -2,15 +2,16 @@
 import React from "react";
 import Masonry from "react-masonry-css";
 import { Gallery, Item } from 'react-photoswipe-gallery'
+import HeadingElement from "@/ui-components/HeadingElement";
 
 
 
-const Variation2 = ({ photos }) => {
+const Variation2 = ({ photos, settings }) => {
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
     } else {
-      return "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/home-2-gallery-img-1-480x400.jpg"
+      return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
   const getMeta = (url,type) => {
@@ -29,18 +30,9 @@ const Variation2 = ({ photos }) => {
       500: 1,
     };
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section">
       <div className="container">
-        <div className="row">
-          <div className="col-md-8 offset-md-2 text-center">
-            <div className="edgtf-title-section-holder mb-5">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
-                Conference Gallery
-              </h2>
-              <span className="edge-title-separator edge-enable-separator"></span>
-            </div>
-          </div>
-        </div>
+        <HeadingElement dark={false} label={'Gallery'} desc={'Lorem ipsum dolor sit amit.'} align={settings.text_align} />
         <div className="gallerMasonry">
           {photos && (
             <Gallery shareButton={false} id="my-gallery">
