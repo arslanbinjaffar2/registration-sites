@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Variation4 = ({sponsors}) => {
+const Variation6 = ({sponsors}) => {
     return (
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
                 <div className="container">
@@ -13,8 +13,8 @@ const Variation4 = ({sponsors}) => {
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum recusandae ea inventore.
                         </h6>
                     </div>
-                    <div className="sponsorsv4-wrapper row d-flex">
-                      <h4>Platinum Sponsor</h4>
+                    <div className="sponsorsv4-wrapper sponsorsv4-wrapper-alt row d-flex">
+                      <h4><span>Platinum Sponsor</span></h4>
                         {sponsors.map((sponsor, i) => {
                             return (<div className="col-sm-4 col-md-2" key={i}>
                                 <figure className="bghover">
@@ -28,8 +28,8 @@ const Variation4 = ({sponsors}) => {
                         })
                         }
                     </div>
-                    <div className="sponsorsv4-wrapper row d-flex">
-                      <h4>Gold Sponsor</h4>
+                    <div className="sponsorsv4-wrapper sponsorsv4-wrapper-alt row d-flex">
+                      <h4><span>Gold Sponsor</span></h4>
                         {sponsors.map((sponsor, i) => {
                             return (<div className="col-sm-4 col-md-2" key={i}>
                                 <figure className="bghover">
@@ -43,8 +43,8 @@ const Variation4 = ({sponsors}) => {
                         })
                         }
                     </div>
-                    <div className="sponsorsv4-wrapper row d-flex">
-                      <h4>Gold Sponsor</h4>
+                    <div className="sponsorsv4-wrapper sponsorsv4-wrapper-alt row d-flex">
+                      <h4><span>Gold Sponsor</span></h4>
                         {sponsors.map((sponsor, i) => {
                             return (<div className="col-sm-4 col-md-2" key={i}>
                                 <figure className="bghover">
@@ -63,4 +63,4 @@ const Variation4 = ({sponsors}) => {
     )
 }
 
-export default Variation4
+export default Variation6

@@ -13,9 +13,40 @@ const Variation2 = ({sponsors}) => {
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum recusandae ea inventore.
                         </h6>
                     </div>
-                    <div className="sponsorsv2-wrapper row d-flex">
+                    <div className="sponsorsv3-wrapper row d-flex">
+                      <h4>Platinum Sponsor</h4>
                         {sponsors.map((sponsor, i) => {
-                            return (<div className="col-sm-3 col-md-2" key={i}>
+                            return (<div className="col-sm-4 col-md-2" key={i}>
+                                <figure className="bghover">
+                                    <img
+                                        src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                </figure>
+                            </div>)
+                        })
+                        }
+                    </div>
+                    <div className="sponsorsv3-wrapper row d-flex">
+                      <h4>Gold Sponsor</h4>
+                        {sponsors.map((sponsor, i) => {
+                            return (<div className="col-sm-4 col-md-2" key={i}>
+                                <figure className="bghover">
+                                    <img
+                                        src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                </figure>
+                            </div>)
+                        })
+                        }
+                    </div>
+                    <div className="sponsorsv3-wrapper row d-flex">
+                      <h4>Gold Sponsor</h4>
+                        {sponsors.map((sponsor, i) => {
+                            return (<div className="col-sm-4 col-md-2" key={i}>
                                 <figure className="bghover">
                                     <img
                                         src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
