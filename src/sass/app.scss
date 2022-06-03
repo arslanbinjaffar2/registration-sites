@@ -1784,11 +1784,15 @@
 
 .ebs-sponsor-listing {
   padding: 15px;
-  background: $lightf4;
+  background: #FAFAFA;
   .ebs-sponsor-item {
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid $border;
+    &:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
     .ebs-img-listing {
       width: 230px;
       background: $white;
@@ -1796,7 +1800,7 @@
       box-shadow: 0 3px 6px rgba($black, 0.16) ;
       position: relative;
       height: 170px;
-      border-radius: 8px;
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1828,7 +1832,28 @@
         @media (max-width: 1200px) {
           width: 100%;
           padding-bottom: 3px;
+          padding-right: 0 !important;
         }
+      }
+      @media (max-width: 1200px) {
+        h2 {
+          margin-bottom: 15px;
+        }
+        .ebs-container-box {
+          display: block !important;
+        }
+      }
+      @include phone-portrait {
+        padding-left: 0;
+        padding-top: 30px;
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+    @include phone-portrait {
+      .ebs-break-block {
+        display: block !important;
       }
     }
   }
