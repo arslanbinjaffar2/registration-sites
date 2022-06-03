@@ -71,7 +71,7 @@ const SponsorListing = () => {
                 <li><a className="active" href="#!">All</a> </li>
                 <li><a href="#!">#</a> </li>
                   {_alphabet.split('').map((item,k) =>
-                  <li className='alpha' k={k}><a href="#!">{item}</a></li>
+                  <li className='alpha' key={k}><a href="#!">{item}</a></li>
                   )}
               </ul>
             </div>

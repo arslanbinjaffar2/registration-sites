@@ -1,13 +1,6 @@
 import * as React from 'react';
 
-interface Props {
-    onClick?: any,
-    title?: any,
-    width?: any,
-    children?: any
-}
-
-const Popup: React.FC<Props> = (props) => {
+const Popup =  (props) => {
     return (
         <div id="loader-wrapper" className="fixed ebs-popup-container">
             <div className="ebs-popup-wrapper" style={{ maxWidth: props?.width ? props?.width : '620px' }}>
