@@ -1948,3 +1948,33 @@
     }
   }
 }
+.ebs-program-listing-wrapper {
+  .ebs-program-top {
+    margin-bottom: 35px;
+  }
+  .ebs-main-program-listing {
+    margin-bottom: 30px;
+    .ebs-program-parent {
+      .ebs-date-border {
+        border-bottom: 1px solid $border;
+        color: $first-main-color;
+        padding-bottom: 18px;
+        margin-bottom: 25px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .ebs-program-child {
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid $border;
+        .ebs-program-date {
+          text-align: center;
+          font-size: 18px;
+          margin-bottom: 25px;
+          font-weight: 600;
+          color: $color-info;
+        }
+      }
+    }
+  }
+}
