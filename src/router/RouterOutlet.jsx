@@ -35,6 +35,7 @@ import SurveyList from "@/myAccount/profile/SurveyList";
 import surveyDetail from "@/myAccount/profile/surveyDetail";
 import MyProgram from "@/myAccount/profile/MyProgram";
 import LoginScreen from "@/myAccount/login/LoginScreen"
+import Documents from "../app/components/modules/Documents";
 import { useSelector } from "react-redux";
 import {
   globalSelector
@@ -193,6 +194,11 @@ const RouterOutlet = () => {
             component={AttendeesPage}
             exact
             path="/:event_url/attendees"
+          />
+          <Route
+            component={Documents}
+            exact
+            path="/:event_url/documents"
           />
           <Route
             component={AttendeeDetailPage}
