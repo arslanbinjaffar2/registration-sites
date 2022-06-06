@@ -2061,3 +2061,20 @@
     }
   }
 }
+.ebs-social-share-v5 {
+  button {
+    border: 1px solid $border !important;
+    margin: 0 12px 12px;
+    svg {
+      margin: 0;
+    }
+    span {
+      display: inline-block;
+      min-width: 140px;
+      padding: 0 10px;
+      color: $text2b;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}

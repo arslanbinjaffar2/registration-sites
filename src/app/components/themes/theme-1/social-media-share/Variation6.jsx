@@ -13,26 +13,26 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation1 = ({ event }) => {
+
+const Variation6 = ({ event }) => {
   return (
-    <div style={{ paddingTop: "80px",paddingBottom: "80px" }} className="edgtf-container">
-      <div className="edgtf-container-inner">
-      <HeadingElement dark={false} label={'Share on social media'}  align={'center'} />
-        <div className="ebs-social-share text-center pb-3">
-          <FacebookShareButton
-            url={`${window.location.origin.toString()}/${event.url}`}
+    <div style={{padding: "80px 0",}}
+      className="edgtf-parallax-section-holder">
+      <div className="container">
+        <HeadingElement dark={false} label={'Share on social media'}  align={'center'} />
+        <div className="ebs-social-share text-center pb-3 ebs-social-share-v5">
+          <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <FacebookIcon size={48} round={true} title="Facebook" />
+            <FacebookIcon size={60}  title="Facebook" /> <span>Facebook</span> 
           </FacebookShareButton>
-          <LinkedinShareButton
-            url={`${window.location.origin.toString()}/${event.url}`}
+          <LinkedinShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <LinkedinIcon size={48} round={true} title="Linked In" />
+            <LinkedinIcon size={60}  title="Linked In" /> <span>Linked In</span>  
           </LinkedinShareButton>
           <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <TwitterIcon size={48} round={true} title="Twitter" />
+            <TwitterIcon size={60}  title="Twitter" /> <span>Twitter</span> 
           </TwitterShareButton>
           <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
@@ -42,12 +42,12 @@ const Variation1 = ({ event }) => {
                 : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
-            <PinterestIcon size={48} round={true} title="Pinterest" />
+            <PinterestIcon size={60}  title="Pinterest" /> <span>Pinterest</span>
           </PinterestShareButton>
           <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <EmailIcon size={48} round={true} title="Facebook" />
+            <EmailIcon size={60}  title="Email" /> <span>Email</span>
           </EmailShareButton>
         </div>
       </div>
@@ -55,4 +55,4 @@ const Variation1 = ({ event }) => {
   );
 };
 
-export default Variation1;
+export default Variation6;
