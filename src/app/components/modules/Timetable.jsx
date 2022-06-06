@@ -14,7 +14,7 @@ const loadModule = (theme, variation) => {
 const Timetable = () => {
   const { event } = useSelector(eventSelector);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return in_array(module.alias, ["timetable"]);
+    return in_array(module.alias, ["time_table"]);
   });
 
   const Component = useMemo(
