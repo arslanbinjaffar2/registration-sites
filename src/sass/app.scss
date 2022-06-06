@@ -1950,11 +1950,43 @@
 }
 .ebs-program-listing-wrapper {
   .ebs-program-top {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
   .ebs-main-program-listing {
     margin-bottom: 30px;
     .ebs-program-parent {
+      &.ebs-program-workshop {
+        background-color: $lightf4;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        .ebs-workshop-header {
+          font-size: 24px;
+          font-weight: 600;
+          color: $text2b;
+          padding: 24px 100px 24px 48px;
+          border-bottom: 1px solid $border;
+          margin-bottom: 30px;
+          cursor: pointer;
+          position: relative;
+          i {
+            font-size: 34px;
+            color: $first-main-color;
+            position: absolute;
+            right: 15px;
+            top: 21px;
+          }
+          @include ipad-landscape {
+            padding-left: 20px;
+            font-size: 18px;
+          }
+        }
+        .ebs-program-child {
+          @include ipad-landscape {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+        }
+      }
       .ebs-date-border {
         border-bottom: 1px solid $border;
         color: $first-main-color;
@@ -1964,15 +1996,66 @@
         font-size: 18px;
       }
       .ebs-program-child {
-        padding-bottom: 15px;
-        margin-bottom: 25px;
-        border-bottom: 1px solid $border;
+        padding-bottom: 25px;
+        &:last-of-type {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
         .ebs-program-date {
           text-align: center;
           font-size: 18px;
           margin-bottom: 25px;
           font-weight: 600;
           color: $color-info;
+          @include ipad-landscape {
+            text-align: left;
+          }
+        }
+        .ebs-program-content {
+          h3 {
+            margin: 0 0 5px;
+            text-transform: none;
+            font-size: 18px;
+          }
+          .ebs-tracks-program {
+            span {
+              display: inline-block;
+              margin-bottom: 12px;
+              margin-right: 10px;
+              padding: 6px 25px;
+              color: #fff;
+              border-radius: 20px;
+              font-size: 14px;
+              line-height: 1;
+            }
+          }
+          .ebs-program-location {
+            padding-bottom: 8px;
+            font-size: 16px;
+            i {
+              margin-right: 4px;
+            }
+          }
+          .ebs-description {
+            padding-bottom: 18px;
+            font-size: 16px;
+            color: $text;
+          }
+          .ebs-program-speakers {
+            .ebs-speakers-box {
+              margin-bottom: 15px;
+              text-align: center;
+              img {
+                border-radius: 100%;
+                margin-bottom: 8px;
+                width: 120px;
+              }
+              h4 {
+                font-size: 12px;
+                margin: 0;
+              }
+            }
+          }
         }
       }
     }
