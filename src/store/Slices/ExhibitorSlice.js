@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   exhibitorsByCategories: null,
+  labels: null,
   loading: false,
   error: null,
 };
@@ -14,7 +15,8 @@ export const exhibitorSlice = createSlice({
       state.loading = true;
     },
     setExhibitors: (state, { payload }) => {
-      state.exhibitorsByCategories = payload;
+      state.exhibitorsByCategories = payload.data.exhibitors;
+      state.labels = payload.labels;
       state.loading = false;
     },
     setError: (state, { payload }) => {
@@ -36,7 +38,7 @@ export const fetchExhibitors = (url) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/exhibitors`);
       const res = await response.json();
-      dispatch(setExhibitors(res.data.exhibitors));
+      dispatch(setExhibitors(res));
         dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError(error.message));

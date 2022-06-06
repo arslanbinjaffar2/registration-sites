@@ -33,12 +33,12 @@ const Sponsor = (props) => {
       dispatch(incrementLoadCount());
       dispatch(fetchSponsors(eventUrl));
     }, []);
-  const { sponsorsByCategories, loading, error} = useSelector(sponsorSelector);
+  const { sponsorsByCategories, labels,  loading, error} = useSelector(sponsorSelector);
   return (
     <Suspense fallback={<div></div>}>
       {sponsorsByCategories && sponsorsByCategories.length > 0 ? (
         <React.Fragment>
-          <Component sponsorsByCategories={sponsorsByCategories} />
+          <Component sponsorsByCategories={sponsorsByCategories} labels = {labels} />
         </React.Fragment>
       ) : null 
       }

@@ -3,6 +3,7 @@ import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   attendee: null,
   loading: false,
+  labels:null,
   error: null,
 };
 
@@ -16,6 +17,7 @@ export const attendeeDetailSlice = createSlice({
     },
     setAttendee: (state, { payload }) => {
       state.attendee = payload.data;
+      state.labels = payload.labels;
       state.loading = false;
     },
     setError: (state, { payload }) => {

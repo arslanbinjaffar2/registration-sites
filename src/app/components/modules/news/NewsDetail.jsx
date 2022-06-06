@@ -14,7 +14,7 @@ const loadModule = (theme, variation) => {
 const NewsDetail = (props) => {
   const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
-  const { news } = useSelector(newsDetailSelector);
+  const { news, labels } = useSelector(newsDetailSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
    // let moduleVariation = event.theme.modules.filter(function (module, i) {

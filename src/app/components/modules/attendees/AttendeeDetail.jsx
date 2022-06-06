@@ -17,7 +17,7 @@ const loadModule = (theme, variation) => {
 const AttendeeDetail = (props) => {
   const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
-  const { attendee } = useSelector(attendeeDetailSelector);
+  const { attendee, labels } = useSelector(attendeeDetailSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   // let moduleVariation = event.theme.modules.filter(function (module, i) {
@@ -35,7 +35,7 @@ const AttendeeDetail = (props) => {
     <Suspense fallback={<div></div>}>
       {attendee ? (
         <React.Fragment>
-          <Component  attendee={attendee} />
+          <Component  attendee={attendee} labels={labels} />
         </React.Fragment>
       ) : null}
     </Suspense>

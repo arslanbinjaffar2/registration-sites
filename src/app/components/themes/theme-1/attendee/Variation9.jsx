@@ -18,7 +18,7 @@ const Variation9 = ({ attendees, searchBar, loadMore, event }) => {
                 style={{ color: "#ffffff" }}
                 className="edgtf-title-with-dots edgtf-appeared"
               >
-                {event.labels.EVENTSITE_SPEAKERS}
+                {event.labels.EVENTSITE_ATTENDEES}
               </h2>
               <span className="edge-title-separator edge-enable-separator"></span>
             </div>

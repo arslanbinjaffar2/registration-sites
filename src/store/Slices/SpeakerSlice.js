@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   speakers: null,
+  labels:null,
   loading: false,
   error: null,
   total: null,
@@ -22,6 +23,7 @@ export const speakerSlice = createSlice({
     },
     setSpeakers: (state, { payload }) => {
       state.speakers = state.currentPage > 1 ? [...state.speakers, ...payload.data]: payload.data;
+      state.labels = state.labels;
       state.total = payload.meta.total;
       state.totalPages = Math.ceil(payload.meta.total / payload.meta.per_page);
       state.loading = false;

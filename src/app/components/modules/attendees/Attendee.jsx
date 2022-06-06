@@ -16,7 +16,7 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { attendees, totalPages } =
+  const { attendees, labels, totalPages } =
     useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
@@ -69,6 +69,7 @@ const Attendee = (props) => {
       {attendees ? (
         <React.Fragment>
           <CustomComponent
+          labels={labels}
             attendees={attendees}
             event={event}
             searchBar={() => {

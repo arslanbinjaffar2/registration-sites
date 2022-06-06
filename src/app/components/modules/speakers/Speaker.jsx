@@ -18,7 +18,7 @@ const loadModule = (theme, variation) => {
 const Speaker = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { speakers, totalPages,  } = useSelector(speakerSelector);
+  const { speakers, totalPages, labels } = useSelector(speakerSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
@@ -74,7 +74,7 @@ const Speaker = (props) => {
     <Suspense fallback={<div></div>}>
       {speakers && ((speakers.length > 0 && home) || !home) ? (
         <React.Fragment>  
-          <Component speakers={speakers} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
+          <Component speakers={speakers} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
             return (
             <div className="container pb-5">
               <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />

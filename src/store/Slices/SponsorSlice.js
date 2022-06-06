@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   sponsorsByCategories: null,
+  labels: null,
   loading: false,
   error: null,
 };
@@ -14,7 +15,8 @@ export const sponsorSlice = createSlice({
       state.loading = true;
     },
     setSponsors: (state, { payload }) => {
-      state.sponsorsByCategories = payload.sponsors;
+      state.sponsorsByCategories = payload.data.sponsors;
+      state.labels = payload.labels;
       state.loading = false;
     },
     setError: (state, { payload }) => {
@@ -36,8 +38,7 @@ export const fetchSponsors = (url) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsors`);
       const res = await response.json();
-      console.log(res.data.sponsors);
-      dispatch(setSponsors(res.data));
+      dispatch(setSponsors(res));
       dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError(error.message));
