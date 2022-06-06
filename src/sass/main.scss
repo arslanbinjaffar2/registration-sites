@@ -1582,7 +1582,7 @@ $z-index:$back-to-top-size / 2;
 			font-weight: 700;
 			margin: 0 0 15px 0;
 			line-height: 1;
-			color: $themeblue;
+			color: $first-main-color;
 		}
 		.ebs-login-desc {
 			font-size: 14px;
@@ -1615,7 +1615,7 @@ $z-index:$back-to-top-size / 2;
 							font-size: 30px;
 							width: auto !important;
 							&:focus {
-								border-color: $themeblue;
+								border-color: $first-main-color;
 							}
 							
 						}
@@ -1639,14 +1639,14 @@ $z-index:$back-to-top-size / 2;
 					&:focus {
 						outline: none;
 						box-shadow: none;
-						border-bottom-color: $themeblue;
+						border-bottom-color: $first-main-color;
 					}
 				}
 			}
 			.ebs-verfication-timer {
 				text-align: center;
 				font-size: 19px;
-				color: $themeblue;
+				color: $first-main-color;
 				padding-top: 5px;
 				strong {
 					font-weight: 600;
@@ -1657,7 +1657,7 @@ $z-index:$back-to-top-size / 2;
 				span {
 					cursor: pointer;
 					font-size: 12px;
-					color: $themeblue;
+					color: $first-main-color;
 					font-weight: 600;
 					line-height: 1.2;
 				}	
@@ -1668,7 +1668,7 @@ $z-index:$back-to-top-size / 2;
 				width: 100%;
 				height: 60px;
 				border-radius: 8px;
-				background: $themeblue;
+				background: $first-main-color;
 				cursor: pointer;
 				border: none;
 				color: $white;
@@ -1711,8 +1711,8 @@ $z-index:$back-to-top-size / 2;
 			visibility: hidden;
 			&:checked ~ .ebs-accept-text {
 				&::before {
-					background: url(../img/ico-checkmark.svg) no-repeat center center $themeblue;
-					border-color: $themeblue;
+					background: url(../img/ico-checkmark.svg) no-repeat center center $first-main-color;
+					border-color: $first-main-color;
 					background-size: 14px;
 				}
 			}
