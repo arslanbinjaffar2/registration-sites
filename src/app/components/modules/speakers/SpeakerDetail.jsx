@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
+import PageLoader from "@/ui-components/PageLoader";
 import { speakerDetailSelector, fetchSpeakerDetail } from "store/Slices/SpeakerDetailSlice";
 import {
   incrementLoadCount,
@@ -34,12 +35,12 @@ const SpeakerDetail = (props) => {
   }, []);
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {speaker ? (
         <React.Fragment>
           <Component  speaker={speaker} labels={labels} />
         </React.Fragment>
-      ) : null} 
+      ) : <PageLoader/>} 
     </Suspense>
   );
 };

@@ -43,7 +43,7 @@ const Header = ({location, history}) => {
   }
     
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={''}>
       <Component event={event} loaded={loadedSections} userExist={userExist}  location={location} setShowLogin={onLoginClick} />
     </Suspense>
   );

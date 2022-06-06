@@ -4,6 +4,7 @@ import { attendeeSelector, fetchAttendees } from "store/Slices/AttendeeSlice";
 import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import PageLoader from "@/ui-components/PageLoader";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -65,7 +66,7 @@ const Attendee = (props) => {
   };
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {attendees ? (
         <React.Fragment>
           <CustomComponent
@@ -102,7 +103,7 @@ const Attendee = (props) => {
             }}
           />
         </React.Fragment>
-      ) : null}
+      ) : <PageLoader/>}
     </Suspense>
   );
 };

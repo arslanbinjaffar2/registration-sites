@@ -4,6 +4,7 @@ import { speakerSelector, fetchSpeakers } from "store/Slices/SpeakerSlice";
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
+import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -71,7 +72,7 @@ const Speaker = (props) => {
   };
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {speakers && ((speakers.length > 0 && home) || !home) ? (
         <React.Fragment>  
           <Component speakers={speakers} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
@@ -93,7 +94,7 @@ const Speaker = (props) => {
           />
          
         </React.Fragment>
-      ) :  null }
+      ) : (!home ? <PageLoader/> : null ) }
     </Suspense>
   );
 };

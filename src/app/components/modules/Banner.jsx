@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
+import PageLoader from "@/ui-components/PageLoader";
 import {
   globalSelector,
   fetchBanner,
@@ -22,9 +23,11 @@ const Banner = () => {
   const dispatch = useDispatch();
 
   const eventUrl = event.url;
+  
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["top_banner"]);
   });
+
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]

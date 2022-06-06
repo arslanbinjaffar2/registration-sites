@@ -4,6 +4,8 @@ import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { newsSelector, fetchNews } from "store/Slices/NewsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import PageLoader from "@/ui-components/PageLoader";
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -54,7 +56,7 @@ const News = (props) => {
   };
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {news ? (
         <Component
           news={news}
@@ -74,7 +76,7 @@ const News = (props) => {
             );
           }}
         />
-      ) : null}
+      ) : <PageLoader/>}
     </Suspense>
   );
 };

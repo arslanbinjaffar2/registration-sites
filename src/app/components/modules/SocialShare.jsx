@@ -2,6 +2,7 @@ import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
+import PageLoader from "@/ui-components/PageLoader";
 
 const in_array = require("in_array");
 
@@ -24,7 +25,7 @@ const SocialShare = () => {
   );
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={''}>
       <Component event={event} />
     </Suspense>
   );

@@ -1,12 +1,11 @@
 import React from "react";
-import SponsorListing from "../../themes/theme-1/sponsor/listing/SponsorListing";
-const SponsorPage = () => {
-
+import SponsorListing from "@/modules/sponsor/SponsorListing";
+const SpeakerPage = () => {
   return (
     <React.Fragment>
-      <SponsorListing/>      
+      <SponsorListing />
     </React.Fragment>
   );
 };
 
-export default SponsorPage;
+export default SpeakerPage;

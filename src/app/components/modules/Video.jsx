@@ -4,6 +4,7 @@ import {
   incrementLoadedSection,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
+import PageLoader from "@/ui-components/PageLoader";
 import { useGetVideosQuery } from "store/services/video";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import UiPagination from "../ui-components/UiPagination";
@@ -79,7 +80,7 @@ const Video = (props) => {
   };
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {data && data.data.length > 0  ? (
         <React.Fragment>
           {showPagination && (

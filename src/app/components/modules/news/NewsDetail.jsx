@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { newsDetailSelector, fetchNewsDetail } from "store/Slices/NewsDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
+import PageLoader from "@/ui-components/PageLoader";
 
 import { withRouter } from "react-router";
 const loadModule = (theme, variation) => {
@@ -33,12 +34,12 @@ const NewsDetail = (props) => {
   }, []);
 
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {news ? (
         <React.Fragment>
           <Component  news={news} event={event} sidebar={sidebar} />
         </React.Fragment>
-      ) : null}
+      ) : <PageLoader/>}
     </Suspense>
   );
 };
