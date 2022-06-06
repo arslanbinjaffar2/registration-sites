@@ -16,7 +16,7 @@ const loadModule = (theme, variation) => {
 const News = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { news, totalPages } = useSelector(newsSelector);
+  const { news, totalPages, labels } = useSelector(newsSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.moduleVariations.filter(function (module, i) {

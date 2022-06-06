@@ -34,12 +34,12 @@ const Exhibitor = (props) => {
     dispatch(fetchExhibitors(eventUrl));
   }, []);
 
-  const { exhibitorsByCategories, loading, error} = useSelector(exhibitorSelector);
+  const { exhibitorsByCategories, labels, loading, error} = useSelector(exhibitorSelector);
   return (
     <Suspense fallback={<div></div>}>
       {exhibitorsByCategories && exhibitorsByCategories.length > 0 ? (
         <React.Fragment>
-          <Component exhibitorsByCategories={exhibitorsByCategories} />
+          <Component exhibitorsByCategories={exhibitorsByCategories} labels ={labels}/>
         </React.Fragment>
       ) :  null }
     </Suspense>

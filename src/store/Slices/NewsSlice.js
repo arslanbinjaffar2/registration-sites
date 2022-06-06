@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   news: null,
+  labels:null,
   loading: false,
   error: null,
   total: null,
@@ -25,6 +26,7 @@ export const newsSlice = createSlice({
       state.total = payload.meta.total;
       state.totalPages = Math.ceil(payload.meta.total / payload.meta.per_page);
       state.loading = false;
+      state.labels = payload.labels;
     },
     setError: (state, { payload }) => {
       state.error = payload;

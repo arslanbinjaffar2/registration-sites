@@ -3,6 +3,7 @@ import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   news: null,
   loading: false,
+  labels:null,
   error: null,
 };
 
@@ -16,6 +17,7 @@ export const newsDetailSlice = createSlice({
     },
     setNews: (state, { payload }) => {
       state.news = payload.data;
+      state.labels = payload.labels;
       state.loading = false;
     },
     setError: (state, { payload }) => {

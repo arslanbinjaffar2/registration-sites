@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
 
 
-const Variation1 = ({ exhibitorsByCategories }) => {
+const Variation1 = ({ exhibitorsByCategories, labels }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -15,7 +15,7 @@ const Variation1 = ({ exhibitorsByCategories }) => {
 			<div className="container">
 				<div className="edgtf-title-section-holder pb-3">
 					<h2 style={{ marginBottom: '5px' }} className="edgtf-title-with-dots edgtf-appeared">
-						Exhibitors
+					{ labels.EXHIBITORS_HEADING }
 					</h2>
 					<h6 style={{ fontSize: "16px", lineHeight: "1.5", fontWeight: 300 }}
 						className="edgtf-section-subtitle">

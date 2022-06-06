@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   speaker: null,
+  labels: null,
   loading: false,
   error: null,
 };
@@ -16,6 +17,7 @@ export const speakerDetailSlice = createSlice({
     },
     setSpeaker: (state, { payload }) => {
       state.speaker = payload.data;
+      state.labels = payload.labels;
       state.loading = false;
     },
     setError: (state, { payload }) => {
