@@ -2,6 +2,7 @@ import React, { Suspense, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useGetCmsPagesQuery } from "../../../store/services/cmspage";
 import { eventSelector } from '../../../store/Slices/EventSlice'
+import PageLoader from "@/ui-components/PageLoader";
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>

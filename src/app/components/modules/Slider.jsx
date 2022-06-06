@@ -2,6 +2,8 @@ import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
+import PageLoader from "@/ui-components/PageLoader";
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {

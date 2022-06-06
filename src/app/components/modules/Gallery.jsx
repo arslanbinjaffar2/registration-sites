@@ -8,6 +8,8 @@ import { useGetPhotosQuery } from "store/services/photo";
 import UiFullPagination from "../ui-components/UiFullPagination";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import PageLoader from "@/ui-components/PageLoader";
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {

@@ -1,5 +1,7 @@
 import React, { Suspense, useMemo, useEffect } from "react";
 import { eventSelector } from "../../../store/Slices/EventSlice";
+import PageLoader from "@/ui-components/PageLoader";
+
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";

@@ -4,6 +4,7 @@ import { attendeeDetailSelector, fetchAttendeeDetail } from "store/Slices/Attend
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
+import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 // const in_array = require("in_array");
@@ -13,6 +14,7 @@ const loadModule = (theme, variation) => {
   );
   return Component;
 };
+
 
 const AttendeeDetail = (props) => {
   const id = props.match.params.id;
@@ -32,12 +34,12 @@ const AttendeeDetail = (props) => {
     dispatch(incrementLoadCount());
   }, []);
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<PageLoader/>}>
       {attendee ? (
         <React.Fragment>
           <Component  attendee={attendee} labels={labels} />
         </React.Fragment>
-      ) : null}
+      ) : <PageLoader/>}
     </Suspense>
   );
 };

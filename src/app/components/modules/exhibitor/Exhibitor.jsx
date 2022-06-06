@@ -6,6 +6,7 @@ import {
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { exhibitorSelector, fetchExhibitors } from "store/Slices/ExhibitorSlice";
+import PageLoader from "@/ui-components/PageLoader";
 
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -36,7 +37,7 @@ const Exhibitor = (props) => {
 
   const { exhibitorsByCategories, labels, loading, error} = useSelector(exhibitorSelector);
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={''}>
       {exhibitorsByCategories && exhibitorsByCategories.length > 0 ? (
         <React.Fragment>
           <Component exhibitorsByCategories={exhibitorsByCategories} labels ={labels}/>

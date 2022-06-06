@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import AttendeeDetail from "@/modules/attendees/AttendeeDetail";
 import {
   globalSelector,
@@ -6,12 +6,11 @@ import {
 import {  useSelector } from "react-redux";
 import PageLoader from "@/ui-components/PageLoader";
 const AttendeesPage = () => {
-  const { loadedSections, loadCount } = useSelector(globalSelector);
+  // const { loadedSections, loadCount } = useSelector(globalSelector);
   return (
-    <React.Fragment>
-      {loadedSections !== loadCount && <PageLoader />}
-      <AttendeeDetail />
-    </React.Fragment>
+      <React.Fragment>
+        <AttendeeDetail />
+      </React.Fragment>
   );
 };
 

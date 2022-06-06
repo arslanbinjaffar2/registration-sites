@@ -1,7 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const SponsorListing = () => {
-  const [value, setValue] = useState("");
+const SponsorListing = ({sponsors, sponsorCategories, labels}) => {
+  const [locSponsors, setLocSponsors] = useState(sponsors);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchText, setSearchText] = useState('');
+  const [filterAlphabet, setFilterAlphabet ] = useState('all');
+
+  const search = (text) => {
+    setFilterAlphabet('all');
+    setSearchText(text);
+  }
+
+  const filterbyAlphabet = (alphabet) => {
+    setSearchText('');
+    setFilterAlphabet(alphabet);
+  }
+
+  const filterbyCategory  = (category) =>{
+      setSelectedCategory(category);
+  }
+
+  useEffect(() => {
+    let items = sponsors;
+    if(selectedCategory !== 'all')
+    items =[...items.filter((sponsor)=> (
+      sponsor.categories.filter((cat)=>( cat.id === selectedCategory)).length > 0
+      ))];
+    
+    if(filterAlphabet !== 'all'){
+       items = items.reduce(function(ack, item, index, originalArrray) {
+          var currentChar = item.name.toLowerCase().substr(0,1);
+          if(currentChar == filterAlphabet){
+              return [...ack, item];
+          }else{
+            return ack;
+          }
+      }, []);
+    }
+    if(searchText !== ''){
+      items = [...sponsors.filter((sponsor)=>( sponsor.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ))];
+    }
+
+    setLocSponsors(items);
+  }, [selectedCategory, searchText, filterAlphabet])
+  
+
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
     <div data-fixed="true" className="">
@@ -18,7 +61,7 @@ const SponsorListing = () => {
             <div className="edgtf-title-subtitle-holder">
               <div className="edgtf-title-subtitle-holder-inner">
                 <h1 style={{ color: "white" }}>
-                  <span>Sponsors</span>
+                  <span>{ labels.SPONSOR_HEADING }</span>
                 </h1>
                 <div className="edgtf-subtitle" style={{color: '#fff'}}>
                   <span>Lorem ipsum dolor sit.</span>
@@ -31,36 +74,24 @@ const SponsorListing = () => {
       <div></div>
     </div>
     {/* content Section */}
-    <div style={{padding: '80px 0'}}>
+    <div style={{padding: '80px 0' , minHeight:"100vh"}}>
       <div className="container">
         <div className="row d-flex">
           <div className="col-lg-3">
-            <div className="ebs-form-control-search pb-3"><input className="form-control" placeholder="Search..." defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+            <div className="ebs-form-control-search pb-3"><input className="form-control" placeholder="Search..." onChange={(e)=> { search(e.target.value) }} value ={searchText}type="text" />
               <em className="fa fa-search"></em>
             </div>
             <div className="ebs-filter-box pb-4">
-              <h4>Filter by products</h4>
+              <h4>Filter by Categories</h4>
               <div className="ebs-filter-items">
                 <ul>
-                  <li><a className="active" href="#!">All</a> </li>
-                  <li><a href="#!">5G</a> </li>
-                  <li><a href="#!">Big data</a> </li>
-                  <li><a href="#!">Elements all</a> </li>
-                  <li><a href="#!">Analytics</a> </li>
-                  <li><a href="#!">Order background</a> </li>
-                </ul>
-              </div>
-            </div>
-            <div className="ebs-filter-box pb-4">
-              <h4>Filter by products</h4>
-              <div className="ebs-filter-items">
-                <ul>
-                  <li><a className="active" href="#!">All</a> </li>
-                  <li><a href="#!">5G</a> </li>
-                  <li><a href="#!">Big data</a> </li>
-                  <li><a href="#!">Elements all</a> </li>
-                  <li><a href="#!">Analytics</a> </li>
-                  <li><a href="#!">Order background</a> </li>
+                  <li><a className={selectedCategory === 'all' ? 'active' : ''} onClick={()=>{ filterbyCategory('all') }} href="#!">All</a> </li>
+                  {
+                    sponsorCategories.map((cat)=>(
+                      <li key={cat.id}><a href="#!" className={selectedCategory === cat.id ? 'active' : ''} onClick={()=>{ filterbyCategory(cat.id) }} >{cat.name}</a> </li>
+                    ))
+                  }
+
                 </ul>
               </div>
             </div>
@@ -68,150 +99,32 @@ const SponsorListing = () => {
           <div className="col-lg-8">
             <div className="ebs-top-filter-container pb-3">
               <ul>
-                <li><a className="active" href="#!">All</a> </li>
+                <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={()=>{filterbyAlphabet('all'); }} href="#!">All</a> </li>
                 <li><a href="#!">#</a> </li>
                   {_alphabet.split('').map((item,k) =>
-                  <li className='alpha' key={k}><a href="#!">{item}</a></li>
+                  <li className="alpha"  key={k}><a href="#!" className={filterAlphabet === item ? "active" : ''} onClick={()=>{filterbyAlphabet(item.toLowerCase()); }}>{item}</a></li>
                   )}
               </ul>
             </div>
             <div className="ebs-sponsor-listing">
-              <div className="ebs-sponsor-item">
+              {locSponsors.map((sponsor)=>(<div className="ebs-sponsor-item" key={sponsor.id}>
                 <div className="d-flex align-items-center ebs-break-block">
                   <div className="ebs-img-listing">
                     <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
+                      <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} alt="" />
                     </figure>
                   </div>
                   <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
+                    {sponsor.name && <h2>{ sponsor.name }</h2>}
                     <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
+                      {sponsor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
+                      {sponsor.email && <div className="ebs-box"><i className="fa fa-envelope" />{sponsor.email}</div>}
+                      {sponsor.booth && <div className="ebs-box"><i className="fa fa-bank" />{sponsor.booth}</div>}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="ebs-sponsor-item">
-                <div className="d-flex align-items-center ebs-break-block">
-                  <div className="ebs-img-listing">
-                    <figure>
-                      <img src="https://via.placeholder.com/650x350.png" alt="" />
-                    </figure>
-                  </div>
-                  <div className="ebs-detail-listing">
-                    <h2>Ambu- int </h2>
-                    <div className="d-flex ebs-container-box">
-                      <div className="ebs-box"><i className="fa fa-phone" />+78-54-897665</div>
-                      <div className="ebs-box"><i className="fa fa-envelope" />Ambuint@gmail.com</div>
-                      <div className="ebs-box"><i className="fa fa-bank" />98,107</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
