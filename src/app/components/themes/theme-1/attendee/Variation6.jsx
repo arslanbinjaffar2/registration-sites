@@ -35,7 +35,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                               ? process.env.REACT_APP_EVENTCENTER_URL +
                                 "/assets/attendees/" +
                                 attendee.image
-                              : require("img/square.jpg")
+                              : require("img/user-placeholder.jpg")
                           }
                           alt="g"
                         />
