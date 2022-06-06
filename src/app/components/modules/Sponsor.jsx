@@ -1,12 +1,9 @@
-import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { useGetSponsorsQuery } from "store/services/sponsor";
+import { sponsorSelector, fetchSponsors } from "store/Slices/SponsorSlice";
 import {
-  incrementLoadedSection,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import UiFullPagination from "../ui-components/UiFullPagination";
-import UiPagination from "../ui-components/UiPagination";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -19,121 +16,32 @@ const loadModule = (theme, variation) => {
 };
 
 const Sponsor = (props) => {
-  const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["sponsor"]);
   });
-  const showPagination = props.pagination ? props.pagination : false;
-  const home = props.homePage ? props.homePage : false;
+
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 
-  const [querySuccess, setQuerySuccess] = useState(false);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
-    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
-      setPage(parseInt(queryPage, 10));
-      console.log("params", queryPage);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (initialMount.current) {
+    useEffect(() => {
       dispatch(incrementLoadCount());
-      initialMount.current = false;
-      return;
-    }
-    const handler = setTimeout(() => {
-      setSearch(value);
-      setPage(1);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value]);
-
-  const { data, isFetching, isSuccess } = useGetSponsorsQuery({
-    eventUrl,
-    page,
-    search,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
-      if (!querySuccess) {
-        dispatch(incrementLoadedSection());
-        setQuerySuccess(true);
-      }
-    }
-  }, [isSuccess]);
-
-  const onPageChange = (page) => {
-    if (page > 0) {
-      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
-        setPage(page);
-        setQueryParams(page);
-      }
-    }
-  };
-
-  const setQueryParams = (page) => {
-    props.history.replace({
-      search: `?page=${page}`,
-    });
-  };
-
+      dispatch(fetchSponsors(eventUrl));
+    }, []);
+  const { sponsorsByCategories, loading, error} = useSelector(sponsorSelector);
   return (
     <Suspense fallback={<div></div>}>
-      {data && data.data.length > 0 ? (
+      {sponsorsByCategories && sponsorsByCategories.length > 0 ? (
         <React.Fragment>
-          {showPagination && (
-            <div className={`container pb-5`}>
-              <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
-                <em className="fa fa-search"></em>
-              </div>
-          </div>
-          )}
-          {showPagination && (
-            <div className={`container pb-5`}>
-              <UiPagination
-                total={data.meta.total}
-                perPage={data.meta.per_page}
-                currentPage={page}
-                onPageChange={(page) => {
-                  onPageChange(page);
-                }}
-                fetchingData={isFetching}
-              />
-            </div>
-          )}
-          <Component sponsors={data.data} />
-          {showPagination && (
-            <div className={`container pb-5`}>
-              <UiFullPagination
-                total={data.meta.total}
-                perPage={data.meta.per_page}
-                currentPage={page}
-                onPageChange={(page) => {
-                  onPageChange(page);
-                }}
-                fetchingData={isFetching}
-              />
-            </div>
-          )}
+          <Component sponsorsByCategories={sponsorsByCategories} />
         </React.Fragment>
-      ) :  home ? null : (
-        <div>No Sponsors found</div>
-      )}
+      ) : null 
+      }
     </Suspense>
   );
 };

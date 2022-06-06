@@ -17,8 +17,8 @@ import mysubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice"
 import surveyListReducer from "./Slices/myAccount/surveyListSlice";
 import surveyReducer from "./Slices/myAccount/surveySlice";
 import userReducer from "./Slices/myAccount/userSlice";
-import { sponsorApi } from "./services/sponsor";
-import { exhibitorApi } from "./services/exhibitor";
+import sponsorReducer from "./Slices/SponsorSlice";
+import exhibitorReducer from "./Slices/ExhibitorSlice";
 import { programApi } from "./services/program";
 import { attendeeProgramApi } from "./services/attendeePrograms";
 import { photoApi } from "./services/photo";
@@ -44,8 +44,8 @@ export const store = configureStore({
     surveyList: surveyListReducer,
     survey: surveyReducer,
     user: userReducer,
-    [sponsorApi.reducerPath]: sponsorApi.reducer,
-    [exhibitorApi.reducerPath]: exhibitorApi.reducer,
+    sponsor: sponsorReducer,
+    exhibitor: exhibitorReducer,
     [programApi.reducerPath]: programApi.reducer,
     [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
     [photoApi.reducerPath]: photoApi.reducer,
@@ -57,8 +57,6 @@ export const store = configureStore({
     getDefaultMiddleware({serializableCheck: false}).concat(
       programApi.middleware,
       attendeeProgramApi.middleware,
-      exhibitorApi.middleware,
-      sponsorApi.middleware,
       cmsPageApi.middleware,
       photoApi.middleware,
       newsApi.middleware,

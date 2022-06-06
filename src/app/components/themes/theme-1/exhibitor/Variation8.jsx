@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import Slider from "react-slick";
-import SponsorPopup from '@/ui-components/SponsorPopup';
+import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
 
-const Variation8 = ({ sponsorsByCategories }) => {
+const Variation8 = ({ exhibitorsByCategories }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -19,13 +19,13 @@ const Variation8 = ({ sponsorsByCategories }) => {
 		slidesToScroll: 1,
 	};
 	
-	const [sponsors,] = useState(sponsorsByCategories.reduce((ack, item)=>{
-			return [...ack, ...item.sponsors];
+	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item)=>{
+			return [...ack, ...item.exhibitors];
 	}, []));
 	
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
-			{popup && <SponsorPopup data={data} onClick={handleClick} />}
+			{popup && <ExhibitorPopup data={data} onClick={handleClick} />}
 			<div className="container">
 				<div className="edgtf-title-section-holder text-center mb-4">
 					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">Sponsors</h2>
@@ -38,19 +38,19 @@ const Variation8 = ({ sponsorsByCategories }) => {
 							className="edgtf-carousel edgtf-slick-slider-navigation-style"
 						>
 							<Slider {...settings}>
-									{sponsors.map((sponsor, i) => {
+									{exhibitors.map((exhibitor, i) => {
 										return (
 											<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
 												<span
 													className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
 												>
 													<img
-														onClick={() =>{setData(sponsor);setPopup(true)}}
+														onClick={() =>{setData(exhibitor);setPopup(true)}}
 														src={
-															sponsor.logo !== ""
+															exhibitor.logo !== ""
 																? process.env.REACT_APP_EVENTCENTER_URL +
-																"/assets/sponsors/" +
-																sponsor.logo
+																"/assets/exhibitors/" +
+																exhibitor.logo
 																: `${process.env.REACT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`
 														}
 														alt="Client 11"
