@@ -69,7 +69,6 @@ const Variation4 = ({ banner, event }) => {
                             className="edgtf-custom-font-holder text-center ebs-banner-subtitle"
                             style={{
                               margin: "10px auto 0",
-                              fontFamily: "Open Sans",
                               fontSize: "26px",
                               lineHeight: "37px",
                               fontWeight: "400",
@@ -86,7 +85,6 @@ const Variation4 = ({ banner, event }) => {
                           className="edgtf-custom-font-holder text-center"
                           style={{
                             marginTop: "40px",
-                            fontFamily: "Open Sans",
                             fontSize: "26px",
                             lineHeight: "37px",
                             fontWeight: "400",

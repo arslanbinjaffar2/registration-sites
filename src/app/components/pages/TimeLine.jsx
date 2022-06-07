@@ -283,6 +283,9 @@ const data = {
     "current_time": "18:00:00"
   }
 };
+let startX;
+let scrollLeft;
+let isDown;
 const _multiplyer = 300;
 var clearTime;
 
@@ -369,22 +372,21 @@ const DataItem = ({  items, program_setting }) => {
   return (
     <div style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.workshop ? 'ebs-workshop' : ''} datawrapp`}>
       <div className="title">{items.name}</div>
+      {items.tracks && <div className="tracks">
+        {items.tracks.map((track, k) =>
+          <span style={{backgroundColor: '#6B3182'}} key={k}>{track}</span>
+        )}
+      </div>}
       {Number(program_setting.agenda_display_time) === 1 && (
         <div className="time">{items.start_time} - {items.end_time}</div>
       )}
-      {items.video > 0 && <div className="video">SVG{items.video}</div>}
-      {items.tracks && <div className="tracks">
-        {items.tracks.map((track, k) =>
-          <span key={k}>{track}</span>
-        )}
-      </div>}
-      {items.workshop && <div className="tag">{items.workshop}</div>}
+      {items.video > 0 && <div className="video"><i className="material-icons">play_circle</i> {items.video}</div>}
+      {items.workshop && <div className="workkshop-box">{items.workshop}</div>}
     </div>
   )
 }
 
 const TimelineContent = ({ data, program_setting }) => {
-	console.log(data);
   return (
     <div id="timelinecontent">
       {data && data.program_array.map((items, k) => (
@@ -405,9 +407,54 @@ const TimelineContent = ({ data, program_setting }) => {
 const TimeLine = () => {
 	const _width = 24 * _multiplyer;
 	useEffect(() => {
-		currentTimerBar(data)
+    currentTimerBar(data);
+    const container = document.getElementById('timelindeschdle');
+    console.log(container);
+
+      container.addEventListener('mousedown',e => mouseIsDown(e));  
+      container.addEventListener('mouseup',e => mouseUp(e))
+      container.addEventListener('mouseleave',e=>mouseLeave(e));
+      container.addEventListener('mousemove',e=>mouseMove(e));
+    
+    return () => {
+      container.removeEventListener('mousedown',e => mouseIsDown(e));  
+      container.removeEventListener('mouseup',e => mouseUp(e))
+      container.removeEventListener('mouseleave',e=>mouseLeave(e));
+      container.removeEventListener('mousemove',e=>mouseMove(e));
+    }
 	}, [])
-	
+	const handleClick = (e,a) => {
+    e.preventDefault();
+    const _timelindeschdle = document.getElementById('timelindeschdle');
+    if (a === 'left') {
+      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft -  (_multiplyer+15 - 150);
+    } else {
+      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft +  (_multiplyer+15 - 150);
+    }
+    
+  };
+    function mouseIsDown(e) {
+      const container = document.getElementById('timelindeschdle');
+      isDown = true;
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+    }
+    function mouseUp(e) {
+      isDown = false;
+    }
+    function mouseLeave(e) {
+      isDown = false;
+    }
+    function mouseMove(e) {
+      const container = document.getElementById('timelindeschdle');
+      if (isDown) {
+        e.preventDefault();
+        //Move Horizontally
+        const x = e.pageX - container.offsetLeft;
+        const walkX = x - startX;
+        container.scrollLeft = scrollLeft - walkX;
+      }
+    }
     return (
        <div style={{padding: '80px 0 0'}} className="module-section">
            <div className="container">
@@ -439,10 +486,13 @@ const TimeLine = () => {
 											</div>
 										</div>
 									</div>
-
-									<div id="timelindeschdle" className="ebs-timeline-wrapper">
+                  <div id="timeline-arrows">
+                    <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
+                    <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
+                  </div>
+									<div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
 										<div style={{ width: _width }}  id="timelinewrapp">
-										<div id="currentTimeline" />
+										 <div id="currentTimeline" />
 											<TimelineHeader />
 											<TimelineContent  data={itemSorting(data.data)} program_setting={data.data.program_setting} />
 										</div>

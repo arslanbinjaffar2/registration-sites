@@ -26,11 +26,11 @@ const Variation3 = ({event, banner}) => {
 										</div>
 									}
 									{slides.info.message && <div className="edgtf-custom-font-holder ebs-banner-subtitle"
-										style={{ marginTop: '15px', fontFamily: 'Open Sans', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
+										style={{ marginTop: '15px',  fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
 										{slides.info.message}
 									</div>}
 									<div className="edgtf-custom-font-holder"
-										style={{ marginTop: '40px', fontFamily: 'Open Sans', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
+										style={{ marginTop: '40px',  fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
 										<a href="" style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">REGISTER</a>
 									</div>
 								</div>

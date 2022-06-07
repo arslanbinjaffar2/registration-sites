@@ -125,7 +125,6 @@ const Variation2 = ({ banner }) => {
                     className="edgtf-custom-font-holder ebs-banner-subtitle"
                     style={{
                       marginTop: "15px",
-                      fontFamily: "Open Sans",
                       fontSize: "26px",
                       lineHeight: "37px",
                       fontWeight: "400",
