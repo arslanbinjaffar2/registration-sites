@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
 // Base
 @import './base/vars';
 @import './vendors/bootstrap/vars';
@@ -304,7 +304,9 @@
 html,body {
 	min-height: 100%;
 }
-
+body {
+	font-family: 'Rubik', sans-serif;
+}
 #App {
 	min-height: 100vh;
 }
@@ -1349,7 +1351,7 @@ $z-index:$back-to-top-size / 2;
 		margin: 0 !important;
 		.nav-link {
 			color: $white;
-			font-weight: 600;
+			font-weight: 500;
 			border-radius: 4px;
 			padding-left: 15px;
 			padding-right: 15px;
@@ -1500,7 +1502,7 @@ $z-index:$back-to-top-size / 2;
 	}
 	.navbar-light .navbar-nav .nav-link {
 		color: $white;
-		font-weight: 600;
+		font-weight: 500;
 		&:hover {
 			color: $white;
 		}
@@ -1633,7 +1635,7 @@ $z-index:$back-to-top-size / 2;
 					height: 45px;
 					color: $black;
 					font-size: 18px;
-					font-weight: 600;
+					font-weight: 500;
 					border-bottom: 1px solid $border;
 					vertical-align: top;
 					&:focus {
@@ -1649,7 +1651,7 @@ $z-index:$back-to-top-size / 2;
 				color: $first-main-color;
 				padding-top: 5px;
 				strong {
-					font-weight: 600;
+					font-weight: 500;
 				}
 			}
 			.ebs-forgot-password {
@@ -1658,7 +1660,7 @@ $z-index:$back-to-top-size / 2;
 					cursor: pointer;
 					font-size: 12px;
 					color: $first-main-color;
-					font-weight: 600;
+					font-weight: 500;
 					line-height: 1.2;
 				}	
 			}
@@ -1673,7 +1675,7 @@ $z-index:$back-to-top-size / 2;
 				border: none;
 				color: $white;
 				font-size: 18px;
-				font-weight: 600;
+				font-weight: 500;
 				&:hover {
 					background: $darkblue;
 				}
@@ -2370,7 +2372,7 @@ $z-index:$back-to-top-size / 2;
 				.nav-link {
 					padding: 15px 0;
 					font-size: 16px;
-					font-weight: 600;
+					font-weight: 500;
 				}
 				span.nav-link {
 					padding-right: 22px;
@@ -2431,7 +2433,7 @@ $z-index:$back-to-top-size / 2;
 		top: 0;
 		z-index: 9999;
 		left: 0;
-		animation: menu-popup 0.8s ease-out forwards;
+		//animation: menu-popup 0.8s ease-out forwards;
 		.navbar {
 			.navbar-nav > .nav-item {
 				padding-top: 8px !important;

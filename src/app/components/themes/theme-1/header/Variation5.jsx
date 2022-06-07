@@ -42,15 +42,11 @@ class Variation5 extends React.Component {
   }
   handleScroll = () => {
     const _app = document.getElementById("App");
-    const _theme = document
-      .getElementById("ebs-header-master")
+    const _theme = document.getElementById("ebs-header-master")
       .classList.contains("ebs-fixed-header");
     if (window.scrollY > 350) {
       _app.classList.add("ebs-header-sticky");
-      _app.style.paddingTop = _theme
-        ? 0
-        : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
-            .offsetHeight + "px";
+      _app.style.paddingTop = _theme ? 0 : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight + "px";
     } else {
       _app.classList.remove("ebs-header-sticky");
       _app.style.paddingTop = 0 + "px";

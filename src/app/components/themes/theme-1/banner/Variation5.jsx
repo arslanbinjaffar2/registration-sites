@@ -63,7 +63,6 @@ const Variation5 = ({ banner, event }) => {
                           className="edgtf-custom-font-holder ebs-banner-subtitle"
                           style={{
                             marginTop: "15px",
-                            fontFamily: "Open Sans",
                             fontSize: "26px",
                             lineHeight: "37px",
                             fontWeight: "400",
@@ -80,7 +79,6 @@ const Variation5 = ({ banner, event }) => {
                         className="edgtf-custom-font-holder"
                         style={{
                           marginTop: "40px",
-                          fontFamily: "Open Sans",
                           fontSize: "26px",
                           lineHeight: "37px",
                           fontWeight: "400",
