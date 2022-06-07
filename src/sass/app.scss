@@ -1304,7 +1304,6 @@
     justify-content: flex-end;
     .ebs-date-carousel {
       width: 310px;
-      margin-right: 28px;
       position: relative;
       .ebs-date-carousel-wrapp {
         padding: 0 40px;
@@ -2271,7 +2270,6 @@
   margin-bottom: 30px;
   .ebs-document-header {
     padding: 0 10px 10px;
-    margin-bottom: 10px;
     border-bottom: 1px solid $border;
     h6 {
       margin: 0;
@@ -2291,7 +2289,10 @@
     margin: 0 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid $border;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    &:hover {
+      background-color: $gray-100;
+    }
     .ebs-title {
       display: flex;
       align-items: center;
