@@ -40,7 +40,7 @@ const Exhibitor = (props) => {
     <Suspense fallback={''}>
       {exhibitorsByCategories && exhibitorsByCategories.length > 0 ? (
         <React.Fragment>
-          <Component exhibitorsByCategories={exhibitorsByCategories} labels ={labels}/>
+          <Component exhibitorsByCategories={exhibitorsByCategories} labels ={labels} eventUrl={eventUrl}/>
         </React.Fragment>
       ) :  null }
     </Suspense>

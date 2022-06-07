@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
 
-const Variation4 = ({exhibitorsByCategories, labels}) => {
+const Variation4 = ({exhibitorsByCategories, labels, eventUrl}) => {
     const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -10,7 +10,7 @@ const Variation4 = ({exhibitorsByCategories, labels}) => {
 	}
     return (
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
-			{popup && <ExhibitorPopup data={data} onClick={handleClick} />}
+			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
                 <div className="container">
                     <div className="edgtf-title-section-holder pb-3">
                         <h2 style={{ marginBottom: '5px' }} className="edgtf-title-with-dots edgtf-appeared">

@@ -40,7 +40,7 @@ const Sponsor = (props) => {
     <Suspense fallback={''}>
       {sponsorsByCategories && sponsorsByCategories.length > 0 ? (
         <React.Fragment>
-          <Component sponsorsByCategories={sponsorsByCategories} labels = {labels} />
+          <Component sponsorsByCategories={sponsorsByCategories} labels = {labels} eventUrl={eventUrl} />
         </React.Fragment>
       ) : null 
       }

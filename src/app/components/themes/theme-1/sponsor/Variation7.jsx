@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Slider from "react-slick";
 import SponsorPopup from '@/ui-components/SponsorPopup';
 
-const Variation7 = ({ sponsorsByCategories, labels }) => {
+const Variation7 = ({ sponsorsByCategories, labels, eventUrl}) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -23,7 +23,7 @@ const Variation7 = ({ sponsorsByCategories, labels }) => {
 	}, []));
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
-			{popup && <SponsorPopup data={data} onClick={handleClick} />}
+			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<div className="edgtf-title-section-holder text-center mb-4">
 					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import SponsorPopup from '@/ui-components/SponsorPopup';
 
-const Variation3 = ({sponsorsByCategories, labels}) => {
+const Variation3 = ({sponsorsByCategories, labels, eventUrl}) => {
     const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -10,7 +10,7 @@ const Variation3 = ({sponsorsByCategories, labels}) => {
 	}
     return (
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
-			{popup && <SponsorPopup data={data} onClick={handleClick} />}
+			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
                 <div className="container">
                     <div className="edgtf-title-section-holder text-center pb-5">
                         <h2 className="edgtf-title-with-dots edgtf-appeared">

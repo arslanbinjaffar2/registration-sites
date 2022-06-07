@@ -14,6 +14,8 @@ import PhotosPage from "@/pages/PhotosPage";
 import ProgramPage from "@/pages/ProgramPage";
 import SpeakerPage from "@/pages/speakers/SpeakerPage";
 import SpeakerDetailPage from "@/pages/speakers/SpeakerDetailPage";
+import SponsorDetailPage from "@/pages/sponsors/SponsorDetailPage";
+import ExhibitorDetailPage from "@/pages/exhibitors/ExhibitorDetailPage";
 import SponsorPage from "@/pages/sponsors/SponsorPage";
 import StreamingPage from "@/pages/StreamingPage";
 import TimetablePage from "@/pages/TimetablePage";
@@ -209,6 +211,16 @@ const RouterOutlet = () => {
             component={SpeakerDetailPage}
             exact
             path="/:event_url/speakers/:id"
+          />
+          <Route
+            component={SponsorDetailPage}
+            exact
+            path="/:event_url/sponsors/:id"
+          />
+          <Route
+            component={ExhibitorDetailPage}
+            exact
+            path="/:event_url/exhibitors/:id"
           />
           <Route component={Error404} />
         </Switch>

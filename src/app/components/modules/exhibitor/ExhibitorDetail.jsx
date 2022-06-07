@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { sponsorDetailSelector, fetchSponsor } from "store/Slices/SponsorDetailSlice";
+import { exhibitorDetailSelector, fetchExhibitor } from "store/Slices/ExhibitorDetailSlice";
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
@@ -12,12 +12,12 @@ const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/sponsor/detail/SponsorDetail`)
+    import(`@/themes/${theme}/exhibitor/detail/ExhibitorDetail`)
   );
   return Component;
 };
 
-const SponsorDetail = (props) => {
+const ExhibitorDetail = (props) => {
 const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
@@ -30,14 +30,14 @@ const id = props.match.params.id;
 
     useEffect(() => {
       dispatch(incrementLoadCount());
-      dispatch(fetchSponsor(eventUrl, id));
+      dispatch(fetchExhibitor(eventUrl, id));
     }, []);
-  const { sponsor, labels, documents,  loading, error} = useSelector(sponsorDetailSelector);
+  const { exhibitor, labels, documents, loading, error} = useSelector(exhibitorDetailSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
-      {sponsor ? (
+      {exhibitor ? (
         <React.Fragment>
-          <Component sponsor={sponsor} labels = {labels}  documents={documents} />
+          <Component exhibitor={exhibitor} labels = {labels}  documents={documents}/>
         </React.Fragment>
       ) : <PageLoader/> 
       }
@@ -45,4 +45,4 @@ const id = props.match.params.id;
   );
 };
 
-export default withRouter(SponsorDetail);
+export default withRouter(ExhibitorDetail);
