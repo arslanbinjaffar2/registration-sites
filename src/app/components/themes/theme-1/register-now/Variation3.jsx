@@ -46,9 +46,8 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
 const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation} ) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
-      <div className="container">
       {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
-        <React.Fragment>
+      <div className="container">
           <div className="row d-flex mb-5">
               <div className="col-md-8 offset-md-2 text-center">
                 <div className="edgtf-title-section-holder">
@@ -66,12 +65,14 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
             </div>
             <div className="ebs-register-now-sec ebs-register-v3">
               <div className="row d-flex align-items-center flex-row-reverse">
-              {(checkTickets.ticketsSet && eventSiteSettings.eventsite_tickets_left && checkTickets.remainingTickets > 0) && <div className="col-md-3">
+              <div className="col-md-3">
+              {(checkTickets.ticketsSet && eventSiteSettings.eventsite_tickets_left && checkTickets.remainingTickets > 0) && 
                   <div className="ebs-ticket-remaning">
                     <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
                     <div className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   </div>
-                </div>}
+                }
+                </div>
                 <div className="col-md-9">
                   <div className="ebs-caption-box">
                     <div className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
@@ -83,7 +84,8 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
             </div>
-        </React.Fragment>
+      </div>
+
       )}
 
       {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
@@ -98,7 +100,36 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
         </div>
       )}
 
-      </div>
+    {(!registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
+          <div className="container">
+            <div className="row d-flex mb-5">
+                  <div className="col-md-8 offset-md-2 text-center">
+                    <div className="edgtf-title-section-holder">
+                      <h2 className="edgtf-title-with-dots edgtf-appeared">
+                        {labels.REGISTER_FOR_WAITING_LIST}
+                      </h2>
+                      <span className="edge-title-separator edge-enable-separator"></span>
+                    </div>
+                    <div className="edgtf-title-section-holder">
+                      <h6 className="edgtf-section-subtitle">
+                        {labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST}
+                      </h6>
+                    </div>
+                  </div>
+            </div>
+            <div className="ebs-register-now-sec">
+            <div className="row d-flex">
+                <div className="col-md-10 offset-md-1">
+                  <div className="ebs-caption-box">
+                    <div className="ebs-description-area">{labels.WAITING_LIST_EVENTSITE_INTRODUCTION_PARA}</div>
+                    <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</span></a>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        )}
+
     </div>
   );
 };

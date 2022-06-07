@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-const SponsorPopup =  ({width, onClick, data}) => {
+const SponsorPopup =  ({width, onClick, data, eventUrl}) => {
     console.log(data);
     return (
         <div className="fixed ebs-popup-container">
@@ -26,7 +27,7 @@ const SponsorPopup =  ({width, onClick, data}) => {
                                     {data.twitter && <a href={data.twitter}><i className="fa fa-twitter" /></a>}
                                     {data.linkedin && <a href={data.linkedin}><i className="fa fa-linkedin" /></a>}
                                 </div>
-                                <p><a href="#!">Read More</a></p>
+                                <p><Link to={`/${eventUrl}/sponsors/${data.id}`}>Read More</Link></p>
                             </div>
                         </div>
                     </div>

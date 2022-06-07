@@ -1,7 +1,6 @@
 import React from "react";
-import ExhibitorDetail from "../../themes/theme-1/exhibitor/detail/ExhibitorDetail";
+import ExhibitorDetail from "@/modules/exhibitor/ExhibitorDetail";
 const ExhibitorPage = () => {
- 
   return (
     <React.Fragment>
       <ExhibitorDetail/>
