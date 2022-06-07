@@ -13,7 +13,7 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation1 = ({ event }) => {
+const Variation1 = ({ event, socialMediaShare }) => {
   return (
     <div style={{ paddingTop: "80px",paddingBottom: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner">

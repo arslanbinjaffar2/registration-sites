@@ -26,7 +26,7 @@ const SocialShare = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} />
+      <Component event={event} data={event.socialMediaShare} />
     </Suspense>
   );
 };
