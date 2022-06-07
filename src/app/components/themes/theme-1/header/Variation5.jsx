@@ -123,6 +123,7 @@ class Variation5 extends React.Component {
     if (menus.length === 0) return <div>Loading...</div>;
     return (
       <div
+        style={{transform: 'none'}}
         id="ebs-header-master"
         className="ebs-main-header-v3 ebs-main-header-v7 ebs-header-main-wrapper ebs-header-shadow ebs-hide-header ebs-no-padding"
       >
