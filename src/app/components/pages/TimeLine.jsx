@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import DropDown from '@/forms/DropDown';
+import TimelinePopup from '../ui-components/TimelinePopup';
 
 const data = {
 	"data": {
@@ -286,7 +287,8 @@ const data = {
 let startX;
 let scrollLeft;
 let isDown;
-const _multiplyer = 300;
+let isActive = false;
+const _multiplyer = window.innerWidth > 600 ? 300 : 150;
 var clearTime;
 
 function itemSorting(data) {
@@ -361,7 +363,7 @@ const  currentTimerBar = (data) => {
     }
   }
 };
-const DataItem = ({  items, program_setting }) => {
+const DataItem = ({  items, program_setting, onClick }) => {
   const startTime = moment(items.start_time, 'HH:mm')
   const endTime = moment(items.end_time, 'HH:mm')
   const _time = moment.duration(startTime.diff(moment('00:00', 'HH:mm')));
@@ -370,46 +372,34 @@ const DataItem = ({  items, program_setting }) => {
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
   return (
-    <div style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.workshop ? 'ebs-workshop' : ''} datawrapp`}>
+    <div title={items.name} onClick={onClick} style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.workshop ? 'ebs-workshop' : ''} datawrapp`}>
+      {items.workshop && <div className="workkshop-box">{items.workshop}</div>}
       <div className="title">{items.name}</div>
       {items.tracks && <div className="tracks">
         {items.tracks.map((track, k) =>
           <span style={{backgroundColor: '#6B3182'}} key={k}>{track}</span>
         )}
       </div>}
-      {Number(program_setting.agenda_display_time) === 1 && (
-        <div className="time">{items.start_time} - {items.end_time}</div>
-      )}
-      {items.video > 0 && <div className="video"><i className="material-icons">play_circle</i> {items.video}</div>}
-      {items.workshop && <div className="workkshop-box">{items.workshop}</div>}
+      <div className="ebs-bottom-wrapp">
+        <div className="location"><i className="material-icons">place</i> Main Stage</div>
+        {Number(program_setting.agenda_display_time) === 1 && (
+          <div className="time"><i className="material-icons">access_time</i> {items.start_time} - {items.end_time}</div>
+        )}
+        <div className="ebs-box">
+          {items.video > 0 && <div className="video"><i className="material-icons">play_circle</i> {items.video}</div>}
+          <div className="speakers"><i className="material-icons">interpreter_mode</i> 4</div>
+        </div>
+      </div>
     </div>
   )
 }
 
 const TimelineContent = ({ data, program_setting }) => {
-  return (
-    <div id="timelinecontent">
-      {data && data.program_array.map((items, k) => (
-        <React.Fragment key={k}>
-          <div className="datarow">
-            {
-              items.map((item, key) => (
-                <DataItem key={key} items={item} program_setting={program_setting} />
-              ))
-            }
-          </div>
-        </React.Fragment>
-      ))}
-    </div>
-  )
-}
-
-const TimeLine = () => {
-	const _width = 24 * _multiplyer;
-	useEffect(() => {
-    currentTimerBar(data);
+  const _width = 24 * _multiplyer;
+  const [popup, setPopup] = useState(false);
+  const [popupdata, setPopupData] = useState('');
+  useEffect(() => {
     const container = document.getElementById('timelindeschdle');
-    console.log(container);
 
       container.addEventListener('mousedown',e => mouseIsDown(e));  
       container.addEventListener('mouseup',e => mouseUp(e))
@@ -422,6 +412,65 @@ const TimeLine = () => {
       container.removeEventListener('mouseleave',e=>mouseLeave(e));
       container.removeEventListener('mousemove',e=>mouseMove(e));
     }
+  }, [])
+  
+  const handleClick = (data) => {
+    if (!isActive) {
+      setPopup(!popup);
+      setPopupData(data);
+      isActive = false;
+    }
+  };
+  function mouseIsDown(e) {
+    const container = document.getElementById('timelindeschdle');
+    isDown = true;
+    isActive = false;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  }
+  function mouseUp(e) {
+    isDown = false;
+  }
+  function mouseLeave(e) {
+    isDown = false;
+  }
+  function mouseMove(e) {
+    isActive = true;
+    const container = document.getElementById('timelindeschdle');
+    if (isDown) {
+      //Move Horizontally
+      const x = e.pageX - container.offsetLeft;
+      const walkX = x - startX;
+      container.scrollLeft = scrollLeft - walkX;
+    }
+  }
+  return (
+    <React.Fragment>
+      {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
+      <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
+        <div style={{ width: _width }}  id="timelinewrapp">
+          <div id="currentTimeline" />
+          <TimelineHeader />
+          <div id="timelinecontent">
+            {data && data.program_array.map((items, k) => (
+              <React.Fragment key={k}>
+                <div className="datarow">
+                  {items.map((item, key) => (
+                      <DataItem onClick={(e) => {handleClick(item)}} key={key} items={item} program_setting={program_setting} />
+                    ))}
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  )
+}
+
+const TimeLine = () => {
+	useEffect(() => {
+    currentTimerBar(data);
 	}, [])
 	const handleClick = (e,a) => {
     e.preventDefault();
@@ -433,28 +482,6 @@ const TimeLine = () => {
     }
     
   };
-    function mouseIsDown(e) {
-      const container = document.getElementById('timelindeschdle');
-      isDown = true;
-      startX = e.pageX - container.offsetLeft;
-      scrollLeft = container.scrollLeft;
-    }
-    function mouseUp(e) {
-      isDown = false;
-    }
-    function mouseLeave(e) {
-      isDown = false;
-    }
-    function mouseMove(e) {
-      const container = document.getElementById('timelindeschdle');
-      if (isDown) {
-        e.preventDefault();
-        //Move Horizontally
-        const x = e.pageX - container.offsetLeft;
-        const walkX = x - startX;
-        container.scrollLeft = scrollLeft - walkX;
-      }
-    }
     return (
        <div style={{padding: '80px 0 0'}} className="module-section">
            <div className="container">
@@ -490,13 +517,7 @@ const TimeLine = () => {
                     <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
                     <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
                   </div>
-									<div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
-										<div style={{ width: _width }}  id="timelinewrapp">
-										 <div id="currentTimeline" />
-											<TimelineHeader />
-											<TimelineContent  data={itemSorting(data.data)} program_setting={data.data.program_setting} />
-										</div>
-									</div>
+									<TimelineContent  data={itemSorting(data.data)} program_setting={data.data.program_setting} />
 								</div>
            </div>
        </div>
