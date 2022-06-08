@@ -13,13 +13,13 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation2 = ({ event }) => {
+const Variation2 = ({ event, socialMediaShare }) => {
   return (
     <div style={{ paddingTop: "80px",paddingBottom: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
       <HeadingElement dark={false} label={'Share on social media'}  align={'center'} />
         <div className="ebs-social-share text-center pb-3">
-          <FacebookShareButton
+          {socialMediaShare.Facebook && <FacebookShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <FacebookIcon size={48} 
@@ -30,8 +30,8 @@ const Variation2 = ({ event }) => {
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#313131';
             }} 
             bgStyle={{fill: '#313131'}} round={true} title="Facebook" />
-          </FacebookShareButton>
-          <LinkedinShareButton
+          </FacebookShareButton>}
+          {socialMediaShare.Linkedin && <LinkedinShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <LinkedinIcon size={48}
@@ -42,8 +42,8 @@ const Variation2 = ({ event }) => {
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#313131';
             }} 
             bgStyle={{fill: '#313131'}} round={true} title="Linked In" />
-          </LinkedinShareButton>
-          <TwitterShareButton
+          </LinkedinShareButton>}
+          {socialMediaShare.Twitter && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <TwitterIcon size={48}
@@ -54,8 +54,8 @@ const Variation2 = ({ event }) => {
                   if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#313131';
               }}
              bgStyle={{fill: '#313131'}} round={true} title="Twitter" />
-          </TwitterShareButton>
-          <PinterestShareButton
+          </TwitterShareButton>}
+          {socialMediaShare.Pinterest && <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
@@ -71,8 +71,8 @@ const Variation2 = ({ event }) => {
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#313131';
             }}
              bgStyle={{fill: '#313131'}} round={true} title="Pinterest" />
-          </PinterestShareButton>
-          <EmailShareButton
+          </PinterestShareButton>}
+          {socialMediaShare.Email && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <EmailIcon size={48}
@@ -83,7 +83,7 @@ const Variation2 = ({ event }) => {
                   if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#313131';
               }}
              bgStyle={{fill: '#313131'}} round={true} title="Facebook" />
-          </EmailShareButton>
+          </EmailShareButton>}
         </div>
       </div>
     </div>

@@ -173,7 +173,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings }) => {
           </div>
         </div>
       </div>}
-      <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
+      {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner">
           <div className="edgtf-title-section-holder pb-1">
             <h2 className="edgtf-title-with-dots edgtf-appeared">Documents</h2>
@@ -181,7 +181,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings }) => {
                 <DocumentsListing documents={documents} />
             </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

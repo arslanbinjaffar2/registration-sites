@@ -1,10 +1,7 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "@/ui-components/PageLoader";
-import { speakerDetailSelector, fetchSpeakerDetail } from "store/Slices/SpeakerDetailSlice";
-import {
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
+import { speakerDetailSelector, fetchSpeakerDetail, clearState } from "store/Slices/SpeakerDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 // const in_array = require("in_array");
@@ -18,12 +15,9 @@ const loadModule = (theme, variation) => {
 const SpeakerDetail = (props) => {
   const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
-  const {speaker, labels} = useSelector(speakerDetailSelector);
+  const {speaker, labels } = useSelector(speakerDetailSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
-  // let moduleVariation = event.theme.modules.filter(function (module, i) {
-  //   return in_array(module.alias, ["attendee"]);
-  // });
   const Component = useMemo(
     () => loadModule(event.theme.slug, "Variation1"),
     [event]
@@ -31,7 +25,9 @@ const SpeakerDetail = (props) => {
  
   useEffect(() => {
     dispatch(fetchSpeakerDetail(eventUrl, id));
-    dispatch(incrementLoadCount());
+    return () => {
+      dispatch(clearState());
+    }
   }, []);
 
   return (

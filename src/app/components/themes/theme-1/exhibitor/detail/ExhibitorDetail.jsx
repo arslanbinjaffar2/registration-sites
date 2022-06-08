@@ -1,6 +1,7 @@
 import React from "react";
+import DocumentsListing from "@/ui-components/DocumentsListing";
 
-const Variation1 = ({ exhibitor, labels }) => {
+const Variation1 = ({ exhibitor, labels, documents }) => {
   return (
     <div data-fixed="true" className="">
       <div
@@ -174,18 +175,15 @@ const Variation1 = ({ exhibitor, labels }) => {
           </div>
         </div>
       </div>
-      <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
+      {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner">
           <div className="edgtf-title-section-holder pb-1">
             <h2 className="edgtf-title-with-dots edgtf-appeared">Documents</h2>
             <span className="edge-title-separator edge-enable-separator"></span>
-            <h6>
-              Reminder for developer: Needed to implement document sections
-              needs to be implemented
-            </h6>
-          </div>
+                <DocumentsListing documents={documents} />
+            </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

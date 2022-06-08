@@ -23,6 +23,7 @@ import sponsorListingReducer from "./Slices/SponsorListingSlice";
 import exhibitorListingReducer from "./Slices/ExhibitorListingSlice";
 import sponsorDetailReducer from "./Slices/SponsorDetailSlice";
 import exhibitorDetailReducer from "./Slices/ExhibitorDetailSlice";
+import documentsReducer from "./Slices/DocumentsSlice";
 import { programApi } from "./services/program";
 import { attendeeProgramApi } from "./services/attendeePrograms";
 import { photoApi } from "./services/photo";
@@ -54,6 +55,7 @@ export const store = configureStore({
     exhibitorListing: exhibitorListingReducer,
     sponsorDetail: sponsorDetailReducer,
     exhibitorDetail: exhibitorDetailReducer,
+    documents: documentsReducer,
     [programApi.reducerPath]: programApi.reducer,
     [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
     [photoApi.reducerPath]: photoApi.reducer,

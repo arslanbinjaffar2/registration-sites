@@ -1,9 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { sponsorDetailSelector, fetchSponsor } from "store/Slices/SponsorDetailSlice";
-import {
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
+import { sponsorDetailSelector, fetchSponsor, clearState } from "store/Slices/SponsorDetailSlice";
 import PageLoader from "@/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -29,8 +26,10 @@ const id = props.match.params.id;
   );
 
     useEffect(() => {
-      dispatch(incrementLoadCount());
       dispatch(fetchSponsor(eventUrl, id));
+      return () => {
+        dispatch(clearState());
+      }
     }, []);
   const { sponsor, labels, documents,  loading, error} = useSelector(sponsorDetailSelector);
   return (

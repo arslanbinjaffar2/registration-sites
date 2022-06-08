@@ -23,11 +23,18 @@ export const sponsorDetailSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearAll: (state) => {
+      state.sponsor = null;
+      state.documents = null;
+      state.labels = null;
+      state.loading = false;
+      state.error = null;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getSponsor, setSponsor, setError } = sponsorDetailSlice.actions;
+export const { getSponsor, setSponsor, setError, clearAll } = sponsorDetailSlice.actions;
 
 export const sponsorDetailSelector = (state) => state.sponsorDetail;
 
@@ -43,5 +50,11 @@ export const fetchSponsor = (url, sponsor_id) => {
     } catch (error) {
       dispatch(setError(error.message));
     }
+  };
+};
+
+export const clearState = () => {
+  return async (dispatch) => {
+    dispatch(clearAll());    
   };
 };

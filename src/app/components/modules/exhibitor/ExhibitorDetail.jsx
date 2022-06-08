@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { exhibitorDetailSelector, fetchExhibitor } from "store/Slices/ExhibitorDetailSlice";
+import { exhibitorDetailSelector, fetchExhibitor, clearState } from "store/Slices/ExhibitorDetailSlice";
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
@@ -31,13 +31,16 @@ const id = props.match.params.id;
     useEffect(() => {
       dispatch(incrementLoadCount());
       dispatch(fetchExhibitor(eventUrl, id));
+      return () => {
+        dispatch(clearState());
+      }
     }, []);
   const { exhibitor, labels, documents, loading, error} = useSelector(exhibitorDetailSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
       {exhibitor ? (
         <React.Fragment>
-          <Component exhibitor={exhibitor} labels = {labels}  documents={documents}/>
+          <Component exhibitor={exhibitor} labels = {labels}  documents={documents} />
         </React.Fragment>
       ) : <PageLoader/> 
       }

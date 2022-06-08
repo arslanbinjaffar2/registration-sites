@@ -21,20 +21,20 @@ const Variation6 = ({ event }) => {
       <div className="container">
         <HeadingElement dark={false} label={'Share on social media'}  align={'center'} />
         <div className="ebs-social-share text-center pb-3 ebs-social-share-v5">
-          <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
+          {socialMediaShare.Facebook && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
             <FacebookIcon size={60}  title="Facebook" /> <span>Facebook</span> 
-          </FacebookShareButton>
-          <LinkedinShareButton url={`${window.location.origin.toString()}/${event.url}`}
+          </FacebookShareButton>}
+          {socialMediaShare.Linkedin && <LinkedinShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
             <LinkedinIcon size={60}  title="Linked In" /> <span>Linked In</span>  
-          </LinkedinShareButton>
-          <TwitterShareButton
+          </LinkedinShareButton>}
+          {socialMediaShare.Twitter && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <TwitterIcon size={60}  title="Twitter" /> <span>Twitter</span> 
-          </TwitterShareButton>
-          <PinterestShareButton
+          </TwitterShareButton>}
+          {socialMediaShare.Pinterest && <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
@@ -43,12 +43,12 @@ const Variation6 = ({ event }) => {
             }
           >
             <PinterestIcon size={60}  title="Pinterest" /> <span>Pinterest</span>
-          </PinterestShareButton>
-          <EmailShareButton
+          </PinterestShareButton>}
+          {socialMediaShare.Email && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <EmailIcon size={60}  title="Email" /> <span>Email</span>
-          </EmailShareButton>
+          </EmailShareButton>}
         </div>
       </div>
     </div>

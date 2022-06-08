@@ -56,7 +56,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event }) => {
                         <div className="edgtf-team-info">
                           <div className="edgtf-team-title-holder">
                             {(attendee.first_name || attendee.last_name) && (
-                              <Link to={`/${event.url}/speakers/${attendee.id}`}>
+                              <Link to={`/${event.url}/attendees/${attendee.id}`}>
                                 <h3 style={{lineHeight: 1}} className="edgtf-team-name">
                                   {attendee.first_name && attendee.first_name}{" "}
                                   {attendee.last_name && attendee.last_name}

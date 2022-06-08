@@ -23,11 +23,18 @@ export const exhibitorDetailSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearAll: (state) => {
+      state.exhibitor= null;
+      state.documents=null;
+      state.labels= null;
+      state.loading= false;
+      state.error= null;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getExhibitor, setExhibitor, setError } = exhibitorDetailSlice.actions;
+export const { getExhibitor, setExhibitor, setError, clearAll } = exhibitorDetailSlice.actions;
 
 export const exhibitorDetailSelector = (state) => state.exhibitorDetail;
 
@@ -43,5 +50,11 @@ export const fetchExhibitor = (url, exhibitor_id) => {
     } catch (error) {
       dispatch(setError(error.message));
     }
+  };
+};
+
+export const clearState = () => {
+  return async (dispatch) => {
+    dispatch(clearAll());    
   };
 };

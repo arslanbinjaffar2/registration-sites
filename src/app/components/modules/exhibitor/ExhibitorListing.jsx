@@ -31,12 +31,13 @@ const ExhibitorListing = (props) => {
       dispatch(incrementLoadCount());
       dispatch(fetchExhibitors(eventUrl));
     }, []);
+
   const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
       {exhibitors && exhibitors.length > 0 ? (
         <React.Fragment>
-          <Component exhibitors={exhibitors} labels = {labels} exhibitorCategories={exhibitorCategories}  />
+          <Component exhibitors={exhibitors} labels = {labels} exhibitorCategories={exhibitorCategories} eventUrl={eventUrl} />
         </React.Fragment>
       ) : <PageLoader/> 
       }
