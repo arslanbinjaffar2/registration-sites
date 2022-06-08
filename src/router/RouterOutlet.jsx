@@ -21,7 +21,8 @@ import StreamingPage from "@/pages/StreamingPage";
 import TimetablePage from "@/pages/TimetablePage";
 import TimeLine from "@/pages/TimeLine";
 import VideoPage from "@/pages/VideoPage";
-import CmsPage from "@/pages/CmsPage";
+import CmsPage from "@/pages/cms/CmsPage";
+import CmsDetailPage from "@/pages/cms/CmsDetailPage";
 import CustomPage from "@/pages/CustomPage";
 import DocumentPage from "@/pages/DocumentPage";
 import NewsPage from "@/pages/news/NewsPage";
@@ -85,17 +86,32 @@ const RouterOutlet = () => {
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/additional_information"
+            path="/:event_url/additional_information/"
           />
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/general_information"
+            path="/:event_url/general_information/"
           />
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/practicalinformation"
+            path="/:event_url/practicalinformation/"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/additional_information/:id"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/general_information/:id"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/practicalinformation/:id"
           />
           <MasterLayoutRoute
             component={ProgramPage}

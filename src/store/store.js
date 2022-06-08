@@ -24,10 +24,10 @@ import exhibitorListingReducer from "./Slices/ExhibitorListingSlice";
 import sponsorDetailReducer from "./Slices/SponsorDetailSlice";
 import exhibitorDetailReducer from "./Slices/ExhibitorDetailSlice";
 import documentsReducer from "./Slices/DocumentsSlice";
+import cmsDetailReducer from "./Slices/CmsDetailSlice";
 import { programApi } from "./services/program";
 import { attendeeProgramApi } from "./services/attendeePrograms";
 import { photoApi } from "./services/photo";
-import { cmsPageApi } from "./services/cmspage";
 import { newsApi } from "./services/news";
 import { videoApi } from "./services/video";
 export const store = configureStore({
@@ -56,18 +56,17 @@ export const store = configureStore({
     sponsorDetail: sponsorDetailReducer,
     exhibitorDetail: exhibitorDetailReducer,
     documents: documentsReducer,
+    cmsDetail: cmsDetailReducer,
     [programApi.reducerPath]: programApi.reducer,
     [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
     [photoApi.reducerPath]: photoApi.reducer,
     [videoApi.reducerPath]: videoApi.reducer,
-    [cmsPageApi.reducerPath]: cmsPageApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({serializableCheck: false}).concat(
       programApi.middleware,
       attendeeProgramApi.middleware,
-      cmsPageApi.middleware,
       photoApi.middleware,
       newsApi.middleware,
       videoApi.middleware
