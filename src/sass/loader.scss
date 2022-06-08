@@ -43,10 +43,10 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 999999;
+  z-index: 9999999;
+  position: fixed;
   background: rgba($white, 1);
   &.fixed {
-    position: fixed;
     left: 0;
     top: 0;
     width: 100%;

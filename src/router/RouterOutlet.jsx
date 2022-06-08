@@ -46,7 +46,7 @@ const RouterOutlet = () => {
   const { showLogin } = useSelector(globalSelector);
   return (
     <BrowserRouter>
-      <React.Fragment>
+      <React.Suspense fallback={<div>Loading ..... </div>}>
         <Header />
         <Switch>
           <MasterLayoutRoute component={FullPage} exact path="/fullpage" />
@@ -225,7 +225,7 @@ const RouterOutlet = () => {
           <Route component={Error404} />
         </Switch>
         {showLogin && <LoginScreen/>}
-      </React.Fragment>
+      </React.Suspense>
     </BrowserRouter>
   );
 }

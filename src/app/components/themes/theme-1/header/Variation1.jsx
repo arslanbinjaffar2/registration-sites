@@ -30,6 +30,12 @@ class Variation1 extends React.Component {
     window.removeEventListener("resize", this.handleResize.bind(this));
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
+  componentDidUpdate(prevProps, prevState) { 
+    if (prevProps !== this.props) {
+      document.getElementsByTagName('body')[0].classList.remove('un-scroll');
+      this.setState({ showMenu: false })
+    }
+  } 
   handleScroll = () => {
     const _app = document.getElementById("App");
     if (window.scrollY > 250) {
@@ -135,7 +141,10 @@ class Variation1 extends React.Component {
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
                     onClick={() =>
-                      this.setState({ showMenu: !this.state.showMenu })
+                      {
+                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                        this.setState({ showMenu: !this.state.showMenu })
+                      }
                     }
                     aria-label="Toggle navigation"
                   >
@@ -150,7 +159,10 @@ class Variation1 extends React.Component {
                 >
                   <div
                     onClick={() =>
-                      this.setState({ showMenu: !this.state.showMenu })
+                      { 
+                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                        this.setState({ showMenu: !this.state.showMenu })
+                      }
                     }
                     id="btn-menu-close"
                   ></div>

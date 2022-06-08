@@ -20,7 +20,7 @@ class Variation5 extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this._isMounted = true;
     this.handleFunction();
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
@@ -29,7 +29,7 @@ class Variation5 extends React.Component {
     this._isMounted = false;
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
       this.handleFunction();
       document
@@ -119,7 +119,7 @@ class Variation5 extends React.Component {
     if (menus.length === 0) return <div>Loading...</div>;
     return (
       <div
-        style={{transform: 'none'}}
+        style={{transform: 'none', animation: 'none'}}
         id="ebs-header-master"
         className="ebs-main-header-v3 ebs-main-header-v7 ebs-header-main-wrapper ebs-header-shadow ebs-hide-header ebs-no-padding"
       >
