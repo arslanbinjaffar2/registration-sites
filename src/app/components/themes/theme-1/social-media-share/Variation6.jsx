@@ -14,7 +14,7 @@ import {
 } from "react-share";
 
 
-const Variation6 = ({ event }) => {
+const Variation6 = ({ event, socialMediaShare}) => {
   return (
     <div style={{padding: "80px 0",}}
       className="edgtf-parallax-section-holder">
