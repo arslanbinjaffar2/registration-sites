@@ -8,7 +8,6 @@ const NewsPage = () => {
   return (
     <React.Fragment>
       <News pagination={true} />
-      {loadedSections !== loadCount && <PageLoader />}
     </React.Fragment>
   );
 };
