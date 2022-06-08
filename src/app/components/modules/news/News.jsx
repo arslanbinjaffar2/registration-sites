@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { newsSelector, fetchNews } from "store/Slices/NewsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
@@ -37,7 +36,6 @@ const News = (props) => {
   useEffect(() => {
     if (initialMount.current) {
       console.log(initialMount.current);
-      dispatch(incrementLoadCount());
       initialMount.current = false;
       return;
     }

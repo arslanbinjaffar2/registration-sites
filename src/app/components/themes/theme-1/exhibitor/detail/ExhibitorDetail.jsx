@@ -1,6 +1,7 @@
 import React from "react";
+import DocumentsListing from "@/ui-components/DocumentsListing";
 
-const Variation1 = ({ exhibitor, labels }) => {
+const Variation1 = ({ exhibitor, labels, documents }) => {
   return (
     <div data-fixed="true" className="">
       <div
@@ -32,25 +33,20 @@ const Variation1 = ({ exhibitor, labels }) => {
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
                   <img
-                    src={
-                      exhibitor.image && exhibitor.image !== ""
-                        ? process.env.REACT_APP_EVENTCENTER_URL +
-                          "/assets/exhibitors/" +
-                          exhibitor.image
-                        : "https://via.placeholder.com/1000.jpeg"
-                    }
+                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
                     alt=""
                     width="800"
                     height="800"
                   />{" "}
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
-                  <h2 className="edge-name">
-                    {exhibitor.name && exhibitor.name}
-                  </h2>
+                    {exhibitor.name && 
+                      <h2 className="edge-name">
+                        { exhibitor.name}
+                    </h2>}
                   <div className="edge-grid-row edge-info">
                     <div className="edge-grid-col-12">
-                      {exhibitor.description && exhibitor.description && (
+                      {exhibitor.description && (
                         <div
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
@@ -158,18 +154,36 @@ const Variation1 = ({ exhibitor, labels }) => {
           </div>
         </div>
       </div>
-      <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
-        <div className="edgtf-container-inner">
-          <div className="edgtf-title-section-holder pb-1">
-            <h2 className="edgtf-title-with-dots edgtf-appeared">Programes</h2>
-            <span className="edge-title-separator edge-enable-separator"></span>
-            <h6>
-              Reminder for developer: Needed to implement document sections
-              needs to be implemented
-            </h6>
+
+      <div className="">
+        <div className="container">
+          <h2 className="edgtf-title-with-dots edgtf-appeared">Contacts</h2>
+          <div className="row d-flex ebs-program-speakers">
+            {exhibitor.exhibitors_attendee.map((attendee,o) =>
+              <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-attendee-box">
+                <img  src={
+                  attendee.image && attendee.image !== ""
+                    ? process.env.REACT_APP_EVENTCENTER_URL +
+                      "/assets/attendees/" +
+                      attendee.image
+                    : require("img/user-placeholder.jpg")
+                } alt="" />
+                <h4>{attendee.first_name} {attendee.last_name}</h4>
+                <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
+        <div className="edgtf-container-inner">
+          <div className="edgtf-title-section-holder pb-1">
+            <h2 className="edgtf-title-with-dots edgtf-appeared">Documents</h2>
+            <span className="edge-title-separator edge-enable-separator"></span>
+                <DocumentsListing documents={documents} />
+            </div>
+        </div>
+      </div>}
     </div>
   );
 };

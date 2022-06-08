@@ -1,9 +1,6 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { attendeeDetailSelector, fetchAttendeeDetail } from "store/Slices/AttendeeDetailSlice";
-import {
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
+import { attendeeDetailSelector, fetchAttendeeDetail, clearState } from "store/Slices/AttendeeDetailSlice";
 import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
@@ -31,7 +28,9 @@ const AttendeeDetail = (props) => {
   ); 
   useEffect(() => {
     dispatch(fetchAttendeeDetail(eventUrl, id));
-    dispatch(incrementLoadCount());
+    return () => {
+      dispatch(clearState());
+    }
   }, []);
   return (
     <Suspense fallback={<PageLoader/>}>

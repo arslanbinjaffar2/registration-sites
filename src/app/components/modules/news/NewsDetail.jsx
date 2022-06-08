@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, Suspense } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { incrementLoadCount } from "store/Slices/GlobalSlice";
-import { newsDetailSelector, fetchNewsDetail } from "store/Slices/NewsDetailSlice";
+import { newsDetailSelector, fetchNewsDetail, clearState } from "store/Slices/NewsDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "@/ui-components/PageLoader";
 
@@ -30,7 +29,9 @@ const NewsDetail = (props) => {
   const [sidebar, setSidebar] = useState(false);
   useEffect(() => {
     dispatch(fetchNewsDetail(eventUrl, id));
-    dispatch(incrementLoadCount());
+    return () => {
+      dispatch(clearState());
+    }
   }, []);
 
   return (

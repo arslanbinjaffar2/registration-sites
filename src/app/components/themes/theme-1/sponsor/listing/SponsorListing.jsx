@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
-const SponsorListing = ({sponsors, sponsorCategories, labels}) => {
+const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl}) => {
   const [locSponsors, setLocSponsors] = useState(sponsors);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchText, setSearchText] = useState('');
@@ -110,12 +111,18 @@ const SponsorListing = ({sponsors, sponsorCategories, labels}) => {
               {locSponsors.map((sponsor)=>(<div className="ebs-sponsor-item" key={sponsor.id}>
                 <div className="d-flex align-items-center ebs-break-block">
                   <div className="ebs-img-listing">
-                    <figure>
-                      <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} alt="" />
-                    </figure>
+                    <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                      <figure>
+                        <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} alt="" />
+                      </figure>
+                    </Link>
                   </div>
                   <div className="ebs-detail-listing">
-                    {sponsor.name && <h2>{ sponsor.name }</h2>}
+                    {sponsor.name && 
+                      <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                        <h2>{ sponsor.name }</h2>
+                      </Link>
+                    }
                     <div className="d-flex ebs-container-box">
                       {sponsor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
                       {sponsor.email && <div className="ebs-box"><i className="fa fa-envelope" />{sponsor.email}</div>}

@@ -21,8 +21,10 @@ import StreamingPage from "@/pages/StreamingPage";
 import TimetablePage from "@/pages/TimetablePage";
 import TimeLine from "@/pages/TimeLine";
 import VideoPage from "@/pages/VideoPage";
-import CmsPage from "@/pages/CmsPage";
+import CmsPage from "@/pages/cms/CmsPage";
+import CmsDetailPage from "@/pages/cms/CmsDetailPage";
 import CustomPage from "@/pages/CustomPage";
+import DocumentPage from "@/pages/DocumentPage";
 import NewsPage from "@/pages/news/NewsPage";
 import NewsDetailPage from "@/pages/news/NewsDetailPage";
 import MasterLayoutMyAccount from "@/layout/MasterLayoutMyAccount";
@@ -37,7 +39,6 @@ import SurveyList from "@/myAccount/profile/SurveyList";
 import surveyDetail from "@/myAccount/profile/surveyDetail";
 import MyProgram from "@/myAccount/profile/MyProgram";
 import LoginScreen from "@/myAccount/login/LoginScreen"
-import Documents from "../app/components/modules/Documents";
 import { useSelector } from "react-redux";
 import {
   globalSelector
@@ -85,17 +86,32 @@ const RouterOutlet = () => {
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/additional_information"
+            path="/:event_url/additional_information/"
           />
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/general_information"
+            path="/:event_url/general_information/"
           />
           <MasterLayoutRoute
             component={CmsPage}
             exact
-            path="/:event_url/practicalinformation"
+            path="/:event_url/practicalinformation/"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/additional_information/:id"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/general_information/:id"
+          />
+          <MasterLayoutRoute
+            component={CmsDetailPage}
+            exact
+            path="/:event_url/practicalinformation/:id"
           />
           <MasterLayoutRoute
             component={ProgramPage}
@@ -198,7 +214,7 @@ const RouterOutlet = () => {
             path="/:event_url/attendees"
           />
           <Route
-            component={Documents}
+            component={DocumentPage}
             exact
             path="/:event_url/documents"
           />

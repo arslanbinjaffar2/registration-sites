@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   attendee: null,
   loading: false,
@@ -23,11 +22,17 @@ export const attendeeDetailSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearAll: (state, ) => {
+      state.attendee = null;
+      state.labels = null;
+      state.loading = false;
+      state.error = null;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getAttendee, setAttendee, setError } = attendeeDetailSlice.actions;
+export const { getAttendee, setAttendee, setError, clearAll } = attendeeDetailSlice.actions;
 
 export const attendeeDetailSelector = (state) => state.attendeeDetail;
 
@@ -41,9 +46,14 @@ export const fetchAttendeeDetail = (url,  id) => {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setAttendee(res));
-      dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError());
     }
+  };
+};
+
+export const clearState = () => {
+  return async (dispatch) => {
+    dispatch(clearAll());    
   };
 };

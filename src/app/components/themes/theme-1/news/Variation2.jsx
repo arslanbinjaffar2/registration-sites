@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import TruncateMarkup from 'react-truncate-markup';
 
 const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
-  const [sidebar, setSidebar] = useState(false);
   const breakpointColumnsObj = {
-    default: sidebar ? 2 : 3,
+    default:  3,
     1100: 2,
     700: 2,
     500: 1,
@@ -15,8 +14,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
     <div style={{ paddingTop: "30px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
         <div
-          className={`${
-            sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"
+          className={`${ "edgtf-full-width-inner"
           } clearfix`}
         >
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
@@ -87,13 +85,13 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
             </div>
           </div>
           {news.length > 0 &&  loadMore()}
-          {sidebar && (
+          {/* {sidebar && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <h4 className="edgtf-widget-title">Sidebar</h4>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

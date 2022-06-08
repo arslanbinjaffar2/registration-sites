@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   speaker: null,
   labels: null,
@@ -23,11 +22,17 @@ export const speakerDetailSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearAll: (state) => {
+      state.speaker = null;
+      state.labels = null;
+      state.loading = false;
+      state.error = null;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getSpeaker, setSpeaker, setError } = speakerDetailSlice.actions;
+export const { getSpeaker, setSpeaker, setError, clearAll } = speakerDetailSlice.actions;
 
 export const speakerDetailSelector = (state) => state.speakerDetail;
 
@@ -41,9 +46,14 @@ export const fetchSpeakerDetail = (url, id) => {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setSpeaker(res));
-      dispatch(incrementLoadedSection());
     } catch (error) {
       dispatch(setError());
     }
+  };
+};
+
+export const clearState = () => {
+  return async (dispatch) => {
+    dispatch(clearAll());    
   };
 };

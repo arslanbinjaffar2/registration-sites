@@ -1,23 +1,20 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { exhibitorListingSelector, fetchExhibitors } from "store/Slices/ExhibitorListingSlice";
-import {
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
+import { cmsDetailSelector, fetchCmsPage, clearState } from "store/Slices/CmsDetailSlice";
 import PageLoader from "@/ui-components/PageLoader";
-
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/exhibitor/listing/ExhibitorListing`)
+    import(`@/themes/${theme}/cms/CmsDetail`)
   );
   return Component;
 };
 
-const ExhibitorListing = (props) => {
+const CmsDetail = (props) => {
+const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
@@ -27,17 +24,19 @@ const ExhibitorListing = (props) => {
     [event]
   );
 
-    useEffect(() => {
-      dispatch(incrementLoadCount());
-      dispatch(fetchExhibitors(eventUrl));
-    }, []);
+useEffect(() => {
+    dispatch(fetchCmsPage(eventUrl, props.moduleName , id));
+    return () => {
+    dispatch(clearState());
+    }
+}, [props.moduleName, id]);
 
-  const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
+  const { cmsPage, labels, loading, error} = useSelector(cmsDetailSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
-      {exhibitors && exhibitors.length > 0 ? (
+      {cmsPage ? (
         <React.Fragment>
-          <Component exhibitors={exhibitors} labels = {labels} exhibitorCategories={exhibitorCategories} eventUrl={eventUrl} />
+          <Component detail={cmsPage} labels = {labels} moduleName={props.moduleName}  />
         </React.Fragment>
       ) : <PageLoader/> 
       }
@@ -45,4 +44,4 @@ const ExhibitorListing = (props) => {
   );
 };
 
-export default withRouter(ExhibitorListing);
+export default withRouter(CmsDetail);

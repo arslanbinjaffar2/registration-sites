@@ -1,22 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  sponsor: null,
-  documents: null,
+  cmsPage: null,
   labels: null,
   loading: false,
   error: null,
 };
 
-export const sponsorDetailSlice = createSlice({
-  name: "sponsorDetail",
+export const cmsDetailSlice = createSlice({
+  name: "cmsDetail",
   initialState,
   reducers: {
-    getSponsor: (state, {payload}) => {
+    getCms: (state) => {
       state.loading = true;
     },
-    setSponsor: (state, { payload }) => {
-      state.sponsor = payload.data.sponsor;
-      state.documents = payload.data.documents;
+    setCms: (state, { payload }) => {
+      state.cmsPage = payload.data;
       state.labels = payload.labels;
       state.loading = false;
     },
@@ -24,8 +22,7 @@ export const sponsorDetailSlice = createSlice({
       state.error = payload;
     },
     clearAll: (state) => {
-      state.sponsor = null;
-      state.documents = null;
+      state.cmsPage = null;
       state.labels = null;
       state.loading = false;
       state.error = null;
@@ -34,19 +31,19 @@ export const sponsorDetailSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getSponsor, setSponsor, setError, clearAll } = sponsorDetailSlice.actions;
+export const { getCms, setCms, setError, clearAll } = cmsDetailSlice.actions;
 
-export const sponsorDetailSelector = (state) => state.sponsorDetail;
+export const cmsDetailSelector = (state) => state.cmsDetail;
 
-export default sponsorDetailSlice.reducer;
+export default cmsDetailSlice.reducer;
 
-export const fetchSponsor = (url, sponsor_id) => {
+export const fetchCmsPage = (url, module_name, cms_id) => {
   return async (dispatch) => {
-    dispatch(getSponsor());    
+    dispatch(getCms());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsor-detail/${sponsor_id}`);
+      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/${module_name}/page/${cms_id}`);
       const res = await response.json();
-      dispatch(setSponsor(res));
+      dispatch(setCms(res));
     } catch (error) {
       dispatch(setError(error.message));
     }

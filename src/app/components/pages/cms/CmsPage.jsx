@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 
 function loadModule(name) {
-  const Component = React.lazy(() => import(`@/modules/${name}`));
+  const Component = React.lazy(() => import(`@/modules/cms/${name}`));
   return Component;
 }
 const CmsPage = ({ match, event }) => {
