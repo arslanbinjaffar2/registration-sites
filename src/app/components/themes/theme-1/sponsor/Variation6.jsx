@@ -12,7 +12,7 @@ const Variation6 = ({sponsorsByCategories, labels, eventUrl}) => {
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
                 <div className="container">
-                    <div className="edgtf-title-section-holder pb-3">
+                    <div className="edgtf-title-section-holder pb-3 text-center">
                         <h2 style={{ marginBottom: '5px' }} className="edgtf-title-with-dots edgtf-appeared">
                             { labels.SPONSOR_HEADING }
                         </h2>

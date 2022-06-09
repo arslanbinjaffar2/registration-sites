@@ -3,7 +3,7 @@ import { PortalWithState } from "react-portal";
 import Videopopup from "../../../Videopopup";
 import HeadingElement from "@/ui-components/HeadingElement";
 
-const Variation2 = ({ videos }) => {
+const Variation6 = ({ videos }) => {
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
@@ -21,7 +21,7 @@ const Variation2 = ({ videos }) => {
           <div className="edgtf-portfolio-list-holder d-flex row">
                 {videos &&
                   videos.map((photo, i) => (
-                    <div key={i} className="col-md-4 col-sm-6">
+                    <div key={i} className="col-md-4 col-lg-3 col-sm-6">
                       <PortalWithState closeOnOutsideClick closeOnEsc>
                       {({ openPortal, closePortal, isOpen, portal }) => (
                         <React.Fragment>
@@ -69,4 +69,4 @@ const Variation2 = ({ videos }) => {
   );
 };
 
-export default Variation2;
+export default Variation6;

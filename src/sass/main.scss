@@ -1198,7 +1198,7 @@ $z-index:$back-to-top-size / 2;
 	.ebs-main-header {
 		box-shadow: 0 4px 8px rgba($black,0.1);
 		position: relative;
-		z-index: 9999;
+		z-index: 999;
 
 		&.ebs-main-header-v1.ebs-main-header-v2 {
 			@media only screen and (min-width: 991px) {

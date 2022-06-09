@@ -1,38 +1,48 @@
 import React from "react";
-import { PortalWithState } from "react-portal";
-import Videopopup from "../../../Videopopup";
+import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "@/ui-components/HeadingElement";
 
-const Variation2 = ({ videos }) => {
+const Variation8 = ({ photos, settings }) => {
   const imgUrl = (photo) => {
-    if (photo.thumnail && photo.thumnail !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
+    if (photo.image && photo.image !== "") {
+      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
     } else {
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
+  const getMeta = (url,type) => {
+    const img = new Image();
+    img.src = url;
+    if (type === 'width') {
+      return img.width;
+    } else {
+      return img.height
+    }
+  };
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section">
       <div className="container">
-        <HeadingElement dark={false} label={'Conference Video Gallery'} desc={'Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad his suavitate complectitur ruis dicant facilisi atvimsed eu justo evertitur'} align={'center'} />
-      </div>
-      <div className="container">
+      <HeadingElement dark={false} label={'Gallery'} desc={'Lorem ipsum dolor sit amit.'} align={settings.text_align} />
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
           <div className="edgtf-portfolio-list-holder d-flex row">
-                {videos &&
-                  videos.map((photo, i) => (
-                    <div key={i} className="col-md-4 col-sm-6">
-                      <PortalWithState closeOnOutsideClick closeOnEsc>
-                      {({ openPortal, closePortal, isOpen, portal }) => (
-                        <React.Fragment>
+            <Gallery shareButton={false} id="my-gallery">
+                {photos &&
+                  photos.map((photo, i) => (
+                    <div key={i} className="col-lg-3 col-md-4 col-sm-6">
+                      <Item
+                        key={i} 
+                        original={imgUrl(photo)}
+                        thumbnail={imgUrl(photo)}
+                        title={`${Object.keys(photo.info)}`}
+                        width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
+                        height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
+                        >
+                        {({ ref, open }) => (
                           <article
-                            onClick={openPortal}
+                            ref={ref} onClick={open}
                             className="edgtf-portfolio-item mix"
                             style={{ display: "block", visibility: "visible" }}
                           >
-                            <div className="ebs-video-button-inner ebs-right-top">
-                                <i className="fa fa-play-circle" aria-hidden="true"></i>
-                            </div>
                             <div className="edgtf-item-image-holder">
                               <img
                                 style={{ width: "100%" }}
@@ -52,16 +62,11 @@ const Variation2 = ({ videos }) => {
                               </div>
                             </div>
                           </article>
-                          {portal(
-                            <Videopopup
-                                url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
-                                onClose={closePortal} />
-                          )}
-                          </React.Fragment>
                         )}
-                      </PortalWithState>
+                      </Item>
                     </div>
                   ))}
+              </Gallery>
           </div>
         </div>
       </div>
@@ -69,4 +74,4 @@ const Variation2 = ({ videos }) => {
   );
 };
 
-export default Variation2;
+export default Variation8;
