@@ -22,7 +22,6 @@ class Variation3 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.handleFunction();
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
   componentWillUnmount() {

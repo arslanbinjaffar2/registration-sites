@@ -42,19 +42,19 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
         <div className="ebs-social-share text-center pb-3">
           {socialMediaShare.Facebook && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <FacebookIcon size={60} bgStyle={{fill: 'transparent'}} 
+            <FacebookIcon size={120} bgStyle={{fill: 'transparent'}} 
              round={true} title="Facebook" />
           </FacebookShareButton>}
           {socialMediaShare.Linkedin && <LinkedinShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <LinkedinIcon size={60} bgStyle={{fill: 'transparent'}}
+            <LinkedinIcon size={120} bgStyle={{fill: 'transparent'}}
              round={true} title="Linked In" />
           </LinkedinShareButton>}
           {socialMediaShare.Twitter &&  <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <TwitterIcon size={60} bgStyle={{fill: 'transparent'}}
+            <TwitterIcon size={120} bgStyle={{fill: 'transparent'}}
               round={true} title="Twitter" />
           </TwitterShareButton>}
           {socialMediaShare.Pinterest && <PinterestShareButton
@@ -65,13 +65,13 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
                 : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
-            <PinterestIcon size={60} bgStyle={{fill: 'transparent'}}
+            <PinterestIcon size={120} bgStyle={{fill: 'transparent'}}
               round={true} title="Pinterest" />
           </PinterestShareButton>}
           {socialMediaShare.Email && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <EmailIcon size={60} bgStyle={{fill: 'transparent'}}
+            <EmailIcon size={120} bgStyle={{fill: 'transparent'}}
               round={true} title="Facebook" />
           </EmailShareButton>}
         </div>

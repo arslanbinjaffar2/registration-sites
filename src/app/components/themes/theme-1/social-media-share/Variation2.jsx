@@ -22,7 +22,7 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
           {socialMediaShare.Facebook && <FacebookShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <FacebookIcon size={48} 
+            <FacebookIcon size={120} 
             onMouseOver={(e) =>{
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#105DA0';
             }} 
@@ -34,7 +34,7 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
           {socialMediaShare.Linkedin && <LinkedinShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <LinkedinIcon size={48}
+            <LinkedinIcon size={120}
             onMouseOver={(e) =>{
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#0E76A8';
             }} 
@@ -46,7 +46,7 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
           {socialMediaShare.Twitter && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <TwitterIcon size={48}
+            <TwitterIcon size={120}
               onMouseOver={(e) =>{
                   if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#3FA9F5';
               }} 
@@ -63,7 +63,7 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
                 : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
-            <PinterestIcon size={48}
+            <PinterestIcon size={120}
              onMouseOver={(e) =>{
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#e60023';
             }} 
@@ -75,7 +75,7 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
           {socialMediaShare.Email && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <EmailIcon size={48}
+            <EmailIcon size={120}
                onMouseOver={(e) =>{
                 if (e.target.tagName.toLowerCase() === 'circle') e.target.style.fill = '#E4E7E7';
               }} 

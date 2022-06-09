@@ -6,7 +6,7 @@ const Variation1 = ({ event, banner }) => {
 	let dateTime = momentObj.toDate();
 	console.log(banner);
 	return (
-		<div data-fixed="true" className="main-slider-wrapper">
+		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 				{banner && <SliderBanner
 					countdown="Feb 19 2022, 17:00" //{dateTime}
 					fullscreen

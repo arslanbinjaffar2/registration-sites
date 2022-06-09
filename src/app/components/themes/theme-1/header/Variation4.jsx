@@ -22,7 +22,6 @@ class Variation4 extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.handleFunction();
     const rows = this.state.menus["top_menu"].reduce(function (
       rows,
       key,

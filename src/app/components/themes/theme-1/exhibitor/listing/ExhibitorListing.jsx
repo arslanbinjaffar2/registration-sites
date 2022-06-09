@@ -47,7 +47,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
-    <div data-fixed="true" className="">
+    <div data-fixed="true" className="ebs-transparent-box">
     <div
       style={{
         backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,

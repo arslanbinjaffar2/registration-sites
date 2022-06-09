@@ -32,7 +32,7 @@ class Variation7 extends React.Component {
   }
   async componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
-      setTimeout(() => {
+
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
         document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
         if (window.innerWidth >= 991) {
@@ -43,7 +43,7 @@ class Variation7 extends React.Component {
             document.getElementById("ebs-header-master").classList.add('ebs-light-header');
           }
         }
-      }, 2000);
+
     }
   }
   
@@ -82,12 +82,6 @@ class Variation7 extends React.Component {
   
   handleMenu = () => {
     if (window.innerWidth >= 991) {
-      var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-      if (_nextSibling === 'true') {
-        document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
-      } else {
-        document.getElementById("ebs-header-master").classList.add('ebs-light-header');
-      }
       var _total = 0;
       var _element = false;
       const _container = document.getElementById("navbarSupportedContent");

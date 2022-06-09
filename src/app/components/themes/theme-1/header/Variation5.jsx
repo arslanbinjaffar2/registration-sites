@@ -22,7 +22,6 @@ class Variation5 extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    this.handleFunction();
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
   componentWillUnmount() {

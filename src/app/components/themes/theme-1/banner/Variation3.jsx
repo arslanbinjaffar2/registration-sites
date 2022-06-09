@@ -7,7 +7,7 @@ const Variation3 = ({event, banner}) => {
 	let eventDate = momentObj.toDate();
 	console.log(banner);
 	return (
-		<div data-fixed="true" className="main-slider-wrapper">
+		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 		{banner && <SliderBanner
 			fullscreen
 		>

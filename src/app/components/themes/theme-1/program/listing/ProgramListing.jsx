@@ -28,7 +28,7 @@ const ProgramListing = () => {
     search,
   });
   return (
-    <div data-fixed="false" style={{ padding: "80px 0" }} className="module-section ebs-program-listing-wrapper">
+    <div data-fixed="false" style={{ padding: "80px 0" }} className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div>
