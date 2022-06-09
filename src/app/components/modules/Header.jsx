@@ -18,14 +18,16 @@ const loadModule = (theme, variation) => {
 const Header = ({location, history}) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
-  const { loadedSections } = useSelector(globalSelector);
+  // const { loadedSections } = useSelector(globalSelector);
   const [userExist, setUserExist] = useState(localStorage.getItem(`event${event.id}User`) ? true : false);
+  const [loaded, setLoaded] = useState(1);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["header"]);
   });
   useEffect(() => {
     const routeChange = history.listen((location, action) => {
-      setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false )
+      setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false );
+      setLoaded(loaded+1);
     })
   
     return () => {
@@ -44,7 +46,7 @@ const Header = ({location, history}) => {
     
   return (
     <Suspense fallback={''}>
-      <Component event={event} loaded={loadedSections} userExist={userExist}  location={location} setShowLogin={onLoginClick} />
+      <Component event={event} loaded={loaded} userExist={userExist}  location={location} setShowLogin={onLoginClick} />
     </Suspense>
   );
 };
