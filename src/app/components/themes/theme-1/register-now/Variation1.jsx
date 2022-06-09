@@ -70,7 +70,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
                 <div className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
               </div>}
 
-              {eventSiteSettings.eventsite_time_left && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
+              {eventSiteSettings.eventsite_time_left && <Countdown date={new Date(eventSiteSettings.registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">

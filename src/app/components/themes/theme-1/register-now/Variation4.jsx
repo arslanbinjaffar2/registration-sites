@@ -78,7 +78,7 @@ const Variation4 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
                   </div>
                 </div>
               </div>
-              <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />
+              <Countdown date={new Date(eventSiteSettings.registration_end_date)} renderer={renderer} />
               <div className="text-center">
               <a style={{border: '2px solid #fff', color: '#fff'}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
               </div>

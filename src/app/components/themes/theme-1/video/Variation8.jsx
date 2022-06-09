@@ -5,7 +5,7 @@ import { PortalWithState } from "react-portal";
 import Videopopup from "../../../Videopopup";
 import HeadingElement from '@/ui-components/HeadingElement';
 
-const Variation4 = ({ videos }) => {
+const Variation8 = ({ videos }) => {
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
@@ -14,7 +14,7 @@ const Variation4 = ({ videos }) => {
     }
   };
     const breakpointColumnsObj = {
-      default: 4,
+      default: 3,
       1100: 3,
       700: 2,
       500: 1,
@@ -85,4 +85,4 @@ const Variation4 = ({ videos }) => {
   );
 };
 
-export default Variation4;
+export default Variation8;

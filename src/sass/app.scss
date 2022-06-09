@@ -2351,3 +2351,39 @@
     }
   }
 }
+.ebs-programs-date {
+  padding: 0 30px;
+  border-bottom: 2px solid $border;
+  margin-bottom: 30px;
+  .ebs-date-box {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent;
+    a {
+      font-weight: normal;
+      font-size: 18px;
+      color: $text2b;
+    }
+    &.ebs-active {
+      border-bottom-color: $first-main-color;
+      a {
+        color: $first-main-color;
+      }
+    }
+  }
+  .slick-next, .slick-prev {
+    width: 30px;
+    height: 30px;
+    i {
+      color: $first-main-color;
+      font-size: 30px;
+    }
+    &::before {
+      content: '';
+    }
+  }
+}
+.un-scroll {
+  overflow: hidden;
+}

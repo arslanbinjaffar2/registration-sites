@@ -1,7 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
-import DropDown from '@/forms/DropDown';
+import ReactSelect from 'react-select';
 import TimelinePopup from '../ui-components/TimelinePopup';
+
+const customStyles = {
+  control: base => ({
+    ...base,
+    height: 38,
+    minHeight: 38,
+    backgroundColor: '#FBFDFF',
+    borderColor: '#E9EDF0',
+    width: '100%',
+    maxWidth: '100%',
+  })
+};
 
 const data = {
 	"data": {
@@ -490,10 +502,28 @@ const TimeLine = () => {
 										<div className="row d-flex">
 											<div className="col-md-6 d-flex align-items-center">
 												<div className="ebs-select-box">
-													<DropDown label="Select track" listitems={options} required={false} />
+                          <ReactSelect
+                            styles={customStyles}
+                            placeholder="Select track"
+                            components={{ IndicatorSeparator: null }}
+                            options={[
+                              { value: '24-12-2022', label: '24-12-2022' },
+                              { value: '25-12-2022', label: '25-12-2022' },
+                              { value: '26-12-2022', label: '26-12-2022' },
+                            ]}
+                          />
 												</div>
 												<div className="ebs-select-box">
-													<DropDown label="Select workshop" listitems={options} required={false} />
+                          <ReactSelect
+                            styles={customStyles}
+                            placeholder="Select track"
+                            components={{ IndicatorSeparator: null }}
+                            options={[
+                              { value: '24-12-2022', label: '24-12-2022' },
+                              { value: '25-12-2022', label: '25-12-2022' },
+                              { value: '26-12-2022', label: '26-12-2022' },
+                            ]}
+                          />
 												</div>
 											</div>
 											<div className="col-md-6">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "@/ui-components/HeadingElement";
-const Variation1 = ({ photos, settings }) => {
+const Variation5 = ({ photos, settings }) => {
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
@@ -23,6 +23,7 @@ const Variation1 = ({ photos, settings }) => {
       <div className="container">
         <HeadingElement dark={false} label={'Gallery'} desc={'Lorem ipsum dolor sit amit.'} align={settings.text_align} />
       </div>
+      <div className="container">
     <div className="edgtf-image-gallery clearfix">
       <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
         <Gallery shareButton={false} id="my-gallery">
@@ -52,10 +53,11 @@ const Variation1 = ({ photos, settings }) => {
                   );
                 })}
             </Gallery>
+        </div>
       </div>
     </div>
     </div>
   );
 };
 
-export default Variation1;
+export default Variation5;

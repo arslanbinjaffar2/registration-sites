@@ -5,6 +5,7 @@ import React from 'react'
 const Variation3 = ({event, banner}) => {
 	let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
 	let eventDate = momentObj.toDate();
+	console.log(banner);
 	return (
 		<div data-fixed="true" className="main-slider-wrapper">
 		{banner && <SliderBanner
@@ -15,7 +16,7 @@ const Variation3 = ({event, banner}) => {
 					<div style={{ backgroundImage: `url(${slides && Number(slides.video_type) === 1 ? process.env.REACT_APP_EVENTCENTER_URL + slides.image : require('img/h1-parallax1.jpg')})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
 						{Number(slides.video_type) === 2 &&
 							<div className="video-fullscreen">
-								<video autoPlay muted loop src={require('img/Sequence-01_5.mp4')} type="video/mp4"></video>
+								<video autoPlay muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
 							</div>}
 						<div className="caption-wrapp">
 							<div className="col-12 align-items-center d-flex inner-caption-wrapp">

@@ -1,21 +1,23 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 
 const Variation2 = ({ banner }) => {
   let data = banner ? banner[0] : [];
+  const _parallax = useRef(null);
   useEffect(() => {
-
-    window.addEventListener("scroll", function (e) {
-      var scrolled = window.pageYOffset;
-      const background = document.querySelector(".parallax-backgroud");
-      if (background) {
-        const text = document.querySelector(".parallax-text");
-        background.style.backgroundPosition = `50%  ${-(scrolled * 0.2)}px`;
-        text.style.top = `${scrolled * 0.3}px`;
-      }
-    });
     typeWriter();
+    window.addEventListener("scroll",scollEffect);
+    return () => {
+      window.removeEventListener("scroll",scollEffect);
+    }
+    
   }, [])
-
+  function scollEffect () {
+    const scrolled = window.pageYOffset;
+    const itemOffset = _parallax.current.offsetTop;
+    const itemHeight = _parallax.current.getBoundingClientRect();
+    if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+    _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+  };
   const typeWriter = () => {
     function write(obj, sentence, i, cb) {
       if (i !== sentence.length) {
@@ -68,6 +70,7 @@ const Variation2 = ({ banner }) => {
     <React.Fragment>
         <div
         data-fixed="true"
+        ref={_parallax}
           style={{
             backgroundImage: `url(${
               data && Number(data.video_type) === 1

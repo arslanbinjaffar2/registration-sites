@@ -2,6 +2,7 @@ import React from "react";
 import { PortalWithState } from "react-portal";
 import Videopopup from "../../../Videopopup";
 import HeadingElement from "@/ui-components/HeadingElement";
+
 const Variation1 = ({ videos }) => {
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
@@ -12,10 +13,11 @@ const Variation1 = ({ videos }) => {
   };
 
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
-      <div className="container">
-        <HeadingElement dark={false} label={'Conference Video Gallery'} desc={'Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad his suavitate complectitur ruis dicant facilisi atvimsed eu justo evertitur'} align={'center'} />
-      </div>
+  <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="container">
+      <HeadingElement dark={false} label={'Conference Video Gallery'} desc={'Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad his suavitate complectitur ruis dicant facilisi atvimsed eu justo evertitur'} align={'center'} />
+    </div>
+    <div className="container">
       <div className="edgtf-image-gallery clearfix">
         <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
           {videos &&
@@ -48,6 +50,7 @@ const Variation1 = ({ videos }) => {
                   );
                 })}
         </div>
+      </div>
     </div>
     </div>
   );
