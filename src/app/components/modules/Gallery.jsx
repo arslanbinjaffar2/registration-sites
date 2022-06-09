@@ -1,11 +1,9 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
+import { fetchPhotos, photoSelector, clearState } from "store/Slices/PhotoSlice";
 import {
-  incrementLoadedSection,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import { useGetPhotosQuery } from "store/services/photo";
-import UiFullPagination from "../ui-components/UiFullPagination";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 import PageLoader from "@/ui-components/PageLoader";
@@ -22,80 +20,64 @@ const loadModule = (theme, variation) => {
 const Gallery = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
+  const { photos, totalPages, labels } = useSelector(photoSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["gallery"]);
   });
-  const showPagination = props.pagination ? props.pagination : false;
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
 
-  const [querySuccess, setQuerySuccess] = useState(false);
+  const limit = props.homePage
+    ? 4
+    : 50;
+  
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
-    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
-      setPage(parseInt(queryPage, 10));
-      console.log("params", queryPage);
-    }
-  }, []);
-
-  const { data, isFetching, isSuccess } = useGetPhotosQuery({ eventUrl, page });
-
-  useEffect(() => {
-    if (initialMount.current) {
+    dispatch(fetchPhotos(eventUrl, page, limit, home ));
+    if(home){
       dispatch(incrementLoadCount());
-      initialMount.current = false;
     }
-    if (isSuccess) {
-      if (!querySuccess) {
-        dispatch(incrementLoadedSection());
-        setQuerySuccess(true);
-      }
+    return () => {
+      dispatch(clearState());
     }
-  }, [isSuccess]);
+  }, [page, limit])
 
   const onPageChange = (page) => {
     if (page > 0) {
-      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
+      if (page <= totalPages) {
         setPage(page);
-        setQueryParams(page);
       }
     }
   };
 
-  const setQueryParams = (page) => {
-    props.history.replace({
-      search: `?page=${page}`,
-    });
-  };
   return (
-    <Suspense fallback={<div></div>}>
-      {data && data.data.length > 0 ? (
+    <Suspense fallback={<PageLoader/>}>
+      {photos ? (
         <div style={{ padding: "80px 0" }} >
-          <Component settings={moduleVariation[0]} photos={data.data} />
-          <div className="container">
-            {showPagination && (
-              <UiFullPagination
-                total={data.meta.total}
-                perPage={data.meta.per_page}
-                currentPage={page}
-                onPageChange={(page) => {
-                  onPageChange(page);
-                }}
-                fetchingData={isFetching}
-              />
-            )}
-          </div>
+          <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} home={home} eventUrl={eventUrl}
+          loadMore={() => {
+            return (
+              <div className="container pb-5 p-0 pt-5 text-center">
+                <button
+                  className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
+                  disabled={page > totalPages ? true : false}
+                  onClick={(e) => onPageChange(page + 1)}
+                >
+                  Load More
+                </button>
+              </div>
+            );
+          }}
+          />
         </div>
-      ) :  home ? null : (
-        <div>No Photos found</div>
-      )}
+      ) : (!home ? <PageLoader/> : null )}
     </Suspense>
   );
 };

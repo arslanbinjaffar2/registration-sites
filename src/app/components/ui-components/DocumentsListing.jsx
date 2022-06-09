@@ -19,7 +19,7 @@ function DocumentsListing({documents}) {
         let currentFolder =currentDirectory.find((item)=>(item.id === id))
         setCurrentFolder(currentFolder);
         setCurrentDirectory(currentFolder.children_files);
-        let newObj = {cid:currentFolder.id, pid:currentFolder.parent_id, pname:currentFolder.name}
+        let newObj = {cid:currentFolder.id, pname:getDirectoryName(currentFolder)}
         setBreadCrumbs([...breadCrumbs, newObj ]);
     }
     

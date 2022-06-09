@@ -1,8 +1,8 @@
 import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "@/ui-components/HeadingElement";
-
-const Variation8 = ({ photos, settings }) => {
+import { Link } from "react-router-dom";
+const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) => {
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
@@ -22,7 +22,7 @@ const Variation8 = ({ photos, settings }) => {
   return (
     <div className="module-section">
       <div className="container">
-      <HeadingElement dark={false} label={'Gallery'} desc={'Lorem ipsum dolor sit amit.'} align={settings.text_align} />
+      <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
           <div className="edgtf-portfolio-list-holder d-flex row">
             <Gallery shareButton={false} id="my-gallery">
@@ -68,6 +68,16 @@ const Variation8 = ({ photos, settings }) => {
                   ))}
               </Gallery>
           </div>
+          {!home && loadMore() }
+          {home && <div className="container pb-5 p-0 pt-5 text-center">
+              <Link to={`/${eventUrl}/photos`}>
+                  <button
+                    className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
+                  >
+                    Load More
+                  </button>
+              </Link>
+          </div> }
         </div>
       </div>
     </div>

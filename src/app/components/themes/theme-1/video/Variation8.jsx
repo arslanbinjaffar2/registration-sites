@@ -4,8 +4,8 @@ import Masonry from "react-masonry-css";
 import { PortalWithState } from "react-portal";
 import Videopopup from "../../../Videopopup";
 import HeadingElement from '@/ui-components/HeadingElement';
-
-const Variation8 = ({ videos }) => {
+import { Link } from "react-router-dom";
+const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
@@ -22,7 +22,7 @@ const Variation8 = ({ videos }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
        <div className="container">
-        <HeadingElement dark={false} label={'Conference Video Gallery'} desc={'Lorem ipsum dolor sit amet, ut vidisse commune scriptorem. Ad his suavitate complectitur ruis dicant facilisi atvimsed eu justo evertitur'} align={'center'} />
+        <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>
       <div className="container">
         <div className="gallerMasonry">
@@ -80,6 +80,16 @@ const Variation8 = ({ videos }) => {
             </Masonry>
           )}
         </div>
+        {!home && loadMore() }
+      {home && <div className="container pb-5 p-0 pt-5 text-center">
+           <Link to={`/${eventUrl}/photos`}>
+              <button
+                className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
+              >
+                Load More
+              </button>
+           </Link>
+       </div> }
       </div>
     </div>
   );
