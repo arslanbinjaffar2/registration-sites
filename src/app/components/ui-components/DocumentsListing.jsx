@@ -11,7 +11,7 @@ const getDirectoryName = (item) => {
 }
 
 function DocumentsListing({documents}) {
-  console.log(documents);
+//   console.log(documents);
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
     const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:"Documents"}]);
@@ -30,29 +30,28 @@ function DocumentsListing({documents}) {
             setBreadCrumbs([ breadCrumbs[0]]);
         }else{
             if(currentFolder.id !== crumb.pid){
-                let toFolder;
-                documents.forEach(document => {
-                    // console.log(document, crumb.cid);
+                let toFolder = null;
+                documents.forEach((document, i) => {
                     if(document.id === crumb.cid){
                         toFolder = document;
                     }else{
-                        toFolder = traverse(document.children, crumb.cid);
+                        if(toFolder === null)
+                        {
+                            toFolder = traverse(document.children, crumb.cid);
+                        }
                     }
-    
                 });
                 setCurrentFolder(toFolder);
                 setCurrentDirectory(toFolder.children_files);
-                // console.log(breadCrumbs.splice(index, breadCrumbs.length));
                 setBreadCrumbs(breadCrumbs.slice(0, (index + 1)));
             }
         }
     }
 
-
     const traverse = (childern, id) =>{
         let arr = null;
-        childern.every(document => {
-            if(document.id === id){
+        childern.every((document, i) => {
+            if(document.id === id){  
                 arr = document;
             }else{
                 arr = traverse(document.children, id); 
@@ -64,6 +63,7 @@ function DocumentsListing({documents}) {
         });
         return arr;
     }
+
 
   return (
     <div className="ebs-document-module">
@@ -128,18 +128,18 @@ export default DocumentsListing;
 
 const FileImageByType = ({type, path}) => {
     if (type == "doc" || type == "docx") {
-      return  <img style={{marginRight:"5px"}} src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" class="img-responsive" />;
+      return  <img style={{marginRight:"5px"}} src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" className="img-responsive" />;
     } else if (type == "xls" || type == "xlsx" || type == "csv") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" class="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" className="img-responsive" />;
     } else if (type == "ppt" || type == "pptx") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" class="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" className="img-responsive" />;
     } else if (type == "pdf") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" class="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" className="img-responsive" />;
     } else if (type == "mp3" || type == "avi" || type == "mp4") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" class="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" className="img-responsive" />;
     } else if (type == "jpg" || type == "jpeg" || type == "png" || type == "gif") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" class="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" className="img-responsive" />;
     } else {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" class="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
     }
 }
