@@ -19,7 +19,7 @@ class Variation7 extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this._isMounted = true;
     this.handleMenu();
     window.addEventListener("resize", this.handleResize.bind(this), false);
@@ -30,7 +30,7 @@ class Variation7 extends React.Component {
     window.removeEventListener("resize", this.handleResize.bind(this));
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
 
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
