@@ -25,9 +25,11 @@ import sponsorDetailReducer from "./Slices/SponsorDetailSlice";
 import exhibitorDetailReducer from "./Slices/ExhibitorDetailSlice";
 import documentsReducer from "./Slices/DocumentsSlice";
 import cmsDetailReducer from "./Slices/CmsDetailSlice";
+import photoReducer from "./Slices/PhotoSlice";
+import videoReducer from "./Slices/VideoSlice";
 import { programApi } from "./services/program";
 import { attendeeProgramApi } from "./services/attendeePrograms";
-import { photoApi } from "./services/photo";
+// import { photoApi } from "./services/photo";
 import { newsApi } from "./services/news";
 import { videoApi } from "./services/video";
 export const store = configureStore({
@@ -57,19 +59,17 @@ export const store = configureStore({
     exhibitorDetail: exhibitorDetailReducer,
     documents: documentsReducer,
     cmsDetail: cmsDetailReducer,
+    photo: photoReducer,
+    video: videoReducer,
     [programApi.reducerPath]: programApi.reducer,
     [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
-    [photoApi.reducerPath]: photoApi.reducer,
-    [videoApi.reducerPath]: videoApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({serializableCheck: false}).concat(
       programApi.middleware,
       attendeeProgramApi.middleware,
-      photoApi.middleware,
       newsApi.middleware,
-      videoApi.middleware
     ),
 });
 setupListeners(store.dispatch);
