@@ -22,18 +22,18 @@ const Variation1 = ({ event, socialMediaShare }) => {
           {socialMediaShare.Facebook && <FacebookShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <FacebookIcon size={48} round={true} title="Facebook" />
+            <FacebookIcon size={120} round={true} title="Facebook" />
           </FacebookShareButton>}
 
           {socialMediaShare.Linkedin && <LinkedinShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <LinkedinIcon size={48} round={true} title="Linked In" />
+            <LinkedinIcon size={120} round={true} title="Linked In" />
           </LinkedinShareButton>}
           {socialMediaShare.Twitter && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <TwitterIcon size={48} round={true} title="Twitter" />
+            <TwitterIcon size={120} round={true} title="Twitter" />
           </TwitterShareButton>}
           {socialMediaShare.Pinterest && <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
@@ -43,12 +43,12 @@ const Variation1 = ({ event, socialMediaShare }) => {
                 : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
-            <PinterestIcon size={48} round={true} title="Pinterest" />
+            <PinterestIcon size={120} round={true} title="Pinterest" />
           </PinterestShareButton>}
           {socialMediaShare.Email && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <EmailIcon size={48} round={true} title="Facebook" />
+            <EmailIcon size={120} round={true} title="Facebook" />
           </EmailShareButton>}
         </div>
       </div>

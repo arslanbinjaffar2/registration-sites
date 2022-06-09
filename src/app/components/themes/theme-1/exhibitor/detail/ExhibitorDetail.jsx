@@ -3,7 +3,7 @@ import DocumentsListing from "@/ui-components/DocumentsListing";
 
 const Variation1 = ({ exhibitor, labels, documents }) => {
   return (
-    <div data-fixed="true" className="">
+    <div data-fixed="true" className="ebs-transparent-box">
       <div
         style={{
           backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
