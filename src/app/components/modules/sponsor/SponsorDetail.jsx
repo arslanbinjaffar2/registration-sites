@@ -36,7 +36,7 @@ const id = props.match.params.id;
     <Suspense fallback={<PageLoader/>}>
       {sponsor ? (
         <React.Fragment>
-          <Component sponsor={sponsor} labels = {labels}  documents={documents} sponsorSettings={event.sponsor_settings} />
+          <Component sponsor={sponsor} labels = {labels}  documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
         </React.Fragment>
       ) : <PageLoader/> 
       }

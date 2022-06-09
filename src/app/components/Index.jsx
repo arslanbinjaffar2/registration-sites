@@ -1,13 +1,13 @@
 // import Slider from '@/modules/Slider';
 // import Timetable from '@/modules/Timetable';
-import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
+// import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
 // import Map from "@/modules/Map";
 import React, {Suspense, lazy} from "react";
 import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 
-import FullPageLoader from "./ui-components/FullPageLoader";
+import PageLoader from "./ui-components/PageLoader";
 
 const Speaker = lazy(() => import("@/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("@/modules/Gallery"));
@@ -19,6 +19,8 @@ const SocialShare = lazy(() => import("@/modules/SocialShare"));
 const RegisterNow = lazy(() => import("@/modules/RegisterNow"));
 const Banner = lazy(() => import("@/modules/Banner"));
 const Map = lazy(() => import("@/modules/Map"));
+const CustomSection1 = lazy(() => import("@/modules/CustomSection1"));
+const CustomSection2 = lazy(() => import("@/modules/CustomSection2"));
 
 
 
@@ -28,7 +30,7 @@ const Index = () => {
   const { layoutSections } = event;
   
   return (
-    <Suspense fallback={<FullPageLoader/>}>
+    <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
         {/* {loadedSections !== loadCount && <FullPageLoader />}     */}
         {event &&
@@ -40,9 +42,9 @@ const Index = () => {
               else if (section.module_alias === "event_title_info" && section.status === 1)
                 return <div key={i}></div>;
               else if (section.module_alias === "custom_html2" && section.status === 1)
-                return <CustomSection key={i}/>;
+                return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
-                return <CustomSection key={i} />;
+                return <CustomSection1 key={i} />;
               else if (section.module_alias === "event_info" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "agenda" && section.status === 1)
                 return <Program homePage={true} key={i} />;
@@ -55,10 +57,11 @@ const Index = () => {
                 return <Exhibitor homePage={true} key={i} />;
               else if (section.module_alias === "speaker" && section.status === 1)
                 return <Speaker homePage={true} key={i} />;
-              else if (section.module_alias === "maps") return <Map key={i} />;
-              else if (section.module_alias === "videos" && section.status === 1)
+              else if (section.module_alias === "map" && section.status === 1) 
+              return <Map key={i} />;
+              else if (section.module_alias === "video" && section.status === 1)
                 return <Video homePage={true} key={i} />;
-              else if (section.module_alias === "photos" && section.status === 1)
+              else if (section.module_alias === "gallery" && section.status === 1)
                 return <Gallery homePage={true} key={i} />;
               else if (section.module_alias === "streaming" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "waiting_list" && section.status === 1)

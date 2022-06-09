@@ -1,20 +1,20 @@
 import React from "react";
 
-const Variation1 = ({map}) => {
+const Variation1 = ({map, siteLabels}) => {
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
         <div className="edgtf-title-section-holder text-center pb-3">
-          <h2 className="edgtf-title-with-dots edgtf-appeared">Map</h2>
+          <h2 className="edgtf-title-with-dots edgtf-appeared">{siteLabels.EVENTSITE_MAP}</h2>
           <span className="edge-title-separator edge-enable-separator" />
           <h6 style={{ marginBottom: 0 }} className="edgtf-section-subtitle">
-            The key locations of your event{" "}
+            {siteLabels.EVENTSITE_MAP_DETAIL}
           </h6>
           <p
             style={{ marginTop: 0, fontSize: 14, color: "#555" }}
             className="edgtf-section-subtitle"
-          >
-            Press Room, Main Conference Venue, Hotel 1
+            >
+            {siteLabels.EVENTSITE_MAP_ADDRESS}
           </p>
         </div>
       </div>

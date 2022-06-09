@@ -1,22 +1,17 @@
-import React from "react";
-import {
-    EmailIcon,
-    FacebookIcon,
-    LinkedinIcon,
-    TwitterIcon,
-    PinterestIcon,
-    FacebookShareButton,
-    TwitterShareButton,
-    LinkedinShareButton,
-    PinterestShareButton,
-    EmailShareButton,
-} from "react-share";
-const CmsDetail = ({ detail, moduleName }) => {
+import React, {useState} from "react";
+const CmsDetail = ({ detail, moduleName, breadCrumbData }) => {
+  const [breadCrumbs, setBreadCrumbs] = useState(breadCrumbData);
+
   const informationModules = {
     additional_information: "additional_info",
     general_information: "general_info",
     practicalinformation: "event_info",
   };
+
+  const onBreadCrumbClick = (crumb, index) =>{
+    
+  }
+
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
@@ -24,6 +19,14 @@ const CmsDetail = ({ detail, moduleName }) => {
           className={`${ "edgtf-full-width-inner"
           } clearfix`}
         >
+          <ul style={{listStyle:"none"}}>
+            {
+                breadCrumbs.map((crumb, i) => (
+                    <li key={i} style={{display: "inline-block", marginLeft: "10px"}} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                ))
+            }
+          </ul>
+
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
 
-const Variation5 = ({exhibitorsByCategories, labels, eventUrl}) => {
+const Variation5 = ({exhibitorsByCategories, labels, eventUrl, siteLabels}) => {
     const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -14,7 +14,7 @@ const Variation5 = ({exhibitorsByCategories, labels, eventUrl}) => {
                 <div className="container">
                     <div className="edgtf-title-section-holder text-center pb-5">
                         <h2 className="edgtf-title-with-dots edgtf-appeared">
-                        { labels.EXHIBITORS_HEADING }
+                        { siteLabels.EVENTSITE_EXHIBITORS }
                         </h2>
                         <span className="edge-title-separator edge-enable-separator"></span>
                       </div>

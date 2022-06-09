@@ -103,7 +103,7 @@ function DocumentsListing({documents}) {
                     <div className="col-6 col-sm-4 col-lg-3">
                         <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
                             {(item['directory_id'] !== undefined) && 
-                            (moment().diff(moment(item.start_date ? item.start_date : item.created_at)) < 0) &&
+                            (moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
                             <a href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank"><i className="material-icons">file_download</i></a>
                             }
                             </span></div>

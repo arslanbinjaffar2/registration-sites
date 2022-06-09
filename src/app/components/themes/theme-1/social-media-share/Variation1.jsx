@@ -13,11 +13,11 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation1 = ({ event, socialMediaShare }) => {
+const Variation1 = ({ event, socialMediaShare, labels }) => {
   return (
     <div style={{ paddingTop: "80px",paddingBottom: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner">
-      <HeadingElement dark={false} label={'Share on social media'}  align={'center'} />
+      <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
         <div className="ebs-social-share text-center pb-3">
           {socialMediaShare.Facebook && <FacebookShareButton
             url={`${window.location.origin.toString()}/${event.url}`}

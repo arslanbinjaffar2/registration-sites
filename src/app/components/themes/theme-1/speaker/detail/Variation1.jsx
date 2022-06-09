@@ -1,6 +1,6 @@
 import React from "react";
 
-const Variation1 = ({ speaker }) => {
+const Variation1 = ({ speaker, moduleName}) => {
   return (
     <div data-fixed="true" className="ebs-transparent-box">
       <div
@@ -16,7 +16,7 @@ const Variation1 = ({ speaker }) => {
               <div className="edgtf-title-subtitle-holder">
                 <div className="edgtf-title-subtitle-holder-inner">
                   <h1 style={{ color: "white" }}>
-                    <span>Featured Speakers</span>
+                    <span>{moduleName}</span>
                   </h1>
                 </div>
               </div>

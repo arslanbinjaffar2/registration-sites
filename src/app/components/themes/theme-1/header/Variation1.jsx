@@ -255,7 +255,7 @@ class Variation1 extends React.Component {
                           )}
                           </ul>
                         )}
-                        {menu.alias === "practicalinformation" && (
+                        {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 0) && (
                           <ul className="dropdown-menu">
                             {menus["practical_info_menu"].map((pItem, k) =>
                               pItem.page_type && pItem.page_type === "menu" ? (
@@ -321,7 +321,7 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {menu.alias === "additional_information" && (
+                        {(menu.alias === "additional_information" && menus["additional_info_menu"].length > 0) && (
                           <ul className="dropdown-menu">
                             {menus["additional_info_menu"].map((aItem, k) =>
                               aItem.page_type && aItem.page_type === "menu" ? (
@@ -387,7 +387,7 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {menu.alias === "general_information" && (
+                        {(menu.alias === "general_information" && menus["general_info_menu"].length > 0) && (
                           <ul className="dropdown-menu">
                             {menus["general_info_menu"].map((gItem, k) =>
                               gItem.page_type && gItem.page_type === "menu" ? (

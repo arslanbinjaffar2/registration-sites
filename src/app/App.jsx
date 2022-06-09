@@ -4,7 +4,7 @@ import { fetchEvent, eventSelector } from "../store/Slices/EventSlice";
 import "sass/app.scss";
 import { ltrim } from "helpers";
 import RouterOutlet from "router/RouterOutlet";
-import PageLoader from "./components/ui-components/PageLoader";
+import FullPageLoader from "./components/ui-components/FullPageLoader";
 import Theme from "./components/Theme";
 import { Helmet } from "react-helmet";
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
   }
   return (
     <div id="App" style={{ postion: "relative" }}>
-      {loading && <PageLoader className="fixed" />}
+      {loading && <FullPageLoader className="fixed" />}
       {!loading && event && (
         <React.Fragment>
           <Helmet>

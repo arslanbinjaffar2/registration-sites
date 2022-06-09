@@ -1,7 +1,7 @@
 import React from "react";
 import DocumentsListing from "@/ui-components/DocumentsListing";
 
-const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings }) => {
+const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName }) => {
   return (
     <div data-fixed="true" className="ebs-transparent-box">
       <div
@@ -17,7 +17,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings }) => {
               <div className="edgtf-title-subtitle-holder">
                 <div className="edgtf-title-subtitle-holder-inner">
                   <h1 style={{ color: "white" }}>
-                    <span>Sponsor</span>
+                    <span>{moduleName}</span>
                   </h1>
                 </div>
               </div>

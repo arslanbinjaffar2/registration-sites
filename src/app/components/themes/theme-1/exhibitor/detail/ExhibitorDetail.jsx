@@ -1,7 +1,7 @@
 import React from "react";
 import DocumentsListing from "@/ui-components/DocumentsListing";
 
-const Variation1 = ({ exhibitor, labels, documents }) => {
+const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
   return (
     <div data-fixed="true" className="ebs-transparent-box">
       <div
@@ -17,7 +17,7 @@ const Variation1 = ({ exhibitor, labels, documents }) => {
               <div className="edgtf-title-subtitle-holder">
                 <div className="edgtf-title-subtitle-holder-inner">
                   <h1 style={{ color: "white" }}>
-                    <span>Exhibitor</span>
+                    <span>{moduleName}</span>
                   </h1>
                 </div>
               </div>

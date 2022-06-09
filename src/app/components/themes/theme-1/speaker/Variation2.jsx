@@ -8,7 +8,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings })
       className="edgtf-parallax-section-holder"
     >
       <div className="container">
-        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENT_SPEAKERS_LOWER_HEAD} align={settings.text_align} />
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
         </div>
         {listing && searchBar()}
         <div className="container">

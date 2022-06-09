@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
 
-const Variation7 = ({ exhibitorsByCategories, labels, eventUrl }) => {
+const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -27,7 +27,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl }) => {
 			<div className="container">
 				<div className="edgtf-title-section-holder text-center mb-4">
 					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">
-					{ labels.EXHIBITORS_HEADING }
+					{ siteLabels.EVENTSITE_EXHIBITORS }
 					</h2>
 					<span className="edge-title-separator edge-enable-separator"></span>
 				</div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl}) => {
+const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, siteLabels}) => {
   const [locExhibitors, setLocExhibitors] = useState(exhibitors);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchText, setSearchText] = useState('');
@@ -61,10 +61,10 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl}) =
             <div className="edgtf-title-subtitle-holder">
               <div className="edgtf-title-subtitle-holder-inner">
                 <h1 style={{ color: "white" }}>
-                  <span>{ labels.EXHIBITORS_HEADING }</span>
+                  <span>{ siteLabels.EVENTSITE_EXHIBITORS }</span>
                 </h1>
                 <div className="edgtf-subtitle" style={{color: '#fff'}}>
-                  <span>Lorem ipsum dolor sit.</span>
+                  <span>{ siteLabels.EVENTSITE_EXHIBITORS_SUB }</span>
                 </div>
               </div>
             </div>

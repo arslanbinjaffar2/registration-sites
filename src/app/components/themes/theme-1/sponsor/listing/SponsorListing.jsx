@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl}) => {
+const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabels}) => {
   const [locSponsors, setLocSponsors] = useState(sponsors);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchText, setSearchText] = useState('');
@@ -62,10 +62,10 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl}) => {
             <div className="edgtf-title-subtitle-holder">
               <div className="edgtf-title-subtitle-holder-inner">
                 <h1 style={{ color: "white" }}>
-                  <span>{ labels.SPONSOR_HEADING }</span>
+                  <span>{ siteLabels.EVENTSITE_SPONSORS }</span>
                 </h1>
                 <div className="edgtf-subtitle" style={{color: '#fff'}}>
-                  <span>Lorem ipsum dolor sit.</span>
+                  <span>{ siteLabels.EVENTSITE_SPONSORS_SUB}</span>
                 </div>
               </div>
             </div>
