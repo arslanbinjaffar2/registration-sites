@@ -1,6 +1,6 @@
 // import Slider from '@/modules/Slider';
 // import Timetable from '@/modules/Timetable';
-import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
+// import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
 // import Map from "@/modules/Map";
 import React, {Suspense, lazy} from "react";
 import { globalSelector } from "store/Slices/GlobalSlice";
@@ -19,6 +19,8 @@ const SocialShare = lazy(() => import("@/modules/SocialShare"));
 const RegisterNow = lazy(() => import("@/modules/RegisterNow"));
 const Banner = lazy(() => import("@/modules/Banner"));
 const Map = lazy(() => import("@/modules/Map"));
+const CustomSection1 = lazy(() => import("@/modules/CustomSection1"));
+const CustomSection2 = lazy(() => import("@/modules/CustomSection2"));
 
 
 
@@ -40,9 +42,9 @@ const Index = () => {
               else if (section.module_alias === "event_title_info" && section.status === 1)
                 return <div key={i}></div>;
               else if (section.module_alias === "custom_html2" && section.status === 1)
-                return <CustomSection key={i}/>;
+                return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
-                return <CustomSection key={i} />;
+                return <CustomSection1 key={i} />;
               else if (section.module_alias === "event_info" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "agenda" && section.status === 1)
                 return <Program homePage={true} key={i} />;

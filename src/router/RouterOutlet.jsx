@@ -23,7 +23,7 @@ import TimeLine from "@/pages/TimeLine";
 import VideoPage from "@/pages/VideoPage";
 import CmsPage from "@/pages/cms/CmsPage";
 import CmsDetailPage from "@/pages/cms/CmsDetailPage";
-import CustomPage from "@/pages/CustomPage";
+// import CustomPage from "@/pages/CustomPage";
 import DocumentPage from "@/pages/DocumentPage";
 import NewsPage from "@/pages/news/NewsPage";
 import NewsDetailPage from "@/pages/news/NewsDetailPage";
@@ -153,11 +153,11 @@ const RouterOutlet = () => {
             exact
             path="/:event_url/event_information"
           />
-          <MasterLayoutRoute
+          {/* <MasterLayoutRoute
             component={CustomPage}
             exact
             path="/:event_url/custom/:id"
-          />
+          /> */}
           <MasterLayoutMyAccount
             component={MyProfile}
             exact
