@@ -67,13 +67,15 @@ function DocumentsListing({documents}) {
 
   return (
     <div className="ebs-document-module">
-                <ul style={{listStyle:"none"}}>
-                    {
-                        breadCrumbs.map((crumb, i) => (
-                            <li key={i} style={{display: "inline-block", marginLeft: "10px"}} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
-                        ))
-                    }
-                </ul>
+			<nav aria-label="breadcrumb" className='ebs-breadcrumbs'>
+				<ul className="breadcrumb">
+						{
+								breadCrumbs.map((crumb, i) => (
+										<li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+								))
+						}
+				</ul>
+			</nav>
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">

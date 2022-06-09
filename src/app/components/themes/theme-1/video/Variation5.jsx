@@ -19,7 +19,7 @@ const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
     </div>
     <div className="container">
       <div className="edgtf-image-gallery clearfix">
-        <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
+        <div className="edgtf-image-gallery-grid edgtf-gallery-columns-3">
           {videos &&
             videos.map((photo, i) => {
               return (

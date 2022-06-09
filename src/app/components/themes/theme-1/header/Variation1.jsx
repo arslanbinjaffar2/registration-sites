@@ -22,7 +22,6 @@ class Variation1 extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     this.handleMenu();
-    console.log(this.props.loaded);
     window.addEventListener("resize", this.handleResize.bind(this), false);
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
@@ -35,7 +34,6 @@ class Variation1 extends React.Component {
     if (prevProps !== this.props) {
       document.getElementsByTagName('body')[0].classList.remove('un-scroll');
       this.setState({ showMenu: false });
-      console.log(this.props.loaded);
     }
   } 
   handleScroll = () => {

@@ -564,6 +564,9 @@ body.edgtf-team-info-opened{
     .edgtf-team-list-single-info{
       width: 50%;
       float:left;
+      @include phone-landscape {
+        width: 100%;
+      }
       @include edgtfBoxSizing(border-box);
 
       .edge-name{
@@ -577,11 +580,17 @@ body.edgtf-team-info-opened{
 
     .edgtf-team-list-single-image{
       padding-right: 20px;
+      @include phone-landscape {
+        padding-right: 0;
+      }
 
     }
 
     .edgtf-team-list-single-info{
       padding-left: 20px;
+      @include phone-landscape {
+        padding-left: 0;
+      }
     }
   }
 }

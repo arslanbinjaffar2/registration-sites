@@ -53,9 +53,9 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                             <div className="edgtf-iwt-text-table">
                               <div className="edgtf-iwt-text-cell">
                                 {photo.info && (
-                                  <h2 className="edgtf-iwt-title">
+                                  <h3 className="edgtf-iwt-title">
                                     {Object.keys(photo.info)}
-                                  </h2>
+                                  </h3>
                                 )}
                               </div>
                             </div>

@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 const CmsDetail = ({ detail, moduleName, breadCrumbData }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(breadCrumbData);
-
+  const [height, setHeight] = useState(0);
+  const iframe = useRef();
   const informationModules = {
     additional_information: "additional_info",
     general_information: "general_info",
@@ -67,15 +68,25 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData }) => {
                           style={{ marginBottom: 40, marginTop: 0 }}
                           className="edgtf-post-info-bottom"
                         ></div>
-                        <p
+                        {detail.description && <div>
+                        <iframe
+                          ref={iframe}
+                          onLoad={() => {
+                              const obj = iframe.current;
+                              setHeight(obj.contentWindow.document.body.scrollHeight+200)
+                        }} 
+                          width='100%'
+                          height={height}
+                          title="test"
                           itemProp="description"
                           className="edgtf-post-excerpt"
-                          dangerouslySetInnerHTML={{ __html: detail.description }}
-                        />
+                          srcDoc={detail.description}
+                          />
+                          </div>}
 
                         {detail.pdf && <div className="infobooth-pdf">
                           <a href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`} download target="_blank" style={{border:"none !important", float:"left",}}>
-                            <img className="infoBoothImage" src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/pdf.png`} width="40" style={{border:"none !important"}}/>
+                            <img alt="" className="infoBoothImage" src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/pdf.png`} width="40" style={{border:"none !important"}}/>
                           </a>
                           <a href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`} className="link_infobooth" target="_blank" download><span>
                               View Document
