@@ -1961,7 +1961,6 @@
       width: 100%;
       padding-left: 30px;
       h2 {
-        color: $first-main-color;
         font-size: 30px;
         margin: 0 0 25px;
       }
@@ -2056,9 +2055,8 @@
         }
       }
       .ebs-container-content {
-        h2 {
+       > h2 {
           font-size: 36px;
-          color: $first-main-color;
           margin: 0 0 15px;
         }
         p {
@@ -2389,4 +2387,22 @@
 }
 .ebs-header-main-wrapper {
   transition: none !important;
+}
+.ebs-arrow-menu {
+  position: absolute;
+  right: 10px;
+}
+.ebs-breadcrumbs {
+  color: $text2b;
+  font-size: 16px;
+  .breadcrumb-item:last-of-type {
+    color: $first-main-color;
+  }
+  .breadcrumb-item:first-of-type {
+    color: $text2b;
+  }
+  .breadcrumb-item + .breadcrumb-item::before { 
+    content: 'chevron_right';
+    font-family: 'Material icons';
+  }
 }

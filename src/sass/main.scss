@@ -245,6 +245,7 @@
 /* Image Gallery styles
    ========================================================================== */
 @import './components/modules/shortcodes/imagegallery';
+@import './components/modules/shortcodes/imagegallery-responsive';
 
 /* Image Gallery styles
    ========================================================================== */
@@ -1241,7 +1242,8 @@ $z-index:$back-to-top-size / 2;
 			padding: 15px 5px;
 		}
 	.navbar .nav-item {
-		&:hover >  .nav-link {
+		&:hover >  .nav-link,
+		& >  .nav-link.active  {
 			background: $first-main-color !important;
 			color: $white !important;
 		}
@@ -1399,6 +1401,12 @@ $z-index:$back-to-top-size / 2;
 					display: block;
 					margin: 0 11px;	
 					
+				}
+				& {
+					> .nav-link.active {
+						background: transparent !important;
+						color: $first-main-color !important;
+					} 
 				}
 				&:hover {
 					> .nav-link {
@@ -2425,7 +2433,9 @@ $z-index:$back-to-top-size / 2;
 #ebs-header-master {
 	z-index: 200;
 }
-
+.navbar.navbar-expand-lg ul.navbar-nav > li.nav-item > .nav-link {
+	text-transform: uppercase;
+}
 .ebs-header-sticky {
 	.ebs-header-main-wrapper {
 		position: fixed !important;

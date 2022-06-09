@@ -126,7 +126,7 @@ class Variation7 extends React.Component {
                 style={{ padding: "0", border: "none", textAlign: "left" }}
                 className="ebs-logo-main"
               >
-                <Link to={`/${event.url}`}>
+                <Link  to={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -152,7 +152,10 @@ class Variation7 extends React.Component {
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
                     onClick={() =>
-                      this.setState({ showMenu: !this.state.showMenu })
+                      {
+                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                        this.setState({ showMenu: !this.state.showMenu })
+                      }
                     }
                     aria-label="Toggle navigation"
                   >
@@ -167,7 +170,10 @@ class Variation7 extends React.Component {
                 >
                   <div
                     onClick={() =>
-                      this.setState({ showMenu: !this.state.showMenu })
+                      {
+                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                        this.setState({ showMenu: !this.state.showMenu })
+                      }
                     }
                     id="btn-menu-close"
                   ></div>
@@ -195,10 +201,12 @@ class Variation7 extends React.Component {
                         ) : (
                           <NavLink
                             className="nav-link"
+                            activeClassName="active"
                             aria-current="page"
                             to={`/${this.props.event.url}/${menu.alias}`}
                           >
-                            {menu.module}
+                            {menu.module} {(menu.alias === "gallery" || menu.alias === "myaccount") && <span className="ebs-arrow-menu">
+                              <i className="material-icons">chevron_right</i></span> }
                           </NavLink>
                         )}
                         {menu.alias === "gallery" && (
@@ -255,11 +263,11 @@ class Variation7 extends React.Component {
                                 My Profile
                             </NavLink>
                           </li>
-                    )}
+                            )}
                           </ul>
                         )}
 
-{(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 0) && (
+                  {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 0) && (
                           <ul className="dropdown-menu">
                             {menus["practical_info_menu"].map((pItem, k) =>
                               pItem.page_type && pItem.page_type === "menu" ? (
