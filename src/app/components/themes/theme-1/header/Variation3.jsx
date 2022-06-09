@@ -421,7 +421,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {menu.alias === "general_information" && (
+                              {(menu.alias === "general_information" && menus["general_info_menu"].length > 0) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["general_info_menu"].map(
                                     (gItem, k) =>
