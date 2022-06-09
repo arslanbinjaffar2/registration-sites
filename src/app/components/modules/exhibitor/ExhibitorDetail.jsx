@@ -40,7 +40,7 @@ const id = props.match.params.id;
     <Suspense fallback={<PageLoader/>}>
       {exhibitor ? (
         <React.Fragment>
-          <Component exhibitor={exhibitor} labels = {labels}  documents={documents} />
+          <Component exhibitor={exhibitor} labels = {labels}  documents={documents} moduleName={event.eventsiteModules.exhibitors} />
         </React.Fragment>
       ) : <PageLoader/> 
       }
