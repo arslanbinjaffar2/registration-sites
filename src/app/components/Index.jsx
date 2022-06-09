@@ -7,7 +7,7 @@ import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 
-import FullPageLoader from "./ui-components/FullPageLoader";
+import PageLoader from "./ui-components/PageLoader";
 
 const Speaker = lazy(() => import("@/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("@/modules/Gallery"));
@@ -28,7 +28,7 @@ const Index = () => {
   const { layoutSections } = event;
   
   return (
-    <Suspense fallback={<FullPageLoader/>}>
+    <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
         {/* {loadedSections !== loadCount && <FullPageLoader />}     */}
         {event &&
@@ -55,10 +55,11 @@ const Index = () => {
                 return <Exhibitor homePage={true} key={i} />;
               else if (section.module_alias === "speaker" && section.status === 1)
                 return <Speaker homePage={true} key={i} />;
-              else if (section.module_alias === "maps") return <Map key={i} />;
-              else if (section.module_alias === "videos" && section.status === 1)
+              else if (section.module_alias === "map" && section.status === 1) 
+              return <Map key={i} />;
+              else if (section.module_alias === "video" && section.status === 1)
                 return <Video homePage={true} key={i} />;
-              else if (section.module_alias === "photos" && section.status === 1)
+              else if (section.module_alias === "gallery" && section.status === 1)
                 return <Gallery homePage={true} key={i} />;
               else if (section.module_alias === "streaming" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "waiting_list" && section.status === 1)

@@ -39,11 +39,11 @@ const Map = () => {
       dispatch(incrementLoadCount());
       dispatch(fetchMap(eventUrl));
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {map ? <Component map={map} event={event} /> : null}
+      {map ? <Component map={map} event={event} siteLabels={event.labels} /> : null}
     </Suspense>
   );
 };

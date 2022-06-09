@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SponsorPopup from '@/ui-components/SponsorPopup';
 
 
-const Variation1 = ({ sponsorsByCategories, labels, eventUrl }) => {
+const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -15,11 +15,11 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl }) => {
 			<div className="container">
 				<div className="edgtf-title-section-holder pb-3">
 					<h2 style={{ marginBottom: '5px' }} className="edgtf-title-with-dots edgtf-appeared">
-						{ labels.SPONSOR_HEADING }
+						{ siteLabels.EVENTSITE_SPONSORS }
 					</h2>
 					<h6 style={{ fontSize: "16px", lineHeight: "1.5", fontWeight: 300 }}
 						className="edgtf-section-subtitle">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum recusandae ea inventore.
+						{ siteLabels.EVENTSITE_SPONSORS_SUB}
 					</h6>
 				</div>
 				{sponsorsByCategories.map((sponsorsCategory, i) => (

@@ -13,7 +13,7 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation3 = ({ event, settings, socialMediaShare }) => {
+const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
   const _parallax = useRef(null); 
   const _bgimage =
     settings && settings.background_image !== ""
@@ -38,7 +38,7 @@ const Variation3 = ({ event, settings, socialMediaShare }) => {
       className="edgtf-parallax-section-holder"
       ref={_parallax}>
       <div className="container">
-        <HeadingElement dark={true} label={'Share on social media'}  align={'center'} />
+        <HeadingElement dark={true} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
         <div className="ebs-social-share text-center pb-3">
           {socialMediaShare.Facebook && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >

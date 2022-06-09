@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import Slider from "react-slick";
 import SponsorPopup from '@/ui-components/SponsorPopup';
 
-const Variation8 = ({ sponsorsByCategories, labels, eventUrl }) => {
+const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -28,7 +28,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl }) => {
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<div className="edgtf-title-section-holder text-center mb-4">
-					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">{ labels.SPONSOR_HEADING }</h2>
+					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">{ siteLabels.EVENTSITE_SPONSORS }</h2>
 					<span className="edge-title-separator edge-enable-separator"></span>
 				</div>
 				</div>

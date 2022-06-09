@@ -31,12 +31,18 @@ useEffect(() => {
     }
 }, [props.moduleName, id]);
 
+const informationModules = {
+  additional_information: "additional_info_menu",
+  general_information: "general_info_menu",
+  practicalinformation: "practical_info_menu",
+};
+
   const { cmsPage, labels, loading, error} = useSelector(cmsDetailSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
       {cmsPage ? (
         <React.Fragment>
-          <Component detail={cmsPage} labels = {labels} moduleName={props.moduleName}  />
+          <Component detail={cmsPage} labels = {labels} moduleName={props.moduleName} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
         </React.Fragment>
       ) : <PageLoader/> 
       }

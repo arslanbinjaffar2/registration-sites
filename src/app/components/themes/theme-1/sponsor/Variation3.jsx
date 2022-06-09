@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import SponsorPopup from '@/ui-components/SponsorPopup';
 
-const Variation3 = ({sponsorsByCategories, labels, eventUrl}) => {
+const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels}) => {
     const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -14,7 +14,7 @@ const Variation3 = ({sponsorsByCategories, labels, eventUrl}) => {
                 <div className="container">
                     <div className="edgtf-title-section-holder text-center pb-5">
                         <h2 className="edgtf-title-with-dots edgtf-appeared">
-                        { labels.SPONSOR_HEADING }
+                        { siteLabels.EVENTSITE_SPONSORS }
                         </h2>
                         <span className="edge-title-separator edge-enable-separator"></span>
                       </div>

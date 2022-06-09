@@ -26,7 +26,7 @@ const SocialShare = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} settings={moduleVariation[0]} socialMediaShare={event.socialMediaShare} />
+      <Component event={event} settings={moduleVariation[0]} socialMediaShare={event.socialMediaShare} labels={event.labels} />
     </Suspense>
   );
 };
