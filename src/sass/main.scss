@@ -1323,7 +1323,6 @@ $z-index:$back-to-top-size / 2;
 			}
 		}
 		&.ebs-light-header {
-			padding-top: 15px;
 			box-shadow: none;
 
 		}
@@ -1455,6 +1454,9 @@ $z-index:$back-to-top-size / 2;
 		padding-bottom: 40px;
 		background: $elements-dark-background-color;
 		color: $white;
+		@include phone-landscape {
+			width: 100%;
+		}
 		#btn-menu-close {
 			position: absolute;
 			right: 30px;
