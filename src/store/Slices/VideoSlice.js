@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   videos: null,
   labels: null,
@@ -60,6 +60,7 @@ export const fetchVideos = (url, page, limit, home) => {
       if(home){
           dispatch(incrementLoadedSection());
       }
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());
     }

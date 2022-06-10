@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   exhibitor: null,
   documents:null,
@@ -47,6 +48,7 @@ export const fetchExhibitor = (url, exhibitor_id) => {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/exhibitor-detail/${exhibitor_id}`);
       const res = await response.json();
       dispatch(setExhibitor(res));
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError(error.message));
     }

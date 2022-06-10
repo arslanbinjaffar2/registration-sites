@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   attendees: null,
   labels: null,
@@ -54,6 +54,7 @@ export const fetchAttendees = (url, page, limit, search, mount) => {
       dispatch(setAttendees(res));
       if (mount) {
         dispatch(incrementLoadedSection());
+        dispatch(incrementFetchLoadCount());
       }
     } catch (error) {
       dispatch(setError());

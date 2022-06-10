@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   sponsor: null,
   documents: null,
@@ -47,6 +48,7 @@ export const fetchSponsor = (url, sponsor_id) => {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsor-detail/${sponsor_id}`);
       const res = await response.json();
       dispatch(setSponsor(res));
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError(error.message));
     }

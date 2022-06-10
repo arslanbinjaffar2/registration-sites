@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection , incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   photos: null,
   labels: null,
@@ -58,8 +58,9 @@ export const fetchPhotos = (url, page, limit, home) => {
       const res = await response.json();
       dispatch(setPhotos(res));
       if(home){
-          dispatch(incrementLoadedSection());
-      }
+          dispatch(incrementLoadedSection());      
+        }
+        dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());
     }

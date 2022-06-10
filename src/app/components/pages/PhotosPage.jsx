@@ -6,11 +6,9 @@ import {
 import {  useSelector } from "react-redux";
 import PageLoader from "@/ui-components/PageLoader";
 const PhotosPage = () => {
-  const { loadedSections, loadCount } = useSelector(globalSelector);
   
   return (
     <React.Fragment>
-      {loadedSections !== loadCount && <PageLoader />}
       <Gallery pagination={true} />
     </React.Fragment>
   );

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   map: null,
   loading: false,
@@ -46,6 +46,8 @@ export const fetchMap = (url) => {
       console.log(res.data);
       dispatch(setMap(res.data));
       dispatch(incrementLoadedSection());
+      dispatch(incrementFetchLoadCount());
+
     } catch (error) {
       dispatch(setError());
     }

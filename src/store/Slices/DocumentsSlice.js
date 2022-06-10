@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   documents: null,
   labels: null,
@@ -38,6 +39,7 @@ export const fetchDocuments = (url) => {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/documents`);
       const res = await response.json();
       dispatch(setDocuments(res));
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError(error.message));
     }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   speaker: null,
   labels: null,
@@ -46,6 +47,7 @@ export const fetchSpeakerDetail = (url, id) => {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setSpeaker(res));
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());
     }

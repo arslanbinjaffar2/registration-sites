@@ -18,7 +18,7 @@ const loadModule = (theme, variation) => {
 const Header = ({location, history}) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
-  // const { loadedSections } = useSelector(globalSelector);
+  const { fetchLoadCount } = useSelector(globalSelector);
   const [userExist, setUserExist] = useState(localStorage.getItem(`event${event.id}User`) ? true : false);
   const [loaded, setLoaded] = useState(1);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
@@ -27,6 +27,7 @@ const Header = ({location, history}) => {
   useEffect(() => {
     const routeChange = history.listen((location, action) => {
       setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false );
+      console.log("on route change");
       setLoaded(loaded+1);
     })
   
@@ -46,7 +47,7 @@ const Header = ({location, history}) => {
     
   return (
     <Suspense fallback={''}>
-      <Component event={event} loaded={loaded} userExist={userExist}  location={location} setShowLogin={onLoginClick} />
+      <Component event={event} loaded={fetchLoadCount} userExist={userExist}  location={location} setShowLogin={onLoginClick} />
     </Suspense>
   );
 };

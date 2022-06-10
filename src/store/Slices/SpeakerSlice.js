@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   speakers: null,
   labels:null,
@@ -57,6 +57,7 @@ export const fetchSpeakers = (url, page, limit, search, mount, home) => {
       dispatch(setSpeakers(res));
       if (mount) {
         dispatch(incrementLoadedSection());
+        dispatch(incrementFetchLoadCount());
       }
     } catch (error) {
       dispatch(setError());

@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   loadCount: 0,
   loadedSections: 0,
+  fetchLoadCount:0,
   showLogin:false,
 };
 
@@ -44,7 +45,10 @@ export const globalSlice = createSlice({
     },
     setShowLogin:(state, {payload})=>{
       state.showLogin = payload;
-    }
+    },
+    incrementFetchLoadCount: (state) => {
+      state.fetchLoadCount = state.fetchLoadCount + 1;
+    },
   },
 });
 
@@ -59,7 +63,8 @@ export const {
   setLSandLC,
   incrementLoadCount,
   incrementLoadCountBy,
-  setShowLogin
+  setShowLogin,
+  incrementFetchLoadCount
 } = globalSlice.actions;
 
 export const globalSelector = (state) => state.global;
@@ -76,6 +81,7 @@ export const fetchBanner = (url) => {
       const res = await response.json();
       dispatch(setBanner(res.data));
       dispatch(incrementLoadedSection());
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());
     }

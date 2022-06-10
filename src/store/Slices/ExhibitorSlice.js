@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   exhibitorsByCategories: null,
   labels: null,
@@ -40,6 +40,8 @@ export const fetchExhibitors = (url) => {
       const res = await response.json();
       dispatch(setExhibitors(res));
         dispatch(incrementLoadedSection());
+      dispatch(incrementFetchLoadCount());
+
     } catch (error) {
       dispatch(setError(error.message));
     }

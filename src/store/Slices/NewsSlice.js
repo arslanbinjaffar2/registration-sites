@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementLoadedSection } from "./GlobalSlice";
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   news: null,
   labels:null,
@@ -51,6 +51,7 @@ export const fetchNews = (url, page, limit, mount) => {
       dispatch(setNews(res));
       if (mount) {
         dispatch(incrementLoadedSection());
+        dispatch(incrementFetchLoadCount());
       }
     } catch (error) {
       dispatch(setError());
