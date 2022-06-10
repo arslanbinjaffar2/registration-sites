@@ -32,15 +32,16 @@ class Variation7 extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if (prevProps.loaded !== this.props.loaded) {
-
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
         document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
         if (window.innerWidth >= 991) {
-          var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-          if (_nextSibling === 'true') {
-            document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
-          } else {
-            document.getElementById("ebs-header-master").classList.add('ebs-light-header');
+          if(document.getElementById("ebs-header-master").nextSibling.dataset){
+            var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+            if (_nextSibling === 'true') {
+              document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
+            } else {
+              document.getElementById("ebs-header-master").classList.add('ebs-light-header');
+            }
           }
         }
 

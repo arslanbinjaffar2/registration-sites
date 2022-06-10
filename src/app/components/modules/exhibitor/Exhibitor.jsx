@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useMemo,} from "react";
 import { eventSelector } from "store/Slices/EventSlice"
 import {
   incrementLoadedSection,
+  incrementFetchLoadCount,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,13 +30,17 @@ const Exhibitor = (props) => {
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
+  const { exhibitorsByCategories, labels, loading, error} = useSelector(exhibitorSelector);
 
   useEffect(() => {
-    dispatch(incrementLoadCount());
-    dispatch(fetchExhibitors(eventUrl));
+    if(exhibitorsByCategories === null){
+      dispatch(incrementLoadCount());
+      dispatch(fetchExhibitors(eventUrl));
+    }else{
+      dispatch(incrementFetchLoadCount());
+    }
   }, []);
 
-  const { exhibitorsByCategories, labels, loading, error} = useSelector(exhibitorSelector);
   return (
     <Suspense fallback={''}>
       {exhibitorsByCategories && exhibitorsByCategories.length > 0 ? (

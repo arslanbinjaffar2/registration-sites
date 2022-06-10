@@ -63,7 +63,8 @@ const Video = (props) => {
         <div style={{ padding: "80px 0" }} >
           <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} eventUrl={eventUrl}
           loadMore={() => {
-            return (
+            if(page < totalPages)
+            {return (
               <div className="container pb-5 p-0 pt-5 text-center">
                 <button
                   className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
@@ -73,7 +74,7 @@ const Video = (props) => {
                   Load More
                 </button>
               </div>
-            );
+            );}
           }}
           />
         </div>

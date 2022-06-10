@@ -2,14 +2,15 @@ import SliderBanner from './components/SliderBanner';
 import moment from 'moment';
 import React from 'react'
 
-const Variation3 = ({event, banner}) => {
-	let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
-	let eventDate = momentObj.toDate();
-	console.log(banner);
+const Variation3 = ({event, banner, countdown}) => {
+	// let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
+	// let eventDate = momentObj.toDate();
+	// console.log(banner);
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 		{banner && <SliderBanner
 			fullscreen
+			countdown={new Date(countdown)}
 		>
 			{banner.map((slides, i) =>
 				<div key={i} className="slide-wrapper">

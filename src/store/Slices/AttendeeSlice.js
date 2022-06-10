@@ -53,7 +53,6 @@ export const fetchAttendees = (url, page, limit, search, mount) => {
       const res = await response.json();
       dispatch(setAttendees(res));
       if (mount) {
-        dispatch(incrementLoadedSection());
         dispatch(incrementFetchLoadCount());
       }
     } catch (error) {
@@ -61,3 +60,4 @@ export const fetchAttendees = (url, page, limit, search, mount) => {
     }
   };
 };
+

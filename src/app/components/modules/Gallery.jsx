@@ -63,17 +63,18 @@ const Gallery = (props) => {
         <div style={{ padding: "80px 0" }} >
           <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} home={home} eventUrl={eventUrl}
           loadMore={() => {
-            return (
+            if(page < totalPages)
+            {return (
               <div className="container pb-5 p-0 pt-5 text-center">
                 <button
                   className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
-                  disabled={page > totalPages ? true : false}
+                  
                   onClick={(e) => onPageChange(page + 1)}
                 >
                   Load More
                 </button>
               </div>
-            );
+            );}
           }}
           />
         </div>

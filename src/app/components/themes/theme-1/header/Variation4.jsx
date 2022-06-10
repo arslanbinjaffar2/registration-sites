@@ -44,7 +44,7 @@ class Variation4 extends React.Component {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
   async componentDidUpdate(prevProps) {
-    if (prevProps.loaded !== this.props.loaded) {
+    if (prevProps.loaded !== this.props.loaded ) {
       this.handleFunction();
       document
         .getElementsByTagName("body")[0]

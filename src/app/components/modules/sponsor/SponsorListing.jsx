@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { sponsorListingSelector, fetchSponsors } from "store/Slices/SponsorListingSlice";
+import { sponsorListingSelector, fetchSponsors, clearState } from "store/Slices/SponsorListingSlice";
 import {
-  incrementLoadCount,
+  incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from "@/ui-components/PageLoader";
 
@@ -27,11 +27,18 @@ const SponsorListing = (props) => {
     [event]
   );
 
-    useEffect(() => {
-      dispatch(incrementLoadCount());
-      dispatch(fetchSponsors(eventUrl));
-    }, []);
   const { sponsors, labels, sponsorCategories, loading, error} = useSelector(sponsorListingSelector);
+
+    useEffect(() => {
+      if(sponsors === null || sponsorCategories === null) {
+        dispatch(fetchSponsors(eventUrl));
+      }else{
+        dispatch(incrementFetchLoadCount());
+      }
+      return () => {
+        dispatch(clearState());
+      }
+    }, []);
   return (
     <Suspense fallback={<PageLoader/>}>
       {sponsors && sponsors.length > 0 ? (

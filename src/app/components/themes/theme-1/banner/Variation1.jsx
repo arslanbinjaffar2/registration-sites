@@ -1,14 +1,14 @@
 import React from 'react'
 import SliderBanner from './components/SliderBanner';
-import moment from 'moment';
-const Variation1 = ({ event, banner }) => {
-	let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
-	let dateTime = momentObj.toDate();
-	console.log(banner);
+// import moment from 'moment';
+const Variation1 = ({ event, banner, countdown }) => {
+	// let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
+	// let dateTime = momentObj.toDate();
+	// console.log(banner);
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 				{banner && <SliderBanner
-					countdown="Feb 19 2022, 17:00" //{dateTime}
+					countdown={new Date(countdown)} //{dateTime}
 					fullscreen
 				>
 					{banner.map((slides, i) =>

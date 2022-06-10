@@ -24,11 +24,18 @@ export const sponsorListingSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearAll: (state, { payload }) => {
+      state.sponsors =null;
+      state.labels = null;
+      state.sponsorCategories = null;
+      state.loading = false;
+      state.error = null;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getSponsors, setSponsors, setError } = sponsorListingSlice.actions;
+export const { getSponsors, setSponsors, setError, clearAll } = sponsorListingSlice.actions;
 
 export const sponsorListingSelector = (state) => state.sponsorListing;
 
@@ -41,9 +48,17 @@ export const fetchSponsors = (url) => {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsors-listing`);
       const res = await response.json();
       dispatch(setSponsors(res));
-      dispatch(incrementFetchLoadCount());
+      setTimeout(()=>{
+        dispatch(incrementFetchLoadCount());
+      }, 100)
     } catch (error) {
       dispatch(setError(error.message));
     }
+  };
+};
+
+export const clearState = () => {
+  return async (dispatch) => {
+    dispatch(clearAll());    
   };
 };

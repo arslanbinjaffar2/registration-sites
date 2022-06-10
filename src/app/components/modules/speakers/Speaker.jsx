@@ -49,9 +49,9 @@ const Speaker = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
-      dispatch(incrementLoadCount());
-      initialMount.current = false;
-      return;
+        dispatch(incrementLoadCount());
+        initialMount.current = false;
+        return;
     }
     const handler = setTimeout(() => {
       setSearch(value);
@@ -85,11 +85,13 @@ const Speaker = (props) => {
             )
           }}
           loadMore={()=>{
+            if(page < totalPages){
             return (
               <div className="container pb-5 p-0 pt-5 text-center">
-                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"  disabled={page > totalPages ? true : false}  onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color" onClick={(e)=>onPageChange(page + 1)}>Load More</button>
               </div>
             )
+            }
           }}
           />
          

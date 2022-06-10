@@ -8,6 +8,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 
 import PageLoader from "./ui-components/PageLoader";
+import FullPageLoader from "./ui-components/FullPageLoader";
 
 const Speaker = lazy(() => import("@/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("@/modules/Gallery"));
@@ -32,7 +33,7 @@ const Index = () => {
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
-        {/* {loadedSections !== loadCount && <FullPageLoader />}     */}
+        {loadedSections !== loadCount && <FullPageLoader className="fixed" />}    
         {event &&
           layoutSections &&
           layoutSections.map((section, i) => {

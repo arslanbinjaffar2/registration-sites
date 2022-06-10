@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { exhibitorListingSelector, fetchExhibitors } from "store/Slices/ExhibitorListingSlice";
+import { exhibitorListingSelector, fetchExhibitors, clearState } from "store/Slices/ExhibitorListingSlice";
 import {
-  incrementLoadCount,
+  incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from "@/ui-components/PageLoader";
 
@@ -26,13 +26,21 @@ const ExhibitorListing = (props) => {
     () => loadModule(event.theme.slug),
     [event]
   );
+  const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
 
     useEffect(() => {
-      dispatch(incrementLoadCount());
-      dispatch(fetchExhibitors(eventUrl));
+      if(exhibitors === null){
+        dispatch(fetchExhibitors(eventUrl));
+      }else{
+        dispatch(incrementFetchLoadCount());
+      }
+
+      return () => {
+        dispatch(clearState());
+      }
+
     }, []);
 
-  const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
   return (
     <Suspense fallback={<PageLoader/>}>
       {exhibitors && exhibitors.length > 0 ? (

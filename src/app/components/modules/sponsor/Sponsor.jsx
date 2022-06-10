@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { sponsorSelector, fetchSponsors } from "store/Slices/SponsorSlice";
 import {
   incrementLoadCount,
+  incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from "@/ui-components/PageLoader";
 
@@ -31,11 +32,16 @@ const Sponsor = (props) => {
     [event]
   );
 
-    useEffect(() => {
-      dispatch(incrementLoadCount());
-      dispatch(fetchSponsors(eventUrl));
-    }, []);
   const { sponsorsByCategories, labels,  loading, error} = useSelector(sponsorSelector);
+  
+    useEffect(() => {
+      if(sponsorsByCategories === null) {
+        dispatch(incrementLoadCount());
+        dispatch(fetchSponsors(eventUrl));
+      }else{
+        dispatch(incrementFetchLoadCount());
+      }
+    }, []);
   return (
     <Suspense fallback={''}>
       {sponsorsByCategories && sponsorsByCategories.length > 0 ? (

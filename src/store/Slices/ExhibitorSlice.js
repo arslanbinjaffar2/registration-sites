@@ -39,7 +39,7 @@ export const fetchExhibitors = (url) => {
       const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/exhibitors`);
       const res = await response.json();
       dispatch(setExhibitors(res));
-        dispatch(incrementLoadedSection());
+      dispatch(incrementLoadedSection());
       dispatch(incrementFetchLoadCount());
 
     } catch (error) {
@@ -47,3 +47,4 @@ export const fetchExhibitors = (url) => {
     }
   };
 };
+
