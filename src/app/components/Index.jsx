@@ -33,7 +33,7 @@ const Index = () => {
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
-        {loadedSections !== loadCount && <FullPageLoader className="fixed" />}    
+        {loadedSections !== loadCount && <PageLoader className="fixed" />}    
         {event &&
           layoutSections &&
           layoutSections.map((section, i) => {
