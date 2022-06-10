@@ -1,30 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
+import HeadingElement from "@/ui-components/HeadingElement";
+const Variation6 = ({ attendees, searchBar, loadMore, event, settings }) => {
   return (
     <div>
       <div style={{ padding: "80px 0" }} className="module-section">
         <div className="container">
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <div
-                style={{ marginBottom: "30px" }}
-                className="edgtf-title-section-holder"
-              >
-                <h2 className="edgtf-title-with-dots edgtf-appeared">
-                  {event.labels.EVENTSITE_ATTENDEES}
-                </h2>
-                <span class="edge-title-separator edge-enable-separator"></span>
-              </div>
-            </div>
-          </div>
+          <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_AMAZING_ATTENDEES} align={settings.text_align} />
         </div>
-        {searchBar()}
+        { searchBar()}
         <div className="container">
           <div className="row d-flex algin-items-center">
             {attendees &&
               attendees.map((attendee, i) => (
-                <div key={i} className="col-md-3">
+                <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3">
                   <div className="speakerv6-wrapper">
                     <div className="speakerv6-image">
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>
@@ -33,8 +22,8 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                           src={
                             attendee.image && attendee.image !== ""
                               ? process.env.REACT_APP_EVENTCENTER_URL +
-                                "/assets/attendees/" +
-                                attendee.image
+                              "/assets/attendees/" +
+                              attendee.image
                               : require("img/user-placeholder.jpg")
                           }
                           alt="g"
@@ -53,24 +42,24 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                           </h3>
                         </Link>
                       )}
+                      <span
+                        style={{ display: "inline-block" }}
+                        className="edge-title-separator"
+                      ></span>
+
                       {attendee.info &&
                         (attendee.info.company_name || attendee.info.title) && (
-                          <React.Fragment>
-                            <span
-                              style={{ display: "inline-block" }}
-                              className="edge-title-separator"
-                            ></span>
-                            <div className="ebs-attendee-designation">
-                              {attendee.info.title && attendee.info.title}
-                              {attendee.info.company_name &&
-                                attendee.info.title &&
-                                " "}
-                              {attendee.info.company_name &&
-                                attendee.info.company_name}
-                            </div>
-                          </React.Fragment>
+                          <div className="ebs-attendee-designation">
+                            {attendee.info.title && attendee.info.title}
+                            {attendee.info.company_name &&
+                              attendee.info.title &&
+                              " "}
+                            {attendee.info.company_name &&
+                              attendee.info.company_name}
+                          </div>
                         )}
-                      {attendee.email && (
+
+                      { attendee.email && (
                         <div className="ebs-email-phone">
                           <span data-icon="&#xe076;"></span>
                           <a
@@ -81,7 +70,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                           </a>
                         </div>
                       )}
-                      {attendee.phone && (
+                      { attendee.phone && (
                         <div className="ebs-email-phone">
                           <span data-icon="&#xe090;"></span>
                           <a
@@ -93,6 +82,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                         </div>
                       )}
                       {attendee.info &&
+                        
                         (attendee.info.facebook ||
                           attendee.info.twitter ||
                           attendee.info.linkedin ||
@@ -137,8 +127,8 @@ const Variation6 = ({ attendees, searchBar, loadMore, event }) => {
                 </div>
               ))}
           </div>
-          {attendees.length === 0 && <div>No Attendees Found...</div>}
-          {attendees.length > 0 && loadMore()}
+          { attendees.length === 0 && <div>No Speakers Found...</div>}
+          { attendees.length > 0 && loadMore()}
         </div>
       </div>
     </div>

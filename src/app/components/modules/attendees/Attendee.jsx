@@ -71,6 +71,7 @@ const Attendee = (props) => {
           <CustomComponent
           labels={labels}
             attendees={attendees}
+            settings={moduleVariation[0]}
             event={event}
             searchBar={() => {
               return (
