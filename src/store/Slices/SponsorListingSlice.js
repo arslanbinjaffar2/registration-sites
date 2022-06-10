@@ -50,7 +50,7 @@ export const fetchSponsors = (url) => {
       dispatch(setSponsors(res));
       setTimeout(()=>{
         dispatch(incrementFetchLoadCount());
-      }, 100)
+      }, 50)
     } catch (error) {
       dispatch(setError(error.message));
     }
