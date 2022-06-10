@@ -35,6 +35,7 @@ class Variation7 extends React.Component {
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
         document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
         if (window.innerWidth >= 991) {
+          document.getElementsByTagName('body')[0].focus();
           if(document.getElementById("ebs-header-master").nextSibling.dataset){
             var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
             if (_nextSibling === 'true') {
@@ -43,6 +44,10 @@ class Variation7 extends React.Component {
               document.getElementById("ebs-header-master").classList.add('ebs-light-header');
             }
           }
+        } else {
+          this.setState({
+            showMenu: false
+          })
         }
 
     }

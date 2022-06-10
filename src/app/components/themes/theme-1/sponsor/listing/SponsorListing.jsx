@@ -47,7 +47,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
     setTimeout(() => {
       element.current.style.opacity = 1;
       element.current.focus();
-    }, 500);
+    }, 30);
   }, [selectedCategory, searchText, filterAlphabet])
   
 

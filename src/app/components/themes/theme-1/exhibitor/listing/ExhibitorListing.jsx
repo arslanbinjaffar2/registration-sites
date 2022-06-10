@@ -46,7 +46,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
     setTimeout(() => {
       element.current.style.opacity = 1;
       element.current.focus();
-    }, 500);
+    }, 30);
   }, [selectedCategory, searchText, filterAlphabet])
   
 
