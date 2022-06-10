@@ -1,15 +1,16 @@
 import React,{useState} from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
+import HeadingElement from '@/ui-components/HeadingElement';
 
-const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels }) => {
+const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
 	}
-	var settings = {
+	var settingsslider = {
 		dots: false,
 		infinite: false,
 		arrows: false,
@@ -47,19 +48,14 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels }) =>
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
-				<div className="edgtf-title-section-holder text-center mb-4">
-					<h2 className="edgtf-title-with-dots edgtf-appeared mt-0">
-					{ siteLabels.EVENTSITE_EXHIBITORS }
-					</h2>
-					<span className="edge-title-separator edge-enable-separator"></span>
-				</div>
-				</div>
+				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
+			</div>
 				<div className="container">
 					<div className="edgtf-carousel-holder">
 						<div
 							className="edgtf-carousel edgtf-slick-slider-navigation-style"
 						>
-							<Slider {...settings}>
+							<Slider {...settingsslider}>
 									{exhibitors.map((exhibitor, i) => {
 										return (
 											<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
