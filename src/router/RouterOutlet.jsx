@@ -83,7 +83,7 @@ const RouterOutlet = () => {
             exact
             path="/:event_url/videos"
           />
-          <MasterLayoutRoute
+          {/* <MasterLayoutRoute
             component={CmsPage}
             exact
             path="/:event_url/additional_information/"
@@ -97,7 +97,7 @@ const RouterOutlet = () => {
             component={CmsPage}
             exact
             path="/:event_url/practicalinformation/"
-          />
+          /> */}
           <MasterLayoutRoute
             component={CmsDetailPage}
             exact
