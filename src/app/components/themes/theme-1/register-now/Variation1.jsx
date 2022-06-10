@@ -1,6 +1,7 @@
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
+import HeadingElement from '@/ui-components/HeadingElement'
 const Completionist = () =>  
   <div className="col-12">
     <h2>This event is going on.</h2>
@@ -43,27 +44,13 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList}) => {
+const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation}) => {
 
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
         {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
           <div className="container">
-            <div className="row d-flex mb-5">
-                  <div className="col-md-8 offset-md-2 text-center">
-                    <div className="edgtf-title-section-holder">
-                      <h2 className="edgtf-title-with-dots edgtf-appeared">
-                        {labels.EVENTSITE_REGISTER_NOW}
-                      </h2>
-                      <span className="edge-title-separator edge-enable-separator"></span>
-                    </div>
-                    {(checkTickets.ticketsSet && eventSiteSettings.eventsite_tickets_left && checkTickets.remainingTickets > 0) && <div className="edgtf-title-section-holder">
-                      <h6 className="edgtf-section-subtitle">
-                        {labels.EVENTSITE_TICKETS_ARE_FLYING}
-                      </h6>
-                    </div>}
-                  </div>
-            </div>
+            <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />
             <div className="ebs-register-now-sec">
               {(checkTickets.ticketsSet && eventSiteSettings.eventsite_tickets_left && checkTickets.remainingTickets > 0) && <div className="ebs-ticket-remaning">
                 <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
@@ -96,21 +83,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
         
         {(!registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
           <div className="container">
-            <div className="row d-flex mb-5">
-                  <div className="col-md-8 offset-md-2 text-center">
-                    <div className="edgtf-title-section-holder">
-                      <h2 className="edgtf-title-with-dots edgtf-appeared">
-                        {labels.REGISTER_FOR_WAITING_LIST}
-                      </h2>
-                      <span className="edge-title-separator edge-enable-separator"></span>
-                    </div>
-                    <div className="edgtf-title-section-holder">
-                      <h6 className="edgtf-section-subtitle">
-                        {labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST}
-                      </h6>
-                    </div>
-                  </div>
-            </div>
+            <HeadingElement dark={false} label={labels.REGISTER_FOR_WAITING_LIST} desc={labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST} align={moduleVariation.text_align} />
             <div className="ebs-register-now-sec">
             <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
