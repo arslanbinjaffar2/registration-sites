@@ -69,7 +69,7 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
               </Gallery>
           </div>
           {!home && loadMore() }
-      {home && <div className="container pb-5 p-0 pt-5 text-center">
+      {home && <div className="container p-0 pt-5 text-center">
            <Link to={`/${eventUrl}/photos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"

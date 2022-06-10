@@ -113,7 +113,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
                   <div className="ebs-img-listing">
                     <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
                       <figure>
-                        <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} alt="" />
+                        <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')} alt="" />
                       </figure>
                     </Link>
                   </div>

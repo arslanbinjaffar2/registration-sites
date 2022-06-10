@@ -112,7 +112,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
                   <div className="ebs-img-listing">
                     <Link to={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
                       <figure>
-                        <img src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} alt="" />
+                        <img src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')} alt="" />
                       </figure>
                     </Link>
                   </div>

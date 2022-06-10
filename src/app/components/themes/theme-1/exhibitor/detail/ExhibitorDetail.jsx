@@ -33,7 +33,8 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
                   <img
-                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
+                    style={{border: '1px solid #ccc'}}
+                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')}
                     alt=""
                     width="800"
                     height="800"

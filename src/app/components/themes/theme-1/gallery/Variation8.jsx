@@ -24,52 +24,54 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) 
       <div className="container">
       <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
-          <div className="edgtf-portfolio-list-holder d-flex row">
-            <Gallery shareButton={false} id="my-gallery">
-                {photos &&
-                  photos.map((photo, i) => (
-                    <div key={i} className="col-lg-3 col-md-4 col-sm-6">
-                      <Item
-                        key={i} 
-                        original={imgUrl(photo)}
-                        thumbnail={imgUrl(photo)}
-                        title={`${Object.keys(photo.info)}`}
-                        width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
-                        height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
-                        >
-                        {({ ref, open }) => (
-                          <article
-                            ref={ref} onClick={open}
-                            className="edgtf-portfolio-item mix"
-                            style={{ display: "block", visibility: "visible" }}
+          <div className="edgtf-portfolio-list-holder">
+            <div className="d-flex row">
+              <Gallery shareButton={false} id="my-gallery">
+                  {photos &&
+                    photos.map((photo, i) => (
+                      <div key={i} className="col-lg-3 col-md-4 col-sm-6">
+                        <Item
+                          key={i} 
+                          original={imgUrl(photo)}
+                          thumbnail={imgUrl(photo)}
+                          title={`${Object.keys(photo.info)}`}
+                          width={getMeta(imgUrl(photo),'width') !== 0 ? getMeta(imgUrl(photo),'width') : 1000 }
+                          height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                           >
-                            <div className="edgtf-item-image-holder">
-                              <img
-                                style={{ width: "100%" }}
-                                src={imgUrl(photo)}
-                                alt="g"
-                              />
-                            </div>
-                            <div className="edgtf-item-text-overlay">
-                              <div className="edgtf-item-text-overlay-inner">
-                                <div className="edgtf-item-text-holder">
-                                  {photo.info && (
-                                    <h4 className="edgtf-item-title">
-                                      {Object.keys(photo.info)}
-                                    </h4>
-                                  )}
+                          {({ ref, open }) => (
+                            <article
+                              ref={ref} onClick={open}
+                              className="edgtf-portfolio-item mix"
+                              style={{ display: "block", visibility: "visible" }}
+                            >
+                              <div className="edgtf-item-image-holder">
+                                <img
+                                  style={{ width: "100%" }}
+                                  src={imgUrl(photo)}
+                                  alt="g"
+                                />
+                              </div>
+                              <div className="edgtf-item-text-overlay">
+                                <div className="edgtf-item-text-overlay-inner">
+                                  <div className="edgtf-item-text-holder">
+                                    {photo.info && (
+                                      <h4 className="edgtf-item-title">
+                                        {Object.keys(photo.info)}
+                                      </h4>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </article>
-                        )}
-                      </Item>
-                    </div>
-                  ))}
-              </Gallery>
+                            </article>
+                          )}
+                        </Item>
+                      </div>
+                    ))}
+                </Gallery>
+            </div>
           </div>
           {!home && loadMore() }
-          {home && <div className="container pb-5 p-0 pt-5 text-center">
+          {home && <div className="container p-0 pt-5 text-center">
               <Link to={`/${eventUrl}/photos`}>
                   <button
                     className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"

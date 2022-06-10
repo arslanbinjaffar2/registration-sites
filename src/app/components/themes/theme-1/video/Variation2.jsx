@@ -13,7 +13,7 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
     }
   };
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section">
       <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>
@@ -65,7 +65,7 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                   ))}
           </div>
           {!home && loadMore() }
-      {home && <div className="container pb-5 p-0 pt-5 text-center">
+      {home && <div className="container p-0 pt-5 text-center">
            <Link to={`/${eventUrl}/photos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"

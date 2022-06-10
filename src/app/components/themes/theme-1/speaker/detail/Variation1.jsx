@@ -32,12 +32,13 @@ const Variation1 = ({ speaker, moduleName}) => {
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
                   <img
+                    style={{border: '1px solid #ccc'}}
                     src={
                       speaker.image && speaker.image !== ""
                         ? process.env.REACT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
                           speaker.image
-                        : "https://via.placeholder.com/1000.jpeg"
+                        : require("img/square.jpg")
                     }
                     alt=""
                     width="800"

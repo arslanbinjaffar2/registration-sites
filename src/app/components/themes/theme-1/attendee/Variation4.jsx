@@ -74,11 +74,11 @@ const Variation5 = ({ attendees, searchBar, loadMore, event }) => {
                               </div>
                             )}
                           {attendee.email && (
-                            <div style={{color: '#666666'}} className="ebs-email-phone">
+                            <div className="ebs-email-phone">
                               <a
                                 href={`mailto:${attendee.email}`}
                                 className="edgtf-team-position"
-                                style={{color: '#666666'}}
+                                
                               >
                                 {attendee.email}
                               </a>
@@ -86,11 +86,11 @@ const Variation5 = ({ attendees, searchBar, loadMore, event }) => {
                           )}
 
                           {attendee.phone && (
-                            <div style={{color: '#666666'}} className="ebs-email-phone">
+                            <div  className="ebs-email-phone">
                               <a
                                 href={`tel: ${attendee.phone}`}
                                 className="edgtf-team-position"
-                                style={{color: '#666666'}}
+                                
                               >
                                 {attendee.phone}
                               </a>

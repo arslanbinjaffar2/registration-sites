@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import SponsorPopup from '@/ui-components/SponsorPopup';
+import HeadingElement from '@/ui-components/HeadingElement';
 
-const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels}) => {
+const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels, settings}) => {
     const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -18,16 +19,18 @@ const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels}) => {
                         </h2>
                         <span className="edge-title-separator edge-enable-separator"></span>
                       </div>
+                      <HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
                     </div>
                     <div className="container">
                     {sponsorsByCategories.map((sponsorsCategory, i) => (
-                        <div className="row d-flex sponsorsv5-wrapper" key={i}>
-                            {sponsorsCategory.name ?  <h4> { sponsorsCategory.name}</h4> : <hr/>}
+                        <React.Fragment key={i}>
+                        {sponsorsCategory.name ?  <h4> { sponsorsCategory.name}</h4> : ""}
+                        <div className="row d-flex sponsorsv5-wrapper" >
                             {sponsorsCategory.sponsors.map((sponsor, j) => {
                                 return (<div className="col-sm-4 col-6 col-md-3 col-lg-3" key={j}>
                                     <figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
                                         <img
-                                            src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : `${process.env.REACT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`}
+                                            src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')}
                                             className="vc_single_image-img attachment-full"
                                             alt="x"
                                         />
@@ -36,6 +39,7 @@ const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels}) => {
                             })
                             }
                         </div>
+                        </React.Fragment>
                     ))}
                 </div>
             </div>

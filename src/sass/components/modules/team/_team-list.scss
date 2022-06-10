@@ -276,7 +276,7 @@ body.edgtf-team-info-opened{
         height: 100%;
         top:0;
         left:0;
-        z-index: 999;
+        z-index: 9;
         opacity: 0;
         @include edgtfTransition(all 0.3s cubic-bezier(0.13, 0.53, 0.25, 1));
         will-change: opacity, transform;
