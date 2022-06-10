@@ -13,14 +13,14 @@ const Variation3 = ({exhibitorsByCategories, labels, eventUrl, siteLabels, setti
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
                 <div className="container">
-										<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
-                  </div>
+                      <HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
+                    </div>
                     <div className="container">
-                    {exhibitorsByCategories.map((exhibitorCategory, i) => (
-											<React.Fragment key={i}>
-												{exhibitorCategory.name ?  <h4> { exhibitorCategory.name}</h4> : ""}
-                        <div className="row d-flex exhibitorsv5-wrapper" >
-                            {exhibitorCategory.exhibitors.map((exhibitor, j) => {
+                    {exhibitorsByCategories.map((exhibitorsCategory, i) => (
+                        <React.Fragment key={i}>
+                        {exhibitorsCategory.name ?  <h4 style={{textAlign: settings.text_align}}> { exhibitorsCategory.name}</h4> : ""}
+                        <div className={`row d-flex sponsorsv5-wrapper ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} >
+                            {exhibitorsCategory.exhibitors.map((exhibitor, j) => {
                                 return (<div className="col-sm-4 col-6 col-md-3 col-lg-3" key={j}>
                                     <figure onClick={() =>{setData(exhibitor);setPopup(true)}} className="bghover">
                                         <img
@@ -33,7 +33,7 @@ const Variation3 = ({exhibitorsByCategories, labels, eventUrl, siteLabels, setti
                             })
                             }
                         </div>
-												</React.Fragment>
+                        </React.Fragment>
                     ))}
                 </div>
             </div>
