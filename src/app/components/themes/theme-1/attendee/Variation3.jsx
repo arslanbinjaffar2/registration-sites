@@ -31,7 +31,7 @@ const Variation3 = ({ attendees, searchBar, loadMore, event, settings }) => {
       ref={_parallax}
     >
       <div className="container">
-        <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_AMAZING_ATTENDEES} align={settings.text_align} />
+        <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
         </div>
         { searchBar()}
         <div className="container">

@@ -5,7 +5,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
-      <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_AMAZING_ATTENDEES} align={settings.text_align} />
+      <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
       { searchBar()}
       <div className="container">
