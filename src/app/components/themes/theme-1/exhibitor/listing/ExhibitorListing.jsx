@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 
 const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, siteLabels}) => {
@@ -6,6 +6,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchText, setSearchText] = useState('');
   const [filterAlphabet, setFilterAlphabet ] = useState('all');
+  const element = useRef();
 
   const search = (text) => {
     setFilterAlphabet('all');
@@ -42,12 +43,16 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
       items = [...exhibitors.filter((exhibitor)=>( exhibitor.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ))];
     }
     setLocExhibitors(items);
+    setTimeout(() => {
+      element.current.style.opacity = 1;
+      element.current.focus();
+    }, 500);
   }, [selectedCategory, searchText, filterAlphabet])
   
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
-    <div data-fixed="true" className="ebs-transparent-box">
+    <div ref={element} style={{opacity: 0}} data-fixed="true" className="ebs-transparent-box">
     <div
       style={{
         backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,

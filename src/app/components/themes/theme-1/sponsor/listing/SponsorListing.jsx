@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 
 const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabels}) => {
@@ -6,6 +6,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchText, setSearchText] = useState('');
   const [filterAlphabet, setFilterAlphabet ] = useState('all');
+  const element = useRef();
 
   const search = (text) => {
     setFilterAlphabet('all');
@@ -43,12 +44,16 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
     }
 
     setLocSponsors(items);
+    setTimeout(() => {
+      element.current.style.opacity = 1;
+      element.current.focus();
+    }, 500);
   }, [selectedCategory, searchText, filterAlphabet])
   
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
-    <div data-fixed="true" className="ebs-transparent-box">
+    <div style={{opacity: 0}} ref={element} data-fixed="true" className="ebs-transparent-box">
     <div
       style={{
         backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,

@@ -307,6 +307,7 @@ html,body {
 }
 body {
 	font-family: 'Rubik', sans-serif;
+	overflow-y: scroll;
 }
 #App {
 	min-height: 100vh;
@@ -1301,14 +1302,14 @@ $z-index:$back-to-top-size / 2;
 		}
 		&.ebs-fixed-header {
 			position: absolute;
-			top: 15px;
+			top: 0;
 			left: 0;
 			width: 100%;
 			background: transparent;
 			box-shadow: none;
 			.navbar .nav-item .nav-link {
 				color: $white !important;
-				font-size: 15px;
+				font-size: 14px;
 			}
 			.dropdown-menu {
 				.nav-item {
@@ -2056,7 +2057,7 @@ $z-index:$back-to-top-size / 2;
 	}
 	&.ebs-fixed-header {
 		position: absolute;
-		top: 15px;
+		top: 0;
 		left: 0;
 		width: 100%;
 		background: transparent;
