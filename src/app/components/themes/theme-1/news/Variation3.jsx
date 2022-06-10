@@ -14,11 +14,11 @@ const Variation3 = ({news, event_url, makeNewDetailURL, loadMore}) => {
                 {news.map(item=>(
                     <article key={item.id}>
                       <div className="edgtf-post-content">
-                        <div className="edgtf-post-image">
+                        {item.image && <div className="edgtf-post-image">
                           <Link itemProp="url" to={makeNewDetailURL(event_url,item.id)}>
-                            <img src={item.image && item.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/eventsite_news/" + item.image : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
+                            <img src={item.image && item.image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/eventsite_news/" + item.image : ""} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
                           </Link>
-                        </div>
+                        </div>}
                         <div className="edgtf-post-text">
                           <div className="edgtf-post-text-inner">
                             <h3 itemProp="name" className="entry-title edgtf-post-title">

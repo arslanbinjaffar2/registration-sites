@@ -28,7 +28,7 @@ const Variation2 = ({sponsorsByCategories, labels, eventUrl, siteLabels}) => {
                                     return (<div className="col-sm-4 col-md-2" key={j}>
                                         <figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
                                             <img
-                                                src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
+                                                src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')}
                                                 className="vc_single_image-img attachment-full"
                                                 alt="x"
                                             />

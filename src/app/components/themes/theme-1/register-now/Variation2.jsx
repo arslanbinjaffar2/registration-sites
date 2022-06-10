@@ -44,6 +44,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
 };
 
 const Variation2 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation}) => {
+  console.log(eventSiteSettings.registration_end_date);
   return (
     <div className="module-section">
       <div  style={{ backgroundImage: `url(${moduleVariation.background_image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + moduleVariation.background_image : require("img/h1-parallax1.jpg")}`,padding: "80px 0", backgroundPosition:"center", backgroundSize:'cover' }} className="edgtf-parallax-section-holder">

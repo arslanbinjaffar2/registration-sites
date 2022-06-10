@@ -53,7 +53,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels }) =>
 																? process.env.REACT_APP_EVENTCENTER_URL +
 																"/assets/exhibitors/" +
 																exhibitor.logo
-																: `${process.env.REACT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`
+																: require('img/exhibitors-default.png')
 														}
 														alt="Client 11"
 													/>

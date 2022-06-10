@@ -57,7 +57,7 @@ const Variation1 = ({ event, news, sidebar }) => {
                     </EmailShareButton>
                   </div>
                   <div className="edgtf-post-content">
-                    <div className="edgtf-post-image">
+                    {news.image && <div className="edgtf-post-image">
                       <a itemProp="url" href="">
                         <img
                           src={
@@ -65,7 +65,7 @@ const Variation1 = ({ event, news, sidebar }) => {
                               ? process.env.REACT_APP_EVENTCENTER_URL +
                                 "/assets/eventsite_news/" +
                                 news.image
-                              : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"
+                              : ""
                           }
                           className="attachment-full size-full wp-post-image"
                           alt="a"
@@ -73,7 +73,7 @@ const Variation1 = ({ event, news, sidebar }) => {
                           height="500"
                         />
                       </a>
-                    </div>
+                    </div>}
                     <div className="edgtf-post-text">
                       <div className="edgtf-post-text-inner">
                         <h2

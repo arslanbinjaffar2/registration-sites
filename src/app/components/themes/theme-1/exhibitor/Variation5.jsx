@@ -27,7 +27,7 @@ const Variation5 = ({exhibitorsByCategories, labels, eventUrl, siteLabels}) => {
                             return (<div className="col-sm-4 col-6 col-md-2 col-lg-1" key={j}>
                                 <figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
                                     <img
-                                        src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + sponsor.logo : `${process.env.REACT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`}
+                                        src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + sponsor.logo : require('img/exhibitors-default.png')}
                                         className="vc_single_image-img attachment-full"
                                         alt="x"
                                     />

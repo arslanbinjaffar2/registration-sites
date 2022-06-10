@@ -12,7 +12,7 @@ const ExhibitorPopup =  ({width, onClick, data, eventUrl}) => {
                         <div className="col-sm-4">
                             <figure>
                             <img
-                                src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo : "https://dev.eventbuizz.com/_admin_assets/images/header_logo_size_image.jpg"}
+                                src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo : require('img/exhibitors-default.png')}
 									className="vc_single_image-img attachment-full"
 									alt="x"
 								/>

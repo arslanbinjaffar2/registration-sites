@@ -91,7 +91,7 @@ class Variation6 extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header-v2 ebs-header-main-wrapper">
+      <div className="ebs-main-header-v2 ebs-header-main-wrapper ebs-zindex-header">
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
