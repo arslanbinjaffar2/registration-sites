@@ -1,29 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
+import HeadingElement from "@/ui-components/HeadingElement";
+const Variation8 = ({ attendees, searchBar, loadMore, event, settings }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
-      <div className="container mb-4">
-        <div className="row">
-          <div className="col-md-8 offset-md-2 text-center">
-            <div
-              style={{ marginBottom: "30px" }}
-              className="edgtf-title-section-holder"
-            >
-              <h2 className="edgtf-title-with-dots edgtf-appeared">
-                {event.labels.EVENT_ATTENDEES}
-              </h2>
-              <h6
-                style={{ fontSize: "16px", lineHeight: "1.5" }}
-                className="edgtf-section-subtitle"
-              >
-                {event.labels.EVENT_ATTENDEES_LOWER_HEAD}
-              </h6>
-            </div>
-          </div>
-        </div>
+      <div className="container">
+      <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_AMAZING_ATTENDEES} align={settings.text_align} />
       </div>
-      {searchBar()}
+      { searchBar()}
       <div className="container">
         <div className="row d-flex algin-items-center">
           {attendees &&
@@ -31,7 +15,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
               <div
                 key={i}
                 style={{ marginBottom: "30px" }}
-                className="col-md-4"
+                className="col-md-4 col-sm-6"
               >
                 <div
                   style={{ height: "100%", marginBottom: 0 }}
@@ -45,8 +29,8 @@ const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
                           src={
                             attendee.image && attendee.image !== ""
                               ? process.env.REACT_APP_EVENTCENTER_URL +
-                                "/assets/attendees/" +
-                                attendee.image
+                              "/assets/attendees/" +
+                              attendee.image
                               : require("img/user-placeholder.jpg")
                           }
                           alt="g"
@@ -54,7 +38,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
                       </Link>
                     </span>
                   </div>
-                  <div className="speakerv7-caption">
+                  <div className="attendeev7-caption">
                     {(attendee.first_name || attendee.last_name) && (
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>
                         <h3>
@@ -63,30 +47,30 @@ const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
                         </h3>
                       </Link>
                     )}
+
                     {attendee.info &&
                       (attendee.info.company_name || attendee.info.title) && (
                         <p>
                           {attendee.info.title && attendee.info.title}
-                          {attendee.info.title &&
+                          {attendee.info.company_name &&
                             attendee.info.company_name && <br />}
                           {attendee.info.company_name &&
                             attendee.info.company_name}
                         </p>
                       )}
-                    {attendee.email && (
+                    { attendee.email && (
                       <div className="email">
-                        <a href={`mailto:${attendee.email}`}>
-                          {attendee.email}
-                        </a>
+                        <a href={`mailto:${attendee.email}`}>{attendee.email}</a>
                       </div>
                     )}
 
-                    {attendee.phone && (
+                    { attendee.phone && (
                       <div className="speakerv7-phone">
                         <a href={`tel:${attendee.phone}`}>{attendee.phone}</a>
                       </div>
                     )}
-                    {attendee.info &&
+                    {
+                      attendee.info &&
                       (attendee.info.facebook ||
                         attendee.info.twitter ||
                         attendee.info.linkedin ||
@@ -133,8 +117,8 @@ const Variation8 = ({ attendees, searchBar, loadMore, event }) => {
               </div>
             ))}
         </div>
-        {attendees.length === 0 && <div>No Attendees Found...</div>}
-        {attendees.length > 0 && loadMore()}
+        { attendees.length === 0 && <div>No Speakers Found...</div>}
+        { attendees.length > 0 && loadMore()}
       </div>
     </div>
   );
