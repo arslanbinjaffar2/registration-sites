@@ -67,7 +67,7 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
                   </div>
                 </div>
               </div>
-              <Countdown date={new Date(eventSiteSettings.registration_end_date)} renderer={renderer} />
+              <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />
               <div className="text-center">
                 <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>

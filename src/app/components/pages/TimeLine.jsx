@@ -302,8 +302,10 @@ let isDown;
 let isActive = false;
 const _multiplyer = window.innerWidth > 600 ? 300 : 150;
 var clearTime;
+var itemhack = false;
 
-function itemSorting(data) {
+ function itemSorting(data) {
+  if (itemhack) return data;
   var itemArray = [];
   var i = 0;
   var _lastTime = '00:00';
@@ -482,6 +484,7 @@ const TimelineContent = ({ data, program_setting }) => {
 
 const TimeLine = () => {
 	useEffect(() => {
+    itemhack = true;
     currentTimerBar(data);
 	}, [])
 	const handleClick = (e,a) => {

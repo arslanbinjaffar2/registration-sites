@@ -328,9 +328,9 @@ a:hover {
 	border-color: $first-main-color !important;
 	color: $white !important;
 }
-.edgtf-parallax-section-holder {
-	transition: none !important;
-}
+// .edgtf-parallax-section-holder {
+// 	transition: none !important;
+// }
 .edgtf-comment-holder {
 	margin: 0 0 73px;
 	padding-top: 8px;
@@ -2568,3 +2568,9 @@ $z-index:$back-to-top-size / 2;
 .pl-0 {
 	padding-left: 0 !important;
 }
+.ebs-header-sticky .ebs-header-main-wrapper.ebs-header-shadow  .navbar #navbarSupportedContentFixed .navbar-nav > .nav-item > .nav-link.active {
+	color: $first-main-color !important;
+  }
+  .slick-active.slick-current {
+	z-index: 99;
+  }
