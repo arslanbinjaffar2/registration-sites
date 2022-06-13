@@ -2406,3 +2406,36 @@
     font-family: 'Material icons';
   }
 }
+
+.gallery-img-wrapper-square {
+  position: relative;
+  padding-bottom: 100%;
+  display: block !important;
+  
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.ebs-animation-layer {
+  transition: all 0.2s linear;
+  animation: item-animate 0.5s ease-out forwards;
+  position: relative;
+  opacity: 0;
+}
+@keyframes item-animate {
+	0% {
+		opacity: 0;
+    transform: translateX(-100px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+	
+}

@@ -2,7 +2,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 const ExhibitorPopup =  ({width, onClick, data, eventUrl}) => {
-    console.log(data);
+    React.useEffect(() => {
+		document.getElementsByTagName('body')[0].classList.add('un-scroll');	
+	
+		return () => {
+			document.getElementsByTagName('body')[0].classList.remove('un-scroll');
+		}
+	}, [])
     return (
         <div className="fixed ebs-popup-container">
             <div className="ebs-popup-wrapper" style={{ maxWidth: width ? width : '980px' }}>
