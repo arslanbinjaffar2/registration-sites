@@ -50,7 +50,6 @@ export const fetchNews = (url, page, limit, mount) => {
       const res = await response.json();
       dispatch(setNews(res));
       if (mount) {
-        dispatch(incrementLoadedSection());
         dispatch(incrementFetchLoadCount());
       }
     } catch (error) {
