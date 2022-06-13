@@ -1,25 +1,10 @@
 import React, { Suspense } from "react";
-
-function loadModule(name) {
-  const Component = React.lazy(() => import(`@/modules/cms/${name}`));
-  return Component;
-}
-const CmsPage = ({ match, event }) => {
+import CmsListing from "@/modules/cms/CmsListing";
+const CmsPage = ({ match, event, location }) => {
   const currentModuleName = match.url.split("/")[2];
-  const informationModules = {
-    additional_information: "AdditionalInformation",
-    general_information: "GeneralInformation",
-    practicalinformation: "PracticalInformation",
-    event_information: "EventInformation",
-  };
-  const CurrentModule = loadModule(informationModules[currentModuleName]);
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <CurrentModule />
-      </Suspense>
-    </div>
-  );
+        <CmsListing moduleName={currentModuleName} menu_id={new URLSearchParams(location.search).get("menu_id")} />
+        );
 };
 
 export default CmsPage;

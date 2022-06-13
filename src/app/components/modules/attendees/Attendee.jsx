@@ -24,7 +24,7 @@ const Attendee = (props) => {
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["attendee"]);
   });
-  const limit = 10;
+  const limit = 12;
   const CustomComponent = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]

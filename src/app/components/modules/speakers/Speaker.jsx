@@ -29,7 +29,7 @@ const Speaker = (props) => {
 
   const limit = props.homePage
     ? event.speaker_settings.registration_site_limit
-    : 10;
+    : 12;
   
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
