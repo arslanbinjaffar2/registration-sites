@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import { cmsDetailSelector, fetchCmsPage, clearState } from "store/Slices/CmsDetailSlice";
 import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
@@ -8,12 +7,12 @@ const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/cms/CmsDetail`)
+    import(`@/themes/${theme}/cms/CmsListing`)
   );
   return Component;
 };
 
-const CmsDetail = (props) => {
+const CmsListing = (props) => {
 const id = props.match.params.id;
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
@@ -24,30 +23,27 @@ const id = props.match.params.id;
     [event]
   );
 
-useEffect(() => {
-    dispatch(fetchCmsPage(eventUrl, props.moduleName , id));
-    return () => {
-    dispatch(clearState());
-    }
-}, [props.moduleName, id]);
-
 const informationModules = {
   additional_information: "additional_info_menu",
   general_information: "general_info_menu",
   practicalinformation: "practical_info_menu",
 };
 
-  const { cmsPage, labels, loading, error} = useSelector(cmsDetailSelector);
+// useEffect(() => {
+//   const menu_id = new URLSearchParams(props.location.search).get("menu_id");
+
+// }, []);
+
+
+// console.log(menu_id);
+
   return (
     <Suspense fallback={<PageLoader/>}>
-      {cmsPage ? (
         <React.Fragment>
-          <Component detail={cmsPage} labels = {labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
+          <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
         </React.Fragment>
-      ) : <PageLoader/> 
-      }
     </Suspense>
   );
 };
 
-export default withRouter(CmsDetail);
+export default withRouter(CmsListing);
