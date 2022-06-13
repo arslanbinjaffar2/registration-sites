@@ -1,5 +1,5 @@
 import React from "react";
-import ProgramListing from "../themes/theme-1/program/listing/ProgramListing";
+import ProgramListing from "@/modules/program/ProgramListing";
 const PragramPage = () => {
 
   return (
