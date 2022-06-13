@@ -4,6 +4,22 @@ import { Link } from "react-router-dom";
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
   const [cmsListing, setCmsListing] = useState(getListing(listing, menu_id));
+  const [currentMenu, setCurrentMenu] = useState(menu_id);
+  const onCrumbClick = (e,crumb) =>{
+    e.preventDefault();
+    if(crumb.id !== currentMenu){
+      if(crumb.id === "module"){
+        setBreadCrumbs([{id:"module", name: eventSiteModuleName, type: "menu"}]);
+        setCmsListing(listing);
+      }else{
+        setCurrentMenu(crumb.id);
+        setBreadCrumbs([{id:"module", name: eventSiteModuleName, type: "menu"}, {id:crumb.id, name: crumb.info.name, type: "menu"}]);
+        setCmsListing(getListing(listing, crumb.id));
+      }  
+    }
+
+    console.log(crumb)
+  }
   return (
     <div style={{padding: "80px 0",}}
       className="edgtf-parallax-section-holder">
@@ -13,7 +29,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {crumb.id === menu_id ? crumb.name : <Link to={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</Link>}
+                  {(crumb.id === currentMenu)  ? crumb.name : <a href="#!" onClick={(e)=>{ onCrumbClick(e,crumb)}}>{crumb.name}</a>}
                 </li>
               ))}
             </ul>
@@ -31,9 +47,9 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                   <a href={`${item.website_protocol}${item.url}`} target="_blank"  >{item.info.name}</a>
                 }
                 {item.page_type === "menu" && 
-                  <Link to={`/${eventUrl}/${moduleName}?menu_id=${item.id}`}>
+                  <a href="#!" onClick={(e)=>{ onCrumbClick(e, item)}}>
                   {item.info.name}
-                </Link>
+                </a>
                 }
                 {item.submenu && 
                         <ul>

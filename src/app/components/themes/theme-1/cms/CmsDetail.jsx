@@ -2,7 +2,7 @@ import React, {useState, useRef} from "react";
 import { Link } from "react-router-dom";
 
 const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
-  console.log(array, menu_id, currentPage, eventSiteModuleName);
+console.log(array, menu_id, currentPage, eventSiteModuleName);
 let returnArray = [{id:"module", name: eventSiteModuleName, type: "menu"}];
   let toFolder = null;
   array.forEach((item, i) => {

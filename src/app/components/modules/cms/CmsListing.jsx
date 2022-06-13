@@ -29,14 +29,6 @@ const informationModules = {
   practicalinformation: "practical_info_menu",
 };
 
-// useEffect(() => {
-//   const menu_id = new URLSearchParams(props.location.search).get("menu_id");
-
-// }, []);
-
-
-// console.log(menu_id);
-
   return (
     <Suspense fallback={<PageLoader/>}>
         <React.Fragment>
