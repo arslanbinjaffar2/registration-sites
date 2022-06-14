@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HeadingElement from "@/ui-components/HeadingElement";
-import { LazyLoadImage  } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
   return (
@@ -29,12 +28,7 @@ const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link to={`/${event.url}/attendees/${attendee.id}`}>
-                          <LazyLoadImage 
-                            style={{ width: "100%" }}
-                            effect="opacity"
-                            delayTime={1000}
-                            threshold={100}
-                            wrapperClassName="gallery-img-wrapper-square"
+                          <img 
                             src={
                               attendee.image && attendee.image !== ""
                                 ? process.env.REACT_APP_EVENTCENTER_URL +
