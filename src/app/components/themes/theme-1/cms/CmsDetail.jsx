@@ -5,18 +5,9 @@ const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
 console.log(array, menu_id, currentPage, eventSiteModuleName);
 let returnArray = [{id:"module", name: eventSiteModuleName, type: "menu"}];
   let toFolder = null;
-  array.forEach((item, i) => {
-      if(item.id === menu_id){
-          toFolder = item;
-      }else{
-          if(toFolder === null)
-          {
-            if(item.submenu){
-              toFolder = traverse(item.submenu, menu_id);
-            }
-          }
-      }
-  });
+  if(menu_id && menu_id !== 'module'){
+    toFolder = array.find((item)=>(item.id === parseFloat(menu_id)));
+    }
 
 if(toFolder){
   returnArray.push({id:toFolder.id, name:toFolder.info.name, type: toFolder.page_type ? toFolder.page_type : 'menu'});
@@ -24,24 +15,6 @@ if(toFolder){
 
 returnArray.push({id: currentPage.id, name: currentPage.name, type:'page' });
 return returnArray;
-}
-
-const traverse = (childern, id) =>{
-  let arr = null;
-  childern.every((document, i) => {
-      if(document.id === id){  
-          arr = document;
-      }else{
-        if(document.submenu){
-          arr = traverse(document.submenu, id); 
-        }
-      }
-      if(arr !== null){
-          return false;
-      }
-      return true;
-  });
-  return arr;
 }
 
 const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl }) => {
