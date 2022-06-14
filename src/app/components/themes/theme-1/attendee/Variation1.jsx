@@ -83,14 +83,15 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
                               (attendee.info.company_name ||
                                 attendee.info.title) && (
                                 <div className="ebs-attendee-designation">
-                                  {attendee.info.company_name &&
-                                    attendee.info.company_name}
+                                  {attendee.info.title && attendee.info.title}
+                                 
                                   {attendee.info.company_name &&
                                     attendee.info.title &&
-                                    " "}
-                                  {attendee.info.title && attendee.info.title}
+                                    ", "}
+                                   {attendee.info.company_name && attendee.info.company_name}
                                 </div>
                               )}
+                              <div className="ebs-border-wrapp">
                             {attendee.email &&  (
                               <div className="ebs-email-phone">
                                 <a
@@ -111,6 +112,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
                                 </a>
                               </div>
                             )}
+                            </div>
                           </div>
                           {
                             attendee.info &&
@@ -144,7 +146,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
                                             target="_blank"
                                             href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
                                           >
-                                            <span data-icon="&#xe0b1;"></span>
+                                            <span data-icon="&#xe0b4;"></span>
                                           </a>
                                         )}
                                         {attendee.info.website && (
@@ -152,7 +154,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
                                             target="_blank"
                                             href={`${attendee.info.website_protocol}${attendee.info.website}`}
                                           >
-                                            <span data-icon="&#xe0b7;"></span>
+                                            <span data-icon="&#xe0e3;"></span>
                                           </a>
                                         )}
                                       </div>

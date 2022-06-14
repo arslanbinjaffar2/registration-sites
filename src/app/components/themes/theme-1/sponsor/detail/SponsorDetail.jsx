@@ -130,7 +130,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               target="_blank"
                               href={`${sponsor.linkedin}`}
                             >
-                              <span data-icon="&#xe0b1;"></span>
+                              <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
                           {sponsor.website && (
@@ -139,7 +139,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               target="_blank"
                               href={`${sponsor.website}`}
                             >
-                              <span data-icon="&#xe0b7;"></span>
+                              <span data-icon="&#xe0e3;"></span>
                             </a>
                           )}
                         </div>

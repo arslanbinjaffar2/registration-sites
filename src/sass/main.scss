@@ -1756,15 +1756,15 @@ $z-index:$back-to-top-size / 2;
 	.ebs-email-phone {
 		padding-top: 4px;
 	}
+	.ebs-border-wrapp {
+		margin-top: 4px;
+		border-top: 1px solid $borderlight;
+	}
 	.ebs-attendee-designation {
 		font-size: 14px;
 		padding-bottom: 6px;
 		color: $offwhite;
-		+ .ebs-email-phone {
-			border-top: 1px solid $offwhite;
-			margin-top: 4px;
-
-		}
+	
 	}
 	.social-icons {
 		padding-top: 8px;
