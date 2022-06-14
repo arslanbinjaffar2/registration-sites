@@ -13,7 +13,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
       >
         <div className="edgtf-title-holder">
           <div className="edgtf-container clearfix">
-            <div className="edgtf-container-inner">
+            <div className="edgtf-container-inner container">
               <div className="edgtf-title-subtitle-holder">
                 <div className="edgtf-title-subtitle-holder-inner">
                   <h1 style={{ color: "white" }}>
@@ -27,7 +27,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         <div></div>
       </div>
       <div className="single-team-member">
-        <div className="edgtf-container-inner clearfix">
+        <div className="edgtf-container-inner container clearfix">
           <div className="edgtf-team-single-holder">
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
@@ -177,7 +177,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         </div>
       </div>
       {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
-        <div className="edgtf-container-inner">
+        <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">
             <h2 className="edgtf-title-with-dots edgtf-appeared">Documents</h2>
             <span className="edge-title-separator edge-enable-separator"></span>

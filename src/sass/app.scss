@@ -521,11 +521,14 @@
   }
 }
 .speakerv6-wrapper {
-  margin-bottom: 30px;
+  background: rgba($lightgray, 0.4);
+  word-wrap: break-word;
+  word-break: break-word;
+  height: 100%;
   .speakerv6-image {
     position: relative;
-    background: $black;
     overflow: hidden;
+    background: rgba($lightgray, 0.8);
     img {
       transition: all 0.25s linear;
     }
@@ -535,7 +538,7 @@
       top: 0%;
       width: 100%;
       height: 100%;
-      background: rgba($black, 0.5);
+      
       border: 1px solid $white;
       opacity: 0;
       visibility: hidden;
@@ -585,7 +588,6 @@
   }
   .speakerv6-caption {
     padding: 20px 15px;
-    background: rgba($lightgray, 0.4);
     .edge-title-separator {
       margin-bottom: 0px;
       vertical-align: top;
@@ -907,6 +909,7 @@
     position: relative;
     line-height: 0;
     font-size: 0;
+    cursor: pointer;
     &:after {
       content: '';
       width: 100%;
@@ -1053,15 +1056,14 @@
   text-align: center;
   .speakerv7-image {
     margin-bottom: 25px;
-    span {
+    .box {
       display: inline-block;
       overflow: hidden;
-      background: $black;
+      border: 1px solid rgba($lightgray, 0.8);
       max-width: 250px;
       border-radius: 100%;
-      img {
-        transition: all 0.2s linear;
-      }
+      width: 100%;
+      margin: auto;
     }
   }
   
@@ -2407,7 +2409,7 @@
   }
 }
 
-.gallery-img-wrapper-square {
+.gallery-img-wrapper-square,.gallery-img-wrapper-rectangle,.gallery-img-wrapper-rectangle-2 {
   position: relative;
   padding-bottom: 100%;
   display: block !important;
@@ -2419,7 +2421,22 @@
     right: 0;
     bottom: 0;
     margin: auto;
+    opacity: 0;
+    transition: opacity 0.3s linear;
   }
+}
+.gallery-img-wrapper-rectangle {
+  padding-bottom: 67%;
+  background-color: rgba($lightbackground,0.8);
+  box-shadow: 0 0 3px rgba($black, 0.08) inset;
+  cursor: pointer;
+
+}
+.gallery-img-wrapper-rectangle-2 {
+  padding-bottom: 33.33%;
+  background-color: rgba($lightbackground,0.8);
+  box-shadow: 0 0 3px rgba($black, 0.08) inset;
+  border-radius: 3px;
 }
 
 .ebs-animation-layer {

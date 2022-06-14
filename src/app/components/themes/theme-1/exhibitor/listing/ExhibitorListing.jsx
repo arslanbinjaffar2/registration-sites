@@ -62,7 +62,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
     >
       <div className="edgtf-title-holder">
         <div className="edgtf-container clearfix">
-          <div className="edgtf-container-inner">
+          <div className="edgtf-container-inner container">
             <div className="edgtf-title-subtitle-holder">
               <div className="edgtf-title-subtitle-holder-inner">
                 <h1 style={{ color: "white" }}>

@@ -504,10 +504,10 @@ ul.wpb_thumbnails-fluid > li,
   }
 }
 
-.edgtf-container-inner{ //not in parent selector since this class is used for positioning other elements in grid
-  width: $grid-width;
-  margin: 0px auto;
-}
+// .edgtf-container-inner{ //not in parent selector since this class is used for positioning other elements in grid
+//   width: $grid-width;
+//   margin: 0px auto;
+// }
 
 .edgtf-full-width {
   position: relative;
@@ -518,7 +518,7 @@ ul.wpb_thumbnails-fluid > li,
 	.edgtf-grid-1300{
 
 		.edgtf-grid,
-		.edgtf-container-inner,
+		// .edgtf-container-inner,
 		.edgtf-grid-section .edgtf-section-inner,
 		.edgtf-footer-top-border-holder.edgtf-in-grid,
 		.edgtf-footer-bottom-border-holder.edgtf-in-grid{
@@ -546,7 +546,7 @@ ul.wpb_thumbnails-fluid > li,
 	.edgtf-grid-1200{
 
 		.edgtf-grid,
-		.edgtf-container-inner,
+		// .edgtf-container-inner,
 		.edgtf-grid-section .edgtf-section-inner,
 		.edgtf-footer-top-border-holder.edgtf-in-grid,
 		.edgtf-footer-bottom-border-holder.edgtf-in-grid{
@@ -573,7 +573,7 @@ ul.wpb_thumbnails-fluid > li,
 	.edgtf-grid-1000{
 
 		.edgtf-grid,
-		.edgtf-container-inner,
+		// .edgtf-container-inner,
 		.edgtf-grid-section .edgtf-section-inner,
 		.edgtf-footer-top-border-holder.edgtf-in-grid,
 		.edgtf-footer-bottom-border-holder.edgtf-in-grid{
@@ -600,7 +600,7 @@ ul.wpb_thumbnails-fluid > li,
 	.edgtf-grid-800{
 
 		.edgtf-grid,
-		.edgtf-container-inner,
+		// .edgtf-container-inner,
 		.edgtf-grid-section .edgtf-section-inner,
 		.edgtf-footer-top-border-holder.edgtf-in-grid,
 		.edgtf-footer-bottom-border-holder.edgtf-in-grid{

@@ -45,13 +45,14 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings })
                   key={i}
                   className="col-12 col-sm-6 col-md-4 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
                 >
-                  <div className="edgtf-team-list-holder-inner info_box">
+                  <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                     <div className="edgtf-team edgtf-team-light mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                          <span className="gallery-img-wrapper-square">
                             <img
-                              style={{ width: "100%" }}
+                              onLoad={(e) => e.target.style.opacity = 1} 
                               src={
                                 speaker.image && speaker.image !== ""
                                   ? process.env.REACT_APP_EVENTCENTER_URL +
@@ -61,10 +62,11 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings })
                               }
                               alt="g"
                             />
-                          </Link>
+                          </span>
                           <div className="edgtf-team-social-holder">
                             <div className="edgtf-team-social-holder-inner"></div>
                           </div>
+                          </Link>
                         </div>
                         {/* Description */}
                         <div className="edgtf-team-info">

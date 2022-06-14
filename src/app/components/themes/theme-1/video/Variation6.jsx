@@ -26,33 +26,34 @@ const Variation6 = ({ videos, loadMore, eventUrl, home,siteLabels }) => {
                         <PortalWithState closeOnOutsideClick closeOnEsc>
                         {({ openPortal, closePortal, isOpen, portal }) => (
                           <React.Fragment>
-                            <article
-                              onClick={openPortal}
-                              className="edgtf-portfolio-item mix"
-                              style={{ display: "block", visibility: "visible" }}
-                            >
-                              <div className="ebs-video-button-inner ebs-right-top">
-                                  <i className="fa fa-play-circle" aria-hidden="true"></i>
-                              </div>
-                              <div className="edgtf-item-image-holder">
-                                <img
-                                  style={{ width: "100%" }}
-                                  src={imgUrl(photo)}
-                                  alt="g"
-                                />
-                              </div>
-                              <div className="edgtf-item-text-overlay">
-                                <div className="edgtf-item-text-overlay-inner">
-                                  <div className="edgtf-item-text-holder">
-                                    {photo.info && (
-                                      <h4 className="edgtf-item-title">
-                                        {Object.keys(photo.info)}
-                                      </h4>
-                                    )}
-                                  </div>
+                          <article
+                            onClick={openPortal}
+                            className="edgtf-portfolio-item mix ebs-animation-layer"
+                            style={{ display: "block", visibility: "visible", animationDelay: 50*i+'ms' }}
+                          >
+                            <div className="ebs-video-button-inner ebs-right-top">
+                                <i className="fa fa-play-circle" aria-hidden="true"></i>
+                            </div>
+                            <div className="edgtf-item-image-holder gallery-img-wrapper-rectangle">
+                              <img
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                style={{ width: "100%" }}
+                                src={imgUrl(photo)}
+                                alt="g"
+                              />
+                            </div>
+                            <div className="edgtf-item-text-overlay">
+                              <div className="edgtf-item-text-overlay-inner">
+                                <div className="edgtf-item-text-holder">
+                                  {photo.info && (
+                                    <h4 className="edgtf-item-title">
+                                      {Object.keys(photo.info)}
+                                    </h4>
+                                  )}
                                 </div>
                               </div>
-                            </article>
+                            </div>
+                          </article>
                             {portal(
                               <Videopopup
                                   url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}

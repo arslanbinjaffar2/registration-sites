@@ -19,26 +19,27 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
       </div>
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+          <div className="edgtf-portfolio-list-holder">
+          <div className="d-flex row">
               {videos &&
                 videos.map((photo, i) => (
                   <div key={i} className="col-md-4 col-sm-6">
                         <PortalWithState closeOnOutsideClick closeOnEsc>
                           {({ openPortal, closePortal, isOpen, portal }) => (
                         <React.Fragment>
-                        <div onClick={openPortal} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px">
+                        <div style={{animationDelay: 50*i+'ms', overflow: 'hidden'}} onClick={openPortal} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px ebs-animation-layer">
                          <div className="ebs-video-button-inner ebs-right-top">
                                 <i className="fa fa-play-circle" aria-hidden="true"></i>
                             </div>
-                          <div className="edgtf-link-holder">
-                            <div className="edgtf-iwt-image">
+                          
+                            <div className="edgtf-iwt-image gallery-img-wrapper-rectangle">
                               <img
+                                onLoad={(e) => e.target.style.opacity = 1}
                                 style={{ width: "100%" }}
                                 src={imgUrl(photo)}
                                 alt="g"
                               />
                             </div>
-                          </div>
                           <div className="edgtf-iwt-text-holder">
                             <div className="edgtf-iwt-text-table">
                               <div className="edgtf-iwt-text-cell">
@@ -61,6 +62,7 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                       </PortalWithState>
                   </div>
                 ))}
+          </div>
           </div>
           {!home && loadMore() }
       {home && <div className="container p-0 pt-5 text-center">

@@ -39,9 +39,10 @@ const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                  <PortalWithState closeOnOutsideClick closeOnEsc>
                     {({ openPortal, closePortal, isOpen, portal }) => (
                      <React.Fragment>
-                      <figure onClick={openPortal}> 
+                      <figure style={{overflow: 'hidden'}} className="gallery-img-wrapper-rectangle" onClick={openPortal}> 
                         <img
-                        style={{width: '100%'}}
+                          onLoad={(e) => e.target.style.opacity = 1}
+                          style={{width: '100%'}}
                           src={imgUrl(photo)}
                           alt="g"
                         />

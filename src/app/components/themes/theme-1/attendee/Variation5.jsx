@@ -13,21 +13,23 @@ const Variation5 = ({ attendees,  searchBar, loadMore, event, settings }) => {
           {attendees &&
             attendees.map((attendee, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">
-                <div className="speakerv5-wrapper">
+                <div style={{animationDelay: 50*i+'ms'}} className="speakerv5-wrapper ebs-animation-layer">
                   <div className="speakerv5-area text-center">
                     <div className="speakerv5-image">
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>
-                        <img
-                          style={{ width: "100%" }}
-                          src={
-                            attendee.image && attendee.image !== ""
-                              ? process.env.REACT_APP_EVENTCENTER_URL +
-                              "/assets/attendees/" +
-                              attendee.image
-                              : require("img/user-placeholder.jpg")
-                          }
-                          alt="g"
-                        />
+                        <span className="gallery-img-wrapper-square">
+                          <img
+                            onLoad={(e) => e.target.style.opacity = 1} 
+                            src={
+                              attendee.image && attendee.image !== ""
+                                ? process.env.REACT_APP_EVENTCENTER_URL +
+                                  "/assets/attendees/" +
+                                  attendee.image
+                                : require("img/user-placeholder.jpg")
+                            }
+                            alt="g"
+                          />
+                        </span>
                       </Link>
                     </div>
                     {(attendee.first_name || attendee.last_name) && (

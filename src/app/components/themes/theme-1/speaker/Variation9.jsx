@@ -48,7 +48,7 @@ const Variation9 = ({
           {speakers &&
             speakers.map((speaker, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-0">
-                <div className="edgtf-team-list-holder-inner info_box">
+                <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div
                     style={{ width: "100%" }}
                     className="edgtf-team edgtf-team-light"
@@ -56,17 +56,19 @@ const Variation9 = ({
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link to={`/${event.url}/speakers/${speaker.id}`}>
-                          <img
-                            style={{ width: "100%" }}
-                            src={
-                              speaker.image && speaker.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                "/assets/attendees/" +
-                                speaker.image
-                                : require("img/user-placeholder.jpg")
-                            }
-                            alt="g"
-                          />
+                          <span className="gallery-img-wrapper-square">
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1} 
+                              src={
+                                speaker.image && speaker.image !== ""
+                                  ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    "/assets/attendees/" +
+                                    speaker.image
+                                  : require("img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                        </span>
                         </Link>
                       </div>
                       {/* Description */}

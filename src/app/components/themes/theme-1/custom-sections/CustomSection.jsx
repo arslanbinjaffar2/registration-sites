@@ -10,7 +10,7 @@ const CustomSection = ({ data }) => {
   )
   // return (
   //   <div style={{ paddingTop: "80px" }} className="edgtf-container pb-5">
-  //     <div className="edgtf-container-inner">
+  //     <div className="edgtf-container-inner container">
   //       <div className="ebs-custom-section-html">
   //         <section>
   //           <figure className="image" style={{ float: "left" }}>

@@ -11,8 +11,8 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
     500: 1,
   };
   return (
-    <div style={{ paddingTop: "30px" }} className="edgtf-container">
-      <div className="edgtf-container-inner">
+    <div style={{ padding: "80px 0" }} className="edgtf-container">
+      <div className="container">
         <div
           className={`${ "edgtf-full-width-inner"
           } clearfix`}
@@ -25,15 +25,17 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
                   className="my-masonry-grid"
                   columnClassName="my-masonry-grid_column"
                 >
-                  {news.map((item) => (
-                    <article key={item.id}>
+                  {news.map((item,i) => (
+                    <article className="ebs-animation-layer" style={{animationDelay: 50*i+'ms'}} key={item.id}>
                       <div className="edgtf-post-content">
                         {item.image && <div className="edgtf-post-image">
                           <Link
                             itemProp="url"
                             to={makeNewDetailURL(event_url, item.id)}
                           >
+                            <span className="gallery-img-wrapper-rectangle-2">
                             <img
+                              onLoad={(e) => e.target.style.opacity = 1}
                               src={
                                 item.image && item.image !== ""
                                   ? process.env.REACT_APP_EVENTCENTER_URL +
@@ -46,6 +48,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore }) => {
                               width="1500"
                               height="500"
                             />
+                            </span>
                           </Link>
                         </div>}
                         <div className="edgtf-post-text">

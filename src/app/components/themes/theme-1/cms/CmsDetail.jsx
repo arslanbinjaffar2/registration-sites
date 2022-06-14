@@ -30,7 +30,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
 
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
-      <div className="edgtf-container-inner">
+      <div className="edgtf-container-inner container">
         <div className={`${"edgtf-full-width-inner"} clearfix`}>
           <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
             <ul className="breadcrumb">

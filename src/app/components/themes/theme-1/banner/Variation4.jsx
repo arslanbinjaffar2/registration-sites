@@ -30,7 +30,7 @@ const Variation4 = ({ banner, event }) => {
                 >
                   {Number(slides.video_type) === 2 && (
                     <div className="video-fullscreen">
-                      <video autoPlay muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                      <video autoPlay playsInline muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
                     </div>
                   )}
                   <div className="caption-wrapp">

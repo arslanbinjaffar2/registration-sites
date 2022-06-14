@@ -1253,7 +1253,7 @@ $z-index:$back-to-top-size / 2;
 		}
 		}
 		.ebs-logo-main {
-			text-align: center;
+			text-align: left;
 			padding: 20px 0;
 			border-bottom: 2px solid $border;
 			img {
@@ -1791,11 +1791,17 @@ $z-index:$back-to-top-size / 2;
 	.ebs-email-phone {
 		a {
 			color: $gray !important;
+			&:hover {
+				color: $first-main-color !important;
+			}
 		}
 	}
 	.social-icons {
 		a {
 			color: $text555;
+			&:hover {
+				color: $first-main-color !important;
+			}
 		}
 	}
 }
@@ -1803,13 +1809,22 @@ $z-index:$back-to-top-size / 2;
 	.ebs-email-phone {
 		a.edgtf-team-position {
 			color: $text666 !important;
+			a:hover {
+				color: $first-main-color !important;
+			}
 			&.alt {
 				color: $text2b !important;
+			a:hover {
+				color: $first-main-color !important;
+			}
 			}
 		}
 	}
 	.social-icons a {
 		color: $text2b !important;
+		&:hover {
+			color: $first-main-color !important;
+		}
 	}
 }
 .ebs-attendee-v3 {
@@ -2415,7 +2430,7 @@ $z-index:$back-to-top-size / 2;
 }
 #App {
 	> div:not(#ebs-header-master),> div:not(.ebs-login-screen),.ebs-logo-main,.navbar-toggler {
-		transition: all 0.3s linear;
+		transition: transform 0.3s linear;
 	}
 }
 .ebs-scroll-body-content {
@@ -2426,7 +2441,7 @@ $z-index:$back-to-top-size / 2;
 		overflow: hidden;
 		> div:not(#ebs-header-master),> div:not(.ebs-login-screen),.ebs-logo-main,.navbar-toggler {
 			transform: translateX(380px);
-			transition: all 0.3s linear;
+			transition: transform 0.3s linear;
 			@include ipad-portrait {
 				transform: none;
 			}

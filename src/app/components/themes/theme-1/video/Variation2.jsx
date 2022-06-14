@@ -19,7 +19,8 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
       </div>
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+          <div className="edgtf-portfolio-list-holder">
+          <div className="d-flex row">
                 {videos &&
                   videos.map((photo, i) => (
                     <div key={i} className="col-md-4 col-sm-6">
@@ -28,14 +29,15 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                         <React.Fragment>
                           <article
                             onClick={openPortal}
-                            className="edgtf-portfolio-item mix"
-                            style={{ display: "block", visibility: "visible" }}
+                            className="edgtf-portfolio-item mix ebs-animation-layer"
+                            style={{ display: "block", visibility: "visible", animationDelay: 50*i+'ms' }}
                           >
                             <div className="ebs-video-button-inner ebs-right-top">
                                 <i className="fa fa-play-circle" aria-hidden="true"></i>
                             </div>
-                            <div className="edgtf-item-image-holder">
+                            <div className="edgtf-item-image-holder gallery-img-wrapper-rectangle">
                               <img
+                                onLoad={(e) => e.target.style.opacity = 1}
                                 style={{ width: "100%" }}
                                 src={imgUrl(photo)}
                                 alt="g"
@@ -63,6 +65,7 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                       </PortalWithState>
                     </div>
                   ))}
+          </div>
           </div>
           {!home && loadMore() }
       {home && <div className="container p-0 pt-5 text-center">

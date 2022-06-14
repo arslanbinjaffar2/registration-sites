@@ -24,7 +24,8 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
       <div className="container">
       <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+          <div className="edgtf-portfolio-list-holder">
+          <div className="d-flex row">
             <Gallery shareButton={false} id="my-gallery">
                 {photos &&
                   photos.map((photo, i) => (
@@ -40,11 +41,12 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                         {({ ref, open }) => (
                           <article
                             ref={ref} onClick={open}
-                            className="edgtf-portfolio-item mix"
-                            style={{ display: "block", visibility: "visible" }}
+                            className="edgtf-portfolio-item mix ebs-animation-layer"
+                            style={{ display: "block", visibility: "visible",animationDelay: 50*i+'ms', cursor: 'pointer' }}
                           >
-                            <div className="edgtf-item-image-holder">
+                            <div className="edgtf-item-image-holder gallery-img-wrapper-rectangle">
                               <img
+                                onLoad={(e) => e.target.style.opacity = 1}
                                 style={{ width: "100%" }}
                                 src={imgUrl(photo)}
                                 alt="g"
@@ -67,6 +69,7 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                     </div>
                   ))}
               </Gallery>
+          </div>
           </div>
           {!home && loadMore() }
       {home && <div className="container p-0 pt-5 text-center">

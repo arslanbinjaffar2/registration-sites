@@ -3,7 +3,7 @@ import React from "react";
 const Variation1 = ({map, siteLabels}) => {
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
-      <div className="edgtf-container-inner">
+      <div className="edgtf-container-inner container">
         <div className="edgtf-title-section-holder text-center pb-3">
           <h2 className="edgtf-title-with-dots edgtf-appeared">{siteLabels.EVENTSITE_MAP}</h2>
           <span className="edge-title-separator edge-enable-separator" />

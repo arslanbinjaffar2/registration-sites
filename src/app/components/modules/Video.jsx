@@ -60,7 +60,7 @@ const Video = (props) => {
   return (
     <Suspense fallback={<PageLoader/>}>
       {videos ? (
-        <div style={{ padding: "80px 0" }} >
+        <div>
           <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} eventUrl={eventUrl}
           loadMore={() => {
             if(page < totalPages)
