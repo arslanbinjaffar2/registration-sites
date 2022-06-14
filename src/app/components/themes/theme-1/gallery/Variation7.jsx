@@ -25,7 +25,8 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
       <div className="container">
         <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
         <div className="edgtf-portfolio-list-holder-outer">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+          <div className="edgtf-portfolio-list-holder">
+          <div className="d-flex row">
             <Gallery shareButton={false} id="my-gallery">
               {photos &&
                 photos.map((photo, i) => (
@@ -67,6 +68,7 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                   </div>
                 ))}
               </Gallery>
+          </div>
           </div>
           {!home && loadMore() }
           {home && <div className="container p-0 pt-5 text-center">

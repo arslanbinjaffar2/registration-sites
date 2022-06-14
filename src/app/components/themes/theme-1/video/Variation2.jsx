@@ -19,7 +19,8 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
       </div>
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
-          <div className="edgtf-portfolio-list-holder d-flex row">
+          <div className="edgtf-portfolio-list-holder">
+          <div className="d-flex row">
                 {videos &&
                   videos.map((photo, i) => (
                     <div key={i} className="col-md-4 col-sm-6">
@@ -64,6 +65,7 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                       </PortalWithState>
                     </div>
                   ))}
+          </div>
           </div>
           {!home && loadMore() }
       {home && <div className="container p-0 pt-5 text-center">

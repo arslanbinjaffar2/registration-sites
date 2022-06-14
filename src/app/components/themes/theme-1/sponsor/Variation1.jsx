@@ -19,7 +19,7 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 					<div className={`sponsorsv3-wrapper row d-flex ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} key={i}>
 						{sponsorsCategory.name ?  <h4 style={{textAlign: settings.text_align}}> { sponsorsCategory.name}</h4> : ""}
 						{sponsorsCategory.sponsors.map((sponsor, j) => {
-							return (<div className="col-sm-6 col-md-4" key={j}>
+							return (<div className="col-sm-6 col-6 col-md-4" key={j}>
 								<figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
 									<img
 										src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')}
