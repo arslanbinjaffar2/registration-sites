@@ -13,21 +13,23 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings }) => {
           <div className="row d-flex algin-items-center">
             {attendees &&
               attendees.map((attendee, i) => (
-                <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <div className="speakerv6-wrapper">
+                <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                  <div style={{animationDelay: 20*i+'ms'}} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>
-                        <img
-                          style={{ width: "100%" }}
-                          src={
-                            attendee.image && attendee.image !== ""
-                              ? process.env.REACT_APP_EVENTCENTER_URL +
-                              "/assets/attendees/" +
-                              attendee.image
-                              : require("img/user-placeholder.jpg")
-                          }
-                          alt="g"
-                        />
+                        <span className="gallery-img-wrapper-square">
+                          <img
+                            onLoad={(e) => e.target.style.opacity = 1} 
+                            src={
+                              attendee.image && attendee.image !== ""
+                                ? process.env.REACT_APP_EVENTCENTER_URL +
+                                  "/assets/attendees/" +
+                                  attendee.image
+                                : require("img/user-placeholder.jpg")
+                            }
+                            alt="g"
+                          />
+                      </span>
                       </Link>
                       {/* <div className="caption">
                         <span className="plus"></span>

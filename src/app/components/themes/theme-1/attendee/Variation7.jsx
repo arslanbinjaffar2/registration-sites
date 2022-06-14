@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HeadingElement from "@/ui-components/HeadingElement";
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+
 const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
   return (
     <div
@@ -23,21 +23,24 @@ const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
                 key={i}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
               >
-                <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                <div style={{animationDelay: 20*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div className="edgtf-team w-100 mb-3">
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link to={`/${event.url}/attendees/${attendee.id}`}>
-                          <img 
-                            src={
-                              attendee.image && attendee.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  "/assets/attendees/" +
-                                  attendee.image
-                                : require("img/user-placeholder.jpg")
-                            }
-                            alt="g"
-                          />
+                          <span className="gallery-img-wrapper-square">
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1} 
+                              src={
+                                attendee.image && attendee.image !== ""
+                                  ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    "/assets/attendees/" +
+                                    attendee.image
+                                  : require("img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          </span>
                         </Link>
                       </div>
                       {/* Description */}
