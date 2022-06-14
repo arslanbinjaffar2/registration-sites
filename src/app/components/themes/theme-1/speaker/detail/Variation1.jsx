@@ -31,19 +31,19 @@ const Variation1 = ({ speaker, moduleName}) => {
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                  <img
-                    style={{border: '1px solid #ccc'}}
-                    src={
-                      speaker.image && speaker.image !== ""
-                        ? process.env.REACT_APP_EVENTCENTER_URL +
-                          "/assets/attendees/" +
-                          speaker.image
-                        : require("img/square.jpg")
-                    }
-                    alt=""
-                    width="800"
-                    height="800"
-                  />{" "}
+                  <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
+                    <img
+                      onLoad={(e) => e.target.style.opacity = 1} 
+                      src={
+                        speaker.image && speaker.image !== ""
+                          ? process.env.REACT_APP_EVENTCENTER_URL +
+                            "/assets/attendees/" +
+                            speaker.image
+                          : require("img/square.jpg")
+                      }
+                      alt="g"
+                    />
+                  </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
                   <h2 className="edge-name">

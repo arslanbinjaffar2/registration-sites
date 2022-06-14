@@ -1055,15 +1055,14 @@
   text-align: center;
   .speakerv7-image {
     margin-bottom: 25px;
-    span {
+    .box {
       display: inline-block;
       overflow: hidden;
-      background: $black;
+      border: 1px solid rgba($lightgray, 0.8);
       max-width: 250px;
       border-radius: 100%;
-      img {
-        transition: all 0.2s linear;
-      }
+      width: 100%;
+      margin: auto;
     }
   }
   

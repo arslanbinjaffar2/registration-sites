@@ -20,7 +20,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings }) => {
                 <div style={{ height: "100%", marginBottom: 0, animationDelay: 20*i+'ms' }}
                   className="speakerv7-wrapper ebs-animation-layer">
                   <div className="speakerv7-image">
-                    <span>
+                    <span className="box">
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
                             <img

@@ -18,23 +18,25 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings })
                 className="col-md-4 col-sm-6"
               >
                 <div
-                  style={{ height: "100%", marginBottom: 0 }}
-                  className="speakerv7-wrapper"
+                  style={{ height: "100%", marginBottom: 0, animationDelay: 20*i+'ms' }}
+                  className="speakerv7-wrapper ebs-animation-layer"
                 >
                   <div className="speakerv7-image">
-                    <span>
+                    <span className="box">
                       <Link to={`/${event.url}/speakers/${speaker.id}`}>
-                        <img
-                          style={{ width: "100%" }}
-                          src={
-                            speaker.image && speaker.image !== ""
-                              ? process.env.REACT_APP_EVENTCENTER_URL +
-                              "/assets/attendees/" +
-                              speaker.image
-                              : require("img/user-placeholder.jpg")
-                          }
-                          alt="g"
-                        />
+                        <span className="gallery-img-wrapper-square">
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1} 
+                              src={
+                                speaker.image && speaker.image !== ""
+                                  ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    "/assets/attendees/" +
+                                    speaker.image
+                                  : require("img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          </span>
                       </Link>
                     </span>
                   </div>

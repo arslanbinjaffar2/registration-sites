@@ -31,19 +31,19 @@ const Variation1 = ({ attendee }) => {
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
-                    <img
-                      onLoad={(e) => e.target.style.opacity = 1} 
-                      src={
-                        attendee.image && attendee.image !== ""
-                          ? process.env.REACT_APP_EVENTCENTER_URL +
-                            "/assets/attendees/" +
-                            attendee.image
-                          : require("img/user-placeholder.jpg")
-                      }
-                      alt="g"
-                    />
-                  </span>
+                  <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
+                      <img
+                        onLoad={(e) => e.target.style.opacity = 1} 
+                        src={
+                          attendee.image && attendee.image !== ""
+                            ? process.env.REACT_APP_EVENTCENTER_URL +
+                              "/assets/attendees/" +
+                              attendee.image
+                            : require("img/user-placeholder.jpg")
+                        }
+                        alt="g"
+                      />
+                    </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
                   <h2 className="edge-name">
