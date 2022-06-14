@@ -32,6 +32,9 @@ const App = () => {
             <title>{event.name}</title>
             <meta property="og:title" content={event.name} />
             <meta property="og:type" content="Event" />
+            {event.eventsiteSettings.search_engine_visibility == 0 && 
+              <meta name="robots" content="noindex"></meta>
+            }
             <meta
               property="og:url"
               content={`${window.location.origin.toString()}/${event.url}`}

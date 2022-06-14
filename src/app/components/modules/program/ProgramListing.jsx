@@ -11,9 +11,10 @@ import { programSelector, fetchPrograms } from "store/Slices/ProgramListingSlice
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
-const loadModule = (theme) => {
+const loadModule = (theme, programView) => {
+  const view = programView === 'horizontal' ? 'ProgramTimeLine.jsx' : 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/program/listing/ProgramListing.jsx`)
+    import(`@/themes/${theme}/program/listing/${view}`)
   );
   return Component;
 };
@@ -28,7 +29,7 @@ const ProgramListing = (props) => {
   });
   const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
-    () => loadModule(event.theme.slug),
+    () => loadModule(event.theme.slug, event.agenda_settings.program_view),
     [event]
   );
   const { programs, tracks, totalPages, labels } = useSelector(programSelector);
@@ -44,7 +45,7 @@ const ProgramListing = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {programs ? (
         <React.Fragment>
-          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop}/>
+          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} />
         </React.Fragment>
       ) : <PageLoader/> }
     </Suspense>

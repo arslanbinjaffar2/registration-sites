@@ -82,7 +82,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
       <div className="container">
         <div className="row d-flex">
           <div className="col-lg-3">
-            <div className="ebs-form-control-search pb-3"><input className="form-control" placeholder="Search..." onChange={(e)=> { search(e.target.value) }} value ={searchText}type="text" />
+            <div className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_SPONSOR_SEARCH} onChange={(e)=> { search(e.target.value) }} value ={searchText}type="text" />
               <em className="fa fa-search"></em>
             </div>
             <div className="ebs-filter-box pb-4">

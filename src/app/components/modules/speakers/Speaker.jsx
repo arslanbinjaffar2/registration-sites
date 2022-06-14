@@ -78,7 +78,7 @@ const Speaker = (props) => {
           <Component speakers={speakers} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
             return (
             <div className="container pb-5">
-              <div className="ebs-form-control-search"><input className="form-control" placeholder="Search..." type="text" onChange={(e) => setValue(e.target.value)} />
+              <div className="ebs-form-control-search"><input className="form-control" placeholder={event.labels.EVENTSITE_GENERAL_SEARCH} type="text" onChange={(e) => setValue(e.target.value)} />
               {!loading ? <em className="fa fa-search"></em> : <div class="spinner-border"></div>}
               </div>
             </div>

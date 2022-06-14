@@ -1,13 +1,11 @@
 import React, { Suspense, useEffect, useMemo,} from "react";
 import { eventSelector } from "store/Slices/EventSlice"
 import {
-  incrementLoadedSection,
   incrementFetchLoadCount,
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { exhibitorSelector, fetchExhibitors } from "store/Slices/ExhibitorSlice";
-import PageLoader from "@/ui-components/PageLoader";
 
 import { withRouter } from "react-router";
 const in_array = require("in_array");

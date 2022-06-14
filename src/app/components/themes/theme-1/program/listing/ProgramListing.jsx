@@ -14,7 +14,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const ProgramListing = ({programs, eventUrl, tracks, showWorkshop}) => {
+const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels}) => {
  const [programsLoc, setProgramsLoc] = useState(programs);
  const [selectedDate, setSelectedDate] = useState(null);
  const [selectedTrack, setSelectedTrack] = useState(null);
@@ -66,28 +66,28 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop}) => {
         <div className="container">
           <div className="row d-flex">
             <div className="col-md-5">
-              <div style={{maxWidth: 440}} className="ebs-form-control-search pb-3"><input className="form-control" placeholder="Search..." defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+              <div style={{maxWidth: 440}} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
                 <em className="fa fa-search"></em>
               </div>
             </div>
             <div className="col-md-7">
-              <div className="row flex-row">
+              <div className="row flex-row justify-content-end">
                 <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
-                    placeholder="Select date"
+                    placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                     components={{ IndicatorSeparator: null }}
                     onChange={(date)=>{onDateChange(date)}}
-                    options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[{value:0, label:'Select date'}])}
+                    options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_DAY}])}
                   />
                 </div>
                 <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
-                    placeholder="Select track"
+                    placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
                     components={{ IndicatorSeparator: null }}
                     onChange={(track)=>{onTrackChange(track)}}
-                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:'Select track'}])}
+                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                   />
                 </div>
               </div>

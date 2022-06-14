@@ -79,7 +79,7 @@ const Attendee = (props) => {
                   <div className="ebs-form-control-search">
                     <input
                       className="form-control"
-                      placeholder="Search..."
+                      placeholder={event.labels.EVENTSITE_GENERAL_SEARCH}
                       type="text"
                       onChange={(e) => setValue(e.target.value)}
                     />
