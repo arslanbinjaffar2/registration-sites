@@ -131,7 +131,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                               target="_blank"
                               href={`${exhibitor.linkedin}`}
                             >
-                              <span data-icon="&#xe0b1;"></span>
+                              <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
                           {exhibitor.website && (
@@ -140,7 +140,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                               target="_blank"
                               href={`${exhibitor.website}`}
                             >
-                              <span data-icon="&#xe0b7;"></span>
+                              <span data-icon="&#xe0e3;"></span>
                             </a>
                           )}
                         </div>

@@ -150,7 +150,7 @@ const Variation1 = ({ speaker, moduleName}) => {
                               target="_blank"
                               href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                             >
-                              <span data-icon="&#xe0b1;"></span>
+                              <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
                           {speaker.info && speaker.info.website && (
@@ -159,7 +159,7 @@ const Variation1 = ({ speaker, moduleName}) => {
                               target="_blank"
                               href={`${speaker.info.website_protocol}${speaker.info.website}`}
                             >
-                              <span data-icon="&#xe0b7;"></span>
+                              <span data-icon="&#xe0e3;"></span>
                             </a>
                           )}
                         </div>

@@ -55,7 +55,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings }) => {
                             {attendee.info.title && attendee.info.title}
                             {attendee.info.company_name &&
                               attendee.info.title &&
-                              " "}
+                              ", "}
                             {attendee.info.company_name &&
                               attendee.info.company_name}
                           </div>
@@ -111,7 +111,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings }) => {
                                 target="_blank"
                                 href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
                               >
-                                <span data-icon="&#xe0b1;"></span>
+                                <span data-icon="&#xe0b4;"></span>
                               </a>
                             )}
                             {attendee.info.website && (
@@ -119,7 +119,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings }) => {
                                 target="_blank"
                                 href={`${attendee.info.website_protocol}${attendee.info.website}`}
                               >
-                                <span data-icon="&#xe0b7;"></span>
+                                <span data-icon="&#xe0e3;"></span>
                               </a>
                             )}
                           </div>

@@ -20,7 +20,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
             speakers.map((speaker, i) => (
               <div
                 key={i}
-                className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
+                className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3 ebs-dark-attendee"
               >
                 <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div className="edgtf-team w-100 mb-3">
@@ -60,11 +60,12 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                 {speaker.info.title && speaker.info.title}
                                 {speaker.info.title &&
                                   speaker.info.company_name &&
-                                  " "}
+                                  ", "}
                                 {speaker.info.company_name &&
                                   speaker.info.company_name}
                               </div>
                             )}
+                             <div className="ebs-border-wrapp">
                           {listing && speaker.email && (
                             <div style={{color: '#666666'}} className="ebs-email-phone">
                               <a
@@ -88,6 +89,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
                               </a>
                             </div>
                           )}
+                        </div>
                         </div>
                         {listing &&
                           speaker.info &&
@@ -121,7 +123,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                           target="_blank"
                                           href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                                         >
-                                          <span data-icon="&#xe0b1;"></span>
+                                          <span data-icon="&#xe0b4;"></span>
                                         </a>
                                       )}
                                       {speaker.info.website && (
@@ -129,7 +131,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                           target="_blank"
                                           href={`${speaker.info.website_protocol}${speaker.info.website}`}
                                         >
-                                          <span data-icon="&#xe0b7;"></span>
+                                          <span data-icon="&#xe0e3;"></span>
                                         </a>
                                       )}
                                     </div>

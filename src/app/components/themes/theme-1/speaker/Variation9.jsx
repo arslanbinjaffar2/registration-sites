@@ -90,7 +90,7 @@ const Variation9 = ({
                                   {speaker.info.title && speaker.info.title}
                                   {speaker.info.company_name &&
                                     speaker.info.title &&
-                                    " "}
+                                    ", "}
                                   {speaker.info.company_name &&
                                     speaker.info.company_name}
                                 </span>
@@ -147,7 +147,7 @@ const Variation9 = ({
                                           target="_blank"
                                           href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                                         >
-                                          <span data-icon="&#xe0b1;"></span>
+                                          <span data-icon="&#xe0b4;"></span>
                                         </a>
                                       )}
                                       {speaker.info.website && (
@@ -155,7 +155,7 @@ const Variation9 = ({
                                           target="_blank"
                                           href={`${speaker.info.website_protocol}${speaker.info.website}`}
                                         >
-                                          <span data-icon="&#xe0b7;"></span>
+                                          <span data-icon="&#xe0e3;"></span>
                                         </a>
                                       )}
                                     </div>

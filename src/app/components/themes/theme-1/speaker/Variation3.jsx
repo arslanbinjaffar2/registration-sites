@@ -81,11 +81,12 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                 {speaker.info.title && speaker.info.title}
                                 {speaker.info.title &&
                                   speaker.info.company_name &&
-                                  " "}
+                                  ", "}
                                 {speaker.info.company_name &&
                                   speaker.info.company_name}
                               </div>
                             )}
+                             <div className="ebs-border-wrapp">
                           {listing && speaker.email && (
                             <div className="ebs-email-phone">
                               <a
@@ -107,6 +108,7 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings })
                               </a>
                             </div>
                           )}
+                        </div>
                         </div>
                         {listing &&
                           speaker.info &&
@@ -140,7 +142,7 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                           target="_blank"
                                           href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                                         >
-                                          <span data-icon="&#xe0b1;"></span>
+                                          <span data-icon="&#xe0b4;"></span>
                                         </a>
                                       )}
                                       {speaker.info.website && (
@@ -148,7 +150,7 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                           target="_blank"
                                           href={`${speaker.info.website_protocol}${speaker.info.website}`}
                                         >
-                                          <span data-icon="&#xe0b7;"></span>
+                                          <span data-icon="&#xe0e3;"></span>
                                         </a>
                                       )}
                                     </div>
