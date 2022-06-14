@@ -83,7 +83,7 @@ const Attendee = (props) => {
                       type="text"
                       onChange={(e) => setValue(e.target.value)}
                     />
-                    <em className="fa fa-search"></em>
+                      {!loading ? <em className="fa fa-search"></em> : <div class="spinner-border"></div>}
                   </div>
                 </div>
               );
