@@ -386,7 +386,7 @@ const DataItem = ({  items, program_setting, onClick }) => {
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
   return (
-    <div title={items.topic} onClick={onClick} style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
+    <div title={items.topic} onClick={() => onClick(items)} style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
       {items.program_workshop  && <div className="workkshop-box">{items.program_workshop}</div>}
       <div className="title">{items.topic}</div>
       {items.tracks && <div className="tracks">
@@ -411,7 +411,7 @@ const DataItem = ({  items, program_setting, onClick }) => {
 const TimelineContent = ({ data, program_setting }) => {
   const _width = 24 * _multiplyer;
   const [popup, setPopup] = useState(false);
-  const [popupdata, setPopupData] = useState('');
+  const [popupdata, setPopupData] = useState(null);
   useEffect(() => {
     const container = document.getElementById('timelindeschdle');
 
@@ -429,6 +429,7 @@ const TimelineContent = ({ data, program_setting }) => {
   }, [])
   
   const handleClick = (data) => {
+    console.log(data);
     if (!isActive) {
       setPopup(!popup);
       setPopupData(data);
@@ -470,7 +471,7 @@ const TimelineContent = ({ data, program_setting }) => {
               <React.Fragment key={k}>
                 <div className="datarow">
                   {items.map((item, key) => (
-                      <DataItem onClick={(e) => {handleClick(item)}} key={key} items={item} program_setting={program_setting} />
+                      <DataItem onClick={(data) => {handleClick(data)}} key={key} items={item} program_setting={program_setting} />
                     ))}
                 </div>
               </React.Fragment>
