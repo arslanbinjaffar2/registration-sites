@@ -48,7 +48,7 @@ const Variation9 = ({
           {speakers &&
             speakers.map((speaker, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-0">
-                <div style={{animationDelay: 20*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div
                     style={{ width: "100%" }}
                     className="edgtf-team edgtf-team-light"

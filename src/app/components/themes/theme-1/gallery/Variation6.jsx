@@ -43,7 +43,7 @@ const Variation6 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
             >
               {photos &&
                 photos.map((photo, i) => (
-                  <div key={i} className="gallerMasonry">
+                  <div style={{animationDelay: 50*i+'ms'}} key={i} className="gallerMasonry ebs-animation-layer">
                     <Item 
                       original={imgUrl(photo)}
                       thumbnail={imgUrl(photo)}
@@ -52,8 +52,9 @@ const Variation6 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                       height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                       >
                       {({ ref, open }) => (
-                      <figure ref={ref} onClick={open}> 
+                      <figure className="gallery-img-wrapper-rectangle" ref={ref} onClick={open}> 
                         <img
+                          onLoad={(e) => e.target.style.opacity = 1}
                           src={imgUrl(photo)}
                           alt="g"
                         />

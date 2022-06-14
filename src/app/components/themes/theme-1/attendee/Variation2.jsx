@@ -21,7 +21,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings }) => {
                   className="col-12 col-sm-6 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
                   key={i}
                 >
-                  <div style={{animationDelay: 20*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                  <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                     <div className="edgtf-team mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">

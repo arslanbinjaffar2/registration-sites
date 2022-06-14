@@ -13,7 +13,7 @@ const Variation5 = ({ attendees,  searchBar, loadMore, event, settings }) => {
           {attendees &&
             attendees.map((attendee, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">
-                <div style={{animationDelay: 20*i+'ms'}} className="speakerv5-wrapper ebs-animation-layer">
+                <div style={{animationDelay: 50*i+'ms'}} className="speakerv5-wrapper ebs-animation-layer">
                   <div className="speakerv5-area text-center">
                     <div className="speakerv5-image">
                       <Link to={`/${event.url}/attendees/${attendee.id}`}>

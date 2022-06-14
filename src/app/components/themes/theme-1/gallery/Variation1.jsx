@@ -39,10 +39,10 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) 
                   height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                   >
                   {({ ref, open }) => (
-                  <div ref={ref} onClick={open} className="edgtf-gallery-image" >
-                    <span title="home-2-gallery-img-1">
+                  <div style={{animationDelay: 50*i+'ms'}} ref={ref} onClick={open} className="edgtf-gallery-image ebs-animation-layer" >
+                    <span title="home-2-gallery-img-1" className="gallery-img-wrapper-rectangle">
                       <img
-                        style={{ width: "100%" }}
+                        onLoad={(e) => e.target.style.opacity = 1}
                         src={imgUrl(photo)}
                             alt="g"
                           />

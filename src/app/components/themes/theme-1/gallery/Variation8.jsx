@@ -39,30 +39,31 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) 
                           height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                           >
                           {({ ref, open }) => (
-                            <article
-                              ref={ref} onClick={open}
-                              className="edgtf-portfolio-item mix"
-                              style={{ display: "block", visibility: "visible" }}
-                            >
-                              <div className="edgtf-item-image-holder">
-                                <img
-                                  style={{ width: "100%" }}
-                                  src={imgUrl(photo)}
-                                  alt="g"
-                                />
-                              </div>
-                              <div className="edgtf-item-text-overlay">
-                                <div className="edgtf-item-text-overlay-inner">
-                                  <div className="edgtf-item-text-holder">
-                                    {photo.info && (
-                                      <h4 className="edgtf-item-title">
-                                        {Object.keys(photo.info)}
-                                      </h4>
-                                    )}
-                                  </div>
+                          <article
+                            ref={ref} onClick={open}
+                            className="edgtf-portfolio-item mix ebs-animation-layer"
+                            style={{ display: "block", visibility: "visible",animationDelay: 50*i+'ms', cursor: 'pointer' }}
+                          >
+                            <div className="edgtf-item-image-holder gallery-img-wrapper-rectangle">
+                              <img
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                style={{ width: "100%" }}
+                                src={imgUrl(photo)}
+                                alt="g"
+                              />
+                            </div>
+                            <div className="edgtf-item-text-overlay">
+                              <div className="edgtf-item-text-overlay-inner">
+                                <div className="edgtf-item-text-holder">
+                                  {photo.info && (
+                                    <h4 className="edgtf-item-title">
+                                      {Object.keys(photo.info)}
+                                    </h4>
+                                  )}
                                 </div>
                               </div>
-                            </article>
+                            </div>
+                          </article>
                           )}
                         </Item>
                       </div>

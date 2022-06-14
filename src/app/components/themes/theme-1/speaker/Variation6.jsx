@@ -14,7 +14,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings })
             {speakers &&
               speakers.map((speaker, i) => (
                 <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                  <div style={{animationDelay: 20*i+'ms'}} className="speakerv6-wrapper ebs-animation-layer">
+                  <div style={{animationDelay: 50*i+'ms'}} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
                       <Link to={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">

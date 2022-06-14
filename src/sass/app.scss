@@ -909,6 +909,7 @@
     position: relative;
     line-height: 0;
     font-size: 0;
+    cursor: pointer;
     &:after {
       content: '';
       width: 100%;
@@ -2412,6 +2413,25 @@
   position: relative;
   padding-bottom: 100%;
   display: block !important;
+  
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+  }
+}
+.gallery-img-wrapper-rectangle {
+  position: relative;
+  padding-bottom: 67%;
+  display: block !important;
+  background-color: rgba($lightbackground,0.8);
+  box-shadow: 0 0 3px rgba($black, 0.08) inset;
+  cursor: pointer;
   
   img {
     position: absolute;

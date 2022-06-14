@@ -17,7 +17,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings }) => {
                 style={{ marginBottom: "30px" }}
                 className="col-md-4 col-sm-6"
               >
-                <div style={{ height: "100%", marginBottom: 0, animationDelay: 20*i+'ms' }}
+                <div style={{ height: "100%", marginBottom: 0, animationDelay: 50*i+'ms' }}
                   className="speakerv7-wrapper ebs-animation-layer">
                   <div className="speakerv7-image">
                     <span className="box">

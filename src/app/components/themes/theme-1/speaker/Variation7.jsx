@@ -22,7 +22,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings })
                 key={i}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3"
               >
-                <div style={{animationDelay: 20*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div className="edgtf-team w-100 mb-3">
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">

@@ -39,28 +39,29 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels }) 
                         height={getMeta(imgUrl(photo),'height') !== 0 ? getMeta(imgUrl(photo),'height') : 665 }
                         >
                         {({ ref, open }) => (
-                        <div ref={ref} onClick={open} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px">
-                          <div className="edgtf-link-holder">
-                            <div className="edgtf-iwt-image">
-                              <img
-                                style={{ width: "100%" }}
-                                src={imgUrl(photo)}
-                                alt="g"
-                              />
-                            </div>
+                        <div style={{animationDelay: 50*i+'ms'}} ref={ref} onClick={open} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px ebs-animation-layer">
+                        <div className="edgtf-link-holder">
+                          <div className="edgtf-iwt-image gallery-img-wrapper-rectangle">
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              style={{ width: "100%" }}
+                              src={imgUrl(photo)}
+                              alt="g"
+                            />
                           </div>
-                          <div className="edgtf-iwt-text-holder">
-                            <div className="edgtf-iwt-text-table">
-                              <div className="edgtf-iwt-text-cell">
-                                {photo.info && (
-                                  <h3 className="edgtf-iwt-title">
-                                    {Object.keys(photo.info)}
-                                  </h3>
-                                )}
-                              </div>
+                        </div>
+                        <div className="edgtf-iwt-text-holder">
+                          <div className="edgtf-iwt-text-table">
+                            <div className="edgtf-iwt-text-cell">
+                              {photo.info && (
+                                <h3 className="edgtf-iwt-title">
+                                  {Object.keys(photo.info)}
+                                </h3>
+                              )}
                             </div>
                           </div>
                         </div>
+                      </div>
                       )}
                       </Item>
                   </div>
