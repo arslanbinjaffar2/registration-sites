@@ -26,19 +26,19 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                         <PortalWithState closeOnOutsideClick closeOnEsc>
                           {({ openPortal, closePortal, isOpen, portal }) => (
                         <React.Fragment>
-                        <div onClick={openPortal} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px">
+                        <div style={{animationDelay: 50*i+'ms', overflow: 'hidden'}} onClick={openPortal} className="edgtf-image-with-text edgtf-image-with-text-above mb-30px ebs-animation-layer">
                          <div className="ebs-video-button-inner ebs-right-top">
                                 <i className="fa fa-play-circle" aria-hidden="true"></i>
                             </div>
-                          <div className="edgtf-link-holder">
-                            <div className="edgtf-iwt-image">
+                          
+                            <div className="edgtf-iwt-image gallery-img-wrapper-rectangle">
                               <img
+                                onLoad={(e) => e.target.style.opacity = 1}
                                 style={{ width: "100%" }}
                                 src={imgUrl(photo)}
                                 alt="g"
                               />
                             </div>
-                          </div>
                           <div className="edgtf-iwt-text-holder">
                             <div className="edgtf-iwt-text-table">
                               <div className="edgtf-iwt-text-cell">

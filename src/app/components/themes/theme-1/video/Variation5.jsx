@@ -23,15 +23,16 @@ const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
           {videos &&
             videos.map((photo, i) => {
               return (
-                <div key={i} className="edgtf-gallery-image" >
+                <div style={{animationDelay: 50*i+'ms'}} key={i} className="edgtf-gallery-image ebs-animation-layer">
                   <PortalWithState closeOnOutsideClick closeOnEsc>
                   {({ openPortal, closePortal, isOpen, portal }) => (
                     <React.Fragment>
-                    <span style={{display: 'block', position: 'relative'}} onClick={openPortal} title="home-2-gallery-img-1">
+                    <span className="gallery-img-wrapper-rectangle" style={{display: 'block', position: 'relative'}} onClick={openPortal} title="home-2-gallery-img-1">
                           <div className="ebs-video-button-inner">
                             <i className="fa fa-play-circle" aria-hidden="true"></i>
                         </div>
                       <img
+                        onLoad={(e) => e.target.style.opacity = 1}
                         style={{ width: "100%" }}
                         src={imgUrl(photo)}
                             alt="g"
