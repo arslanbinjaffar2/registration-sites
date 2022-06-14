@@ -44,7 +44,7 @@ const ProgramListing = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {programs ? (
         <React.Fragment>
-          <Component programs={programs} eventUrl={eventUrl} tracks={tracks}/>
+          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop}/>
         </React.Fragment>
       ) : <PageLoader/> }
     </Suspense>

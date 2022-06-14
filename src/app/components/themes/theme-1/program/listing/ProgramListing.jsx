@@ -14,7 +14,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const ProgramListing = ({programs, eventUrl, tracks}) => {
+const ProgramListing = ({programs, eventUrl, tracks, showWorkshop}) => {
  const [programsLoc, setProgramsLoc] = useState(programs);
  const [selectedDate, setSelectedDate] = useState(null);
  const [selectedTrack, setSelectedTrack] = useState(null);
@@ -87,7 +87,7 @@ const ProgramListing = ({programs, eventUrl, tracks}) => {
                     placeholder="Select track"
                     components={{ IndicatorSeparator: null }}
                     onChange={(track)=>{onTrackChange(track)}}
-                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:'Select date'}])}
+                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:'Select track'}])}
                   />
                 </div>
               </div>
@@ -102,7 +102,7 @@ const ProgramListing = ({programs, eventUrl, tracks}) => {
                   {programsLoc[key][0] && <div className="ebs-date-border">{programsLoc[key][0].heading_date}</div>}
                   {programsLoc[key].map((item,i) =>(
                       item.workshop_id > 0  ? 
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} />:
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} />:
                       <ProgramItem program={item} key={i} eventUrl={eventUrl} />
                   ))}
                   

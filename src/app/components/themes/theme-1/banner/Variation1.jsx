@@ -8,7 +8,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 				{banner && <SliderBanner
-					countdown={new Date(countdown)} //{dateTime}
+					countdown={countdown} //{dateTime}
 					fullscreen
 				>
 					{banner.map((slides, i) =>

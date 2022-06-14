@@ -2,18 +2,13 @@ import SliderBanner from "./components/SliderBanner";
 import moment from "moment";
 import React from "react";
 
-const Variation4 = ({ banner, event }) => {
-  let momentObj = moment(
-    event.start_date + event.start_time,
-    "YYYY-MM-DDLT"
-  );
-  let eventDate = momentObj.toDate();
+const Variation4 = ({ banner, event, countdown }) => {
   return (
     <div className="container">
       <div className="main-slider-wrapper">
         {banner && (
           <SliderBanner
-            countdown="Apr 19 2022, 17:00" //{this.state.eventdate}
+            countdown={countdown}
           >
             {banner.map((slides, i) => (
               <div key={i} className="slide-wrapper">
