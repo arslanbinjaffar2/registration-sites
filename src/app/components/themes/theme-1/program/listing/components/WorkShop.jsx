@@ -6,7 +6,7 @@ const WorkShop = ({item, eventUrl}) => {
   const [open, setOpen] = useState(true);
   return (
     <div className="ebs-program-parent ebs-program-workshop">
-    <div className="ebs-workshop-header">{item.program_workshop}<i className="material-icons" onClick={()=>{setOpen(!open)}}>expand_more</i></div>
+    <div onClick={()=>{setOpen(!open)}} className="ebs-workshop-header">{item.program_workshop}<i className="material-icons">{open ? 'expand_more' : 'expand_less'}</i></div>
           {open && item.workshop_programs.map((program,i) =>
                 <ProgramItem key={i} eventUrl={eventUrl} program={program}/>           
           )}

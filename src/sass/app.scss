@@ -2100,17 +2100,18 @@
   .ebs-main-program-listing {
     margin-bottom: 30px;
     .ebs-program-parent {
+      margin-bottom: 40px;
       &.ebs-program-workshop {
         background-color: $lightf4;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
+        margin-bottom: 0;
         .ebs-workshop-header {
           font-size: 24px;
           font-weight: 500;
           color: $text2b;
           padding: 24px 100px 24px 48px;
+          border-top: 1px solid $border;
           border-bottom: 1px solid $border;
-          margin-bottom: 30px;
+          margin-bottom: 0;
           cursor: pointer;
           position: relative;
           i {
@@ -2126,10 +2127,18 @@
           }
         }
         .ebs-program-child {
+          padding-top: 35px;
+          padding-right: 15px;
+          & ~ .ebs-program-child {
+            padding-top: 0;
+          }
           @include ipad-landscape {
             padding-left: 20px;
             padding-right: 20px;
           }
+        }
+        & ~ .ebs-program-workshop {
+          margin-bottom: 30px;
         }
       }
       .ebs-date-border {

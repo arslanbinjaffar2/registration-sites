@@ -10,9 +10,8 @@ const Variation1 = ({ attendee }) => {
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
-        <div className="edgtf-title-holder">
-          <div className="edgtf-container clearfix">
-            <div className="edgtf-container-inner container">
+        <div className="edgtf-title-holder d-flex align-items-center justify-content-center ">
+            <div className="container">
               <div className="edgtf-title-subtitle-holder">
                 <div className="edgtf-title-subtitle-holder-inner">
                   <h1 style={{ color: "white" }}>
@@ -21,7 +20,6 @@ const Variation1 = ({ attendee }) => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <div></div>
       </div>
