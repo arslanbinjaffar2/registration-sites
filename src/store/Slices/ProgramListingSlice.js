@@ -3,6 +3,7 @@ import { objectToArray } from "../../app/helpers/helper";
 import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   programs: null,
+  tracks: null,
   labels:null,
   loading: false,
   error: null,
@@ -19,7 +20,8 @@ export const programSlice = createSlice({
       state.programs = null;
     },
     setPrograms: (state, { payload }) => {
-      state.programs = payload.data;
+      state.programs = payload.data.programs;
+      state.tracks = payload.data.tracks;
       state.labels = state.labels;
       state.loading = false;
     },
@@ -36,20 +38,15 @@ export const programSelector = (state) => state.program;
 
 export default programSlice.reducer;
 
-export const fetchPrograms = (url,  limit, search, mount) => {
+export const fetchPrograms = (url) => {
   return async (dispatch) => {
-    dispatch(getPrograms({ mount}));
+    dispatch(getPrograms());
     let endPoint = `/event/${url}/programs`;
-    if (search !== "") {
-      endPoint = `/event/${url}/programs?query=${search}`;
-    }
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
-      dispatch(setPrograms({data:objectToArray(res.data), labels:res.labels}));
-      if (mount) {
-        dispatch(incrementFetchLoadCount());
-      }
+      dispatch(setPrograms({data:res.data, labels:res.labels}));
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());
     }
