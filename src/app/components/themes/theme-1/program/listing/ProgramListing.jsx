@@ -72,7 +72,7 @@ const ProgramListing = ({programs, value, setValue}) => {
                   {program.map((item,i) =>(
                       item.workshop_id > 0  ? 
                       <WorkShop item={item} key={k} />:
-                      <ProgramItem item={item} key={k} />
+                      <ProgramItem program={item} key={k} />
                   ))}
                   
                 </div>
