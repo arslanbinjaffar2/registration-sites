@@ -31,55 +31,20 @@ const ProgramListing = (props) => {
     () => loadModule(event.theme.slug),
     [event]
   );
-  const { programs, totalPages, labels } = useSelector(programSelector);
-
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [value, setValue] = useState("");
+  const { programs, tracks, totalPages, labels } = useSelector(programSelector);
 
   useEffect(() => {
-    dispatch(fetchPrograms(eventUrl, page, search, initialMount.current, home));
-  }, [page, search])
-
-
-  useEffect(() => {
-    if (initialMount.current) {
-      dispatch(incrementLoadCount());
-      initialMount.current = false;
-      return;
+    if(programs === null){
+      dispatch(fetchPrograms(eventUrl));
     }
-    const handler = setTimeout(() => {
-      setSearch(value);
-      setPage(1);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value]);
-
-  useEffect(() => {
-    if (initialMount.current) {
-        dispatch(incrementLoadCount());
-        initialMount.current = false;
-        return;
-    }
-    const handler = setTimeout(() => {
-      setSearch(value);
-      setPage(1);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value]);
+  }, []);
 
 
   return (
     <Suspense fallback={<PageLoader/>}>
       {programs ? (
         <React.Fragment>
-          <Component programs={programs} setValue={setValue} value={value} />
+          <Component programs={programs} eventUrl={eventUrl} tracks={tracks}/>
         </React.Fragment>
       ) : <PageLoader/> }
     </Suspense>

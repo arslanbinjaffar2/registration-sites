@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import moment from 'moment'
-const ProgramItem = ({program}) => {
+import { Link } from 'react-router-dom';
+const ProgramItem = ({program, eventUrl}) => {
+    const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
   return (
     <div  className="ebs-program-child">
         <div className="row d-flex">
@@ -18,19 +20,22 @@ const ProgramItem = ({program}) => {
                     <span key={i} style={{backgroundColor: `${track.color ? track.color : '#000'}`}}>{track.name}</span>
                 ))}
             </div>}
-            {program.description && <div className='ebs-description' dangerouslySetInnerHTML={{__html: program.description}} />}
+            {program.description && <div className={`ebs-description ${!showText ? 'truncate' : ''}`}  dangerouslySetInnerHTML={{__html: program.description}} />}
+            {program.description.length > 450 && <div onClick={()=>{setShowText(!showText)}}>{showText ? 'Collapse' : 'Read More'}</div> }
 
             <div className="row d-flex ebs-program-speakers">
                 {program.program_speakers.map((speakers,o) =>
                 <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box">
+                   <Link to={`/${eventUrl}/speakers/${speakers.id}`}>
                     <img  src={
-                    speakers.image && speakers.image !== ""
+                        speakers.image && speakers.image !== ""
                         ? process.env.REACT_APP_EVENTCENTER_URL +
                         "/assets/attendees/" +
                         speakers.image
                         : require("img/user-placeholder.jpg")
                     } alt="" />
                     <h4>{speakers.first_name} {speakers.last_name}</h4>
+                    </Link>
                 </div>
                 )}
             </div>
