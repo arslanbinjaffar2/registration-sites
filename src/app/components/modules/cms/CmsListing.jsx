@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,21 +18,23 @@ const id = props.match.params.id;
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
+  
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]
-  );
-
-const informationModules = {
-  additional_information: "additional_info_menu",
-  general_information: "general_info_menu",
-  practicalinformation: "practical_info_menu",
-};
+    );
+    
+    const informationModules = {
+      additional_information: "additional_info_menu",
+      general_information: "general_info_menu",
+      practicalinformation: "practical_info_menu",
+    };
+    
 
   return (
     <Suspense fallback={<PageLoader/>}>
         <React.Fragment>
-          <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
+         <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />}
         </React.Fragment>
     </Suspense>
   );
