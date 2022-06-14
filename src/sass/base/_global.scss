@@ -989,6 +989,11 @@ body.woocommerce.woocommerce-page{
 	background-position: center 0px;
 	background-attachment: fixed;
 	overflow: hidden;
+  @include ipad-landscape {
+    background-position: center top !important;
+    background-attachment: scroll;
+		background-size: cover !important;
+  }
 
 	&.edgtf-vertical-middle-align{
 		display: table;

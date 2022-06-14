@@ -1,6 +1,12 @@
 import * as React from 'react';
 
 const PageLoader = ({ className, fixed, title, description }) => {
+    React.useEffect(() => {
+       setTimeout(() => {
+        window.scrollTo(0, 0);
+       }, 100);
+        
+    }, [])
     return (
         <div id="loader-wrapper" className={`${className ? className : ''} ${fixed && 'popup-fixed'}`}>
             {className ? (
