@@ -13,8 +13,8 @@ import {
 } from "react-share";
 const Variation1 = ({ event, news, sidebar }) => {
   return (
-    <div style={{ paddingTop: "80px" }} className="edgtf-container">
-      <div className="edgtf-container-inner">
+    <div style={{ padding: "80px 0" }} className="edgtf-container">
+      <div className="container">
         <div
           className={`${
             sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"
@@ -58,8 +58,9 @@ const Variation1 = ({ event, news, sidebar }) => {
                   </div>
                   <div className="edgtf-post-content">
                     {news.image && <div className="edgtf-post-image">
-                      <a itemProp="url" href="">
+                      <span className="gallery-img-wrapper-rectangle-2">
                         <img
+                          onLoad={(e) => e.target.style.opacity = 1}
                           src={
                             news.image && news.image !== ""
                               ? process.env.REACT_APP_EVENTCENTER_URL +
@@ -72,7 +73,7 @@ const Variation1 = ({ event, news, sidebar }) => {
                           width="1500"
                           height="500"
                         />
-                      </a>
+                      </span>
                     </div>}
                     <div className="edgtf-post-text">
                       <div className="edgtf-post-text-inner">

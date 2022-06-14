@@ -12,7 +12,7 @@ const options = [
 const MyBilling = () =>  {
   return (
     <div  className="edgtf-container ebs-my-profile-area pb-5">
-      <div className="edgtf-container-inner">
+      <div className="edgtf-container-inner container">
         <div className="ebs-header">
           <h2>My Billing</h2>
         </div>

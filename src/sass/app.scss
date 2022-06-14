@@ -2409,7 +2409,7 @@
   }
 }
 
-.gallery-img-wrapper-square {
+.gallery-img-wrapper-square,.gallery-img-wrapper-rectangle,.gallery-img-wrapper-rectangle-2 {
   position: relative;
   padding-bottom: 100%;
   display: block !important;
@@ -2426,23 +2426,17 @@
   }
 }
 .gallery-img-wrapper-rectangle {
-  position: relative;
   padding-bottom: 67%;
-  display: block !important;
   background-color: rgba($lightbackground,0.8);
   box-shadow: 0 0 3px rgba($black, 0.08) inset;
   cursor: pointer;
-  
-  img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    opacity: 0;
-    transition: opacity 0.3s linear;
-  }
+
+}
+.gallery-img-wrapper-rectangle-2 {
+  padding-bottom: 33.33%;
+  background-color: rgba($lightbackground,0.8);
+  box-shadow: 0 0 3px rgba($black, 0.08) inset;
+  border-radius: 3px;
 }
 
 .ebs-animation-layer {
