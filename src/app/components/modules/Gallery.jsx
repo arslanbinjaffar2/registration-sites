@@ -20,7 +20,7 @@ const loadModule = (theme, variation) => {
 const Gallery = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { photos, totalPages, labels } = useSelector(photoSelector);
+  const { photos, totalPages, labels, loading } = useSelector(photoSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
@@ -68,10 +68,11 @@ const Gallery = (props) => {
               <div className="container pb-5 p-0 pt-5 text-center">
                 <button
                   className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
-                  
+                  disabled={loading ? true : false}
                   onClick={(e) => onPageChange(page + 1)}
                 >
-                  Load More
+                  {event.labels.EVENTSITE_LOAD_MORE}
+                  {loading && <div class="spinner-border"></div>}
                 </button>
               </div>
             );}

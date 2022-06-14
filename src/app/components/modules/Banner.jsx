@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
 import moment from "moment";
 import {
   globalSelector,
@@ -42,7 +41,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner ? <Component banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? event.eventsiteSettings.registration_end_date: null} /> : null}
+      {banner ? <Component banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
     </Suspense>
   );
 };

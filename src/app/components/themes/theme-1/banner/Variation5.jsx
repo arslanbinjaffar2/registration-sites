@@ -8,7 +8,7 @@ const Variation5 = ({ banner, event, countdown }) => {
   return (
     <div className="main-slider-wrapper">
       {banner && (
-        <SliderBanner countdown={new Date(countdown)} >
+        <SliderBanner countdown={countdown} >
           {banner.map((slides, i) => (
             <div key={i} className="slide-wrapper">
               <div

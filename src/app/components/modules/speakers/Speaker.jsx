@@ -19,7 +19,7 @@ const loadModule = (theme, variation) => {
 const Speaker = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { speakers, totalPages, labels } = useSelector(speakerSelector);
+  const { speakers, totalPages, labels, loading } = useSelector(speakerSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
@@ -88,7 +88,8 @@ const Speaker = (props) => {
             if(page < totalPages){
             return (
               <div className="container pb-5 p-0 pt-5 text-center">
-                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color" onClick={(e)=>onPageChange(page + 1)}>Load More</button>
+                <button className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color" disabled={loading ? true : false} onClick={(e)=>onPageChange(page + 1)}>{event.labels.EVENTSITE_LOAD_MORE}
+                    {loading && <div class="spinner-border"></div>} </button>
               </div>
             )
             }

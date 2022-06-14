@@ -17,7 +17,7 @@ const loadModule = (theme, variation) => {
 const Attendee = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { attendees, labels, totalPages } =
+  const { attendees, labels, loading, totalPages } =
     useSelector(attendeeSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
@@ -94,8 +94,10 @@ const Attendee = (props) => {
                   <button
                     className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
                     onClick={(e) => onPageChange(page + 1)}
+                    disabled={loading ? true : false}
                   >
-                    Load More
+                    {event.labels.EVENTSITE_LOAD_MORE}
+                    {loading && <div class="spinner-border"></div>}
                   </button>
                 </div>)
                 }

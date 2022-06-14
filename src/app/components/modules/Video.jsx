@@ -20,7 +20,7 @@ const loadModule = (theme, variation) => {
 const Video = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { videos, totalPages, labels } = useSelector(videoSelector);
+  const { videos, totalPages, loading, labels } = useSelector(videoSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
@@ -71,7 +71,8 @@ const Video = (props) => {
                   disabled={page > totalPages ? true : false}
                   onClick={(e) => onPageChange(page + 1)}
                 >
-                  Load More
+                  {event.labels.EVENTSITE_LOAD_MORE}
+                  {loading && <div class="spinner-border"></div>}
                 </button>
               </div>
             );}
