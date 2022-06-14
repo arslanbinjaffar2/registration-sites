@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import HeadingElement from "@/ui-components/HeadingElement";
 import { Link } from "react-router-dom";
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
@@ -20,6 +20,15 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
 
     console.log(crumb)
   }
+
+  useEffect(() => {
+    setBreadCrumbs(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
+    setCmsListing(getListing(listing, menu_id));
+    setCurrentMenu(menu_id);
+    
+  }, [listing, breadCrumbData, eventSiteModuleName, menu_id])
+  
+
   return (
     <div style={{padding: "80px 0",}}
       className="edgtf-parallax-section-holder">
