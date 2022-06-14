@@ -1,4 +1,5 @@
 .edgtf-grid,
+// .edgtf-container-inner,
 .edgtf-grid-section .edgtf-section-inner,
 .edgtf-slider .carousel-inner .edgtf-slider-content-outer{
 
@@ -34,6 +35,7 @@
 //vertical menu responsive
 
 .edgtf-header-vertical .edgtf-grid,
+// .edgtf-header-vertical .edgtf-container-inner,
 .edgtf-header-vertical .edgtf-grid-section .edgtf-section-inner,
 .edgtf-header-vertical .edgtf-slider .carousel-inner .edgtf-slider-content-outer{
 	@include vertical-menu-laptop-wide-landscape {
@@ -51,6 +53,7 @@
 }
 
 .edgtf-boxed .edgtf-grid,
+// .edgtf-boxed .edgtf-container-inner,
 .edgtf-boxed .edgtf-grid-section .edgtf-section-inner,
 .edgtf-boxed .edgtf-slider .carousel-inner .edgtf-slider-content-outer{
 
