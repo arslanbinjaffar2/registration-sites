@@ -35,7 +35,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
       };
   return (
     <div style={{backgroundImage: `url(${_bgimage})`,padding: "100px 0",}}
-      className="edgtf-parallax-section-holder"
+      className="edgtf-parallax-section-holder ebs-bg-holder"
       ref={_parallax}>
       <div className="container">
         <HeadingElement dark={true} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />

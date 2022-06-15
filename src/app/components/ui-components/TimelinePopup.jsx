@@ -28,17 +28,21 @@ const TimelinePopup =  ({width, onClick, data}) => {
 											}
 											{data.video > 0 && <div className="video"><i className="material-icons">play_circle</i> {data.video}</div>}
 									</div>
-											{data.description && <div dangerouslySetInnerHTML={{__html: data.description}} />}
+											{data.description && <div style={{padding: '20px 0' }} dangerouslySetInnerHTML={{__html: data.description}} />}
 										{data.program_speakers.length > 0 && <div className="row d-flex ebs-program-speakers">
 											{data.program_speakers.map((speakers,i)=>
-											<div key={i} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box">
-												<img  src={
-														speakers.image && speakers.image !== ""
-														? process.env.REACT_APP_EVENTCENTER_URL +
-														"/assets/attendees/" +
-														speakers.image
-														: require("img/user-placeholder.jpg")
-													} alt="" />
+											<div key={i} style={{animationDelay: 50*i+'ms'}} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
+												<span className="gallery-img-wrapper-square">
+                        <img  
+												onLoad={(e) => e.target.style.opacity = 1}
+												src={
+                            speakers.image && speakers.image !== ""
+                            ? process.env.REACT_APP_EVENTCENTER_URL +
+                            "/assets/attendees/" +
+                            speakers.image
+                            : require("img/user-placeholder.jpg")
+                        } alt="" />
+												</span>
 												<h4>{speakers.first_name} {speakers.last_name}</h4>
 													{speakers.info && <p>{speakers.info.title}</p>}
 											</div>)}

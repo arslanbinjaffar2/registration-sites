@@ -377,16 +377,26 @@ const  currentTimerBar = (data) => {
     }
   }
 };
+function random_rgba() {
+  var o = Math.round, r = Math.random, s = 255;
+  return  o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s);
+}
 const DataItem = ({  items, program_setting, onClick }) => {
   const startTime = moment(items.start_time, 'HH:mm')
   const endTime = moment(items.end_time, 'HH:mm')
   const _time = moment.duration(startTime.diff(moment('00:00', 'HH:mm')));
   const hours = _time.asHours();
+  const randomColor = random_rgba();
+  const styleWorkshop = items.program_workshop ? {
+    backgroundColor:`rgba(${randomColor},0.3)`,
+    borderLeftColor : `rgba(${randomColor},1)`,
+
+  } : {};
   const eventduration = moment.duration(endTime.diff(startTime));
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
   return (
-    <div title={items.topic} onClick={() => onClick(items)} style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
+    <div  title={items.topic} onClick={() => onClick(items)} style={{ ...styleWorkshop,left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
       {items.program_workshop  && <div className="workkshop-box">{items.program_workshop}</div>}
       <div className="title">{items.topic}</div>
       {items.tracks && <div className="tracks">

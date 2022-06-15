@@ -27,7 +27,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
         backgroundImage: `url(${_bgimage})`,
         padding: "50px 0",
       }}
-      className="edgtf-parallax-section-holder"
+      className="edgtf-parallax-section-holder ebs-bg-holder"
       ref={_parallax}
     >
       <div className="container">

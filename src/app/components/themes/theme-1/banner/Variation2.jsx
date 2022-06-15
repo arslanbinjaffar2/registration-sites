@@ -78,7 +78,7 @@ const Variation2 = ({ banner }) => {
                 : require("img/h1-parallax1.jpg")
             })`,
           }}
-          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box"
+          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
           <div className="container">
             <div className="row d-flex">

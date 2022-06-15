@@ -12,6 +12,10 @@
             display: table-cell;
             width: 50%;
             vertical-align:middle;
+            @include ipad-portrait {
+				width: 100%;
+				display: block;
+			}
         }
 
         .edgtf-post-text-inner{
@@ -55,6 +59,10 @@
 
         .edgtf-post-text{
             padding:30px;
+            @include ipad-portrait {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
     }
 

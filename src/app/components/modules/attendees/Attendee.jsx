@@ -83,7 +83,7 @@ const Attendee = (props) => {
                       type="text"
                       onChange={(e) => setValue(e.target.value)}
                     />
-                      {!loading ? <em className="fa fa-search"></em> : <div class="spinner-border"></div>}
+                      {!loading ? <em className="fa fa-search"></em> : <em class="fa fa-pulse fa-spinner"></em>}
                   </div>
                 </div>
               );
@@ -97,7 +97,7 @@ const Attendee = (props) => {
                     disabled={loading ? true : false}
                   >
                     {event.labels.EVENTSITE_LOAD_MORE}
-                    {loading && <div class="spinner-border"></div>}
+                    {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} class="fa fa-pulse fa-spinner fa-2x"></em>}
                   </button>
                 </div>)
                 }

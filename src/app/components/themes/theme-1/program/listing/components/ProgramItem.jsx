@@ -25,18 +25,22 @@ const ProgramItem = ({program, eventUrl}) => {
 
             <div className="row d-flex ebs-program-speakers">
                 {program.program_speakers.map((speakers,o) =>
-                <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box">
-                   <Link to={`/${eventUrl}/speakers/${speakers.id}`}>
-                    <img  src={
-                        speakers.image && speakers.image !== ""
-                        ? process.env.REACT_APP_EVENTCENTER_URL +
-                        "/assets/attendees/" +
-                        speakers.image
-                        : require("img/user-placeholder.jpg")
-                    } alt="" />
-                    <h4>{speakers.first_name} {speakers.last_name}</h4>
-                    </Link>
-                </div>
+                    <div style={{animationDelay: 50*o+'ms'}} key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
+                    <Link to={`/${eventUrl}/speakers/${speakers.id}`}>
+											<span className="gallery-img-wrapper-square">
+                        <img  
+												onLoad={(e) => e.target.style.opacity = 1}
+												src={
+                            speakers.image && speakers.image !== ""
+                            ? process.env.REACT_APP_EVENTCENTER_URL +
+                            "/assets/attendees/" +
+                            speakers.image
+                            : require("img/user-placeholder.jpg")
+                        } alt="" />
+												</span>
+                        <h4>{speakers.first_name} {speakers.last_name}</h4>
+                        </Link>
+                    </div>
                 )}
             </div>
             </div>

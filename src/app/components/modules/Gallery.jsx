@@ -72,7 +72,7 @@ const Gallery = (props) => {
                   onClick={(e) => onPageChange(page + 1)}
                 >
                   {event.labels.EVENTSITE_LOAD_MORE}
-                  {loading && <div class="spinner-border"></div>}
+                  {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} class="fa fa-pulse fa-spinner fa-2x"></em>}
                 </button>
               </div>
             );}

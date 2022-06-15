@@ -52,7 +52,7 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder">
+				<div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
 					<div className="container">
 						<div className="row d-flex mb-5">
 							<div className="col-md-4">

@@ -2142,14 +2142,26 @@ $z-index:$back-to-top-size / 2;
 		padding-left: 28px;
 		padding-right: 60px;	
 	}
-	.fa-search {
+	.fa {
 		font-size: 22px;
 		position: absolute;
 		right: 18px;
 		top: 19px;
 	}
 }
-
+.ebs-bg-holder {
+	.ebs-form-control-search {
+		color: rgba($white,0.7);
+		::placeholder {
+			color: rgba($white, 0.6);
+		}
+		input[type="text"] {
+			background: rgba($white,0.3);
+			color: $white;
+			border-color: $white;
+		}
+	} 
+}
 #navbarSupportedContentFixedTheme {
 	position: fixed;
 	left: 0;

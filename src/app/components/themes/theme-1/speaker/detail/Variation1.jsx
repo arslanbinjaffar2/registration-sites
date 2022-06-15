@@ -6,7 +6,7 @@ const Variation1 = ({ speaker, moduleName}) => {
       <div
         style={{
           backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
-          height: 390,
+          minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
