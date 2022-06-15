@@ -34,7 +34,7 @@ const SpeakerDetail = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {speaker ? (
         <React.Fragment>
-          <Component  speaker={speaker} labels={labels} moduleName={event.eventsiteModules.speakers} />
+          <Component  speaker={speaker} labels={labels} moduleName={event.eventsiteModules.speakers} siteLabels={event.labels} eventUrl={eventUrl} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : <PageLoader/>} 
     </Suspense>

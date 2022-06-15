@@ -1,6 +1,8 @@
 import React from "react";
+import ProgramItem from "../../program/components/ProgramItem";
+import WorkShop from "../../program/components/WorkShop";
 
-const Variation1 = ({ speaker, moduleName}) => {
+const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop}) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div
@@ -174,13 +176,22 @@ const Variation1 = ({ speaker, moduleName}) => {
       </div>
       <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
-          <div className="edgtf-title-section-holder pb-1">
+          <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
             <h2 className="edgtf-title-with-dots edgtf-appeared">Programes</h2>
             <span className="edge-title-separator edge-enable-separator"></span>
-            <h6>
-              Reminder for developer: Needed to implement programme sections
-              variations
-            </h6>
+          <div className="ebs-main-program-listing">
+
+            {speaker.programs && Object.keys(speaker.programs).map((key ,k ) => (
+                <div className="ebs-program-parent" key={k}>
+                  {speaker.programs[key][0] && <div className="ebs-date-border">{speaker.programs[key][0].heading_date}</div>}
+                    {speaker.programs[key].map((item, i)=>
+                          item.workshop_id > 0 ? 
+                          <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+                    
+                    )}
+                </div>
+            ))}
+            </div>
           </div>
         </div>
       </div>
