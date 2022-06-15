@@ -386,7 +386,8 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
   const endTime = moment(items.end_time, 'HH:mm')
   const _time = moment.duration(startTime.diff(moment('00:00', 'HH:mm')));
   const hours = _time.asHours();
-  const randomColor = random_rgba();
+  // const randomColor = random_rgba();
+  const randomColor = '84, 192, 159';
   const styleWorkshop = items.program_workshop ? {
     backgroundColor:`rgba(${randomColor},0.3)`,
     borderLeftColor : `rgba(${randomColor},1)`,
