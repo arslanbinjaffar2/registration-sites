@@ -92,7 +92,7 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                     speaker.info.company_name}
                                 </div>
                               )}
-                               <div className="ebs-border-wrapp">
+                               {listing && <div className="ebs-border-wrapp">
                             {speaker.email && listing && (
                               <div className="ebs-email-phone">
                                 <a
@@ -113,7 +113,7 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings })
                                 </a>
                               </div>
                             )}
-                          </div>
+                          </div>}
                           </div>
                           {listing &&
                             speaker.info &&
