@@ -53,7 +53,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
-    <div style={{opacity: 0}} ref={element} data-fixed="true" className="ebs-transparent-box">
+    <div style={{opacity: 0}} ref={element} data-fixed="false" className="ebs-transparent-box">
     <div
       style={{
         backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,

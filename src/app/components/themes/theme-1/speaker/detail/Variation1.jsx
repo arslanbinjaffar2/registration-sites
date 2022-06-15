@@ -2,7 +2,7 @@ import React from "react";
 
 const Variation1 = ({ speaker, moduleName}) => {
   return (
-    <div data-fixed="true" className="ebs-transparent-box">
+    <div data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
           backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,

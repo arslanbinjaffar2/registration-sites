@@ -31,6 +31,21 @@ class Variation2 extends React.Component {
     window.removeEventListener("resize", this.handleResize.bind(this));
     // window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
+  componentDidUpdate(prevProps, prevState) { 
+    if (prevProps !== this.props) {
+      document.getElementsByTagName('body')[0].classList.remove('un-scroll');
+      this.setState({ showMenu: false });
+      const _menubar = document.querySelectorAll(".navbar .dropdown-menu");
+      _menubar.forEach(element => {
+        element.style.display = 'none'
+      });
+      setTimeout(() => {
+        _menubar.forEach(element => {
+          element.style.display = 'block'
+        });
+      }, 0);
+    }
+  } 
   handleScroll = () => {
     const _app = document.getElementById("App");
     if (window.scrollY > 350) {
@@ -84,6 +99,17 @@ class Variation2 extends React.Component {
         _item.appendChild(_ul);
         document.querySelectorAll('#navbarSupportedContent .nav.navbar-nav')[0].appendChild(_item)
       }
+      const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
+      _nav.forEach(element => {
+        if (element.childNodes[1]) {
+          const _arrow = document.createElement("em");
+          _arrow.classList.add('fa');
+          _arrow.classList.add('fa-chevron-down');
+          _arrow.classList.add('ebs-menu-arrow');
+          element.classList.add('has-drop-down');
+          element.childNodes[0].appendChild(_arrow);
+        }
+      });
     }
 	}
   render() {
@@ -94,7 +120,7 @@ class Variation2 extends React.Component {
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-12 col-6">
-              <div className="ebs-logo-main">
+              <div className="ebs-logo-main center">
                 <Link to={`/${event.url}`}>
                   {event.settings && event.settings.header_logo ? (
                     <img

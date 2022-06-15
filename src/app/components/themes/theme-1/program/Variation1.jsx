@@ -40,41 +40,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const settings = {
-  dots: false,
-  speed: 500,
-  slidesToScroll: 1,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
-  centerMode: true,
-  infinite: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 5,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 2,
-        initialSlide: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
-      }
-    }
-  ]
-};
+
 const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) => {
   const [schedule, setSchedule] = useState(Object.keys(programs));
   const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]]);
@@ -96,6 +62,44 @@ const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) =>
  setProgramsLoc(programsObj);
 }, [selectedDate, selectedTrack]);
 
+const settings = {
+  dots: false,
+  speed: 500,
+  slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+  centerMode: false,
+  infinite: false,
+  slidesToShow: schedule.length >= 7 ? 7 : schedule.length,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: schedule.length >= 5 ? 5 : schedule.length,
+        slidesToScroll: 3,
+        infinite: false,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: schedule.length >= 3 ? 3 : schedule.length,
+        slidesToScroll: 2,
+        initialSlide: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: schedule.length >= 2 ? 2 : schedule.length,
+        slidesToScroll: 2,
+        arrows: false,
+      }
+    }
+  ]
+};
+console.log(schedule.length);
   return (
     <React.Fragment>
       {programsLoc && (
@@ -130,7 +134,7 @@ const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) =>
         </div>
         <div className="container">
           <div className="ebs-programs-date">
-            <Slider {...{'slidesToShow': schedule.length > 7 ? 7 : schedule.length ,...settings}}>
+            <Slider {...settings}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
                 <a href="#!">{moment(date).format('Do MMMM')}</a>

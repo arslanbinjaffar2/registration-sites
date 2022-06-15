@@ -4,7 +4,7 @@ const PageLoader = ({ className, fixed, title, description }) => {
     React.useEffect(() => {
        setTimeout(() => {
         window.scrollTo(0, 0);
-       }, 100);
+       }, 50);
         
     }, [])
     return (
