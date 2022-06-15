@@ -43,12 +43,11 @@ const customStyles = {
 const settings = {
   dots: false,
   speed: 500,
-  slidesToShow: 7,
   slidesToScroll: 1,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
   centerMode: true,
-  infinite: true,
+  infinite: false,
   responsive: [
     {
       breakpoint: 1024,
@@ -131,16 +130,13 @@ const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) =>
         </div>
         <div className="container">
           <div className="ebs-programs-date">
-            <Slider {...settings}>
+            <Slider {...{'slidesToShow': schedule.length > 7 ? 7 : schedule.length ,...settings}}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
                 <a href="#!">{moment(date).format('Do MMMM')}</a>
               </div>
               )}
-              <div  className={`ebs-date-box`}>
-                <a href="#!">1 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
+              {/* <div  className={`ebs-date-box`}>
                 <a href="#!">2 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
@@ -160,7 +156,7 @@ const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) =>
               </div>
               <div  className={`ebs-date-box`}>
                 <a href="#!">8 Oct</a>
-              </div>
+              </div> */}
             </Slider>
           </div>
           <div className="ebs-main-program-listing">
