@@ -15,9 +15,9 @@ const TimelinePopup =  ({width, onClick, data}) => {
                 <span onClick={onClick} className="ebs-close-link"><i className="material-icons">close</i></span>
                 <div className="ebs-popup-inner ebs-popup-timeline">
 									{data.program_workshop && <h4 className="workkshop-box">{data.program_workshop}</h4>}
-									<div className="title">{data.name}</div>
-									{data.tracks && <div className="tracks">
-										{data.tracks.map((track, k) =>
+									<div className="title">{data.topic}</div>
+									{data.program_tracks && <div className="tracks">
+										{data.program_tracks.map((track, k) =>
 											<span style={{backgroundColor: `${track.color ? track.color: '#000'}`}} key={k}>{track.name}</span>
 											)}
 									</div>}

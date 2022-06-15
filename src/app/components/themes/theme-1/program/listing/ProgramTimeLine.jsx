@@ -381,7 +381,7 @@ function random_rgba() {
   var o = Math.round, r = Math.random, s = 255;
   return  o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s);
 }
-const DataItem = ({  items, program_setting, onClick }) => {
+const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
   const startTime = moment(items.start_time, 'HH:mm')
   const endTime = moment(items.end_time, 'HH:mm')
   const _time = moment.duration(startTime.diff(moment('00:00', 'HH:mm')));
@@ -395,13 +395,15 @@ const DataItem = ({  items, program_setting, onClick }) => {
   const eventduration = moment.duration(endTime.diff(startTime));
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
+  console.log(showWorkshop);
   return (
-    <div  title={items.topic} onClick={() => onClick(items)} style={{ ...styleWorkshop,left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
-      {items.program_workshop  && <div className="workkshop-box">{items.program_workshop}</div>}
+    <React.Fragment>
+    {items.program_workshop  && showWorkshop && <div className="workkshop-box ebs-workshop" style={{ left: (hours * _multiplyer)+15, width: _wrappWidth, position:'absolute', top:"-10px" }} >{items.program_workshop}</div>}
+    <div title={items.topic} onClick={() => onClick(items)} style={{ ...styleWorkshop,left: (hours * _multiplyer)+15, width: _wrappWidth, top:`${(items.program_workshop  && showWorkshop) ? '12px' : null }` }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
       <div className="title">{items.topic}</div>
-      {items.tracks && <div className="tracks">
-        {items.tracks.map((track, k) =>
-          <span style={{backgroundColor: '#6B3182'}} key={k}>{track.name}</span>
+      {items.program_tracks && <div className="tracks">
+        {items.program_tracks.map((track, k) =>
+          <span style={{backgroundColor: track.color ? track.color : '#000'}} key={k}>{track.name}</span>
         )}
       </div>}
       <div className="ebs-bottom-wrapp">
@@ -415,6 +417,8 @@ const DataItem = ({  items, program_setting, onClick }) => {
         </div>
       </div>
     </div>
+    </React.Fragment>
+
   )
 }
 
@@ -422,6 +426,9 @@ const TimelineContent = ({ data, program_setting }) => {
   const _width = 24 * _multiplyer;
   const [popup, setPopup] = useState(false);
   const [popupdata, setPopupData] = useState(null);
+  // const [shownWorkshop, setShownWorkshop] = useState([]);
+  // const [first, setfirst] = useState(false);
+  var workshopShowns = [];
   useEffect(() => {
     const container = document.getElementById('timelindeschdle');
 
@@ -439,7 +446,6 @@ const TimelineContent = ({ data, program_setting }) => {
   }, [])
   
   const handleClick = (data) => {
-    console.log(data);
     if (!isActive) {
       setPopup(!popup);
       setPopupData(data);
@@ -469,6 +475,7 @@ const TimelineContent = ({ data, program_setting }) => {
       container.scrollLeft = scrollLeft - walkX;
     }
   }
+
   return (
     <React.Fragment>
       {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
@@ -477,15 +484,22 @@ const TimelineContent = ({ data, program_setting }) => {
           <div id="currentTimeline" />
           <TimelineHeader />
           <div id="timelinecontent">
-            {data && data.program_array.map((items, k) => (
-              <React.Fragment key={k}>
+            {data && data.program_array.map((items, k) =>(
+            <React.Fragment key={k}>
                 <div className="datarow">
-                  {items.map((item, key) => (
-                      <DataItem onClick={(data) => {handleClick(data)}} key={key} items={item} program_setting={program_setting} />
-                    ))}
+                  {items.map((item, key) => {
+                          var showWorkshop = false;
+                          if(item.workshop_id > 0) {
+                            if(!workshopShowns.includes(item.workshop_id)){
+                              workshopShowns.push(item.workshop_id);
+                              showWorkshop = true;
+                            }
+                          }
+                     return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
+                  })}
                 </div>
-              </React.Fragment>
-            ))}
+              </React.Fragment>)
+            )}
           </div>
         </div>
       </div>
@@ -502,7 +516,7 @@ const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, 
     const [selectedTrack, setSelectedTrack] = useState(null);
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
-            return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop}))];
+            return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
         }
         ack.push(program);
         return ack;
@@ -519,7 +533,7 @@ const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, 
     useEffect(() => {
          let programsObj = programs[selectedDate.value].reduce((ack, program)=>{
             if(program.workshop_id > 0){
-                return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop}))];
+                return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
             }
             ack.push(program);
             return ack;
@@ -605,17 +619,7 @@ const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, 
                     <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
                     <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
                   </div>
-                  {console.log(itemSorting(data.data))}
-                  {console.log(itemSorting({
-                        "program_array": programsLoc,
-                        "program_tracks": tracks,
-                        "program_setting": agendaSettings,
-                        "schedules": schedule,
-                        "current_date": currentDate,
-                        "selected_date": selectedDate,
-                        "current_time": currentTime
-
-                    }))}
+                 
 					<TimelineContent  data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
@@ -625,7 +629,7 @@ const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, 
                         "selected_date": selectedDate,
                         "current_time": currentTime
 
-                    })} program_setting={data.data.program_setting} />
+                    })} program_setting={agendaSettings} />
 				</div>
            </div>
        </div>

@@ -1,10 +1,11 @@
 import moment from "moment";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactSelect from 'react-select';
 import Slider from "react-slick";
 import HeadingElement from "@/ui-components/HeadingElement";
-
+import ProgramItem from "./components/ProgramItem";
+import WorkShop from "./components/WorkShop";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -75,11 +76,30 @@ const settings = {
     }
   ]
 };
-const Variation1 = ({ programs }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) => {
+  const [schedule, setSchedule] = useState(Object.keys(programs));
+  const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]]);
+  const [selectedDate, setSelectedDate] = useState(schedule[0]);
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+  const onDateChange = (date)=>{
+    setSelectedDate(date);
+  }
+  const onTrackChange = (track) =>{
+    setSelectedTrack(track);
+  }
+  useEffect(() => {
+    let programsObj = programs[selectedDate];
+    if(selectedTrack !== null && selectedTrack.value !== 0){
+      programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
+    }
+ 
+ setProgramsLoc(programsObj);
+}, [selectedDate, selectedTrack]);
+
   return (
     <React.Fragment>
-      {programs && (
+      {programsLoc && (
         <div data-fixed="false" style={{ padding: "80px 0" }} className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
@@ -97,11 +117,9 @@ const Variation1 = ({ programs }) => {
                     styles={customStyles}
                     placeholder="Select track"
                     components={{ IndicatorSeparator: null }}
-                    options={[
-                      { value: '24-12-2022', label: '24-12-2022' },
-                      { value: '25-12-2022', label: '25-12-2022' },
-                      { value: '26-12-2022', label: '26-12-2022' },
-                    ]}
+                    onChange={(track)=>{onTrackChange(track)}}
+                    value={selectedTrack}
+                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                   />
                 </div>
                 <div className="col-md-5 col-6">
@@ -114,120 +132,84 @@ const Variation1 = ({ programs }) => {
         <div className="container">
           <div className="ebs-programs-date">
             <Slider {...settings}>
-              <div className="ebs-date-box ebs-active">
+              {schedule && schedule.map((date,j)=>
+              <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
+                <a href="#!">{moment(date).format('Do MMMM')}</a>
+              </div>
+              )}
+              <div  className={`ebs-date-box`}>
                 <a href="#!">1 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">2 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">3 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">4 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">5 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">6 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">7 Oct</a>
               </div>
-              <div className="ebs-date-box">
+              <div  className={`ebs-date-box`}>
                 <a href="#!">8 Oct</a>
               </div>
             </Slider>
           </div>
           <div className="ebs-main-program-listing">
-            {programs && programs.map((item,k) =>
-              <div key={k} className="ebs-program-parent">
-                {item.map((list,i) =>
-                <div key={i} className="ebs-program-child">
-                  <div className="row d-flex">
-                    <div className="col-lg-2">
-                      {!list.hide_time && <div className='ebs-program-date'>{moment(new Date(`${list.date} ${list.start_time}`)).format('HH:mm')} - {moment(new Date(`${list.date} ${list.end_time}`)).format('HH:mm')}</div>}
-                    </div>
-                    <div className="col-lg-10">
-                      <div className="ebs-program-content">
-                        {list.topic && <h3>{list.topic}</h3>}
-                        {list.location && <div className="ebs-program-location">
-                          <i className="fa fa-map-marker"/> {list.location}
-                        </div>}
-                        <div className="ebs-tracks-program">
-                          <span style={{backgroundColor: '#D69417'}}>TOMORROW’S SECURITY THREATS</span>
-                          <span style={{backgroundColor: '#278D1F'}}>TOMORROW’S SECURITY THREATS IN COUNTRY 87</span>
-                        </div>
-                        {list.description && <div className='ebs-description' dangerouslySetInnerHTML={{__html: list.description}} />}
-
-                        <div className="row d-flex ebs-program-speakers">
-                          {list.program_speakers.map((speakers,o) =>
-                            <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box">
-                              <img  src={
-                                speakers.image && speakers.image !== ""
-                                  ? process.env.REACT_APP_EVENTCENTER_URL +
-                                    "/assets/attendees/" +
-                                    speakers.image
-                                  : require("img/user-placeholder.jpg")
-                              } alt="" />
-                              <h4>{speakers.first_name} {speakers.last_name}</h4>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div  className="ebs-program-parent">
+                {programsLoc && programsLoc.map((item,i) =>
+                      item.workshop_id > 0  ? 
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} />:
+                      <ProgramItem program={item} key={i} eventUrl={eventUrl} />
                 )}
-                <div className="ebs-program-parent ebs-program-workshop">
-                  <div className="ebs-workshop-header">Morning Sessions  ( 10:30 - 12:00 ) <i className="material-icons">expand_more</i></div>
-                  {item.map((list,i) =>
-                  <div key={i} className="ebs-program-child">
-                    <div className="row d-flex">
-                      <div className="col-lg-2">
-                        {!list.hide_time && <div className='ebs-program-date'>{moment(new Date(`${list.date} ${list.start_time}`)).format('HH:mm')} - {moment(new Date(`${list.date} ${list.end_time}`)).format('HH:mm')}</div>}
-                      </div>
-                      <div className="col-lg-10">
-                        <div className="ebs-program-content">
-                          {list.topic && <h3>{list.topic}</h3>}
-                          {list.location && <div className="ebs-program-location">
-                            <i className="fa fa-map-marker"/> {list.location}
-                          </div>}
-                          <div className="ebs-tracks-program">
-                            <span style={{backgroundColor: '#D69417'}}>TOMORROW’S SECURITY THREATS</span>
-                            <span style={{backgroundColor: '#278D1F'}}>TOMORROW’S SECURITY THREATS IN COUNTRY 87</span>
-                          </div>
-                          {list.description && <div className='ebs-description' dangerouslySetInnerHTML={{__html: list.description}} />}
-
-                          <div className="row d-flex ebs-program-speakers">
-                            {list.program_speakers.map((speakers,o) =>
-                              <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box">
-                                <img  src={
-                                  speakers.image && speakers.image !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
-                                      "/assets/attendees/" +
-                                      speakers.image
-                                    : require("img/user-placeholder.jpg")
-                                } alt="" />
-                                <h4>{speakers.first_name} {speakers.last_name}</h4>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  )}
-                </div>
               </div>
-            )}
           </div>
         </div>
     </div>
-      )}
+    )} 
     </React.Fragment>
   );
 };
 
 export default Variation1;
+
+const getProgramsByTrack = (programs, track) =>{
+    const items = programs.reduce((ack, program)=>{
+                        if(program.workshop_id > 0){
+                          const find = worshopProgramsByTracks(program.workshop_programs, track);
+                          if(find.length > 0){
+                            ack.push({...program, 'workshop_programs': find });
+                          }
+                        }
+                        else if(program.program_tracks.length > 0){
+                          const find = program.program_tracks.find((item)=>(item.name === track));
+                          if(find !== null && find !== undefined){
+                              ack.push(program);
+                          }
+                        }  
+                        return ack;         
+                  }, []);
+  return items;
+}
+
+const worshopProgramsByTracks = (programs, track) => {
+    const items = programs.reduce((ack, program)=>{
+      if(program.program_tracks.length > 0){
+        const find = program.program_tracks.find((item)=>(item.name === track));
+        console.log(program.program_tracks.find((item)=>(item.name === track)));
+        if(find !== null && find !== undefined){
+            ack.push(program);
+        }
+      }  
+      return ack;         
+  }, []);
+  return items
+}

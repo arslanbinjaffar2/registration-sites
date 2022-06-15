@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HeadingElement from "@/ui-components/HeadingElement";
-import ProgramItem from './components/ProgramItem';
-import WorkShop from './components/WorkShop';
+import ProgramItem from '../components/ProgramItem';
+import WorkShop from '../components/WorkShop';
 import ReactSelect from 'react-select';
 const customStyles = {
   control: base => ({

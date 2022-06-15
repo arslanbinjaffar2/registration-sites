@@ -6,7 +6,7 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { programSelector, fetchPrograms } from "store/Slices/ProgramListingSlice";
+import { programListingSelector, fetchPrograms } from "store/Slices/ProgramListingSlice";
 
 import { withRouter } from "react-router";
 const in_array = require("in_array");
@@ -32,7 +32,7 @@ const ProgramListing = (props) => {
     () => loadModule(event.theme.slug, event.agenda_settings.program_view),
     [event]
   );
-  const { programs, tracks, totalPages, labels } = useSelector(programSelector);
+  const { programs, tracks, totalPages, labels } = useSelector(programListingSelector);
 
   useEffect(() => {
     if(programs === null){

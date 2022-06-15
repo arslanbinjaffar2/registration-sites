@@ -28,6 +28,7 @@ import cmsDetailReducer from "./Slices/CmsDetailSlice";
 import photoReducer from "./Slices/PhotoSlice";
 import videoReducer from "./Slices/VideoSlice";
 import programListingReducer from "./Slices/ProgramListingSlice";
+import programReducer from "./Slices/ProgramSlice";
 import { programApi } from "./services/program";
 import { attendeeProgramApi } from "./services/attendeePrograms";
 export const store = configureStore({
@@ -59,7 +60,8 @@ export const store = configureStore({
     cmsDetail: cmsDetailReducer,
     photo: photoReducer,
     video: videoReducer,
-    program: programListingReducer,
+    programListing: programListingReducer,
+    program: programReducer,
     // [programApi.reducerPath]: programApi.reducer,
     [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
   },
