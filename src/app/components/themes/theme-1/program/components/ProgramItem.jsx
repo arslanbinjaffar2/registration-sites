@@ -20,8 +20,10 @@ const ProgramItem = ({program, eventUrl}) => {
                     <span key={i} style={{backgroundColor: `${track.color ? track.color : '#000'}`}}>{track.name}</span>
                 ))}
             </div>}
-            {program.description && <div className={`ebs-description ${!showText ? 'truncate' : ''}`}  dangerouslySetInnerHTML={{__html: program.description}} />}
-            {program.description.length > 450 && <div onClick={()=>{setShowText(!showText)}}>{showText ? 'Collapse' : 'Read More'}</div> }
+            {program.description && <div className="ebs-description">
+             <div className={`ebs-contain ${!showText ? 'truncate' : ''}`}  dangerouslySetInnerHTML={{__html: program.description}} />
+                {program.description.length > 450 && <span className='ebs-more' onClick={()=>{setShowText(!showText)}}>{showText ? 'Collapse' : 'Read More'}</span> }
+            </div>}
 
             <div className="row d-flex ebs-program-speakers">
                 {program.program_speakers.map((speakers,o) =>
