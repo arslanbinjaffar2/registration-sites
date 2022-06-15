@@ -47,7 +47,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
                 <article>
                   <div className="edgtf-post-content">
-                    {detail.image && (
+                    {detail.image && detail.image_position === 'top' && (
                       <div className="edgtf-post-image">
                         <a itemProp="url" href="">
                           <img
@@ -136,6 +136,25 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                         )}
                       </div>
                     </div>
+                    {detail.image && detail.image_position !== 'top' && (
+                      <div className="edgtf-post-image">
+                        <a itemProp="url" href="">
+                          <img
+                            src={
+                              detail.image && detail.image !== ""
+                                ? process.env.REACT_APP_EVENTCENTER_URL +
+                                  `/assets/${informationModules[moduleName]}/` +
+                                  detail.image
+                                : ""
+                            }
+                            className="attachment-full size-full wp-post-image"
+                            alt="a"
+                            width="1500"
+                            height="500"
+                          />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </article>
               </div>

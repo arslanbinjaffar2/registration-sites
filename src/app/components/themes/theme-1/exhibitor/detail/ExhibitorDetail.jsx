@@ -154,7 +154,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         </div>
       </div>
 
-      <div className="">
+      {exhibitor.exhibitors_attendee.length > 0 && <div className="">
         <div className="container">
           <h2 className="edgtf-title-with-dots edgtf-appeared">Contacts</h2>
           <div className="row d-flex ebs-program-speakers">
@@ -173,7 +173,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
             )}
           </div>
         </div>
-      </div>
+      </div>}
       {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">

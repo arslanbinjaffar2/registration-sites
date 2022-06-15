@@ -5,6 +5,8 @@ import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 import PageLoader from "@/ui-components/PageLoader";
+import LoadMoreButton from "@/ui-components/LoadMoreButton";
+import SearchBar from "@/ui-components/SearchBar";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -74,32 +76,11 @@ const Attendee = (props) => {
             settings={moduleVariation[0]}
             event={event}
             searchBar={() => {
-              return (
-                <div className={`container pb-5`}>
-                  <div className="ebs-form-control-search">
-                    <input
-                      className="form-control"
-                      placeholder={event.labels.EVENTSITE_GENERAL_SEARCH}
-                      type="text"
-                      onChange={(e) => setValue(e.target.value)}
-                    />
-                      {!loading ? <em className="fa fa-search"></em> : <em class="fa fa-pulse fa-spinner"></em>}
-                  </div>
-                </div>
-              );
+              return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setValue={(text)=>setValue(text)}  />;
             }}
             loadMore={() => {
                 if(page < totalPages){
-                  return (<div className="container pb-5 p-0 pt-5 text-center">
-                  <button
-                    className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
-                    onClick={(e) => onPageChange(page + 1)}
-                    disabled={loading ? true : false}
-                  >
-                    {event.labels.EVENTSITE_LOAD_MORE}
-                    {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} class="fa fa-pulse fa-spinner fa-2x"></em>}
-                  </button>
-                </div>)
+                  return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
                 }
             }}
           />

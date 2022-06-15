@@ -7,6 +7,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 import PageLoader from "@/ui-components/PageLoader";
+import LoadMoreButton from '@/ui-components/LoadMoreButton';
 
 const in_array = require("in_array");
 
@@ -63,19 +64,9 @@ const Video = (props) => {
         <div>
           <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} eventUrl={eventUrl}
           loadMore={() => {
-            if(page < totalPages)
-            {return (
-              <div className="container pb-5 p-0 pt-5 text-center">
-                <button
-                  className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
-                  disabled={page > totalPages ? true : false}
-                  onClick={(e) => onPageChange(page + 1)}
-                >
-                  {event.labels.EVENTSITE_LOAD_MORE}
-                  {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} class="fa fa-pulse fa-spinner fa-2x"></em>}
-                </button>
-              </div>
-            );}
+            if(page < totalPages){
+              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+            }
           }}
           />
         </div>

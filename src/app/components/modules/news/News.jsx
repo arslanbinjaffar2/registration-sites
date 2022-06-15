@@ -4,6 +4,7 @@ import { newsSelector, fetchNews } from "store/Slices/NewsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 import PageLoader from "@/ui-components/PageLoader";
+import LoadMoreButton from '@/ui-components/LoadMoreButton';
 
 const in_array = require("in_array");
 
@@ -17,7 +18,7 @@ const loadModule = (theme, variation) => {
 const News = (props) => {
   const initialMount = useRef(true);
   const { event } = useSelector(eventSelector);
-  const { news, totalPages, labels } = useSelector(newsSelector);
+  const { news, totalPages, labels, loading } = useSelector(newsSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
@@ -61,17 +62,9 @@ const News = (props) => {
           event_url={eventUrl}
           makeNewDetailURL={makeNewDetailURL}
           loadMore={() => {
-            return (
-              <div className="container pb-5 p-0 pt-5 text-center">
-                <button
-                  className={`edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color ${page >= totalPages ? 'disabled' : null}`}
-                  disabled={page >= totalPages ? true : false}
-                  onClick={(e) => onPageChange(page + 1)}
-                >
-                  Load More
-                </button>
-              </div>
-            );
+            if(page < totalPages){
+              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+            }
           }}
         />
       ) : <PageLoader/>}

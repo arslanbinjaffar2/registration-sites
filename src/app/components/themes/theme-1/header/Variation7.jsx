@@ -288,6 +288,16 @@ class Variation7 extends React.Component {
                                     <ul className="dropdown-menu">
                                       {pItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
+                                          {subitem.page_type &&
+                                            subitem.page_type === 2 ? (
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
+                                                {subitem.info.name}
+                                              </a>
+                                            ) : (
                                           <NavLink
                                             aria-current="page"
                                             className="nav-link"
@@ -303,6 +313,7 @@ class Variation7 extends React.Component {
                                           >
                                             {subitem.info.name}
                                           </NavLink>
+                                          )}
                                         </li>
                                       ))}
                                     </ul>
@@ -354,6 +365,17 @@ class Variation7 extends React.Component {
                                     <ul className="dropdown-menu">
                                       {aItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
+                                          { subitem.page_type && subitem.page_type === 2 ? 
+                                          (
+                                          <a
+                                            className="nav-link"
+                                            aria-current="page"
+                                            href={`${subitem.website_protocol}${subitem.url}`}
+                                          >
+                                            {subitem.info.name}
+                                          </a>
+                                          ) :
+                                          (
                                           <NavLink
                                             aria-current="page"
                                             className="nav-link"
@@ -369,6 +391,7 @@ class Variation7 extends React.Component {
                                           >
                                             {subitem.info.name}
                                           </NavLink>
+                                          )}
                                         </li>
                                       ))}
                                     </ul>
@@ -420,6 +443,16 @@ class Variation7 extends React.Component {
                                     <ul className="dropdown-menu">
                                       {gItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
+                                          {subitem.page_type &&
+                                            subitem.page_type === 2 ? (
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
+                                                {subitem.info.name}
+                                              </a>
+                                            ) : (
                                           <NavLink
                                             aria-current="page"
                                             className="nav-link"
@@ -435,6 +468,7 @@ class Variation7 extends React.Component {
                                           >
                                             {subitem.info.name}
                                           </NavLink>
+                                          )}
                                         </li>
                                       ))}
                                     </ul>
