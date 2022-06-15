@@ -34,6 +34,15 @@ class Variation1 extends React.Component {
     if (prevProps !== this.props) {
       document.getElementsByTagName('body')[0].classList.remove('un-scroll');
       this.setState({ showMenu: false });
+      const _menubar = document.querySelectorAll(".navbar .dropdown-menu");
+      _menubar.forEach(element => {
+        element.style.display = 'none'
+      });
+      setTimeout(() => {
+        _menubar.forEach(element => {
+          element.style.display = 'block'
+        });
+      }, 0);
     }
   } 
   handleScroll = () => {
@@ -74,11 +83,10 @@ class Variation1 extends React.Component {
       var _total = 0;
       var _element = false;
       const _container = document.getElementById("navbarSupportedContent");
-      const _list = document.querySelectorAll(
-        "#navbarSupportedContent .nav.navbar-nav > li"
-      );
+      const _list = document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav > li");
       const _item = document.createElement("li");
       const _itemancor = document.createElement("span");
+
       _itemancor.classList.add("nav-link");
       const textnode = document.createTextNode("More");
       const _ul = document.createElement("ul");
@@ -97,10 +105,19 @@ class Variation1 extends React.Component {
       });
       if (_element) {
         _item.appendChild(_ul);
-        document
-          .querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0]
-          .appendChild(_item);
+        document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0].appendChild(_item);
       }
+      const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
+      _nav.forEach(element => {
+        if (element.childNodes[1]) {
+          const _arrow = document.createElement("em");
+          _arrow.classList.add('fa');
+          _arrow.classList.add('fa-chevron-down');
+          _arrow.classList.add('ebs-menu-arrow');
+          element.classList.add('has-drop-down');
+          element.childNodes[0].appendChild(_arrow);
+        }
+      });
     }
   };
   render() {

@@ -35,9 +35,14 @@ class Variation7 extends React.Component {
         document.getElementById("ebs-header-master").classList.remove('ebs-fixed-header');
         document.getElementById("ebs-header-master").classList.remove('ebs-light-header');
         if (window.innerWidth >= 991) {
-          document.querySelectorAll(".navbar .dropdown-menu")[0].style.display= 'none';
+          const _menubar = document.querySelectorAll(".navbar .dropdown-menu");
+          _menubar.forEach(element => {
+            element.style.display = 'none'
+          });
           setTimeout(() => {
-            document.querySelectorAll(".navbar .dropdown-menu")[0].style.display= 'block';
+            _menubar.forEach(element => {
+              element.style.display = 'block'
+            });
           }, 0);
           if(document.getElementById("ebs-header-master").nextSibling.dataset){
             var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
@@ -121,6 +126,17 @@ class Variation7 extends React.Component {
           .querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0]
           .appendChild(_item);
       }
+      const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
+      _nav.forEach(element => {
+        if (element.childNodes[1]) {
+          const _arrow = document.createElement("em");
+          _arrow.classList.add('fa');
+          _arrow.classList.add('fa-chevron-down');
+          _arrow.classList.add('ebs-menu-arrow');
+          element.classList.add('has-drop-down');
+          element.childNodes[0].appendChild(_arrow);
+        }
+      });
     }
   };
   render() {
@@ -214,8 +230,7 @@ class Variation7 extends React.Component {
                             aria-current="page"
                             to={`/${this.props.event.url}/${menu.alias}`}
                           >
-                            {menu.module} {(menu.alias === "gallery" || menu.alias === "myaccount") && <span className="ebs-arrow-menu">
-                              <i className="material-icons">chevron_right</i></span> }
+                            {menu.module} 
                           </NavLink>
                         )}
                         {menu.alias === "gallery" && (

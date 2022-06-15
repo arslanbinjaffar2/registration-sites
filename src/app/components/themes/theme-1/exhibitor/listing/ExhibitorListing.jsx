@@ -52,7 +52,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return (
-    <div ref={element} style={{opacity: 0}} data-fixed="true" className="ebs-transparent-box">
+    <div ref={element} style={{opacity: 0}} data-fixed="false" className="ebs-transparent-box">
     <div
       style={{
         backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
@@ -99,7 +99,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
               </div>
             </div>
           </div>
-          <div className="col-lg-8">
+          <div className="col-lg-9">
             <div className="ebs-top-filter-container pb-3">
               <ul>
                 <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={()=>{filterbyAlphabet('all'); }} href="#!">All</a> </li>

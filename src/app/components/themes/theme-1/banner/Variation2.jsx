@@ -69,7 +69,7 @@ const Variation2 = ({ banner }) => {
   return (
     <React.Fragment>
         <div
-        data-fixed="true"
+        data-fixed="false"
         ref={_parallax}
           style={{
             backgroundImage: `url(${
