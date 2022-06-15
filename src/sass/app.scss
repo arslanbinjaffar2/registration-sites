@@ -2138,9 +2138,10 @@
             padding-right: 20px;
           }
         }
-        & ~ .ebs-program-workshop {
-          margin-bottom: 30px;
+        &  + .ebs-program-child {
+          padding-top: 30px;
         }
+       
       }
       .ebs-date-border {
         border-bottom: 1px solid $border;
@@ -2195,6 +2196,15 @@
             padding-bottom: 18px;
             font-size: 16px;
             color: $text;
+            > .ebs-contain {
+              padding-bottom: 15px;
+            }
+            .ebs-more {
+              display: inline-block;
+              text-decoration: underline;
+              color: $first-main-color;
+              cursor: pointer;
+            }
           }
         }
       }
