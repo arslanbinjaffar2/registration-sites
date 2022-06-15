@@ -1,8 +1,10 @@
 import {Link} from "react-router-dom";
-import React,{useState} from 'react';
+import React,{useState, useRef} from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation3 = ({news, event_url, makeNewDetailURL, loadMore}) => {
+const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings}) => {
+  const [height, setHeight] = useState(0);
+  const iframe = useRef();
   return (
     <div style={{padding: '80px 0'}} className='edgtf-container'>
        <div className="container">
@@ -46,11 +48,28 @@ const Variation3 = ({news, event_url, makeNewDetailURL, loadMore}) => {
             </div>
            </div>
            {news.length > 0 &&  loadMore()}
-           {/* {sidebar && <div className="edgtf-column2">
-             <div className="edgtf-sidebar">
-               <h4 className="edgtf-widget-title">Sidebar</h4>
-             </div>
-           </div>} */}
+           {newsSettings.subscriber_id !== null && (
+            <div className="edgtf-column2">
+              <div className="edgtf-sidebar">
+                  <iframe
+                    ref={iframe}
+                    onLoad={() => {
+                      const obj = iframe.current;
+                      setHeight(
+                        obj.contentWindow.document.body.scrollHeight +
+                          200
+                      );
+                    }}
+                    width="100%"
+                    height={height}
+                    title="test"
+                    itemProp="description"
+                    className="edgtf-post-excerpt"
+                    src={`${process.env.REACT_APP_EVENTCENTER_URL}/_admin/webservices/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                  />
+              </div>
+            </div>
+          )}
 
          </div>
        </div>

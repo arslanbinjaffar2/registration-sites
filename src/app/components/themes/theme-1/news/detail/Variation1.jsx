@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import {
     EmailIcon,
     FacebookIcon,
@@ -11,7 +11,9 @@ import {
     PinterestShareButton,
     EmailShareButton,
 } from "react-share";
-const Variation1 = ({ event, news, sidebar }) => {
+const Variation1 = ({ event, news, sidebar, newsSettings }) => {
+  const [height, setHeight] = useState(0);
+  const iframe = useRef();
   return (
     <div style={{ padding: "80px 0" }} className="edgtf-container">
       <div className="container">
@@ -114,10 +116,25 @@ const Variation1 = ({ event, news, sidebar }) => {
               </div>
             </div>
           </div>
-          {sidebar && (
+          {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
-                <h4 className="edgtf-widget-title">Sidebar</h4>
+                  <iframe
+                    ref={iframe}
+                    onLoad={() => {
+                      const obj = iframe.current;
+                      setHeight(
+                        obj.contentWindow.document.body.scrollHeight +
+                          200
+                      );
+                    }}
+                    width="100%"
+                    height={height}
+                    title="test"
+                    itemProp="description"
+                    className="edgtf-post-excerpt"
+                    src={`${process.env.REACT_APP_EVENTCENTER_URL}/_admin/webservices/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                  />
               </div>
             </div>
           )}
