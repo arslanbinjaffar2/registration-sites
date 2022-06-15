@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { objectToArray } from "../../app/helpers/helper";
-import { incrementFetchLoadCount } from "./GlobalSlice";
+import { incrementFetchLoadCount, incrementLoadedSection } from "./GlobalSlice";
 const initialState = {
   programs: null,
   tracks: null,
@@ -11,8 +10,8 @@ const initialState = {
   totalPages: null,
 };
 
-export const programListingSlice = createSlice({
-  name: "programListing",
+export const programSlice = createSlice({
+  name: "program",
   initialState,
   reducers: {
     getPrograms: (state, {payload}) => {
@@ -32,11 +31,11 @@ export const programListingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getPrograms, setPrograms, setError } = programListingSlice.actions;
+export const { getPrograms, setPrograms, setError } = programSlice.actions;
 
-export const programListingSelector = (state) => state.programListing;
+export const programSelector = (state) => state.program;
 
-export default programListingSlice.reducer;
+export default programSlice.reducer;
 
 export const fetchPrograms = (url) => {
   return async (dispatch) => {
@@ -46,6 +45,7 @@ export const fetchPrograms = (url) => {
       const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setPrograms({data:res.data, labels:res.labels}));
+      dispatch(incrementLoadedSection())
       dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError());

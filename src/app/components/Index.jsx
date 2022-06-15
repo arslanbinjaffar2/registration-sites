@@ -14,7 +14,7 @@ const Speaker = lazy(() => import("@/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("@/modules/Gallery"));
 const Video = lazy(() => import("@/modules/Video"));
 const Sponsor = lazy(() => import("@/modules/sponsor/Sponsor"));
-// const Program = lazy(() => import("@/modules/program/Program"));
+const Program = lazy(() => import("@/modules/program/Program"));
 const Exhibitor = lazy(() => import("@/modules/exhibitor/Exhibitor"));
 const SocialShare = lazy(() => import("@/modules/SocialShare"));
 const RegisterNow = lazy(() => import("@/modules/RegisterNow"));
@@ -47,8 +47,8 @@ const Index = () => {
               else if (section.module_alias === "custom_html1" && section.status === 1)
                 return <CustomSection1 key={i} />;
               else if (section.module_alias === "event_info" && section.status === 1) return <div key={i}></div>;
-              // else if (section.module_alias === "agenda" && section.status === 1)
-              //   return <Program homePage={true} key={i} />;
+              else if (section.module_alias === "agenda" && section.status === 1)
+                return <Program homePage={true} key={i} />;
               else if (section.module_alias === "sponsor" && section.status === 1)
                 return <Sponsor homePage={true} key={i} />;
               else if (section.module_alias === "top_banner" && section.status === 1) return <Banner key={i} />;
