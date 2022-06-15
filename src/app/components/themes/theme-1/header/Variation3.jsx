@@ -295,6 +295,16 @@ class Variation3 extends React.Component {
                                                     className="nav-item"
                                                     key={k}
                                                   >
+                                                  {subitem.page_type &&
+                                                    subitem.page_type === 2 ? (
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${subitem.website_protocol}${subitem.url}`}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </a>
+                                                    ) : (
                                                     <NavLink
                                                       aria-current="page"
                                                       className="nav-link"
@@ -310,6 +320,7 @@ class Variation3 extends React.Component {
                                                     >
                                                       {subitem.info.name}
                                                     </NavLink>
+                                                      )}
                                                   </li>
                                                 )
                                               )}
@@ -367,6 +378,16 @@ class Variation3 extends React.Component {
                                                     className="nav-item"
                                                     key={k}
                                                   >
+                                                    {subitem.page_type &&
+                                                      subitem.page_type === 2 ? (
+                                                        <a
+                                                          className="nav-link"
+                                                          aria-current="page"
+                                                          href={`${subitem.website_protocol}${subitem.url}`}
+                                                        >
+                                                          {subitem.info.name}
+                                                        </a>
+                                                      ) : (
                                                     <NavLink
                                                       aria-current="page"
                                                       className="nav-link"
@@ -382,6 +403,7 @@ class Variation3 extends React.Component {
                                                     >
                                                       {subitem.info.name}
                                                     </NavLink>
+                                                    )}
                                                   </li>
                                                 )
                                               )}
@@ -439,6 +461,16 @@ class Variation3 extends React.Component {
                                                     className="nav-item"
                                                     key={k}
                                                   >
+                                                    {subitem.page_type &&
+                                                      subitem.page_type === 2 ? (
+                                                        <a
+                                                          className="nav-link"
+                                                          aria-current="page"
+                                                          href={`${subitem.website_protocol}${subitem.url}`}
+                                                        >
+                                                          {subitem.info.name}
+                                                        </a>
+                                                      ) : (
                                                     <NavLink
                                                       aria-current="page"
                                                       className="nav-link"
@@ -454,6 +486,7 @@ class Variation3 extends React.Component {
                                                     >
                                                       {subitem.info.name}
                                                     </NavLink>
+                                                    )}
                                                   </li>
                                                 )
                                               )}
