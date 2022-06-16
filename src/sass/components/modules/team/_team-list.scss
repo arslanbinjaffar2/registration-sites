@@ -344,6 +344,9 @@ body.edgtf-team-info-opened{
           }
           background-color: rgba($first-main-color-rgb,.81);
           @include edgtfTransition(opacity 0.3s cubic-bezier(0.13, 0.53, 0.25, 1));
+          @include ipad-landscape {
+            background-color: rgba($first-main-color-rgb,.4);
+          }
 
           .edgtf-team-title-holder{
             top:50%;

@@ -6,6 +6,9 @@ import HeadingElement from '@/ui-components/HeadingElement';
 const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
+	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
+	const [clientYonMouseDown, setClientYonMouseDown] = useState(null);
+	
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
@@ -16,6 +19,8 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		arrows: false,
 		speed: 500,
 		margin: 30,
+		autoplay: true,
+		autoplaySpeed: 2000,
 		slidesToShow: 4,
 		slidesToScroll: 2,
 		responsive: [
@@ -43,7 +48,23 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item)=>{
 			return [...ack, ...item.exhibitors];
 	}, []));
+	const handleOnMouseDown = (e) => {
+		setClientXonMouseDown(e.clientX)
+		setClientYonMouseDown(e.clientY)
+		e.preventDefault() // stops weird link dragging effect
+	  }
 	
+	 const  handleOnClick = (e,exhibitor) => {
+		e.stopPropagation()
+		if (clientXonMouseDown !== e.clientX || 
+			clientYonMouseDown !== e.clientY) {
+		  // prevent link click if the element was dragged
+		  e.preventDefault()
+		} else {
+			setData(exhibitor);
+			setPopup(true)
+		}
+	  }
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
@@ -63,7 +84,8 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 													className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
 												>
 													<img
-														onClick={() =>{setData(exhibitor);setPopup(true)}}
+														onMouseDown={e => handleOnMouseDown(e)}
+														onClick={e => handleOnClick(e,exhibitor)}
 														src={
 															exhibitor.logo !== ""
 																? process.env.REACT_APP_EVENTCENTER_URL +

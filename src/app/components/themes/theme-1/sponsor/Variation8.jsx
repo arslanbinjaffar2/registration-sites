@@ -6,18 +6,22 @@ import HeadingElement from '@/ui-components/HeadingElement';
 const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
+	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
+	const [clientYonMouseDown, setClientYonMouseDown] = useState(null);
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		arrows: false,
 		speed: 500,
 		margin: 30,
 		slidesToShow: 4,
-		slidesToScroll: 2,
+		autoplay: true,
+		autoplaySpeed: 2000,
+		slidesToScroll: 3,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -43,7 +47,23 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 	const [sponsors,] = useState(sponsorsByCategories.reduce((ack, item)=>{
 			return [...ack, ...item.sponsors];
 	}, []));
+	const handleOnMouseDown = (e) => {
+		setClientXonMouseDown(e.clientX)
+		setClientYonMouseDown(e.clientY)
+		e.preventDefault() // stops weird link dragging effect
+	  }
 	
+	 const  handleOnClick = (e,sponsor) => {
+		e.stopPropagation()
+		if (clientXonMouseDown !== e.clientX || 
+			clientYonMouseDown !== e.clientY) {
+		  // prevent link click if the element was dragged
+		  e.preventDefault()
+		} else {
+			setData(sponsor);
+			setPopup(true)
+		}
+	  }
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
@@ -63,7 +83,8 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 													className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
 												>
 													<img
-														onClick={() =>{setData(sponsor);setPopup(true)}}
+														onMouseDown={e => handleOnMouseDown(e)}
+														onClick={e => handleOnClick(e,sponsor)}
 														src={
 															sponsor.logo !== ""
 																? process.env.REACT_APP_EVENTCENTER_URL +

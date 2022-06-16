@@ -56,6 +56,14 @@ const SliderBanner = (props) => {
         slidesToScroll: 1,
         draggable: false,
         adaptiveHeight: true,
+        responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            arrows: false
+          }
+        }  
+        ]
       };
       useEffect(() => {
         window.addEventListener("scroll", function (e) {
