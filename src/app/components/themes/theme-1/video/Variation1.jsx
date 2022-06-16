@@ -4,7 +4,7 @@ import Videopopup from "../../../Videopopup";
 import HeadingElement from "@/ui-components/HeadingElement";
 import { Link } from "react-router-dom";
 
-const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
+const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels, totalPages }) => {
   const imgUrl = (photo) => {
     if (photo.thumnail && photo.thumnail !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
@@ -52,8 +52,8 @@ const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                 })}
         </div>
         {!home && loadMore() }
-      {home && <div className="container p-0 pt-5 text-center">
-           <Link to={`/${eventUrl}/photos`}>
+      {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
+           <Link to={`/${eventUrl}/videos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
