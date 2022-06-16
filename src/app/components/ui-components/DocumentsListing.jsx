@@ -89,29 +89,44 @@ function DocumentsListing({documents}) {
                 
               {currentDirectory && currentDirectory.length > 0 &&
                 currentDirectory.map((item, i)=>(
-                <div key={i} className="ebs-document-content">
-                    <div className="row d-flex align-items-center">
-                    {(item['directory_id'] === undefined) && <div className="col-6 col-sm-8 col-lg-9">
-                        <div className="ebs-title" onClick={()=>{ onDirectoryClick(item.id) }} ><i className="material-icons">folder</i>{getDirectoryName(item)}</div>
-                    </div>}
-                    {(item['directory_id'] !== undefined)  && <div className="col-6 col-sm-8 col-lg-9">
-                        <div className="ebs-title" >
-                        <FileImageByType type={item.path.split('.')[1]} path={item.path} />    
-                            {item.name}
+                    <div key={i} className="ebs-document-content">
+                     {(item['directory_id'] === undefined) && 
+                      <div className="row d-flex align-items-center"
+                      onClick={()=>{ onDirectoryClick(item.id) }} 
+                      >
+                        <div className="col-6 col-sm-8 col-lg-9">
+                            <div className="ebs-title" ><i className="material-icons">folder</i>{getDirectoryName(item)}</div>
                         </div>
                         
+                        <div className="col-6 col-sm-4 col-lg-3">
+                            <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
+                                </span></div>
+                        </div>
+                     </div>
+                     }
+                     {(item['directory_id'] !== undefined) &&
+                        <a  href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank">                 
+                            <div className="row d-flex align-items-center">
+                                <div className="col-6 col-sm-8 col-lg-9">
+                                    <div className="ebs-title" >
+                                    <FileImageByType type={item.path.split('.')[1]} path={item.path} />    
+                                        {item.name}
+                                    </div>
+                                    
+                                </div>
+                            
+                                <div className="col-6 col-sm-4 col-lg-3">
+                                    <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
+                                        {(moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
+                                        <i className="material-icons">file_download</i>
+                                        }
+                                    </span></div>
+                                </div>
+                            </div>
+                        </a>
+                     }
+                            
                     </div>
-                    }
-                    <div className="col-6 col-sm-4 col-lg-3">
-                        <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
-                            {(item['directory_id'] !== undefined) && 
-                            (moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
-                            <a href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank"><i className="material-icons">file_download</i></a>
-                            }
-                            </span></div>
-                    </div>
-                    </div>
-                </div>
                 ))
               }
               {(!currentDirectory ||currentDirectory.length <= 0) &&
@@ -145,3 +160,10 @@ const FileImageByType = ({type, path}) => {
        return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
     }
 }
+
+
+
+
+
+                      
+                     

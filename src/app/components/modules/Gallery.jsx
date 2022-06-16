@@ -62,7 +62,7 @@ const Gallery = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {photos ? (
         <div style={{ padding: "80px 0" }} >
-          <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} home={home} eventUrl={eventUrl}
+          <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
           loadMore={() => {
             if(page < totalPages){
               return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />

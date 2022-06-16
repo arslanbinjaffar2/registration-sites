@@ -2,7 +2,7 @@ import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "@/ui-components/HeadingElement";
 import { Link } from "react-router-dom";
-const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) => {
+const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, totalPages }) => {
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
@@ -55,7 +55,7 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels }) 
             </Gallery>
       </div>
       {!home && loadMore() }
-      {home && <div className="container p-0 pt-5 text-center">
+      {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
            <Link to={`/${eventUrl}/photos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"

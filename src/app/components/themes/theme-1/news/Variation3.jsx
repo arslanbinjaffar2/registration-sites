@@ -5,6 +5,8 @@ import TruncateMarkup from 'react-truncate-markup';
 const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings}) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
+  console.log(`${process.env.REACT_APP_URL}/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`);
+  console.log(newsSettings)
   return (
     <div style={{padding: '80px 0'}} className='edgtf-container'>
        <div className="container">
@@ -65,7 +67,7 @@ const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings})
                     title="test"
                     itemProp="description"
                     className="edgtf-post-excerpt"
-                    src={`${process.env.REACT_APP_EVENTCENTER_URL}/_admin/webservices/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                    src={`${process.env.REACT_APP_URL}/event/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
                   />
               </div>
             </div>

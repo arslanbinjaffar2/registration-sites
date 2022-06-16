@@ -133,7 +133,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                     title="test"
                     itemProp="description"
                     className="edgtf-post-excerpt"
-                    src={`${process.env.REACT_APP_EVENTCENTER_URL}/_admin/webservices/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                    src={`${process.env.REACT_APP_URL}/event/${event.url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
                   />
               </div>
             </div>

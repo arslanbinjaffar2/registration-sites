@@ -53,17 +53,18 @@ const News = (props) => {
   const makeNewDetailURL = (event_url, id) => {
     return "/" + event_url + "/news-detail/" + id;
   };
-
+  console.log(event.news_settings)
   return (
     <Suspense fallback={<PageLoader/>}>
       {news ? (
         <Component
           news={news}
           event_url={eventUrl}
+          newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
           loadMore={() => {
             if(page < totalPages){
-              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} newsSettings={event.news_settings} />
+              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)}  />
             }
           }}
         />
