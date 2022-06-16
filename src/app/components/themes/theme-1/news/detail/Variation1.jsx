@@ -122,14 +122,16 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                   <iframe
                     ref={iframe}
                     onLoad={() => {
+                      setTimeout(() => {
                       const obj = iframe.current;
                       setHeight(
                         obj.contentWindow.document.body.scrollHeight +
                           200
                       );
+                      }, 1000);
                     }}
                     width="100%"
-                    height={height}
+                    height={height > 0 ? height: 400}
                     title="test"
                     itemProp="description"
                     className="edgtf-post-excerpt"
