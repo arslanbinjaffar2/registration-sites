@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import React,{useState, useRef} from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings}) => {
+const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels}) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   console.log(`${process.env.REACT_APP_URL}/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`);
@@ -50,6 +50,7 @@ const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings})
             </div>
            </div>
            {news.length > 0 &&  loadMore()}
+            {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
            {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">

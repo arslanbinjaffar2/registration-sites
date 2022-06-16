@@ -84,7 +84,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
             <div className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_EXHIBITOR_SEARCH} onChange={(e)=> { search(e.target.value) }} value ={searchText}type="text" />
               <em className="fa fa-search"></em>
             </div>
-            <div className="ebs-filter-box pb-4">
+            {exhibitorCategories.length > 0 && <div className="ebs-filter-box pb-4">
               <h4>Filter by Categories</h4>
               <div className="ebs-filter-items">
                 <ul>
@@ -97,7 +97,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
 
                 </ul>
               </div>
-            </div>
+            </div>}
           </div>
           <div className="col-lg-9">
             <div className="ebs-top-filter-container pb-3">
@@ -133,6 +133,9 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
                 </div>
               </div>
               ))}
+              {locExhibitors.length <= 0  && 
+                        <div className="ebs-title">{siteLabels.GENERAL_NO_RECORD}</div>
+               }
             </div>
           </div>
         </div>

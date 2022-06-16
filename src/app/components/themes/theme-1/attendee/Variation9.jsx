@@ -7,6 +7,7 @@ const Variation9 = ({
   loadMore,
   event,
   settings,
+  siteLabels
 }) => {
   const _parallax = useRef(null); 
   const _bgimage =
@@ -179,7 +180,7 @@ const Variation9 = ({
             ))}
           {/* Grid */}
         </div>
-        { attendees.length === 0 && <div>No Speakers Found...</div>}
+        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         { attendees.length > 0 && loadMore()}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeadingElement from "@/ui-components/HeadingElement";
 
-const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
+const Variation7 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div
       style={{
@@ -150,7 +150,7 @@ const Variation7 = ({ attendees, searchBar, loadMore, event, settings }) => {
             ))}
           {/* Grid */}
         </div>
-        { attendees.length === 0 && <div>No Speakers Found...</div>}
+        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         { attendees.length > 0 && loadMore()}
       </div>
     </div>

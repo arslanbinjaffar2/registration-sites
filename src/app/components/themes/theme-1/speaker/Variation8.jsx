@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HeadingElement from "@/ui-components/HeadingElement";
-const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings }) => {
+const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
@@ -119,7 +119,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings })
               </div>
             ))}
         </div>
-        {listing && speakers.length === 0 && <div>No Speakers Found...</div>}
+        {listing && speakers.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {listing && speakers.length > 0 && loadMore()}
       </div>
     </div>

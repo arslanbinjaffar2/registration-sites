@@ -72,6 +72,7 @@ const Attendee = (props) => {
         <React.Fragment>
           <CustomComponent
           labels={labels}
+          siteLabels={event.labels}
             attendees={attendees}
             settings={moduleVariation[0]}
             event={event}

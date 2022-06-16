@@ -3,7 +3,7 @@ import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
 import TruncateMarkup from 'react-truncate-markup';
 
-const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings }) => {
+const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const breakpointColumnsObj = {
@@ -90,6 +90,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings 
             </div>
           </div>
           {news.length > 0 &&  loadMore()}
+          {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
