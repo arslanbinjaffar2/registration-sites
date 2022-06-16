@@ -78,7 +78,7 @@ const Speaker = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {speakers && ((speakers.length > 0 && home) || !home) ? (
         <React.Fragment>  
-          <Component speakers={speakers} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
+          <Component speakers={speakers} siteLabels={event.labels} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
            return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setValue={(text)=>setValue(text)}  />;
           }}
           

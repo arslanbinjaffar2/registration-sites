@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 import HeadingElement from "@/ui-components/HeadingElement";
-const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
+const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   const _parallax = useRef(null); 
   const _bgimage =
     settings && settings.background_image !== ""
@@ -174,7 +174,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings }) => {
 
           {/* Grid */}
         </div>
-        { attendees.length === 0 && <div>No Speakers Found...</div>}
+        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         { attendees.length > 0 && loadMore()}
       </div>
     </div>

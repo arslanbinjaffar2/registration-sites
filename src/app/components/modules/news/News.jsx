@@ -60,6 +60,7 @@ const News = (props) => {
         <Component
           news={news}
           event_url={eventUrl}
+          siteLabels={event.labels}
           newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
           loadMore={() => {
