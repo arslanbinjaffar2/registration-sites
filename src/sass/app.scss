@@ -2045,23 +2045,27 @@
     }
     .ebs-popup-inner {
       padding: 15px;
-      figure {
-        width: 100%;
-        padding-bottom: 100%;
-        position: relative;
-        border: 1px solid $border;
-        background: $white;
-        border-radius: 5px;
-        img {
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          right: 0;
-          margin: auto;
-          max-width: 236px;
+
+      .col-sm-4 {
+          figure {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            border: 1px solid $border;
+            background: $white;
+            border-radius: 5px;
+      
+            img {
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              margin: auto;
+              max-width: 236px;
+            }
+          }
         }
-      }
       .ebs-container-content {
        > h2 {
           font-size: 36px;

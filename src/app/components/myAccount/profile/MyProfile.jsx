@@ -22,7 +22,7 @@ const MyProfile = () =>  {
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">
               <div className="row d-flex">
-                <div className="col-md-3">
+                <div className="col-lg-3">
                   <div className="ebs-my-profile-left">
                     <div className="ebs-my-profile-image">
                       <img className="ebs-image-solid" src={
@@ -70,7 +70,7 @@ const MyProfile = () =>  {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-9">
+                <div className="col-lg-9">
                   <div className="ebs-my-profile-right">
                     <h3 className="ebs-title">Basic Information:</h3>
                     <div className="row d-flex">

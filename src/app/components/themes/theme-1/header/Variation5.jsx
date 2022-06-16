@@ -1,6 +1,7 @@
 import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
+import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
 
 class Variation5 extends React.Component {
   _isMounted = false;
@@ -141,7 +142,7 @@ class Variation5 extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-9 col-6 d-flex justify-content-end">
+            <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
               <nav className="navbar navbar-expand-lg navbar-light">
                 <button
                   className="navbar-toggler"
@@ -546,6 +547,7 @@ class Variation5 extends React.Component {
                   </div>
                 </div>
               </nav>
+              {this.props.userExist && <MyProfileSidebar /> }
             </div>
           </div>
         </div>

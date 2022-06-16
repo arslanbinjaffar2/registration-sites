@@ -18,6 +18,7 @@ const SponsorPopup =  ({width, onClick, data, eventUrl}) => {
                         <div className="col-sm-4">
                             <figure>
                             <img
+                                style={{width: '90%'}}
                                 src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + data.logo : "https://my.eventbuizz.com/_eventsite_assets/images/exhibitors-default.png"}
 									className="vc_single_image-img attachment-full"
 									alt="x"

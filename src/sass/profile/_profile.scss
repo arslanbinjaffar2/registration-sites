@@ -1,16 +1,25 @@
 // My sidebar Styles
-
+.ebs-profile-top-area {
+  position: relative;
+  margin-left: 5px;
+  transition: transform 0.3s linear;
+}
+.ebs-header-sticky {
+  .ebs-sidebar-account {
+    margin-top: 10px;
+  }
+}
 .ebs-sidebar-account {
   background-color: #F4F4F4;
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding-top: 129px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 350px;
   overflow: auto;
-  width: 280px;
-  height: 100%;
   z-index: 990;
   box-shadow: 0 3px 6px rgba($black,.16);
+  border-top: 5px solid $first-main-color;
+  margin-top: 16px;
   ul {
     list-style: none;
     padding: 40px 0;
@@ -20,37 +29,39 @@
       padding: 0;
       a {
         font-size: 16px;
-        color: $text;
+        color: $text2b;
         display: block;
         padding: 15px 20px 15px 50px;
-        &:hover {
-          background: $themeblue;
+        @include ipad-landscape {
+          padding: 10px 20px 10px 40px;
+        }
+        font-weight: 500;
+        transition: background 0.2s linear;
+        &:hover,&.active {
+          background: $first-main-color;
           color: $white;
-          font-weight: 600;
         }
       }
     }
   }
 }
+
 .ebs-sideber-icon {
-  position: fixed;
-  z-index: 998;
-  width: 47px;
-  height: 47px;
-  background: #f4f4f4;
+  width: 36px;
+  height: 36px;
+  background: rgba($black, 0.3);
   border-radius: 100%;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  left: 42px;
-  top: 120px;
-}
-.ebs-sideber-icon-inner {
-  padding: 0 52px;
-  cursor: pointer;
-  img {
-    margin-right: 15px;
+  line-height: 0;
+  box-shadow: 0 3px 6px rgba($black,.16);
+  border-radius: 100%;
+  overflow: hidden;
+  &.ebs-active-state {
+    box-shadow: 0 0px 12px rgba($first-main-color-rgb,1);
   }
 }
 .ebs-my-profile-area {
@@ -82,6 +93,9 @@
     padding: 40px;
     padding-left: 0;
     border-radius: 10px;
+    @include ipad-landscape {
+      padding: 30px;
+    }
     .ebs-my-profile-section {
       .ebs-my-profile-left {
         max-width: 220px;

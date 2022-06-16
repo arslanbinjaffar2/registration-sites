@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo, useEffect, useState } from "react";
+import { withRouter } from "react-router";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 import {
   globalSelector,setShowLogin, incrementFetchLoadCount
 } from "../../../store/Slices/GlobalSlice";
@@ -23,8 +23,10 @@ const Header = ({location, history}) => {
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["header"]);
   });
+
   useEffect(() => {
     const routeChange = history.listen((location, action) => {
+      document.getElementsByTagName('body')[0].classList.remove('un-scroll');
       setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false );
 
     })

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { NavLink, Link } from "react-router-dom";
+import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
 
 class Variation1 extends React.Component {
   _isMounted = false;
@@ -147,7 +148,7 @@ class Variation1 extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-9 col-6 d-flex justify-content-end">
+            <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
               <nav className="navbar navbar-expand-lg navbar-light">
                 {!this.state.showMenu && (
                   <button
@@ -507,6 +508,7 @@ class Variation1 extends React.Component {
                   </ul>
                 </div>
               </nav>
+              {this.props.userExist && <MyProfileSidebar /> }
             </div>
           </div>
         </div>

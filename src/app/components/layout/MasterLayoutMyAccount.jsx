@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { Translation } from "react-i18next";
-import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
 import { useSelector } from "react-redux";
 
 import {
@@ -25,7 +24,6 @@ function MasterLayoutMyAccount({ component: Component,history, ...rest }) {
   return (
     <Route {...rest} render={matchProps => (
         isAuthenticated ? <MasterLayout history={history}>
-        <MyProfileSidebar />
             <Component {...matchProps} />
         </MasterLayout> : <Redirect to={`/${event.url}`} />
     )} />
