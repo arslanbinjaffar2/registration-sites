@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { Translation } from "react-i18next";
-import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
 import AfterLoginSubRegistration from "@/myAccount/profile/AfterLoginSubRegistration";
 import {
     subRegistrationSelector,
@@ -32,7 +31,6 @@ function MasterLayoutMyAccount({ component: Component,history, ...rest }) {
     <Route {...rest} render={matchProps => (
         isAuthenticated ? <MasterLayout history={history}>
              {skip ? <React.Fragment>
-                    <MyProfileSidebar /> 
                     <Component {...matchProps} />
             </React.Fragment> : <AfterLoginSubRegistration {...matchProps} />  }
         </MasterLayout> : <Redirect to={`/${event.url}`} />
