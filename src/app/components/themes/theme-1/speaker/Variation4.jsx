@@ -40,7 +40,7 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings })
             {/* Grid */}
             {speakers &&
               speakers.map((speaker, i) => (
-                <div key={i} className="col-12 col-sm-6 col-md-4 pb-4">
+                <div key={i} className="col-12 col-sm-6 col-md-6 col-lg-4 pb-4">
                   <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                     <div
                       style={{ width: "100%" }}

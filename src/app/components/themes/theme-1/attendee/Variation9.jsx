@@ -46,7 +46,7 @@ const Variation9 = ({
           {/* Grid */}
           {attendees &&
             attendees.map((attendee, i) => (
-              <div key={i} className="col-12 col-sm-6 col-md-4 pl-0 pr-0 pb-0">
+              <div key={i} className="col-12 col-sm-6 col-md-6 col-lg-4 pl-0 pr-0 pb-0">
                 <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div
                     style={{ width: "100%" }}
