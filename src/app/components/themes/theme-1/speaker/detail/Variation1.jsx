@@ -1,8 +1,8 @@
 import React from "react";
 import ProgramItem from "../../program/components/ProgramItem";
 import WorkShop from "../../program/components/WorkShop";
-
-const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop}) => {
+import {localeProgramMoment} from '../../../../../helpers/helper';
+const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, eventLanguageId}) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div
@@ -183,7 +183,7 @@ const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop}) 
 
             {speaker.programs && Object.keys(speaker.programs).map((key ,k ) => (
                 <div className="ebs-program-parent" key={k}>
-                  {speaker.programs[key][0] && <div className="ebs-date-border">{speaker.programs[key][0].heading_date}</div>}
+                  {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
                     {speaker.programs[key].map((item, i)=>
                           item.workshop_id > 0 ? 
                           <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />

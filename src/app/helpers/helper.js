@@ -1,3 +1,5 @@
+import moment from "moment";
+import { locale } from "moment";
 function ltrim(str, chr) {
     var rgxtrim = (!chr) ? new RegExp('^\\s+') : new RegExp('^' + chr + '+');
     return str.replace(rgxtrim, '');
@@ -36,3 +38,49 @@ export {
     ltrim,
     objectToArray,
 };
+
+ export   const localeProgramMoment = (language_id, date = null ) => {
+        let locale = 'en';
+        let format = 'D MMMM, YYYY';
+        if(language_id == 2){
+            locale = 'da';
+            format = 'dddd D. MMMM YYYY';
+        }
+        else if(language_id == 3){
+            locale = 'no';
+            format = 'D. MMMM YYYY';
+        }
+        else if(language_id == 4){
+            locale = 'de';
+            format = 'D. MMMM YYYY';
+        }
+        else if(language_id == 5){
+            locale = 'lt';
+            format = 'YYYY MMMM D dddd';
+
+        }
+        else if(language_id == 6){
+            locale = 'fi';
+            format = 'D. MMMM YYYY';
+
+        }
+        else if(language_id == 7){
+            locale = 'se';
+            format = 'D MMMM YYYY';
+
+        }
+        else if(language_id == 8){
+            locale = 'nl';
+            format = 'D MMMM YYYY';
+
+        }
+        else if(language_id == 9){
+            locale = 'be';
+            format = 'D MMMM YYYY';
+        }
+        if(date !== null){
+            return moment(date).locale(locale).format(format);
+        }
+
+        return moment().locale(locale).format(format)
+    }

@@ -36,7 +36,7 @@ const onLogout = () =>{
          <li><Link to={`/${event.url}/profile`} >My billing</Link></li>
          <li><Link to={`/${event.url}/profile`} >My billing history</Link></li>
          <li><Link to={`/${event.url}/profile`}>Cancel registration</Link></li>
-         <li><Link to={`/${event.url}/sub-registration-after-login` }>My Sub registration</Link></li>
+         <li><Link to={`/${event.url}/my-sub-registration` }>My Sub registration</Link></li>
          <li><Link to={`/${event.url}/my-program`}>My program</Link></li>
          <li><Link to={`/${event.url}/surveys`}>Surveys</Link></li>
          <li><Link to={`/${event.url}/keyword-interest`}>Networking interests</Link></li>

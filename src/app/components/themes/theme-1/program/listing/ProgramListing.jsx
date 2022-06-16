@@ -3,6 +3,7 @@ import HeadingElement from "@/ui-components/HeadingElement";
 import ProgramItem from '../components/ProgramItem';
 import WorkShop from '../components/WorkShop';
 import ReactSelect from 'react-select';
+import {localeProgramMoment} from '../../../../../helpers/helper';
 const customStyles = {
   control: base => ({
     ...base,
@@ -14,7 +15,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels}) => {
+const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId}) => {
  const [programsLoc, setProgramsLoc] = useState(programs);
  const [selectedDate, setSelectedDate] = useState(null);
  const [selectedTrack, setSelectedTrack] = useState(null);
@@ -99,7 +100,7 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels}) 
           <div className="ebs-main-program-listing">
             {programsLoc && Object.keys(programsLoc).map((key ,k ) => (
                 <div className="ebs-program-parent" key={k}>
-                  {programsLoc[key][0] && <div className="ebs-date-border">{programsLoc[key][0].heading_date}</div>}
+                  {programsLoc[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, programsLoc[key][0].heading_date)}</div>}
                   {programsLoc[key].map((item,i) =>(
                       item.workshop_id > 0  ? 
                       <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} />:

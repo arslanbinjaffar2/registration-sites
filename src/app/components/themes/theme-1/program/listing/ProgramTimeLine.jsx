@@ -414,7 +414,7 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
         )}
         <div className="ebs-box">
           {items.video > 0 && <div className="video"><i className="material-icons">play_circle</i> {items.video}</div>}
-          <div className="speakers"><i className="material-icons">interpreter_mode</i> 4</div>
+          <div className="speakers"><i className="material-icons">interpreter_mode</i> {items.program_speakers.length} </div>
         </div>
       </div>
     </div>

@@ -7,13 +7,20 @@ import {
   } from "store/Slices/myAccount/subRegistrationSlice";
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
-const AfterLoginSubRegistration = () => {
+import { withRouter } from 'react-router-dom';
+const AfterLoginSubRegistration = ({history}) => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
+    const { subRegistration, skip } = useSelector(subRegistrationSelector);
     useEffect(() => {
+      if(skip){
+        history.push(`/${event.url}/profile`);
+      }
       dispatch(fetchSubRegistrationData(event.id, event.url));
-    }, []);
-    const { subRegistration } = useSelector(subRegistrationSelector);
+    }, [skip]);
+
+
+
     return (
         <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
@@ -28,4 +35,4 @@ const AfterLoginSubRegistration = () => {
   )
 }
 
-export default AfterLoginSubRegistration
+export default withRouter(AfterLoginSubRegistration)

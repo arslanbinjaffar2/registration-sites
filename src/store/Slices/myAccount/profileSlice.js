@@ -78,7 +78,7 @@ export const updateProfileData = (id, url, data) => {
       console.log(data)
       dispatch(getProfileData())
       try {
-        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/attendee/45756/profile/update`, data, { headers:header("POST", id)})
+        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers:header("POST", id)})
         if(response.data.status === 1){
           dispatch(setAlert(response.data.message))
           dispatch(setLoading())

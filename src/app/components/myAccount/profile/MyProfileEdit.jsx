@@ -11,6 +11,7 @@ import {
 } from "store/Slices/myAccount/profileSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 
 const MyProfileEdit = () => {
   const { event } = useSelector(eventSelector);
@@ -61,7 +62,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
       phone: attendeeData.phone && attendeeData.phone.split("-")[1],
       gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
-      country: countries.find((item) => (item.id === attendeeData.info.country)),
+      country: countries.reduce((ack, item) => { if(item.id == attendeeData.info.country) { return { label: item.name, value:item.id }} return ack; }, {}),
     });
   }, []);
   const updateAttendeeFeild = (e) => {
@@ -140,7 +141,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if(attendeeData.EMPLOYMENT_DATE)attendeeObj.EMPLOYMENT_DATE=attendeeData.EMPLOYMENT_DATE;
     if(attendeeData.image)attendeeObj.image=attendeeData.image;
     if(attendeeData.SPOKEN_LANGUAGE)attendeeObj.SPOKEN_LANGUAGE=attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
-      if(index !== attendeeData.SPOKEN_LANGUAGE.length -1){
+      if(index !== attendeeData.SPOKEN_LANGUAGE.length - 1){
         return ack+=`${item.label},`
       }  
       return ack+=`${item.label}`
@@ -258,7 +259,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   onChange={(item) => {
                     updateDate({ item, name: "BIRTHDAY_YEAR" });
                   }}
-                  value={attendeeData.BIRTHDAY_YEAR}
+                  value={moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD')}
                   showdate={"YYYY-MM-DD"}
                 />
               )}
@@ -309,7 +310,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   onChange={(item) => {
                     updateInfoDate({ item, name: "date_of_issue_passport" });
                   }}
-                  value={attendeeData.info.date_of_issue_passport}
+                  value={moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD')}
                   showdate={"YYYY-MM-DD"}
                 />
               )}
@@ -321,9 +322,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     updateInfoDate({ item, name: "date_of_expiry_passport" });
                   }}
                   value={
-                    attendeeData.info &&
-                    attendeeData.info.date_of_expiry_passport &&
-                    attendeeData.info.date_of_expiry_passport
+                    moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD')
                   }
                   showdate={"YYYY-MM-DD"}
                 />
@@ -396,7 +395,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   onChange={(item) => {
                     updateDate({ item, name: "EMPLOYMENT_DATE" });
                   }}
-                  value={attendeeData.EMPLOYMENT_DATE}
+                  value={moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD')}
                   showdate={"YYYY-MM-DD"}
                 />
               )}
@@ -421,17 +420,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       key: index,
                     };
                   })}
-                  value={
-                    attendeeData.country !== undefined && {
-                      label: attendeeData.country.label,
-                      value: attendeeData.country.value,
-                    }
-                  }
+                  value={attendeeData.country}
                   onChange={(item) => {
                     updateSelect({ item, name: "country" });
                   }}
                 />
               )}
+              {console.log(attendeeData.country)}
               {attendeeData.info && attendeeData.info.industry && (
                 <Input
                   label="Industry"
@@ -553,7 +548,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   <div className="form-phone-field">
                     {attendeeData.calling_code && (
                       <React.Fragment>
+                        <div style={{width:"25%"}}>
                         <Select
+                          className="w-full h-full"
                           placeholder=".."
                           components={{ IndicatorSeparator: null }}
                           options={callingCodes.map((item, index) => {
@@ -573,14 +570,16 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             updateSelect({ item, name: "calling_code" });
                           }}
                         />
-
+                        </div>
+                        <div style={{width:"75%"}}>
                         <Input
                           label="Phone"
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
-                          value={attendeeData.phone && attendeeData.phone.split("-")[1]}
+                          value={attendeeData.phone}
                         />
+                        </div>
                       </React.Fragment>
                     )}
                   </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-
+import moment from 'moment';
 const MyProfile = () =>  {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
@@ -34,11 +34,9 @@ const MyProfile = () =>  {
                                 } alt="" />
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">
-                          {`${attendee.info && attendee.info.initial}
-                           ${attendee.first_name && attendee.first_name}
-                           ${attendee.last_name && attendee.last_name}`
-                           
-                          }
+                          {(attendee.info && attendee.info.initial) && attendee.info.initial}
+                           {attendee.first_name && attendee.first_name}
+                           {attendee.last_name && attendee.last_name}
                         </div>
                         {(attendee.info && attendee.info.registration_type) && <div className="ebs-profile-status">{attendee.info.registration_type}</div>}
                         {(attendee.info && attendee.info.about) &&<div className="ebs-profile-message">
@@ -60,7 +58,7 @@ const MyProfile = () =>  {
                         }
                         {attendee.email && <div className="ebs-profile-social-links-row">
                           <strong>Email:</strong>
-                          <span>attendee.email</span>
+                          <span>{attendee.email}</span>
                         </div>}
                         {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row">
                           <strong>Website:</strong>
@@ -88,9 +86,9 @@ const MyProfile = () =>  {
                             <strong>First name Passsport:</strong>
                             <span>{attendee.FIRST_NAME_PASSPORT}</span>
                           </div>}
-                          {(attendee.info && attendee.info.date_of_issue_passport ) &&<div className="ebs-info-row">
+                          {(attendee.info && attendee.info.date_of_issue_passport ) && <div className="ebs-info-row">
                             <strong>Date of issue Passport:</strong>
-                            <span>{attendee.info.date_of_issue_passport}</span>
+                            <span>{moment(attendee.info.date_of_issue_passport).format('D MMMM YYYY')}</span>
                           </div>}
                           {(attendee.info && attendee.info.passport_no ) &&<div className="ebs-info-row">
                             <strong>Passport no:</strong>
@@ -104,9 +102,9 @@ const MyProfile = () =>  {
                             <strong>Title:</strong>
                             <span>{attendee.info.title}</span>
                           </div>}
-                          {attendee.EMPLOYMENT_DATE && <div className="ebs-info-row">
+                          {attendee.EMPLOYMENT_DATE && attendee.EMPLOYMENT_DATE !== "0000-00-00" && <div className="ebs-info-row">
                             <strong>Employment date:</strong>
-                            <span>{attendee.EMPLOYMENT_DATE}</span>
+                            <span>{moment(attendee.EMPLOYMENT_DATE).format('D MMMM YYYY')}</span>
                           </div>}
                           { attendee.countryName && <div className="ebs-info-row">
                             <strong>Country:</strong>
@@ -120,9 +118,9 @@ const MyProfile = () =>  {
                       </div>
                       <div className="col-sm-6">
                         <div className="ebs-profile-information">
-                          {attendee.BIRTHDAY_YEAR && <div className="ebs-info-row">
+                          {attendee.BIRTHDAY_YEAR &&  attendee.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' && <div className="ebs-info-row">
                             <strong>Birthday:</strong>
-                            <span>{attendee.BIRTHDAY_YEAR}</span>
+                            <span>{moment(attendee.BIRTHDAY_YEAR).format('D MMMM YYYY')}</span>
                           </div>}
                           {(attendee.info && attendee.info.place_of_birth ) && <div className="ebs-info-row">
                             <strong>Place of birth:</strong>
@@ -134,7 +132,7 @@ const MyProfile = () =>  {
                           </div>}
                           {(attendee.info && attendee.info.date_of_expiry_passport ) &&<div className="ebs-info-row">
                             <strong>Date of Expiry Passport:</strong>
-                            <span>{attendee.info.date_of_expiry_passport}</span>
+                            <span>{moment(attendee.info.date_of_expiry_passport).format('D MMMM YYYY')}</span>
                           </div>}
                           {attendee.SPOKEN_LANGUAGE && <div className="ebs-info-row">
                             <strong>Spoken Languages :</strong>
