@@ -30,13 +30,14 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
+                <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
                   <img
-                    style={{border: '1px solid #ccc'}}
+                    style={{ maxWidth: '90%', width: 'auto'}}
+                    onLoad={(e) => e.target.style.opacity = 1}
                     src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')}
                     alt=""
-                    width="800"
-                    height="800"
-                  />{" "}
+                  />
+                  </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
                     {exhibitor.name && 
@@ -154,19 +155,26 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         </div>
       </div>
 
-      {exhibitor.exhibitors_attendee.length > 0 && <div className="">
+      {exhibitor.exhibitors_attendee.length > 0 && <div  style={{paddingBottom: 50}} className="">
         <div className="container">
-          <h2 className="edgtf-title-with-dots edgtf-appeared">Contacts</h2>
+          <div className="edgtf-title-section-holder pb-1">
+            <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">Contacts</h3>
+            </div>
           <div className="row d-flex ebs-program-speakers">
             {exhibitor.exhibitors_attendee.map((attendee,o) =>
-              <div key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-attendee-box">
-                <img  src={
+              <div key={o} style={{animationDelay: 50*o+'ms'}} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
+                <span style={{marginBottom: 10}} className="gallery-img-wrapper-square">
+                <img
+                  onLoad={(e) => e.target.style.opacity = 1}
+                  style={{width: '90%'}}
+                  src={
                   attendee.image && attendee.image !== ""
                     ? process.env.REACT_APP_EVENTCENTER_URL +
                       "/assets/attendees/" +
                       attendee.image
                     : require("img/user-placeholder.jpg")
                 } alt="" />
+                </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
                 <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
               </div>
@@ -177,10 +185,9 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
       {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">
-            <h2 className="edgtf-title-with-dots edgtf-appeared">Documents</h2>
-            <span className="edge-title-separator edge-enable-separator"></span>
-                <DocumentsListing documents={documents} />
+            <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
             </div>
+                <DocumentsListing documents={documents} />
         </div>
       </div>}
     </div>
