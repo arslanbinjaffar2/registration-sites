@@ -6,6 +6,7 @@ import {
   fetchSurveyListData,
   surveyListSelector,
 } from "store/Slices/myAccount/surveyListSlice";
+import PageLoader from "../../ui-components/PageLoader";
 const SurveyList = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const SurveyList = () => {
   const { surveyList } = useSelector(surveyListSelector);
 
   return (
-    <div className="edgtf-container ebs-my-profile-area pb-5">
+    surveyList ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
           <h2>Surveys</h2>
@@ -25,7 +26,7 @@ const SurveyList = () => {
             <h4>Available Surveys</h4>
             <a className="btn-view-result" href="#!">View results</a>
           </div>
-          {surveyList && (
+          
             <div className="ebs-survey-list">
               <ul>
                 {surveyList.map((survey) => (
@@ -33,10 +34,10 @@ const SurveyList = () => {
                 ))}
               </ul>
             </div>
-          )}
+          
         </div>
       </div>
-    </div>
+    </div> : <PageLoader/>
   );
 };
 

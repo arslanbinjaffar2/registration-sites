@@ -15,7 +15,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId}) => {
+const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters}) => {
  const [programsLoc, setProgramsLoc] = useState(programs);
  const [selectedDate, setSelectedDate] = useState(null);
  const [selectedTrack, setSelectedTrack] = useState(null);
@@ -63,7 +63,7 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, e
       <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div>
-      <div className="ebs-program-top">
+      {filters && <div className="ebs-program-top">
         <div className="container">
           <div className="row d-flex">
             <div className="col-md-5">
@@ -95,7 +95,7 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, e
             </div>
           </div>
         </div>
-      </div>
+      </div>}
         <div className="container">
           <div className="ebs-main-program-listing">
             {programsLoc && Object.keys(programsLoc).map((key ,k ) => (

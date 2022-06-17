@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
+import PageLoader from '@/ui-components/PageLoader';
 import moment from 'moment';
 const MyProfile = () =>  {
   const { event } = useSelector(eventSelector);
@@ -12,7 +13,7 @@ const MyProfile = () =>  {
   }, [])
   const { attendee } = useSelector(profileSelector);
   return (
-    attendee && (
+    attendee ? (
       <div  className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
@@ -173,6 +174,9 @@ const MyProfile = () =>  {
         </div>
       </div>
       )
+      : <PageLoader/>
+
+      
     )
 }
 

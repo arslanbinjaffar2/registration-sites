@@ -7,6 +7,7 @@ import {
   } from "store/Slices/myAccount/mysubRegistrationSlice";
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
+import PageLoader from '@/ui-components/PageLoader';
 const MySubRegistration = () => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
@@ -15,16 +16,16 @@ const MySubRegistration = () => {
     }, []);
     const { subRegistration } = useSelector(subRegistrationSelector);
     return (
-        <div className="edgtf-container ebs-my-profile-area pb-5">
+      subRegistration ?(<div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>My subregistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                {subRegistration && <SubRegForm subRegistration={subRegistration} event={event} />}
+                <SubRegForm subRegistration={subRegistration} event={event} />
           </div>
         </div>
-      </div>
+      </div>) : <PageLoader/>
   )
 }
 

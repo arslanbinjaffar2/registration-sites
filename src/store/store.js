@@ -29,8 +29,7 @@ import photoReducer from "./Slices/PhotoSlice";
 import videoReducer from "./Slices/VideoSlice";
 import programListingReducer from "./Slices/ProgramListingSlice";
 import programReducer from "./Slices/ProgramSlice";
-import { programApi } from "./services/program";
-import { attendeeProgramApi } from "./services/attendeePrograms";
+import myProgramListingReducer from "./Slices/myAccount/MyProgramListingSlice";
 export const store = configureStore({
   reducer: {
     event: eventReducer,
@@ -62,13 +61,8 @@ export const store = configureStore({
     video: videoReducer,
     programListing: programListingReducer,
     program: programReducer,
-    // [programApi.reducerPath]: programApi.reducer,
-    [attendeeProgramApi.reducerPath]: attendeeProgramApi.reducer,
+    myProgramListing: myProgramListingReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({serializableCheck: false}).concat(
-      // programApi.middleware,
-      attendeeProgramApi.middleware,
-    ),
+  
 });
 setupListeners(store.dispatch);

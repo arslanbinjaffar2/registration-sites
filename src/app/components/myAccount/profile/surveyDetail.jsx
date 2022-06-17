@@ -6,6 +6,7 @@ import {
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
 import SurveyForm from './SurveyForm';
+import PageLoader from '@/ui-components/PageLoader';
 const surveyDetail = ({match}) => {
   console.log(match.params.survey_id);
   const { event } = useSelector(eventSelector);
@@ -15,16 +16,16 @@ const surveyDetail = ({match}) => {
     }, []);
     const { surveyDetail, surveyResult } = useSelector(surveySelector);
     return (
-    <div className="edgtf-container ebs-my-profile-area pb-5">
+      surveyDetail ? <div className="edgtf-container ebs-my-profile-area pb-5">
     <div className="edgtf-container-inner container">
       <div className="ebs-header">
         <h2>Surveys</h2>
       </div>
       <div className="wrapper-inner-content network-category-sec">
-      {surveyDetail && <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={match.params.survey_id} />}
+      <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={match.params.survey_id} />
       </div>
     </div>
-  </div>
+  </div> : <PageLoader/>
   )
 }
 

@@ -1,146 +1,46 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import {
-  incrementLoadedSection,
-  incrementLoadCount,
-} from "store/Slices/GlobalSlice";
-import { useGetAttendeeProgramsQuery } from "store/services/attendeePrograms";
-import UiFullPagination from "@/ui-components/UiFullPagination";
-import UiPagination from "@/ui-components/UiPagination";
+import PageLoader from "@/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
+import { myProgramListingSelector, fetchMyPrograms ,clearState } from "store/Slices/myAccount/MyProgramListingSlice";
+
 import { withRouter } from "react-router";
 const in_array = require("in_array");
 
-const loadModule = (theme, variation) => {
+const loadModule = (theme) => {
+  const view = 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/program/${variation}`)
+    import(`@/themes/${theme}/program/listing/${view}`)
   );
   return Component;
 };
 
-const MyProgram = (props) => {
-  const initialMount = useRef(true);
+const MyProgram = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
-  const eventId = event.id;
-  let moduleVariation = event.theme.modules.filter(function (module, i) {
-    return in_array(module.alias, ["program"]);
-  });
-  const showPagination = props.pagination ? props.pagination : false;
-  const home = props.homePage ? props.homePage : false;
   const Component = useMemo(
-    () => loadModule(event.theme.slug, moduleVariation[0]["slug"]),
+    () => loadModule(event.theme.slug),
     [event]
   );
-
-  const [querySuccess, setQuerySuccess] = useState(false);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [value, setValue] = useState("");
-
+  const  {myPrograms, tracks, totalPages, labels } = useSelector(myProgramListingSelector);
   useEffect(() => {
-    const queryPage = new URLSearchParams(props.location.search).get("page");
-    if (queryPage && typeof parseInt(queryPage, 10) === "number") {
-      setPage(parseInt(queryPage, 10));
-      console.log("params", queryPage);
+      dispatch(fetchMyPrograms(eventUrl, event.id));
+    return ()=>{
+      clearState();
     }
   }, []);
 
-  useEffect(() => {
-    if (initialMount.current) {
-      dispatch(incrementLoadCount());
-      initialMount.current = false;
-      return;
-    }
-    const handler = setTimeout(() => {
-      setSearch(value);
-      setPage(1);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value]);
-
-  const { data, isFetching, isSuccess } = useGetAttendeeProgramsQuery({
-    eventId,
-    eventUrl,
-    page,
-    search,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
-      if (!querySuccess) {
-        dispatch(incrementLoadedSection());
-        setQuerySuccess(true);
-      }
-    }
-  }, [isSuccess]);
-
-  const onPageChange = (page) => {
-    console.log(page);
-    if (page > 0) {
-      if (page <= Math.ceil(data.meta.total / data.meta.per_page)) {
-        setPage(page);
-        setQueryParams(page);
-      }
-    }
-  };
-
-  const setQueryParams = (page) => {
-    props.history.replace({
-      search: `?page=${page}`,
-    });
-  };
 
   return (
-    <div className="edgtf-container ebs-my-profile-area pb-5">
-      <div className="edgtf-container-inner container">
-        <div className="ebs-header">
-          <h2>Surveys</h2>
-        </div>
-        <div className="wrapper-inner-content network-category-sec">
-          <Suspense fallback={<div></div>}>
-            {data ? (data.data.length > 0 ? (
-              <React.Fragment>
-                {showPagination && (
-                  <input
-                    type="text"
-                    onChange={(e) => setValue(e.target.value)}
-                  />
-                )}
-                {showPagination && (
-                  <UiPagination
-                    currentPage={page}
-                    onPageChange={(page) => {
-                      onPageChange(page);
-                    }}
-                    fetchingData={isFetching}
-                  />
-                )}
-                <Component programs={data.data} />
-                {showPagination && (
-                  <UiFullPagination
-                    total={data.meta.total}
-                    perPage={data.meta.per_page}
-                    currentPage={page}
-                    onPageChange={(page) => {
-                      onPageChange(page);
-                    }}
-                    fetchingData={isFetching}
-                  />
-                )}
-              </React.Fragment>
-            ) : home ? null : (
-              <div>No Programs found</div>
-              )): <div>Loading...</div> }
-          </Suspense>
-        </div>
-      </div>
-    </div>
+    <Suspense fallback={<PageLoader/>}>
+      {myPrograms ? (
+        <React.Fragment>
+          <Component programs={myPrograms} eventUrl={eventUrl} tracks={tracks} filters={false} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} />
+        </React.Fragment>
+      ) : <PageLoader/> }
+    </Suspense>
   );
 };
 
-export default withRouter(MyProgram);
+export default MyProgram;

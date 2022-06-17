@@ -12,6 +12,7 @@ import {
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import PageLoader from "@/ui-components/PageLoader";
 
 const MyProfileEdit = () => {
   const { event } = useSelector(eventSelector);
@@ -23,7 +24,7 @@ const MyProfileEdit = () => {
     useSelector(profileSelector);
 
   return (
-    attendee && (
+    attendee ? (
       <ProfileEditForm
         attendee={attendee}
         languages={languages}
@@ -33,8 +34,8 @@ const MyProfileEdit = () => {
         loading={loading}
         alert={alert}
         error={error}
-      />
-    )
+      />) : <PageLoader/> 
+    
   );
 };
 

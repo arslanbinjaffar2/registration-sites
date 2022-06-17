@@ -6,6 +6,7 @@ import {
 } from "store/Slices/myAccount/networkInterestSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
+import PageLoader from "@/ui-components/PageLoader";
 const ManageKeywords = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
@@ -14,16 +15,16 @@ const ManageKeywords = () => {
   }, []);
   const { keywords } = useSelector(interestSelector);
   return (
-    <div className="edgtf-container ebs-my-profile-area pb-5">
+    keywords ?<div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
           <h2>My Keywords</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-          {keywords && <ManageKeywordsList keywords={keywords} event={event} />}
+            <ManageKeywordsList keywords={keywords} event={event} />
         </div>
       </div>
-    </div>
+    </div> : <PageLoader/>
   );
 };
 

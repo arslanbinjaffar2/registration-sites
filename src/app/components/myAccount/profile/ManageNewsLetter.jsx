@@ -6,6 +6,7 @@ import {
   } from "store/Slices/myAccount/newsletterSlice";
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
+import PageLoader from '@/ui-components/PageLoader';
 const ManageNewsLetter = () => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
@@ -14,16 +15,16 @@ const ManageNewsLetter = () => {
     }, []);
     const { newsletter } = useSelector(newsLetterSelector);
     return (
-        <div className="edgtf-container ebs-my-profile-area pb-5">
+      newsletter ? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>My Subscriptions</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                {newsletter && <ManageNewsLetterList newsletter={newsletter} event={event} />}
+                 <ManageNewsLetterList newsletter={newsletter} event={event} />
           </div>
         </div>
-      </div>
+      </div> : <PageLoader/>
   )
 }
 
