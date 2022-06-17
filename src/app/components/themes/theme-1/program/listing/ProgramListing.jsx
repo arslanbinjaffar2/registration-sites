@@ -4,6 +4,7 @@ import ProgramItem from '../components/ProgramItem';
 import WorkShop from '../components/WorkShop';
 import ReactSelect from 'react-select';
 import {localeProgramMoment} from '../../../../../helpers/helper';
+import PageHeader from '@/modules/PageHeaders/PageHeader';
 const customStyles = {
   control: base => ({
     ...base,
@@ -59,10 +60,11 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, e
 
 
   return (
-    <div data-fixed="false" style={{ padding: "80px 0" }} className="module-section ebs-program-listing-wrapper ebs-transparent-box">
-      <div className="container">
+    <React.Fragment>
+      <PageHeader type={'background'}>
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
-      </div>
+      </PageHeader>
+    <div data-fixed="false" style={{ paddingBottom: "40px" }} className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       {filters && <div className="ebs-program-top">
         <div className="container">
           <div className="row d-flex">
@@ -113,6 +115,7 @@ const ProgramListing = ({programs, eventUrl, tracks, showWorkshop, siteLabels, e
           </div>
         </div>
     </div>
+    </React.Fragment>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import HeadingElement from "@/ui-components/HeadingElement";
 import { Link } from "react-router-dom";
+import PageHeader from "../../../modules/PageHeaders/PageHeader";
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
   const [cmsListing, setCmsListing] = useState(getListing(listing, menu_id));
@@ -30,59 +31,63 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
   
 
   return (
-    <div style={{padding: "80px 0",}}
-      className="edgtf-parallax-section-holder">
-      <div className="container">
-        <HeadingElement dark={false} label={eventSiteModuleName}  align={'center'} />
-        <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
-            <ul className="breadcrumb">
-              {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {(crumb.id === currentMenu)  ? crumb.name : <a href="#!" onClick={(e)=>{ onCrumbClick(e,crumb)}}>{crumb.name}</a>}
-                </li>
-              ))}
-            </ul>
-        </nav>
-        <div className="ebs-inner-page-wrapper">
-          <ul>
-            {cmsListing && cmsListing.map((item, i)=>(
-                <li key={i}>
-                  {item.page_type === 1 && 
-                        <Link to={`/${eventUrl}/${moduleName}/${item.id}`}>
-                          {item.info.name}
-                        </Link>
-                  }
-                {item.page_type === 2 && 
-                  <a href={`${item.website_protocol}${item.url}`} target="_blank"  >{item.info.name}</a>
+        <React.Fragment>
+        <PageHeader type={'background'}>
+            <HeadingElement dark={false} label={eventSiteModuleName}  align={'center'} />
+            <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
+                <ul className="breadcrumb">
+                  {breadCrumbs.map((crumb, i) => (
+                    <li className="breadcrumb-item" key={i}>
+                      {(crumb.id === currentMenu)  ? crumb.name : <a href="#!" onClick={(e)=>{ onCrumbClick(e,crumb)}}>{crumb.name}</a>}
+                    </li>
+                  ))}
+                </ul>
+            </nav>
+        </PageHeader>
+        <div style={{padding: "80px 0",}}
+          className="edgtf-parallax-section-holder">
+          <div className="container">
+            <div className="ebs-inner-page-wrapper">
+              <ul>
+                {cmsListing && cmsListing.map((item, i)=>(
+                    <li key={i}>
+                      {item.page_type === 1 && 
+                            <Link to={`/${eventUrl}/${moduleName}/${item.id}`}>
+                              {item.info.name}
+                            </Link>
+                      }
+                    {item.page_type === 2 && 
+                      <a href={`${item.website_protocol}${item.url}`} target="_blank"  >{item.info.name}</a>
+                    }
+                    {item.page_type === "menu" && 
+                      <a href="#!" onClick={(e)=>{ onCrumbClick(e, item)}}>
+                      {item.info.name}
+                    </a>
+                    }
+                    {item.submenu && 
+                            <ul>
+                                {item.submenu.map((subitem, j)=>(
+                                <li key={j}>
+                                  {subitem.page_type === 1 && 
+                                    <Link to={`/${eventUrl}/${moduleName}/${subitem.id}`}>
+                                      {subitem.info.name}
+                                    </Link>
+                                  }
+                                  {subitem.page_type === 2 && 
+                                    <a href={`${subitem.website_protocol}${subitem.url}`} target="_blank"  >{subitem.info.name}</a>
+                                  }
+                                  </li>
+                                ))}
+                            </ul>
+                    }
+                    </li>
+                ))
                 }
-                {item.page_type === "menu" && 
-                  <a href="#!" onClick={(e)=>{ onCrumbClick(e, item)}}>
-                  {item.info.name}
-                </a>
-                }
-                {item.submenu && 
-                        <ul>
-                            {item.submenu.map((subitem, j)=>(
-                            <li key={j}>
-                              {subitem.page_type === 1 && 
-                                <Link to={`/${eventUrl}/${moduleName}/${subitem.id}`}>
-                                  {subitem.info.name}
-                                </Link>
-                              }
-                              {subitem.page_type === 2 && 
-                                <a href={`${subitem.website_protocol}${subitem.url}`} target="_blank"  >{subitem.info.name}</a>
-                              }
-                              </li>
-                            ))}
-                        </ul>
-                }
-                </li>
-            ))
-            }
-          </ul>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        </React.Fragment>
   );
 };
 
