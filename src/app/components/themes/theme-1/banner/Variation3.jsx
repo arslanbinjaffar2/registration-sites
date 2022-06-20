@@ -1,11 +1,15 @@
-import SliderBanner from './components/SliderBanner';
-import moment from 'moment';
 import React from 'react'
+import moment from 'moment';
+import SliderBanner from './components/SliderBanner';
 
 const Variation3 = ({event, banner, countdown}) => {
 	// let momentObj = moment(event.start_date + event.start_time, 'YYYY-MM-DDLT');
 	// let eventDate = momentObj.toDate();
 	// console.log(banner);
+	React.useEffect(() => {
+		console.log('here');
+	}, [])
+	
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 		{banner && <SliderBanner
