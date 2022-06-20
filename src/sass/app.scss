@@ -2441,13 +2441,22 @@
   right: 10px;
 }
 .ebs-breadcrumbs {
-  color: $text2b;
+  color: $white;
   font-size: 16px;
+  .breadcrumb {
+    margin: 0;
+  }
   .breadcrumb-item:last-of-type {
+    a {
+      color: $first-main-color;
+    }
     color: $first-main-color;
   }
-  .breadcrumb-item:first-of-type {
-    color: $text2b;
+  .breadcrumb-item {
+    color: $white;
+    a {
+      color: $white;
+    }
   }
   .breadcrumb-item + .breadcrumb-item::before { 
     content: 'chevron_right';

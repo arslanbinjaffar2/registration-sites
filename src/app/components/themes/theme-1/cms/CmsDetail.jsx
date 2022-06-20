@@ -1,5 +1,7 @@
 import React, {useState, useRef} from "react";
 import { Link } from "react-router-dom";
+import PageHeader from "../../../modules/PageHeaders/PageHeader";
+import HeadingElement from "@/ui-components/HeadingElement";
 
 const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
 console.log(array, menu_id, currentPage, eventSiteModuleName);
@@ -29,19 +31,22 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
   };
 
   return (
-    <div style={{ paddingTop: "80px" }} className="edgtf-container">
+    <React.Fragment>
+          <PageHeader type={'background'}>
+            <HeadingElement dark={true} label={detail.name}  align={'left'} />
+            <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
+                <ul className="breadcrumb">
+                  {breadCrumbs.map((crumb, i) => (
+                    <li className="breadcrumb-item" key={i}>
+                      {crumb.id === detail.id ? crumb.name : <Link to={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</Link>}
+                    </li>
+                  ))}
+                </ul>
+            </nav>
+        </PageHeader> 
+    <div style={{ paddingTop: "30px" }} className="edgtf-container">
       <div className="edgtf-container-inner container">
         <div className={`${"edgtf-full-width-inner"} clearfix`}>
-          <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
-            <ul className="breadcrumb">
-              {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {crumb.id === detail.id ? crumb.name : <Link to={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</Link>}
-                </li>
-              ))}
-            </ul>
-          </nav>
-
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
@@ -68,22 +73,6 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                     )}
                     <div className="edgtf-post-text">
                       <div className="edgtf-post-text-inner">
-                        <h2
-                          itemProp="name"
-                          className="entry-title edgtf-post-title"
-                        >
-                          <a
-                            itemProp="url"
-                            href="#!"
-                            title="Web Analytics Made Easy"
-                          >
-                            {detail.name}
-                          </a>
-                        </h2>
-                        <div
-                          style={{ marginBottom: 40, marginTop: 0 }}
-                          className="edgtf-post-info-bottom"
-                        ></div>
                         {detail.description && (
                           <div>
                             <iframe
@@ -163,6 +152,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
         </div>
       </div>
     </div>
+    </React.Fragment>
   );
 };
 
