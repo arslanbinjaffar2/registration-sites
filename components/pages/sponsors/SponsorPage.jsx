@@ -1,5 +1,5 @@
 import React from "react";
-import SponsorListing from "@/modules/sponsor/SponsorListing";
+import SponsorListing from "components/modules/sponsor/SponsorListing";
 const SpeakerPage = () => {
   return (
     <React.Fragment>

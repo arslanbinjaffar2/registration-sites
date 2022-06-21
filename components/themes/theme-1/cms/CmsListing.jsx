@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import HeadingElement from "@/ui-components/HeadingElement";
-import { Link } from "react-router-dom";
+import HeadingElement from "components/ui-components/HeadingElement";
+import Link from 'next/link'
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
   const [cmsListing, setCmsListing] = useState(getListing(listing, menu_id));

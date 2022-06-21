@@ -4,15 +4,14 @@ import { exhibitorListingSelector, fetchExhibitors, clearState } from "store/Sli
 import {
   incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/exhibitor/listing/ExhibitorListing`)
+    import(`components/themes/${theme}/exhibitor/listing/ExhibitorListing`)
   );
   return Component;
 };
@@ -53,4 +52,4 @@ const ExhibitorListing = (props) => {
   );
 };
 
-export default withRouter(ExhibitorListing);
+export default ExhibitorListing;

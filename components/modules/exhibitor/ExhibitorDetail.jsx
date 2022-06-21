@@ -4,15 +4,14 @@ import { exhibitorDetailSelector, fetchExhibitor, clearState } from "store/Slice
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/exhibitor/detail/ExhibitorDetail`)
+    import(`components/themes/${theme}/exhibitor/detail/ExhibitorDetail`)
   );
   return Component;
 };
@@ -48,4 +47,4 @@ const id = props.match.params.id;
   );
 };
 
-export default withRouter(ExhibitorDetail);
+export default ExhibitorDetail;

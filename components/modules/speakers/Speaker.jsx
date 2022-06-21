@@ -4,17 +4,16 @@ import { speakerSelector, fetchSpeakers } from "store/Slices/SpeakerSlice";
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
-import PageLoader from "@/ui-components/PageLoader";
-import LoadMoreButton from '@/ui-components/LoadMoreButton';
-import SearchBar from "@/ui-components/SearchBar";
+import PageLoader from "components/ui-components/PageLoader";
+import LoadMoreButton from 'components/ui-components/LoadMoreButton';
+import SearchBar from "components/ui-components/SearchBar";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/speaker/${variation}`)
+    import(`components/themes/${theme}/speaker/${variation}`)
   );
   return Component;
 };
@@ -95,4 +94,4 @@ const Speaker = (props) => {
   );
 };
 
-export default withRouter(Speaker);
+export default Speaker;

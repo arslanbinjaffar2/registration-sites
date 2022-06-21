@@ -5,15 +5,14 @@ import {
   incrementLoadCount,
   incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/sponsor/${variation}`)
+    import(`components/themes/${theme}/sponsor/${variation}`)
   );
   return Component;
 };
@@ -54,4 +53,4 @@ const Sponsor = (props) => {
   );
 };
 
-export default withRouter(Sponsor);
+export default Sponsor;

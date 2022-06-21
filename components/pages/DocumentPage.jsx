@@ -1,5 +1,5 @@
 import React from 'react'
-import Documents from "@/modules/Documents";
+import Documents from "components/modules/Documents";
 const DocumentPage = () => {
   return (
     <React.Fragment>

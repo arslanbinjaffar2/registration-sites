@@ -4,15 +4,14 @@ import { sponsorListingSelector, fetchSponsors, clearState } from "store/Slices/
 import {
   incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/sponsor/listing/SponsorListing`)
+    import(`components/themes/${theme}/sponsor/listing/SponsorListing`)
   );
   return Component;
 };
@@ -51,4 +50,4 @@ const SponsorListing = (props) => {
   );
 };
 
-export default withRouter(SponsorListing);
+export default SponsorListing;

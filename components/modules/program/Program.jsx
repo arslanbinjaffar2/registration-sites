@@ -7,12 +7,11 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { programSelector, fetchPrograms } from "store/Slices/ProgramSlice";
 
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/program/Variation1`)
+    import(`components/themes/${theme}/program/Variation1`)
   );
   return Component;
 };
@@ -52,4 +51,4 @@ const Program = (props) => {
   );
 };
 
-export default withRouter(Program);
+export default Program;

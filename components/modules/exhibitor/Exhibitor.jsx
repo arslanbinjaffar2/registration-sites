@@ -7,12 +7,11 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { exhibitorSelector, fetchExhibitors } from "store/Slices/ExhibitorSlice";
 
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/exhibitor/${variation}`)
+    import(`components/themes/${theme}/exhibitor/${variation}`)
   );
   return Component;
 };
@@ -50,4 +49,4 @@ const Exhibitor = (props) => {
   );
 };
 
-export default withRouter(Exhibitor);
+export default Exhibitor;

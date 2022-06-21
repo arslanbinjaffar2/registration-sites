@@ -2,15 +2,14 @@ import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { newsSelector, fetchNews } from "store/Slices/NewsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
-import PageLoader from "@/ui-components/PageLoader";
-import LoadMoreButton from '@/ui-components/LoadMoreButton';
+import PageLoader from "components/ui-components/PageLoader";
+import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/news/${variation}`)
+    import(`components/themes/${theme}/news/${variation}`)
   );
   return Component;
 };
@@ -74,4 +73,4 @@ const News = (props) => {
   );
 };
 
-export default withRouter(News);
+export default News;

@@ -3,15 +3,14 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { attendeeSelector, fetchAttendees } from "store/Slices/AttendeeSlice";
 import { incrementLoadCount } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
-import PageLoader from "@/ui-components/PageLoader";
-import LoadMoreButton from "@/ui-components/LoadMoreButton";
-import SearchBar from "@/ui-components/SearchBar";
+import PageLoader from "components/ui-components/PageLoader";
+import LoadMoreButton from "components/ui-components/LoadMoreButton";
+import SearchBar from "components/ui-components/SearchBar";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/attendee/${variation}`)
+    import(`components/themes/${theme}/attendee/${variation}`)
   );
   return Component;
 };
@@ -91,4 +90,4 @@ const Attendee = (props) => {
   );
 };
 
-export default withRouter(Attendee);
+export default Attendee;

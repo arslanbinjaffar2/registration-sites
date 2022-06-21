@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/cms/CmsListing`)
+    import(`components/themes/${theme}/cms/CmsListing`)
   );
   return Component;
 };
@@ -40,4 +39,4 @@ const id = props.match.params.id;
   );
 };
 
-export default withRouter(CmsListing);
+export default CmsListing;

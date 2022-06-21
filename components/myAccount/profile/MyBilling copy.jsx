@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from '@/forms/Input';
-import TextArea from '@/forms/TextArea';
-import DateTime from '@/forms/DateTime';
-import DropDown from '@/forms/DropDown';
+import Input from 'components/forms/Input';
+import TextArea from 'components/forms/TextArea';
+import DateTime from 'components/forms/DateTime';
+import DropDown from 'components/forms/DropDown';
 
 const options = [
   { id: 1, name: 'Chocolate' },
@@ -91,7 +91,7 @@ const MyBilling = () =>  {
               <div className="ebs-contact-info">
                 <h3 className='ebs-title'>Contact information:</h3>
               <div className="ebs-contact-row d-flex align-items-center">
-                <img src={require('img/ico-phone.svg')} alt="" />
+                <img src={require('public/img/ico-phone.svg')} alt="" />
                 <div className='form-phone-field'>
                     <DropDown
                       listitems={options}
@@ -101,23 +101,23 @@ const MyBilling = () =>  {
                   </div>
                 </div>
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require('img/ico-envelope.svg')} alt="" />
+                  <img src={require('public/img/ico-envelope.svg')} alt="" />
                   <Input label="E-mail" required  />
                 </div>
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require('img/ico-web.svg')} alt="" />
+                  <img src={require('public/img/ico-web.svg')} alt="" />
                   <Input label="E-mail" required  />
                 </div>
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require('img/ico-facebook.svg')} alt="" />
+                  <img src={require('public/img/ico-facebook.svg')} alt="" />
                   <Input label="E-mail" required  />
                 </div>
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require('img/ico-twitter.svg')} alt="" />
+                  <img src={require('public/img/ico-twitter.svg')} alt="" />
                   <Input label="E-mail" required  />
                 </div>
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require('img/ico-linkedin.svg')} alt="" />
+                  <img src={require('public/img/ico-linkedin.svg')} alt="" />
                   <Input label="E-mail" required  />
                 </div>
               </div>

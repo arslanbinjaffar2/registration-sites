@@ -1,6 +1,6 @@
 import React from "react";
-import HeadingElement from "@/ui-components/HeadingElement";
-import DocumentsListing from "@/ui-components/DocumentsListing";
+import HeadingElement from "components/ui-components/HeadingElement";
+import DocumentsListing from "components/ui-components/DocumentsListing";
 const Documents = ({documents}) => {
   return (
     <div style={{padding: "80px 0",}}

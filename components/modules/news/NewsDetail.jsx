@@ -2,12 +2,11 @@ import React, { useState, useEffect, useMemo, Suspense } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { newsDetailSelector, fetchNewsDetail, clearState } from "store/Slices/NewsDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
-import { withRouter } from "react-router";
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/news/detail/${variation}`)
+    import(`components/themes/${theme}/news/detail/${variation}`)
   );
   return Component;
 };
@@ -45,4 +44,4 @@ const NewsDetail = (props) => {
   );
 };
 
-export default withRouter(NewsDetail);
+export default NewsDetail;

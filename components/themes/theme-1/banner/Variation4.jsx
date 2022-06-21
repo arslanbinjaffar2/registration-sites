@@ -17,7 +17,7 @@ const Variation4 = ({ banner, event, countdown }) => {
                     backgroundImage: `url(${
                       slides && Number(slides.video_type) === 1
                         ? process.env.REACT_APP_EVENTCENTER_URL + slides.image
-                        : require("img/h1-parallax1.jpg")
+                        : require("public/img/h1-parallax1.jpg")
                     })`,
                     backgroundPosition: "50% 0",
                   }}

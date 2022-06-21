@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Videopopup from "@/Videopopup";
+import Videopopup from "components/Videopopup";
 import { PortalWithState } from "react-portal";
-// import Video from '../../../modules/Video';
+
 class Variation1 extends React.Component {
     render() {
         const video_data = this.props.videos[0];
         return (
             <React.Fragment>
                 {video_data !== undefined && (
-                    <div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '100px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+                    <div style={{ backgroundImage: `url(${require('public/img/h1-parallax1.jpg')})`, padding: '100px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
                         <div className="container">
                             <div className="row d-flex align-items-center">
                                 <div className="col-md-6">

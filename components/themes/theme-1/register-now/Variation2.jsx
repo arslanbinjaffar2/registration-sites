@@ -1,7 +1,7 @@
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
-import HeadingElement from '@/ui-components/HeadingElement';
+import HeadingElement from 'components/ui-components/HeadingElement';
 const Completionist = () =>  
   <div className="col-12">
     <h2>This event is going on.</h2>
@@ -48,7 +48,7 @@ const Variation2 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
   console.log(eventSiteSettings.registration_end_date);
   return (
     <div className="module-section">
-      <div  style={{ backgroundImage: `url(${moduleVariation.background_image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + moduleVariation.background_image : require("img/h1-parallax1.jpg")}`,padding: "80px 0", backgroundPosition:"center", backgroundSize:'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+      <div  style={{ backgroundImage: `url(${moduleVariation.background_image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + moduleVariation.background_image : require("public/img/h1-parallax1.jpg")}`,padding: "80px 0", backgroundPosition:"center", backgroundSize:'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
       {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
         <div className="container">
           <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />

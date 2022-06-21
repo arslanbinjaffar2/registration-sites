@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import HeadingElement from "@/ui-components/HeadingElement";
+import HeadingElement from "components/ui-components/HeadingElement";
 import {
   EmailIcon,
   FacebookIcon,
@@ -18,7 +18,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
   const _bgimage =
     settings && settings.background_image !== ""
       ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`
-      : require("img/h1-parallax1.jpg");
+      : require("public/img/h1-parallax1.jpg");
       useEffect(() => {
         window.addEventListener("scroll",scollEffect);
         return () => {

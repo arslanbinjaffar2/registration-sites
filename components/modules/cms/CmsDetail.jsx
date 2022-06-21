@@ -1,14 +1,13 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { cmsDetailSelector, fetchCmsPage, clearState } from "store/Slices/CmsDetailSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/cms/CmsDetail`)
+    import(`components/themes/${theme}/cms/CmsDetail`)
   );
   return Component;
 };
@@ -50,4 +49,4 @@ const informationModules = {
   );
 };
 
-export default withRouter(CmsDetail);
+export default CmsDetail;

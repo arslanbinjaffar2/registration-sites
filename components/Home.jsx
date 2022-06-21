@@ -22,7 +22,7 @@ class Home extends React.Component {
 					<div className="row d-flex mb-5">
 						<div className="col-md-4">
 							<figure className="pb-2">
-								<img src={require('img/blog-img1.jpg')} alt="" />
+								<img src={require('public/img/blog-img1.jpg')} alt="" />
 							</figure>
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
@@ -32,7 +32,7 @@ class Home extends React.Component {
 						</div>
 						<div className="col-md-4">
 							<figure className="pb-2">
-								<img src={require('img/blog-img1.jpg')} alt="" />
+								<img src={require('public/img/blog-img1.jpg')} alt="" />
 							</figure>
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
@@ -42,7 +42,7 @@ class Home extends React.Component {
 						</div>
 						<div className="col-md-4">
 							<figure className="pb-2">
-								<img src={require('img/blog-img1.jpg')} alt="" />
+								<img src={require('public/img/blog-img1.jpg')} alt="" />
 							</figure>
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
@@ -52,7 +52,7 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div style={{ backgroundImage: `url(${require('img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+				<div style={{ backgroundImage: `url(${require('public/img/h1-parallax1.jpg')})`, padding: '50px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
 					<div className="container">
 						<div className="row d-flex mb-5">
 							<div className="col-md-4">

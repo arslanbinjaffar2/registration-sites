@@ -5,7 +5,7 @@ const Variation1 = ({ attendee }) => {
     <div data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
-          backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+          backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
           minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
@@ -37,7 +37,7 @@ const Variation1 = ({ attendee }) => {
                             ? process.env.REACT_APP_EVENTCENTER_URL +
                               "/assets/attendees/" +
                               attendee.image
-                            : require("img/user-placeholder.jpg")
+                            : require("public/img/user-placeholder.jpg")
                         }
                         alt="g"
                       />

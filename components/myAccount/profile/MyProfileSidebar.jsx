@@ -1,6 +1,6 @@
 import React, { useEffect , useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import Link from 'next/link'
 import { eventSelector } from "store/Slices/EventSlice";
 import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 
@@ -49,7 +49,7 @@ useEffect(() => {
             ? process.env.REACT_APP_EVENTCENTER_URL +
               "/assets/attendees/" +
               isAuthenticated.user.image
-            : require("img/square.jpg")
+            : require("public/img/square.jpg")
         } alt="" />
      </div>
      {toggleMenu && <div className="ebs-sidebar-account">
@@ -71,4 +71,4 @@ useEffect(() => {
   )
 }
 
-export default  withRouter(MyProfileSidebar);
+export default MyProfileSidebar;

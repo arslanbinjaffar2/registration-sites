@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { speakerDetailSelector, fetchSpeakerDetail, clearState } from "store/Slices/SpeakerDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 // const in_array = require("in_array");
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/speaker/detail/${variation}`)
+    import(`components/themes/${theme}/speaker/detail/${variation}`)
   );
   return Component;
 };
@@ -41,4 +40,4 @@ const SpeakerDetail = (props) => {
   );
 };
 
-export default withRouter(SpeakerDetail);
+export default SpeakerDetail;

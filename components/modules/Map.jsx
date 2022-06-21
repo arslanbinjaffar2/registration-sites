@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useEffect } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import { eventSelector } from "store/Slices/EventSlice";
+import PageLoader from "components/ui-components/PageLoader";
 
 import {
   incrementLoadCount,
@@ -10,12 +10,11 @@ import {
   fetchMap,
 } from "store/Slices/MapSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/map/${variation}`)
+    import(`components/themes/${theme}/map/${variation}`)
   );
   return Component;
 };
@@ -48,4 +47,4 @@ const Map = () => {
   );
 };
 
-export default withRouter(Map);
+export default Map;

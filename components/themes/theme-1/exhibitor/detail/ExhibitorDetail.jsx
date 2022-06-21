@@ -1,12 +1,12 @@
 import React from "react";
-import DocumentsListing from "@/ui-components/DocumentsListing";
+import DocumentsListing from "components/ui-components/DocumentsListing";
 
 const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
-          backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+          backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
           minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
@@ -34,7 +34,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                   <img
                     style={{ maxWidth: '90%', width: 'auto'}}
                     onLoad={(e) => e.target.style.opacity = 1}
-                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')}
+                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')}
                     alt=""
                   />
                   </span>
@@ -172,7 +172,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                     ? process.env.REACT_APP_EVENTCENTER_URL +
                       "/assets/attendees/" +
                       attendee.image
-                    : require("img/user-placeholder.jpg")
+                    : require("public/img/user-placeholder.jpg")
                 } alt="" />
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>

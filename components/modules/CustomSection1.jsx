@@ -1,10 +1,10 @@
 import React, { Suspense, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { eventSelector } from '../../../store/Slices/EventSlice'
+import { eventSelector } from 'store/Slices/EventSlice'
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/custom-sections/CustomSection`)
+    import(`components/themes/${theme}/custom-sections/CustomSection`)
   );
   return Component;
 }

@@ -1,31 +1,23 @@
-// import Slider from '@/modules/Slider';
-// import Timetable from '@/modules/Timetable';
-// import CustomSection from "@/themes/theme-1/custom-sections/CustomSection";
-// import Map from "@/modules/Map";
 import React, {Suspense, lazy} from "react";
 import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
-
 import PageLoader from "./ui-components/PageLoader";
-import FullPageLoader from "./ui-components/FullPageLoader";
-
-const Speaker = lazy(() => import("@/modules/speakers/Speaker"));
-const Gallery = lazy(() => import("@/modules/Gallery"));
-const Video = lazy(() => import("@/modules/Video"));
-const Sponsor = lazy(() => import("@/modules/sponsor/Sponsor"));
-const Program = lazy(() => import("@/modules/program/Program"));
-const Exhibitor = lazy(() => import("@/modules/exhibitor/Exhibitor"));
-const SocialShare = lazy(() => import("@/modules/SocialShare"));
-const RegisterNow = lazy(() => import("@/modules/RegisterNow"));
-const Banner = lazy(() => import("@/modules/Banner"));
-const Map = lazy(() => import("@/modules/Map"));
-const CustomSection1 = lazy(() => import("@/modules/CustomSection1"));
-const CustomSection2 = lazy(() => import("@/modules/CustomSection2"));
-
-
+const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
+const Gallery = lazy(() => import("components/modules/Gallery"));
+const Video = lazy(() => import("components/modules/Video"));
+const Sponsor = lazy(() => import("components/modules/sponsor/Sponsor"));
+const Program = lazy(() => import("components/modules/program/Program"));
+const Exhibitor = lazy(() => import("components/modules/exhibitor/Exhibitor"));
+const SocialShare = lazy(() => import("components/modules/SocialShare"));
+const RegisterNow = lazy(() => import("components/modules/RegisterNow"));
+const Banner = lazy(() => import("components/modules/Banner"));
+const Map = lazy(() => import("components/modules/Map"));
+const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
+const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
 
 const Index = () => {
+  
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
   const { layoutSections } = event;

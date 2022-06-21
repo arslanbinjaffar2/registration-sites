@@ -1,5 +1,5 @@
 import React from "react";
-import ExhibitorDetail from "@/modules/exhibitor/ExhibitorDetail";
+import ExhibitorDetail from "components/modules/exhibitor/ExhibitorDetail";
 const ExhibitorPage = () => {
   return (
     <React.Fragment>

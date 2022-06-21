@@ -13,7 +13,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 				>
 					{banner.map((slides, i) =>
 						<div key={i} className="slide-wrapper">
-							<div style={{ backgroundImage: `url(${slides && Number(slides.video_type) === 1 ? process.env.REACT_APP_EVENTCENTER_URL + slides.image : require('img/h1-parallax1.jpg')})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+							<div style={{ backgroundImage: `url(${slides && Number(slides.video_type) === 1 ? process.env.REACT_APP_EVENTCENTER_URL + slides.image : require('public/img/h1-parallax1.jpg')})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
 								{Number(slides.video_type) === 2 &&
 									<div className="video-fullscreen">
 										<video autoPlay playsInline  muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>

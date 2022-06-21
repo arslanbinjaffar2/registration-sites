@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Slider from "react-slick";
-import SponsorPopup from '@/ui-components/SponsorPopup';
-import HeadingElement from '@/ui-components/HeadingElement';
+import SponsorPopup from 'components/ui-components/SponsorPopup';
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
@@ -90,7 +90,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 																? process.env.REACT_APP_EVENTCENTER_URL +
 																"/assets/sponsors/" +
 																sponsor.logo
-																: require('img/exhibitors-default.png')
+																: require('public/img/exhibitors-default.png')
 														}
 														alt="Client 11"
 													/>

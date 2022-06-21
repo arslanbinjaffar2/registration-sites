@@ -1,7 +1,7 @@
 import React from "react";
 import Pagination  from "react-bootstrap/Pagination";
 
-import ReactPageScroller from "@/scroller";
+import ReactPageScroller from "components/scroller";
 
 export default class FullPage extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class FullPage extends React.Component {
           customPageNumber={this.state.currentPage}
         >
           <div
-            style={{ backgroundImage: `url(${require("img/h1-slide2.jpg")})` }}
+            style={{ backgroundImage: `url(${require("public/img/h1-slide2.jpg")})` }}
             className="component parallax-backgroud"
           >
             <div>{/* <OurProgramv3 /> */}</div>
@@ -46,19 +46,19 @@ export default class FullPage extends React.Component {
             <div>{/* <Video /> */}</div>
           </div>
           <div
-            style={{ backgroundImage: `url(${require("img/h2-slide3.jpg")})` }}
+            style={{ backgroundImage: `url(${require("public/img/h2-slide3.jpg")})` }}
             className="component"
           >
             Lorem ipsum dolor sit.
           </div>
           <div
-            style={{ backgroundImage: `url(${require("img/h1-slide1.jpg")})` }}
+            style={{ backgroundImage: `url(${require("public/img/h1-slide1.jpg")})` }}
             className="component"
           >
             Lorem ipsum dolor sit.
           </div>
           <div
-            style={{ backgroundImage: `url(${require("img/h1-slide2.jpg")})` }}
+            style={{ backgroundImage: `url(${require("public/img/h1-slide2.jpg")})` }}
             className="component"
           >
             Lorem ipsum dolor sit.

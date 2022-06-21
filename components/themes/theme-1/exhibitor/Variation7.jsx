@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Slider from "react-slick";
-import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
-import HeadingElement from '@/ui-components/HeadingElement';
+import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels,settings}) => {
 	const [popup, setPopup] = useState(false);
@@ -88,7 +88,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels,setti
 																? process.env.REACT_APP_EVENTCENTER_URL +
 																"/assets/exhibitors/" +
 																exhibitor.logo
-																: require('img/exhibitors-default.png')
+																: require('public/img/exhibitors-default.png')
 														}
 														alt="Client 11"
 													/>

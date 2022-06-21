@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import React, {useRef, useState} from "react";
 import TruncateMarkup from 'react-truncate-markup';
 
@@ -32,7 +32,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                                   ? process.env.REACT_APP_EVENTCENTER_URL +
                                     "/assets/eventsite_news/" +
                                     item.image
-                                  : require('img/exhibitors-default.png')
+                                  : require('public/img/exhibitors-default.png')
                               }
                               className="attachment-full size-full wp-post-image"
                               alt="a"

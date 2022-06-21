@@ -1,5 +1,5 @@
 import React from 'react'
-import NewsDetail from '@/modules/news/NewsDetail';
+import NewsDetail from 'components/modules/news/NewsDetail';
 const NewsDetailPage = () => {
     return (
         <React.Fragment>

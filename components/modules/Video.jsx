@@ -5,15 +5,14 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
-import PageLoader from "@/ui-components/PageLoader";
-import LoadMoreButton from '@/ui-components/LoadMoreButton';
+import PageLoader from "components/ui-components/PageLoader";
+import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/video/${variation}`)
+    import(`components/themes/${theme}/video/${variation}`)
   );
   return Component;
 };
@@ -75,4 +74,4 @@ const Video = (props) => {
   );
 };
 
-export default withRouter(Video);
+export default Video;

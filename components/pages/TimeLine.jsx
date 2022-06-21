@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import ReactSelect from 'react-select';
-import TimelinePopup from '../ui-components/TimelinePopup';
+import TimelinePopup from 'components/ui-components/TimelinePopup';
 
 const customStyles = {
   control: base => ({

@@ -1,5 +1,5 @@
 import React from "react";
-import HeadingElement from "@/ui-components/HeadingElement";
+import HeadingElement from "components/ui-components/HeadingElement";
 const GeneralInformation = () => {
   return (
     <div style={{padding: "80px 0",}}

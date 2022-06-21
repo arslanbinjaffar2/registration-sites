@@ -1,26 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { Translation } from "react-i18next";
+import Header from "components/modules/Header";
 
-const MasterLayout = ({ children, ...rest, history }) => {
+const MasterLayoutRoute = ({ children }) => {
     return (
-        <Translation>
-            {t => (
-                children
-            )}
-        </Translation>
-    );
-}
-
-const MasterLayoutRoute = (props) => {
-    const { component: Component, ...rest } = props;
-    return (
-        <Route {...rest} render={matchProps => (
-            <MasterLayout history={props.history}>
-                <Component
-                    {...matchProps} />
-            </MasterLayout>
-        )} />
+        <>
+            <Header />
+            {children}
+        </>
     )
 }
 

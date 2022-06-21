@@ -126,7 +126,7 @@ const Variation2 = ({ programs }) => {
                                                     .REACT_APP_EVENTCENTER_URL +
                                                   "/assets/attendees/" +
                                                   speaker.image
-                                                : require("img/square.jpg")
+                                                : require("public/img/square.jpg")
                                             }
                                             alt=""
                                           />

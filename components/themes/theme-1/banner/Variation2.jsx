@@ -75,7 +75,7 @@ const Variation2 = ({ banner }) => {
             backgroundImage: `url(${
               data && Number(data.video_type) === 1
                 ? process.env.REACT_APP_EVENTCENTER_URL + data.image
-                : require("img/h1-parallax1.jpg")
+                : require("public/img/h1-parallax1.jpg")
             })`,
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"

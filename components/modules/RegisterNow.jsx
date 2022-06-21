@@ -6,12 +6,11 @@ import moment from 'moment';
 //   incrementLoadCount,
 // } from "store/Slices/GlobalSlice";
 import { useSelector } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/register-now/${variation}`)
+    import(`components/themes/${theme}/register-now/${variation}`)
   );
   return Component;
 };
@@ -59,4 +58,4 @@ const RegisterNow = () => {
   );
 };
 
-export default withRouter(RegisterNow);
+export default RegisterNow;

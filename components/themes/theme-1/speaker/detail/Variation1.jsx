@@ -1,13 +1,13 @@
 import React from "react";
-import ProgramItem from "../../program/components/ProgramItem";
-import WorkShop from "../../program/components/WorkShop";
-import {localeProgramMoment} from '../../../../../helpers/helper';
+import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
+import WorkShop from "components/themes/theme-1/program/components/WorkShop";
+import {localeProgramMoment} from 'helpers/helper';
 const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, eventLanguageId}) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
-          backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+          backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
           minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
@@ -39,7 +39,7 @@ const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, e
                           ? process.env.REACT_APP_EVENTCENTER_URL +
                             "/assets/attendees/" +
                             speaker.image
-                          : require("img/square.jpg")
+                          : require("public/img/square.jpg")
                       }
                       alt="g"
                     />

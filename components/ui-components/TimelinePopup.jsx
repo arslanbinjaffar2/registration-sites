@@ -40,7 +40,7 @@ const TimelinePopup =  ({width, onClick, data}) => {
                             ? process.env.REACT_APP_EVENTCENTER_URL +
                             "/assets/attendees/" +
                             speakers.image
-                            : require("img/user-placeholder.jpg")
+                            : require("public/img/user-placeholder.jpg")
                         } alt="" />
 												</span>
 												<h4>{speakers.first_name} {speakers.last_name}</h4>

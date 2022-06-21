@@ -2,9 +2,9 @@
 import React from "react";
 import Masonry from "react-masonry-css";
 import { PortalWithState } from "react-portal";
-import Videopopup from "../../../Videopopup";
-import HeadingElement from '@/ui-components/HeadingElement';
-import { Link } from "react-router-dom";
+import Videopopup from "components/Videopopup";
+import HeadingElement from 'components/ui-components/HeadingElement';
+import Link from 'next/link'
 
 const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
   const imgUrl = (photo) => {

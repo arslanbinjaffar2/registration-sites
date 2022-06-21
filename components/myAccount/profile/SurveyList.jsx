@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import {
   fetchSurveyListData,
   surveyListSelector,
 } from "store/Slices/myAccount/surveyListSlice";
-import PageLoader from "../../ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 const SurveyList = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();

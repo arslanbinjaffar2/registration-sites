@@ -1,5 +1,5 @@
 import React from "react";
-import SponsorDetail from "@/modules/sponsor/SponsorDetail";
+import SponsorDetail from "components/modules/sponsor/SponsorDetail";
 const SponsorDetailPage = () => {
 
   return (

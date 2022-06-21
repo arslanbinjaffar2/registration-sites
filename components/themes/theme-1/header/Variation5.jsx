@@ -1,7 +1,8 @@
 import * as React from "react";
-import { NavLink, Link } from "react-router-dom";
-import { Scrollbars } from "react-custom-scrollbars";
-import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
+import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
+import { Scrollbars } from "react-custom-scrollbars-2";
+import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
 
 class Variation5 extends React.Component {
   _isMounted = false;
@@ -127,7 +128,7 @@ class Variation5 extends React.Component {
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
               <div className="ebs-logo-main">
-                <Link to={`/${event.url}`}>
+                <Link href={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -194,10 +195,10 @@ class Variation5 extends React.Component {
                                 menu.alias !== "practicalinformation" &&
                                 menu.alias !== "additional_information" &&
                                 menu.alias !== "general_information" && (
-                                  <NavLink
+                                  <ActiveLink
                                     className="nav-link"
                                     aria-current="page"
-                                    to={
+                                    href={
                                       "/" +
                                       this.props.event.url +
                                       "/" +
@@ -207,17 +208,17 @@ class Variation5 extends React.Component {
                                     <span className="ebs-nav-item">
                                       {menu.module}
                                     </span>
-                                  </NavLink>
+                                  </ActiveLink>
                                 )}
                               {menu.alias === "gallery" && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["gallery_sub_menu"].map(
                                     (myaccount, k) => (
                                       <li className="nav-item" key={k}>
-                                        <NavLink
+                                        <ActiveLink
                                           aria-current="page"
                                           className="nav-link"
-                                          to={
+                                          href={
                                             "/" +
                                             this.props.event.url +
                                             "/" +
@@ -228,7 +229,7 @@ class Variation5 extends React.Component {
                                           <span className="ebs-nav-item">
                                             {myaccount.module}
                                           </span>
-                                        </NavLink>
+                                        </ActiveLink>
                                       </li>
                                     )
                                   )}
@@ -239,10 +240,10 @@ class Variation5 extends React.Component {
                                   {!this.props.userExist ? menus["my_account_sub_menu"].map(
                                     (myaccount, k) => (
                                       <li className="nav-item" key={k}>
-                                        {myaccount.alias !== "login" ? (<NavLink
+                                        {myaccount.alias !== "login" ? (<ActiveLink
                                           aria-current="page"
                                           className="nav-link"
-                                          to={
+                                          href={
                                             "/" +
                                             this.props.event.url +
                                             "/" +
@@ -253,7 +254,7 @@ class Variation5 extends React.Component {
                                           <span className="ebs-nav-item">
                                             {myaccount.module}
                                           </span>
-                                        </NavLink>):
+                                        </ActiveLink>):
                                         <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
                                           <span className="ebs-nav-item">
                                             {myaccount.module}
@@ -263,13 +264,13 @@ class Variation5 extends React.Component {
                                       </li>
                                     )
                                   ):(<li className="nav-item">
-                                  <NavLink
+                                  <ActiveLink
                                     aria-current="page"
                                     className="nav-link"
-                                    to={ `/${event.url}/profile`}
+                                    href={ `/${event.url}/profile`}
                                   >
                                       My Profile
-                                  </NavLink>
+                                  </ActiveLink>
                                 </li>
                           )}
                                 </ul>
@@ -310,10 +311,10 @@ class Variation5 extends React.Component {
                                                           {subitem.info.name}
                                                         </a>
                                                       ) : (
-                                                    <NavLink
+                                                    <ActiveLink
                                                       aria-current="page"
                                                       className="nav-link"
-                                                      to={
+                                                      href={
                                                         "/" +
                                                         this.props.event.url +
                                                         "/" +
@@ -324,7 +325,7 @@ class Variation5 extends React.Component {
                                                       key={subitem.id}
                                                     >
                                                       {subitem.info.name}
-                                                    </NavLink>
+                                                    </ActiveLink>
                                                     )}
                                                   </li>
                                                 )
@@ -344,10 +345,10 @@ class Variation5 extends React.Component {
                                               {pItem.info.name}
                                             </a>
                                           ) : (
-                                            <NavLink
+                                            <ActiveLink
                                               aria-current="page"
                                               className="nav-link"
-                                              to={
+                                              href={
                                                 "/" +
                                                 this.props.event.url +
                                                 "/" +
@@ -358,7 +359,7 @@ class Variation5 extends React.Component {
                                               key={pItem.id}
                                             >
                                               {pItem.info.name}
-                                            </NavLink>
+                                            </ActiveLink>
                                           )}
                                         </li>
                                       )
@@ -400,10 +401,10 @@ class Variation5 extends React.Component {
                                                           {subitem.info.name}
                                                         </a>
                                                       ) : (
-                                                    <NavLink
+                                                    <ActiveLink
                                                       aria-current="page"
                                                       className="nav-link"
-                                                      to={
+                                                      href={
                                                         "/" +
                                                         this.props.event.url +
                                                         "/" +
@@ -414,7 +415,7 @@ class Variation5 extends React.Component {
                                                       key={subitem.id}
                                                     >
                                                       {subitem.info.name}
-                                                    </NavLink>
+                                                    </ActiveLink>
                                                     )}
                                                   </li>
                                                 )
@@ -434,10 +435,10 @@ class Variation5 extends React.Component {
                                               {aItem.info.name}
                                             </a>
                                           ) : (
-                                            <NavLink
+                                            <ActiveLink
                                               aria-current="page"
                                               className="nav-link"
-                                              to={
+                                              href={
                                                 "/" +
                                                 this.props.event.url +
                                                 "/" +
@@ -448,7 +449,7 @@ class Variation5 extends React.Component {
                                               key={aItem.id}
                                             >
                                               {aItem.info.name}
-                                            </NavLink>
+                                            </ActiveLink>
                                           )}
                                         </li>
                                       )
@@ -485,10 +486,10 @@ class Variation5 extends React.Component {
                                                       {subitem.info.name}
                                                     </a>
                                                   ) : (
-                                                <NavLink
+                                                <ActiveLink
                                                   aria-current="page"
                                                   className="nav-link"
-                                                  to={
+                                                  href={
                                                     "/" +
                                                     this.props.event.url +
                                                     "/" +
@@ -499,7 +500,7 @@ class Variation5 extends React.Component {
                                                   key={subitem.id}
                                                 >
                                                   {subitem.info.name}
-                                                </NavLink>
+                                                </ActiveLink>
                                                 )}
                                               </li>
                                             ))}
@@ -518,10 +519,10 @@ class Variation5 extends React.Component {
                                             {gItem.info.name}
                                           </a>
                                         ) : (
-                                          <NavLink
+                                          <ActiveLink
                                             aria-current="page"
                                             className="nav-link"
-                                            to={
+                                            href={
                                               "/" +
                                               this.props.event.url +
                                               "/" +
@@ -532,7 +533,7 @@ class Variation5 extends React.Component {
                                             key={gItem.id}
                                           >
                                             {gItem.info.name}
-                                          </NavLink>
+                                          </ActiveLink>
                                         )}
                                       </li>
                                     )

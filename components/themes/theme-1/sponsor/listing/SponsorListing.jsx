@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 
 const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabels}) => {
   const [locSponsors, setLocSponsors] = useState(sponsors);
@@ -56,7 +56,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
     <div style={{opacity: 0}} ref={element} data-fixed="false" className="ebs-transparent-box">
     <div
       style={{
-        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+        backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
         minHeight: 250,
       }}
       className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
@@ -116,7 +116,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
                   <div className="ebs-img-listing">
                     <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
                       <figure>
-                        <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')} alt="" />
+                        <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('public/img/exhibitors-default.png')} alt="" />
                       </figure>
                     </Link>
                   </div>

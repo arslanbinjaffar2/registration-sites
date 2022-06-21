@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import ExhibitorPopup from '@/ui-components/ExhibitorPopup';
-import HeadingElement from '@/ui-components/HeadingElement';
+import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Variation6 = ({exhibitorsByCategories, labels, eventUrl, siteLabels, settings}) => {
     const [popup, setPopup] = useState(false);
@@ -21,7 +21,7 @@ const Variation6 = ({exhibitorsByCategories, labels, eventUrl, siteLabels, setti
                                 return (<div className="col-sm-4 col-6 col-md-2" key={j}>
                                     <figure onClick={() =>{setData(exhibitor);setPopup(true)}} className="bghover">
                                         <img
-                                            src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')}
+                                            src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')}
                                             className="vc_single_image-img attachment-full"
                                             alt="x"
                                         />

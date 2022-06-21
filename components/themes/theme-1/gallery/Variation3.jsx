@@ -1,7 +1,7 @@
 import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
-import HeadingElement from "@/ui-components/HeadingElement";
-import { Link } from "react-router-dom";
+import HeadingElement from "components/ui-components/HeadingElement";
+import Link from 'next/link'
 
 const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, totalPages }) => {
   const imgUrl = (photo) => {

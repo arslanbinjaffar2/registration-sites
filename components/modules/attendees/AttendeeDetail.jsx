@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { attendeeDetailSelector, fetchAttendeeDetail, clearState } from "store/Slices/AttendeeDetailSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 // const in_array = require("in_array");
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/attendee/detail/${variation}`)
+    import(`components/themes/${theme}/attendee/detail/${variation}`)
   );
   return Component;
 };
@@ -43,4 +42,4 @@ const AttendeeDetail = (props) => {
   );
 };
 
-export default withRouter(AttendeeDetail);
+export default AttendeeDetail;

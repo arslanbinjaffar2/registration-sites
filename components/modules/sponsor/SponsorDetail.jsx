@@ -1,15 +1,14 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { sponsorDetailSelector, fetchSponsor, clearState } from "store/Slices/SponsorDetailSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/sponsor/detail/SponsorDetail`)
+    import(`components/themes/${theme}/sponsor/detail/SponsorDetail`)
   );
   return Component;
 };
@@ -44,4 +43,4 @@ const id = props.match.params.id;
   );
 };
 
-export default withRouter(SponsorDetail);
+export default SponsorDetail;

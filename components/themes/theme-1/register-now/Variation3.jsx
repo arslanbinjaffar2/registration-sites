@@ -1,7 +1,7 @@
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
-import HeadingElement from '@/ui-components/HeadingElement';
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Completionist = () =>  
   <div className="col-12">

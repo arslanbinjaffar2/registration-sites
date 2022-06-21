@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 
 const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, siteLabels}) => {
   const [locExhibitors, setLocExhibitors] = useState(exhibitors);
@@ -55,7 +55,7 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
     <div ref={element} style={{opacity: 0}} data-fixed="false" className="ebs-transparent-box">
     <div
       style={{
-        backgroundImage: `url(${require("img/h1-parallax1.jpg")})`,
+        backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
         minHeight: 250,
       }}
       className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
@@ -113,14 +113,14 @@ const ExhibitorListing = ({exhibitors, exhibitorCategories, labels, eventUrl, si
               {locExhibitors.map((exhibitor)=>(<div className="ebs-sponsor-item" key={exhibitor.id}>
                 <div className="d-flex align-items-center ebs-break-block">
                   <div className="ebs-img-listing">
-                    <Link to={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
+                    <Link href={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
                       <figure>
-                        <img src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('img/exhibitors-default.png')} alt="" />
+                        <img src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')} alt="" />
                       </figure>
                     </Link>
                   </div>
                   <div className="ebs-detail-listing">
-                    {exhibitor.name && <Link to={`/${eventUrl}/exhibitors/${exhibitor.id}`}>
+                    {exhibitor.name && <Link href={`/${eventUrl}/exhibitors/${exhibitor.id}`}>
                       <h2>{ exhibitor.name }</h2>
                     </Link> 
                     }

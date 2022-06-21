@@ -1,5 +1,5 @@
 // import React from "react";
-// import CustomSection from "@/modules/CustomSection";
+// import CustomSection from "components/modules/CustomSection";
 // const CustomPage = ({ match }) => {
 //   return (
 //     <div>

@@ -7,8 +7,8 @@ import {
   } from "store/Slices/myAccount/subRegistrationSlice";
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
-  import PageLoader from '../../ui-components/PageLoader'
-import { withRouter } from 'react-router-dom';
+  import PageLoader from 'components/ui-components/PageLoader'
+
 const AfterLoginSubRegistration = ({history}) => {
     const { event } = useSelector(eventSelector);
     const dispatch = useDispatch();
@@ -37,4 +37,4 @@ const AfterLoginSubRegistration = ({history}) => {
   )
 }
 
-export default withRouter(AfterLoginSubRegistration)
+export default AfterLoginSubRegistration

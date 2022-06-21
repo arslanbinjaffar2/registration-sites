@@ -45,7 +45,7 @@ const onSubmit = (e) =>{
     <form id="loginForm" onSubmit={(e)=>{onSubmit(e)}}>
         <div className="ebs-login-wrapp-inner">
           <span onClick={() => onCancel()} className="btn-inner-close">
-            <img src={require('img/remove-icon-x2.png')} alt="" />
+            <img src={require('public/img/remove-icon-x2.png')} alt="" />
           </span>
           <h2 className="ebs-login-title">Login</h2>
           <p className="ebs-login-desc">Enter to continue and explore within your grasp.</p>
@@ -60,7 +60,7 @@ const onSubmit = (e) =>{
               <span className="ebs-label-title">Password</span>
               <input className="ebs-input" name="password" type={showPassword ? "text" : "password"} autoComplete="false" placeholder="*********" value={formData.password} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('password')} />
               <span className="ebs-show-password">
-                <img src={showPassword ? require('img/icon-eye-close.svg'): require('img/icon-eye.svg')} onClick ={()=>{setShowPassword(!showPassword)}} alt="" />
+                <img src={showPassword ? require('public/img/icon-eye-close.svg'): require('public/img/icon-eye.svg')} onClick ={()=>{setShowPassword(!showPassword)}} alt="" />
               </span>
               {simpleValidator.current.message('password', formData.password, 'required|min:6')}
             </label>}
@@ -79,10 +79,10 @@ const onSubmit = (e) =>{
             <p>Or login with</p> 
             <div className="d-flex align-items-center justify-content-center">
               {Number(event.attendee_settings.facebook_enable) === 1 && <div className="ebs-ico-social">
-                <img src={require('img/ico-facebook.svg')} alt="" />
+                <img src={require('public/img/ico-facebook.svg')} alt="" />
               </div>}
               {Number(event.attendee_settings.linkedin_registration) === 1 && <div className="ebs-ico-social">
-                <img src={require('img/ico-linkedin.svg')} alt="" />
+                <img src={require('public/img/ico-linkedin.svg')} alt="" />
               </div>}
             </div>
           </div>}

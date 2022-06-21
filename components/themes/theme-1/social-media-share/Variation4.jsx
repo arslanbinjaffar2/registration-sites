@@ -1,5 +1,5 @@
 import React from "react";
-import HeadingElement from "@/ui-components/HeadingElement";
+import HeadingElement from "components/ui-components/HeadingElement";
 import {
   EmailIcon,
   FacebookIcon,

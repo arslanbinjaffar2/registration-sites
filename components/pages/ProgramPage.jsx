@@ -1,5 +1,5 @@
 import React from "react";
-import ProgramListing from "@/modules/program/ProgramListing";
+import ProgramListing from "components/modules/program/ProgramListing";
 const PragramPage = () => {
 
   return (

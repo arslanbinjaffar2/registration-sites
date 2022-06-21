@@ -1,16 +1,15 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { myProgramListingSelector, fetchMyPrograms ,clearState } from "store/Slices/myAccount/MyProgramListingSlice";
 
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
   const view = 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/program/listing/${view}`)
+    import(`components/themes/${theme}/program/listing/${view}`)
   );
   return Component;
 };

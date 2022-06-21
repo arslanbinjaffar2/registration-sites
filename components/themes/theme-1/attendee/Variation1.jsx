@@ -1,12 +1,12 @@
 import React, {useEffect, useRef} from "react";
-import { Link } from "react-router-dom";
-import HeadingElement from "@/ui-components/HeadingElement";
+import Link from 'next/link'
+import HeadingElement from "components/ui-components/HeadingElement";
 const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   const _parallax = useRef(null); 
   const _bgimage =
     settings && settings.background_image !== ""
       ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`
-      : require("img/h1-parallax1.jpg");
+      : require("public/img/h1-parallax1.jpg");
       useEffect(() => {
         window.addEventListener("scroll",scollEffect);
         return () => {
@@ -58,7 +58,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                     ? process.env.REACT_APP_EVENTCENTER_URL +
                                       "/assets/attendees/" +
                                       attendee.image
-                                    : require("img/user-placeholder.jpg")
+                                    : require("public/img/user-placeholder.jpg")
                                 }
                                 alt="g"
                               />

@@ -96,7 +96,7 @@ const Variation1 = ({ programs }) => {
                                                       .REACT_APP_EVENTCENTER_URL +
                                                     "/assets/attendees/" +
                                                     speaker.image
-                                                  : require("img/square.jpg")
+                                                  : require("public/img/square.jpg")
                                               }
                                               className="attachment-81x81 size-81x81 wp-post-image"
                                               alt="v"

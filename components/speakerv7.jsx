@@ -33,7 +33,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -62,7 +62,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -91,7 +91,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -120,7 +120,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -149,7 +149,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -178,7 +178,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -207,7 +207,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>
@@ -236,7 +236,7 @@ export default class speakerv7 extends Component {
                 <div className="speakerv7-image">
                   <span>
                     <img
-                      src={require('img/square.jpg')}
+                      src={require('public/img/square.jpg')}
                       alt="j"
                     />
                   </span>

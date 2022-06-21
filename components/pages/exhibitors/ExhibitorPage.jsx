@@ -1,5 +1,5 @@
 import React from "react";
-import ExhibitorListing from "@/modules/exhibitor/ExhibitorListing";
+import ExhibitorListing from "components/modules/exhibitor/ExhibitorListing";
 const ExhibitorPage = () => {
  
   return (

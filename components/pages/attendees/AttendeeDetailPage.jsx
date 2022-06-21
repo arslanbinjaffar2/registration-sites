@@ -1,5 +1,5 @@
 import React, {Suspense} from "react";
-import AttendeeDetail from "@/modules/attendees/AttendeeDetail";
+import AttendeeDetail from "components/modules/attendees/AttendeeDetail";
 const AttendeesPage = () => {
   return (
       <React.Fragment>

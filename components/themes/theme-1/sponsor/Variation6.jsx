@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import SponsorPopup from '@/ui-components/SponsorPopup';
-import HeadingElement from '@/ui-components/HeadingElement';
+import SponsorPopup from 'components/ui-components/SponsorPopup';
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Variation6 = ({sponsorsByCategories, labels, eventUrl, siteLabels, settings}) => {
     const [popup, setPopup] = useState(false);
@@ -21,7 +21,7 @@ const Variation6 = ({sponsorsByCategories, labels, eventUrl, siteLabels, setting
                                 return (<div className="col-sm-4 col-6 col-md-2" key={j}>
                                     <figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
                                         <img
-                                            src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('img/exhibitors-default.png')}
+                                            src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('public/img/exhibitors-default.png')}
                                             className="vc_single_image-img attachment-full"
                                             alt="x"
                                         />

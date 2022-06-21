@@ -3,9 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ReactSelect from 'react-select';
 import Slider from "react-slick";
-import HeadingElement from "@/ui-components/HeadingElement";
-import ProgramItem from "./components/ProgramItem";
-import WorkShop from "./components/WorkShop";
+import HeadingElement from "components/ui-components/HeadingElement";
+import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
+import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (

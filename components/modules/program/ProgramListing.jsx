@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 import {
   incrementLoadCount,
@@ -8,13 +8,12 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { programListingSelector, fetchPrograms } from "store/Slices/ProgramListingSlice";
 
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, programView) => {
   const view = programView === 'horizontal' ? 'ProgramTimeLine.jsx' : 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/program/listing/${view}`)
+    import(`components/themes/${theme}/program/listing/${view}`)
   );
   return Component;
 };
@@ -52,4 +51,4 @@ const ProgramListing = (props) => {
   );
 };
 
-export default withRouter(ProgramListing);
+export default ProgramListing;

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { NavLink, Link } from "react-router-dom";
-import MyProfileSidebar from "@/myAccount/profile/MyProfileSidebar";
+import ActiveLink from "components/atoms/ActiveLink";
+import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
 
 class Variation1 extends React.Component {
   _isMounted = false;
@@ -31,7 +31,7 @@ class Variation1 extends React.Component {
     window.removeEventListener("resize", this.handleResize.bind(this));
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
-  componentDidUpdate(prevProps, prevState) { 
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps !== this.props) {
       document.getElementsByTagName('body')[0].classList.remove('un-scroll');
       this.setState({ showMenu: false });
@@ -45,7 +45,7 @@ class Variation1 extends React.Component {
         });
       }, 0);
     }
-  } 
+  }
   handleScroll = () => {
     const _app = document.getElementById("App");
     if (window.scrollY > 250) {
@@ -133,19 +133,21 @@ class Variation1 extends React.Component {
                 style={{ padding: "0", border: "none" }}
                 className="ebs-logo-main text-left"
               >
-                <Link to={`/${event.url}`}>
-                  {event.settings.header_logo ? (
-                    <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
-                      alt=""
-                    />
-                  ) : (
-                    <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
-                      alt=""
-                    />
-                  )}
-                </Link>
+                <ActiveLink href={`/${event.url}`}>
+                  <a>
+                    {event.settings.header_logo ? (
+                      <img
+                        src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
+                        alt=""
+                      />
+                    ) : (
+                      <img
+                        src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
+                        alt=""
+                      />
+                    )}
+                  </a>
+                </ActiveLink>
               </div>
             </div>
             <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
@@ -158,11 +160,10 @@ class Variation1 extends React.Component {
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
-                    onClick={() =>
-                      {
-                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
-                        this.setState({ showMenu: !this.state.showMenu })
-                      }
+                    onClick={() => {
+                      document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                      this.setState({ showMenu: !this.state.showMenu })
+                    }
                     }
                     aria-label="Toggle navigation"
                   >
@@ -170,17 +171,15 @@ class Variation1 extends React.Component {
                   </button>
                 )}
                 <div
-                  className={`collapse navbar-collapse ${
-                    this.state.showMenu ? "show" : ""
-                  }`}
+                  className={`collapse navbar-collapse ${this.state.showMenu ? "show" : ""
+                    }`}
                   id="navbarSupportedContent"
                 >
                   <div
-                    onClick={() =>
-                      { 
-                        document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
-                        this.setState({ showMenu: !this.state.showMenu })
-                      }
+                    onClick={() => {
+                      document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                      this.setState({ showMenu: !this.state.showMenu })
+                    }
                     }
                     id="btn-menu-close"
                   ></div>
@@ -197,31 +196,35 @@ class Variation1 extends React.Component {
                               {menu.module}
                             </a>
                           ) : (
-                            <NavLink
+                            <ActiveLink
                               className="nav-link"
                               aria-current="page"
-                              to={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
+                              href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
                             >
-                              {menu.module}
-                            </NavLink>
+                              <a>
+                                {menu.module}
+                              </a>
+                            </ActiveLink>
                           )
                         ) : (
-                          <NavLink
+                          <ActiveLink
                             className="nav-link"
                             aria-current="page"
-                            to={`/${this.props.event.url}/${menu.alias}`}
+                            href={`/${this.props.event.url}/${menu.alias}`}
                           >
-                            {menu.module}
-                          </NavLink>
+                            <a>
+                              {menu.module}
+                            </a>
+                          </ActiveLink>
                         )}
                         {menu.alias === "gallery" && (
                           <ul className="dropdown-menu">
                             {menus["gallery_sub_menu"].map((myaccount, k) => (
                               <li className="nav-item" key={k}>
-                                <NavLink
+                                <ActiveLink
                                   aria-current="page"
                                   className="nav-link"
-                                  to={
+                                  href={
                                     "/" +
                                     this.props.event.url +
                                     "/" +
@@ -229,8 +232,10 @@ class Variation1 extends React.Component {
                                   }
                                   key={myaccount.id}
                                 >
-                                  {myaccount.module}
-                                </NavLink>
+                                  <a>
+                                    {myaccount.module}
+                                  </a>
+                                </ActiveLink>
                               </li>
                             ))}
                           </ul>
@@ -240,35 +245,39 @@ class Variation1 extends React.Component {
                             {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
-                                  {myaccount.alias !== "login" ? (<NavLink
-                                          aria-current="page"
-                                          className="nav-link"
-                                          to={
-                                            "/" +
-                                            this.props.event.url +
-                                            "/" +
-                                            myaccount.alias
-                                          }
-                                          key={myaccount.id}
-                                        >
-                                            {myaccount.module}
-                                        </NavLink>):
-                                        <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
-                                            {myaccount.module}
-                                        </div> 
-                                        }
-                                </li>
-                              )
-                            ): (<li className="nav-item">
-                                  <NavLink
+                                  {myaccount.alias !== "login" ? (<ActiveLink
                                     aria-current="page"
                                     className="nav-link"
-                                    to={ `/${event.url}/profile`}
+                                    href={
+                                      "/" +
+                                      this.props.event.url +
+                                      "/" +
+                                      myaccount.alias
+                                    }
+                                    key={myaccount.id}
                                   >
-                                      My Profile
-                                  </NavLink>
+                                    <a>
+                                      {myaccount.module}
+                                    </a>
+                                  </ActiveLink>) :
+                                    <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
+                                      {myaccount.module}
+                                    </div>
+                                  }
                                 </li>
-                          )}
+                              )
+                            ) : (<li className="nav-item">
+                              <ActiveLink
+                                aria-current="page"
+                                className="nav-link"
+                                href={`/${event.url}/profile`}
+                              >
+                                <a>
+                                  My Profile
+                                </a>
+                              </ActiveLink>
+                            </li>
+                            )}
                           </ul>
                         )}
                         {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 0) && (
@@ -285,29 +294,31 @@ class Variation1 extends React.Component {
                                         <li className="nav-item" key={k}>
                                           {subitem.page_type &&
                                             subitem.page_type === 2 ? (
-                                              <a
-                                                className="nav-link"
-                                                aria-current="page"
-                                                href={`${subitem.website_protocol}${subitem.url}`}
-                                              >
+                                            <a
+                                              className="nav-link"
+                                              aria-current="page"
+                                              href={`${subitem.website_protocol}${subitem.url}`}
+                                            >
+                                              {subitem.info.name}
+                                            </a>
+                                          ) : (
+                                            <ActiveLink
+                                              aria-current="page"
+                                              className="nav-link"
+                                              href={
+                                                "/" +
+                                                this.props.event.url +
+                                                "/" +
+                                                menu.alias +
+                                                "/" +
+                                                subitem.id
+                                              }
+                                              key={subitem.id}
+                                            >
+                                              <a>
                                                 {subitem.info.name}
                                               </a>
-                                            ) : (
-                                          <NavLink
-                                            aria-current="page"
-                                            className="nav-link"
-                                            to={
-                                              "/" +
-                                              this.props.event.url +
-                                              "/" +
-                                              menu.alias +
-                                              "/" +
-                                              subitem.id
-                                            }
-                                            key={subitem.id}
-                                          >
-                                            {subitem.info.name}
-                                          </NavLink>
+                                            </ActiveLink>
                                           )}
                                         </li>
                                       ))}
@@ -316,21 +327,21 @@ class Variation1 extends React.Component {
                                 </li>
                               ) : (
                                 <li className="nav-item" key={k}>
-                                    {pItem.page_type && pItem.page_type === 2 ? 
+                                  {pItem.page_type && pItem.page_type === 2 ?
                                     (
-                                    <a
-                                      className="nav-link"
-                                      aria-current="page"
-                                      href={`${pItem.website_protocol}${pItem.url}`}
-                                    >
-                                      {pItem.info.name}
-                                    </a>
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        href={`${pItem.website_protocol}${pItem.url}`}
+                                      >
+                                        {pItem.info.name}
+                                      </a>
                                     ) :
                                     (
-                                      <NavLink
+                                      <ActiveLink
                                         aria-current="page"
                                         className="nav-link"
-                                        to={
+                                        href={
                                           "/" +
                                           this.props.event.url +
                                           "/" +
@@ -340,8 +351,10 @@ class Variation1 extends React.Component {
                                         }
                                         key={pItem.id}
                                       >
-                                        {pItem.info.name}
-                                      </NavLink>
+                                        <a>
+                                          {pItem.info.name}
+                                        </a>
+                                      </ActiveLink>
                                     )}
                                 </li>
                               )
@@ -360,33 +373,35 @@ class Variation1 extends React.Component {
                                     <ul className="dropdown-menu">
                                       {aItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
-                                          { subitem.page_type && subitem.page_type === 2 ? 
+                                          {subitem.page_type && subitem.page_type === 2 ?
                                             (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              href={`${subitem.website_protocol}${subitem.url}`}
-                                            >
-                                              {subitem.info.name}
-                                            </a>
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
+                                                {subitem.info.name}
+                                              </a>
                                             ) :
                                             (
-                                          <NavLink
-                                            aria-current="page"
-                                            className="nav-link"
-                                            to={
-                                              "/" +
-                                              this.props.event.url +
-                                              "/" +
-                                              menu.alias +
-                                              "/" +
-                                              subitem.id
-                                            }
-                                            key={subitem.id}
-                                          >
-                                            {subitem.info.name}
-                                          </NavLink>
-                                          )}
+                                              <ActiveLink
+                                                aria-current="page"
+                                                className="nav-link"
+                                                href={
+                                                  "/" +
+                                                  this.props.event.url +
+                                                  "/" +
+                                                  menu.alias +
+                                                  "/" +
+                                                  subitem.id
+                                                }
+                                                key={subitem.id}
+                                              >
+                                                <a>
+                                                  {subitem.info.name}
+                                                </a>
+                                              </ActiveLink>
+                                            )}
                                         </li>
                                       ))}
                                     </ul>
@@ -394,33 +409,35 @@ class Variation1 extends React.Component {
                                 </li>
                               ) : (
                                 <li className="nav-item" key={k}>
-                                { aItem.page_type && aItem.page_type === 2 ? 
-                                  (
-                                  <a
-                                    className="nav-link"
-                                    aria-current="page"
-                                    href={`${aItem.website_protocol}${aItem.url}`}
-                                  >
-                                    {aItem.info.name}
-                                  </a>
-                                  ) :
-                                  (
-                                    <NavLink
-                                      aria-current="page"
-                                      className="nav-link"
-                                      to={
-                                        "/" +
-                                        this.props.event.url +
-                                        "/" +
-                                        menu.alias +
-                                        "/" +
-                                        aItem.id
-                                      }
-                                      key={aItem.id}
-                                    >
-                                      {aItem.info.name}
-                                    </NavLink>
-                                  )}
+                                  {aItem.page_type && aItem.page_type === 2 ?
+                                    (
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        href={`${aItem.website_protocol}${aItem.url}`}
+                                      >
+                                        {aItem.info.name}
+                                      </a>
+                                    ) :
+                                    (
+                                      <ActiveLink
+                                        aria-current="page"
+                                        className="nav-link"
+                                        href={
+                                          "/" +
+                                          this.props.event.url +
+                                          "/" +
+                                          menu.alias +
+                                          "/" +
+                                          aItem.id
+                                        }
+                                        key={aItem.id}
+                                      >
+                                        <a>
+                                          {aItem.info.name}
+                                        </a>
+                                      </ActiveLink>
+                                    )}
                                 </li>
                               )
                             )}
@@ -439,30 +456,32 @@ class Variation1 extends React.Component {
                                       {gItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
                                           {subitem.page_type &&
-                                              subitem.page_type === 2 ? (
-                                                <a
-                                                  className="nav-link"
-                                                  aria-current="page"
-                                                  href={`${subitem.website_protocol}${subitem.url}`}
-                                                >
-                                                  {subitem.info.name}
-                                                </a>
-                                              ) : (
-                                          <NavLink
-                                            aria-current="page"
-                                            className="nav-link"
-                                            to={
-                                              "/" +
-                                              this.props.event.url +
-                                              "/" +
-                                              menu.alias +
-                                              "/" +
-                                              subitem.id
-                                            }
-                                            key={subitem.id}
-                                          >
-                                            {subitem.info.name}
-                                          </NavLink>
+                                            subitem.page_type === 2 ? (
+                                            <a
+                                              className="nav-link"
+                                              aria-current="page"
+                                              href={`${subitem.website_protocol}${subitem.url}`}
+                                            >
+                                              {subitem.info.name}
+                                            </a>
+                                          ) : (
+                                            <ActiveLink
+                                              aria-current="page"
+                                              className="nav-link"
+                                              href={
+                                                "/" +
+                                                this.props.event.url +
+                                                "/" +
+                                                menu.alias +
+                                                "/" +
+                                                subitem.id
+                                              }
+                                              key={subitem.id}
+                                            >
+                                              <a>
+                                                {subitem.info.name}
+                                              </a>
+                                            </ActiveLink>
                                           )}
                                         </li>
                                       ))}
@@ -471,33 +490,35 @@ class Variation1 extends React.Component {
                                 </li>
                               ) : (
                                 <li className="nav-item" key={k}>
-                                  {gItem.page_type && gItem.page_type === 2 ? 
-                                  (
-                                  <a
-                                    className="nav-link"
-                                    aria-current="page"
-                                    href={`${gItem.website_protocol}${gItem.url}`}
-                                  >
-                                    {gItem.info.name}
-                                  </a>
-                                  ) :
-                                  (
-                                    <NavLink
-                                      aria-current="page"
-                                      className="nav-link"
-                                      to={
-                                        "/" +
-                                        this.props.event.url +
-                                        "/" +
-                                        menu.alias +
-                                        "/" +
-                                        gItem.id
-                                      }
-                                      key={gItem.id}
-                                    >
-                                      {gItem.info.name}
-                                    </NavLink>
-                                  )}
+                                  {gItem.page_type && gItem.page_type === 2 ?
+                                    (
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        href={`${gItem.website_protocol}${gItem.url}`}
+                                      >
+                                        {gItem.info.name}
+                                      </a>
+                                    ) :
+                                    (
+                                      <ActiveLink
+                                        aria-current="page"
+                                        className="nav-link"
+                                        href={
+                                          "/" +
+                                          this.props.event.url +
+                                          "/" +
+                                          menu.alias +
+                                          "/" +
+                                          gItem.id
+                                        }
+                                        key={gItem.id}
+                                      >
+                                        <a>
+                                          {gItem.info.name}
+                                        </a>
+                                      </ActiveLink>
+                                    )}
                                 </li>
                               )
                             )}
@@ -508,7 +529,7 @@ class Variation1 extends React.Component {
                   </ul>
                 </div>
               </nav>
-              {this.props.userExist && <MyProfileSidebar /> }
+              {this.props.userExist && <MyProfileSidebar />}
             </div>
           </div>
         </div>

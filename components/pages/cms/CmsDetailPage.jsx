@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react'
-import CmsDetail from '@/modules/cms/CmsDetail'
+import CmsDetail from 'components/modules/cms/CmsDetail'
 
 const CmsDetailPage = ({ match, event }) => {
   const currentModuleName = match.url.split("/")[2];

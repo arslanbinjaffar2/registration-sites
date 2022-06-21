@@ -1,5 +1,5 @@
 import React, {useState, useRef} from "react";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 
 const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
 console.log(array, menu_id, currentPage, eventSiteModuleName);

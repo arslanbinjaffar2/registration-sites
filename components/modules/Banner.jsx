@@ -7,12 +7,11 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/banner/${variation}`)
+    import(`components/themes/${theme}/banner/${variation}`)
   );
   return Component;
 };
@@ -46,4 +45,4 @@ const Banner = () => {
   );
 };
 
-export default withRouter(Banner);
+export default Banner;

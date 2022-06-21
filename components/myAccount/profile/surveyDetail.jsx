@@ -6,7 +6,7 @@ import {
   import { eventSelector } from "store/Slices/EventSlice";
   import { useSelector, useDispatch } from "react-redux";
 import SurveyForm from './SurveyForm';
-import PageLoader from '@/ui-components/PageLoader';
+import PageLoader from 'components/ui-components/PageLoader';
 const surveyDetail = ({match}) => {
   console.log(match.params.survey_id);
   const { event } = useSelector(eventSelector);

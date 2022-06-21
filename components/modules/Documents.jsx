@@ -1,12 +1,11 @@
 import React, { Suspense, useEffect, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 import { fetchDocuments, documentsSelector } from "store/Slices/DocumentsSlice";
 const loadModule = (theme, ) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/documents/Documents`)
+    import(`components/themes/${theme}/documents/Documents`)
   );
   return Component;
 };
@@ -35,4 +34,4 @@ const Documents = () => {
   );
 };
 
-export default withRouter(Documents);
+export default Documents;

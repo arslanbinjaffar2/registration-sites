@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import moment from 'moment'
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 const ProgramItem = ({program, eventUrl}) => {
     const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
   return (
@@ -37,7 +37,7 @@ const ProgramItem = ({program, eventUrl}) => {
                             ? process.env.REACT_APP_EVENTCENTER_URL +
                             "/assets/attendees/" +
                             speakers.image
-                            : require("img/user-placeholder.jpg")
+                            : require("public/img/user-placeholder.jpg")
                         } alt="" />
 												</span>
                         <h4>{speakers.first_name} {speakers.last_name}</h4>

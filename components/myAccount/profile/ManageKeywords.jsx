@@ -6,7 +6,7 @@ import {
 } from "store/Slices/myAccount/networkInterestSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 const ManageKeywords = () => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();

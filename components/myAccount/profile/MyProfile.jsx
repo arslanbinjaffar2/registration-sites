@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import PageLoader from '@/ui-components/PageLoader';
+import PageLoader from 'components/ui-components/PageLoader';
 import moment from 'moment';
 const MyProfile = () =>  {
   const { event } = useSelector(eventSelector);
@@ -31,7 +31,7 @@ const MyProfile = () =>  {
                                     ? process.env.REACT_APP_EVENTCENTER_URL +
                                       "/assets/attendees/" +
                                       attendee.image
-                                    : require("img/square.jpg")
+                                    : require("public/img/square.jpg")
                                 } alt="" />
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">
@@ -47,9 +47,9 @@ const MyProfile = () =>  {
                     </div>
                     <div className="ebs-profile-social-media">
                       <div className="ebs-profile-media-icons">
-                        {(attendee.info && attendee.info.facebook) && <a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><img src={require('img/ico-facebook.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.twitter) && <a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><img src={require('img/ico-twitter.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><img src={require('img/ico-linkedin.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.facebook) && <a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><img src={require('public/img/ico-facebook.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.twitter) && <a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><img src={require('public/img/ico-twitter.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><img src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
                       </div>
                       <div className="ebs-profile-social-links">
                         {attendee.phone && <div className="ebs-profile-social-links-row">

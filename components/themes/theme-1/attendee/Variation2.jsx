@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import HeadingElement from "@/ui-components/HeadingElement";
+import Link from 'next/link'
+import HeadingElement from "components/ui-components/HeadingElement";
 const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div
@@ -34,7 +34,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                     ? process.env.REACT_APP_EVENTCENTER_URL +
                                       "/assets/attendees/" +
                                       attendee.image
-                                    : require("img/user-placeholder.jpg")
+                                    : require("public/img/user-placeholder.jpg")
                                 }
                                 alt="g"
                               />

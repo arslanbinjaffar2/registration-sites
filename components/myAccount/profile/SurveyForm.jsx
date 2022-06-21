@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import Input from "@/forms/Input";
-import DateTime from "@/forms/DateTime";
+import Input from "components/forms/Input";
+import DateTime from "components/forms/DateTime";
 import Select from "react-select";
 import SimpleReactValidator from "simple-react-validator";
 import {

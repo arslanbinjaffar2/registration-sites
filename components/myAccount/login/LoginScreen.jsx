@@ -1,6 +1,5 @@
 import  React, {useState, useRef, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter } from "react-router-dom";
 import {
   setShowLogin
 } from "store/Slices/GlobalSlice";
@@ -84,4 +83,4 @@ const LoginScreen = ({history}) => {
   )
 }
 
-export default withRouter(LoginScreen)
+export default LoginScreen

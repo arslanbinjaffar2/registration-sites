@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import HeadingElement from "@/ui-components/HeadingElement";
+import Link from 'next/link'
+import HeadingElement from "components/ui-components/HeadingElement";
 const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
@@ -32,7 +32,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                   ? process.env.REACT_APP_EVENTCENTER_URL +
                                     "/assets/attendees/" +
                                     speaker.image
-                                  : require("img/user-placeholder.jpg")
+                                  : require("public/img/user-placeholder.jpg")
                               }
                               alt="g"
                             />

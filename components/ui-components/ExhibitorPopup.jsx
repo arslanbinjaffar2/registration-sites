@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 
 const ExhibitorPopup =  ({width, onClick, data, eventUrl}) => {
     React.useEffect(() => {
@@ -18,7 +18,7 @@ const ExhibitorPopup =  ({width, onClick, data, eventUrl}) => {
                         <div className="col-sm-4">
                             <figure>
                             <img style={{width: '90%'}}
-                                src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo : require('img/exhibitors-default.png')}
+                                src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo : require('public/img/exhibitors-default.png')}
 									className="vc_single_image-img attachment-full"
 									alt="x"
 								/>

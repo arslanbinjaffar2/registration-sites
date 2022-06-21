@@ -1,14 +1,13 @@
 import React, { Suspense, useMemo } from "react";
-import { eventSelector } from "../../../store/Slices/EventSlice";
+import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
-import { withRouter } from "react-router";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`@/themes/${theme}/slider/${variation}`)
+    import(`components/themes/${theme}/slider/${variation}`)
   );
   return Component;
 };
@@ -31,4 +30,4 @@ const Slider = () => {
   );
 };
 
-export default withRouter(Slider);
+export default Slider;

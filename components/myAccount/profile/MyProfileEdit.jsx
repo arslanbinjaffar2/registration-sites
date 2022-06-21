@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Input from "@/forms/Input";
-import TextArea from "@/forms/TextArea";
-import DateTime from "@/forms/DateTime";
-import DropDown from "@/forms/DropDown";
+import Input from "components/forms/Input";
+import TextArea from "components/forms/TextArea";
+import DateTime from "components/forms/DateTime";
+import DropDown from "components/forms/DropDown";
 import Select from "react-select";
 import {
   fetchProfileData,
@@ -12,7 +12,7 @@ import {
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import PageLoader from "@/ui-components/PageLoader";
+import PageLoader from "components/ui-components/PageLoader";
 
 const MyProfileEdit = () => {
   const { event } = useSelector(eventSelector);
@@ -545,7 +545,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <h3 className="ebs-title">Contact information:</h3>
                 {attendeeData.phone && 
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-phone.svg")} alt="" />
+                  <img src={require("public/img/ico-phone.svg")} alt="" />
                   <div className="form-phone-field">
                     {attendeeData.calling_code && (
                       <React.Fragment>
@@ -587,7 +587,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 </div>}
                   {attendeeData.email && (
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-envelope.svg")} alt="" />
+                  <img src={require("public/img/ico-envelope.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -601,7 +601,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                   {attendeeData.info && attendeeData.info.website && (
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-web.svg")} alt="" />
+                  <img src={require("public/img/ico-web.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -615,7 +615,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                   {attendeeData.info && attendeeData.info.facebook && (
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-facebook.svg")} alt="" />
+                  <img src={require("public/img/ico-facebook.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -629,7 +629,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                   {attendeeData.info && attendeeData.info.twitter && (
                 <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("img/ico-twitter.svg")} alt="" />
+                  <img src={require("public/img/ico-twitter.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -643,7 +643,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                   {attendeeData.info && attendeeData.info.linkedin && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <img src={require("img/ico-linkedin.svg")} alt="" />
+                    <img src={require("public/img/ico-linkedin.svg")} alt="" />
                       <Input
                         label="E-mail"
                         required
