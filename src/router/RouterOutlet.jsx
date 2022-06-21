@@ -6,6 +6,7 @@ import FullPage from "@/FullPage";
 import Home from "@/Home";
 import Header from "@/modules/Header";
 import Error404 from "@/Error404";
+import AboutEvent from "@/AboutEvent";
 import CorporateLogin from "@/CorporateLogin";
 import AttendeesPage from "@/pages/attendees/AttendeesPage";
 import AttendeeDetailPage from "@/pages/attendees/AttendeeDetailPage";
@@ -240,6 +241,7 @@ const RouterOutlet = () => {
             path="/:event_url/exhibitors/:id"
           />
           <Route exact path="/:event_url/login" component={CorporateLogin} />
+          <Route exact path="/:event_url/about" component={AboutEvent} />
           <Route component={Error404} />
         </Switch>
         {showLogin && <LoginScreen/>}
