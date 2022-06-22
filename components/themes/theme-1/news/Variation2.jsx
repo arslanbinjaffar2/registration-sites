@@ -33,7 +33,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                         {item.image && <div className="edgtf-post-image">
                           <Link
                             itemProp="url"
-                            to={makeNewDetailURL(event_url, item.id)}
+                            href={makeNewDetailURL(event_url, item.id)}
                           >
                             <span className="gallery-img-wrapper-rectangle-2">
                             <img
@@ -61,7 +61,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                             >
                               <Link
                                 itemProp="url"
-                                to={makeNewDetailURL(
+                                href={makeNewDetailURL(
                                   event_url,
                                   item.id
                                 )}

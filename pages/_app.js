@@ -18,11 +18,11 @@ function MyApp({ Component, pageProps }) {
   }, [store, event]);
 
   return (
-    <>
+    <div id="App">
       <Provider store={store}>
         <Component {...pageProps} />
       </Provider>
-    </>
+    </div>
   );
 }
 

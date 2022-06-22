@@ -35,105 +35,122 @@ class Variation4 extends React.Component {
           : rows[rows.length - 1].push(key)) && rows
       );
     },
-    []);
+      []);
     this.setState({
       menuresponsive: rows,
     });
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
+
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
+
   async componentDidUpdate(prevProps) {
-    if (prevProps.loaded !== this.props.loaded ) {
-      this.handleFunction();
-      document
-        .getElementsByTagName("body")[0]
-        .classList.remove("ebs-scroll-menu");
-      this.setState({
-        showMenu: false,
-      });
+    if (typeof window !== 'undefined') {
+      if (prevProps.loaded !== this.props.loaded) {
+        this.handleFunction();
+        document
+          .getElementsByTagName("body")[0]
+          .classList.remove("ebs-scroll-menu");
+        this.setState({
+          showMenu: false,
+        });
+      }
     }
   }
+
   handleScroll = () => {
-    const _app = document.getElementById("App");
-    const _theme = document
-      .getElementById("ebs-header-master")
-      .classList.contains("ebs-fixed-header");
-    if (window.scrollY > 350) {
-      _app.classList.add("ebs-header-sticky");
-      _app.style.paddingTop = _theme
-        ? 0
-        : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
+    if (typeof window !== 'undefined') {
+      const _app = document.getElementById("App");
+      const _theme = document
+        .getElementById("ebs-header-master")
+        .classList.contains("ebs-fixed-header");
+      if (window.scrollY > 350) {
+        _app.classList.add("ebs-header-sticky");
+        _app.style.paddingTop = _theme
+          ? 0
+          : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
             .offsetHeight + "px";
-    } else {
-      _app.classList.remove("ebs-header-sticky");
-      _app.style.paddingTop = 0 + "px";
+      } else {
+        _app.classList.remove("ebs-header-sticky");
+        _app.style.paddingTop = 0 + "px";
+      }
     }
   };
+
   accordionToggle = (e) => {
-    //variables
-    var _this = e.target;
-    var panel = _this.nextElementSibling;
-    var panelParent = _this.parentElement.parentElement;
-    var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
-    if (panel) {
-      /*if pannel is already open - minimize*/
-      if (panel.style.maxHeight) {
+    if (typeof window !== 'undefined') {
+      //variables
+      var _this = e.target;
+      var panel = _this.nextElementSibling;
+      var panelParent = _this.parentElement.parentElement;
+      var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
+      if (panel) {
+        /*if pannel is already open - minimize*/
+        if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
-        _this.classList.remove("active");
-      } else {
+          _this.classList.remove("active");
+        } else {
 
-        //opens the specified pannel
-        panel.style.maxHeight = panel.scrollHeight + "px";
+          //opens the specified pannel
+          panel.style.maxHeight = panel.scrollHeight + "px";
 
-        for (var iii = 0; iii < coursePanel.length; iii++) {
-          // coursePanel[iii].style.maxHeight = null;
-          if (coursePanel[iii] === panelParent) {
-            coursePanel[iii].style.maxHeight =
-              coursePanel[iii].scrollHeight + panel.scrollHeight + "px";
+          for (var iii = 0; iii < coursePanel.length; iii++) {
+            // coursePanel[iii].style.maxHeight = null;
+            if (coursePanel[iii] === panelParent) {
+              coursePanel[iii].style.maxHeight =
+                coursePanel[iii].scrollHeight + panel.scrollHeight + "px";
+            }
           }
+          //adds the 'active' addition to the css.
+          _this.classList.add("active");
         }
-        //adds the 'active' addition to the css.
-        _this.classList.add("active");
       }
     }
   };
+
   handleFunction = () => {
-    document
-      .getElementById("ebs-header-master")
-      .classList.remove("ebs-fixed-header");
-    document
-      .getElementById("ebs-header-master")
-      .classList.remove("ebs-light-header");
-    if (window.innerWidth >= 991) {
-      var _nextSibling =
-        document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-      if (_nextSibling === "true") {
-        document
-          .getElementById("ebs-header-master")
-          .classList.add("ebs-fixed-header");
-      } else {
-        document
-          .getElementById("ebs-header-master")
-          .classList.add("ebs-light-header");
+    if (typeof window !== 'undefined') {
+      document
+        .getElementById("ebs-header-master")
+        .classList.remove("ebs-fixed-header");
+      document
+        .getElementById("ebs-header-master")
+        .classList.remove("ebs-light-header");
+      if (window.innerWidth >= 991) {
+        var _nextSibling =
+          document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+        if (_nextSibling === "true") {
+          document
+            .getElementById("ebs-header-master")
+            .classList.add("ebs-fixed-header");
+        } else {
+          document
+            .getElementById("ebs-header-master")
+            .classList.add("ebs-light-header");
+        }
       }
     }
   };
+
   handleMenu = () => {
-    this.setState({ showMenu: !this.state.showMenu }, () => {
-      const _body = document.getElementsByTagName("body")[0];
-      const _scroll = document.body.classList.contains("ebs-scroll-menu");
-      if (_scroll) {
-        _body.classList.remove("ebs-scroll-menu");
-      } else {
-        setTimeout(() => {
-          _body.classList.add("ebs-scroll-menu");
-        }, 400);
-      }
-    });
+    if (typeof window !== 'undefined') {
+      this.setState({ showMenu: !this.state.showMenu }, () => {
+        const _body = document.getElementsByTagName("body")[0];
+        const _scroll = document.body.classList.contains("ebs-scroll-menu");
+        if (_scroll) {
+          _body.classList.remove("ebs-scroll-menu");
+        } else {
+          setTimeout(() => {
+            _body.classList.add("ebs-scroll-menu");
+          }, 400);
+        }
+      });
+    }
   };
+
   render() {
     const { menus, event, menuresponsive } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
@@ -197,9 +214,8 @@ class Variation4 extends React.Component {
                               menuresponsive.map((menues, k) => (
                                 <div
                                   key={k}
-                                  className={`col-md-6 col-lg-${
-                                    12 / menuresponsive.length
-                                  }`}
+                                  className={`col-md-6 col-lg-${12 / menuresponsive.length
+                                    }`}
                                 >
                                   <ul key={k} className="nav navbar-nav m-0">
                                     {menues.map((menu) => (
@@ -207,28 +223,28 @@ class Variation4 extends React.Component {
                                         {(menu.alias === "gallery" ||
                                           menu.alias === "myaccount" ||
                                           menu.alias ===
-                                            "practicalinformation" ||
+                                          "practicalinformation" ||
                                           menu.alias ===
-                                            "additional_information" ||
+                                          "additional_information" ||
                                           menu.alias ===
-                                            "general_information") && (
-                                          <span
-                                            onClick={this.accordionToggle.bind(this)}
-                                            className="nav-link ebs-accordion-button"
-                                          >
-                                            <span className="ebs-nav-item">
-                                              {menu.module}
+                                          "general_information") && (
+                                            <span
+                                              onClick={this.accordionToggle.bind(this)}
+                                              className="nav-link ebs-accordion-button"
+                                            >
+                                              <span className="ebs-nav-item">
+                                                {menu.module}
+                                              </span>
                                             </span>
-                                          </span>
-                                        )}
+                                          )}
                                         {menu.alias !== "gallery" &&
                                           menu.alias !== "myaccount" &&
                                           menu.alias !==
-                                            "practicalinformation" &&
+                                          "practicalinformation" &&
                                           menu.alias !==
-                                            "additional_information" &&
+                                          "additional_information" &&
                                           menu.alias !==
-                                            "general_information" && (
+                                          "general_information" && (
                                             <ActiveLink
                                               className="nav-link"
                                               aria-current="page"
@@ -280,7 +296,7 @@ class Variation4 extends React.Component {
                                                   className="nav-item"
                                                   key={k}
                                                 >
-                                                 {myaccount.alias !== "login" ? (<ActiveLink
+                                                  {myaccount.alias !== "login" ? (<ActiveLink
                                                     aria-current="page"
                                                     className="nav-link"
                                                     href={
@@ -294,327 +310,327 @@ class Variation4 extends React.Component {
                                                     <span className="ebs-nav-item">
                                                       {myaccount.module}
                                                     </span>
-                                                  </ActiveLink>):
-                                                  <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
-                                                    <span className="ebs-nav-item">
-                                                      {myaccount.module}
-                                                    </span>
-                                                  </div> 
+                                                  </ActiveLink>) :
+                                                    <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
+                                                      <span className="ebs-nav-item">
+                                                        {myaccount.module}
+                                                      </span>
+                                                    </div>
                                                   }
                                                 </li>
                                               )
-                                            ):(<li className="nav-item">
-                                            <ActiveLink
-                                              aria-current="page"
-                                              className="nav-link"
-                                              href={ `/${event.url}/profile`}
-                                            >
+                                            ) : (<li className="nav-item">
+                                              <ActiveLink
+                                                aria-current="page"
+                                                className="nav-link"
+                                                href={`/${event.url}/profile`}
+                                              >
                                                 My Profile
-                                            </ActiveLink>
-                                          </li>
-                                    )}
+                                              </ActiveLink>
+                                            </li>
+                                            )}
                                           </ul>
                                         )}
                                         {(menu.alias ===
                                           "practicalinformation" && menus["practical_info_menu"].length > 0) && (
-                                          <ul className="dropdown-menu ebs-accordion-dropdown">
-                                            {menus["practical_info_menu"].map(
-                                              (pItem, k) =>
-                                                pItem.page_type &&
-                                                pItem.page_type === "menu" ? (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={pItem.id}
-                                                  >
-                                                    <span
-                                                      onClick={this.accordionToggle.bind(this)}
-                                                      className="nav-link ebs-accordion-button"
+                                            <ul className="dropdown-menu ebs-accordion-dropdown">
+                                              {menus["practical_info_menu"].map(
+                                                (pItem, k) =>
+                                                  pItem.page_type &&
+                                                    pItem.page_type === "menu" ? (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={pItem.id}
                                                     >
-                                                      <span className="ebs-nav-item">
-                                                        {pItem.info.name}
+                                                      <span
+                                                        onClick={this.accordionToggle.bind(this)}
+                                                        className="nav-link ebs-accordion-button"
+                                                      >
+                                                        <span className="ebs-nav-item">
+                                                          {pItem.info.name}
+                                                        </span>
                                                       </span>
-                                                    </span>
-                                                    {pItem.submenu.length >
-                                                      0 && (
-                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
-                                                        {pItem.submenu.map(
-                                                          (subitem, k) => (
-                                                            <li
-                                                              className="nav-item"
-                                                              key={k}
-                                                            >
-                                                              {subitem.page_type &&
-                                                              subitem.page_type === 2 ? (
-                                                                <a
-                                                                  className="nav-link"
-                                                                  aria-current="page"
-                                                                  href={`${subitem.website_protocol}${subitem.url}`}
+                                                      {pItem.submenu.length >
+                                                        0 && (
+                                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                            {pItem.submenu.map(
+                                                              (subitem, k) => (
+                                                                <li
+                                                                  className="nav-item"
+                                                                  key={k}
                                                                 >
-                                                                  {subitem.info.name}
-                                                                </a>
-                                                              ) : (
-                                                              <ActiveLink
-                                                                aria-current="page"
-                                                                className="nav-link"
-                                                                href={
-                                                                  "/" +
-                                                                  this.props
-                                                                    .event.url +
-                                                                  "/" +
-                                                                  menu.alias +
-                                                                  "/" +
-                                                                  subitem.id
-                                                                }
-                                                                key={subitem.id}
-                                                              >
-                                                                {
-                                                                  subitem.info
-                                                                    .name
-                                                                }
-                                                              </ActiveLink>
-                                                              )}
-                                                            </li>
-                                                          )
+                                                                  {subitem.page_type &&
+                                                                    subitem.page_type === 2 ? (
+                                                                    <a
+                                                                      className="nav-link"
+                                                                      aria-current="page"
+                                                                      href={`${subitem.website_protocol}${subitem.url}`}
+                                                                    >
+                                                                      {subitem.info.name}
+                                                                    </a>
+                                                                  ) : (
+                                                                    <ActiveLink
+                                                                      aria-current="page"
+                                                                      className="nav-link"
+                                                                      href={
+                                                                        "/" +
+                                                                        this.props
+                                                                          .event.url +
+                                                                        "/" +
+                                                                        menu.alias +
+                                                                        "/" +
+                                                                        subitem.id
+                                                                      }
+                                                                      key={subitem.id}
+                                                                    >
+                                                                      {
+                                                                        subitem.info
+                                                                          .name
+                                                                      }
+                                                                    </ActiveLink>
+                                                                  )}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         )}
-                                                      </ul>
-                                                    )}
-                                                  </li>
-                                                ) : (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    {pItem.page_type &&
-                                                    pItem.page_type === 2 ? (
-                                                      <a
-                                                        className="nav-link"
-                                                        aria-current="page"
-                                                        href={`${pItem.website_protocol}${pItem.url}`}
-                                                      >
-                                                        {pItem.info.name}
-                                                      </a>
-                                                    ) : (
-                                                      <ActiveLink
-                                                        aria-current="page"
-                                                        className="nav-link"
-                                                        href={
-                                                          "/" +
-                                                          this.props.event.url +
-                                                          "/" +
-                                                          menu.alias +
-                                                          "/" +
-                                                          pItem.id
-                                                        }
-                                                        key={pItem.id}
-                                                      >
-                                                        {pItem.info.name}
-                                                      </ActiveLink>
-                                                    )}
-                                                  </li>
-                                                )
-                                            )}
-                                          </ul>
-                                        )}
+                                                    </li>
+                                                  ) : (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={k}
+                                                    >
+                                                      {pItem.page_type &&
+                                                        pItem.page_type === 2 ? (
+                                                        <a
+                                                          className="nav-link"
+                                                          aria-current="page"
+                                                          href={`${pItem.website_protocol}${pItem.url}`}
+                                                        >
+                                                          {pItem.info.name}
+                                                        </a>
+                                                      ) : (
+                                                        <ActiveLink
+                                                          aria-current="page"
+                                                          className="nav-link"
+                                                          href={
+                                                            "/" +
+                                                            this.props.event.url +
+                                                            "/" +
+                                                            menu.alias +
+                                                            "/" +
+                                                            pItem.id
+                                                          }
+                                                          key={pItem.id}
+                                                        >
+                                                          {pItem.info.name}
+                                                        </ActiveLink>
+                                                      )}
+                                                    </li>
+                                                  )
+                                              )}
+                                            </ul>
+                                          )}
                                         {(menu.alias ===
                                           "additional_information" && menus["additional_info_menu"].length > 0) && (
-                                          <ul className="dropdown-menu ebs-accordion-dropdown">
-                                            {menus["additional_info_menu"].map(
-                                              (aItem, k) =>
-                                                aItem.page_type &&
-                                                aItem.page_type === "menu" ? (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={aItem.id}
-                                                  >
-                                                    <span
-                                                      onClick={this.accordionToggle.bind(this)}
-                                                      className="nav-link ebs-accordion-button"
+                                            <ul className="dropdown-menu ebs-accordion-dropdown">
+                                              {menus["additional_info_menu"].map(
+                                                (aItem, k) =>
+                                                  aItem.page_type &&
+                                                    aItem.page_type === "menu" ? (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={aItem.id}
                                                     >
-                                                      <span className="ebs-nav-item">
-                                                        {aItem.info.name}
-                                                      </span>
-                                                    </span>
-                                                    {aItem.submenu.length >
-                                                      0 && (
-                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
-                                                        {aItem.submenu.map(
-                                                          (subitem, k) => (
-                                                            <li
-                                                              className="nav-item"
-                                                              key={k}
-                                                            >
-                                                              {subitem.page_type &&
-                                                                subitem.page_type === 2 ? (
-                                                                  <a
-                                                                    className="nav-link"
-                                                                    aria-current="page"
-                                                                    href={`${subitem.website_protocol}${subitem.url}`}
-                                                                  >
-                                                                    {subitem.info.name}
-                                                                  </a>
-                                                                ) : (
-                                                              <ActiveLink
-                                                                aria-current="page"
-                                                                className="nav-link"
-                                                                href={
-                                                                  "/" +
-                                                                  this.props
-                                                                    .event.url +
-                                                                  "/" +
-                                                                  menu.alias +
-                                                                  "/" +
-                                                                  subitem.id
-                                                                }
-                                                                key={subitem.id}
-                                                              >
-                                                                {
-                                                                  subitem.info
-                                                                    .name
-                                                                }
-                                                              </ActiveLink>
-                                                              )}
-                                                            </li>
-                                                          )
-                                                        )}
-                                                      </ul>
-                                                    )}
-                                                  </li>
-                                                ) : (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    {aItem.page_type &&
-                                                    aItem.page_type === 2 ? (
-                                                      <a
-                                                        className="nav-link"
-                                                        aria-current="page"
-                                                        href={`${aItem.website_protocol}${aItem.url}`}
+                                                      <span
+                                                        onClick={this.accordionToggle.bind(this)}
+                                                        className="nav-link ebs-accordion-button"
                                                       >
-                                                        {aItem.info.name}
-                                                      </a>
-                                                    ) : (
-                                                      <ActiveLink
-                                                        aria-current="page"
-                                                        className="nav-link"
-                                                        href={
-                                                          "/" +
-                                                          this.props.event.url +
-                                                          "/" +
-                                                          menu.alias +
-                                                          "/" +
-                                                          aItem.id
-                                                        }
-                                                        key={aItem.id}
-                                                      >
-                                                        {aItem.info.name}
-                                                      </ActiveLink>
-                                                    )}
-                                                  </li>
-                                                )
-                                            )}
-                                          </ul>
-                                        )}
-                                        {(menu.alias ===
-                                          "general_information" && menus["general_info_menu"].length > 0)  && (
-                                          <ul className="dropdown-menu ebs-accordion-dropdown">
-                                            {menus["general_info_menu"].map(
-                                              (gItem, k) =>
-                                                gItem.page_type &&
-                                                gItem.page_type === "menu" ? (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={gItem.id}
-                                                  >
-                                                    <span
-                                                      onClick={this.accordionToggle.bind(this)}
-                                                      className="nav-link ebs-accordion-button"
-                                                    >
-                                                      <span className="ebs-nav-item">
-                                                        {gItem.info.name}
+                                                        <span className="ebs-nav-item">
+                                                          {aItem.info.name}
+                                                        </span>
                                                       </span>
-                                                    </span>
-                                                    {gItem.submenu.length >
-                                                      0 && (
-                                                      <ul className="dropdown-menu ebs-accordion-dropdown">
-                                                        {gItem.submenu.map(
-                                                          (subitem, k) => (
-                                                            <li
-                                                              className="nav-item"
-                                                              key={k}
-                                                            >
-                                                              {subitem.page_type &&
-                                                              subitem.page_type === 2 ? (
-                                                                <a
-                                                                  className="nav-link"
-                                                                  aria-current="page"
-                                                                  href={`${subitem.website_protocol}${subitem.url}`}
+                                                      {aItem.submenu.length >
+                                                        0 && (
+                                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                            {aItem.submenu.map(
+                                                              (subitem, k) => (
+                                                                <li
+                                                                  className="nav-item"
+                                                                  key={k}
                                                                 >
-                                                                  {subitem.info.name}
-                                                                </a>
-                                                              ) : (
-                                                              <ActiveLink
-                                                                aria-current="page"
-                                                                className="nav-link"
-                                                                href={
-                                                                  "/" +
-                                                                  this.props
-                                                                    .event.url +
-                                                                  "/" +
-                                                                  menu.alias +
-                                                                  "/" +
-                                                                  subitem.id
-                                                                }
-                                                                key={subitem.id}
-                                                              >
-                                                                {
-                                                                  subitem.info
-                                                                    .name
-                                                                }
-                                                              </ActiveLink>
-                                                              )}
-                                                            </li>
-                                                          )
+                                                                  {subitem.page_type &&
+                                                                    subitem.page_type === 2 ? (
+                                                                    <a
+                                                                      className="nav-link"
+                                                                      aria-current="page"
+                                                                      href={`${subitem.website_protocol}${subitem.url}`}
+                                                                    >
+                                                                      {subitem.info.name}
+                                                                    </a>
+                                                                  ) : (
+                                                                    <ActiveLink
+                                                                      aria-current="page"
+                                                                      className="nav-link"
+                                                                      href={
+                                                                        "/" +
+                                                                        this.props
+                                                                          .event.url +
+                                                                        "/" +
+                                                                        menu.alias +
+                                                                        "/" +
+                                                                        subitem.id
+                                                                      }
+                                                                      key={subitem.id}
+                                                                    >
+                                                                      {
+                                                                        subitem.info
+                                                                          .name
+                                                                      }
+                                                                    </ActiveLink>
+                                                                  )}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         )}
-                                                      </ul>
-                                                    )}
-                                                  </li>
-                                                ) : (
-                                                  <li
-                                                    className="nav-item"
-                                                    key={k}
-                                                  >
-                                                    {gItem.page_type &&
-                                                    gItem.page_type === 2 ? (
-                                                      <a
-                                                        className="nav-link"
-                                                        aria-current="page"
-                                                        href={`${gItem.website_protocol}${gItem.url}`}
+                                                    </li>
+                                                  ) : (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={k}
+                                                    >
+                                                      {aItem.page_type &&
+                                                        aItem.page_type === 2 ? (
+                                                        <a
+                                                          className="nav-link"
+                                                          aria-current="page"
+                                                          href={`${aItem.website_protocol}${aItem.url}`}
+                                                        >
+                                                          {aItem.info.name}
+                                                        </a>
+                                                      ) : (
+                                                        <ActiveLink
+                                                          aria-current="page"
+                                                          className="nav-link"
+                                                          href={
+                                                            "/" +
+                                                            this.props.event.url +
+                                                            "/" +
+                                                            menu.alias +
+                                                            "/" +
+                                                            aItem.id
+                                                          }
+                                                          key={aItem.id}
+                                                        >
+                                                          {aItem.info.name}
+                                                        </ActiveLink>
+                                                      )}
+                                                    </li>
+                                                  )
+                                              )}
+                                            </ul>
+                                          )}
+                                        {(menu.alias ===
+                                          "general_information" && menus["general_info_menu"].length > 0) && (
+                                            <ul className="dropdown-menu ebs-accordion-dropdown">
+                                              {menus["general_info_menu"].map(
+                                                (gItem, k) =>
+                                                  gItem.page_type &&
+                                                    gItem.page_type === "menu" ? (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={gItem.id}
+                                                    >
+                                                      <span
+                                                        onClick={this.accordionToggle.bind(this)}
+                                                        className="nav-link ebs-accordion-button"
                                                       >
-                                                        {gItem.info.name}
-                                                      </a>
-                                                    ) : (
-                                                      <ActiveLink
-                                                        aria-current="page"
-                                                        className="nav-link"
-                                                        href={
-                                                          "/" +
-                                                          this.props.event.url +
-                                                          "/" +
-                                                          menu.alias +
-                                                          "/" +
-                                                          gItem.id
-                                                        }
-                                                        key={gItem.id}
-                                                      >
-                                                        {gItem.info.name}
-                                                      </ActiveLink>
-                                                    )}
-                                                  </li>
-                                                )
-                                            )}
-                                          </ul>
-                                        )}
+                                                        <span className="ebs-nav-item">
+                                                          {gItem.info.name}
+                                                        </span>
+                                                      </span>
+                                                      {gItem.submenu.length >
+                                                        0 && (
+                                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                                            {gItem.submenu.map(
+                                                              (subitem, k) => (
+                                                                <li
+                                                                  className="nav-item"
+                                                                  key={k}
+                                                                >
+                                                                  {subitem.page_type &&
+                                                                    subitem.page_type === 2 ? (
+                                                                    <a
+                                                                      className="nav-link"
+                                                                      aria-current="page"
+                                                                      href={`${subitem.website_protocol}${subitem.url}`}
+                                                                    >
+                                                                      {subitem.info.name}
+                                                                    </a>
+                                                                  ) : (
+                                                                    <ActiveLink
+                                                                      aria-current="page"
+                                                                      className="nav-link"
+                                                                      href={
+                                                                        "/" +
+                                                                        this.props
+                                                                          .event.url +
+                                                                        "/" +
+                                                                        menu.alias +
+                                                                        "/" +
+                                                                        subitem.id
+                                                                      }
+                                                                      key={subitem.id}
+                                                                    >
+                                                                      {
+                                                                        subitem.info
+                                                                          .name
+                                                                      }
+                                                                    </ActiveLink>
+                                                                  )}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
+                                                        )}
+                                                    </li>
+                                                  ) : (
+                                                    <li
+                                                      className="nav-item"
+                                                      key={k}
+                                                    >
+                                                      {gItem.page_type &&
+                                                        gItem.page_type === 2 ? (
+                                                        <a
+                                                          className="nav-link"
+                                                          aria-current="page"
+                                                          href={`${gItem.website_protocol}${gItem.url}`}
+                                                        >
+                                                          {gItem.info.name}
+                                                        </a>
+                                                      ) : (
+                                                        <ActiveLink
+                                                          aria-current="page"
+                                                          className="nav-link"
+                                                          href={
+                                                            "/" +
+                                                            this.props.event.url +
+                                                            "/" +
+                                                            menu.alias +
+                                                            "/" +
+                                                            gItem.id
+                                                          }
+                                                          key={gItem.id}
+                                                        >
+                                                          {gItem.info.name}
+                                                        </ActiveLink>
+                                                      )}
+                                                    </li>
+                                                  )
+                                              )}
+                                            </ul>
+                                          )}
                                       </li>
                                     ))}
                                   </ul>
@@ -627,7 +643,7 @@ class Variation4 extends React.Component {
                   </div>
                 </div>
               </nav>
-              {this.props.userExist && <MyProfileSidebar /> }
+              {this.props.userExist && <MyProfileSidebar />}
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                     <div className="edgtf-team mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
-                          <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                          <Link href={`/${event.url}/speakers/${speaker.id}`}>
                             <span className="gallery-img-wrapper-square">
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1} 
@@ -45,7 +45,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                         <div className="edgtf-team-info">
                           <div className="edgtf-team-title-holder">
                             {(speaker.first_name || speaker.last_name) && (
-                              <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                              <Link href={`/${event.url}/speakers/${speaker.id}`}>
                                 <h3 className="edgtf-team-name">
                                   {speaker.first_name && speaker.first_name}{" "}
                                   {speaker.last_name && speaker.last_name}

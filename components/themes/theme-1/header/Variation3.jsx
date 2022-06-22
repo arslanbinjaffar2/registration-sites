@@ -26,12 +26,14 @@ class Variation3 extends React.Component {
     this._isMounted = true;
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
+
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
+
   async componentDidUpdate(prevProps) {
-    if (prevProps.loaded !== this.props.loaded) {
+    if (prevProps.loaded !== this.props.loaded && typeof window !== 'undefined') {
       this.handleFunction();
       document
         .getElementsByTagName("body")[0]
@@ -41,22 +43,26 @@ class Variation3 extends React.Component {
       });
     }
   }
+
   handleScroll = () => {
-    const _app = document.getElementById("App");
-    const _theme = document
-      .getElementById("ebs-header-master")
-      .classList.contains("ebs-fixed-header");
-    if (window.scrollY > 350) {
-      _app.classList.add("ebs-header-sticky");
-      _app.style.paddingTop = _theme
-        ? 0
-        : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
+    if (typeof window !== 'undefined') {
+      const _app = document.getElementById("App");
+      const _theme = document
+        .getElementById("ebs-header-master")
+        .classList.contains("ebs-fixed-header");
+      if (window.scrollY > 350) {
+        _app.classList.add("ebs-header-sticky");
+        _app.style.paddingTop = _theme
+          ? 0
+          : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
             .offsetHeight + "px";
-    } else {
-      _app.classList.remove("ebs-header-sticky");
-      _app.style.paddingTop = 0 + "px";
+      } else {
+        _app.classList.remove("ebs-header-sticky");
+        _app.style.paddingTop = 0 + "px";
+      }
     }
   };
+
   accordionToggle = (e) => {
     //variables
     var _this = e.target;
@@ -66,7 +72,7 @@ class Variation3 extends React.Component {
     if (panel) {
       /*if pannel is already open - minimize*/
       if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
+        panel.style.maxHeight = null;
         _this.classList.remove("active");
       } else {
 
@@ -85,40 +91,47 @@ class Variation3 extends React.Component {
       }
     }
   };
+
   handleFunction = () => {
-    document
-      .getElementById("ebs-header-master")
-      .classList.remove("ebs-fixed-header");
-    document
-      .getElementById("ebs-header-master")
-      .classList.remove("ebs-light-header");
-    if (window.innerWidth >= 991) {
-      var _nextSibling =
-        document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
-      if (_nextSibling === "true") {
-        document
-          .getElementById("ebs-header-master")
-          .classList.add("ebs-fixed-header");
-      } else {
-        document
-          .getElementById("ebs-header-master")
-          .classList.add("ebs-light-header");
+    if (typeof window !== 'undefined') {
+      document
+        .getElementById("ebs-header-master")
+        .classList.remove("ebs-fixed-header");
+      document
+        .getElementById("ebs-header-master")
+        .classList.remove("ebs-light-header");
+      if (window.innerWidth >= 991) {
+        var _nextSibling =
+          document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+        if (_nextSibling === "true") {
+          document
+            .getElementById("ebs-header-master")
+            .classList.add("ebs-fixed-header");
+        } else {
+          document
+            .getElementById("ebs-header-master")
+            .classList.add("ebs-light-header");
+        }
       }
     }
   };
+
   handleMenu = () => {
-    this.setState({ showMenu: !this.state.showMenu }, () => {
-      const _body = document.getElementsByTagName("body")[0];
-      const _scroll = document.body.classList.contains("ebs-scroll-menu");
-      if (_scroll) {
-        _body.classList.remove("ebs-scroll-menu");
-      } else {
-        setTimeout(() => {
-          _body.classList.add("ebs-scroll-menu");
-        }, 400);
-      }
-    });
+    if (typeof window !== 'undefined') {
+      this.setState({ showMenu: !this.state.showMenu }, () => {
+        const _body = document.getElementsByTagName("body")[0];
+        const _scroll = document.body.classList.contains("ebs-scroll-menu");
+        if (_scroll) {
+          _body.classList.remove("ebs-scroll-menu");
+        } else {
+          setTimeout(() => {
+            _body.classList.add("ebs-scroll-menu");
+          }, 400);
+        }
+      });
+    }
   };
+
   render() {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
@@ -184,15 +197,15 @@ class Variation3 extends React.Component {
                                 menu.alias === "practicalinformation" ||
                                 menu.alias === "additional_information" ||
                                 menu.alias === "general_information") && (
-                                <span
-                                  onClick={this.accordionToggle.bind(this)}
-                                  className="nav-link ebs-accordion-button"
-                                >
-                                  <span className="ebs-nav-item">
-                                    {menu.module}
+                                  <span
+                                    onClick={this.accordionToggle.bind(this)}
+                                    className="nav-link ebs-accordion-button"
+                                  >
+                                    <span className="ebs-nav-item">
+                                      {menu.module}
+                                    </span>
                                   </span>
-                                </span>
-                              )}
+                                )}
                               {menu.alias !== "gallery" &&
                                 menu.alias !== "myaccount" &&
                                 menu.alias !== "practicalinformation" &&
@@ -257,25 +270,25 @@ class Variation3 extends React.Component {
                                           <span className="ebs-nav-item">
                                             {myaccount.module}
                                           </span>
-                                        </ActiveLink>):
-                                        <div className="nav-link" onClick={()=>{this.props.setShowLogin(true)}}>
-                                          <span className="ebs-nav-item">
-                                            {myaccount.module}
-                                          </span>
-                                        </div> 
+                                        </ActiveLink>) :
+                                          <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
+                                            <span className="ebs-nav-item">
+                                              {myaccount.module}
+                                            </span>
+                                          </div>
                                         }
                                       </li>
                                     )
-                                  ):(<li className="nav-item">
-                                  <ActiveLink
-                                    aria-current="page"
-                                    className="nav-link"
-                                    href={ `/${event.url}/profile`}
-                                  >
+                                  ) : (<li className="nav-item">
+                                    <ActiveLink
+                                      aria-current="page"
+                                      className="nav-link"
+                                      href={`/${event.url}/profile`}
+                                    >
                                       My Profile
-                                  </ActiveLink>
-                                </li>
-                          )}
+                                    </ActiveLink>
+                                  </li>
+                                  )}
                                 </ul>
                               )}
 
@@ -284,7 +297,7 @@ class Variation3 extends React.Component {
                                   {menus["practical_info_menu"].map(
                                     (pItem, k) =>
                                       pItem.page_type &&
-                                      pItem.page_type === "menu" ? (
+                                        pItem.page_type === "menu" ? (
                                         <li className="nav-item" key={pItem.id}>
                                           <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
                                             <span className="ebs-nav-item">{pItem.info.name}</span>
@@ -297,8 +310,8 @@ class Variation3 extends React.Component {
                                                     className="nav-item"
                                                     key={k}
                                                   >
-                                                  {subitem.page_type &&
-                                                    subitem.page_type === 2 ? (
+                                                    {subitem.page_type &&
+                                                      subitem.page_type === 2 ? (
                                                       <a
                                                         className="nav-link"
                                                         aria-current="page"
@@ -307,22 +320,22 @@ class Variation3 extends React.Component {
                                                         {subitem.info.name}
                                                       </a>
                                                     ) : (
-                                                    <ActiveLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      href={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </ActiveLink>
-                                                      )}
+                                                      <ActiveLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        href={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          subitem.id
+                                                        }
+                                                        key={subitem.id}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </ActiveLink>
+                                                    )}
                                                   </li>
                                                 )
                                               )}
@@ -332,7 +345,7 @@ class Variation3 extends React.Component {
                                       ) : (
                                         <li className="nav-item" key={k}>
                                           {pItem.page_type &&
-                                          pItem.page_type === 2 ? (
+                                            pItem.page_type === 2 ? (
                                             <a
                                               className="nav-link"
                                               aria-current="page"
@@ -367,7 +380,7 @@ class Variation3 extends React.Component {
                                   {menus["additional_info_menu"].map(
                                     (aItem, k) =>
                                       aItem.page_type &&
-                                      aItem.page_type === "menu" ? (
+                                        aItem.page_type === "menu" ? (
                                         <li className="nav-item" key={aItem.id}>
                                           <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
                                             <span className="ebs-nav-item">{aItem.info.name}</span>
@@ -382,29 +395,29 @@ class Variation3 extends React.Component {
                                                   >
                                                     {subitem.page_type &&
                                                       subitem.page_type === 2 ? (
-                                                        <a
-                                                          className="nav-link"
-                                                          aria-current="page"
-                                                          href={`${subitem.website_protocol}${subitem.url}`}
-                                                        >
-                                                          {subitem.info.name}
-                                                        </a>
-                                                      ) : (
-                                                    <ActiveLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      href={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </ActiveLink>
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${subitem.website_protocol}${subitem.url}`}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </a>
+                                                    ) : (
+                                                      <ActiveLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        href={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          subitem.id
+                                                        }
+                                                        key={subitem.id}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </ActiveLink>
                                                     )}
                                                   </li>
                                                 )
@@ -415,7 +428,7 @@ class Variation3 extends React.Component {
                                       ) : (
                                         <li className="nav-item" key={k}>
                                           {aItem.page_type &&
-                                          aItem.page_type === 2 ? (
+                                            aItem.page_type === 2 ? (
                                             <a
                                               className="nav-link"
                                               aria-current="page"
@@ -450,7 +463,7 @@ class Variation3 extends React.Component {
                                   {menus["general_info_menu"].map(
                                     (gItem, k) =>
                                       gItem.page_type &&
-                                      gItem.page_type === "menu" ? (
+                                        gItem.page_type === "menu" ? (
                                         <li className="nav-item" key={gItem.id}>
                                           <span onClick={this.accordionToggle.bind(this)} className="nav-link ebs-accordion-button">
                                             <span className="ebs-nav-item">{gItem.info.name}</span>
@@ -465,29 +478,29 @@ class Variation3 extends React.Component {
                                                   >
                                                     {subitem.page_type &&
                                                       subitem.page_type === 2 ? (
-                                                        <a
-                                                          className="nav-link"
-                                                          aria-current="page"
-                                                          href={`${subitem.website_protocol}${subitem.url}`}
-                                                        >
-                                                          {subitem.info.name}
-                                                        </a>
-                                                      ) : (
-                                                    <ActiveLink
-                                                      aria-current="page"
-                                                      className="nav-link"
-                                                      href={
-                                                        "/" +
-                                                        this.props.event.url +
-                                                        "/" +
-                                                        menu.alias +
-                                                        "/" +
-                                                        subitem.id
-                                                      }
-                                                      key={subitem.id}
-                                                    >
-                                                      {subitem.info.name}
-                                                    </ActiveLink>
+                                                      <a
+                                                        className="nav-link"
+                                                        aria-current="page"
+                                                        href={`${subitem.website_protocol}${subitem.url}`}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </a>
+                                                    ) : (
+                                                      <ActiveLink
+                                                        aria-current="page"
+                                                        className="nav-link"
+                                                        href={
+                                                          "/" +
+                                                          this.props.event.url +
+                                                          "/" +
+                                                          menu.alias +
+                                                          "/" +
+                                                          subitem.id
+                                                        }
+                                                        key={subitem.id}
+                                                      >
+                                                        {subitem.info.name}
+                                                      </ActiveLink>
                                                     )}
                                                   </li>
                                                 )
@@ -498,7 +511,7 @@ class Variation3 extends React.Component {
                                       ) : (
                                         <li className="nav-item" key={k}>
                                           {gItem.page_type &&
-                                          gItem.page_type === 2 ? (
+                                            gItem.page_type === 2 ? (
                                             <a
                                               className="nav-link"
                                               aria-current="page"
@@ -536,7 +549,7 @@ class Variation3 extends React.Component {
                   </div>
                 </div>
               </nav>
-              {this.props.userExist && <MyProfileSidebar /> }
+              {this.props.userExist && <MyProfileSidebar />}
             </div>
           </div>
         </div>

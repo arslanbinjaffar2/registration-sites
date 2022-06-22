@@ -81,7 +81,7 @@ const ReactPageScroller = ({
   }, [addNextComponent, children, renderAllPagesOnFirstRender]);
 
   const disableScroll = useCallback(() => {
-    if (isBodyScrollEnabled) {
+    if (isBodyScrollEnabled && typeof window !== 'undefined') {
       isBodyScrollEnabled = false;
       window.scrollTo({
         left: 0,
@@ -94,7 +94,7 @@ const ReactPageScroller = ({
   }, []);
 
   const enableDocumentScroll = useCallback(() => {
-    if (!isBodyScrollEnabled) {
+    if (!isBodyScrollEnabled && typeof window !== 'undefined') {
       isBodyScrollEnabled = true;
       document.body.classList.remove(DISABLED_CLASS_NAME);
       document.documentElement.classList.remove(DISABLED_CLASS_NAME);

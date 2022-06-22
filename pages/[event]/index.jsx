@@ -115,7 +115,7 @@ const Index = () => {
                     {event && (
                         <MasterLayoutRoute>
                             <Theme data={event} />
-                            {/* <Home /> */}
+                            <Home />
                         </MasterLayoutRoute>
                     )}
                 </>

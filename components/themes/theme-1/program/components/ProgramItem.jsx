@@ -28,7 +28,7 @@ const ProgramItem = ({program, eventUrl}) => {
             <div className="row d-flex ebs-program-speakers">
                 {program.program_speakers.map((speakers,o) =>
                     <div style={{animationDelay: 50*o+'ms'}} key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
-                    <Link to={`/${eventUrl}/speakers/${speakers.id}`}>
+                    <Link href={`/${eventUrl}/speakers/${speakers.id}`}>
 											<span className="gallery-img-wrapper-square">
                         <img  
 												onLoad={(e) => e.target.style.opacity = 1}

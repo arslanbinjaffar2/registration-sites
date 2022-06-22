@@ -2,9 +2,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React, { Children } from 'react'
 
-const ActiveLink = ({ children, ...props }) => {
+const ActiveLink = (props) => {
     const { asPath } = useRouter()
-    const child = Children.only(children)
     const childClassName = props.className || ''
     const activeClassName = props.activeClassName || ''
 
@@ -18,9 +17,7 @@ const ActiveLink = ({ children, ...props }) => {
 
     return (
         <Link scroll={false} {...props}>
-            {React.cloneElement(child, {
-                className: className || null,
-            })}
+            <a className={className}>{props.children}</a>
         </Link>
     )
 }

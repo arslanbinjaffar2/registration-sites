@@ -18,7 +18,7 @@ const MyProfile = () =>  {
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>My profile</h2>
-            <Link className='btn-link' to={`/${event.url}/profile/edit`}>Edit profile</Link>
+            <Link className='btn-link' href={`/${event.url}/profile/edit`}>Edit profile</Link>
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">

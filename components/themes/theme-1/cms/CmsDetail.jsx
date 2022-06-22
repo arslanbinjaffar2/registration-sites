@@ -36,7 +36,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {crumb.id === detail.id ? crumb.name : <Link to={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</Link>}
+                  {crumb.id === detail.id ? crumb.name : <Link href={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</Link>}
                 </li>
               ))}
             </ul>

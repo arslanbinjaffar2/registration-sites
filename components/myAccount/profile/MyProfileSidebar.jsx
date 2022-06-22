@@ -54,15 +54,15 @@ useEffect(() => {
      </div>
      {toggleMenu && <div className="ebs-sidebar-account">
        <ul>
-         <li><Link className={location === `/${event.url}/profile` ? 'active' : ''} to={`/${event.url}/profile`} >My profile</Link></li>
-         <li><Link to={`/${event.url}/profile`} >My billing</Link></li>
-         <li><Link to={`/${event.url}/profile`} >My billing history</Link></li>
-         <li><Link to={`/${event.url}/profile`}>Cancel registration</Link></li>
-         <li><Link className={location === `/${event.url}/my-sub-registration` ? 'active' : ''} to={`/${event.url}/my-sub-registration` }>My Sub registration</Link></li>
-         <li><Link className={location === `/${event.url}/my-program` ? 'active' : ''} to={`/${event.url}/my-program`}>My program</Link></li>
-         <li><Link className={location === `/${event.url}/surveys` ? 'active' : ''} to={`/${event.url}/surveys`}>Surveys</Link></li>
-         <li><Link className={location === `/${event.url}/keyword-interest` ? 'active' : ''} to={`/${event.url}/keyword-interest`}>Networking interests</Link></li>
-         <li><Link className={location === `/${event.url}/news-letter-subscription` ? 'active' : ''} to={`/${event.url}/news-letter-subscription`}>Newsletter subscription</Link></li>
+         <li><Link className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</Link></li>
+         <li><Link href={`/${event.url}/profile`} >My billing</Link></li>
+         <li><Link href={`/${event.url}/profile`} >My billing history</Link></li>
+         <li><Link href={`/${event.url}/profile`}>Cancel registration</Link></li>
+         <li><Link className={location === `/${event.url}/my-sub-registration` ? 'active' : ''} href={`/${event.url}/my-sub-registration` }>My Sub registration</Link></li>
+         <li><Link className={location === `/${event.url}/my-program` ? 'active' : ''} href={`/${event.url}/my-program`}>My program</Link></li>
+         <li><Link className={location === `/${event.url}/surveys` ? 'active' : ''} href={`/${event.url}/surveys`}>Surveys</Link></li>
+         <li><Link className={location === `/${event.url}/keyword-interest` ? 'active' : ''} href={`/${event.url}/keyword-interest`}>Networking interests</Link></li>
+         <li><Link className={location === `/${event.url}/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/news-letter-subscription`}>Newsletter subscription</Link></li>
          <li><a onClick={(e)=>{onLogout();}} >Logout</a></li>
        </ul>
      </div>}

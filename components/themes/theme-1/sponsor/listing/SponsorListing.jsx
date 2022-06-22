@@ -114,7 +114,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
               {locSponsors.map((sponsor)=>(<div className="ebs-sponsor-item" key={sponsor.id}>
                 <div className="d-flex align-items-center ebs-break-block">
                   <div className="ebs-img-listing">
-                    <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                    <Link href={`/${eventUrl}/sponsors/${sponsor.id}`}>
                       <figure>
                         <img src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('public/img/exhibitors-default.png')} alt="" />
                       </figure>
@@ -122,7 +122,7 @@ const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabe
                   </div>
                   <div className="ebs-detail-listing">
                     {sponsor.name && 
-                      <Link to={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                      <Link href={`/${eventUrl}/sponsors/${sponsor.id}`}>
                         <h2>{ sponsor.name }</h2>
                       </Link>
                     }

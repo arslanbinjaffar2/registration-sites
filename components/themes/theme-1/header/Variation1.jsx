@@ -26,13 +26,15 @@ class Variation1 extends React.Component {
     window.addEventListener("resize", this.handleResize.bind(this), false);
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
   }
+
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("resize", this.handleResize.bind(this));
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
+
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps !== this.props) {
+    if (prevProps !== this.props && typeof window !== 'undefined') {
       document.getElementsByTagName('body')[0].classList.remove('un-scroll');
       this.setState({ showMenu: false });
       const _menubar = document.querySelectorAll(".navbar .dropdown-menu");
@@ -46,18 +48,22 @@ class Variation1 extends React.Component {
       }, 0);
     }
   }
+
   handleScroll = () => {
-    const _app = document.getElementById("App");
-    if (window.scrollY > 250) {
-      _app.classList.add("ebs-header-sticky");
-      _app.style.paddingTop =
-        document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
-          .offsetHeight + "px";
-    } else {
-      _app.classList.remove("ebs-header-sticky");
-      _app.style.paddingTop = 0 + "px";
+    if (typeof window !== 'undefined') {
+      const _app = document.getElementById("App");
+      if (window.scrollY > 250) {
+        _app.classList.add("ebs-header-sticky");
+        _app.style.paddingTop =
+          document.querySelectorAll("#App > .ebs-header-main-wrapper")[0]
+            .offsetHeight + "px";
+      } else {
+        _app.classList.remove("ebs-header-sticky");
+        _app.style.paddingTop = 0 + "px";
+      }
     }
   };
+
   handleResize = () => {
     clearTimeout(window.resizedFinished);
     window.resizedFinished = setTimeout(() => {
@@ -79,8 +85,9 @@ class Variation1 extends React.Component {
       );
     }, 100);
   };
+
   handleMenu = () => {
-    if (window.innerWidth >= 991) {
+    if (window.innerWidth >= 991 && typeof window !== 'undefined') {
       var _total = 0;
       var _element = false;
       const _container = document.getElementById("navbarSupportedContent");
@@ -121,6 +128,7 @@ class Variation1 extends React.Component {
       });
     }
   };
+
   render() {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;

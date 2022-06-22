@@ -16,7 +16,7 @@ const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 <div style={{animationDelay: 50*i+'ms'}} className="speakerv5-wrapper ebs-animation-layer">
                   <div className="speakerv5-area text-center">
                     <div className="speakerv5-image">
-                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
                           <img
                             onLoad={(e) => e.target.style.opacity = 1} 
@@ -33,7 +33,7 @@ const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                       </Link>
                     </div>
                     {(speaker.first_name || speaker.last_name) && (
-                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <h5>
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}

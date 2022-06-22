@@ -55,7 +55,7 @@ const Variation9 = ({
                   >
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
-                        <Link to={`/${event.url}/attendees/${attendee.id}`}>
+                        <Link href={`/${event.url}/attendees/${attendee.id}`}>
                           <span className="gallery-img-wrapper-square">
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1} 
@@ -75,7 +75,7 @@ const Variation9 = ({
                       <div className="edgtf-team-info">
                         <div className="edgtf-team-title-holder">
                           {(attendee.first_name || attendee.last_name) && (
-                            <Link to={`/${event.url}/attendees/${attendee.id}`}>
+                            <Link href={`/${event.url}/attendees/${attendee.id}`}>
                               <h3 className="edgtf-team-name">
                                 {attendee.first_name && attendee.first_name}{" "}
                                 {attendee.last_name && attendee.last_name}

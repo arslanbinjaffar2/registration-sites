@@ -23,7 +23,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 >
                   <div className="speakerv7-image">
                     <span className="box">
-                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
                             <img
                               onLoad={(e) => e.target.style.opacity = 1} 
@@ -42,7 +42,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                   </div>
                   <div className="speakerv7-caption">
                     {(speaker.first_name || speaker.last_name) && (
-                      <Link to={`/${event.url}/speakers/${speaker.id}`}>
+                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <h3>
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}

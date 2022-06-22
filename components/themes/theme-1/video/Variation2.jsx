@@ -69,7 +69,7 @@ const Variation2 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
           </div>
           {!home && loadMore() }
       {home && <div className="container p-0 pt-5 text-center">
-           <Link to={`/${eventUrl}/videos`}>
+           <Link href={`/${eventUrl}/videos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >

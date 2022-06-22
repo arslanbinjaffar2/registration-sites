@@ -48,7 +48,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
             {cmsListing && cmsListing.map((item, i)=>(
                 <li key={i}>
                   {item.page_type === 1 && 
-                        <Link to={`/${eventUrl}/${moduleName}/${item.id}`}>
+                        <Link href={`/${eventUrl}/${moduleName}/${item.id}`}>
                           {item.info.name}
                         </Link>
                   }
@@ -65,7 +65,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                             {item.submenu.map((subitem, j)=>(
                             <li key={j}>
                               {subitem.page_type === 1 && 
-                                <Link to={`/${eventUrl}/${moduleName}/${subitem.id}`}>
+                                <Link href={`/${eventUrl}/${moduleName}/${subitem.id}`}>
                                   {subitem.info.name}
                                 </Link>
                               }
