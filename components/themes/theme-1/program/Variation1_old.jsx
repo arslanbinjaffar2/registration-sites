@@ -15,9 +15,8 @@ const Variation1 = ({ programs }) => {
                 {programs.map((element, k) => (
                   <li
                     key={k}
-                    className={`ui-state-default ui-corner-top ${
-                      k === activeIndex && "ui-tabs-active ui-state-active"
-                    }`}
+                    className={`ui-state-default ui-corner-top ${k === activeIndex && "ui-tabs-active ui-state-active"
+                      }`}
                   >
                     <a
                       href="#!"
@@ -89,21 +88,31 @@ const Variation1 = ({ programs }) => {
                                           data-member-id="9058"
                                         >
                                           <div className="edgtf-team-image">
-                                            <img
-                                              src={
-                                                speaker.image &&
-                                                speaker.image !== ""
-                                                  ? process.env
-                                                      .REACT_APP_EVENTCENTER_URL +
-                                                    "/assets/attendees/" +
-                                                    speaker.image
-                                                  : require("public/img/square.jpg")
-                                              }
-                                              className="attachment-81x81 size-81x81 wp-post-image"
-                                              alt="v"
-                                              width="81"
-                                              height="81"
-                                            />
+                                            {speaker.image &&
+                                              speaker.image !== "" ? (
+                                              <img
+                                                src={
+                                                  process.env
+                                                    .REACT_APP_EVENTCENTER_URL +
+                                                  "/assets/attendees/" +
+                                                  speaker.image
+                                                }
+                                                className="attachment-81x81 size-81x81 wp-post-image"
+                                                alt="v"
+                                                width="81"
+                                                height="81"
+                                              />
+                                            ) : (
+                                              <Image
+                                                src={
+                                                  require("public/img/square.jpg")
+                                                }
+                                                className="attachment-81x81 size-81x81 wp-post-image"
+                                                alt="v"
+                                                width="81"
+                                                height="81"
+                                              />
+                                            )}
                                           </div>
                                           <div className="edgtf-team-info">
                                             <div className="edgtf-team-title-holder">

@@ -13,15 +13,15 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
         <div className="edgtf-title-holder d-flex align-items-center justify-content-center">
-            <div className="container">
-              <div className="edgtf-title-subtitle-holder">
-                <div className="edgtf-title-subtitle-holder-inner">
-                  <h1 style={{ color: "white" }}>
-                    <span>{moduleName}</span>
-                  </h1>
-                </div>
+          <div className="container">
+            <div className="edgtf-title-subtitle-holder">
+              <div className="edgtf-title-subtitle-holder-inner">
+                <h1 style={{ color: "white" }}>
+                  <span>{moduleName}</span>
+                </h1>
               </div>
             </div>
+          </div>
         </div>
         <div></div>
       </div>
@@ -31,19 +31,33 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
-                  <img
-                    style={{ maxWidth: '90%', width: 'auto'}}
-                    onLoad={(e) => e.target.style.opacity = 1}
-                    src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')}
-                    alt=""
-                  />
+                  <span style={{ border: '1px solid #ccc' }} className="gallery-img-wrapper-square">
+                    {
+                      exhibitor.logo && exhibitor.logo !== '' ? (
+                        <img
+                          style={{ maxWidth: '90%', width: 'auto' }}
+                          onLoad={(e) => e.target.style.opacity = 1}
+                          onClick={e => handleOnClick(e, exhibitor)}
+                          src={
+
+                            process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo
+                          }
+                          alt="Client 11"
+                        />
+                      ) : (
+                        <Image
+                          src={require('public/img/exhibitors-default.png')}
+                          className="vc_single_image-img attachment-full"
+                          alt="x"
+                        />
+                      )
+                    }
                   </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
-                    {exhibitor.name && 
-                      <h2 className="edge-name">
-                        { exhibitor.name}
+                  {exhibitor.name &&
+                    <h2 className="edge-name">
+                      {exhibitor.name}
                     </h2>}
                   <div className="edge-grid-row edge-info">
                     <div className="edge-grid-col-12">
@@ -53,7 +67,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           className="edge-team-single-content"
                         >
                           <h4 className="info">ABOUT </h4>
-                          <p  dangerouslySetInnerHTML={{__html:exhibitor.description}} ></p>
+                          <p dangerouslySetInnerHTML={{ __html: exhibitor.description }} ></p>
                         </div>
                       )}
                       {exhibitor.email && (
@@ -156,25 +170,34 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         </div>
       </div>
 
-      {exhibitor.exhibitors_attendee.length > 0 && <div  style={{paddingBottom: 50}} className="">
+      {exhibitor.exhibitors_attendee.length > 0 && <div style={{ paddingBottom: 50 }} className="">
         <div className="container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">Contacts</h3>
-            </div>
+          </div>
           <div className="row d-flex ebs-program-speakers">
-            {exhibitor.exhibitors_attendee.map((attendee,o) =>
-              <div key={o} style={{animationDelay: 50*o+'ms'}} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
-                <span style={{marginBottom: 10}} className="gallery-img-wrapper-square">
-                <img
-                  onLoad={(e) => e.target.style.opacity = 1}
-                  style={{width: '90%'}}
-                  src={
-                  attendee.image && attendee.image !== ""
-                    ? process.env.REACT_APP_EVENTCENTER_URL +
-                      "/assets/attendees/" +
-                      attendee.image
-                    : require("public/img/user-placeholder.jpg")
-                } alt="" />
+            {exhibitor.exhibitors_attendee.map((attendee, o) =>
+              <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
+                <span style={{ marginBottom: 10 }} className="gallery-img-wrapper-square">
+                  {
+                    attendee.image && attendee.image !== "" ? (
+                      <img
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        style={{ width: '90%' }}
+                        src={
+                          process.env.REACT_APP_EVENTCENTER_URL +
+                          "/assets/attendees/" +
+                          attendee.image
+                        }
+                        alt="Client 11"
+                      />
+                    ) : (
+                      <Image
+                        src={require('public/img/user-placeholder.jpg')}
+                        alt="x"
+                      />
+                    )
+                  }
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
                 <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
@@ -187,8 +210,8 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
-            </div>
-                <DocumentsListing documents={documents} />
+          </div>
+          <DocumentsListing documents={documents} />
         </div>
       </div>}
     </div>

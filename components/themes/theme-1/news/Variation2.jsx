@@ -8,7 +8,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const breakpointColumnsObj = {
-    default:  3,
+    default: 3,
     1100: 2,
     700: 2,
     500: 1,
@@ -17,8 +17,8 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     <div style={{ padding: "80px 0" }} className="edgtf-container">
       <div className="container">
         <div
-          className={`${ "edgtf-full-width-inner"
-          } clearfix`}
+          className={`${"edgtf-full-width-inner"
+            } clearfix`}
         >
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
@@ -28,8 +28,8 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                   className="my-masonry-grid"
                   columnClassName="my-masonry-grid_column"
                 >
-                  {news.map((item,i) => (
-                    <article className="ebs-animation-layer" style={{animationDelay: 50*i+'ms'}} key={item.id}>
+                  {news.map((item, i) => (
+                    <article className="ebs-animation-layer" style={{ animationDelay: 50 * i + 'ms' }} key={item.id}>
                       <div className="edgtf-post-content">
                         {item.image && <div className="edgtf-post-image">
                           <Link
@@ -37,20 +37,31 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                             href={makeNewDetailURL(event_url, item.id)}
                           >
                             <span className="gallery-img-wrapper-rectangle-2">
-                            <img
-                              onLoad={(e) => e.target.style.opacity = 1}
-                              src={
-                                item.image && item.image !== ""
-                                  ? process.env.REACT_APP_EVENTCENTER_URL +
+                              {item.image && item.image !== "" ? (
+                                <img
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    process.env.REACT_APP_EVENTCENTER_URL +
                                     "/assets/eventsite_news/" +
                                     item.image
-                                  : require('public/img/exhibitors-default.png')
-                              }
-                              className="attachment-full size-full wp-post-image"
-                              alt="a"
-                              width="1500"
-                              height="500"
-                            />
+                                  }
+                                  className="attachment-full size-full wp-post-image"
+                                  alt="a"
+                                  width="1500"
+                                  height="500"
+                                />
+                              ) : (
+                                <Image
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    require('public/img/exhibitors-default.png')
+                                  }
+                                  className="attachment-full size-full wp-post-image"
+                                  alt="a"
+                                  width="1500"
+                                  height="500"
+                                />
+                              )}
                             </span>
                           </Link>
                         </div>}
@@ -90,29 +101,29 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
               </div>
             </div>
           </div>
-          {news.length > 0 &&  loadMore()}
+          {news.length > 0 && loadMore()}
           {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
-                  <iframe
-                    ref={iframe}
-                    onLoad={() => {
-                      setTimeout(() => {
+                <iframe
+                  ref={iframe}
+                  onLoad={() => {
+                    setTimeout(() => {
                       const obj = iframe.current;
                       setHeight(
                         obj.contentWindow.document.body.scrollHeight +
-                          200
+                        200
                       );
-                      }, 1000);
-                    }}
-                    width="100%"
-                    height={height > 0 ? height: 400}
-                    title="test"
-                    itemProp="description"
-                    className="edgtf-post-excerpt"
-                    src={`${process.env.REACT_APP_URL}/event/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
-                  />
+                    }, 1000);
+                  }}
+                  width="100%"
+                  height={height > 0 ? height : 400}
+                  title="test"
+                  itemProp="description"
+                  className="edgtf-post-excerpt"
+                  src={`${process.env.REACT_APP_URL}/event/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                />
               </div>
             </div>
           )}

@@ -8,22 +8,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
-  const imgUrl = (photo) => {
-    if (photo.thumnail && photo.thumnail !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail
-    } else {
-      return "img/home-2-gallery-img-1-480x400.jpg"
-    }
+
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 3,
+    700: 2,
+    500: 1,
   };
-    const breakpointColumnsObj = {
-      default: 3,
-      1100: 3,
-      700: 2,
-      500: 1,
-    };
+
   return (
     <div className="module-section">
-       <div className="container">
+      <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>
       <div className="container">
@@ -38,44 +33,53 @@ const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                 videos.map((photo, i) => (
                   // 
                   <div key={i} className="gallerMasonry">
-                 <PortalWithState closeOnOutsideClick closeOnEsc>
-                    {({ openPortal, closePortal, isOpen, portal }) => (
-                     <React.Fragment>
-                      <figure style={{overflow: 'hidden'}} className="gallery-img-wrapper-rectangle" onClick={openPortal}> 
-                        <img
-                          onLoad={(e) => e.target.style.opacity = 1}
-                          style={{width: '100%'}}
-                          src={imgUrl(photo)}
-                          alt="g"
-                        />
-                        <div className="ebs-video-button-inner ebs-right-top">
-                          <i className="fa fa-play-circle" aria-hidden="true"></i>
-                        </div>
-                        <figcaption>
-                          {photo.info && (
-                            <div
-                              className="icon"
-                              style={{
-                                border: "none",
-                                padding: "10px",
-                                textAlign: "center",
-                                fontSize: "20px",
-                                lineHeight: "1.2",
-                              }}
-                            >
-                              {Object.keys(photo.info)}
+                    <PortalWithState closeOnOutsideClick closeOnEsc>
+                      {({ openPortal, closePortal, isOpen, portal }) => (
+                        <React.Fragment>
+                          <figure style={{ overflow: 'hidden' }} className="gallery-img-wrapper-rectangle" onClick={openPortal}>
+                            {photo.thumnail && photo.thumnail !== "" ? (
+                              <img
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                style={{ width: "100%" }}
+                                src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
+                                alt="g"
+                              />
+                            ) : (
+                              <Image
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                style={{ width: "100%" }}
+                                src={require("public/img/gallery-not-found.png")}
+                                alt="g"
+                              />
+                            )}
+                            <div className="ebs-video-button-inner ebs-right-top">
+                              <i className="fa fa-play-circle" aria-hidden="true"></i>
                             </div>
-                          )}
-                        </figcaption>
-                      </figure>
-                      {portal(
+                            <figcaption>
+                              {photo.info && (
+                                <div
+                                  className="icon"
+                                  style={{
+                                    border: "none",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                    fontSize: "20px",
+                                    lineHeight: "1.2",
+                                  }}
+                                >
+                                  {Object.keys(photo.info)}
+                                </div>
+                              )}
+                            </figcaption>
+                          </figure>
+                          {portal(
                             <Videopopup
-                                url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
-                                onClose={closePortal} />
+                              url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
+                              onClose={closePortal} />
                           )}
                         </React.Fragment>
-                        )}
-                      </PortalWithState>
+                      )}
+                    </PortalWithState>
 
                   </div>
                   // 
@@ -83,16 +87,16 @@ const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
             </Masonry>
           )}
         </div>
-        {!home && loadMore() }
-      {home && <div className="container p-0 pt-5 text-center">
-           <Link href={`/${eventUrl}/videos`}>
-              <button
-                className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
-              >
-                Load More
-              </button>
-           </Link>
-       </div> }
+        {!home && loadMore()}
+        {home && <div className="container p-0 pt-5 text-center">
+          <Link href={`/${eventUrl}/videos`}>
+            <button
+              className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
+            >
+              Load More
+            </button>
+          </Link>
+        </div>}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
@@ -9,7 +9,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	const [data, setData] = useState('');
 	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
 	const [clientYonMouseDown, setClientYonMouseDown] = useState(null);
-	
+
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
@@ -45,64 +45,72 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 
 		]
 	};
-	
-	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item)=>{
-			return [...ack, ...item.exhibitors];
+
+	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item) => {
+		return [...ack, ...item.exhibitors];
 	}, []));
 	const handleOnMouseDown = (e) => {
 		setClientXonMouseDown(e.clientX)
 		setClientYonMouseDown(e.clientY)
 		e.preventDefault() // stops weird link dragging effect
-	  }
-	
-	 const  handleOnClick = (e,exhibitor) => {
+	}
+
+	const handleOnClick = (e, exhibitor) => {
 		e.stopPropagation()
-		if (clientXonMouseDown !== e.clientX || 
+		if (clientXonMouseDown !== e.clientX ||
 			clientYonMouseDown !== e.clientY) {
-		  // prevent link click if the element was dragged
-		  e.preventDefault()
+			// prevent link click if the element was dragged
+			e.preventDefault()
 		} else {
 			setData(exhibitor);
 			setPopup(true)
 		}
-	  }
+	}
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
 			</div>
-				<div className="container">
-					<div className="edgtf-carousel-holder">
-						<div
-							className="edgtf-carousel edgtf-slick-slider-navigation-style"
-						>
-							<Slider {...settingsslider}>
-									{exhibitors.map((exhibitor, i) => {
-										return (
-											<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
-												<span
-													className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
-												>
+			<div className="container">
+				<div className="edgtf-carousel-holder">
+					<div
+						className="edgtf-carousel edgtf-slick-slider-navigation-style"
+					>
+						<Slider {...settingsslider}>
+							{exhibitors.map((exhibitor, i) => {
+								return (
+									<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
+										<span
+											className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
+										>
+											{
+												exhibitor.logo && exhibitor.logo !== "" ? (
 													<img
 														onMouseDown={e => handleOnMouseDown(e)}
-														onClick={e => handleOnClick(e,exhibitor)}
+														onClick={e => handleOnClick(e, exhibitor)}
 														src={
-															exhibitor.logo !== ""
-																? process.env.REACT_APP_EVENTCENTER_URL +
-																"/assets/exhibitors/" +
-																exhibitor.logo
-																: require('public/img/exhibitors-default.png')
+
+															process.env.REACT_APP_EVENTCENTER_URL +
+															"/assets/exhibitors/" +
+															exhibitor.logo
 														}
 														alt="Client 11"
 													/>
-												</span>
-											</div>
-										);
-									})}
-							</Slider>
-						</div>
+												) : (
+													<Image
+														src={require('public/img/exhibitors-default.png')}
+														alt="x"
+													/>
+												)
+											}
+										</span>
+									</div>
+								);
+							})}
+						</Slider>
 					</div>
+				</div>
 			</div>
 		</div>
 	)

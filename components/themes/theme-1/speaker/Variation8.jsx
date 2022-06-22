@@ -7,7 +7,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
-      <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
       </div>
       {listing && searchBar()}
       <div className="container">
@@ -20,25 +20,33 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 className="col-md-4 col-sm-6"
               >
                 <div
-                  style={{ height: "100%", marginBottom: 0, animationDelay: 50*i+'ms' }}
+                  style={{ height: "100%", marginBottom: 0, animationDelay: 50 * i + 'ms' }}
                   className="speakerv7-wrapper ebs-animation-layer"
                 >
                   <div className="speakerv7-image">
                     <span className="box">
                       <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
+                          {speaker.image && speaker.image !== "" ? (
                             <img
-                              onLoad={(e) => e.target.style.opacity = 1} 
+                              onLoad={(e) => e.target.style.opacity = 1}
                               src={
-                                speaker.image && speaker.image !== ""
-                                  ? process.env.REACT_APP_EVENTCENTER_URL +
-                                    "/assets/attendees/" +
-                                    speaker.image
-                                  : require("public/img/user-placeholder.jpg")
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                speaker.image
                               }
                               alt="g"
                             />
-                          </span>
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                require("public/img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          )}
+                        </span>
                       </Link>
                     </span>
                   </div>

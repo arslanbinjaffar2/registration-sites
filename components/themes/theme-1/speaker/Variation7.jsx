@@ -12,10 +12,10 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
       className="edgtf-parallax-section-holder"
     >
       <div className="container">
-      <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
-        </div>
-        {listing && searchBar()}
-        <div className="container">
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
+      </div>
+      {listing && searchBar()}
+      <div className="container">
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
           {/* Grid */}
           {speakers &&
@@ -24,23 +24,31 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 key={i}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3 ebs-dark-attendee"
               >
-                <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                <div style={{ animationDelay: 50 * i + 'ms' }} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                   <div className="edgtf-team w-100 mb-3">
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
                         <Link href={`/${event.url}/speakers/${speaker.id}`}>
                           <span className="gallery-img-wrapper-square">
-                            <img
-                              onLoad={(e) => e.target.style.opacity = 1} 
-                              src={
-                                speaker.image && speaker.image !== ""
-                                  ? process.env.REACT_APP_EVENTCENTER_URL +
-                                    "/assets/attendees/" +
-                                    speaker.image
-                                  : require("public/img/user-placeholder.jpg")
-                              }
-                              alt="g"
-                            />
+                            {speaker.image && speaker.image !== "" ? (
+                              <img
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                src={
+                                  process.env.REACT_APP_EVENTCENTER_URL +
+                                  "/assets/attendees/" +
+                                  speaker.image
+                                }
+                                alt="g"
+                              />
+                            ) : (
+                              <Image
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                src={
+                                  require("public/img/user-placeholder.jpg")
+                                }
+                                alt="g"
+                              />
+                            )}
                           </span>
                         </Link>
                       </div>
@@ -58,7 +66,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                           {speaker.info &&
                             (speaker.info.company_name ||
                               speaker.info.title) && (
-                              <div style={{color: '#666666'}} className="ebs-attendee-designation">
+                              <div style={{ color: '#666666' }} className="ebs-attendee-designation">
                                 {speaker.info.title && speaker.info.title}
                                 {speaker.info.title &&
                                   speaker.info.company_name &&
@@ -67,31 +75,31 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                   speaker.info.company_name}
                               </div>
                             )}
-                             {listing && <div className="ebs-border-wrapp">
-                          {listing && speaker.email && (
-                            <div style={{color: '#666666'}} className="ebs-email-phone">
-                              <a
-                                href={`mailto:${speaker.email}`}
-                                className="edgtf-team-position"
-                                style={{color: '#666666'}}
-                              >
-                                {speaker.email}
-                              </a>
-                            </div>
-                          )}
+                          {listing && <div className="ebs-border-wrapp">
+                            {listing && speaker.email && (
+                              <div style={{ color: '#666666' }} className="ebs-email-phone">
+                                <a
+                                  href={`mailto:${speaker.email}`}
+                                  className="edgtf-team-position"
+                                  style={{ color: '#666666' }}
+                                >
+                                  {speaker.email}
+                                </a>
+                              </div>
+                            )}
 
-                          {listing && speaker.phone && (
-                            <div style={{color: '#666666'}} className="ebs-email-phone">
-                              <a
-                                href={`tel: ${speaker.phone}`}
-                                className="edgtf-team-position"
-                                style={{color: '#666666'}}
-                              >
-                                {speaker.phone}
-                              </a>
-                            </div>
-                          )}
-                        </div>}
+                            {listing && speaker.phone && (
+                              <div style={{ color: '#666666' }} className="ebs-email-phone">
+                                <a
+                                  href={`tel: ${speaker.phone}`}
+                                  className="edgtf-team-position"
+                                  style={{ color: '#666666' }}
+                                >
+                                  {speaker.phone}
+                                </a>
+                              </div>
+                            )}
+                          </div>}
                         </div>
                         {listing &&
                           speaker.info &&

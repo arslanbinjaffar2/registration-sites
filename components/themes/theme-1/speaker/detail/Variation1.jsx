@@ -1,10 +1,10 @@
 import React from "react";
 import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
-import {localeProgramMoment} from 'helpers/helper';
+import { localeProgramMoment } from 'helpers/helper';
 import Image from 'next/image'
 
-const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, eventLanguageId}) => {
+const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, eventLanguageId }) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div
@@ -15,15 +15,15 @@ const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, e
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
         <div className="edgtf-title-holder d-flex align-items-center justify-content-center">
-            <div className="container">
-              <div className="edgtf-title-subtitle-holder">
-                <div className="edgtf-title-subtitle-holder-inner">
-                  <h1 style={{ color: "white" }}>
-                    <span>{moduleName}</span>
-                  </h1>
-                </div>
+          <div className="container">
+            <div className="edgtf-title-subtitle-holder">
+              <div className="edgtf-title-subtitle-holder-inner">
+                <h1 style={{ color: "white" }}>
+                  <span>{moduleName}</span>
+                </h1>
               </div>
             </div>
+          </div>
         </div>
         <div></div>
       </div>
@@ -33,18 +33,26 @@ const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, e
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                  <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
-                    <img
-                      onLoad={(e) => e.target.style.opacity = 1} 
-                      src={
-                        speaker.image && speaker.image !== ""
-                          ? process.env.REACT_APP_EVENTCENTER_URL +
-                            "/assets/attendees/" +
-                            speaker.image
-                          : require("public/img/square.jpg")
-                      }
-                      alt="g"
-                    />
+                  <span style={{ border: '1px solid #ccc' }} className="gallery-img-wrapper-square">
+                    {speaker.image && speaker.image !== "" ? (
+                      <img
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        src={
+                          process.env.REACT_APP_EVENTCENTER_URL +
+                          "/assets/attendees/" +
+                          speaker.image
+                        }
+                        alt="g"
+                      />
+                    ) : (
+                      <Image
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        src={
+                          require("public/img/user-placeholder.jpg")
+                        }
+                        alt="g"
+                      />
+                    )}
                   </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
@@ -181,18 +189,18 @@ const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, e
           <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
             <h2 className="edgtf-title-with-dots edgtf-appeared">Programes</h2>
             <span className="edge-title-separator edge-enable-separator"></span>
-          <div className="ebs-main-program-listing">
+            <div className="ebs-main-program-listing">
 
-            {speaker.programs && Object.keys(speaker.programs).map((key ,k ) => (
+              {speaker.programs && Object.keys(speaker.programs).map((key, k) => (
                 <div className="ebs-program-parent" key={k}>
                   {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
-                    {speaker.programs[key].map((item, i)=>
-                          item.workshop_id > 0 ? 
-                          <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />
-                    
-                    )}
+                  {speaker.programs[key].map((item, i) =>
+                    item.workshop_id > 0 ?
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+
+                  )}
                 </div>
-            ))}
+              ))}
             </div>
           </div>
         </div>

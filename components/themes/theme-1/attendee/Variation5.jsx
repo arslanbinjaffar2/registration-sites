@@ -3,34 +3,42 @@ import Link from 'next/link'
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
-const Variation5 = ({ attendees,  searchBar, loadMore, event, settings, siteLabels }) => {
+const Variation5 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
-      { searchBar()}
+      {searchBar()}
       <div className="container">
         <div className="row">
           {attendees &&
             attendees.map((attendee, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">
-                <div style={{animationDelay: 50*i+'ms'}} className="speakerv5-wrapper ebs-animation-layer">
+                <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv5-wrapper ebs-animation-layer">
                   <div className="speakerv5-area text-center">
                     <div className="speakerv5-image">
                       <Link href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
-                          <img
-                            onLoad={(e) => e.target.style.opacity = 1} 
-                            src={
-                              attendee.image && attendee.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  "/assets/attendees/" +
-                                  attendee.image
-                                : require("public/img/user-placeholder.jpg")
-                            }
-                            alt="g"
-                          />
+                          {attendee.image && attendee.image !== "" ? (
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                attendee.image
+                              }
+                              alt="g"
+                            />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                require("public/img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          )}
                         </span>
                       </Link>
                     </div>
@@ -52,7 +60,7 @@ const Variation5 = ({ attendees,  searchBar, loadMore, event, settings, siteLabe
                         </div>
                       )}
 
-                    { attendee.email && (
+                    {attendee.email && (
                       <div className="ebs-email-phone">
                         <a
                           href={`mailto:${attendee.email}`}
@@ -62,7 +70,7 @@ const Variation5 = ({ attendees,  searchBar, loadMore, event, settings, siteLabe
                         </a>
                       </div>
                     )}
-                    { attendee.phone && (
+                    {attendee.phone && (
                       <div className="ebs-email-phone">
                         <a
                           href={`tel: ${attendee.phone}`}
@@ -118,8 +126,8 @@ const Variation5 = ({ attendees,  searchBar, loadMore, event, settings, siteLabe
               </div>
             ))}
         </div>
-        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-        { attendees.length > 0 && loadMore()}
+        {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );

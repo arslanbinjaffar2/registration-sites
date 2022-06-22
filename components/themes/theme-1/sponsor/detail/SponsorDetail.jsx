@@ -13,15 +13,15 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
         <div className="edgtf-title-holder d-flex align-items-center justify-content-center">
-            <div className="container">
-              <div className="edgtf-title-subtitle-holder">
-                <div className="edgtf-title-subtitle-holder-inner">
-                  <h1 style={{ color: "white" }}>
-                    <span>{moduleName}</span>
-                  </h1>
-                </div>
+          <div className="container">
+            <div className="edgtf-title-subtitle-holder">
+              <div className="edgtf-title-subtitle-holder-inner">
+                <h1 style={{ color: "white" }}>
+                  <span>{moduleName}</span>
+                </h1>
               </div>
             </div>
+          </div>
         </div>
         <div></div>
       </div>
@@ -31,13 +31,22 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                  <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
-                  <img
-                    style={{ maxWidth: '90%', width: 'auto'}}
-                    onLoad={(e) => e.target.style.opacity = 1}
-                    src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('public/img/exhibitors-default.png')}
-                    alt=""
-                  />
+                  <span style={{ border: '1px solid #ccc' }} className="gallery-img-wrapper-square">
+                    {sponsor.logo && sponsor.logo !== '' ? (
+                      <img
+                        style={{ maxWidth: '90%', width: 'auto' }}
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
+                        alt=""
+                      />
+                    ) : (
+                      <Image
+                        style={{ maxWidth: '90%', width: 'auto' }}
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        src={require('public/img/exhibitors-default.png')}
+                        alt=""
+                      />
+                    )}
                   </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
@@ -52,7 +61,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           className="edge-team-single-content"
                         >
                           <h4 className="info">ABOUT </h4>
-                          <p  dangerouslySetInnerHTML={{__html:sponsor.description}} ></p>
+                          <p dangerouslySetInnerHTML={{ __html: sponsor.description }} ></p>
                         </div>
                       )}
                       {sponsor.email && (
@@ -154,25 +163,32 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
           </div>
         </div>
       </div>
-      {sponsorSettings.show_contact_person && <div style={{paddingBottom: 50}} className="">
+      {sponsorSettings.show_contact_person && <div style={{ paddingBottom: 50 }} className="">
         <div className="container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">Contacts</h3>
-            </div>
+          </div>
           <div className="row d-flex ebs-program-speakers">
-            {sponsor.sponsors_attendee.map((attendee,o) =>
-              <div key={o} style={{animationDelay: 50*o+'ms'}} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
-                <span style={{marginBottom: 10}} className="gallery-img-wrapper-square">
-                <img
-                  onLoad={(e) => e.target.style.opacity = 1}
-                  style={{width: '90%'}}
-                  src={
-                  attendee.image && attendee.image !== ""
-                    ? process.env.REACT_APP_EVENTCENTER_URL +
-                      "/assets/attendees/" +
-                      attendee.image
-                    : require("public/img/user-placeholder.jpg")
-                } alt="" />
+            {sponsor.sponsors_attendee.map((attendee, o) =>
+              <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
+                <span style={{ marginBottom: 10 }} className="gallery-img-wrapper-square">
+                  {attendee.image && attendee.image !== "" ? (
+                    <img
+                      onLoad={(e) => e.target.style.opacity = 1}
+                      style={{ width: '90%' }}
+                      src={
+                        process.env.REACT_APP_EVENTCENTER_URL +
+                        "/assets/attendees/" +
+                        attendee.image
+                      } alt="" />
+                  ) : (
+                    <Image
+                      onLoad={(e) => e.target.style.opacity = 1}
+                      style={{ width: '90%' }}
+                      src={
+                        require("public/img/user-placeholder.jpg")
+                      } alt="" />
+                  )}
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
                 <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
@@ -185,8 +201,8 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
-            </div>
-                <DocumentsListing documents={documents} />
+          </div>
+          <DocumentsListing documents={documents} />
         </div>
       </div>}
     </div>

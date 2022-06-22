@@ -82,7 +82,7 @@ const Variation3 = ({programs}) => {
                             <div className="row">
                               <div className="col-lg-2 col-md-2 col-sm-2">
                                 <div className="sc-speaker-container">
-                                  <img src={require("public/img/square.jpg")} alt="" />
+                                  <Image src={require("public/img/square.jpg")} alt="" />
                                 </div>
                               </div>
                               <div className="col-lg-7 col-md-7 col-sm-10">

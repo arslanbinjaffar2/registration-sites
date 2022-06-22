@@ -12,15 +12,15 @@ const Variation1 = ({ attendee }) => {
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
       >
         <div className="edgtf-title-holder d-flex align-items-center justify-content-center ">
-            <div className="container">
-              <div className="edgtf-title-subtitle-holder">
-                <div className="edgtf-title-subtitle-holder-inner">
-                  <h1 style={{ color: "white" }}>
-                    <span>Featured Speakers</span>
-                  </h1>
-                </div>
+          <div className="container">
+            <div className="edgtf-title-subtitle-holder">
+              <div className="edgtf-title-subtitle-holder-inner">
+                <h1 style={{ color: "white" }}>
+                  <span>Featured Speakers</span>
+                </h1>
               </div>
             </div>
+          </div>
         </div>
         <div></div>
       </div>
@@ -30,19 +30,27 @@ const Variation1 = ({ attendee }) => {
             <div className="edge-team-single-holder">
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
-                  <span style={{border: '1px solid #ccc'}} className="gallery-img-wrapper-square">
+                  <span style={{ border: '1px solid #ccc' }} className="gallery-img-wrapper-square">
+                    {attendee.image && attendee.image !== "" ? (
                       <img
-                        onLoad={(e) => e.target.style.opacity = 1} 
+                        onLoad={(e) => e.target.style.opacity = 1}
                         src={
-                          attendee.image && attendee.image !== ""
-                            ? process.env.REACT_APP_EVENTCENTER_URL +
-                              "/assets/attendees/" +
-                              attendee.image
-                            : require("public/img/user-placeholder.jpg")
+                          process.env.REACT_APP_EVENTCENTER_URL +
+                          "/assets/attendees/" +
+                          attendee.image
                         }
                         alt="g"
                       />
-                    </span>
+                    ) : (
+                      <Image
+                        onLoad={(e) => e.target.style.opacity = 1}
+                        src={
+                          require("public/img/user-placeholder.jpg")
+                        }
+                        alt="g"
+                      />
+                    )}
+                  </span>
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
                   <h2 className="edge-name">

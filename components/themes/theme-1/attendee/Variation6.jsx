@@ -10,28 +10,36 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
         <div className="container">
           <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
         </div>
-        { searchBar()}
+        {searchBar()}
         <div className="container">
           <div className="row d-flex algin-items-center">
             {attendees &&
               attendees.map((attendee, i) => (
                 <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                  <div style={{animationDelay: 50*i+'ms'}} className="speakerv6-wrapper ebs-animation-layer">
+                  <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
                       <Link href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
-                          <img
-                            onLoad={(e) => e.target.style.opacity = 1} 
-                            src={
-                              attendee.image && attendee.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  "/assets/attendees/" +
-                                  attendee.image
-                                : require("public/img/user-placeholder.jpg")
-                            }
-                            alt="g"
-                          />
-                      </span>
+                          {attendee.image && attendee.image !== "" ? (
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                attendee.image
+                              }
+                              alt="g"
+                            />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                require("public/img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          )}
+                        </span>
                       </Link>
                       {/* <div className="caption">
                         <span className="plus"></span>
@@ -63,7 +71,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                           </div>
                         )}
 
-                      { attendee.email && (
+                      {attendee.email && (
                         <div className="ebs-email-phone">
                           <span data-icon="&#xe076;"></span>
                           <a
@@ -74,7 +82,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                           </a>
                         </div>
                       )}
-                      { attendee.phone && (
+                      {attendee.phone && (
                         <div className="ebs-email-phone">
                           <span data-icon="&#xe090;"></span>
                           <a
@@ -86,7 +94,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                         </div>
                       )}
                       {attendee.info &&
-                        
+
                         (attendee.info.facebook ||
                           attendee.info.twitter ||
                           attendee.info.linkedin ||
@@ -131,8 +139,8 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                 </div>
               ))}
           </div>
-          { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-          { attendees.length > 0 && loadMore()}
+          {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+          {attendees.length > 0 && loadMore()}
         </div>
       </div>
     </div>

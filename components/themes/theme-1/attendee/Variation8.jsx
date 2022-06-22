@@ -7,9 +7,9 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
   return (
     <div style={{ padding: "80px 0" }} className="module-section">
       <div className="container">
-      <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
-      { searchBar()}
+      {searchBar()}
       <div className="container">
         <div className="row d-flex algin-items-center">
           {attendees &&
@@ -19,23 +19,31 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                 style={{ marginBottom: "30px" }}
                 className="col-md-4 col-sm-6"
               >
-                <div style={{ height: "100%", marginBottom: 0, animationDelay: 50*i+'ms' }}
+                <div style={{ height: "100%", marginBottom: 0, animationDelay: 50 * i + 'ms' }}
                   className="speakerv7-wrapper ebs-animation-layer">
                   <div className="speakerv7-image">
                     <span className="box">
                       <Link href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
+                          {attendee.image && attendee.image !== "" ? (
                             <img
-                              onLoad={(e) => e.target.style.opacity = 1} 
+                              onLoad={(e) => e.target.style.opacity = 1}
                               src={
-                                attendee.image && attendee.image !== ""
-                                  ? process.env.REACT_APP_EVENTCENTER_URL +
-                                    "/assets/attendees/" +
-                                    attendee.image
-                                  : require("public/img/user-placeholder.jpg")
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                attendee.image
                               }
                               alt="g"
                             />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                require("public/img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          )}
                         </span>
                       </Link>
                     </span>
@@ -60,13 +68,13 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                             attendee.info.company_name}
                         </p>
                       )}
-                    { attendee.email && (
+                    {attendee.email && (
                       <div className="email">
                         <a href={`mailto:${attendee.email}`}>{attendee.email}</a>
                       </div>
                     )}
 
-                    { attendee.phone && (
+                    {attendee.phone && (
                       <div className="speakerv7-phone">
                         <a href={`tel:${attendee.phone}`}>{attendee.phone}</a>
                       </div>
@@ -119,8 +127,8 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
               </div>
             ))}
         </div>
-        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-        { attendees.length > 0 && loadMore()}
+        {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );

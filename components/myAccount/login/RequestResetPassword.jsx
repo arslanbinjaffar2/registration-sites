@@ -32,7 +32,7 @@ const onSubmit = () =>{
   return (
     <div className="ebs-login-wrapp-inner">
           <span onClick={() => onCancel()} className="btn-inner-close">
-            <img src={require('public/img/remove-icon-x2.png')} alt="" />
+            <Image src={require('public/img/remove-icon-x2.png')} alt="" />
           </span>
           <h2 className="ebs-login-title">Reset password</h2>
           <p className="ebs-login-desc">Enter the email  you will receive a code to reset the password , if you don’t get and any code click on resend code again.</p>

@@ -1,21 +1,21 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import Link from 'next/link'
 import Image from 'next/image'
 
 const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
-console.log(array, menu_id, currentPage, eventSiteModuleName);
-let returnArray = [{id:"module", name: eventSiteModuleName, type: "menu"}];
+  console.log(array, menu_id, currentPage, eventSiteModuleName);
+  let returnArray = [{ id: "module", name: eventSiteModuleName, type: "menu" }];
   let toFolder = null;
-  if(menu_id && menu_id !== 'module'){
-    toFolder = array.find((item)=>(item.id === parseFloat(menu_id)));
-    }
+  if (menu_id && menu_id !== 'module') {
+    toFolder = array.find((item) => (item.id === parseFloat(menu_id)));
+  }
 
-if(toFolder){
-  returnArray.push({id:toFolder.id, name:toFolder.info.name, type: toFolder.page_type ? toFolder.page_type : 'menu'});
-}
+  if (toFolder) {
+    returnArray.push({ id: toFolder.id, name: toFolder.info.name, type: toFolder.page_type ? toFolder.page_type : 'menu' });
+  }
 
-returnArray.push({id: currentPage.id, name: currentPage.name, type:'page' });
-return returnArray;
+  returnArray.push({ id: currentPage.id, name: currentPage.name, type: 'page' });
+  return returnArray;
 }
 
 const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl }) => {
@@ -51,19 +51,26 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                     {detail.image && detail.image_position === 'top' && (
                       <div className="edgtf-post-image">
                         <a itemProp="url" href="">
-                          <img
-                            src={
-                              detail.image && detail.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  `/assets/${informationModules[moduleName]}/` +
-                                  detail.image
-                                : ""
-                            }
-                            className="attachment-full size-full wp-post-image"
-                            alt="a"
-                            width="1500"
-                            height="500"
-                          />
+                          {detail.image && detail.image !== "" ? (
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                `/assets/${informationModules[moduleName]}/` +
+                                detail.image
+                              }
+                              className="attachment-full size-full wp-post-image"
+                              width="1500"
+                              height="500"
+                              alt="g"
+                            />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src=""
+                              alt="g"
+                            />
+                          )}
                         </a>
                       </div>
                     )}
@@ -93,7 +100,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 const obj = iframe.current;
                                 setHeight(
                                   obj.contentWindow.document.body.scrollHeight +
-                                    200
+                                  200
                                 );
                               }}
                               width="100%"
@@ -140,19 +147,26 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                     {detail.image && detail.image_position !== 'top' && (
                       <div className="edgtf-post-image">
                         <a itemProp="url" href="">
-                          <img
-                            src={
-                              detail.image && detail.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  `/assets/${informationModules[moduleName]}/` +
-                                  detail.image
-                                : ""
-                            }
-                            className="attachment-full size-full wp-post-image"
-                            alt="a"
-                            width="1500"
-                            height="500"
-                          />
+                          {detail.image && detail.image !== "" ? (
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                `/assets/${informationModules[moduleName]}/` +
+                                detail.image
+                              }
+                              className="attachment-full size-full wp-post-image"
+                              width="1500"
+                              height="500"
+                              alt="g"
+                            />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src=""
+                              alt="g"
+                            />
+                          )}
                         </a>
                       </div>
                     )}

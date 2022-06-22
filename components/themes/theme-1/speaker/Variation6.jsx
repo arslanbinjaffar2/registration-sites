@@ -16,21 +16,29 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
             {speakers &&
               speakers.map((speaker, i) => (
                 <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                  <div style={{animationDelay: 50*i+'ms'}} className="speakerv6-wrapper ebs-animation-layer">
+                  <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
                       <Link href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
-                          <img
-                            onLoad={(e) => e.target.style.opacity = 1} 
-                            src={
-                              speaker.image && speaker.image !== ""
-                                ? process.env.REACT_APP_EVENTCENTER_URL +
-                                  "/assets/attendees/" +
-                                  speaker.image
-                                : require("public/img/user-placeholder.jpg")
-                            }
-                            alt="g"
-                          />
+                          {speaker.image && speaker.image !== "" ? (
+                            <img
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                process.env.REACT_APP_EVENTCENTER_URL +
+                                "/assets/attendees/" +
+                                speaker.image
+                              }
+                              alt="g"
+                            />
+                          ) : (
+                            <Image
+                              onLoad={(e) => e.target.style.opacity = 1}
+                              src={
+                                require("public/img/user-placeholder.jpg")
+                              }
+                              alt="g"
+                            />
+                          )}
                         </span>
                       </Link>
                       {/* <div className="caption">

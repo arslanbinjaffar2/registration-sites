@@ -118,18 +118,25 @@ const Variation2 = ({ programs }) => {
                                           key={k}
                                           className="sc-speaker-container col-md-3 col-sm-4 col-xs-6"
                                         >
-                                          <img
-                                            src={
-                                              speaker.image &&
-                                                speaker.image !== ""
-                                                ? process.env
+                                          {speaker.image &&
+                                            speaker.image !== "" ? (
+                                            <img
+                                              src={
+                                                process.env
                                                   .REACT_APP_EVENTCENTER_URL +
                                                 "/assets/attendees/" +
                                                 speaker.image
-                                                : require("public/img/square.jpg")
-                                            }
-                                            alt=""
-                                          />
+                                              }
+                                              alt=""
+                                            />
+                                          ) : (
+                                            <Image
+                                              src={
+                                                require("public/img/square.jpg")
+                                              }
+                                              alt=""
+                                            />
+                                          )}
                                           <div className="cs-speaker-name">
                                             {speaker.first_name &&
                                               speaker.first_name}{" "}

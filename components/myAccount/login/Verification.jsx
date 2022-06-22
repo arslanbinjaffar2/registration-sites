@@ -9,7 +9,7 @@ const Verification = ({ onCancel, setStep, ms, verification, event, authenticati
   return (
     <div className="ebs-login-wrapp-inner">
       <span onClick={() => onCancel()} className="btn-inner-close">
-        <img src={require("public/img/remove-icon-x2.png")} alt="" />
+        <Image src={require("public/img/remove-icon-x2.png")} alt="" />
       </span>
       <h2 className="ebs-login-title">Verification</h2>
       <p className="ebs-login-desc">

@@ -1,5 +1,4 @@
 import moment from "moment";
-import { locale } from "moment";
 
 function ltrim(str, chr) {
     var rgxtrim = (!chr) ? new RegExp('^\\s+') : new RegExp('^' + chr + '+');
@@ -37,6 +36,16 @@ export {
     formatString,
     ltrim,
     objectToArray,
+};
+
+export const getMeta = (url, type) => {
+    const img = new Image();
+    img.src = url;
+    if (type === 'width') {
+        return img.width;
+    } else {
+        return img.height
+    }
 };
 
 export const localeProgramMoment = (language_id, date = null) => {

@@ -23,6 +23,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
     if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
     _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
   };
+  
   return (
     <div
       style={{
@@ -53,17 +54,25 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                         <div className="edgtf-team-image">
                           <Link href={`/${event.url}/attendees/${attendee.id}`}>
                             <span className="gallery-img-wrapper-square">
-                              <img
-                                onLoad={(e) => e.target.style.opacity = 1}
-                                src={
-                                  attendee.image && attendee.image !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
+                              {attendee.image && attendee.image !== "" ? (
+                                <img
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    process.env.REACT_APP_EVENTCENTER_URL +
                                     "/assets/attendees/" +
                                     attendee.image
-                                    : require("public/img/user-placeholder.jpg")
-                                }
-                                alt="g"
-                              />
+                                  }
+                                  alt="g"
+                                />
+                              ) : (
+                                <Image
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    require("public/img/user-placeholder.jpg")
+                                  }
+                                  alt="g"
+                                />
+                              )}
                             </span>
                             <div className="edgtf-team-social-holder">
                               <div className="edgtf-team-social-holder-inner"></div>

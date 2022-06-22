@@ -36,15 +36,22 @@ const TimelinePopup = ({ width, onClick, data }) => {
 						{data.program_speakers.map((speakers, i) =>
 							<div key={i} style={{ animationDelay: 50 * i + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
 								<span className="gallery-img-wrapper-square">
-									<img
-										onLoad={(e) => e.target.style.opacity = 1}
-										src={
-											speakers.image && speakers.image !== ""
-												? process.env.REACT_APP_EVENTCENTER_URL +
+									{speakers.image && speakers.image !== "" ? (
+										<img
+											onLoad={(e) => e.target.style.opacity = 1}
+											src={
+												process.env.REACT_APP_EVENTCENTER_URL +
 												"/assets/attendees/" +
 												speakers.image
-												: require("public/img/user-placeholder.jpg")
-										} alt="" />
+											} alt="" />
+									) : (
+										<Image
+											onLoad={(e) => e.target.style.opacity = 1}
+											src={
+												require("public/img/user-placeholder.jpg")
+											} alt="" />
+									)}
+
 								</span>
 								<h4>{speakers.first_name} {speakers.last_name}</h4>
 								{speakers.info && <p>{speakers.info.title}</p>}

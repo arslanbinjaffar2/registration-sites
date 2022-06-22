@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
-    
+
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
             document.getElementsByTagName('body')[0].classList.add('un-scroll');
@@ -21,11 +21,19 @@ const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
                     <div className="row d-flex">
                         <div className="col-sm-4">
                             <figure>
-                                <img style={{ width: '90%' }}
-                                    src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo : require('public/img/exhibitors-default.png')}
-                                    className="vc_single_image-img attachment-full"
-                                    alt="x"
-                                />
+                                {data.logo && data.logo !== '' ? (
+                                    <img style={{ width: '90%' }}
+                                        src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                ) : (
+                                    <Image style={{ width: '90%' }}
+                                        src={require('public/img/exhibitors-default.png')}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                )}
                             </figure>
                         </div>
                         <div className="col-sm-8">

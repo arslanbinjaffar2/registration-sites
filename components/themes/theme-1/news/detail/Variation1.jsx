@@ -1,15 +1,15 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import {
-    EmailIcon,
-    FacebookIcon,
-    LinkedinIcon,
-    TwitterIcon,
-    PinterestIcon,
-    FacebookShareButton,
-    TwitterShareButton,
-    LinkedinShareButton,
-    PinterestShareButton,
-    EmailShareButton,
+  EmailIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  PinterestIcon,
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  EmailShareButton,
 } from "react-share";
 import Image from 'next/image'
 
@@ -20,16 +20,15 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
     <div style={{ padding: "80px 0" }} className="edgtf-container">
       <div className="container">
         <div
-          className={`${
-            sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"
-          } clearfix`}
+          className={`${sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"
+            } clearfix`}
         >
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
                 <article>
                   <div className="blog-post-social">
-                  <FacebookShareButton
+                    <FacebookShareButton
                       url={`${window.location}`}
                     >
                       <FacebookIcon size={32} round={true} title="Facebook" />
@@ -63,20 +62,31 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                   <div className="edgtf-post-content">
                     {news.image && <div className="edgtf-post-image">
                       <span className="gallery-img-wrapper-rectangle-2">
-                        <img
-                          onLoad={(e) => e.target.style.opacity = 1}
-                          src={
-                            news.image && news.image !== ""
-                              ? process.env.REACT_APP_EVENTCENTER_URL +
-                                "/assets/eventsite_news/" +
-                                news.image
-                              : ""
-                          }
-                          className="attachment-full size-full wp-post-image"
-                          alt="a"
-                          width="1500"
-                          height="500"
-                        />
+                        {news.image && news.image !== "" ? (
+                          <img
+                            onLoad={(e) => e.target.style.opacity = 1}
+                            src={
+                              process.env.REACT_APP_EVENTCENTER_URL +
+                              "/assets/eventsite_news/" +
+                              news.image
+                            }
+                            className="attachment-full size-full wp-post-image"
+                            alt="a"
+                            width="1500"
+                            height="500"
+                          />
+                        ) : (
+                          <Image
+                            onLoad={(e) => e.target.style.opacity = 1}
+                            src={
+                              ""
+                            }
+                            className="attachment-full size-full wp-post-image"
+                            alt="a"
+                            width="1500"
+                            height="500"
+                          />
+                        )}
                       </span>
                     </div>}
                     <div className="edgtf-post-text">
@@ -121,24 +131,24 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
-                  <iframe
-                    ref={iframe}
-                    onLoad={() => {
-                      setTimeout(() => {
+                <iframe
+                  ref={iframe}
+                  onLoad={() => {
+                    setTimeout(() => {
                       const obj = iframe.current;
                       setHeight(
                         obj.contentWindow.document.body.scrollHeight +
-                          200
+                        200
                       );
-                      }, 1000);
-                    }}
-                    width="100%"
-                    height={height > 0 ? height: 400}
-                    title="test"
-                    itemProp="description"
-                    className="edgtf-post-excerpt"
-                    src={`${process.env.REACT_APP_URL}/event/${event.url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
-                  />
+                    }, 1000);
+                  }}
+                  width="100%"
+                  height={height > 0 ? height : 400}
+                  title="test"
+                  itemProp="description"
+                  className="edgtf-post-excerpt"
+                  src={`${process.env.REACT_APP_URL}/event/${event.url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                />
               </div>
             </div>
           )}

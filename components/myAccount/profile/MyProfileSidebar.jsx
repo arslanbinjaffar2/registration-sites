@@ -45,13 +45,17 @@ const MyProfileSidebar = ({ history }) => {
     <React.Fragment>
       {isAuthenticated && <div ref={frame} className="ebs-profile-top-area">
         <div onClick={handleClick} className={`${toggleMenu ? 'ebs-active-state' : ''} ebs-sideber-icon`}>
-          <img className="ebs-image-solid" src={
-            isAuthenticated.user.image && isAuthenticated.user.image !== ""
-              ? process.env.REACT_APP_EVENTCENTER_URL +
+          {isAuthenticated.user.image && isAuthenticated.user.image !== "" ? (
+            <img className="ebs-image-solid" src={
+              process.env.REACT_APP_EVENTCENTER_URL +
               "/assets/attendees/" +
               isAuthenticated.user.image
-              : require("public/img/square.jpg")
-          } alt="" />
+            } alt="" />
+          ) : (
+            <Image className="ebs-image-solid" src={
+              require("public/img/square.jpg")
+            } alt="" />
+          )}
         </div>
         {toggleMenu && <div className="ebs-sidebar-account">
           <ul>

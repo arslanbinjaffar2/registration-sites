@@ -21,12 +21,19 @@ const SponsorPopup = ({ width, onClick, data, eventUrl }) => {
                     <div className="row d-flex">
                         <div className="col-sm-4">
                             <figure>
-                                <img
-                                    style={{ width: '90%' }}
-                                    src={data.logo && data.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + data.logo : "https://my.eventbuizz.com/_eventsite_assets/images/exhibitors-default.png"}
-                                    className="vc_single_image-img attachment-full"
-                                    alt="x"
-                                />
+                                {data.logo && data.logo !== '' ? (
+                                    <img style={{ width: '90%' }}
+                                        src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + data.logo}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                ) : (
+                                    <Image style={{ width: '90%' }}
+                                        src={require('public/img/exhibitors-default.png')}
+                                        className="vc_single_image-img attachment-full"
+                                        alt="x"
+                                    />
+                                )}
                             </figure>
                         </div>
                         <div className="col-sm-8">

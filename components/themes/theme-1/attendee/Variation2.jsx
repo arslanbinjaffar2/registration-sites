@@ -11,9 +11,9 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
     >
       <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
-        </div>
-        { searchBar()}
-        <div className="container">
+      </div>
+      {searchBar()}
+      <div className="container">
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image ">
           {/* Grid */}
           {attendees &&
@@ -23,23 +23,31 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                   className="col-12 col-sm-6 col-md-4 pl-0 pr-0 ebs-attendee-v2 ebs-dark-attendee"
                   key={i}
                 >
-                  <div style={{animationDelay: 50*i+'ms'}} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
+                  <div style={{ animationDelay: 50 * i + 'ms' }} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
                     <div className="edgtf-team mb-3 w-100">
                       <div className="edgtf-team-inner">
                         <div className="edgtf-team-image">
                           <Link href={`/${event.url}/attendees/${attendee.id}`}>
-                          <span className="gallery-img-wrapper-square">
-                              <img
-                                onLoad={(e) => e.target.style.opacity = 1} 
-                                src={
-                                  attendee.image && attendee.image !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
-                                      "/assets/attendees/" +
-                                      attendee.image
-                                    : require("public/img/user-placeholder.jpg")
-                                }
-                                alt="g"
-                              />
+                            <span className="gallery-img-wrapper-square">
+                              {attendee.image && attendee.image !== "" ? (
+                                <img
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    process.env.REACT_APP_EVENTCENTER_URL +
+                                    "/assets/attendees/" +
+                                    attendee.image
+                                  }
+                                  alt="g"
+                                />
+                              ) : (
+                                <Image
+                                  onLoad={(e) => e.target.style.opacity = 1}
+                                  src={
+                                    require("public/img/user-placeholder.jpg")
+                                  }
+                                  alt="g"
+                                />
+                              )}
                             </span>
                           </Link>
                         </div>
@@ -66,28 +74,28 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                     attendee.info.company_name}
                                 </div>
                               )}
-                               <div className="ebs-border-wrapp">
-                            { attendee.email && (
-                              <div className="ebs-email-phone">
-                                <a
-                                  href={`mailto:${attendee.email}`}
-                                  className="edgtf-team-position"
-                                >
-                                  {attendee.email}
-                                </a>
-                              </div>
-                            )}
-                            { attendee.phone && (
-                              <div className="ebs-email-phone">
-                                <a
-                                  href={`tel:${attendee.phone}`}
-                                  className="edgtf-team-position alt"
-                                >
-                                  {attendee.phone}
-                                </a>
-                              </div>
-                            )}
-                          </div>
+                            <div className="ebs-border-wrapp">
+                              {attendee.email && (
+                                <div className="ebs-email-phone">
+                                  <a
+                                    href={`mailto:${attendee.email}`}
+                                    className="edgtf-team-position"
+                                  >
+                                    {attendee.email}
+                                  </a>
+                                </div>
+                              )}
+                              {attendee.phone && (
+                                <div className="ebs-email-phone">
+                                  <a
+                                    href={`tel:${attendee.phone}`}
+                                    className="edgtf-team-position alt"
+                                  >
+                                    {attendee.phone}
+                                  </a>
+                                </div>
+                              )}
+                            </div>
                           </div>
                           {
                             attendee.info &&
@@ -147,8 +155,8 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
               );
             })}
         </div>
-        { attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-        { attendees.length > 0 && loadMore()}
+        {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );

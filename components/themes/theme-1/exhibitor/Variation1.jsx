@@ -17,20 +17,30 @@ const Variation1 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
 				{exhibitorsByCategories.map((exhibitorsCategory, i) => (
 					<div className={`sponsorsv3-wrapper row d-flex ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} key={i}>
-						{exhibitorsCategory.name ?  <h4 style={{textAlign: settings.text_align}}> { exhibitorsCategory.name}</h4> : ""}
+						{exhibitorsCategory.name ? <h4 style={{ textAlign: settings.text_align }}> {exhibitorsCategory.name}</h4> : ""}
 						{exhibitorsCategory.exhibitors.map((exhibitor, j) => {
 							return (<div className="col-sm-6 col-6 col-md-4" key={j}>
-								<figure onClick={() =>{setData(exhibitor);setPopup(true)}} className="bghover">
-									<img
-										src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')}
-										className="vc_single_image-img attachment-full"
-										alt="x"
-									/>
+								<figure onClick={() => { setData(exhibitor); setPopup(true) }} className="bghover">
+									{
+										exhibitor.logo && exhibitor.logo !== '' ? (
+											<img
+												src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo}
+												className="vc_single_image-img attachment-full"
+												alt="x"
+											/>
+										) : (
+											<Image
+												src={require('public/img/exhibitors-default.png')}
+												className="vc_single_image-img attachment-full"
+												alt="x"
+											/>
+										)
+									}
 								</figure>
 							</div>)
 						})}
 					</div>
-					))
+				))
 				}
 			</div>
 		</div>

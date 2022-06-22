@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
@@ -44,64 +44,73 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 
 		]
 	};
-	
-	const [sponsors,] = useState(sponsorsByCategories.reduce((ack, item)=>{
-			return [...ack, ...item.sponsors];
+
+	const [sponsors,] = useState(sponsorsByCategories.reduce((ack, item) => {
+		return [...ack, ...item.sponsors];
 	}, []));
 	const handleOnMouseDown = (e) => {
 		setClientXonMouseDown(e.clientX)
 		setClientYonMouseDown(e.clientY)
 		e.preventDefault() // stops weird link dragging effect
-	  }
-	
-	 const  handleOnClick = (e,sponsor) => {
+	}
+
+	const handleOnClick = (e, sponsor) => {
 		e.stopPropagation()
-		if (clientXonMouseDown !== e.clientX || 
+		if (clientXonMouseDown !== e.clientX ||
 			clientYonMouseDown !== e.clientY) {
-		  // prevent link click if the element was dragged
-		  e.preventDefault()
+			// prevent link click if the element was dragged
+			e.preventDefault()
 		} else {
 			setData(sponsor);
 			setPopup(true)
 		}
-	  }
+	}
 	return (
 		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 			</div>
-				<div className="container">
-					<div className="edgtf-carousel-holder">
-						<div
-							className="edgtf-carousel edgtf-slick-slider-navigation-style"
-						>
-							<Slider {...settingsslider}>
-									{sponsors.map((sponsor, i) => {
-										return (
-											<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
-												<span
-													className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
-												>
-													<img
-														onMouseDown={e => handleOnMouseDown(e)}
-														onClick={e => handleOnClick(e,sponsor)}
-														src={
-															sponsor.logo !== ""
-																? process.env.REACT_APP_EVENTCENTER_URL +
-																"/assets/sponsors/" +
-																sponsor.logo
-																: require('public/img/exhibitors-default.png')
-														}
-														alt="Client 11"
-													/>
-												</span>
-											</div>
-										);
-									})}
-							</Slider>
-						</div>
+			<div className="container">
+				<div className="edgtf-carousel-holder">
+					<div
+						className="edgtf-carousel edgtf-slick-slider-navigation-style"
+					>
+						<Slider {...settingsslider}>
+							{sponsors.map((sponsor, i) => {
+								return (
+									<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
+										<span
+											className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
+										>
+											{sponsor.logo !== "" ? (
+												<img
+													onMouseDown={e => handleOnMouseDown(e)}
+													onClick={e => handleOnClick(e, sponsor)}
+													src={
+														process.env.REACT_APP_EVENTCENTER_URL +
+														"/assets/sponsors/" +
+														sponsor.logo
+													}
+													alt="Client 11"
+												/>
+											) : (
+												<Image
+													onMouseDown={e => handleOnMouseDown(e)}
+													onClick={e => handleOnClick(e, sponsor)}
+													src={
+														require('public/img/exhibitors-default.png')
+													}
+													alt="Client 11"
+												/>
+											)}
+										</span>
+									</div>
+								);
+							})}
+						</Slider>
 					</div>
+				</div>
 			</div>
 		</div>
 	)

@@ -17,20 +17,28 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 				{sponsorsByCategories.map((sponsorsCategory, i) => (
 					<div className={`sponsorsv3-wrapper row d-flex ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} key={i}>
-						{sponsorsCategory.name ?  <h4 style={{textAlign: settings.text_align}}> { sponsorsCategory.name}</h4> : ""}
+						{sponsorsCategory.name ? <h4 style={{ textAlign: settings.text_align }}> {sponsorsCategory.name}</h4> : ""}
 						{sponsorsCategory.sponsors.map((sponsor, j) => {
 							return (<div className="col-sm-6 col-6 col-md-4" key={j}>
-								<figure onClick={() =>{setData(sponsor);setPopup(true)}} className="bghover">
-									<img
-										src={sponsor.logo && sponsor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo : require('public/img/exhibitors-default.png')}
-										className="vc_single_image-img attachment-full"
-										alt="x"
-									/>
+								<figure onClick={() => { setData(sponsor); setPopup(true) }} className="bghover">
+									{sponsor.logo && sponsor.logo !== '' ? (
+										<img
+											src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
+											className="vc_single_image-img attachment-full"
+											alt="x"
+										/>
+									) : (
+										<Image
+											src={require('public/img/exhibitors-default.png')}
+											className="vc_single_image-img attachment-full"
+											alt="x"
+										/>
+									)}
 								</figure>
 							</div>)
 						})}
 					</div>
-					))
+				))
 				}
 			</div>
 		</div>

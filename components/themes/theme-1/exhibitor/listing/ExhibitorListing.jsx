@@ -116,7 +116,11 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                     <div className="ebs-img-listing">
                       <Link href={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
                         <figure>
-                          <img src={exhibitor.logo && exhibitor.logo !== '' ? process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo : require('public/img/exhibitors-default.png')} alt="" />
+                          {exhibitor.logo && exhibitor.logo ? (
+                            <img src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
+                          ) : (
+                            <Image src={require('public/img/exhibitors-default.png')} alt="" />
+                          )}
                         </figure>
                       </Link>
                     </div>
