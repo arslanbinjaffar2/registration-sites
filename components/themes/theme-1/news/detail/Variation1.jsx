@@ -11,6 +11,8 @@ import {
     PinterestShareButton,
     EmailShareButton,
 } from "react-share";
+import Image from 'next/image'
+
 const Variation1 = ({ event, news, sidebar, newsSettings }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();

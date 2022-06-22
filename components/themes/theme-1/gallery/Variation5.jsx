@@ -2,7 +2,10 @@ import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "components/ui-components/HeadingElement";
 import Link from 'next/link'
+import Image from 'next/image'
+
 const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, totalPages }) => {
+  
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
       return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
@@ -10,6 +13,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
+
   const getMeta = (url,type) => {
     const img = new Image();
     img.src = url;
@@ -19,6 +23,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return img.height
     }
   };
+
   return (
     <div className="module-section">
       <div className="container">

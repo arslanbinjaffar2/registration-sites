@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const SponsorListing = ({sponsors, sponsorCategories, labels, eventUrl, siteLabels}) => {
   const [locSponsors, setLocSponsors] = useState(sponsors);

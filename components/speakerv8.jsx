@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Image from 'next/image'
 
 export default class speakerv8 extends Component {
   render() {

@@ -2,6 +2,7 @@ import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "components/ui-components/HeadingElement";
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, totalPages }) => {
   const imgUrl = (photo) => {

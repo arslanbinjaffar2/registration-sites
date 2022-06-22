@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import Link from 'next/link'
 import HeadingElement from "components/ui-components/HeadingElement";
+import Image from 'next/image'
 
 const Variation4 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   const _parallax = useRef(null); 

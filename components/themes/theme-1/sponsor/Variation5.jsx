@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
+import Image from 'next/image'
 
 const Variation5 = ({sponsorsByCategories, labels, eventUrl, siteLabels, settings}) => {
+    
     const [popup, setPopup] = useState(false);
+
 	const [data, setData] = useState('');
+
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
 	}
+
     return (
         <div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}

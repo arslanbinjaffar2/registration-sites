@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from 'next/link'
 import ActiveLink from "components/atoms/ActiveLink";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
+import Image from 'next/image'
 
 class Variation6 extends React.Component {
   _isMounted = false;

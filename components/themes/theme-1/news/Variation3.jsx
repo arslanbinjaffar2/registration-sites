@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React,{useState, useRef} from 'react';
 import TruncateMarkup from 'react-truncate-markup';
+import Image from 'next/image'
 
 const Variation3 = ({news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels}) => {
   const [height, setHeight] = useState(0);

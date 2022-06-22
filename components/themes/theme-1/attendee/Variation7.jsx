@@ -1,6 +1,7 @@
 import React from "react";
 import Link from 'next/link'
 import HeadingElement from "components/ui-components/HeadingElement";
+import Image from 'next/image'
 
 const Variation7 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (

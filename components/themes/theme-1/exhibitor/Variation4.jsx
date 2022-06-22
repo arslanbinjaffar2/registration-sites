@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
+import Image from 'next/image'
 
 const Variation4 = ({exhibitorsByCategories, labels, eventUrl, siteLabels, settings}) => {
     const [popup, setPopup] = useState(false);

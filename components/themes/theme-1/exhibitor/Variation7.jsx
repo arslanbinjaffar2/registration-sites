@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
+import Image from 'next/image'
 
 const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels,settings}) => {
 	const [popup, setPopup] = useState(false);

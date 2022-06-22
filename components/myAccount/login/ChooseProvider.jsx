@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AlertMessage from "./AlertMessage";
+import Image from 'next/image'
+
 const ChooseProvider = ({
   onCancel,
   getAttendee,

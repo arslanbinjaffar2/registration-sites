@@ -1,5 +1,6 @@
 import React from "react";
 import DocumentsListing from "components/ui-components/DocumentsListing";
+import Image from 'next/image'
 
 const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
   return (

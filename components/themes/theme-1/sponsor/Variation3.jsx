@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
+import Image from 'next/image'
 
 const Variation3 = ({sponsorsByCategories, labels, eventUrl, siteLabels, settings}) => {
     const [popup, setPopup] = useState(false);

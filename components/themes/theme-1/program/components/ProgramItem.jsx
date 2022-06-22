@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import moment from 'moment'
 import Link from 'next/link'
+import Image from 'next/image'
+
 const ProgramItem = ({program, eventUrl}) => {
     const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
   return (

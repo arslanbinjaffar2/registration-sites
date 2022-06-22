@@ -1,6 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react'
 import SimpleReactValidator from "simple-react-validator";
 import AlertMessage from './AlertMessage';
+import Image from 'next/image'
+
 const RequestResetPassword = ({onCancel, setStep, onformSubmit, error, loading}) => {
     const [, forceUpdate] = useState(0);
     const simpleValidator = useRef(new SimpleReactValidator({

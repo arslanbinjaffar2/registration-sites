@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Slider from "react-slick";
 import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
+import Image from 'next/image'
 
 const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);

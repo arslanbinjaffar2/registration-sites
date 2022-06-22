@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Image from 'next/image'
+
 class Home extends React.Component {
 	render() {
 		return (

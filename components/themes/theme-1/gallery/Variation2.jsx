@@ -4,7 +4,7 @@ import Masonry from "react-masonry-css";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "components/ui-components/HeadingElement";
 import Link from 'next/link'
-
+import Image from 'next/image'
 
 const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, totalPages }) => {
   const imgUrl = (photo) => {

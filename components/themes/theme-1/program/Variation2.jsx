@@ -1,6 +1,6 @@
 import moment from "moment";
-
 import React, { useState } from "react";
+import Image from 'next/image'
 
 const Variation2 = ({ programs }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -121,11 +121,11 @@ const Variation2 = ({ programs }) => {
                                           <img
                                             src={
                                               speaker.image &&
-                                              speaker.image !== ""
+                                                speaker.image !== ""
                                                 ? process.env
-                                                    .REACT_APP_EVENTCENTER_URL +
-                                                  "/assets/attendees/" +
-                                                  speaker.image
+                                                  .REACT_APP_EVENTCENTER_URL +
+                                                "/assets/attendees/" +
+                                                speaker.image
                                                 : require("public/img/square.jpg")
                                             }
                                             alt=""

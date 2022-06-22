@@ -4,6 +4,7 @@ import TextArea from "components/forms/TextArea";
 import DateTime from "components/forms/DateTime";
 import DropDown from "components/forms/DropDown";
 import Select from "react-select";
+import Image from 'next/image'
 import {
   fetchProfileData,
   profileSelector,
@@ -34,8 +35,8 @@ const MyProfileEdit = () => {
         loading={loading}
         alert={alert}
         error={error}
-      />) : <PageLoader/> 
-    
+      />) : <PageLoader />
+
   );
 };
 
@@ -50,7 +51,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       SPOKEN_LANGUAGE: languages
         .filter(
           (item) =>
-          attendeeData.SPOKEN_LANGUAGE && attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
+            attendeeData.SPOKEN_LANGUAGE && attendeeData.SPOKEN_LANGUAGE.length > 0 && attendeeData.SPOKEN_LANGUAGE.split(",").indexOf(item.name) !== -1
         )
         .map((item, index) => ({
           label: item.name,
@@ -63,7 +64,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
       phone: attendeeData.phone && attendeeData.phone.split("-")[1],
       gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
-      country: countries.reduce((ack, item) => { if(item.id == attendeeData.info.country) { return { label: item.name, value:item.id }} return ack; }, {}),
+      country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.country) { return { label: item.name, value: item.id } } return ack; }, {}),
     });
   }, []);
   const updateAttendeeFeild = (e) => {
@@ -120,40 +121,40 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     e.preventDefault();
 
     let attendeeObj = {
-      phone : `${attendeeData.calling_code.value}-${attendeeData.phone}`,
+      phone: `${attendeeData.calling_code.value}-${attendeeData.phone}`,
     };
 
     let infoObj = {
-        ...attendeeData.info,
-        country: attendeeData.country ? attendeeData.country.value : attendeeData.info.country,
+      ...attendeeData.info,
+      country: attendeeData.country ? attendeeData.country.value : attendeeData.info.country,
     }
 
-    let settings ={
-      gdpr : attendeeData.gdpr
+    let settings = {
+      gdpr: attendeeData.gdpr
     }
 
-  
-    if(attendeeData.email)attendeeObj.email=attendeeData.email;
-    if(attendeeData.first_name)attendeeObj.first_name=attendeeData.first_name;
-    if(attendeeData.last_name)attendeeObj.last_name=attendeeData.last_name;
-    if(attendeeData.FIRST_NAME_PASSPORT)attendeeObj.FIRST_NAME_PASSPORT=attendeeData.FIRST_NAME_PASSPORT;
-    if(attendeeData.LAST_NAME_PASSPORT)attendeeObj.LAST_NAME_PASSPORT=attendeeData.LAST_NAME_PASSPORT;
-    if(attendeeData.BIRTHDAY_YEAR)attendeeObj.BIRTHDAY_YEAR=attendeeData.BIRTHDAY_YEAR;
-    if(attendeeData.EMPLOYMENT_DATE)attendeeObj.EMPLOYMENT_DATE=attendeeData.EMPLOYMENT_DATE;
-    if(attendeeData.image)attendeeObj.image=attendeeData.image;
-    if(attendeeData.SPOKEN_LANGUAGE)attendeeObj.SPOKEN_LANGUAGE=attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
-      if(index !== attendeeData.SPOKEN_LANGUAGE.length - 1){
-        return ack+=`${item.label},`
-      }  
-      return ack+=`${item.label}`
+
+    if (attendeeData.email) attendeeObj.email = attendeeData.email;
+    if (attendeeData.first_name) attendeeObj.first_name = attendeeData.first_name;
+    if (attendeeData.last_name) attendeeObj.last_name = attendeeData.last_name;
+    if (attendeeData.FIRST_NAME_PASSPORT) attendeeObj.FIRST_NAME_PASSPORT = attendeeData.FIRST_NAME_PASSPORT;
+    if (attendeeData.LAST_NAME_PASSPORT) attendeeObj.LAST_NAME_PASSPORT = attendeeData.LAST_NAME_PASSPORT;
+    if (attendeeData.BIRTHDAY_YEAR) attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
+    if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
+    if (attendeeData.image) attendeeObj.image = attendeeData.image;
+    if (attendeeData.SPOKEN_LANGUAGE) attendeeObj.SPOKEN_LANGUAGE = attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
+      if (index !== attendeeData.SPOKEN_LANGUAGE.length - 1) {
+        return ack += `${item.label},`
+      }
+      return ack += `${item.label}`
     }, "");
-    
+
     const data = {
       attendeeObj,
       settings,
       infoObj
     };
-    dispatch(updateProfileData(event.id,event.url, data));
+    dispatch(updateProfileData(event.id, event.url, data));
   };
 
   return (
@@ -337,7 +338,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   isMulti={true}
                   selected={
                     attendeeData.SPOKEN_LANGUAGE &&
-                    typeof attendeeData.SPOKEN_LANGUAGE !== String
+                      typeof attendeeData.SPOKEN_LANGUAGE !== String
                       ? attendeeData.SPOKEN_LANGUAGE
                       : null
                   }
@@ -543,51 +544,51 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
-                {attendeeData.phone && 
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("public/img/ico-phone.svg")} alt="" />
-                  <div className="form-phone-field">
-                    {attendeeData.calling_code && (
-                      <React.Fragment>
-                        <div style={{width:"25%"}}>
-                        <Select
-                          className="w-full h-full"
-                          placeholder=".."
-                          components={{ IndicatorSeparator: null }}
-                          options={callingCodes.map((item, index) => {
-                            return {
-                              label: item.name,
-                              value: item.id,
-                              key: index,
-                            };
-                          })}
-                          value={
-                            attendeeData.calling_code !== undefined && {
-                              label: attendeeData.calling_code.label,
-                              value: attendeeData.calling_code.value,
-                            }
-                          }
-                          onChange={(item) => {
-                            updateSelect({ item, name: "calling_code" });
-                          }}
-                        />
-                        </div>
-                        <div style={{width:"75%"}}>
-                        <Input
-                          label="Phone"
-                          onChange={(e) => {
-                            updateAttendeeFeild(e);
-                          }}
-                          value={attendeeData.phone}
-                        />
-                        </div>
-                      </React.Fragment>
-                    )}
-                  </div>
-                </div>}
-                  {attendeeData.email && (
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("public/img/ico-envelope.svg")} alt="" />
+                {attendeeData.phone &&
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("public/img/ico-phone.svg")} alt="" />
+                    <div className="form-phone-field">
+                      {attendeeData.calling_code && (
+                        <React.Fragment>
+                          <div style={{ width: "25%" }}>
+                            <Select
+                              className="w-full h-full"
+                              placeholder=".."
+                              components={{ IndicatorSeparator: null }}
+                              options={callingCodes.map((item, index) => {
+                                return {
+                                  label: item.name,
+                                  value: item.id,
+                                  key: index,
+                                };
+                              })}
+                              value={
+                                attendeeData.calling_code !== undefined && {
+                                  label: attendeeData.calling_code.label,
+                                  value: attendeeData.calling_code.value,
+                                }
+                              }
+                              onChange={(item) => {
+                                updateSelect({ item, name: "calling_code" });
+                              }}
+                            />
+                          </div>
+                          <div style={{ width: "75%" }}>
+                            <Input
+                              label="Phone"
+                              onChange={(e) => {
+                                updateAttendeeFeild(e);
+                              }}
+                              value={attendeeData.phone}
+                            />
+                          </div>
+                        </React.Fragment>
+                      )}
+                    </div>
+                  </div>}
+                {attendeeData.email && (
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("public/img/ico-envelope.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -597,11 +598,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.email}
                     />
-                </div>
-                  )}
-                  {attendeeData.info && attendeeData.info.website && (
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("public/img/ico-web.svg")} alt="" />
+                  </div>
+                )}
+                {attendeeData.info && attendeeData.info.website && (
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("public/img/ico-web.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -611,11 +612,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.website}
                     />
-                </div>
-                  )}
-                  {attendeeData.info && attendeeData.info.facebook && (
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("public/img/ico-facebook.svg")} alt="" />
+                  </div>
+                )}
+                {attendeeData.info && attendeeData.info.facebook && (
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("public/img/ico-facebook.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -625,11 +626,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.facebook}
                     />
-                </div>
-                  )}
-                  {attendeeData.info && attendeeData.info.twitter && (
-                <div className="ebs-contact-row d-flex align-items-center">
-                  <img src={require("public/img/ico-twitter.svg")} alt="" />
+                  </div>
+                )}
+                {attendeeData.info && attendeeData.info.twitter && (
+                  <div className="ebs-contact-row d-flex align-items-center">
+                    <img src={require("public/img/ico-twitter.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -639,22 +640,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.twitter}
                     />
-                </div>
-                  )}
-                  {attendeeData.info && attendeeData.info.linkedin && (
+                  </div>
+                )}
+                {attendeeData.info && attendeeData.info.linkedin && (
                   <div className="ebs-contact-row d-flex align-items-center">
                     <img src={require("public/img/ico-linkedin.svg")} alt="" />
-                      <Input
-                        label="E-mail"
-                        required
-                        name="linkedin"
-                        onChange={(e) => {
-                          updateAttendeeInfoFeild(e);
-                        }}
-                        value={attendeeData.info.linkedin}
-                      />
+                    <Input
+                      label="E-mail"
+                      required
+                      name="linkedin"
+                      onChange={(e) => {
+                        updateAttendeeInfoFeild(e);
+                      }}
+                      value={attendeeData.info.linkedin}
+                    />
                   </div>
-                  )}
+                )}
               </div>
               {attendeeData.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">
@@ -677,10 +678,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
             </div>
           </div>
           <div className="bottom-button">
-          <input className="btn btn-save-next btn-loader" type="submit" value="Update" />
-          {
-            loading && attendee !== null && "updating..."
-          }
+            <input className="btn btn-save-next btn-loader" type="submit" value="Update" />
+            {
+              loading && attendee !== null && "updating..."
+            }
 
           </div>
         </form>

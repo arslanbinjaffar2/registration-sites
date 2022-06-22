@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import moment from 'moment';
+import Image from 'next/image'
 
 const getDirectoryName = (item) => {
     if(item['name'] !== undefined) return item.name

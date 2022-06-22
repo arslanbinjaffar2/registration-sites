@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Image from 'next/image'
 
 const CustomSection = ({ data }) => {
   return (

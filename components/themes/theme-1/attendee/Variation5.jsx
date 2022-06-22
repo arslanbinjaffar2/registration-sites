@@ -1,6 +1,8 @@
 import React from "react";
 import Link from 'next/link'
 import HeadingElement from "components/ui-components/HeadingElement";
+import Image from 'next/image'
+
 const Variation5 = ({ attendees,  searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div style={{ padding: "80px 0" }} className="module-section">

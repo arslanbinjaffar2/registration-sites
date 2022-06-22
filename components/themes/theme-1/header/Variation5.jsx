@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ActiveLink from "components/atoms/ActiveLink";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
+import Image from 'next/image'
 
 class Variation5 extends React.Component {
   _isMounted = false;

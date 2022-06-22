@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Masonry from "react-masonry-css";
 import Link from 'next/link'
 import TruncateMarkup from 'react-truncate-markup';
+import Image from 'next/image'
 
 const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels }) => {
   const [height, setHeight] = useState(0);

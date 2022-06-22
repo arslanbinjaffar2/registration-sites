@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import SimpleReactValidator from "simple-react-validator";
 import AlertMessage from './AlertMessage';
+import Image from 'next/image'
 
 const Login = ({setStep, onCancel, onformSubmit, event, error, loading}) => {
     const [, forceUpdate] = useState(0);

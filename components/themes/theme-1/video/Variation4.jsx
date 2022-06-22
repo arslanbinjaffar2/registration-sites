@@ -5,6 +5,7 @@ import { PortalWithState } from "react-portal";
 import Videopopup from "components/Videopopup";
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
   const imgUrl = (photo) => {

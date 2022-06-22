@@ -2,6 +2,8 @@ import React from "react";
 import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import {localeProgramMoment} from 'helpers/helper';
+import Image from 'next/image'
+
 const Variation1 = ({ speaker, moduleName ,siteLabels, eventUrl, showWorkshop, eventLanguageId}) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">

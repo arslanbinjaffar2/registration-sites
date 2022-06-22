@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { useState } from "react";
+import Image from 'next/image'
 
 const Variation1 = ({ programs }) => {
   const [activeIndex, setActiveIndex] = useState(0);

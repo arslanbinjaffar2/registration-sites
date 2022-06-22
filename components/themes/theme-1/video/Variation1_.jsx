@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Videopopup from "components/Videopopup";
 import { PortalWithState } from "react-portal";
+import Image from 'next/image'
 
 class Variation1 extends React.Component {
     render() {
