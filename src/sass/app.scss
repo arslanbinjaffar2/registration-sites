@@ -2638,16 +2638,27 @@
 .ebs-about-event-section {
   .ebs-event-detail {
     ul {
-      padding: 0 0 0 15px;
+      padding: 30px 0 30px 15px;
       margin: 0;
+      @include phone-landscape {
+        padding: 20px 0 20px 15px;
+      }
       li {
         padding: 0;
-        margin: 0 0 70px;
+        margin: 0px 0 70px;
         list-style: none;
         padding-left: 60px;
         position: relative;
         color: $white;
         font-size: 24px;
+        line-height: 1.2;
+        @include phone-landscape {
+          font-size: 18px;
+          margin-bottom: 40px;
+        }
+        strong {
+          font-weight: 500;
+        }
         i.material-icons {
           position: absolute;
           left: 0;
@@ -2657,7 +2668,102 @@
         }
         .break {
           display: block;
+          margin-bottom: 3px;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
         }
+      }
+    }
+    .edgtf-btn.edgtf-btn-huge {
+      font-size: 24px;
+      @include phone-landscape {
+        font-size: 18px;
+      }
+    }
+    &.ebs-dark-about {
+      ul {
+        li {
+          color: $default-heading-color;
+          i.material-icons {
+            color: $first-main-color;
+          }
+        }
+      }
+    }
+  }
+}
+.ebs-sub-newsletter-sec {
+  padding: 30px 0;
+  color: $white;
+  .ebs-accept-terms {
+    padding-left: 35px;
+    font-size: 24px;
+    position: relative;
+    margin-top: 10px;
+    @include ipad-landscape {
+      font-size: 18px;
+    }
+    a {
+      color: $white;
+      text-decoration: underline;
+      &:hover {
+        color: $first-main-color;
+      }
+    }
+    .ebs-custom-check {
+      position: absolute;
+      left: 0;
+      top: 0;
+      input[type="checkbox"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        visibility: hidden;
+        &:checked  + i.material-icons {
+          &::before {
+            content: '\e834';
+          }
+        } 
+      }
+      i.material-icons  {
+        font-size: 26px;
+        &::before {
+          content: '\e835';
+        }
+      }
+    }
+  }
+  &.ebs-dark-variation {
+    color: $default-heading-color;
+    .edgtf-btn {
+      text-transform: uppercase;
+      background: $first-main-color;
+      color: $white !important;
+      border-color: $first-main-color !important;
+      &:hover {
+        background: $second-main-color !important;
+        border-color: $second-main-color !important;
+      }
+    }
+  }
+  .ebs-contain-fluid {
+    @include ipad-landscape {
+      display: block !important;
+    }
+    .ebs-left-fluid {
+      width: 100%;
+      padding-right: 15px;
+      @include ipad-landscape {
+        padding: 0;
+      }
+    }
+    .ebs-right-fluid {
+      padding-left: 15px;
+      @include ipad-landscape {
+        padding: 0 0 30px 0;
+        text-align: center;
       }
     }
   }

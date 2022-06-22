@@ -7,6 +7,12 @@ import Home from "@/Home";
 import Header from "@/modules/Header";
 import Error404 from "@/Error404";
 import AboutEvent from "@/AboutEvent";
+import AboutEvent2 from "@/AboutEvent2";
+import SubNewsletter1 from "@/subscribe-newsletter/SubNewsletter1";
+import SubNewsletter2 from "@/subscribe-newsletter/SubNewsletter2";
+import SubNewsletter3 from "@/subscribe-newsletter/SubNewsletter3";
+import SubNewsletter4 from "@/subscribe-newsletter/SubNewsletter4";
+import EventDescription from "@/EventDescription";
 import CorporateLogin from "@/CorporateLogin";
 import AttendeesPage from "@/pages/attendees/AttendeesPage";
 import AttendeeDetailPage from "@/pages/attendees/AttendeeDetailPage";
@@ -242,6 +248,12 @@ const RouterOutlet = () => {
           />
           <Route exact path="/:event_url/login" component={CorporateLogin} />
           <Route exact path="/:event_url/about" component={AboutEvent} />
+          <Route exact path="/:event_url/about2" component={AboutEvent2} />
+          <Route exact path="/:event_url/event-description" component={EventDescription} />
+          <Route exact path="/:event_url/letter1" component={SubNewsletter1} />
+          <Route exact path="/:event_url/letter2" component={SubNewsletter2} />
+          <Route exact path="/:event_url/letter3" component={SubNewsletter3} />
+          <Route exact path="/:event_url/letter4" component={SubNewsletter4} />
           <Route component={Error404} />
         </Switch>
         {showLogin && <LoginScreen/>}

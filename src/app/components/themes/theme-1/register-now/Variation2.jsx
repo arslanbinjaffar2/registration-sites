@@ -46,9 +46,24 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
 
 const Variation2 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation}) => {
   console.log(eventSiteSettings.registration_end_date);
+  const _parallax = React.useRef(null);
+  React.useEffect(() => {
+    window.addEventListener("scroll",scollEffect);
+    return () => {
+      window.removeEventListener("scroll",scollEffect);
+    }
+  }, [])
+  
+   function scollEffect () {
+    const scrolled = window.pageYOffset;
+    const itemOffset = _parallax.current.offsetTop;
+    const itemHeight = _parallax.current.getBoundingClientRect();
+    if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+    _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+  };
   return (
     <div className="module-section">
-      <div  style={{ backgroundImage: `url(${moduleVariation.background_image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + moduleVariation.background_image : require("img/h1-parallax1.jpg")}`,padding: "80px 0", backgroundPosition:"center", backgroundSize:'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+      <div ref={_parallax} style={{ backgroundImage: `url(${moduleVariation.background_image !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + moduleVariation.background_image : require("img/h1-parallax1.jpg")}`,padding: "80px 0", backgroundPosition:"center", backgroundSize:'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
       {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
         <div className="container">
           <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />

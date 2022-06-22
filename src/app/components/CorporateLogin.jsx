@@ -1,6 +1,5 @@
 import * as React from 'react';
-class CorporateLogin extends React.Component {
-  render() {
+const CorporateLogin = () => {
     return (
       <div className="ebs-corporate-login">
         <div className="ebs-corporate-fields">
@@ -23,6 +22,6 @@ class CorporateLogin extends React.Component {
       </div>
     );
   }
-}
+
 
 export default CorporateLogin;
