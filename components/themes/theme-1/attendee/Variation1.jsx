@@ -4,11 +4,32 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
+
   const _parallax = useRef(null);
-  const _bgimage =
-    settings && settings.background_image !== ""
-      ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`
-      : require("public/img/h1-parallax1.jpg");
+
+  const WrapperLayout = ({ children }) => {
+
+    const _bgimage = `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+
+    if (settings && settings.background_image !== "") {
+      return (
+        <div style={{ backgroundImage: `url(${_bgimage})`, padding: "100px 0", }}
+          className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          {children}
+        </div>
+      );
+    } else {
+      return (
+        <div className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          {children}
+        </div>
+      );
+    }
+
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", scollEffect);
     return () => {
@@ -23,15 +44,9 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
     if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
     _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
   };
-  
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${_bgimage})`,
-        padding: "50px 0",
-      }}
-      className="edgtf-parallax-section-holder ebs-bg-holder"
-      ref={_parallax}
+    <WrapperLayout
     >
       <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
@@ -188,7 +203,7 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
         {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {attendees.length > 0 && loadMore()}
       </div>
-    </div>
+    </WrapperLayout>
   );
 };
 

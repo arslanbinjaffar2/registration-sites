@@ -53,11 +53,11 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
 
 
   const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
   return (
     <div style={{ opacity: 0 }} ref={element} data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
-          backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
           minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"

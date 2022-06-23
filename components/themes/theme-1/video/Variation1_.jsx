@@ -9,7 +9,7 @@ class Variation1 extends React.Component {
         return (
             <React.Fragment>
                 {video_data !== undefined && (
-                    <div style={{ backgroundImage: `url(${require('public/img/h1-parallax1.jpg')})`, padding: '100px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+                    <div style={{ padding: '100px 0' }} className="edgtf-parallax-section-holder ebs-bg-holder">
                         <div className="container">
                             <div className="row d-flex align-items-center">
                                 <div className="col-md-6">

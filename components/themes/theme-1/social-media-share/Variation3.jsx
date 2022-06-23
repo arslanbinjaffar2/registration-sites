@@ -17,10 +17,6 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
 
   const _parallax = useRef(null);
 
-  const _bgimage =
-    settings && settings.background_image !== ""
-      ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`
-      : require("public/img/h1-parallax1.jpg");
   useEffect(() => {
     window.addEventListener("scroll", scollEffect);
     return () => {
@@ -35,11 +31,32 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
     if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
     _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
   };
-  
+
+  const WrapperLayout = ({ children }) => {
+
+    const _bgimage = `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+
+    if (settings && settings.background_image !== "") {
+      return (
+        <div style={{ backgroundImage: `url(${_bgimage})`, padding: "100px 0", }}
+          className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          {children}
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ padding: "100px 0", }} className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          {children}
+        </div>
+      );
+    }
+
+  }
+
   return (
-    <div style={{ backgroundImage: `url(${_bgimage})`, padding: "100px 0", }}
-      className="edgtf-parallax-section-holder ebs-bg-holder"
-      ref={_parallax}>
+    <WrapperLayout>
       <div className="container">
         <HeadingElement dark={true} label={labels.SECTION_SOCIAL_FRONT_TITLE} align={'center'} />
         <div className="ebs-social-share text-center pb-3">
@@ -79,7 +96,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
           </EmailShareButton>}
         </div>
       </div>
-    </div>
+    </WrapperLayout>
   );
 };
 

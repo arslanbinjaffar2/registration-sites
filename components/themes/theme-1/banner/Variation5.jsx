@@ -1,26 +1,46 @@
 import SliderBanner from "./components/SliderBanner";
-import moment from "moment";
 import React from "react";
 
 const Variation5 = ({ banner, event, countdown }) => {
-  // let momentObj = moment(event.start_date + event.start_time, "YYYY-MM-DDLT");
-  // let eventDate = momentObj.toDate();
+
+  const WrapperLayout = (props) => {
+
+    if (props.slides && Number(props.slides.video_type) === 1) {
+      return (
+        <div
+          style={{
+            backgroundImage: `url(${process.env.REACT_APP_EVENTCENTER_URL + props.slides.image
+              })`,
+            backgroundPosition: "50% 0",
+          }}
+          className="background parallax-backgroud"
+        >
+          {props.children}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          style={{
+            backgroundPosition: "50% 0",
+          }}
+          className="background parallax-backgroud"
+        >
+          {props.children}
+        </div>
+      );
+    }
+
+  }
+
   return (
     <div className="main-slider-wrapper">
       {banner && (
         <SliderBanner countdown={countdown} >
           {banner.map((slides, i) => (
             <div key={i} className="slide-wrapper">
-              <div
-                style={{
-                  backgroundImage: `url(${
-                    slides && Number(slides.video_type) === 1
-                      ? process.env.REACT_APP_EVENTCENTER_URL + slides.image
-                      : require("public/img/h1-parallax1.jpg")
-                  })`,
-                  backgroundPosition: "50% 0",
-                }}
-                className="background parallax-backgroud"
+              <WrapperLayout
+                slides={slides}
               >
                 {Number(slides.video_type) === 2 && (
                   <div className="video-fullscreen">
@@ -86,7 +106,7 @@ const Variation5 = ({ banner, event, countdown }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </WrapperLayout>
             </div>
           ))}
         </SliderBanner>

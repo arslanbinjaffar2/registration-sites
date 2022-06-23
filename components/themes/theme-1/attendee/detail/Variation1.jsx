@@ -6,7 +6,6 @@ const Variation1 = ({ attendee }) => {
     <div data-fixed="false" className="ebs-transparent-box">
       <div
         style={{
-          backgroundImage: `url(${require("public/img/h1-parallax1.jpg")})`,
           minHeight: 250,
         }}
         className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
