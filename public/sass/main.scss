@@ -322,6 +322,9 @@ a:hover {
 		right: 10px;
 	}
 }
+.edgtf-has-background, .parallax-backgroud {
+	background-image: url("/img/h1-parallax1.jpg");
+}
 .edgtf-btn.edgtf-btn-outline:hover {
 	background: $first-main-color;
 	border-color: $first-main-color;
@@ -2259,7 +2262,7 @@ $z-index:$back-to-top-size / 2;
 		right: 18px;
 		top: 19px;
 	}
-}
+} 
 .ebs-bg-holder {
 	.ebs-form-control-search {
 		color: rgba($white,0.7);
@@ -2272,6 +2275,7 @@ $z-index:$back-to-top-size / 2;
 			border-color: $white;
 		}
 	} 
+	background-image: url("/img/h1-parallax1.jpg");
 }
 #navbarSupportedContentFixedTheme {
 	position: fixed;
