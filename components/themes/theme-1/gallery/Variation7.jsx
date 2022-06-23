@@ -76,7 +76,7 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
           </div>
           {!home && loadMore()}
           {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
-            <Link href={`/${eventUrl}/photos`}>
+            <Link href={`/${eventUrl}/gallery`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >

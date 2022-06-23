@@ -1,6 +1,7 @@
 import React from "react";
 import SponsorListing from "components/modules/sponsor/SponsorListing";
-const SpeakerPage = () => {
+
+const SponsorPage = () => {
   return (
     <React.Fragment>
       <SponsorListing />
@@ -8,4 +9,4 @@ const SpeakerPage = () => {
   );
 };
 
-export default SpeakerPage;
+export default SponsorPage;

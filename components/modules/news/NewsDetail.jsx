@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { newsDetailSelector, fetchNewsDetail, clearState } from "store/Slices/NewsDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
+import { useRouter } from 'next/router';
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
@@ -10,15 +11,20 @@ const loadModule = (theme, variation) => {
   );
   return Component;
 };
+
 const NewsDetail = (props) => {
-  const id = props.match.params.id;
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   const { event } = useSelector(eventSelector);
+
   const { news, labels } = useSelector(newsDetailSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
-   // let moduleVariation = event.theme.modules.filter(function (module, i) {
-  //   return in_array(module.alias, ["news_detail"]);
-  // });
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, "Variation1"),

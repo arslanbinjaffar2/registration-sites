@@ -5,8 +5,9 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import PageLoader from "components/ui-components/PageLoader";
-
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
+
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -17,9 +18,15 @@ const loadModule = (theme) => {
 };
 
 const ExhibitorDetail = (props) => {
-const id = props.match.params.id;
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   const { event } = useSelector(eventSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
 
   const Component = useMemo(
@@ -27,24 +34,27 @@ const id = props.match.params.id;
     [event]
   );
 
-    useEffect(() => {
-      dispatch(incrementLoadCount());
-      dispatch(fetchExhibitor(eventUrl, id));
-      return () => {
-        dispatch(clearState());
-      }
-    }, []);
-  const { exhibitor, labels, documents, loading, error} = useSelector(exhibitorDetailSelector);
+  useEffect(() => {
+    dispatch(incrementLoadCount());
+    dispatch(fetchExhibitor(eventUrl, id));
+    return () => {
+      dispatch(clearState());
+    }
+  }, []);
+
+  const { exhibitor, labels, documents, loading, error } = useSelector(exhibitorDetailSelector);
+
   return (
-    <Suspense fallback={<PageLoader/>}>
+    <Suspense fallback={<PageLoader />}>
       {exhibitor ? (
         <React.Fragment>
-          <Component exhibitor={exhibitor} labels = {labels}  documents={documents} moduleName={event.eventsiteModules.exhibitors} />
+          <Component exhibitor={exhibitor} labels={labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
         </React.Fragment>
-      ) : <PageLoader/> 
+      ) : <PageLoader />
       }
     </Suspense>
   );
+
 };
 
 export default ExhibitorDetail;

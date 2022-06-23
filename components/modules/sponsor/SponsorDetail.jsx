@@ -2,8 +2,8 @@ import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { sponsorDetailSelector, fetchSponsor, clearState } from "store/Slices/SponsorDetailSlice";
 import PageLoader from "components/ui-components/PageLoader";
-
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -14,9 +14,15 @@ const loadModule = (theme) => {
 };
 
 const SponsorDetail = (props) => {
-const id = props.match.params.id;
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   const { event } = useSelector(eventSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
 
   const Component = useMemo(
@@ -24,20 +30,22 @@ const id = props.match.params.id;
     [event]
   );
 
-    useEffect(() => {
-      dispatch(fetchSponsor(eventUrl, id));
-      return () => {
-        dispatch(clearState());
-      }
-    }, []);
-  const { sponsor, labels, documents,  loading, error} = useSelector(sponsorDetailSelector);
+  useEffect(() => {
+    dispatch(fetchSponsor(eventUrl, id));
+    return () => {
+      dispatch(clearState());
+    }
+  }, []);
+
+  const { sponsor, labels, documents, loading, error } = useSelector(sponsorDetailSelector);
+
   return (
-    <Suspense fallback={<PageLoader/>}>
+    <Suspense fallback={<PageLoader />}>
       {sponsor ? (
         <React.Fragment>
-          <Component sponsor={sponsor} labels = {labels}  documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
+          <Component sponsor={sponsor} labels={labels} documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
         </React.Fragment>
-      ) : <PageLoader/> 
+      ) : <PageLoader />
       }
     </Suspense>
   );

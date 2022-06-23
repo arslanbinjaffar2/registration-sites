@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { cmsDetailSelector, fetchCmsPage, clearState } from "store/Slices/CmsDetailSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -13,9 +14,15 @@ const loadModule = (theme) => {
 };
 
 const CmsDetail = (props) => {
-const id = props.match.params.id;
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   const { event } = useSelector(eventSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
 
   const Component = useMemo(
@@ -23,27 +30,28 @@ const id = props.match.params.id;
     [event]
   );
 
-useEffect(() => {
-    dispatch(fetchCmsPage(eventUrl, props.moduleName , id));
+  useEffect(() => {
+    dispatch(fetchCmsPage(eventUrl, props.moduleName, id));
     return () => {
-    dispatch(clearState());
+      dispatch(clearState());
     }
-}, [props.moduleName, id]);
+  }, [props.moduleName, id]);
 
-const informationModules = {
-  additional_information: "additional_info_menu",
-  general_information: "general_info_menu",
-  practicalinformation: "practical_info_menu",
-};
+  const informationModules = {
+    additional_information: "additional_info_menu",
+    general_information: "general_info_menu",
+    practicalinformation: "practical_info_menu",
+  };
 
-  const { cmsPage, labels, loading, error} = useSelector(cmsDetailSelector);
+  const { cmsPage, labels, loading, error } = useSelector(cmsDetailSelector);
+
   return (
-    <Suspense fallback={<PageLoader/>}>
+    <Suspense fallback={<PageLoader />}>
       {cmsPage ? (
         <React.Fragment>
-          <Component detail={cmsPage} labels = {labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
+          <Component detail={cmsPage} labels={labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
         </React.Fragment>
-      ) : <PageLoader/> 
+      ) : <PageLoader />
       }
     </Suspense>
   );

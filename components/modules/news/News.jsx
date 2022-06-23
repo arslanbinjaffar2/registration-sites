@@ -15,20 +15,30 @@ const loadModule = (theme, variation) => {
 };
 
 const News = (props) => {
+
   const initialMount = useRef(true);
+
   const { event } = useSelector(eventSelector);
+
   const { news, totalPages, labels, loading } = useSelector(newsSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
+
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["news"]);
   });
+
   const limit = 10;
+
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
+
   const [page, setPage] = useState(1);
+
   useEffect(() => {
     dispatch(fetchNews(eventUrl, page, limit, initialMount.current));
   }, [page, limit]);
@@ -50,11 +60,11 @@ const News = (props) => {
   };
 
   const makeNewDetailURL = (event_url, id) => {
-    return "/" + event_url + "/news-detail/" + id;
+    return "/" + event_url + "/news/" + id;
   };
-  console.log(event.news_settings)
+
   return (
-    <Suspense fallback={<PageLoader/>}>
+    <Suspense fallback={<PageLoader />}>
       {news ? (
         <Component
           news={news}
@@ -63,12 +73,12 @@ const News = (props) => {
           newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
           loadMore={() => {
-            if(page < totalPages){
-              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)}  />
+            if (page < totalPages) {
+              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data) => onPageChange(data)} />
             }
           }}
         />
-      ) : <PageLoader/>}
+      ) : <PageLoader />}
     </Suspense>
   );
 };

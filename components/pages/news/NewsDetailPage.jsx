@@ -1,9 +1,10 @@
 import React from 'react'
 import NewsDetail from 'components/modules/news/NewsDetail';
+
 const NewsDetailPage = () => {
     return (
         <React.Fragment>
-            <NewsDetail/>
+            <NewsDetail />
         </React.Fragment>
     )
 }

@@ -1,6 +1,7 @@
 import React, {Suspense} from "react";
 import AttendeeDetail from "components/modules/attendees/AttendeeDetail";
-const AttendeesPage = () => {
+
+const AttendeeDetailPage = () => {
   return (
       <React.Fragment>
         <AttendeeDetail />
@@ -8,4 +9,4 @@ const AttendeesPage = () => {
   );
 };
 
-export default AttendeesPage;
+export default AttendeeDetailPage;

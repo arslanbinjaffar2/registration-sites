@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -12,29 +13,35 @@ const loadModule = (theme) => {
 };
 
 const CmsListing = (props) => {
-const id = props.match.params.id;
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   const { event } = useSelector(eventSelector);
+
   const dispatch = useDispatch();
+
   const eventUrl = event.url;
 
-  
+
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]
-    );
-    
-    const informationModules = {
-      additional_information: "additional_info_menu",
-      general_information: "general_info_menu",
-      practicalinformation: "practical_info_menu",
-    };
-    
+  );
+
+  const informationModules = {
+    additional_information: "additional_info_menu",
+    general_information: "general_info_menu",
+    practicalinformation: "practical_info_menu",
+  };
+
 
   return (
-    <Suspense fallback={<PageLoader/>}>
-        <React.Fragment>
-         <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />}
-        </React.Fragment>
+    <Suspense fallback={<PageLoader />}>
+      <React.Fragment>
+        <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />}
+      </React.Fragment>
     </Suspense>
   );
 };
