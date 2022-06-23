@@ -1,16 +1,16 @@
-import React, {Suspense} from 'react'
-import CmsDetail from 'components/modules/cms/CmsDetail'
+import React, { Suspense } from 'react'
+import CmsDetail from 'components/modules/cms/CmsDetail';
 
-const CmsDetailPage = ({ match, event }) => {
-  const currentModuleName = match.url.split("/")[2];
-  
+const CmsDetailPage = (props) => {
+
   return (
     <Suspense>
       <React.Fragment>
-        <CmsDetail moduleName={currentModuleName} />
+        <CmsDetail moduleName={props.module} />
       </React.Fragment>
     </Suspense>
   )
+
 }
 
 export default CmsDetailPage

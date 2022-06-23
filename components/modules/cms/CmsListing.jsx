@@ -24,7 +24,6 @@ const CmsListing = (props) => {
 
   const eventUrl = event.url;
 
-
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]

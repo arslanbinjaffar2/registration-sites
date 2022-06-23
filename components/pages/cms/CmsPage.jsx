@@ -1,10 +1,17 @@
 import React, { Suspense } from "react";
 import CmsListing from "components/modules/cms/CmsListing";
-const CmsPage = ({ match, event, location }) => {
-  const currentModuleName = match.url.split("/")[2];
+import { useRouter } from 'next/router';
+
+const CmsPage = (props) => {
+
+  const router = useRouter();
+
+  const { id } = router.query;
+
   return (
-        <CmsListing moduleName={currentModuleName} menu_id={new URLSearchParams(location.search).get("menu_id")} />
-        );
+    <CmsListing moduleName={props.module} menu_id={id} />
+  );
+
 };
 
 export default CmsPage;
