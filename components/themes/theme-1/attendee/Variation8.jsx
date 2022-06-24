@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -23,7 +23,7 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                   className="speakerv7-wrapper ebs-animation-layer">
                   <div className="speakerv7-image">
                     <span className="box">
-                      <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                      <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
                           {attendee.image && attendee.image !== "" ? (
                             <img
@@ -45,17 +45,17 @@ const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                             />
                           )}
                         </span>
-                      </Link>
+                      </ActiveLink>
                     </span>
                   </div>
                   <div className="attendeev7-caption">
                     {(attendee.first_name || attendee.last_name) && (
-                      <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                      <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <h3>
                           {attendee.first_name && attendee.first_name}{" "}
                           {attendee.last_name && attendee.last_name}
                         </h3>
-                      </Link>
+                      </ActiveLink>
                     )}
 
                     {attendee.info &&

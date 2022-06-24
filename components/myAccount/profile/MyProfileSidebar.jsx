@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import { eventSelector } from "store/Slices/EventSlice";
 import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 import Image from 'next/image'
@@ -59,15 +59,15 @@ const MyProfileSidebar = ({ history }) => {
         </div>
         {toggleMenu && <div className="ebs-sidebar-account">
           <ul>
-            <li><Link className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</Link></li>
-            <li><Link href={`/${event.url}/profile`} >My billing</Link></li>
-            <li><Link href={`/${event.url}/profile`} >My billing history</Link></li>
-            <li><Link href={`/${event.url}/profile`}>Cancel registration</Link></li>
-            <li><Link className={location === `/${event.url}/my-sub-registration` ? 'active' : ''} href={`/${event.url}/my-sub-registration`}>My Sub registration</Link></li>
-            <li><Link className={location === `/${event.url}/my-program` ? 'active' : ''} href={`/${event.url}/my-program`}>My program</Link></li>
-            <li><Link className={location === `/${event.url}/surveys` ? 'active' : ''} href={`/${event.url}/surveys`}>Surveys</Link></li>
-            <li><Link className={location === `/${event.url}/keyword-interest` ? 'active' : ''} href={`/${event.url}/keyword-interest`}>Networking interests</Link></li>
-            <li><Link className={location === `/${event.url}/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/news-letter-subscription`}>Newsletter subscription</Link></li>
+            <li><ActiveLink className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</ActiveLink></li>
+            <li><ActiveLink href={`/${event.url}/profile`} >My billing</ActiveLink></li>
+            <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>
+            <li><ActiveLink href={`/${event.url}/profile`}>Cancel registration</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/my-sub-registration` ? 'active' : ''} href={`/${event.url}/my-sub-registration`}>My Sub registration</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/my-program` ? 'active' : ''} href={`/${event.url}/my-program`}>My program</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/surveys` ? 'active' : ''} href={`/${event.url}/surveys`}>Surveys</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/keyword-interest` ? 'active' : ''} href={`/${event.url}/keyword-interest`}>Networking interests</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>
             <li><a onClick={(e) => { onLogout(); }} >Logout</a></li>
           </ul>
         </div>}

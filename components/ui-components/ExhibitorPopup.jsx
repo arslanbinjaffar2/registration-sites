@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
 const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
@@ -45,7 +45,7 @@ const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
                                     {data.twitter && <a href={data.twitter}><i className="fa fa-twitter" /></a>}
                                     {data.linkedin && <a href={data.linkedin}><i className="fa fa-linkedin" /></a>}
                                 </div>
-                                <p><Link href={`/${eventUrl}/exhibitors/${data.id}`}>Read More</Link></p>
+                                <p><ActiveLink href={`/${eventUrl}/exhibitors/${data.id}`}>Read More</ActiveLink></p>
                             </div>
                         </div>
                     </div>

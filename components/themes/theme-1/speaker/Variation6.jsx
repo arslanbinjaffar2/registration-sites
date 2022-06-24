@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -18,7 +18,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                   <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
-                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                      <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
                           {speaker.image && speaker.image !== "" ? (
                             <img
@@ -40,19 +40,19 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                             />
                           )}
                         </span>
-                      </Link>
+                      </ActiveLink>
                       {/* <div className="caption">
                         <span className="plus"></span>
                       </div> */}
                     </div>
                     <div className="speakerv6-caption">
                       {(speaker.first_name || speaker.last_name) && (
-                        <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                        <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                           <h3>
                             {speaker.first_name && speaker.first_name}{" "}
                             {speaker.last_name && speaker.last_name}
                           </h3>
-                        </Link>
+                        </ActiveLink>
                       )}
                       <span
                         style={{ display: "inline-block" }}

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Masonry from "react-masonry-css";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 
@@ -32,7 +32,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                     <article className="ebs-animation-layer" style={{ animationDelay: 50 * i + 'ms' }} key={item.id}>
                       <div className="edgtf-post-content">
                         {item.image && <div className="edgtf-post-image">
-                          <Link
+                          <ActiveLink
                             itemProp="url"
                             href={makeNewDetailURL(event_url, item.id)}
                           >
@@ -63,7 +63,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                                 />
                               )}
                             </span>
-                          </Link>
+                          </ActiveLink>
                         </div>}
                         <div className="edgtf-post-text">
                           <div className="edgtf-post-text-inner">
@@ -71,7 +71,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                               itemProp="name"
                               className="entry-title edgtf-post-title"
                             >
-                              <Link
+                              <ActiveLink
                                 itemProp="url"
                                 href={makeNewDetailURL(
                                   event_url,
@@ -79,7 +79,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                                 )}
                               >
                                 {item.title}
-                              </Link>
+                              </ActiveLink>
                             </h3>
                             <div className="edgtf-post-info">
                               <div

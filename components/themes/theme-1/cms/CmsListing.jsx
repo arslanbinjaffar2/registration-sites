@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
@@ -49,9 +49,9 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
             {cmsListing && cmsListing.map((item, i) => (
               <li key={i}>
                 {item.page_type === 1 &&
-                  <Link href={`/${eventUrl}/${moduleName}/${item.id}`}>
+                  <ActiveLink href={`/${eventUrl}/${moduleName}/${item.id}`}>
                     {item.info.name}
-                  </Link>
+                  </ActiveLink>
                 }
                 {item.page_type === 2 &&
                   <a href={`${item.website_protocol}${item.url}`} target="_blank"  >{item.info.name}</a>
@@ -66,9 +66,9 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                     {item.submenu.map((subitem, j) => (
                       <li key={j}>
                         {subitem.page_type === 1 &&
-                          <Link href={`/${eventUrl}/${moduleName}/${subitem.id}`}>
+                          <ActiveLink href={`/${eventUrl}/${moduleName}/${subitem.id}`}>
                             {subitem.info.name}
-                          </Link>
+                          </ActiveLink>
                         }
                         {subitem.page_type === 2 &&
                           <a href={`${subitem.website_protocol}${subitem.url}`} target="_blank"  >{subitem.info.name}</a>

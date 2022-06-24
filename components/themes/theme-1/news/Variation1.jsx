@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import React, {useRef, useState} from "react";
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
@@ -21,7 +21,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                   <article style={{animationDelay: 50*i+'ms'}} className="ebs-animation-layer" key={item.id}>
                     <div className="edgtf-post-content">
                       {item.image && <div className="edgtf-post-image">
-                        <Link
+                        <ActiveLink
                           itemProp="url"
                           href={makeNewDetailURL(event_url, item.id)}
                         >
@@ -41,7 +41,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                               height="500"
                             />
                             </span>
-                        </Link>
+                        </ActiveLink>
                       </div>}
                       <div className="edgtf-post-text">
                         <div className="edgtf-post-text-inner">
@@ -49,12 +49,12 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                             itemProp="name"
                             className="entry-title edgtf-post-title"
                           >
-                            <Link
+                            <ActiveLink
                               itemProp="url"
                               href={makeNewDetailURL(event_url, item.id)}
                             >
                               {item.title}
-                            </Link>
+                            </ActiveLink>
                           </h3>
                           <div className="edgtf-post-info">
                             <div

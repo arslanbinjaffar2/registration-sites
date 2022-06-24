@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import {
   fetchSurveyListData,
   surveyListSelector,
@@ -30,7 +30,7 @@ const SurveyList = () => {
             <div className="ebs-survey-list">
               <ul>
                 {surveyList.map((survey) => (
-                  <li key={survey.id}> <Link href={`/${event.url}/survey/${survey.id}`} >{survey.info[0].value}</Link> </li>
+                  <li key={survey.id}> <ActiveLink href={`/${event.url}/survey/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
                 ))}
               </ul>
             </div>

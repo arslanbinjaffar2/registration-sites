@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -64,7 +64,7 @@ const Variation3 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                   <div className="edgtf-team edgtf-team-light w-100 mb-3">
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
-                        <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                        <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                           <span className="gallery-img-wrapper-square">
                             {attendee.image && attendee.image !== "" ? (
                               <img
@@ -86,18 +86,18 @@ const Variation3 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                               />
                             )}
                           </span>
-                        </Link>
+                        </ActiveLink>
                       </div>
                       {/* Description */}
                       <div className="edgtf-team-info">
                         <div className="edgtf-team-title-holder">
                           {(attendee.first_name || attendee.last_name) && (
-                            <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                            <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                               <h3 className="edgtf-team-name">
                                 {attendee.first_name && attendee.first_name}{" "}
                                 {attendee.last_name && attendee.last_name}
                               </h3>
-                            </Link>
+                            </ActiveLink>
                           )}
                           {attendee.info &&
                             (attendee.info.company_name ||

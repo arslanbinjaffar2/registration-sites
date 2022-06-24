@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -25,7 +25,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                 >
                   <div className="speakerv7-image">
                     <span className="box">
-                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                      <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <span className="gallery-img-wrapper-square">
                           {speaker.image && speaker.image !== "" ? (
                             <img
@@ -47,17 +47,17 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                             />
                           )}
                         </span>
-                      </Link>
+                      </ActiveLink>
                     </span>
                   </div>
                   <div className="speakerv7-caption">
                     {(speaker.first_name || speaker.last_name) && (
-                      <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                      <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <h3>
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}
                         </h3>
-                      </Link>
+                      </ActiveLink>
                     )}
 
                     {speaker.info &&

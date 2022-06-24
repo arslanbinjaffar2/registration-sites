@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -66,7 +66,7 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                   >
                     <div className="edgtf-team-inner">
                       <div className="edgtf-team-image">
-                        <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                        <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                           <span className="gallery-img-wrapper-square">
                             {speaker.image && speaker.image !== "" ? (
                               <img
@@ -88,18 +88,18 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               />
                             )}
                           </span>
-                        </Link>
+                        </ActiveLink>
                       </div>
                       {/* Description */}
                       <div className="edgtf-team-info">
                         <div className="edgtf-team-title-holder">
                           {(speaker.first_name || speaker.last_name) && (
-                            <Link href={`/${event.url}/speakers/${speaker.id}`}>
+                            <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                               <h3 style={{ lineHeight: 1 }} className="edgtf-team-name">
                                 {speaker.first_name && speaker.first_name}{" "}
                                 {speaker.last_name && speaker.last_name}
                               </h3>
-                            </Link>
+                            </ActiveLink>
                           )}
                           {speaker.info &&
                             (speaker.info.company_name ||

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
 const ProgramItem = ({ program, eventUrl }) => {
@@ -30,7 +30,7 @@ const ProgramItem = ({ program, eventUrl }) => {
                         <div className="row d-flex ebs-program-speakers">
                             {program.program_speakers.map((speakers, o) =>
                                 <div style={{ animationDelay: 50 * o + 'ms' }} key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
-                                    <Link href={`/${eventUrl}/speakers/${speakers.id}`}>
+                                    <ActiveLink href={`/${eventUrl}/speakers/${speakers.id}`}>
                                         <span className="gallery-img-wrapper-square">
                                             {speakers.image && speakers.image !== "" ? (
                                                 <img
@@ -49,7 +49,7 @@ const ProgramItem = ({ program, eventUrl }) => {
                                             )}
                                         </span>
                                         <h4>{speakers.first_name} {speakers.last_name}</h4>
-                                    </Link>
+                                    </ActiveLink>
                                 </div>
                             )}
                         </div>

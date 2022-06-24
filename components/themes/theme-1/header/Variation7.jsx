@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from 'next/link'
 import ActiveLink from "components/atoms/ActiveLink";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
 import Image from 'next/image'
@@ -160,7 +159,7 @@ class Variation7 extends React.Component {
                 style={{ padding: "0", border: "none", textAlign: "left" }}
                 className="ebs-logo-main"
               >
-                <Link href={`/${event.url}`}>
+                <ActiveLink href={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -172,7 +171,7 @@ class Variation7 extends React.Component {
                       alt=""
                     />
                   )}
-                </Link>
+                </ActiveLink>
               </div>
             </div>
             <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">

@@ -4,7 +4,7 @@ import Masonry from "react-masonry-css";
 import { PortalWithState } from "react-portal";
 import Videopopup from "components/Videopopup";
 import HeadingElement from 'components/ui-components/HeadingElement';
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
 const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
@@ -89,13 +89,13 @@ const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
         </div>
         {!home && loadMore()}
         {home && <div className="container p-0 pt-5 text-center">
-          <Link href={`/${eventUrl}/videos`}>
+          <ActiveLink href={`/${eventUrl}/videos`}>
             <button
               className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
             >
               Load More
             </button>
-          </Link>
+          </ActiveLink>
         </div>}
       </div>
     </div>

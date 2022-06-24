@@ -1,7 +1,7 @@
 import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import HeadingElement from "components/ui-components/HeadingElement";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 import { getMeta } from 'helpers/helper';
 
@@ -74,13 +74,13 @@ const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, to
           </div>
           {!home && loadMore()}
           {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
-            <Link href={`/${eventUrl}/gallery`}>
+            <ActiveLink href={`/${eventUrl}/gallery`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
                 Load More
               </button>
-            </Link>
+            </ActiveLink>
           </div>}
         </div>
       </div>

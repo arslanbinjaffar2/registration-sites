@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ const MyProfile = () => {
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>My profile</h2>
-            <Link className='btn-link' href={`/${event.url}/profile/edit`}>Edit profile</Link>
+            <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>Edit profile</ActiveLink>
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import React, { useState, useRef } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
@@ -20,7 +20,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                   <article style={{ animationDelay: 50 * i + 'ms' }} className="ebs-animation-layer" key={item.id}>
                     <div className="edgtf-post-content">
                       {item.image && <div className="edgtf-post-image">
-                        <Link itemProp="url" href={makeNewDetailURL(event_url, item.id)}>
+                        <ActiveLink itemProp="url" href={makeNewDetailURL(event_url, item.id)}>
                           <span className="gallery-img-wrapper-rectangle-2">
                             {
                               item.image && item.image !== '' ? (
@@ -30,14 +30,14 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                               )
                             }
                           </span>
-                        </Link>
+                        </ActiveLink>
                       </div>}
                       <div className="edgtf-post-text">
                         <div className="edgtf-post-text-inner">
                           <h3 itemProp="name" className="entry-title edgtf-post-title">
-                            <Link itemProp="url" href={makeNewDetailURL(event_url, item.id)}>
+                            <ActiveLink itemProp="url" href={makeNewDetailURL(event_url, item.id)}>
                               {item.title}
-                            </Link>
+                            </ActiveLink>
                           </h3>
                           <div className="edgtf-post-info">
                             <div itemProp="dateCreated" className="edgtf-post-info-date entry-date updated">

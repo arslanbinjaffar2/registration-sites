@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
@@ -18,7 +18,7 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                 <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                   <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv6-wrapper ebs-animation-layer">
                     <div className="speakerv6-image">
-                      <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                      <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
                           {attendee.image && attendee.image !== "" ? (
                             <img
@@ -40,19 +40,19 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                             />
                           )}
                         </span>
-                      </Link>
+                      </ActiveLink>
                       {/* <div className="caption">
                         <span className="plus"></span>
                       </div> */}
                     </div>
                     <div className="speakerv6-caption">
                       {(attendee.first_name || attendee.last_name) && (
-                        <Link href={`/${event.url}/attendees/${attendee.id}`}>
+                        <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                           <h3>
                             {attendee.first_name && attendee.first_name}{" "}
                             {attendee.last_name && attendee.last_name}
                           </h3>
-                        </Link>
+                        </ActiveLink>
                       )}
                       <span
                         style={{ display: "inline-block" }}

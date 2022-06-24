@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from 'next/link'
 import ActiveLink from "components/atoms/ActiveLink";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
@@ -164,7 +163,7 @@ class Variation4 extends React.Component {
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
               <div className="ebs-logo-main">
-                <Link href={`/${event.url}`}>
+                <ActiveLink href={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -176,7 +175,7 @@ class Variation4 extends React.Component {
                       alt=""
                     />
                   )}
-                </Link>
+                </ActiveLink>
               </div>
             </div>
             <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">

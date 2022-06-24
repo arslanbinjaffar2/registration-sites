@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
+import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
 const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLabels }) => {
@@ -115,7 +115,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                 {locSponsors.map((sponsor) => (<div className="ebs-sponsor-item" key={sponsor.id}>
                   <div className="d-flex align-items-center ebs-break-block">
                     <div className="ebs-img-listing">
-                      <Link href={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                      <ActiveLink href={`/${eventUrl}/sponsors/${sponsor.id}`}>
                         <figure>
                           {sponsor.logo && sponsor.logo !== '' ? (
                             <img src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
@@ -123,13 +123,13 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                             <Image src={require('public/img/exhibitors-default.png')} alt="" />
                           )}
                         </figure>
-                      </Link>
+                      </ActiveLink>
                     </div>
                     <div className="ebs-detail-listing">
                       {sponsor.name &&
-                        <Link href={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                        <ActiveLink href={`/${eventUrl}/sponsors/${sponsor.id}`}>
                           <h2>{sponsor.name}</h2>
-                        </Link>
+                        </ActiveLink>
                       }
                       <div className="d-flex ebs-container-box">
                         {sponsor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
