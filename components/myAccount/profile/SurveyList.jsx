@@ -30,7 +30,7 @@ const SurveyList = () => {
             <div className="ebs-survey-list">
               <ul>
                 {surveyList.map((survey) => (
-                  <li key={survey.id}> <ActiveLink href={`/${event.url}/survey/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
+                  <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
                 ))}
               </ul>
             </div>

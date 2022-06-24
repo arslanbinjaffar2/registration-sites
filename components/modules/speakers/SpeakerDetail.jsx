@@ -36,7 +36,7 @@ const SpeakerDetail = (props) => {
     return () => {
       dispatch(clearState());
     }
-  }, []);
+  }, [id]);
 
   return (
     <Suspense fallback={<PageLoader />}>

@@ -4,43 +4,71 @@ import ActiveLink from "components/atoms/ActiveLink";
 import { eventSelector } from "store/Slices/EventSlice";
 import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 
-const MyProfileSidebar = ({ history }) => {
+const MyProfileSidebar = (props) => {
+
   const [toggleMenu, setstatetoggleMenu] = useState(false);
+
   const [location, setLocation] = useState(false)
+
   const dispatch = useDispatch();
+
   const { event } = useSelector(eventSelector);
+
   const { loggedout } = useSelector(userSelector);
+
   const isAuthenticated = JSON.parse(localStorage.getItem(`event${event.id}User`));
+
   const frame = useRef()
+
+  const router = useRouter();
 
   useEffect(() => {
     if (loggedout) {
       dispatch(reset());
-      history.push(`/${event.url}`);
+      router.push(`/${event.url}`);
     }
   }, [loggedout])
+
   const handleClick = () => {
     setstatetoggleMenu(!toggleMenu);
   }
+
   const onLogout = () => {
     dispatch(logOut(event.id, event.url));
   }
+
   useEffect(() => {
-    history.listen((location) => {
-      setLocation(location.pathname);
-      setstatetoggleMenu(false);
-    });
+    if (typeof window !== 'undefined') {
+
+      const handleRouteChange = (url) => {
+        setLocation(url);
+        setstatetoggleMenu(false);
+      }
+
+      router.events.on('routeChangeStart', handleRouteChange)
+
+      // If the component is unmounted, unsubscribe
+      // from the event with the `off` method:
+      return () => {
+        router.events.off('routeChangeStart', handleRouteChange)
+      }
+    }
+
     window.addEventListener("scroll", scollEffect);
     return () => {
       window.removeEventListener("scroll", scollEffect);
     }
-  }, [])
+
+  }, []);
+
   function scollEffect() {
     if (window.scrollY > 250) {
       setstatetoggleMenu(false);
     }
   }
+
   return (
     <React.Fragment>
       {isAuthenticated && <div ref={frame} className="ebs-profile-top-area">
@@ -63,11 +91,11 @@ const MyProfileSidebar = ({ history }) => {
             <li><ActiveLink href={`/${event.url}/profile`} >My billing</ActiveLink></li>
             <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>
             <li><ActiveLink href={`/${event.url}/profile`}>Cancel registration</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/my-sub-registration` ? 'active' : ''} href={`/${event.url}/my-sub-registration`}>My Sub registration</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/my-program` ? 'active' : ''} href={`/${event.url}/my-program`}>My program</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/surveys` ? 'active' : ''} href={`/${event.url}/surveys`}>Surveys</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/keyword-interest` ? 'active' : ''} href={`/${event.url}/keyword-interest`}>Networking interests</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/profile/my-program` ? 'active' : ''} href={`/${event.url}/profile/my-program`}>My program</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>
+            <li><ActiveLink className={location === `/${event.url}/profile/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/profile/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>
             <li><a onClick={(e) => { onLogout(); }} >Logout</a></li>
           </ul>
         </div>}

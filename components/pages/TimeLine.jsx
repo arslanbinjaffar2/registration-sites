@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import ReactSelect from 'react-select';
 import TimelinePopup from 'components/ui-components/TimelinePopup';
@@ -16,7 +16,7 @@ const customStyles = {
 };
 
 const data = {
-	"data": {
+  "data": {
     "program_array": [
       {
         "id": 6638,
@@ -296,15 +296,16 @@ const data = {
     "current_time": "18:00:00"
   }
 };
+
 let startX;
 let scrollLeft;
 let isDown;
 let isActive = false;
-const _multiplyer = window.innerWidth > 600 ? 300 : 150;
+const _multiplyer = typeof window !== 'undefined' && window.innerWidth > 600 ? 300 : 150;
 var clearTime;
 var itemhack = false;
 
- function itemSorting(data) {
+function itemSorting(data) {
   if (itemhack) return data;
   var itemArray = [];
   var i = 0;
@@ -330,6 +331,7 @@ var itemhack = false;
   data.program_array = itemArray;
   return data;
 }
+
 const options = [
   { id: 1, name: 'Chocolate' },
   { id: 2, name: 'Strawberry' },
@@ -351,7 +353,8 @@ const TimelineHeader = () => {
     </div>
   )
 };
-const  currentTimerBar = (data) => {
+
+const currentTimerBar = (data) => {
   var _current = moment(data.data.current_time, 'HH:mm');
   var _time = moment('00:00:00', 'HH:mm');
   var _postion = 0;
@@ -363,13 +366,13 @@ const  currentTimerBar = (data) => {
   if (_difference >= 0) {
     _postion = (_multiplyer / 60) * _difference;
     if (_postion <= _timelinewrapp.offsetWidth) {
-      _currentTimeline.style.left = _postion+15 + 'px';
+      _currentTimeline.style.left = _postion + 15 + 'px';
       _currentTimeline.style.display = 'block';
-      _timelindeschdle.scrollLeft = _postion+15 - 150;
+      _timelindeschdle.scrollLeft = _postion + 15 - 150;
       clearTime = setInterval(function () {
         _postion = (_postion + (_multiplyer / 3600))
         if (_postion <= _timelinewrapp.offsetWidth) {
-          _currentTimeline.style.left = _postion+15 + 'px'
+          _currentTimeline.style.left = _postion + 15 + 'px'
         } else {
           _currentTimeline.style.display = 'none'
         }
@@ -377,7 +380,8 @@ const  currentTimerBar = (data) => {
     }
   }
 };
-const DataItem = ({  items, program_setting, onClick }) => {
+
+const DataItem = ({ items, program_setting, onClick }) => {
   const startTime = moment(items.start_time, 'HH:mm')
   const endTime = moment(items.end_time, 'HH:mm')
   const _time = moment.duration(startTime.diff(moment('00:00', 'HH:mm')));
@@ -386,12 +390,12 @@ const DataItem = ({  items, program_setting, onClick }) => {
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
   return (
-    <div title={items.name} onClick={onClick} style={{ left: (hours * _multiplyer)+15, width: _wrappWidth }} className={`${items.workshop ? 'ebs-workshop' : ''} datawrapp`}>
+    <div title={items.name} onClick={onClick} style={{ left: (hours * _multiplyer) + 15, width: _wrappWidth }} className={`${items.workshop ? 'ebs-workshop' : ''} datawrapp`}>
       {items.workshop && <div className="workkshop-box">{items.workshop}</div>}
       <div className="title">{items.name}</div>
       {items.tracks && <div className="tracks">
         {items.tracks.map((track, k) =>
-          <span style={{backgroundColor: '#6B3182'}} key={k}>{track}</span>
+          <span style={{ backgroundColor: '#6B3182' }} key={k}>{track}</span>
         )}
       </div>}
       <div className="ebs-bottom-wrapp">
@@ -415,19 +419,19 @@ const TimelineContent = ({ data, program_setting }) => {
   useEffect(() => {
     const container = document.getElementById('timelindeschdle');
 
-      container.addEventListener('mousedown',e => mouseIsDown(e));  
-      container.addEventListener('mouseup',e => mouseUp(e))
-      container.addEventListener('mouseleave',e=>mouseLeave(e));
-      container.addEventListener('mousemove',e=>mouseMove(e));
-    
+    container.addEventListener('mousedown', e => mouseIsDown(e));
+    container.addEventListener('mouseup', e => mouseUp(e))
+    container.addEventListener('mouseleave', e => mouseLeave(e));
+    container.addEventListener('mousemove', e => mouseMove(e));
+
     return () => {
-      container.removeEventListener('mousedown',e => mouseIsDown(e));  
-      container.removeEventListener('mouseup',e => mouseUp(e))
-      container.removeEventListener('mouseleave',e=>mouseLeave(e));
-      container.removeEventListener('mousemove',e=>mouseMove(e));
+      container.removeEventListener('mousedown', e => mouseIsDown(e));
+      container.removeEventListener('mouseup', e => mouseUp(e))
+      container.removeEventListener('mouseleave', e => mouseLeave(e));
+      container.removeEventListener('mousemove', e => mouseMove(e));
     }
   }, [])
-  
+
   const handleClick = (data) => {
     if (!isActive) {
       setPopup(!popup);
@@ -435,6 +439,7 @@ const TimelineContent = ({ data, program_setting }) => {
       isActive = false;
     }
   };
+
   function mouseIsDown(e) {
     const container = document.getElementById('timelindeschdle');
     isDown = true;
@@ -442,12 +447,15 @@ const TimelineContent = ({ data, program_setting }) => {
     startX = e.pageX - container.offsetLeft;
     scrollLeft = container.scrollLeft;
   }
+
   function mouseUp(e) {
     isDown = false;
   }
+
   function mouseLeave(e) {
     isDown = false;
   }
+
   function mouseMove(e) {
     isActive = true;
     const container = document.getElementById('timelindeschdle');
@@ -458,11 +466,12 @@ const TimelineContent = ({ data, program_setting }) => {
       container.scrollLeft = scrollLeft - walkX;
     }
   }
+  
   return (
     <React.Fragment>
-      {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
-      <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
-        <div style={{ width: _width }}  id="timelinewrapp">
+      {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata} />}
+      <div style={{ cursor: 'move' }} id="timelindeschdle" className="ebs-timeline-wrapper">
+        <div style={{ width: _width }} id="timelinewrapp">
           <div id="currentTimeline" />
           <TimelineHeader />
           <div id="timelinecontent">
@@ -470,8 +479,8 @@ const TimelineContent = ({ data, program_setting }) => {
               <React.Fragment key={k}>
                 <div className="datarow">
                   {items.map((item, key) => (
-                      <DataItem onClick={(e) => {handleClick(item)}} key={key} items={item} program_setting={program_setting} />
-                    ))}
+                    <DataItem onClick={(e) => { handleClick(item) }} key={key} items={item} program_setting={program_setting} />
+                  ))}
                 </div>
               </React.Fragment>
             ))}
@@ -483,78 +492,78 @@ const TimelineContent = ({ data, program_setting }) => {
 }
 
 const TimeLine = () => {
-	useEffect(() => {
+  useEffect(() => {
     itemhack = true;
     currentTimerBar(data);
-	}, [])
-	const handleClick = (e,a) => {
+  }, [])
+  const handleClick = (e, a) => {
     e.preventDefault();
     const _timelindeschdle = document.getElementById('timelindeschdle');
     if (a === 'left') {
-      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft -  (_multiplyer+15 - 150);
+      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft - (_multiplyer + 15 - 150);
     } else {
-      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft +  (_multiplyer+15 - 150);
+      _timelindeschdle.scrollLeft = _timelindeschdle.scrollLeft + (_multiplyer + 15 - 150);
     }
-    
+
   };
-    return (
-       <div style={{padding: '80px 0 0'}} className="module-section">
-           <div className="container">
-                <div className="ebs-timeline-area">
-									<div className="ebs-top-area">
-										<div className="row d-flex">
-											<div className="col-md-6 d-flex align-items-center">
-												<div className="ebs-select-box">
-                          <ReactSelect
-                            styles={customStyles}
-                            placeholder="Select track"
-                            components={{ IndicatorSeparator: null }}
-                            options={[
-                              { value: '24-12-2022', label: '24-12-2022' },
-                              { value: '25-12-2022', label: '25-12-2022' },
-                              { value: '26-12-2022', label: '26-12-2022' },
-                            ]}
-                          />
-												</div>
-												<div className="ebs-select-box">
-                          <ReactSelect
-                            styles={customStyles}
-                            placeholder="Select track"
-                            components={{ IndicatorSeparator: null }}
-                            options={[
-                              { value: '24-12-2022', label: '24-12-2022' },
-                              { value: '25-12-2022', label: '25-12-2022' },
-                              { value: '26-12-2022', label: '26-12-2022' },
-                            ]}
-                          />
-												</div>
-											</div>
-											<div className="col-md-6">
-												<div className="right-panel-area">
-													<div className="ebs-date-carousel">
-														<div className="ebs-date-carousel-wrapp">
-															<div className="ebs-date-carousel-box">
-																Today, 30 Nov 2021
-															</div>
-														</div>
-														<div className="ebs-date-carousel-button">
-															<button className="btn"><i className="material-icons">arrow_left</i></button>
-															<button className="btn right"><i className="material-icons">arrow_right</i></button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-                  <div id="timeline-arrows">
-                    <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
-                    <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
+  return (
+    <div style={{ padding: '80px 0 0' }} className="module-section">
+      <div className="container">
+        <div className="ebs-timeline-area">
+          <div className="ebs-top-area">
+            <div className="row d-flex">
+              <div className="col-md-6 d-flex align-items-center">
+                <div className="ebs-select-box">
+                  <ReactSelect
+                    styles={customStyles}
+                    placeholder="Select track"
+                    components={{ IndicatorSeparator: null }}
+                    options={[
+                      { value: '24-12-2022', label: '24-12-2022' },
+                      { value: '25-12-2022', label: '25-12-2022' },
+                      { value: '26-12-2022', label: '26-12-2022' },
+                    ]}
+                  />
+                </div>
+                <div className="ebs-select-box">
+                  <ReactSelect
+                    styles={customStyles}
+                    placeholder="Select track"
+                    components={{ IndicatorSeparator: null }}
+                    options={[
+                      { value: '24-12-2022', label: '24-12-2022' },
+                      { value: '25-12-2022', label: '25-12-2022' },
+                      { value: '26-12-2022', label: '26-12-2022' },
+                    ]}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="right-panel-area">
+                  <div className="ebs-date-carousel">
+                    <div className="ebs-date-carousel-wrapp">
+                      <div className="ebs-date-carousel-box">
+                        Today, 30 Nov 2021
+                      </div>
+                    </div>
+                    <div className="ebs-date-carousel-button">
+                      <button className="btn"><i className="material-icons">arrow_left</i></button>
+                      <button className="btn right"><i className="material-icons">arrow_right</i></button>
+                    </div>
                   </div>
-									<TimelineContent  data={itemSorting(data.data)} program_setting={data.data.program_setting} />
-								</div>
-           </div>
-       </div>
-    )
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="timeline-arrows">
+            <button onClick={(e) => handleClick(e, 'left')} className='btn'><i className="fa fa-caret-left" /></button>
+            <button onClick={(e) => handleClick(e, 'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
+          </div>
+          <TimelineContent data={itemSorting(data.data)} program_setting={data.data.program_setting} />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default TimeLine

@@ -1,14 +1,10 @@
-/** @jsx jsx */
 import React, { useState, useEffect } from "react";
 import Select from 'react-select';
 import { defaultTheme } from 'react-select';
 import { jsx } from '@emotion/react'
-
 const { colors } = defaultTheme;
 
-
-
-const DropDown = ({  label,  listitems,  required,  className,  onChange,  isSearchable,  isDisabled,  isMulti,  selected,  selectedlabel}) => {
+const DropDown = ({ label, listitems, required, className, onChange, isSearchable, isDisabled, isMulti, selected, selectedlabel }) => {
 
   const [open, setOpen] = useState(false);
 
@@ -90,7 +86,7 @@ const DropDown = ({  label,  listitems,  required,  className,  onChange,  isSea
       setSelectedOption({ label: selectedlabel, value: selected });
       setOpen(false);
     }
-  }, [ is_selected, is_selectedlabel]);
+  }, [is_selected, is_selectedlabel]);
 
   return (
     <React.Fragment>

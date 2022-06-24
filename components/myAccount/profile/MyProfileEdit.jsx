@@ -16,11 +16,15 @@ import moment from "moment";
 import PageLoader from "components/ui-components/PageLoader";
 
 const MyProfileEdit = () => {
+
   const { event } = useSelector(eventSelector);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchProfileData(event.id, event.url));
   }, []);
+
   const { attendee, languages, callingCodes, countries, loading, alert, error } =
     useSelector(profileSelector);
 
@@ -43,8 +47,11 @@ const MyProfileEdit = () => {
 export default MyProfileEdit;
 
 const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error }) => {
+
   const dispatch = useDispatch();
+
   const [attendeeData, setAttendeeData] = useState(attendee);
+
   useEffect(() => {
     setAttendeeData({
       ...attendeeData,
@@ -67,6 +74,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.country) { return { label: item.name, value: item.id } } return ack; }, {}),
     });
   }, []);
+
   const updateAttendeeFeild = (e) => {
     const { name, value } = e.currentTarget;
     console.log(value);
@@ -75,6 +83,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       [name]: value,
     });
   };
+
   const updateAttendeeInfoFeild = (e) => {
     const { name, value } = e.currentTarget;
     console.log(value);
@@ -86,12 +95,14 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
     });
   };
+
   const updateDate = (obj) => {
     setAttendeeData({
       ...attendeeData,
       [obj.name]: obj.item.format("YYYY-MM-DD"),
     });
   };
+
   const updateInfoDate = (obj) => {
     setAttendeeData({
       ...attendeeData,
@@ -101,12 +112,14 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
     });
   };
+
   const updateSelect = (obj) => {
     setAttendeeData({
       ...attendeeData,
       [obj.name]: obj.item,
     });
   };
+
   const updateInfoSelect = (obj) => {
     setAttendeeData({
       ...attendeeData,
@@ -688,4 +701,5 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       </div>
     </div>
   );
+
 };
