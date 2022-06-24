@@ -2,8 +2,6 @@ import React from 'react';
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 
-
-
 class MyDTPicker extends React.Component {
   render() {
     return <Datetime onChange={this.props.onChange} value={this.props.value} timeFormat={this.props.showtime} dateFormat={this.props.showdate} inputProps={{ placeholder: this.props.placeholder, required: this.props.required }} renderInput={this.renderInput} />;

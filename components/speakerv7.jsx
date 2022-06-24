@@ -20,7 +20,7 @@ export default class speakerv7 extends Component {
                   className="edgtf-section-subtitle"
                 >
                   A schedule at a glance is listed below. Check the program for
-                  this year's conference and learn about the speakers and
+                  this year\'s conference and learn about the speakers and
                   sessions in store for tech enthusiasts.
                 </h6>
               </div>
@@ -53,7 +53,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -227,7 +227,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default class speakerv7 extends Component {
                       <a href="#!"><span data-icon="&#xe0b4;"></span></a>
                       <a href="#!"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span class="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>

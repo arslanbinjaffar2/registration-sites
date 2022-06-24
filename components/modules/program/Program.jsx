@@ -17,7 +17,7 @@ const loadModule = (theme) => {
 };
 
 const Program = (props) => {
-  // const initialMount = useRef(true);
+
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
@@ -28,11 +28,11 @@ const Program = (props) => {
     () => loadModule(event.theme.slug),
     [event]
   );
-  const { programs, tracks,  labels } = useSelector(programSelector);
+  const { programs, tracks, labels } = useSelector(programSelector);
 
 
   useEffect(() => {
-    if(programs === null){
+    if (programs === null) {
       dispatch(fetchPrograms(eventUrl));
       dispatch(incrementLoadCount());
     }
@@ -43,10 +43,10 @@ const Program = (props) => {
     <Suspense fallback={''}>
       {programs ? (
         <React.Fragment>
-          <Component programs={programs} tracks={tracks} siteLabels={event.labels} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
+          <Component programs={programs} tracks={tracks} siteLabels={event.labels} eventUrl={eventUrl} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
         </React.Fragment>
-       ) :  null 
-     }
+      ) : null
+      }
     </Suspense>
   );
 };

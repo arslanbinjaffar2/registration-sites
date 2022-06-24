@@ -54,7 +54,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                   </ActiveLink>
                 }
                 {item.page_type === 2 &&
-                  <a href={`${item.website_protocol}${item.url}`} target="_blank"  >{item.info.name}</a>
+                  <a href={`${item.website_protocol}${item.url}`} target="_blank" rel="noreferrer"  >{item.info.name}</a>
                 }
                 {item.page_type === "menu" &&
                   <a href="#!" onClick={(e) => { onCrumbClick(e, item) }}>
@@ -71,7 +71,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                           </ActiveLink>
                         }
                         {subitem.page_type === 2 &&
-                          <a href={`${subitem.website_protocol}${subitem.url}`} target="_blank"  >{subitem.info.name}</a>
+                          <a href={`${subitem.website_protocol}${subitem.url}`} target="_blank" rel="noreferrer"  >{subitem.info.name}</a>
                         }
                       </li>
                     ))}

@@ -22,7 +22,7 @@ const Variation2 = ({ programs }) => {
                 className="edgtf-section-subtitle"
               >
                 A schedule at a glance is listed below. Check the program for
-                this year's conference and learn about the speakers and sessions
+                this year\'s conference and learn about the speakers and sessions
                 in store for tech enthusiasts.
               </h6>
             </div>

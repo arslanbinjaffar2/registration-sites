@@ -110,7 +110,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                       <div className="social-icons">
                                         {attendee.info.facebook && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
                                           >
                                             <span data-icon="&#xe0aa;"></span>
@@ -118,7 +118,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                         )}
                                         {attendee.info.twitter && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
                                           >
                                             <span data-icon="&#xe0ab;"></span>
@@ -126,7 +126,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                         )}
                                         {attendee.info.linkedin && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
                                           >
                                             <span data-icon="&#xe0b4;"></span>
@@ -134,7 +134,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                         )}
                                         {attendee.info.website && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${attendee.info.website_protocol}${attendee.info.website}`}
                                           >
                                             <span data-icon="&#xe0e3;"></span>

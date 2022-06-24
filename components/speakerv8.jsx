@@ -20,7 +20,7 @@ export default class speakerv8 extends Component {
                   className="edgtf-section-subtitle"
                 >
                   A schedule at a glance is listed below. Check the program for
-                  this year's conference and learn about the speakers and
+                  this year\'s conference and learn about the speakers and
                   sessions in store for tech enthusiasts.
                 </h6>
               </div>

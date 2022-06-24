@@ -126,7 +126,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           {exhibitor.facebook && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${exhibitor.facebook}`}
                             >
                               <span data-icon="&#xe0aa;"></span>
@@ -135,7 +135,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           {exhibitor.twitter && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${exhibitor.twitter}`}
                             >
                               <span data-icon="&#xe0ab;"></span>
@@ -144,7 +144,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           {exhibitor.linkedin && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${exhibitor.linkedin}`}
                             >
                               <span data-icon="&#xe0b4;"></span>
@@ -153,7 +153,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           {exhibitor.website && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${exhibitor.website}`}
                             >
                               <span data-icon="&#xe0e3;"></span>

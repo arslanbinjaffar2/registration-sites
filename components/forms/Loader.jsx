@@ -1,13 +1,6 @@
 import * as React from 'react';
 
-type props = {
-    className?: any;
-    fixed?: any;
-    title?: any;
-    description?: any;
-}
-
-const Loader = ({ className, fixed, title, description }: props) => {
+const Loader = ({ className, fixed, title, description }) => {
     return (
         <div id="loader-wrapper" className={`${className && className} ${fixed && 'popup-fixed'}`}>
             {className ? (

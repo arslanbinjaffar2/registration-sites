@@ -120,7 +120,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           {sponsor.facebook && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${sponsor.facebook}`}
                             >
                               <span data-icon="&#xe0aa;"></span>
@@ -129,7 +129,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           {sponsor.twitter && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${sponsor.twitter}`}
                             >
                               <span data-icon="&#xe0ab;"></span>
@@ -138,7 +138,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           {sponsor.linkedin && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${sponsor.linkedin}`}
                             >
                               <span data-icon="&#xe0b4;"></span>
@@ -147,7 +147,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           {sponsor.website && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${sponsor.website}`}
                             >
                               <span data-icon="&#xe0e3;"></span>

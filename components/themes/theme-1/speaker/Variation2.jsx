@@ -110,7 +110,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                       <div className="social-icons">
                                         {speaker.info.facebook && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
                                           >
                                             <span data-icon="&#xe0aa;"></span>
@@ -118,7 +118,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                         )}
                                         {speaker.info.twitter && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
                                           >
                                             <span data-icon="&#xe0ab;"></span>
@@ -126,7 +126,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                         )}
                                         {speaker.info.linkedin && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                                           >
                                             <span data-icon="&#xe0b4;"></span>
@@ -134,7 +134,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                         )}
                                         {speaker.info.website && (
                                           <a
-                                            target="_blank"
+                                            target="_blank" rel="noreferrer"
                                             href={`${speaker.info.website_protocol}${speaker.info.website}`}
                                           >
                                             <span data-icon="&#xe0e3;"></span>

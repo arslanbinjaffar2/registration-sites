@@ -118,7 +118,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                             <a
                               href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
                               download
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               style={{
                                 border: "none !important",
                                 float: "left",
@@ -135,7 +135,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                             <a
                               href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
                               className="link_infobooth"
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               download
                             >
                               <span>View Document</span>

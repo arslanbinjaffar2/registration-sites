@@ -106,7 +106,7 @@ function DocumentsListing({documents}) {
                      </div>
                      }
                      {(item['directory_id'] !== undefined) &&
-                        <a  href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank">                 
+                        <a  href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
                             <div className="row d-flex align-items-center">
                                 <div className="col-6 col-sm-8 col-lg-9">
                                     <div className="ebs-title" >

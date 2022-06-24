@@ -141,7 +141,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           {speaker.info && speaker.info.facebook && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
                             >
                               <span data-icon="&#xe0aa;"></span>
@@ -150,7 +150,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           {speaker.info && speaker.info.twitter && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
                             >
                               <span data-icon="&#xe0ab;"></span>
@@ -159,7 +159,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           {speaker.info && speaker.info.linkedin && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                             >
                               <span data-icon="&#xe0b4;"></span>
@@ -168,7 +168,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           {speaker.info && speaker.info.website && (
                             <a
                               style={{ fontSize: "30px" }}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                               href={`${speaker.info.website_protocol}${speaker.info.website}`}
                             >
                               <span data-icon="&#xe0e3;"></span>
