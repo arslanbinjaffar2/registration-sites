@@ -68,13 +68,15 @@ class Variation7 extends React.Component {
   handleScroll = () => {
     if (typeof window !== 'undefined') {
       const _app = document.getElementById("App");
-      const _theme = document.getElementById("ebs-header-master").classList.contains('ebs-fixed-header');
-      if (window.scrollY > 350) {
-        _app.classList.add("ebs-header-sticky");
-        _app.style.paddingTop = (_theme) ? 0 : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight + 'px'
-      } else {
-        _app.classList.remove("ebs-header-sticky");
-        _app.style.paddingTop = 0 + 'px'
+      if (document.getElementById("ebs-header-master") !== undefined) {
+        const _theme = document.getElementById("ebs-header-master").classList.contains('ebs-fixed-header');
+        if (window.scrollY > 350) {
+          _app.classList.add("ebs-header-sticky");
+          _app.style.paddingTop = (_theme) ? 0 : document.querySelectorAll("#App > .ebs-header-main-wrapper")[0].offsetHeight + 'px'
+        } else {
+          _app.classList.remove("ebs-header-sticky");
+          _app.style.paddingTop = 0 + 'px'
+        }
       }
     }
   };

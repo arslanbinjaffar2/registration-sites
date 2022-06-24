@@ -174,25 +174,25 @@ const searchThroughProgram = (programs, searchText) => {
       else {
         let add = false;
 
-        if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-          program.description.toLowerCase().indexOf(searchText) !== -1 ||
-          program.location.toLowerCase().indexOf(searchText) !== -1
+        if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
+          program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
+          program.location && program.location.toLowerCase().indexOf(searchText) !== -1
         ) {
           add = true;
         }
 
-        if (program.program_tracks.length > 0) {
-          const trackSearch = program.program_tracks.filter((track) => (track.name.toLowerCase().indexOf(searchText) !== -1));
+        if (program.program_tracks && program.program_tracks.length > 0) {
+          const trackSearch = program.program_tracks.filter((track) => (track.name && track.name.toLowerCase().indexOf(searchText) !== -1));
           if (trackSearch.length > 0) {
             add = true;
           }
         }
 
-        if (program.program_speakers.length > 0) {
-          const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-            speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-            (speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-            (speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
+        if (program && program.program_speakers && program.program_speakers.length > 0) {
+          const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name && speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
+          speaker.last_name && speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
+            (speaker && speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
+            (speaker && speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
           if (trackSearch.length > 0) {
             add = true;
           }
