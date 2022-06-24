@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -13,10 +12,6 @@ const loadModule = (theme) => {
 };
 
 const CmsListing = (props) => {
-
-  const router = useRouter();
-
-  const { id } = router.query;
 
   const { event } = useSelector(eventSelector);
 

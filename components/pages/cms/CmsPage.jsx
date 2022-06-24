@@ -6,10 +6,10 @@ const CmsPage = (props) => {
 
   const router = useRouter();
 
-  const { id } = router.query;
-
+  const { menu_id } = router.query;
+  
   return (
-    <CmsListing moduleName={props.module} menu_id={id} />
+    <CmsListing moduleName={props.module} menu_id={menu_id} />
   );
 
 };
