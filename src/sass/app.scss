@@ -2768,3 +2768,30 @@
     }
   }
 }
+.ebs-register-now-v5 {
+  .ebs-register-now-sec {
+    .ebs-countdown-wrapp {
+      padding: 0;
+      .countdown-amount {
+        font-size: 50px;
+      }
+    }
+    .ebs-ticket-remaning {
+      padding-bottom: 0;
+      @include ipad-landscape {
+        justify-content: center;
+        padding: 30px 0;
+      }
+      .ebs-ticket-counter {
+        font-size: 50px;
+      }
+    }
+    .row {
+      .col-lg-8 {
+        @include phone-landscape{
+          display: block !important;
+        }
+      }
+    }
+  }
+}
