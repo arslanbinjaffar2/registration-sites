@@ -23,7 +23,7 @@ const SponsorPopup = ({ width, onClick, data, eventUrl }) => {
                             <figure>
                                 {data.logo && data.logo !== '' ? (
                                     <img style={{ width: '90%' }}
-                                        src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + data.logo}
+                                        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + data.logo}
                                         className="vc_single_image-img attachment-full"
                                         alt="x"
                                     />

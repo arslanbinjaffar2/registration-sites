@@ -45,7 +45,7 @@ export const fetchExhibitor = (url, exhibitor_id) => {
   return async (dispatch) => {
     dispatch(getExhibitor());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/exhibitor-detail/${exhibitor_id}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/exhibitor-detail/${exhibitor_id}`);
       const res = await response.json();
       dispatch(setExhibitor(res));
       dispatch(incrementFetchLoadCount());

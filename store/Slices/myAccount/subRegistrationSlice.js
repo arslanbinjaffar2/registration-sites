@@ -51,7 +51,7 @@ export const fetchSubRegistrationData = (id, url) => {
   return async dispatch => {
     dispatch(getSubRegistrationData())
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sub-registration-after-login`, { headers: header("GET", id) })
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sub-registration-after-login`, { headers: header("GET", id) })
       const res = await response.json()
       if (res.data.questions.question.length <= 0) {
         dispatch(setSkip());
@@ -69,7 +69,7 @@ export const updateSubRegistrationData = (id, url, data) => {
     dispatch(getSubRegistrationData())
     try {
       console.log(data)
-      const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
+      const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
       if (response.data.data) {
         dispatch(setSkip());
       }

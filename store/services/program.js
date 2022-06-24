@@ -4,7 +4,7 @@ import { objectToArray } from '../../app/helpers/helper'
 // Define a service using a base URL and expected endpoints
 export const programApi = createApi({
   reducerPath: 'programApi',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_URL}),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_APP_URL}),
   endpoints: (builder) => ({
     getPrograms: builder.query({
       query: (path) => {

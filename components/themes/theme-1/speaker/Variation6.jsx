@@ -24,7 +24,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                             <img
                               onLoad={(e) => e.target.style.opacity = 1}
                               src={
-                                process.env.REACT_APP_EVENTCENTER_URL +
+                                process.env.NEXT_APP_EVENTCENTER_URL +
                                 "/assets/attendees/" +
                                 speaker.image
                               }

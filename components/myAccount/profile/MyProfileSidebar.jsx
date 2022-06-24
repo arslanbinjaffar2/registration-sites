@@ -75,7 +75,7 @@ const MyProfileSidebar = (props) => {
         <div onClick={handleClick} className={`${toggleMenu ? 'ebs-active-state' : ''} ebs-sideber-icon`}>
           {isAuthenticated.user.image && isAuthenticated.user.image !== "" ? (
             <img className="ebs-image-solid" src={
-              process.env.REACT_APP_EVENTCENTER_URL +
+              process.env.NEXT_APP_EVENTCENTER_URL +
               "/assets/attendees/" +
               isAuthenticated.user.image
             } alt="" />

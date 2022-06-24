@@ -42,7 +42,7 @@ export const fetchCmsPage = (url, module_name, cms_id) => {
   return async (dispatch) => {
     dispatch(getCms());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/${module_name}/page/${cms_id}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/${module_name}/page/${cms_id}`);
       const res = await response.json();
       dispatch(setCms(res));
       dispatch(incrementFetchLoadCount());

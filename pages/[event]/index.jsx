@@ -29,15 +29,15 @@ const Index = () => {
                             content={
                                 event.settings.social_media_logo &&
                                     event.settings.social_media_logo !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/event/social_media/" +
                                     event.settings.social_media_logo
                                     : event.settings.header_logo &&
                                         event.settings.header_logo !== ""
-                                        ? process.env.REACT_APP_EVENTCENTER_URL +
+                                        ? process.env.NEXT_APP_EVENTCENTER_URL +
                                         "/assets/event/branding/" +
                                         event.settings.header_logo
-                                        : process.env.REACT_APP_EVENTCENTER_URL +
+                                        : process.env.NEXT_APP_EVENTCENTER_URL +
                                         "/_eventsite_assets/images/eventbuizz_logo-1.png"
                             }
                         />
@@ -46,15 +46,15 @@ const Index = () => {
                             content={
                                 event.settings.social_media_logo &&
                                     event.settings.social_media_logo !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/event/social_media/" +
                                     event.settings.social_media_logo
                                     : event.settings.header_logo &&
                                         event.settings.header_logo !== ""
-                                        ? process.env.REACT_APP_EVENTCENTER_URL +
+                                        ? process.env.NEXT_APP_EVENTCENTER_URL +
                                         "/assets/event/branding/" +
                                         event.settings.header_logo
-                                        : process.env.REACT_APP_EVENTCENTER_URL +
+                                        : process.env.NEXT_APP_EVENTCENTER_URL +
                                         "/_eventsite_assets/images/eventbuizz_logo-1.png"
                             }
                         />
@@ -74,7 +74,7 @@ const Index = () => {
                             type="image/x-icon"
                             href={
                                 event.settings.app_icon && event.settings.app_icon !== ""
-                                    ? process.env.REACT_APP_EVENTCENTER_URL +
+                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/event/branding/" +
                                     event.settings.app_icon
                                     : require("public/img/square.jpg")

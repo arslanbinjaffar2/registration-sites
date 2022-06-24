@@ -45,7 +45,7 @@ export const fetchExhibitors = (url) => {
   return async (dispatch) => {
     dispatch(getExhibitors());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/exhibitors-listing`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/exhibitors-listing`);
       const res = await response.json();
       dispatch(setExhibitors(res));
       setTimeout(()=>{

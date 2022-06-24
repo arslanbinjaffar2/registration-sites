@@ -41,7 +41,7 @@ export const fetchSurveyData = (id, url,survey_id) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-detail/${survey_id}`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-detail/${survey_id}`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSurveyData(res.data))
       } catch (error) {
@@ -53,7 +53,7 @@ export const updateSurveyData = (id, url, survey_id, data) => {
     return async dispatch => {
       dispatch(getSurveyData())
       try {
-        const response =  await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
+        const response =  await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

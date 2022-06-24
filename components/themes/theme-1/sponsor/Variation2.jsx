@@ -24,7 +24,7 @@ const Variation2 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
                                 <figure onClick={() => { setData(sponsor); setPopup(true) }} className="bghover">
                                     {sponsor.logo && sponsor.logo !== '' ? (
                                         <img
-                                            src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
+                                            src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
                                             className="vc_single_image-img attachment-full"
                                             alt="x"
                                         />

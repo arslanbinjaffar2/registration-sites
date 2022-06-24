@@ -85,7 +85,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 													onMouseDown={e => handleOnMouseDown(e)}
 													onClick={e => handleOnClick(e, sponsor)}
 													src={
-														process.env.REACT_APP_EVENTCENTER_URL +
+														process.env.NEXT_APP_EVENTCENTER_URL +
 														"/assets/sponsors/" +
 														sponsor.logo
 													}

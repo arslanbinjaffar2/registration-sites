@@ -54,7 +54,7 @@ export const fetchPhotos = (url, page, limit, home) => {
     dispatch(getPhotos({page}));
     let endPoint = `/event/${url}/photos?page=${page}&limit=${limit}`;
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setPhotos(res));
       if(home){

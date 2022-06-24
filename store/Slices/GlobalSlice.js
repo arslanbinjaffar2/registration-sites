@@ -76,7 +76,7 @@ export const fetchBanner = (url) => {
     dispatch(getBanner());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_URL}/event/${url}/banner`
+        `${process.env.NEXT_APP_URL}/event/${url}/banner`
       );
       const res = await response.json();
       dispatch(setBanner(res.data));

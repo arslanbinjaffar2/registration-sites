@@ -45,7 +45,7 @@ export const fetchSponsor = (url, sponsor_id) => {
   return async (dispatch) => {
     dispatch(getSponsor());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsor-detail/${sponsor_id}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sponsor-detail/${sponsor_id}`);
       const res = await response.json();
       dispatch(setSponsor(res));
       dispatch(incrementFetchLoadCount());

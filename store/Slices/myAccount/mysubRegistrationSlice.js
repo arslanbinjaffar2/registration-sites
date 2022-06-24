@@ -39,7 +39,7 @@ export const fetchSubRegistrationData = (id,url) => {
     return async dispatch => {
       dispatch(getSubRegistrationData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/my-sub-registration`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/my-sub-registration`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSubRegistrationData(res.data))
       } catch (error) {
@@ -52,7 +52,7 @@ export const updateSubRegistrationData = (id, url, data) => {
       dispatch(getSubRegistrationData())
       try {
         console.log(data)
-        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/save-sub-registration`, { headers:header("POST", id)})
+        const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

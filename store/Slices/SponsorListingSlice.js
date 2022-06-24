@@ -45,7 +45,7 @@ export const fetchSponsors = (url) => {
   return async (dispatch) => {
     dispatch(getSponsors());    
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/sponsors-listing`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sponsors-listing`);
       const res = await response.json();
       dispatch(setSponsors(res));
       setTimeout(()=>{

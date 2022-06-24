@@ -9,7 +9,7 @@ const Variation5 = ({ banner, event, countdown }) => {
       return (
         <div
           style={{
-            backgroundImage: `url(${process.env.REACT_APP_EVENTCENTER_URL + props.slides.image
+            backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image
               })`,
             backgroundPosition: "50% 0",
           }}
@@ -44,7 +44,7 @@ const Variation5 = ({ banner, event, countdown }) => {
               >
                 {Number(slides.video_type) === 2 && (
                   <div className="video-fullscreen">
-                    <video autoPlay playsInline muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                    <video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
                   </div>
                 )}
                 <div className="caption-wrapp">

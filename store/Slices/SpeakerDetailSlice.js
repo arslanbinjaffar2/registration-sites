@@ -44,7 +44,7 @@ export const fetchSpeakerDetail = (url, id) => {
     dispatch(getSpeaker());
     let endPoint = `/event/${url}/speakers/${id}`; 
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setSpeaker(res));
       dispatch(incrementFetchLoadCount());

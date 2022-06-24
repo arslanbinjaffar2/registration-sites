@@ -39,7 +39,7 @@ export const fetchNewsletterData = (id, url) => {
     return async dispatch => {
       dispatch(getNewsletterData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/newsletter-subscription`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/newsletter-subscription`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setNewsletterData(res.data))
       } catch (error) {
@@ -51,7 +51,7 @@ export const updateNewsLetterData = (id, url, data) => {
     return async dispatch => {
       dispatch(getNewsletterData())
       try {
-        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-newsletter-subscription`, data, { headers:header("POST", id)})
+        const response = await axios.put(`${process.env.NEXT_APP_URL}/event/${url}/update-newsletter-subscription`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))

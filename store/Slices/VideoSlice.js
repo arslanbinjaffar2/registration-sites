@@ -54,7 +54,7 @@ export const fetchVideos = (url, page, limit, home) => {
     dispatch(getVideos({page}));
     let endPoint = `/event/${url}/videos?page=${page}&limit=${limit}`;
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setVideos(res));
       if(home){

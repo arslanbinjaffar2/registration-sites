@@ -38,7 +38,7 @@ export const fetchSurveyListData = (id, url) => {
     return async dispatch => {
       dispatch(getSurveyListData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSurveyListData(res.data))
       } catch (error) {

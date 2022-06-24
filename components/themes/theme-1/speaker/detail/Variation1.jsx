@@ -38,7 +38,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                       <img
                         onLoad={(e) => e.target.style.opacity = 1}
                         src={
-                          process.env.REACT_APP_EVENTCENTER_URL +
+                          process.env.NEXT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
                           speaker.image
                         }

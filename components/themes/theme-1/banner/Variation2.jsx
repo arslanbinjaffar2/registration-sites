@@ -84,7 +84,7 @@ const Variation2 = ({ banner }) => {
           data-fixed="false"
           ref={_parallax}
           style={{
-            backgroundImage: `url(${process.env.REACT_APP_EVENTCENTER_URL + props.data.image
+            backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image
               })`,
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"

@@ -52,7 +52,7 @@ export const fetchSpeakers = (url, page, limit, search, mount, home) => {
       endPoint = `/event/${url}/speakers?page=${page}&limit=${limit}&home=true`;
     }
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setSpeakers(res));
       if (mount) {

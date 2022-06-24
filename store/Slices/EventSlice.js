@@ -34,7 +34,7 @@ export const fetchEvent = (url) => {
   return async dispatch => {
     dispatch(getEvent())
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}`)
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}`)
       const res = await response.json()
       // const count = res.data.eventsiteSections.filter((i)=> i.status === 1).length;
       // dispatch(setLoadCount(count))

@@ -93,7 +93,7 @@ const Variation1 = ({ programs }) => {
                                               <img
                                                 src={
                                                   process.env
-                                                    .REACT_APP_EVENTCENTER_URL +
+                                                    .NEXT_APP_EVENTCENTER_URL +
                                                   "/assets/attendees/" +
                                                   speaker.image
                                                 }

@@ -47,8 +47,8 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                       url={`${window.location}`}
                       media={
                         news.image
-                          ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/eventsite_news/${news.image}`
-                          : `${process.env.REACT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`
+                          ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/eventsite_news/${news.image}`
+                          : `${process.env.NEXT_APP_EVENTCENTER_URL}/_admin_assets/images/header_logo_size_image.jpg`
                       }
                     >
                       <PinterestIcon size={32} round={true} title="Pinterest" />
@@ -66,7 +66,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                           <img
                             onLoad={(e) => e.target.style.opacity = 1}
                             src={
-                              process.env.REACT_APP_EVENTCENTER_URL +
+                              process.env.NEXT_APP_EVENTCENTER_URL +
                               "/assets/eventsite_news/" +
                               news.image
                             }
@@ -147,7 +147,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                   title="test"
                   itemProp="description"
                   className="edgtf-post-excerpt"
-                  src={`${process.env.REACT_APP_URL}/event/${event.url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                  src={`${process.env.NEXT_APP_URL}/event/${event.url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
                 />
               </div>
             </div>

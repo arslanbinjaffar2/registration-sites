@@ -42,7 +42,7 @@ export const fetchPrograms = (url) => {
     dispatch(getPrograms());
     let endPoint = `/event/${url}/programs`;
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setPrograms({data:res.data, labels:res.labels}));
       dispatch(incrementLoadedSection())

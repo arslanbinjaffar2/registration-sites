@@ -62,7 +62,7 @@ export const fetchProfileData = (id, url) => {
     return async dispatch => {
       dispatch(getProfileData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/attendee/profile`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile`, { headers:header("GET", id)})
         const res = await response.json()
         console.log(res);
         dispatch(clearError())
@@ -78,7 +78,7 @@ export const updateProfileData = (id, url, data) => {
       console.log(data)
       dispatch(getProfileData())
       try {
-        const response = await axios.post(`${process.env.REACT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers:header("POST", id)})
+        const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers:header("POST", id)})
         if(response.data.status === 1){
           dispatch(setAlert(response.data.message))
           dispatch(setLoading())

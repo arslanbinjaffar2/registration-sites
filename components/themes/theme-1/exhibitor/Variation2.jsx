@@ -24,7 +24,7 @@ const Variation2 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
                                     {
                                         exhibitor.logo && exhibitor.logo !== '' ? (
                                             <img
-                                                src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo}
+                                                src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo}
                                                 className="vc_single_image-img attachment-full"
                                                 alt="x"
                                             />

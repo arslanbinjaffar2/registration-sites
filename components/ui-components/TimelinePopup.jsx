@@ -40,7 +40,7 @@ const TimelinePopup = ({ width, onClick, data }) => {
 										<img
 											onLoad={(e) => e.target.style.opacity = 1}
 											src={
-												process.env.REACT_APP_EVENTCENTER_URL +
+												process.env.NEXT_APP_EVENTCENTER_URL +
 												"/assets/attendees/" +
 												speakers.image
 											} alt="" />

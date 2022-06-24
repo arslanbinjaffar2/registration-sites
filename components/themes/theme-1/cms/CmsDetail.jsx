@@ -55,7 +55,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                             <img
                               onLoad={(e) => e.target.style.opacity = 1}
                               src={
-                                process.env.REACT_APP_EVENTCENTER_URL +
+                                process.env.NEXT_APP_EVENTCENTER_URL +
                                 `/assets/${informationModules[moduleName]}/` +
                                 detail.image
                               }
@@ -116,7 +116,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                         {detail.pdf && (
                           <div className="infobooth-pdf">
                             <a
-                              href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
+                              href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
                               download
                               target="_blank" rel="noreferrer"
                               style={{
@@ -127,13 +127,13 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                               <img
                                 alt=""
                                 className="infoBoothImage"
-                                src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/pdf.png`}
+                                src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/pdf.png`}
                                 width="40"
                                 style={{ border: "none !important" }}
                               />
                             </a>
                             <a
-                              href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
+                              href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
                               className="link_infobooth"
                               target="_blank" rel="noreferrer"
                               download
@@ -151,7 +151,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                             <img
                               onLoad={(e) => e.target.style.opacity = 1}
                               src={
-                                process.env.REACT_APP_EVENTCENTER_URL +
+                                process.env.NEXT_APP_EVENTCENTER_URL +
                                 `/assets/${informationModules[moduleName]}/` +
                                 detail.image
                               }

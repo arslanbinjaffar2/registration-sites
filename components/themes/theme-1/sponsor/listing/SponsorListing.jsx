@@ -118,7 +118,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                       <ActiveLink href={`/${eventUrl}/sponsors/${sponsor.id}`}>
                         <figure>
                           {sponsor.logo && sponsor.logo !== '' ? (
-                            <img src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
+                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
                           ) : (
                             <Image src={require('public/img/exhibitors-default.png')} alt="" />
                           )}

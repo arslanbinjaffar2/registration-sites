@@ -34,7 +34,7 @@ const MyProfile = () => {
                     <div className="ebs-my-profile-image">
                       {attendee.image && attendee.image !== "" ? (
                         <img className="ebs-image-solid" src={
-                          process.env.REACT_APP_EVENTCENTER_URL +
+                          process.env.NEXT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
                           attendee.image
                         } alt="" />

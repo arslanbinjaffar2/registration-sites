@@ -9,7 +9,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
 
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
+      return process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
     } else {
       return "public/img/gallery-not-found.png"
     }
@@ -41,7 +41,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                             {photo.image && photo.image !== "" ? (
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
-                                src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
+                                src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
                                 alt="g"
                               />
                             ) : (

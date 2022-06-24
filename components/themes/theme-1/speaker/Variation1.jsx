@@ -9,7 +9,7 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
 
   const WrapperLayout = ({ children }) => {
 
-    const _bgimage = `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
     if (settings && settings.background_image !== "") {
       return (
@@ -74,7 +74,7 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                 <img
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   src={
-                                    process.env.REACT_APP_EVENTCENTER_URL +
+                                    process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/attendees/" +
                                     speaker.image
                                   }

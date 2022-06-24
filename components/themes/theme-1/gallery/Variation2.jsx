@@ -11,7 +11,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
 
   const imgUrl = (photo) => {
     if (photo.image && photo.image !== "") {
-      return process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
+      return process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image
     } else {
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
@@ -51,7 +51,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                             {photo.image && photo.image !== "" ? (
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
-                                src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
+                                src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
                                 alt="g"
                               />
                             ) : (

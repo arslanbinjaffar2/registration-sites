@@ -88,7 +88,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 														onClick={e => handleOnClick(e, exhibitor)}
 														src={
 
-															process.env.REACT_APP_EVENTCENTER_URL +
+															process.env.NEXT_APP_EVENTCENTER_URL +
 															"/assets/exhibitors/" +
 															exhibitor.logo
 														}

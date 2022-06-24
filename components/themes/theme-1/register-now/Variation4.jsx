@@ -50,7 +50,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
 
     if (props.moduleVariation.background_image !== '') {
       return (
-        <div style={{ backgroundImage: `url(${process.env.REACT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, padding: "80px 0", backgroundPosition: "center", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder">
+        <div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, padding: "80px 0", backgroundPosition: "center", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder">
           {props.children}
         </div>
       );

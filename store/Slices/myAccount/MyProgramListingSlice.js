@@ -51,7 +51,7 @@ export const fetchMyPrograms = (url, id) => {
     dispatch(getMyPrograms());
     let endPoint = `/event/${url}/get-attendee-programs`;
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`, { headers:header("GET", id)});
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`, { headers:header("GET", id)});
       const res = await response.json();
       dispatch(setMyPrograms({data:res.data, labels:res.labels}));
       dispatch(incrementFetchLoadCount());

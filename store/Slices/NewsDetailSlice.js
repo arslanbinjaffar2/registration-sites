@@ -44,7 +44,7 @@ export const fetchNewsDetail = (url,  id) => {
     dispatch(getNews());
     let endPoint = `/event/${url}/news/${id}/detail`; 
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setNews(res));
       dispatch(incrementFetchLoadCount());

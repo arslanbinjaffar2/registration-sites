@@ -164,12 +164,12 @@ class Variation7 extends React.Component {
                 <ActiveLink href={`/${event.url}`}>
                   {event.settings.header_logo ? (
                     <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
+                      src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
                       alt=""
                     />
                   ) : (
                     <img
-                      src={`${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
+                      src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
                       alt=""
                     />
                   )}

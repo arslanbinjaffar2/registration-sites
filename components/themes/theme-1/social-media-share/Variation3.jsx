@@ -34,7 +34,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
 
   const WrapperLayout = ({ children }) => {
 
-    const _bgimage = `${process.env.REACT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
     if (settings && settings.background_image !== "") {
       return (
@@ -81,8 +81,8 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
-                ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
-                : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
+                ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
+                : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
             <PinterestIcon size={120} bgStyle={{ fill: 'transparent' }}

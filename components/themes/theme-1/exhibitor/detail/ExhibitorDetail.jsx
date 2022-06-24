@@ -40,7 +40,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           onClick={e => handleOnClick(e, exhibitor)}
                           src={
 
-                            process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo
+                            process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo
                           }
                           alt="Client 11"
                         />
@@ -185,7 +185,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                         onLoad={(e) => e.target.style.opacity = 1}
                         style={{ width: '90%' }}
                         src={
-                          process.env.REACT_APP_EVENTCENTER_URL +
+                          process.env.NEXT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
                           attendee.image
                         }

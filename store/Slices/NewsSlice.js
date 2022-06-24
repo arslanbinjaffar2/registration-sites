@@ -46,7 +46,7 @@ export const fetchNews = (url, page, limit, mount) => {
     dispatch(getNews({page, mount}));
     let endPoint = `/event/${url}/news?page=${page}&limit=${limit}`;
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setNews(res));
       if (mount) {

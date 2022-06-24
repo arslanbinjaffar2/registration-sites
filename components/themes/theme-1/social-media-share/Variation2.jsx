@@ -59,8 +59,8 @@ const Variation2 = ({ event, socialMediaShare, labels }) => {
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
-                ? `${process.env.REACT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
-                : `${process.env.REACT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
+                ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
+                : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
             }
           >
             <PinterestIcon size={120}

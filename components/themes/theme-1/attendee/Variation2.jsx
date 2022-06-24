@@ -33,7 +33,7 @@ const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                 <img
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   src={
-                                    process.env.REACT_APP_EVENTCENTER_URL +
+                                    process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/attendees/" +
                                     attendee.image
                                   }

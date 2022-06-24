@@ -40,7 +40,7 @@ export const fetchMap = (url) => {
     dispatch(getMap());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_URL}/event/${url}/map`
+        `${process.env.NEXT_APP_URL}/event/${url}/map`
       );
       const res = await response.json();
       console.log(res.data);

@@ -19,7 +19,7 @@ class Variation1 extends React.Component {
                                                 <React.Fragment>
                                                     <span className="edgtf-video-button-play" onClick={openPortal} >
                                                         <span className="edgtf-video-button-image">
-                                                            <img itemProp="image" src={video_data && video_data.thumnail && video_data.thumnail !== '' ? process.env.REACT_APP_EVENTCENTER_URL + '/assets/videos/' + video_data.thumnail : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/h1-image1.jpg"} alt="" />
+                                                            <img itemProp="image" src={video_data && video_data.thumnail && video_data.thumnail !== '' ? process.env.NEXT_APP_EVENTCENTER_URL + '/assets/videos/' + video_data.thumnail : "https://xpo.qodeinteractive.com/wp-content/uploads/2016/12/h1-image1.jpg"} alt="" />
                                                         </span>
                                                         <span className="edgtf-video-button-wrapper">
                                                             <span className="edgtf-video-button-wrapper-inner">
@@ -29,7 +29,7 @@ class Variation1 extends React.Component {
                                                     </span>
                                                     {portal(
                                                         <Videopopup
-                                                            url={video_data && video_data.type && Number(video_data.type) !== 5 ? video_data.URL : process.env.REACT_APP_EVENTCENTER_URL + '/assets/videos/' + video_data.video_path}
+                                                            url={video_data && video_data.type && Number(video_data.type) !== 5 ? video_data.URL : process.env.NEXT_APP_EVENTCENTER_URL + '/assets/videos/' + video_data.video_path}
                                                             onClose={closePortal} />
                                                     )}
                                                 </React.Fragment>

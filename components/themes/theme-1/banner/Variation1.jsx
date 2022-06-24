@@ -7,7 +7,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
-				<div style={{ backgroundImage: `url(${process.env.REACT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
 					{props.children}
 				</div>
 			);
@@ -35,7 +35,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 						>
 							{Number(slides.video_type) === 2 &&
 								<div className="video-fullscreen">
-									<video autoPlay playsInline muted loop src={`${process.env.REACT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+									<video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
 								</div>}
 							<div className="caption-wrapp">
 								<div className="col-12 align-items-center d-flex inner-caption-wrapp">

@@ -49,7 +49,7 @@ export const fetchAttendees = (url, page, limit, search, mount) => {
       endPoint = `/event/${url}/attendees?query=${search}&page=${page}&limit=${limit}`;
     }  
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setAttendees(res));
       if (mount) {

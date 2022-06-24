@@ -117,7 +117,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                       <ActiveLink href={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
                         <figure>
                           {exhibitor.logo && exhibitor.logo ? (
-                            <img src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
+                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
                           ) : (
                             <Image src={require('public/img/exhibitors-default.png')} alt="" />
                           )}

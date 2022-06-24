@@ -106,7 +106,7 @@ function DocumentsListing({documents}) {
                      </div>
                      }
                      {(item['directory_id'] !== undefined) &&
-                        <a  href={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
+                        <a  href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
                             <div className="row d-flex align-items-center">
                                 <div className="col-6 col-sm-8 col-lg-9">
                                     <div className="ebs-title" >
@@ -146,19 +146,19 @@ export default DocumentsListing;
 
 const FileImageByType = ({type, path}) => {
     if (type == "doc" || type == "docx") {
-      return  <img style={{marginRight:"5px"}} src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" className="img-responsive" />;
+      return  <img style={{marginRight:"5px"}} src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" className="img-responsive" />;
     } else if (type == "xls" || type == "xlsx" || type == "csv") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" className="img-responsive" />;
     } else if (type == "ppt" || type == "pptx") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" className="img-responsive" />;
     } else if (type == "pdf") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" className="img-responsive" />;
     } else if (type == "mp3" || type == "avi" || type == "mp4") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" className="img-responsive" />;
     } else if (type == "jpg" || type == "jpeg" || type == "png" || type == "gif") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" className="img-responsive" />;
     } else {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.REACT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
     }
 }
 

@@ -45,7 +45,7 @@ export const fetchAttendeeDetail = (url,  id) => {
     dispatch(getAttendee());
     let endPoint = `/event/${url}/attendees/${id}`; 
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL}${endPoint}`);
+      const response = await fetch(`${process.env.NEXT_APP_URL}${endPoint}`);
       const res = await response.json();
       dispatch(setAttendee(res));
       dispatch(incrementFetchLoadCount());

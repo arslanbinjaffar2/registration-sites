@@ -41,7 +41,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                                 <img
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   src={
-                                    process.env.REACT_APP_EVENTCENTER_URL +
+                                    process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/eventsite_news/" +
                                     item.image
                                   }
@@ -122,7 +122,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                   title="test"
                   itemProp="description"
                   className="edgtf-post-excerpt"
-                  src={`${process.env.REACT_APP_URL}/event/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
+                  src={`${process.env.NEXT_APP_URL}/event/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`}
                 />
               </div>
             </div>

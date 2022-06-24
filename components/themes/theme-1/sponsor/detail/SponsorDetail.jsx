@@ -36,7 +36,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                       <img
                         style={{ maxWidth: '90%', width: 'auto' }}
                         onLoad={(e) => e.target.style.opacity = 1}
-                        src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
+                        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
                         alt=""
                       />
                     ) : (
@@ -177,7 +177,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                       onLoad={(e) => e.target.style.opacity = 1}
                       style={{ width: '90%' }}
                       src={
-                        process.env.REACT_APP_EVENTCENTER_URL +
+                        process.env.NEXT_APP_EVENTCENTER_URL +
                         "/assets/attendees/" +
                         attendee.image
                       } alt="" />

@@ -32,7 +32,7 @@ const Variation7 = ({ videos, home, eventUrl, loadMore, siteLabels }) => {
                                 <img
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   style={{ width: "100%" }}
-                                  src={process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
+                                  src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
                                   alt="g"
                                 />
                               ) : (
@@ -58,7 +58,7 @@ const Variation7 = ({ videos, home, eventUrl, loadMore, siteLabels }) => {
                           </div>
                           {portal(
                             <Videopopup
-                              url={photo.video_path && process.env.REACT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
+                              url={photo.video_path && process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path}
                               onClose={closePortal} />
                           )}
                         </React.Fragment>

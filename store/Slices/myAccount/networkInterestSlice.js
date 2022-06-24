@@ -39,7 +39,7 @@ export const fetchKeywordsData = (id, url) => {
     return async dispatch => {
       dispatch(getInterestKeywordsData())
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL}/event/${url}/network-interest`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/network-interest`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setInterestKeywordsData(res.data))
       } catch (error) {
@@ -51,7 +51,7 @@ export const updateKeywordData = (id, url, data) => {
     return async dispatch => {
       dispatch(getInterestKeywordsData())
       try {
-        const response = await axios.put(`${process.env.REACT_APP_URL}/event/${url}/update-network-interest`, {keywords:data}, { headers:header("POST", id)})
+        const response = await axios.put(`${process.env.NEXT_APP_URL}/event/${url}/update-network-interest`, {keywords:data}, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {
         dispatch(setError(error))
