@@ -69,7 +69,7 @@ function DocumentsListing({documents}) {
   return (
     <React.Fragment>
         <PageHeader label={'My Documents'}  align={'left'} breadCrumbs={(type) => {
-                return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-breadcrumb-dark": ""}`}>
+                return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {
                                 breadCrumbs.map((crumb, i) => (

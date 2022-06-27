@@ -98,7 +98,7 @@ class Variation5 extends React.Component {
       document
         .getElementById("ebs-header-master")
         .classList.remove("ebs-light-header");
-      if (window.innerWidth >= 991) {
+      if (window.innerWidth >= 991 && document.getElementById("ebs-header-master").nextSibling.dataset) {
         var _nextSibling =
           document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
         if (_nextSibling === "true") {
