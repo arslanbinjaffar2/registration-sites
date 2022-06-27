@@ -6,31 +6,6 @@ import Image from 'next/image'
 const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
 
   const _parallax = useRef(null);
-
-  const WrapperLayout = ({ children }) => {
-
-    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
-
-    if (settings && settings.background_image !== "") {
-      return (
-        <div style={{ backgroundImage: `url(${_bgimage})`, padding: "50px 0", }}
-          className="edgtf-parallax-section-holder ebs-bg-holder"
-          ref={_parallax}>
-          {children}
-        </div>
-      );
-    } else {
-      return (
-        <div className="edgtf-parallax-section-holder ebs-bg-holder"
-          ref={_parallax}
-          style={{ padding: "50px 0", }}>
-          {children}
-        </div>
-      );
-    }
-
-  }
-
   useEffect(() => {
     window.addEventListener("scroll", scollEffect);
     return () => {
@@ -46,10 +21,16 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, s
     _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
   };
 
-  return (
-    <WrapperLayout
-    >
-      <div className="container">
+
+    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, padding: "50px 0" } : {}
+
+  
+      return (
+        <div style={bgStyle}
+          className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
       </div>
       {listing && searchBar()}
@@ -210,8 +191,9 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, s
         {listing && speakers.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {listing && speakers.length > 0 && loadMore()}
       </div>
-    </WrapperLayout>
-  );
+        </div>
+      );
+
 };
 
 export default Variation4;

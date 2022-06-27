@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = ({searchLabel, setValue, loading}) => {
+const SearchBar = ({searchLabel, setText, loading}) => {
   return (
     <div className={`container pb-5`}>
     <div className="ebs-form-control-search">
@@ -8,7 +8,7 @@ const SearchBar = ({searchLabel, setValue, loading}) => {
         className="form-control"
         placeholder={searchLabel}
         type="text"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {setText(e.currentTarget.value)}}
       />
         {!loading ? <em className="fa fa-search"></em> : <em className="fa fa-pulse fa-spinner"></em>}
     </div>

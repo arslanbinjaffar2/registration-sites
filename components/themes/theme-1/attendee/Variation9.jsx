@@ -3,6 +3,8 @@ import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
+
+
 const Variation9 = ({
   attendees,
   searchBar,
@@ -12,50 +14,28 @@ const Variation9 = ({
   siteLabels
 }) => {
 
-  const _parallax = useRef(null);
-
-  const WrapperLayout = ({ children }) => {
-
+    const _parallax = useRef(null);
+    useEffect(() => {
+      window.addEventListener("scroll", scollEffect);
+      return () => {
+        window.removeEventListener("scroll", scollEffect);
+      }
+    }, [])
+    function scollEffect() {
+      const scrolled = window.pageYOffset;
+      const itemOffset = _parallax.current.offsetTop;
+      const itemHeight = _parallax.current.getBoundingClientRect();
+      if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+      _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+    };
     const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
-
-    if (settings && settings.background_image !== "") {
-      return (
-        <div style={{ backgroundImage: `url(${_bgimage})`, padding: "50px 0" }}
+    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, padding: "50px 0" } : {}
+    return (
+      <div 
+          style={bgStyle}        
           className="edgtf-parallax-section-holder ebs-bg-holder"
           ref={_parallax}>
-          {children}
-        </div>
-      );
-    } else {
-      return (
-        <div className="edgtf-parallax-section-holder ebs-bg-holder" style={{ padding: "50px 0" }}
-          ref={_parallax}>
-          {children}
-        </div>
-      );
-    }
-
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", scollEffect);
-    return () => {
-      window.removeEventListener("scroll", scollEffect);
-    }
-  }, [])
-
-  function scollEffect() {
-    const scrolled = window.pageYOffset;
-    const itemOffset = _parallax.current.offsetTop;
-    const itemHeight = _parallax.current.getBoundingClientRect();
-    if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-    _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
-  };
-
-  return (
-    <WrapperLayout
-    >
-      <div className="container">
+          <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
       {searchBar()}
@@ -208,8 +188,10 @@ const Variation9 = ({
         {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {attendees.length > 0 && loadMore()}
       </div>
-    </WrapperLayout>
-  );
+        </div>
+      );
+    
+
 };
 
 export default Variation9;
