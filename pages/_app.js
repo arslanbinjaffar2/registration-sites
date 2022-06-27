@@ -27,7 +27,9 @@ function MyApp({ Component, pageProps }) {
   }, [_eventObj]);
 
   return (
-    <div id="App">
+    <React.Fragment>
+    {_eventObj.loading && <FullPageLoader className="fixed" />}
+    <div style={{transform: 'none'}} id="App">
       <Provider store={store}>
         {_eventObj.error && _eventObj.loading ? (
           <div id="App">
@@ -35,7 +37,6 @@ function MyApp({ Component, pageProps }) {
           </div>
         ) : (
           <>
-            {_eventObj.loading && <FullPageLoader className="fixed" />}
             {_eventObj.event && (
               <>
                 <Theme data={_eventObj.event} />
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }) {
         )}
       </Provider>
     </div>
+    </React.Fragment>
   );
 }
 

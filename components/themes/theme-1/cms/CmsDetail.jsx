@@ -33,7 +33,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner container">
         <div className={`${"edgtf-full-width-inner"} clearfix`}>
-          <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
+          <nav aria-label="breadcrumb" className="ebs-breadcrumbs ebs-dark">
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>

@@ -61,7 +61,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           className="edge-team-single-content"
                         >
                           <h4 className="info">ABOUT </h4>
-                          <p dangerouslySetInnerHTML={{ __html: sponsor.description }} ></p>
+                          <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: sponsor.description }} ></div>
                         </div>
                       )}
                       {sponsor.email && (

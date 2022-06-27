@@ -575,8 +575,12 @@ body.edgtf-team-info-opened{
       }
       @include edgtfBoxSizing(border-box);
 
-      .edge-name{
+      .edge-name {
         margin-bottom: 0;
+        word-wrap: break-word;
+        @include phone-portrait {
+          font-size: 24px;
+        }
       }
     }
 

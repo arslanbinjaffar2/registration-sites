@@ -68,7 +68,7 @@ function DocumentsListing({documents}) {
 
   return (
     <div className="ebs-document-module">
-			<nav aria-label="breadcrumb" className='ebs-breadcrumbs'>
+			<nav aria-label="breadcrumb" className='ebs-breadcrumbs ebs-dark'>
 				<ul className="breadcrumb">
 						{
 								breadCrumbs.map((crumb, i) => (

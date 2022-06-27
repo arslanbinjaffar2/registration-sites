@@ -67,7 +67,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                           className="edge-team-single-content"
                         >
                           <h4 className="info">ABOUT </h4>
-                          <p dangerouslySetInnerHTML={{ __html: exhibitor.description }} ></p>
+                          <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: exhibitor.description }} ></div>
                         </div>
                       )}
                       {exhibitor.email && (
