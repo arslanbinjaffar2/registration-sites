@@ -1,8 +1,8 @@
 import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
-const SubNewsletter1 = () =>  {
+const SubNewsletter1 = (props) =>  {
 
-  const WrapperLayout = () => {
+  const WrapperLayout = (props) => {
     const _parallax = React.useRef(null);
     React.useEffect(() => {
       window.addEventListener("scroll",scollEffect);
@@ -37,7 +37,7 @@ const SubNewsletter1 = () =>  {
   
     return (
       <div className="module-section">
-            <WrapperLayout>
+            <WrapperLayout moduleVariation={props.moduleVariation} >
             <div className="container">
               <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'center'} />
             </div>

@@ -6,15 +6,15 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/social-media-share/${variation}`)
+    import(`components/themes/${theme}/newsletter_subscription/${variation}`)
   );
   return Component;
 };
 
-const SocialShare = () => {
+const NewsLetterSubscription = () => {
   const { event } = useSelector(eventSelector);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return in_array(module.alias, ["social_media_share"]);
+    return in_array(module.alias, ["newsletter_subscription"]);
   });
 
   const Component = useMemo(
@@ -24,9 +24,10 @@ const SocialShare = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} settings={moduleVariation[0]} socialMediaShare={event.socialMediaShare} labels={event.labels} />
+      <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} />
     </Suspense>
   );
 };
 
-export default SocialShare;
+export default NewsLetterSubscription;
+

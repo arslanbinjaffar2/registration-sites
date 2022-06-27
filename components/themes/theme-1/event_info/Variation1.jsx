@@ -1,6 +1,7 @@
 import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
-const Variation1 = () => {
+import moment from "moment";
+const Variation1 = (props) => {
   const WrapperLayout = (props) => {
 
     const _parallax = React.useRef(null);
@@ -36,7 +37,7 @@ const Variation1 = () => {
   }
     return (
       <div className="module-section">
-        <WrapperLayout>
+        <WrapperLayout moduleVariation={props.moduleVariation}>
         <div className="container">
         <HeadingElement dark={true} label={"About the Event"}  align={'left'} />
           <div className="row d-flex ebs-about-event-section">
@@ -45,16 +46,16 @@ const Variation1 = () => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <span className="break">Wednesday ,14 May 2022</span>
-                    <span className="break">Saturday  ,17 May 2022</span>
+                    <span className="break">{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</span>
+                    <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
-                    <address>225 W 52nd Street New York, <br /> NY 10019 US</address>
+                    <address>{props.event.info && props.event.info.location_address}</address>
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong>Check-in open: </strong> 09:00 AM
+                    <strong>Check-in open: </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
                   </li>
                 </ul>
                 <a style={{border: '2px solid #fff', color: '#fff',  fontWeight: 500, paddingTop: 10,paddingBottom: 10}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Register now </a>  

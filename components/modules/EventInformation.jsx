@@ -1,7 +1,6 @@
 import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
-import PageLoader from "components/ui-components/PageLoader";
 
 const in_array = require("in_array");
 
@@ -25,7 +24,7 @@ const EventInformation = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} settings={moduleVariation[0]} socialMediaShare={event.socialMediaShare} labels={event.labels} />
+      <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} />
     </Suspense>
   );
 };
