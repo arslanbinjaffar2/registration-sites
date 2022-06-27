@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import SpeakerPage from "components/pages/speakers/SpeakerPage";
+import Speaker from "components/modules/speakers/Speaker";
+
 
 const Index = () => {
 
@@ -14,7 +15,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <SpeakerPage />
+                    <Speaker />
                 </MasterLayoutRoute>
             )}
         </>

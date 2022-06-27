@@ -19,7 +19,7 @@ import React from 'react'
             </div>}
             {align === 'left' && 
               <React.Fragment>
-                <div className="col-md-4">
+                <div className={desc ? "col-md-4" : "col-md-12"}>
                   <div className="edgtf-title-section-holder">
                     <h2
                       style={{ color: dark ? '#fff' :'#313131' }}
@@ -30,11 +30,11 @@ import React from 'react'
                     <span className="edge-title-separator edge-enable-separator"></span>
                   </div>
                 </div>
-                <div className="col-md-8">
-                {desc && <div className="edgtf-title-section-holder">
+                {desc &&<div className="col-md-8">
+                 <div className="edgtf-title-section-holder">
                     <h6 style={{ color: dark ? '#fff' :'#888' }} className="edgtf-section-subtitle">{desc}</h6>
-                  </div>}
-                </div>
+                  </div>
+                </div> }
               </React.Fragment>
             }
           </div>

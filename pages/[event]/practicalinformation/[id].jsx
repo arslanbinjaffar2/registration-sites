@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import CmsDetailPage from "components/pages/cms/CmsDetailPage";
+import CmsDetail from 'components/modules/cms/CmsDetail';
+
 
 const ExhibitorDetail = () => {
 
@@ -14,7 +15,7 @@ const ExhibitorDetail = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <CmsDetailPage module="practicalinformation" />
+                    <CmsDetail moduleName="practicalinformation" />
                 </MasterLayoutRoute>
             )}
         </>

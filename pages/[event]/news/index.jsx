@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import NewsPage from "components/pages/news/NewsPage";
+import News from "components/modules/news/News";
+
 
 const Index = () => {
 
@@ -14,7 +15,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <NewsPage />
+                    <News pagination={true} />
                 </MasterLayoutRoute>
             )}
         </>

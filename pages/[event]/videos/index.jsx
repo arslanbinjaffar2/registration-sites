@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import VideoPage from "components/pages/VideoPage";
+import Video from "components/modules/Video";
+
 
 const Index = () => {
 
@@ -14,7 +15,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <VideoPage />
+                    <Video pagination={true} />
                 </MasterLayoutRoute>
             )}
         </>

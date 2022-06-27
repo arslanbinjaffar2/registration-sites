@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import SponsorPage from "components/pages/sponsors/SponsorPage";
+import SponsorListing from "components/modules/sponsor/SponsorListing";
+
 
 const Index = () => {
 
@@ -14,7 +15,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <SponsorPage />
+                    <SponsorListing />
                 </MasterLayoutRoute>
             )}
         </>

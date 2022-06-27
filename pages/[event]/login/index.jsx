@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import TimeLine from "components/pages/TimeLine";
+import CorporateLogin from "components/CorporateLogin";
 
 const Index = () => {
 
@@ -14,7 +14,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <TimeLine />
+                    <CorporateLogin />
                 </MasterLayoutRoute>
             )}
         </>

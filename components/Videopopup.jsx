@@ -12,7 +12,9 @@ const Videopopup = ({ onClose, url }) => {
   return (
     <div onClick={onClose} className="wrapper-popup">
       <div onClick={(e) => e.stopPropagation()} className="container-popup">
-        <video controls playsInline autoPlay src={url} width='100%' height="540px"></video>
+        <div className="ebs-video-wrapper">
+          <video controls playsInline  autoPlay src={url} width='100%' height="540px"></video>
+        </div>
       </div>
     </div>
   );

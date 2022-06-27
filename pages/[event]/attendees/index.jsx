@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import AttendeesPage from "components/pages/attendees/AttendeesPage";
+import Attendee from "components/modules/attendees/Attendee";
+
 
 const Index = () => {
 
@@ -14,7 +15,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <AttendeesPage />
+                    <Attendee pagination={true} />
                 </MasterLayoutRoute>
             )}
         </>

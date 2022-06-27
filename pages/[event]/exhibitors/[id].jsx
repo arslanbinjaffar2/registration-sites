@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import ExhibitorDetailPage from "components/pages/exhibitors/ExhibitorDetailPage";
+import Detail from "components/modules/exhibitor/ExhibitorDetail";
+
 
 const ExhibitorDetail = () => {
 
@@ -14,7 +15,7 @@ const ExhibitorDetail = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <ExhibitorDetailPage />
+                    <Detail />
                 </MasterLayoutRoute>
             )}
         </>

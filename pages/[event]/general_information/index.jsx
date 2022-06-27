@@ -3,10 +3,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import CmsPage from "components/pages/cms/CmsPage";
-
+import CmsListing from "components/modules/cms/CmsListing";
+import { useRouter } from 'next/router';
 const Index = () => {
+    const router = useRouter();
 
+    const { menu_id } = router.query;
     const { event } = useSelector(eventSelector);
 
     return (
@@ -14,7 +16,7 @@ const Index = () => {
             <Head></Head>
             {event && (
                 <MasterLayoutRoute>
-                    <CmsPage module="general_information" />
+                    <CmsListing moduleName="general_information" menu_id={menu_id} />
                 </MasterLayoutRoute>
             )}
         </>
