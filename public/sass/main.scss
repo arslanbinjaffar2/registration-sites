@@ -1831,7 +1831,8 @@ $z-index:$back-to-top-size / 2;
 	padding-bottom: 15px;
 	position: relative;
 	.ebs-label-accept {
-		input[type="checkbox"] {
+		input[type="checkbox"],
+		input[type="radio"] {
 			display: none;
 			opacity: 0;
 			visibility: hidden;

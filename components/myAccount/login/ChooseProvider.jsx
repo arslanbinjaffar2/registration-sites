@@ -31,9 +31,10 @@ const ChooseProvider = ({
           <div className="ebs-form-accept">
             <label className="ebs-label-accept">
               <input
-                type="checkbox"
-                name="email"
-                checked={providerloc === "email" ? true :false}
+                type="radio"
+                name="auth"
+                value='email'
+                defaultChecked="true"
                 onChange={(e) => {
                   setProviderLoc(e.target.value);
                 }}
@@ -44,9 +45,9 @@ const ChooseProvider = ({
           <div className="ebs-form-accept">
             <label className="ebs-label-accept">
               <input
-                type="checkbox"
-                name="phone"
-                checked={providerloc === "phone" ? true: false}
+                type="radio"
+                name="auth"
+                value='phone'
                 onChange={(e) => {
                   setProviderLoc(e.target.value);
                 }}
