@@ -92,7 +92,7 @@ const Variation2 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 <div style={{ color: "#ffffff" }} className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
                 <div style={{ color: "#ffffff" }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
               </div>}
-              {eventSiteSettings.eventsite_time_left && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
+              {(eventSiteSettings.eventsite_time_left && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">
