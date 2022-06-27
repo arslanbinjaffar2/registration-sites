@@ -2558,23 +2558,17 @@ $z-index:$back-to-top-size / 2;
 
 }
 #App {
-	> div:not(#ebs-header-master),> div:not(.ebs-login-screen),.ebs-logo-main,.navbar-toggler {
-		transition: transform 0.3s linear;
-	}
+	position: relative;
+	transition: left 0.3s linear;
+	left: 0;
 }
 .ebs-scroll-body-content {
 	@include ipad-portrait {
 		overflow: hidden;
 	} 
 	#App {
-		overflow: hidden;
-		> div:not(#ebs-header-master),> div:not(.ebs-login-screen),.ebs-logo-main,.navbar-toggler,.ebs-profile-top-area {
-			transform: translateX(380px);
-			transition: transform 0.3s linear;
-			@include ipad-portrait {
-				transform: none;
-			}
-		}
+		left: 380px;
+
 	}
 }
 #ebs-header-master {
