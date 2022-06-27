@@ -65,17 +65,17 @@ const SliderBanner = (props) => {
         }  
         ]
       };
-      useEffect(() => {
-        window.addEventListener("scroll", function (e) {
-            var scrolled = window.pageYOffset;
-            const background = document.querySelectorAll(".parallax-backgroud");
-            for (let i = 0; i < background.length; i++) {
-              const element = background[i];
-              element.style.backgroundPosition = `50%  ${(scrolled * 0.2)}px`;
+      // useEffect(() => {
+      //   window.addEventListener("scroll", function (e) {
+      //       var scrolled = window.pageYOffset;
+      //       const background = document.querySelectorAll(".parallax-backgroud");
+      //       for (let i = 0; i < background.length; i++) {
+      //         const element = background[i];
+      //         element.style.backgroundPosition = `50%  ${(scrolled * 0.2)}px`;
               
-            }
-          });
-      }, [])
+      //       }
+      //     });
+      // }, [])
     return (
         <div className={`banner-wrapper ${props.countdown && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
         <Slider {...settings}>

@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
 
   const [_eventObj, setEventObj] = useState({});
   useEffect(() => {
-    store.dispatch(fetchEvent(event));
+    if(event){
+      store.dispatch(fetchEvent(event));
+    }
   }, [store, event]);
 
   useEffect(() => {

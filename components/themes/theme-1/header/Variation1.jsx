@@ -26,6 +26,10 @@ class Variation1 extends React.Component {
     this.handleMenu();
     window.addEventListener("resize", this.handleResize.bind(this), false);
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
+    document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
+          element.addEventListener('click',this.accordionToggle.bind(this),false);
+    });
+    
   }
 
   componentWillUnmount() {
@@ -80,6 +84,9 @@ class Variation1 extends React.Component {
             },
             () => {
               this.handleMenu();
+              document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
+                  element.addEventListener('click',this.accordionToggle.bind(this),false);
+              });
             }
           );
         }
@@ -120,13 +127,52 @@ class Variation1 extends React.Component {
       _nav.forEach(element => {
         if (element.childNodes[1]) {
           const _arrow = document.createElement("em");
+          _arrow.style.pointerEvents = 'none';
           _arrow.classList.add('fa');
-          _arrow.classList.add('fa-chevron-down');
+          _arrow.classList.add('fa-caret-down');
           _arrow.classList.add('ebs-menu-arrow');
           element.classList.add('has-drop-down');
           element.childNodes[0].appendChild(_arrow);
+          element.childNodes[1].classList.add('ebs-accordion-dropdown');
+          const _html =  element.childNodes[0].innerHTML;
+          const _span = document.createElement('span');
+          _span.innerHTML = _html;
+          _span.classList.add('nav-link');
+          element.insertAdjacentElement('afterbegin', _span);
+          element.childNodes[1].remove();
         }
       });
+    }
+  };
+
+  accordionToggle = (e) => {
+    //variables
+    e.preventDefault();
+    if (window.innerWidth > 991) return false;
+    var _this = e.target;
+    var panel = _this.nextElementSibling;
+    var panelParent = _this.parentElement.parentElement;
+    var coursePanel = document.getElementsByClassName("ebs-accordion-dropdown");
+    if (panel) {
+      /*if pannel is already open - minimize*/
+      if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        _this.classList.remove("ebs-menu-active");
+      } else {
+
+        //opens the specified pannel
+        panel.style.maxHeight = panel.scrollHeight + "px";
+
+        for (var iii = 0; iii < coursePanel.length; iii++) {
+          // coursePanel[iii].style.maxHeight = null;
+          if (coursePanel[iii] === panelParent) {
+            coursePanel[iii].style.maxHeight =
+              coursePanel[iii].scrollHeight + panel.scrollHeight + "px";
+          }
+        }
+        //adds the 'active' addition to the css.
+        _this.classList.add("ebs-menu-active");
+      }
     }
   };
 
@@ -134,7 +180,7 @@ class Variation1 extends React.Component {
     const { menus, event } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
-      <div className="ebs-main-header ebs-header-main-wrapper ebs-main-header-v1 ebs-main-header-v2">
+      <div className="ebs-main-header ebs-header-main-wrapper ebs-main-header-v1 ebs-main-header-v2 ebs-header-height-1">
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-3 col-6">
@@ -161,7 +207,6 @@ class Variation1 extends React.Component {
             </div>
             <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
               <nav className="navbar navbar-expand-lg navbar-light">
-                {!this.state.showMenu && (
                   <button
                     className="navbar-toggler"
                     type="button"
@@ -176,22 +221,13 @@ class Variation1 extends React.Component {
                     }
                     aria-label="Toggle navigation"
                   >
-                    <span className="navbar-toggler-icon"></span>
+                    {!this.state.showMenu ? <span className="navbar-toggler-icon"></span> : <span style={{fontSize: 34, marginTop: 2 ,lineHeight: 1 ,height: 30}} className="material-icons">close</span>}
                   </button>
-                )}
                 <div
                   className={`collapse navbar-collapse ${this.state.showMenu ? "show" : ""
                     }`}
                   id="navbarSupportedContent"
                 >
-                  <div
-                    onClick={() => {
-                      document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
-                      this.setState({ showMenu: !this.state.showMenu })
-                    }
-                    }
-                    id="btn-menu-close"
-                  ></div>
                   <ul className="nav navbar-nav m-0">
                     {menus["top_menu"].map((menu) => (
                       <li className="nav-item" key={menu.id}>

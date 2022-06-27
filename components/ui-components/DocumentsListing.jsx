@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import moment from 'moment';
 import Image from 'next/image'
-
+import PageHeader from 'components/modules/PageHeader';
 const getDirectoryName = (item) => {
     if(item['name'] !== undefined) return item.name
     else if(item['Program'] !== undefined) return item.Program
@@ -67,16 +67,20 @@ function DocumentsListing({documents}) {
 
 
   return (
-    <div className="ebs-document-module">
-			<nav aria-label="breadcrumb" className='ebs-breadcrumbs'>
-				<ul className="breadcrumb">
-						{
-								breadCrumbs.map((crumb, i) => (
-										<li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
-								))
-						}
-				</ul>
-			</nav>
+    <React.Fragment>
+        <PageHeader label={'My Documents'}  align={'left'} breadCrumbs={(type) => {
+                return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-breadcrumb-dark": ""}`}>
+                    <ul className="breadcrumb">
+                            {
+                                breadCrumbs.map((crumb, i) => (
+                                        <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                                ))
+                            }
+                    </ul>
+                </nav>)
+        }} />
+    <div style={{paddingTop: 50}} className="ebs-document-module">
+        <div className="container">
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">
@@ -137,7 +141,9 @@ function DocumentsListing({documents}) {
                     </div>
                 </div>
               }
+        </div>
     </div>
+    </React.Fragment>
   )
 }
 
@@ -146,19 +152,19 @@ export default DocumentsListing;
 
 const FileImageByType = ({type, path}) => {
     if (type == "doc" || type == "docx") {
-      return  <img style={{marginRight:"5px"}} src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" className="img-responsive" />;
+      return  <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/word.png`} width="30" className="img-responsive" />;
     } else if (type == "xls" || type == "xlsx" || type == "csv") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}} alt=""  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/excel.png`} width="30" className="img-responsive" />;
     } else if (type == "ppt" || type == "pptx") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pptx.png`} width="30" className="img-responsive" />;
     } else if (type == "pdf") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/pdf.png`} width="30" className="img-responsive" />;
     } else if (type == "mp3" || type == "avi" || type == "mp4") {
-       return  <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" className="img-responsive" />;
+       return  <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/music.png`} width="30" className="img-responsive" />;
     } else if (type == "jpg" || type == "jpeg" || type == "png" || type == "gif") {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${path}`} width="30" className="img-responsive" />;
     } else {
-       return <img style={{marginRight:"5px"}}  src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
+       return <img style={{marginRight:"5px"}} alt="" src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/images/allFiles.png`} width="30" className="img-responsive" />;
     }
 }
 
