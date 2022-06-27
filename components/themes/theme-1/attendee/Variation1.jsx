@@ -7,29 +7,6 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
 
   const _parallax = useRef(null);
 
-  const WrapperLayout = ({ children }) => {
-
-    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
-
-    if (settings && settings.background_image !== "") {
-      return (
-        <div style={{ backgroundImage: `url(${_bgimage})`, padding: "100px 0", }}
-          className="edgtf-parallax-section-holder ebs-bg-holder"
-          ref={_parallax}>
-          {children}
-        </div>
-      );
-    } else {
-      return (
-        <div className="edgtf-parallax-section-holder ebs-bg-holder"
-          ref={_parallax}>
-          {children}
-        </div>
-      );
-    }
-
-  }
-
   useEffect(() => {
     window.addEventListener("scroll", scollEffect);
     return () => {
@@ -45,10 +22,16 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
     _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
   };
 
-  return (
-    <WrapperLayout
-    >
-      <div className="container">
+    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+    
+    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, padding: "50px 0" } : {}
+    
+    
+      return (
+        <div style={bgStyle}
+          className="edgtf-parallax-section-holder ebs-bg-holder"
+          ref={_parallax}>
+          <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
       {searchBar()}
@@ -203,8 +186,8 @@ const Variation1 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
         {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {attendees.length > 0 && loadMore()}
       </div>
-    </WrapperLayout>
-  );
+        </div>
+      );
 };
 
 export default Variation1;

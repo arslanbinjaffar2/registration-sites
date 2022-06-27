@@ -15,7 +15,7 @@ const Variation1 = ({ attendee }) => {
             <div className="edgtf-title-subtitle-holder">
               <div className="edgtf-title-subtitle-holder-inner">
                 <h1 style={{ color: "white" }}>
-                  <span>Featured Speakers</span>
+                  <span>Attendee</span>
                 </h1>
               </div>
             </div>
