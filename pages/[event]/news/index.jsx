@@ -12,7 +12,6 @@ const Index = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <News pagination={true} />

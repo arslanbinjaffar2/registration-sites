@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
@@ -12,7 +11,6 @@ const Index = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <Attendee pagination={true} />

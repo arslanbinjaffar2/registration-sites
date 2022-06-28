@@ -14,7 +14,6 @@ const Index = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <CmsListing moduleName="practicalinformation" menu_id={menu_id} />

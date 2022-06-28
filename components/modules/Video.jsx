@@ -7,6 +7,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
+import Head from "next/head";
 
 const in_array = require("in_array");
 
@@ -60,15 +61,20 @@ const Video = (props) => {
   return (
     <Suspense fallback={<PageLoader/>}>
       {videos ? (
-        <div>
-          <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} totalPages={totalPages} eventUrl={eventUrl}
-          loadMore={() => {
-            if(page < totalPages){
-              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
-            }
-          }}
-          />
-        </div>
+        <React.Fragment>
+          <Head>
+              <title>{event.eventsiteModules.videos}</title>
+          </Head>
+          <div>
+            <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} totalPages={totalPages} eventUrl={eventUrl}
+            loadMore={() => {
+              if(page < totalPages){
+                return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+              }
+            }}
+            />
+          </div>
+        </React.Fragment>
       ) : (!home ? <PageLoader/> : null )}
     </Suspense>
   );

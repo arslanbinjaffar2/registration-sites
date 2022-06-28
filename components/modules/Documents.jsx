@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import { fetchDocuments, documentsSelector } from "store/Slices/DocumentsSlice";
+import Head from "next/head";
 const loadModule = (theme, ) => {
   const Component = React.lazy(() =>
     import(`components/themes/${theme}/documents/Documents`)
@@ -29,6 +30,9 @@ const Documents = () => {
 
   return (
     <Suspense fallback={''}>
+        <Head>
+        <title>{event.eventsiteModules.documents}</title>
+        </Head>
        {documents ? <CustomComponent documents={documents} /> : <PageLoader/>}
     </Suspense>
   );

@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState, useMemo, useRef } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -34,6 +35,9 @@ const CmsListing = (props) => {
   return (
     <Suspense fallback={<PageLoader />}>
       <React.Fragment>
+        <Head>
+          <title>{event.eventsiteModules[props.moduleName]}</title>
+        </Head>
         <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
       </React.Fragment>
     </Suspense>

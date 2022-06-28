@@ -4,6 +4,7 @@ import { newsSelector, fetchNews } from "store/Slices/NewsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
+import Head from "next/head";
 
 const in_array = require("in_array");
 
@@ -66,6 +67,10 @@ const News = (props) => {
   return (
     <Suspense fallback={<PageLoader />}>
       {news ? (
+        <React.Fragment>
+          <Head>
+            <title>{event.eventsiteModules.news}</title>
+        </Head>
         <Component
           news={news}
           event_url={eventUrl}
@@ -78,6 +83,7 @@ const News = (props) => {
             }
           }}
         />
+        </React.Fragment>
       ) : <PageLoader />}
     </Suspense>
   );

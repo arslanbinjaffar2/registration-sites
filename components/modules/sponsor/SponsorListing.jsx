@@ -7,6 +7,7 @@ import {
 import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -42,6 +43,9 @@ const SponsorListing = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {sponsors && sponsors.length > 0 ? (
         <React.Fragment>
+          <Head>
+          <title>{event.eventsiteModules.sponsors}</title>
+          </Head>
           <Component sponsors={sponsors} labels = {labels} sponsorCategories={sponsorCategories} eventUrl={eventUrl} siteLabels={event.labels} />
         </React.Fragment>
       ) : <PageLoader/> 
