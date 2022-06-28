@@ -18,7 +18,7 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
   return (
     <div className="module-section">
       <div className="container">
-        <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
+        {/* <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} /> */}
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
           <div className="edgtf-portfolio-list-holder">
             <div className="d-flex row">

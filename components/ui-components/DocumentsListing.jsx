@@ -68,7 +68,7 @@ function DocumentsListing({documents}) {
 
   return (
     <React.Fragment>
-        <PageHeader label={'My Documents'}  align={'left'} breadCrumbs={(type) => {
+        <PageHeader label={'My Documents'} breadCrumbs={(type) => {
                 return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {

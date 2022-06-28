@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
+import PageHeader from "components/modules/PageHeader";
 const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
@@ -31,19 +32,21 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
 
 
   return (
+   <React.Fragment>
+       <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {
+            return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
+            <ul className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {(crumb.id === currentMenu) ? crumb.name : <a href="#!" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
+                </li>
+              ))}
+            </ul>
+          </nav>)
+    }} />
     <div style={{ padding: "80px 0", }}
       className="edgtf-parallax-section-holder">
-      <div className="container">
-        <HeadingElement dark={false} label={eventSiteModuleName} align={'center'} />
-        <nav aria-label="breadcrumb" className="ebs-breadcrumbs">
-          <ul className="breadcrumb">
-            {breadCrumbs.map((crumb, i) => (
-              <li className="breadcrumb-item" key={i}>
-                {(crumb.id === currentMenu) ? crumb.name : <a href="#!" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className="container">        
         <div className="ebs-inner-page-wrapper">
           <ul>
             {cmsListing && cmsListing.map((item, i) => (
@@ -84,6 +87,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
         </div>
       </div>
     </div>
+   </React.Fragment>
   );
 };
 

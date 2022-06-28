@@ -508,7 +508,7 @@ const TimelineContent = ({ data, program_setting }) => {
   )
 }
 
-const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
+const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
 
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
@@ -637,7 +637,7 @@ const ProgramTimeline = ({programs, eventUrl, tracks, showWorkshop, siteLabels, 
     )
 }
 
-export default ProgramTimeline
+export default Variation2
 
 
 const getProgramsByTrack = (programs, track) =>{

@@ -1,8 +1,8 @@
 import React from 'react'
 
- const HeadingElement = ({dark,align,label,desc}) => {
+ const HeadingElement = ({dark,align,label,desc, page_header}) => {
   return (
-    <div className="row d-flex mb-4">
+  <div className={`row d-flex ${!page_header ? 'mb-4':''} `}>
             {align === 'center' && <div className="col-md-8 offset-md-2 text-center">
               <div className="edgtf-title-section-holder">
                 <h2
