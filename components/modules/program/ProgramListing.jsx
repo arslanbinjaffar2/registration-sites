@@ -8,9 +8,8 @@ import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme, programView) => {
-  const view = programView === 'horizontal' ? 'ProgramTimeLine.jsx' : 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/program/listing/${view}`)
+    import(`components/themes/${theme}/program/listing/${programView}`)
   );
   return Component;
 };

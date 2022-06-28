@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 import Head from "next/head";
-
+import PageHeader from "./PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -65,6 +65,8 @@ const Gallery = (props) => {
           {!home && <Head>
               <title>{event.eventsiteModules.gallery}</title>
           </Head>}
+
+          {!home && <PageHeader label={event.labels.EVENTSITE_PHOTOS} desc={event.labels.EVENTSITE_PHOTOS_SUB} />}
           <div style={{ padding: "80px 0" }} >
             <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
             loadMore={() => {

@@ -27,7 +27,7 @@ const Variation6 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
   return (
     <div className="module-section">
       <div className="container">
-        <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
+        {/* <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} /> */}
         <div className="gallerMasonry">
           {photos && (
             <Gallery shareButton={false} id="my-gallery">

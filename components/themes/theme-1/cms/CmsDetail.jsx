@@ -34,7 +34,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
   return (
     <React.Fragment>
     <PageHeader label={detail.name}  align={'left'} breadCrumbs={(type)=>{
-       <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
+      return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
        <ul className="breadcrumb">
          {breadCrumbs.map((crumb, i) => (
            <li className="breadcrumb-item" key={i}>
@@ -42,7 +42,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
            </li>
          ))}
        </ul>
-   </nav>
+   </nav>)
     }} >       
       </PageHeader> 
       <div style={{ paddingTop: "30px" }} className="edgtf-container">

@@ -15,7 +15,7 @@ const customStyles = {
     maxWidth: '100%'
   })
 };
-const ProgramListing = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters }) => {
+const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters }) => {
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -116,7 +116,7 @@ const ProgramListing = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, 
   )
 }
 
-export default ProgramListing
+export default Variation1
 
 
 const getProgramsByTrack = (programs, track) => {
