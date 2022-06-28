@@ -4,6 +4,7 @@ import { sponsorDetailSelector, fetchSponsor, clearState } from "store/Slices/Sp
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -43,6 +44,9 @@ const SponsorDetail = (props) => {
     <Suspense fallback={<PageLoader />}>
       {sponsor ? (
         <React.Fragment>
+          <Head>
+          <title>{event.eventsiteModules.sponsors}</title>
+          </Head>
           <Component sponsor={sponsor} labels={labels} documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
         </React.Fragment>
       ) : <PageLoader />

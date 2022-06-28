@@ -12,7 +12,6 @@ const SpeakerDetail = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <Detail />

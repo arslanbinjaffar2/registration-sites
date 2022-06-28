@@ -4,6 +4,7 @@ import { newsDetailSelector, fetchNewsDetail, clearState } from "store/Slices/Ne
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import { useRouter } from 'next/router';
+import Head from 'next/head'
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
@@ -43,6 +44,58 @@ const NewsDetail = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {news ? (
         <React.Fragment>
+          <Head>
+            <title>{news.title}</title>
+            <meta property="og:title" content={news.title} />
+            <meta property="og:type" content="Event" />
+            <meta
+                property="og:image"
+                content={
+                        news.image
+                        ? process.env.NEXT_APP_EVENTCENTER_URL +
+                        "/assets/eventsite_news/" +
+                        news.image
+                        : event.settings.header_logo &&
+                            event.settings.header_logo !== ""
+                            ? process.env.NEXT_APP_EVENTCENTER_URL +
+                            "/assets/event/branding/" +
+                            event.settings.header_logo
+                            : process.env.NEXT_APP_EVENTCENTER_URL +
+                            "/_eventsite_assets/images/eventbuizz_logo-1.png"
+                }
+            />
+                        <meta
+                            property="twitter:image"
+                            content={
+                                  news.image
+                                  ? process.env.NEXT_APP_EVENTCENTER_URL +
+                                  "/assets/eventsite_news/" +
+                                  news.image
+                                  : event.settings.header_logo &&
+                                      event.settings.header_logo !== ""
+                                      ? process.env.NEXT_APP_EVENTCENTER_URL +
+                                      "/assets/event/branding/" +
+                                      event.settings.header_logo
+                                      : process.env.NEXT_APP_EVENTCENTER_URL +
+                                      "/_eventsite_assets/images/eventbuizz_logo-1.png"
+                            }
+                        />
+                        <meta property="twitter:card" content="summary_large_image" />
+                        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                        <meta name="msapplication-config" content="none" />
+                        <link
+                            rel="icon"
+                            type="image/x-icon"
+                            href={
+                                event.settings.app_icon && event.settings.app_icon !== ""
+                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
+                                    "/assets/event/branding/" +
+                                    event.settings.app_icon
+                                    : require("public/img/square.jpg")
+                            }
+                        />
+                        
+          </Head>
           <Component  news={news} event={event} sidebar={sidebar} newsSettings={event.news_settings} />
         </React.Fragment>
       ) : <PageLoader/>}

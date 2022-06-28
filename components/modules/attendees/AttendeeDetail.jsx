@@ -4,7 +4,7 @@ import { attendeeDetailSelector, fetchAttendeeDetail, clearState } from "store/S
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
-
+import Head from "next/head";
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
     import(`components/themes/${theme}/attendee/detail/${variation}`)
@@ -43,6 +43,9 @@ const AttendeeDetail = (props) => {
     <Suspense fallback={<PageLoader />}>
       {attendee ? (
         <React.Fragment>
+          <Head>
+            <title>{event.eventsiteModules.attendees}</title>
+          </Head>
           <Component attendee={attendee} labels={labels} />
         </React.Fragment>
       ) : <PageLoader />}

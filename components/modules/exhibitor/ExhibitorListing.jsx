@@ -7,6 +7,7 @@ import {
 import PageLoader from "components/ui-components/PageLoader";
 
 import { useSelector, useDispatch } from "react-redux";
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -44,6 +45,9 @@ const ExhibitorListing = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {exhibitors && exhibitors.length > 0 ? (
         <React.Fragment>
+          <Head>
+            <title>{event.eventsiteModules.exhibitors}</title>
+          </Head>
           <Component exhibitors={exhibitors} labels = {labels} exhibitorCategories={exhibitorCategories} eventUrl={eventUrl} siteLabels={event.labels} />
         </React.Fragment>
       ) : <PageLoader/> 

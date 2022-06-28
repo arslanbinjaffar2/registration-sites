@@ -9,6 +9,7 @@ import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 import SearchBar from "components/ui-components/SearchBar";
 
 import { useSelector, useDispatch } from "react-redux";
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -77,6 +78,9 @@ const Speaker = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {speakers && ((speakers.length > 0 && home) || !home) ? (
         <React.Fragment>  
+          {!home && <Head>
+            <title>{event.eventsiteModules.speakers}</title>
+          </Head>}
           <Component speakers={speakers} siteLabels={event.labels} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
            return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setValue={(text)=>setValue(text)}  />;
           }}

@@ -7,6 +7,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
+import Head from "next/head";
 
 const in_array = require("in_array");
 
@@ -60,15 +61,20 @@ const Gallery = (props) => {
   return (
     <Suspense fallback={<PageLoader/>}>
       {photos ? (
-        <div style={{ padding: "80px 0" }} >
-          <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
-          loadMore={() => {
-            if(page < totalPages){
-              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
-            }
-          }}
-          />
-        </div>
+        <React.Fragment>
+          {!home && <Head>
+              <title>{event.eventsiteModules.gallery}</title>
+          </Head>}
+          <div style={{ padding: "80px 0" }} >
+            <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
+            loadMore={() => {
+              if(page < totalPages){
+                return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+              }
+            }}
+            />
+          </div>
+        </React.Fragment>
       ) : (!home ? <PageLoader/> : null )}
     </Suspense>
   );

@@ -11,7 +11,6 @@ const ExhibitorDetail = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <CmsDetail moduleName="additional_information" />

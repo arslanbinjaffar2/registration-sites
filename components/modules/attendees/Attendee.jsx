@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from "components/ui-components/LoadMoreButton";
 import SearchBar from "components/ui-components/SearchBar";
+import Head from "next/head";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -72,6 +73,9 @@ const Attendee = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {attendees ? (
         <React.Fragment>
+          <Head>
+            <title>{event.eventsiteModules.attendees}</title>
+          </Head>
           <CustomComponent
           labels={labels}
           siteLabels={event.labels}

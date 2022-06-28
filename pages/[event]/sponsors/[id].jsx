@@ -12,7 +12,6 @@ const SponsorDetail = () => {
 
     return (
         <>
-            <Head></Head>
             {event && (
                 <MasterLayoutRoute>
                     <Detail />

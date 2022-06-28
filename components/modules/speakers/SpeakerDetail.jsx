@@ -4,6 +4,7 @@ import PageLoader from "components/ui-components/PageLoader";
 import { speakerDetailSelector, fetchSpeakerDetail, clearState } from "store/Slices/SpeakerDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
+import Head from "next/head";
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
@@ -42,6 +43,9 @@ const SpeakerDetail = (props) => {
     <Suspense fallback={<PageLoader />}>
       {speaker ? (
         <React.Fragment>
+          <Head>
+            <title>{event.eventsiteModules.speakers}</title>
+          </Head>
           <Component speaker={speaker} labels={labels} moduleName={event.eventsiteModules.speakers} siteLabels={event.labels} eventUrl={eventUrl} eventLanguageId={event.language_id} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : <PageLoader />}
