@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 import Head from "next/head";
-
+import PageHeader from "./PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -66,11 +66,12 @@ const Video = (props) => {
               <title>{event.eventsiteModules.videos}</title>
           </Head>
           <div>
+            {!home && <PageHeader label={event.labels.EVENTSITE_VIDEOS} />}
             <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} totalPages={totalPages} eventUrl={eventUrl}
-            loadMore={() => {
-              if(page < totalPages){
-                return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
-              }
+              loadMore={() => {
+                if(page < totalPages){
+                  return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+                }
             }}
             />
           </div>

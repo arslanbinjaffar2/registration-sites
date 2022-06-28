@@ -5,6 +5,7 @@ import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import Head from "next/head";
+import PageHeader from "../PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -47,6 +48,7 @@ const SponsorDetail = (props) => {
           <Head>
           <title>{event.eventsiteModules.sponsors}</title>
           </Head>
+          <PageHeader label={event.eventsiteModules.sponsors} />
           <Component sponsor={sponsor} labels={labels} documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
         </React.Fragment>
       ) : <PageLoader />

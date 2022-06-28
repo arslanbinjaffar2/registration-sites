@@ -10,9 +10,6 @@ const Variation7 = ({ videos, home, eventUrl, loadMore, siteLabels }) => {
   return (
     <div style={{ padding: "40px 0" }} className="module-section">
       <div className="container">
-        <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
-      </div>
-      <div className="container">
         <div className="edgtf-portfolio-list-holder-outer">
           <div className="edgtf-portfolio-list-holder">
             <div className="d-flex row">

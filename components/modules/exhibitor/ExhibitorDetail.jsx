@@ -4,6 +4,7 @@ import { exhibitorDetailSelector, fetchExhibitor, clearState } from "store/Slice
 import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
+import PageHeader from "../PageHeader";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
@@ -52,6 +53,7 @@ const ExhibitorDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
           </Head>
+          <PageHeader label={event.eventsiteModules.exhibitors} />
           <Component exhibitor={exhibitor} labels={labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
         </React.Fragment>
       ) : <PageLoader />

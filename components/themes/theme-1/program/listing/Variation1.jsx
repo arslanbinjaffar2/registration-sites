@@ -60,9 +60,9 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
 
   return (
     <div data-fixed="false" style={{ padding: "80px 0" }} className="module-section ebs-program-listing-wrapper ebs-transparent-box">
-      <div className="container">
+      {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
-      </div>
+      </div> */}
       {filters && <div className="ebs-program-top">
         <div className="container">
           <div className="row d-flex">
