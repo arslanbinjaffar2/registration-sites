@@ -55,7 +55,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
 
   return (
     <div ref={element} style={{ opacity: 0 }} data-fixed="false" className="ebs-transparent-box">
-      <div
+      {/* <div
         style={{
           minHeight: 250,
         }}
@@ -76,7 +76,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
           </div>
         </div>
         <div></div>
-      </div>
+      </div> */}
       {/* content Section */}
       <div style={{ padding: '80px 0', minHeight: "100vh" }}>
         <div className="container">
