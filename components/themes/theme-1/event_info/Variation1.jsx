@@ -16,19 +16,20 @@ const Variation1 = (props) => {
       const scrolled = window.pageYOffset;
       const itemOffset = _parallax.current.offsetTop;
       const itemHeight = _parallax.current.getBoundingClientRect();
-      if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-      _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+      if (scrolled < (scrolled - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+        const _scroll = (scrolled - itemOffset) + itemHeight.height;
+      _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
     };
 
     if (props.moduleVariation.background_image !== '') {
       return (
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, padding: "100px 0", backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
           {props.children}
         </div>
       );
     } else {
       return (
-        <div ref={_parallax} style={{ padding: "100px 0", backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
+        <div ref={_parallax} style={{ backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
           {props.children}
         </div>
       );

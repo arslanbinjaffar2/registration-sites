@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div>
-      <div style={{ padding: "80px 0" }} className="module-section">
+      <div className="module-section ebs-default-padding">
         <div className="container">
           <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
         </div>

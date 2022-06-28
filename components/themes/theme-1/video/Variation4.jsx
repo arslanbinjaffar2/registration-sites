@@ -17,7 +17,7 @@ const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
   };
 
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div  className="module-section ebs-default-padding">
       <div className="container">
         <div className="gallerMasonry">
           {videos && (

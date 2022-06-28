@@ -6,8 +6,7 @@ import Image from 'next/image'
 const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div
-      style={{ padding: "50px 0" }}
-      className="edgtf-parallax-section-holder"
+      className="edgtf-parallax-section-holder ebs-default-padding"
     >
       <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />

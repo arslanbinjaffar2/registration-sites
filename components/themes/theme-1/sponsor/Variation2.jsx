@@ -11,7 +11,7 @@ const Variation2 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
         setData('');
     }
     return (
-        <div style={{ padding: "80px 0" }} className="module-section">
+        <div className="module-section ebs-default-padding">
             {popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
             <div className="container">
                 <HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />

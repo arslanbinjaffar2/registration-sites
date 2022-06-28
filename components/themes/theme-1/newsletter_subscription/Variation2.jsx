@@ -4,7 +4,7 @@ const SubNewsletter2 = () =>  {
 
     return (
       <div className="module-section">
-        <div  style={{padding: '80px 0',backgroundColor: '#F2F2F2' }} className="">
+        <div  style={{padding: '60px 0',backgroundColor: '#F2F2F2' }} className="">
         <div className="container">
         <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'center'} />
         </div>

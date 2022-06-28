@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Variation7 = ({ videos, home, eventUrl, loadMore, siteLabels }) => {
 
   return (
-    <div style={{ padding: "40px 0" }} className="module-section">
+    <div className="module-section ebs-default-padding">
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer">
           <div className="edgtf-portfolio-list-holder">
