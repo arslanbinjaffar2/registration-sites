@@ -56,7 +56,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
 
   return (
     <div style={{ opacity: 0 }} ref={element} data-fixed="false" className="ebs-transparent-box">
-      <div
+      {/* <div
         style={{
           minHeight: 250,
         }}
@@ -77,7 +77,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
           </div>
         </div>
         <div></div>
-      </div>
+      </div> */}
       {/* content Section */}
       <div style={{ padding: '80px 0', minHeight: "100vh" }}>
         <div className="container">

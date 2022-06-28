@@ -4,7 +4,7 @@ import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { programListingSelector, fetchPrograms } from "store/Slices/ProgramListingSlice";
 import Head from "next/head";
-
+import PageHeader from "../PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme, programView) => {
@@ -50,6 +50,7 @@ const ProgramListing = (props) => {
           <Head>
             <title>{event.eventsiteModules.program}</title>
           </Head>
+          <PageHeader label={event.eventsiteModules.program}/>
           <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} />
         </React.Fragment>
       ) : <PageLoader />}

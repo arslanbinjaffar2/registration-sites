@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 import Head from "next/head";
-
+import PageHeader from "../PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -71,6 +71,7 @@ const News = (props) => {
           <Head>
             <title>{event.eventsiteModules.news}</title>
         </Head>
+        <PageHeader label={event.eventsiteModules.news}/>
         <Component
           news={news}
           event_url={eventUrl}
