@@ -71,7 +71,7 @@ const MetaInfo = (props) => {
                                     ? process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/event/branding/" +
                                     props.metaInfo.settings.app_icon
-                                    : require("public/img/square.jpg")
+                                    : ''
                             }
                         />
                         {props.metaInfo.settings.google_analytics && (
