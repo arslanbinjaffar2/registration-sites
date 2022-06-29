@@ -62,9 +62,9 @@ const Video = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {videos ? (
         <React.Fragment>
-          <Head>
+          {!home && <Head>
               <title>{event.eventsiteModules.videos}</title>
-          </Head>
+          </Head>}
           <div>
             {!home && <PageHeader label={event.labels.EVENTSITE_VIDEOS} />}
             <Component settings={moduleVariation[0]} siteLabels={event.labels} videos={videos} home={home} totalPages={totalPages} eventUrl={eventUrl}
