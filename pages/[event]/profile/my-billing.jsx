@@ -4,14 +4,16 @@ import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import MyBillingPage from "components/myAccount/profile/MyBilling";
+import { metaInfo } from 'helpers/helper';
+import MetaInfo from "components/layout/MetaInfo";
 
-const MyBilling = () => {
+const MyBilling = (props) => {
 
     const { event } = useSelector(eventSelector);
 
     return (
         <>
-            <Head></Head>
+            <MetaInfo metaInfo={props.metaInfo} />
             {event && (
                 <MasterLayoutMyAccount>
                     <MyBillingPage />
@@ -20,6 +22,15 @@ const MyBilling = () => {
         </>
     )
 
+}
+
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            url: context.resolvedUrl
+        },
+    }
 }
 
 export default MyBilling
