@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
 
   return (
-    <div style={{ padding: "40px 0" }} className="module-section">
+    <div className="module-section ebs-default-padding">
       {home && <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>}

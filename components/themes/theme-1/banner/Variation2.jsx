@@ -20,7 +20,8 @@ const Variation2 = ({ banner }) => {
     const itemOffset = _parallax.current.offsetTop;
     const itemHeight = _parallax.current.getBoundingClientRect();
     if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-    _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
+    const _scroll = (scrolled - itemOffset) + itemHeight.height;
+      _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
   };
 
   const typeWriter = () => {

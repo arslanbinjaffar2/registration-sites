@@ -8,7 +8,7 @@ const Variation1 = ({ programs }) => {
   return (
     <React.Fragment>
       {programs && (
-        <div style={{ padding: "80px 0" }} className="module-section">
+        <div className="module-section ebs-default-padding">
           <div className="container">
             <div className="edgtf-tabs edgtf-horizontal-tab edgtf-tab-without-icon clearfix ui-tabs ui-widget ui-widget-content ui-corner-all">
               <ul className="edgtf-tabs-nav ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

@@ -15,7 +15,7 @@ import {
 
 const Variation1 = ({ event, socialMediaShare, labels }) => {
   return (
-    <div style={{ paddingTop: "80px",paddingBottom: "80px" }} className="edgtf-container">
+    <div className="edgtf-container ebs-default-padding">
       <div className="edgtf-container-inner container">
       <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
         <div className="ebs-social-share text-center pb-3">

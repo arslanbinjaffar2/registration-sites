@@ -17,7 +17,7 @@ const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
   };
 
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section ebs-default-padding">
       {home && <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>}

@@ -14,7 +14,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     500: 1,
   };
   return (
-    <div style={{ padding: "80px 0" }} className="edgtf-container">
+    <div style={{paddingLeft: 0, paddingRight: 0}} className="edgtf-container ebs-default-padding">
       <div className="container">
         <div
           className={`${"edgtf-full-width-inner"

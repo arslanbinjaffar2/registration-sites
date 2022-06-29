@@ -37,7 +37,7 @@ const Variation6 = () => {
             >
               <div
                 className="edgtf-elements-holder-item-content"
-                style={{ padding: "80px 100px 95px 100px" }}
+                style={{ padding: "60px 100px 75px 100px" }}
               >
                 <h4>March 23, 2016</h4>
                 <h3 className="mb-5">Designers meeting</h3>
@@ -65,7 +65,7 @@ const Variation6 = () => {
             >
               <div
                 className="edgtf-elements-holder-item-content"
-                style={{ padding: "80px 100px 95px 100px" }}
+                style={{ padding: "60px 100px 75px 100px" }}
               >
                 <h4 style={{ color: "#ffffff" }}>March 23, 2016</h4>
                 <h3 style={{ color: "#ffffff" }} className="mb-5">

@@ -2,7 +2,7 @@ import * as React from "react";
 class Variation1 extends React.Component {
     render() {
         return (
-            <div style={{ padding: "80px 0" }} className="module-section">
+            <div className="module-section ebs-default-padding">
                 <div className="container">
                     <div className="timetable_clearfix tt_tabs tt_responsive event_layout_3 ui-tabs ui-widget ui-widget-content ui-corner-all">
                         <div className="tt_navigation_wrapper text-center">

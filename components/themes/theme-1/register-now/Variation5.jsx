@@ -46,7 +46,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 
 const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation }) => {
   return (
-    <div style={{ padding: "80px 0" }} className="module-section ebs-register-now-v5">
+    <div className="module-section ebs-register-now-v5 ebs-default-padding">
       {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
         <div className="container">
           <div className="row d-flex align-items-center">

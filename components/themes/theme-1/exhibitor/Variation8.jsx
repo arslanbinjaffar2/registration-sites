@@ -67,7 +67,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		}
 	}
 	return (
-		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
+		<div style={{ backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid ebs-default-padding">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />

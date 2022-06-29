@@ -2,7 +2,7 @@ import React from "react";
 
 const Variation5 = () => {
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section ebs-default-padding">
       <div className="container">
         <div className="edgtf-title-section-holder text-center pb-5">
           <h2 className="edgtf-title-with-dots edgtf-appeared">

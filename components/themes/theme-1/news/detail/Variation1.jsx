@@ -17,7 +17,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   return (
-    <div style={{ padding: "80px 0" }} className="edgtf-container">
+    <div style={{ paddingLeft: 0,paddingRight: 0 }} className="edgtf-container ebs-default-padding">
       <div className="container">
         <div
           className={`${sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"

@@ -67,7 +67,7 @@ const Gallery = (props) => {
           </Head>}
 
           {!home && <PageHeader label={event.labels.EVENTSITE_PHOTOS} desc={event.labels.EVENTSITE_PHOTOS_SUB} />}
-          <div style={{ padding: "80px 0" }} >
+          <div className="ebs-default-padding">
             <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
             loadMore={() => {
               if(page < totalPages){
