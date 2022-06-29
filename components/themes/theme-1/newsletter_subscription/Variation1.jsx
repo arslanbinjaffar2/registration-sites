@@ -20,7 +20,7 @@ const SubNewsletter1 = (props) =>  {
     
     const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${props.moduleVariation.background_image}`;
     
-    const bgStyle = (props.moduleVariation && props.moduleVariation.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, padding: "100px 0" } : { padding: "80px 0", backgroundPosition: "center", backgroundSize: 'cover' }
+    const bgStyle = (props.moduleVariation && props.moduleVariation.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, backgroundPosition: "center top", backgroundSize: 'cover' } : { backgroundPosition: "center top", backgroundSize: 'cover' }
   
     return (
           <div className="module-section">

@@ -19,6 +19,9 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
   return (
     <React.Fragment>
       <div className="module-section">
+        {home && <div className="container">
+          <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
+        </div>}
         <div className="edgtf-image-gallery clearfix">
           <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
             <Gallery shareButton={false} id="my-gallery">

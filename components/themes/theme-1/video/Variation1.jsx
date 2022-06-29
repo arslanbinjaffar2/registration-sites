@@ -9,6 +9,9 @@ const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels, totalPages }
 
   return (
     <div className="module-section">
+      {home && <div className="container">
+        <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
+      </div>}
       <div className="edgtf-image-gallery clearfix">
         <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
           {videos &&
