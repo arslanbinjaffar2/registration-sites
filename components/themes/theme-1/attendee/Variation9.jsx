@@ -30,9 +30,10 @@ const Variation9 = ({
       _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
     };
     const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
-    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
+    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`,backgroundPosition: 'center top' } : {backgroundPosition: 'center top'}
     return (
       <div 
+
           style={bgStyle}        
           className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
           ref={_parallax}>

@@ -9,11 +9,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   return (
     <div className="edgtf-container ebs-default-padding">
       <div className="container">
-        <div
-          className={`${
-            "edgtf-full-width-inner"
-          } clearfix`}
-        >
+        <div className={`${!newsSettings.subscriber_id ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
@@ -27,7 +23,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                         >
                           <span className="gallery-img-wrapper-rectangle-2">
                             <img
-                            onLoad={(e) => e.target.style.opacity = 1}
+                              onLoad={(e) => e.target.style.opacity = 1}
                               src={
                                 item.image && item.image !== ""
                                   ? process.env.NEXT_APP_EVENTCENTER_URL +
@@ -78,8 +74,8 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                 ))}
               </div>
             </div>
+            {news.length > 0 &&  loadMore()}
           </div>
-          {news.length > 0 &&  loadMore()}
           {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">

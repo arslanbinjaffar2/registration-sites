@@ -27,9 +27,10 @@
 
 
 .edgtf-title{
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
-    height: 150px;
+    min-height: 150px;
     text-align: left;
     position: relative;
     z-index: 101;

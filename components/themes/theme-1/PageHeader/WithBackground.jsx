@@ -12,7 +12,7 @@ const WithBackground = ({children, moduleVariation}) => {
           );
         } else {
           return (
-            <div style={{ backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border ebs-default-padding">
+            <div style={{ backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border">
               {props.children}
             </div>
           );

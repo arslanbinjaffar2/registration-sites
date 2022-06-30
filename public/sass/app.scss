@@ -2462,6 +2462,10 @@
 .ebs-breadcrumbs {
   color: $white;
   font-size: 18px;
+  margin-bottom: 10px;
+  @include phone-landscape {
+    font-size: 14px;
+  }
   .breadcrumb {
     margin: 0;
   }
