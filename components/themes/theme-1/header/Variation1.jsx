@@ -95,7 +95,8 @@ class Variation1 extends React.Component {
   };
 
   handleMenu = () => {
-    if (window.innerWidth >= 991 && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 991) {
       var _total = 0;
       var _element = false;
       const _container = document.getElementById("navbarSupportedContent");
@@ -123,6 +124,7 @@ class Variation1 extends React.Component {
         _item.appendChild(_ul);
         document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0].appendChild(_item);
       }
+    }
       const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
       _nav.forEach(element => {
         if (element.childNodes[1]) {
@@ -189,7 +191,7 @@ class Variation1 extends React.Component {
                 className="ebs-logo-main text-left"
               >
                 <ActiveLink href={`/${event.url}`}>
-                  <a>
+                  
                     {event.settings.header_logo ? (
                       <img
                         src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
@@ -201,7 +203,7 @@ class Variation1 extends React.Component {
                         alt=""
                       />
                     )}
-                  </a>
+                  
                 </ActiveLink>
               </div>
             </div>
@@ -246,9 +248,7 @@ class Variation1 extends React.Component {
                               aria-current="page"
                               href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
                             >
-                              <a>
                                 {menu.module}
-                              </a>
                             </ActiveLink>
                           )
                         ) : (
@@ -257,9 +257,7 @@ class Variation1 extends React.Component {
                             aria-current="page"
                             href={`/${this.props.event.url}/${menu.alias}`}
                           >
-                            <a>
                               {menu.module}
-                            </a>
                           </ActiveLink>
                         )}
                         {menu.alias === "gallery" && (
@@ -277,9 +275,7 @@ class Variation1 extends React.Component {
                                   }
                                   key={myaccount.id}
                                 >
-                                  <a>
                                     {myaccount.module}
-                                  </a>
                                 </ActiveLink>
                               </li>
                             ))}
@@ -301,9 +297,7 @@ class Variation1 extends React.Component {
                                     }
                                     key={myaccount.id}
                                   >
-                                    <a>
                                       {myaccount.module}
-                                    </a>
                                   </ActiveLink>) :
                                     <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
@@ -317,9 +311,7 @@ class Variation1 extends React.Component {
                                 className="nav-link"
                                 href={`/${event.url}/profile`}
                               >
-                                <a>
                                   My Profile
-                                </a>
                               </ActiveLink>
                             </li>
                             )}
@@ -360,9 +352,7 @@ class Variation1 extends React.Component {
                                               }
                                               key={subitem.id}
                                             >
-                                              <a>
                                                 {subitem.info.name}
-                                              </a>
                                             </ActiveLink>
                                           )}
                                         </li>
@@ -396,9 +386,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={pItem.id}
                                       >
-                                        <a>
                                           {pItem.info.name}
-                                        </a>
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -442,9 +430,7 @@ class Variation1 extends React.Component {
                                                 }
                                                 key={subitem.id}
                                               >
-                                                <a>
                                                   {subitem.info.name}
-                                                </a>
                                               </ActiveLink>
                                             )}
                                         </li>
@@ -478,9 +464,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={aItem.id}
                                       >
-                                        <a>
                                           {aItem.info.name}
-                                        </a>
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -523,9 +507,7 @@ class Variation1 extends React.Component {
                                               }
                                               key={subitem.id}
                                             >
-                                              <a>
                                                 {subitem.info.name}
-                                              </a>
                                             </ActiveLink>
                                           )}
                                         </li>
@@ -559,9 +541,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={gItem.id}
                                       >
-                                        <a>
                                           {gItem.info.name}
-                                        </a>
                                       </ActiveLink>
                                     )}
                                 </li>

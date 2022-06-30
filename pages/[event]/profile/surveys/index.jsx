@@ -4,22 +4,36 @@ import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import SurveyList from "components/myAccount/profile/SurveyList";
+import { metaInfo } from 'helpers/helper';
+import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
-const Index = () => {
+const Index = (props) => {
 
     const { event } = useSelector(eventSelector);
 
     return (
         <>
-            <Head></Head>
-            {event && (
+            <MetaInfo metaInfo={props.metaInfo} />
+            {event ? (
                 <MasterLayoutMyAccount>
                     <SurveyList />
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )
 
+}
+
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            url: context.resolvedUrl
+        },
+    }
 }
 
 export default Index

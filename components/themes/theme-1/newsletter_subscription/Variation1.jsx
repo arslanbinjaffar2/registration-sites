@@ -1,78 +1,65 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
-const SubNewsletter1 = (props) =>  {
+const Variation1 = (props) =>  {
+  const [email, setEmail] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [is_checked, setIsChecked] = useState(false);
+  const onSubmit =() =>{
+    props.handleSubmit({email,first_name,last_name,is_checked});
 
-  const WrapperLayout = (props) => {
-    const _parallax = React.useRef(null);
-    React.useEffect(() => {
-      window.addEventListener("scroll",scollEffect);
-      return () => {
-        window.removeEventListener("scroll",scollEffect);
-      }
-    }, [])
-    
-     function scollEffect () {
-      const scrolled = window.pageYOffset;
-      const itemOffset = _parallax.current.offsetTop;
-      const itemHeight = _parallax.current.getBoundingClientRect();
-      if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-      _parallax.current.style.backgroundPosition = `50%  -${(scrolled * 0.08)}px`;;
-    };
-    if (props.moduleVariation.background_image !== '') {
-      return (
-
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, padding: "100px 0", backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
-          {props.children}
-        </div>
-      );
-    } else {
-      return (
-        <div ref={_parallax} style={{ padding: "80px 0", backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder">
-          {props.children}
-        </div>
-      );
-    }
-
-  }
-  
+}
     return (
       <div className="module-section">
-            <WrapperLayout moduleVariation={props.moduleVariation} >
+        <div  style={{padding: '60px 0',backgroundColor: '#F2F2F2' }} className="">
+        <div className="container">
+        <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'center'} />
+        </div>
+          <div className="ebs-sub-newsletter-sec ebs-dark-variation">
             <div className="container">
-              <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'center'} />
-            </div>
-            <div className="ebs-sub-newsletter-sec">
-              <div className="container">
+            {props.alert !== "" &&<p style={{color:"green"}}>
+                        {props.alert}
+            </p>}
+              <form onSubmit={(e)=>{ e.preventDefault(); onSubmit(); }}>
                 <div className="row d-flex">
                   <div className="col-md-4">
-                    <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Email" />
+                    <input style={{color: '#313131',padding: 15, backgroundColor: '#fff'}} name="email" className="wpcf7-form-control wpcf7-text" value={email} required onChange={(e)=>{setEmail(e.currentTarget.value)}} type="email" placeholder={props.settings.email_label} />
+                    {props.errors.email && props.errors.email.map((error,i)=>(
+                              <p key={i} className='error-message'>{error}</p>
+                            ))}
                   </div>
                   <div className="col-md-4">
-                    <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Full name" />
+                    <input style={{color: '#313131',padding: 15, backgroundColor: '#fff'}} name="first_name" className="wpcf7-form-control wpcf7-text" value={first_name} required onChange={(e)=>{setFirstName(e.currentTarget.value)}} type="text" placeholder={props.settings.first_name_label} />
+                    {props.errors.first_name && props.errors.first_name.map((error,i)=>(
+                              <p key={i} className='error-message'>{error}</p>
+                    ))}
                   </div>
                   <div className="col-md-4">
-                    <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Company" />
+                    <input style={{color: '#313131',padding: 15, backgroundColor: '#fff'}} name="last_name" className="wpcf7-form-control wpcf7-text" value={last_name}  onChange={(e)=>{setLastName(e.currentTarget.value)}} type="text" placeholder={props.settings.last_name_label} />
                   </div>
-                  <div className="col-md-12 mb-5">
+                  {props.settings.show_checkbox !== "0" && <div className="col-md-12 mb-5">
                     <label className="ebs-accept-terms">
                       <span className="ebs-custom-check">
-                        <input type="checkbox"  />
+                        <input type="checkbox" name="is_checked" required onChange={(e)=>{setIsChecked(e.currentTarget.checked)}} checked={is_checked ? true : false}   />
                         <i className="material-icons"></i>
                         </span>
-                      <p>I agree to receive email communications from Digital Tech Summit, including upcoming promotions and discounted tickets, news, and access to exclusive invite-only events, and I have consulted the Privacy Policy. </p>
-                      <p>You can sign up at any time by clicking the <strong>Sign up</strong>  link from all newsletters. </p>
+                        <p>{props.settings.checkbox_content}</p>
                     </label>
-                  </div>
+                  </div>}
                   <div className="col-md-12 text-center">
-                  <button style={{border: '2px solid #fff', color: '#fff',  fontWeight: 500,  backgroundColor: 'transparent'}}  className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Subscribe </button> 
+                  <button style={{border: '2px solid #313131', color: '#313131',  fontWeight: 500}} type="submit"  disabled={props.loading ? true : false}  className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">
+                    {props.settings.button_label}
+                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} className="fa fa-pulse fa-spinner fa-2x"></em>}
+                  </button> 
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-            </WrapperLayout>
+          </div>
+      </div>
       </div>
     );
   }
 
 
-export default SubNewsletter1;
+export default Variation1;

@@ -14,7 +14,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 		} else {
 			return (
 				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud"
-					ref={_parallax}>
+					>
 					{props.children}
 				</div>
 			);

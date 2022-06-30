@@ -1,51 +1,95 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
-const SubNewsletter4 = () =>  {
+const Variation4 = (props) =>  {
+
+  const [email, setEmail] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [is_checked, setIsChecked] = useState(false);
+
+    const _parallax = React.useRef(null);
+    React.useEffect(() => {
+      window.addEventListener("scroll",scollEffect);
+      return () => {
+        window.removeEventListener("scroll",scollEffect);
+      }
+    }, [])
+    
+     function scollEffect () {
+      const scrolled = window.pageYOffset;
+      const itemOffset = _parallax.current.offsetTop;
+      const itemHeight = _parallax.current.getBoundingClientRect();
+      if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
+      const _scroll = (scrolled - itemOffset) + itemHeight.height;
+      _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
+    };
+
+    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${props.moduleVariation.background_image}`;
+    
+    const bgStyle = (props.moduleVariation && props.moduleVariation.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, backgroundPosition: "center top", backgroundSize: 'cover' } : { backgroundPosition: "center top", backgroundSize: 'cover' }
   
+    const onSubmit =() =>{
+          props.handleSubmit({email,first_name,last_name,is_checked});
+  
+    }
+
     return (
       <div className="module-section">
-        <div  style={{  padding: '80px 0', backgroundColor: '#F2F2F2' }} className="">
-        <div className="container-fluid">
-        <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
-        </div>
-          <div className="ebs-sub-newsletter-sec ebs-dark-variation">
-            <div className="container-fluid">
-              <div className="ebs-contain-fluid d-flex">
-                <div className="ebs-left-fluid">
-                  <div className="row d-flex">
-                  <div className="col-md-4">
-                  <input style={{color: '#313131',padding: 15,backgroundColor: '#fff'}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Email" />
-                    </div>
+        <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+          <div className="container-fluid">
+            <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'left'} />
+          </div>
+          <div className="ebs-sub-newsletter-sec">
+            {props.alert !== "" &&<p style={{color:"green"}}>
+                        {props.alert}
+                    </p>}
+            <form onSubmit={(e)=>{ e.preventDefault(); onSubmit(); }} >
+              <div className="container-fluid">
+                <div className="ebs-contain-fluid d-flex">
+                  <div className="ebs-left-fluid">
+                    <div className="row d-flex">
                     <div className="col-md-4">
-                      <input style={{color: '#313131',padding: 15,backgroundColor: '#fff'}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Full name" />
-                    </div>
-                    <div className="col-md-4">
-                      <input style={{color: '#313131',padding: 15,backgroundColor: '#fff'}} className="wpcf7-form-control wpcf7-text" type="text" placeholder="Company" />
+                    <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" name="email" value={email} required onChange={(e)=>{setEmail(e.currentTarget.value)}} type="email" placeholder={props.settings.email_label} />
+                    {props.errors.email && props.errors.email.map((error,i)=>(
+                              <p key={i} className='error-message'>{error}</p>
+                            ))}
+                      </div>
+                      <div className="col-md-4">
+                        <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" name='first_name' value={first_name} required onChange={(e)=>{setFirstName(e.currentTarget.value)}} type="text" placeholder={props.settings.first_name_label} />
+                        {props.errors.first_name && props.errors.first_name.map((error,i)=>(
+                              <p key={i} className='error-message'>{error}</p>
+                            ))}
+                      </div>
+                      <div className="col-md-4">
+                        <input style={{color: '#fff',padding: 15}} className="wpcf7-form-control wpcf7-text" name="last_name" value={last_name}  onChange={(e)=>{setLastName(e.currentTarget.value)}} type="text" placeholder={props.settings.last_name_label} />
+                      </div>
                     </div>
                   </div>
+                  <div className="ebs-right-fluid">
+                  <button style={{border: '2px solid #fff', color: '#fff',  fontWeight: 500,  backgroundColor: 'transparent'}} type="submit"  disabled={props.loading ? true : false}  className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">
+                    {props.settings.button_label}
+                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} className="fa fa-pulse fa-spinner fa-2x"></em>}
+                  </button> 
+                  </div>
                 </div>
-                <div className="ebs-right-fluid">
-                <button style={{border: '2px solid #313131', color: '#313131',  fontWeight: 500}}  className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Subscribe </button> 
-                </div>
+                {props.settings.show_checkbox !== "0" && <div className="row d-flex">
+                  <div className="col-md-12 mb-5">
+                    <label className="ebs-accept-terms">
+                      <span className="ebs-custom-check">
+                        <input type="checkbox" name="is_checked" required onChange={(e)=>{setIsChecked(e.currentTarget.checked)}} checked={is_checked ? true : false} />
+                        <i className="material-icons"></i>
+                        </span>
+                        <p>{props.settings.checkbox_content}</p>
+                      </label>
+                  </div>
+                </div>}
               </div>
-              <div className="row d-flex">
-                <div className="col-md-12 mb-5">
-                  <label className="ebs-accept-terms">
-                    <span className="ebs-custom-check">
-                      <input type="checkbox"  />
-                      <i className="material-icons"></i>
-                      </span>
-                    <p>I agree to receive email communications from Digital Tech Summit, including upcoming promotions and discounted tickets, news, and access to exclusive invite-only events, and I have consulted the Privacy Policy. You can sign up at any time by clicking the <strong>Sign up</strong>  link from all newsletters. </p>
-                  </label>
-                </div>
-              
-              </div>
-            </div>
+            </form>
           </div>
-      </div>
+        </div>
       </div>
     );
   }
 
 
-export default SubNewsletter4;
+export default Variation4;

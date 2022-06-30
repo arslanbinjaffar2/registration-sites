@@ -18,9 +18,9 @@ const Variation8 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
 
   return (
     <div className="module-section">
-      <div className="container">
+      {home && <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
-      </div>
+      </div>}
       <div className="container">
         <div className="gallerMasonry">
           {videos && (

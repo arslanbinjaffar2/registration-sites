@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default class speakerv7 extends Component {
   render() {
     return (
-      <div style={{ padding: "80px 0" }} className="module-section">
+      <div className="module-section ebs-default-padding">
         <div className="container mb-4">
           <div className="row">
             <div className="col-md-8 offset-md-2 text-center">

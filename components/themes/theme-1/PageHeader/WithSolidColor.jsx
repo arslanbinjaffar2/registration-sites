@@ -4,11 +4,10 @@ const WithSolidColor = ({ children }) => {
   return (
     <div
       style={{
-        padding: "80px 0",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
-      className="edgtf-title edgtf-standard-type edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
+      className="edgtf-title edgtf-standard-type edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border ebs-default-padding"
     >
       <div className="edgtf-title-holder d-flex align-items-center justify-content-center">
         <div className="container">

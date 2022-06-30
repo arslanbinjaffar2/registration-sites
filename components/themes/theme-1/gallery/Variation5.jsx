@@ -17,9 +17,9 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
 
   return (
     <div className="module-section">
-      <div className="container">
-        {/* <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} /> */}
-      </div>
+      {home && <div className="container">
+      <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
+      </div>}
       <div className="container">
         <div className="edgtf-image-gallery clearfix">
           <div className="edgtf-image-gallery-grid edgtf-gallery-columns-3">

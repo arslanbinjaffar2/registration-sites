@@ -5,7 +5,7 @@ const Variation1 = (props) => {
 
     return (
       <div className="module-section">
-        <div style={{padding: '80px 0' }} className="">
+        <div className="ebs-default-padding">
         <div className="container">
         <HeadingElement dark={false} label={"About the Event"}  align={'left'} />
           <div className="row d-flex ebs-about-event-section">

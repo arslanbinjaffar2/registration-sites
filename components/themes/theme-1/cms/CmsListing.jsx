@@ -44,8 +44,8 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
             </ul>
           </nav>)
     }} />
-    <div style={{ padding: "80px 0", }}
-      className="edgtf-parallax-section-holder">
+    <div
+      className="edgtf-parallax-section-holder ebs-default-padding">
       <div className="container">        
         <div className="ebs-inner-page-wrapper">
           <ul>

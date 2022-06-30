@@ -110,7 +110,8 @@ class Variation7 extends React.Component {
   };
 
   handleMenu = () => {
-    if (window.innerWidth >= 991 && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 991) {
       var _total = 0;
       var _element = false;
       const _container = document.getElementById("navbarSupportedContent");
@@ -135,11 +136,12 @@ class Variation7 extends React.Component {
           _ul.appendChild(element);
         }
       });
-      if (_element) {
-        _item.appendChild(_ul);
-        document
-          .querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0]
-          .appendChild(_item);
+        if (_element) {
+          _item.appendChild(_ul);
+          document
+            .querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0]
+            .appendChild(_item);
+        }
       }
       const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
       _nav.forEach(element => {

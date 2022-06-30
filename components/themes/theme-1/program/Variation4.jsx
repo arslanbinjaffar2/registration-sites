@@ -5,7 +5,7 @@ const Variation4 = ({ programs }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div style={{ padding: "80px 0" }} className="module-section">
+    <div className="module-section ebs-default-padding">
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2 text-center">

@@ -7,7 +7,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   return (
-    <div style={{ padding: "80px 0" }} className="edgtf-container">
+    <div className="edgtf-container ebs-default-padding">
       <div className="container">
         <div
           className={`${

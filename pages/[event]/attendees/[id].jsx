@@ -4,22 +4,35 @@ import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import Detail from "components/modules/attendees/AttendeeDetail";
+import { metaInfo } from 'helpers/helper';
+import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
-
-const AttendeeDetail = () => {
+const AttendeeDetail = (props) => {
 
     const { event } = useSelector(eventSelector);
 
     return (
         <>
-            <Head></Head>
-            {event && (
+            <MetaInfo metaInfo={props.metaInfo} />
+            {event ? (
                 <MasterLayoutRoute>
                     <Detail />
                 </MasterLayoutRoute>
+            ) : (
+                <PageLoader />
             )}
         </>
     )
+}
+
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            url: context.resolvedUrl
+        },
+    }
 }
 
 export default AttendeeDetail

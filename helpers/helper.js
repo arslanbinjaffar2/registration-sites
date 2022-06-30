@@ -93,3 +93,18 @@ export const localeProgramMoment = (language_id, date = null) => {
 
     return moment().locale(locale).format(format)
 }
+
+export const metaInfo = async (url, screen) => {
+
+    const res = await fetch(url, {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: {
+            screen: ''
+        }
+    });
+
+    const data = await res.json();
+
+    return data.event;
+}

@@ -11,7 +11,7 @@ const getDirectoryName = (item) => {
     else if(item['Other'] !== undefined) return item.Other
 }
 
-function DocumentsListing({documents}) {
+function DocumentsListing({documents, documentPage}) {
 //   console.log(documents);
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
@@ -68,7 +68,7 @@ function DocumentsListing({documents}) {
 
   return (
     <React.Fragment>
-        <PageHeader label={'My Documents'} breadCrumbs={(type) => {
+        {documentPage && <PageHeader label={'My Documents'} breadCrumbs={(type) => {
                 return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {
@@ -78,8 +78,17 @@ function DocumentsListing({documents}) {
                             }
                     </ul>
                 </nav>)
-        }} />
+        }} />}
     <div style={{paddingTop: 50}} className="ebs-document-module">
+    {!documentPage && <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ebs-dark`}>
+        <ul className="breadcrumb">
+                {
+                    breadCrumbs.map((crumb, i) => (
+                            <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                    ))
+                }
+        </ul>
+    </nav>}
         <div className="container">
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">

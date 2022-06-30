@@ -17,12 +17,16 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		dots: false,
 		infinite: true,
 		arrows: false,
-		speed: 500,
-		margin: 30,
+		speed: 2000,
+		margin: 0,
 		slidesToShow: 4,
 		autoplay: true,
-		autoplaySpeed: 2000,
-		slidesToScroll: 3,
+		autoplaySpeed: 0,
+		slidesToScroll: 1,
+		swipeToSlide: true,
+		cssEase: 'linear',
+		pauseOnHover:true,
+		pauseOnFocus:true,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -66,7 +70,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		}
 	}
 	return (
-		<div style={{ padding: "80px 0", backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid">
+		<div style={{ backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid ebs-default-padding">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />

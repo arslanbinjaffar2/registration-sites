@@ -5,6 +5,7 @@ import {
   incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from "components/ui-components/PageLoader";
+import PageHeader from "../PageHeader";
 
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
@@ -46,6 +47,7 @@ const SponsorListing = (props) => {
           <Head>
           <title>{event.eventsiteModules.sponsors}</title>
           </Head>
+          <PageHeader label={event.labels.EVENTSITE_SPONSORS} desc={event.labels.EVENTSITE_SPONSORS_SUB}/>
           <Component sponsors={sponsors} labels = {labels} sponsorCategories={sponsorCategories} eventUrl={eventUrl} siteLabels={event.labels} />
         </React.Fragment>
       ) : <PageLoader/> 

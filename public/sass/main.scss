@@ -335,9 +335,9 @@ a:hover {
 	border-color: $first-main-color !important;
 	color: $white !important;
 }
-// .edgtf-parallax-section-holder {
-// 	transition: none !important;
-// }
+.edgtf-parallax-section-holder {
+	background-size: cover;
+}
 .edgtf-comment-holder {
 	margin: 0 0 73px;
 	padding-top: 8px;
@@ -2712,3 +2712,11 @@ $z-index:$back-to-top-size / 2;
   .slick-active.slick-current {
 	z-index: 99;
   }
+	.navbar .nav-item .nav-link {
+		user-select: none;
+	}
+	.edgtf-title {
+		@include phone-portrait {
+			height: auto !important;
+		}
+	}
