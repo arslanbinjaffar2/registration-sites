@@ -236,7 +236,7 @@ class Variation1 extends React.Component {
                         {menu.alias === "custom" ? (
                           menu.url !== "" ? (
                             <a
-                              className="nav-link" activeClassName="nav-link active"
+                              className="nav-link"
                               aria-current="page"
                               href={menu.url}
                             >
@@ -244,7 +244,7 @@ class Variation1 extends React.Component {
                             </a>
                           ) : (
                             <ActiveLink
-                              className="nav-link" activeClassName="nav-link active"
+                              className="nav-link"
                               aria-current="page"
                               href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
                             >
@@ -299,7 +299,7 @@ class Variation1 extends React.Component {
                                   >
                                       {myaccount.module}
                                   </ActiveLink>) :
-                                    <div className="nav-link" activeClassName="nav-link active" onClick={() => { this.props.setShowLogin(true) }}>
+                                    <div className="nav-link"  onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>
                                   }
@@ -322,7 +322,7 @@ class Variation1 extends React.Component {
                             {menus["practical_info_menu"].map((pItem, k) =>
                               pItem.page_type && pItem.page_type === "menu" ? (
                                 <li className="nav-item" key={pItem.id}>
-                                  <span className="nav-link" activeClassName="nav-link active">
+                                  <span className="nav-link">
                                     {pItem.info.name}
                                   </span>
                                   {pItem.submenu.length > 0 && (
@@ -332,7 +332,7 @@ class Variation1 extends React.Component {
                                           {subitem.page_type &&
                                             subitem.page_type === 2 ? (
                                             <a
-                                              className="nav-link" activeClassName="nav-link active"
+                                              className="nav-link"
                                               aria-current="page"
                                               href={`${subitem.website_protocol}${subitem.url}`}
                                             >
@@ -365,7 +365,7 @@ class Variation1 extends React.Component {
                                   {pItem.page_type && pItem.page_type === 2 ?
                                     (
                                       <a
-                                        className="nav-link" activeClassName="nav-link active"
+                                        className="nav-link" 
                                         aria-current="page"
                                         href={`${pItem.website_protocol}${pItem.url}`}
                                       >
@@ -399,7 +399,7 @@ class Variation1 extends React.Component {
                             {menus["additional_info_menu"].map((aItem, k) =>
                               aItem.page_type && aItem.page_type === "menu" ? (
                                 <li className="nav-item" key={aItem.id}>
-                                  <span className="nav-link" activeClassName="nav-link active">
+                                  <span className="nav-link">
                                     {aItem.info.name}
                                   </span>
                                   {aItem.submenu.length > 0 && (
@@ -409,7 +409,7 @@ class Variation1 extends React.Component {
                                           {subitem.page_type && subitem.page_type === 2 ?
                                             (
                                               <a
-                                                className="nav-link" activeClassName="nav-link active"
+                                                className="nav-link"
                                                 aria-current="page"
                                                 href={`${subitem.website_protocol}${subitem.url}`}
                                               >
@@ -443,7 +443,7 @@ class Variation1 extends React.Component {
                                   {aItem.page_type && aItem.page_type === 2 ?
                                     (
                                       <a
-                                        className="nav-link" activeClassName="nav-link active"
+                                        className="nav-link"
                                         aria-current="page"
                                         href={`${aItem.website_protocol}${aItem.url}`}
                                       >
@@ -477,7 +477,7 @@ class Variation1 extends React.Component {
                             {menus["general_info_menu"].map((gItem, k) =>
                               gItem.page_type && gItem.page_type === "menu" ? (
                                 <li className="nav-item" key={gItem.id}>
-                                  <span className="nav-link" activeClassName="nav-link active">
+                                  <span className="nav-link">
                                     {gItem.info.name}
                                   </span>
                                   {gItem.submenu.length > 0 && (
@@ -487,7 +487,7 @@ class Variation1 extends React.Component {
                                           {subitem.page_type &&
                                             subitem.page_type === 2 ? (
                                             <a
-                                              className="nav-link" activeClassName="nav-link active"
+                                              className="nav-link"
                                               aria-current="page"
                                               href={`${subitem.website_protocol}${subitem.url}`}
                                             >
@@ -520,7 +520,7 @@ class Variation1 extends React.Component {
                                   {gItem.page_type && gItem.page_type === 2 ?
                                     (
                                       <a
-                                        className="nav-link" activeClassName="nav-link active"
+                                        className="nav-link"
                                         aria-current="page"
                                         href={`${gItem.website_protocol}${gItem.url}`}
                                       >
