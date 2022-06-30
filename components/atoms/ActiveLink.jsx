@@ -4,6 +4,7 @@ import React, { Children } from 'react'
 
 const ActiveLink = (props) => {
     const { asPath } = useRouter()
+    console.log(asPath);
     const childClassName = props.className || ''
     const activeClassName = props.activeClassName || ''
 

@@ -46,7 +46,7 @@ const NewsLetterSubscription = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} settings={event.newsletter_subcription_form_settings} alert={alert} errors={errors} loading={loading} handleSubmit={(data)=>{ handleSubmit(data); }} labels={event.labels} />
+      {event.news_settings.subscriber_id !== null && <Component event={event} moduleVariation={moduleVariation[0]} settings={event.newsletter_subcription_form_settings} alert={alert} errors={errors} loading={loading} handleSubmit={(data)=>{ handleSubmit(data); }} labels={event.labels} />}
     </Suspense>
   );
 };

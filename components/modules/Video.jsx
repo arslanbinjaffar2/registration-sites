@@ -33,9 +33,15 @@ const Video = (props) => {
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
-
+  const checkVariation = [
+    'Variation1',
+    'Variation2',
+    'Variation3',
+    'Variation4',
+    'Variation6',
+  ];
   const limit = props.homePage
-    ? 4
+    ?  (in_array(moduleVariation[0]["variation_slug"], checkVariation) ? 8 : 6 )
     : 50;
   
   const [page, setPage] = useState(1);
@@ -60,7 +66,7 @@ const Video = (props) => {
 
   return (
     <Suspense fallback={<PageLoader/>}>
-      {videos ? (
+      {(home && videos &&  videos.length > 0 ) || (!home && videos) ? (
         <React.Fragment>
           {!home && <Head>
               <title>{event.eventsiteModules.videos}</title>

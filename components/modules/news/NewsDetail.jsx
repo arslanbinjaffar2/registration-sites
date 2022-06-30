@@ -44,7 +44,7 @@ const NewsDetail = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {news ? (
         <React.Fragment>
-          <Head>
+          {/* <Head>
             <title>{news.title}</title>
             <meta property="og:title" content={news.title} />
             <meta property="og:type" content="Event" />
@@ -95,7 +95,7 @@ const NewsDetail = (props) => {
                             }
                         />
                         
-          </Head>
+          </Head> */}
           <Component  news={news} event={event} sidebar={sidebar} newsSettings={event.news_settings} />
         </React.Fragment>
       ) : <PageLoader/>}

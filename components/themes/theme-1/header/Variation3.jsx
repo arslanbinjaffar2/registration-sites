@@ -212,7 +212,7 @@ class Variation3 extends React.Component {
                                 menu.alias !== "additional_information" &&
                                 menu.alias !== "general_information" && (
                                   <ActiveLink
-                                    className="nav-link"
+                                    className="nav-link" activeClassName="nav-link active"
                                     aria-current="page"
                                     href={
                                       "/" +
@@ -233,7 +233,7 @@ class Variation3 extends React.Component {
                                       <li className="nav-item" key={k}>
                                         <ActiveLink
                                           aria-current="page"
-                                          className="nav-link"
+                                          className="nav-link" activeClassName="nav-link active"
                                           href={
                                             "/" +
                                             this.props.event.url +
@@ -258,7 +258,7 @@ class Variation3 extends React.Component {
                                       <li className="nav-item" key={k}>
                                         {myaccount.alias !== "login" ? (<ActiveLink
                                           aria-current="page"
-                                          className="nav-link"
+                                          className="nav-link" activeClassName="nav-link active"
                                           href={
                                             "/" +
                                             this.props.event.url +
@@ -282,7 +282,7 @@ class Variation3 extends React.Component {
                                   ) : (<li className="nav-item">
                                     <ActiveLink
                                       aria-current="page"
-                                      className="nav-link"
+                                      className="nav-link" activeClassName="nav-link active"
                                       href={`/${event.url}/profile`}
                                     >
                                       My Profile
@@ -322,7 +322,7 @@ class Variation3 extends React.Component {
                                                     ) : (
                                                       <ActiveLink
                                                         aria-current="page"
-                                                        className="nav-link"
+                                                        className="nav-link" activeClassName="nav-link active"
                                                         href={
                                                           "/" +
                                                           this.props.event.url +
@@ -356,7 +356,7 @@ class Variation3 extends React.Component {
                                           ) : (
                                             <ActiveLink
                                               aria-current="page"
-                                              className="nav-link"
+                                              className="nav-link" activeClassName="nav-link active"
                                               href={
                                                 "/" +
                                                 this.props.event.url +
@@ -405,7 +405,7 @@ class Variation3 extends React.Component {
                                                     ) : (
                                                       <ActiveLink
                                                         aria-current="page"
-                                                        className="nav-link"
+                                                        className="nav-link" activeClassName="nav-link active"
                                                         href={
                                                           "/" +
                                                           this.props.event.url +
@@ -439,7 +439,7 @@ class Variation3 extends React.Component {
                                           ) : (
                                             <ActiveLink
                                               aria-current="page"
-                                              className="nav-link"
+                                              className="nav-link" activeClassName="nav-link active"
                                               href={
                                                 "/" +
                                                 this.props.event.url +
@@ -488,7 +488,7 @@ class Variation3 extends React.Component {
                                                     ) : (
                                                       <ActiveLink
                                                         aria-current="page"
-                                                        className="nav-link"
+                                                        className="nav-link" activeClassName="nav-link active"
                                                         href={
                                                           "/" +
                                                           this.props.event.url +
@@ -522,7 +522,7 @@ class Variation3 extends React.Component {
                                           ) : (
                                             <ActiveLink
                                               aria-current="page"
-                                              className="nav-link"
+                                              className="nav-link" activeClassName="nav-link active"
                                               href={
                                                 "/" +
                                                 this.props.event.url +
