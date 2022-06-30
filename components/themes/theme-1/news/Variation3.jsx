@@ -11,7 +11,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   return (
     <div style={{ padding: '80px 0' }} className='edgtf-container'>
       <div className="container">
-        <div className={`${'edgtf-full-width-inner'} clearfix`}>
+        <div className={`${!newsSettings.subscriber_id ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
 
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
@@ -55,8 +55,8 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                 ))}
               </div>
             </div>
+            {news.length > 0 && loadMore()}
           </div>
-          {news.length > 0 && loadMore()}
           {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">

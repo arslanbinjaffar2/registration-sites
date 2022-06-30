@@ -8,7 +8,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const breakpointColumnsObj = {
-    default: 3,
+    default: newsSettings.subscriber_id ? 2 : 3,
     1100: 2,
     700: 2,
     500: 1,
@@ -16,10 +16,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   return (
     <div style={{paddingLeft: 0, paddingRight: 0}} className="edgtf-container ebs-default-padding">
       <div className="container">
-        <div
-          className={`${"edgtf-full-width-inner"
-            } clearfix`}
-        >
+        <div className={`${!newsSettings.subscriber_id ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
@@ -100,8 +97,8 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                 </Masonry>
               </div>
             </div>
+            {news.length > 0 && loadMore()}
           </div>
-          {news.length > 0 && loadMore()}
           {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
           {newsSettings.subscriber_id !== null && (
             <div className="edgtf-column2">

@@ -50,7 +50,7 @@ const ProgramListing = (props) => {
           <Head>
             <title>{event.eventsiteModules.program}</title>
           </Head>
-          <PageHeader label={event.eventsiteModules.program}/>
+          <PageHeader desc={event.labels.EVENTSITE_PROGRAM_DETAIL} label={event.eventsiteModules.program}/>
           <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} />
         </React.Fragment>
       ) : <PageLoader />}

@@ -28,7 +28,9 @@ const SponsorPopup = ({ width, onClick, data, eventUrl }) => {
                                         alt="x"
                                     />
                                 ) : (
-                                    <Image style={{ width: '90%' }}
+                                    <Image 
+																				layout="raw"
+																				style={{ width: '90%' }}
                                         src={require('public/img/exhibitors-default.png')}
                                         className="vc_single_image-img attachment-full"
                                         alt="x"
