@@ -236,7 +236,7 @@ class Variation1 extends React.Component {
                         {menu.alias === "custom" ? (
                           menu.url !== "" ? (
                             <a
-                              className="nav-link" activeClassName="nav-link active"
+                              className="nav-link"
                               aria-current="page"
                               href={menu.url}
                             >
@@ -244,7 +244,7 @@ class Variation1 extends React.Component {
                             </a>
                           ) : (
                             <ActiveLink
-                              className="nav-link" activeClassName="nav-link active"
+                              className="nav-link"
                               aria-current="page"
                               href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
                             >
@@ -299,7 +299,7 @@ class Variation1 extends React.Component {
                                   >
                                       {myaccount.module}
                                   </ActiveLink>) :
-                                    <div className="nav-link" activeClassName="nav-link active" onClick={() => { this.props.setShowLogin(true) }}>
+                                    <div className="nav-link"  onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>
                                   }

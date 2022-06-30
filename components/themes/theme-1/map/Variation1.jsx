@@ -27,7 +27,7 @@ const Variation1 = ({map, siteLabels}) => {
           allowFullScreen=""
           loading="lazy"
         />}
-        {(map.info.image && map.info.url) && 
+        {(map.info.image && map.info.url === "") && 
           <img src={map.info.image} alt="" />
         }
       </div>

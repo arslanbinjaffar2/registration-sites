@@ -246,7 +246,7 @@ class Variation6 extends React.Component {
                                   >
                                     {myaccount.module}
                                   </ActiveLink>) :
-                                    <div className="nav-link" activeClassName="nav-link active" onClick={() => { this.props.setShowLogin(true) }}>
+                                    <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>
                                   }

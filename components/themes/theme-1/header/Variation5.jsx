@@ -270,7 +270,7 @@ class Variation5 extends React.Component {
                                             {myaccount.module}
                                           </span>
                                         </ActiveLink>) :
-                                          <div className="nav-link" activeClassName="nav-link active" onClick={() => { this.props.setShowLogin(true) }}>
+                                          <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                             <span className="ebs-nav-item">
                                               {myaccount.module}
                                             </span>
