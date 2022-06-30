@@ -34,8 +34,15 @@ const Gallery = (props) => {
     [event]
   );
 
+  const checkVariation = [
+    'Variation1',
+    'Variation2',
+    'Variation4',
+    'Variation7',
+    'Variation8',
+  ];
   const limit = props.homePage
-    ? 4
+    ? (in_array(moduleVariation[0]["variation_slug"], checkVariation) ? 8 : 6 )
     : 50;
   
   const [page, setPage] = useState(1);
