@@ -26,7 +26,7 @@ const Variation1 = (props) => {
                     <strong>Check-in open: </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
                   </li>
                 </ul>
-                <a style={{border: '2px solid #363636', color: '#363636',  fontWeight: 500, paddingTop: 10,paddingBottom: 10}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Register now </a>  
+                <a style={{border: '2px solid #363636', color: '#363636'}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Register now </a>  
               </div>
             </div>
             <div className="col-lg-6 offset-lg-1">

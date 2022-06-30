@@ -7,7 +7,9 @@ const Variation2 = ({ banner }) => {
   const _parallax = useRef(null);
 
   useEffect(() => {
-    typeWriter();
+    setTimeout(() => {
+      typeWriter();
+    }, 5000);
     window.addEventListener("scroll", scollEffect);
     return () => {
       window.removeEventListener("scroll", scollEffect);
@@ -139,7 +141,7 @@ const Variation2 = ({ banner }) => {
                       : "Event Banner"}
                   </span>
                 </div>
-                <div
+                {data.info.message && <div
                   className="edgtf-custom-font-holder ebs-banner-title"
                   style={{
                     fontFamily: "Rubik",
@@ -155,7 +157,7 @@ const Variation2 = ({ banner }) => {
                 >
                   <div id="typewriter"></div>
                   <span style={{ animation: 'blink .7s infinite' }} className="typed-cursor">_</span>
-                </div>
+                </div>}
                 {/* <div
                     className="edgtf-custom-font-holder ebs-banner-subtitle"
                     style={{
