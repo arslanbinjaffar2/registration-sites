@@ -43,7 +43,7 @@ const ExhibitorListing = (props) => {
 
   return (
     <Suspense fallback={<PageLoader/>}>
-      {exhibitors && exhibitors.length > 0 ? (
+      {exhibitors ? (
         <React.Fragment>
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
