@@ -6,6 +6,7 @@ import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import ManageKeywords from "components/myAccount/profile/ManageKeywords";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const KeywordInterest = (props) => {
 
@@ -14,10 +15,12 @@ const KeywordInterest = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutMyAccount>
                     <ManageKeywords />
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

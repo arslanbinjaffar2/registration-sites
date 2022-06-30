@@ -6,6 +6,7 @@ import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import ManageNewsLetter from "components/myAccount/profile/ManageNewsLetter";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const NewsLetterSubscription = (props) => {
 
@@ -14,10 +15,12 @@ const NewsLetterSubscription = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutMyAccount>
                     <ManageNewsLetter />
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

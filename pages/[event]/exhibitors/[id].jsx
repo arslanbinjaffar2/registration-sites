@@ -6,6 +6,7 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import Detail from "components/modules/exhibitor/ExhibitorDetail";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const ExhibitorDetail = (props) => {
 
@@ -14,10 +15,12 @@ const ExhibitorDetail = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutRoute>
                     <Detail />
                 </MasterLayoutRoute>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

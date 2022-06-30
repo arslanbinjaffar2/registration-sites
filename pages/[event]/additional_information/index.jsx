@@ -7,6 +7,7 @@ import CmsListing from "components/modules/cms/CmsListing";
 import { useRouter } from 'next/router';
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const Index = (props) => {
 
@@ -19,10 +20,12 @@ const Index = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutRoute>
                     <CmsListing moduleName="additional_information" menu_id={menu_id} />
                 </MasterLayoutRoute>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

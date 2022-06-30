@@ -6,6 +6,7 @@ import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import MyProfile from "components/myAccount/profile/MyProfile";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const Index = (props) => {
 
@@ -14,10 +15,12 @@ const Index = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutMyAccount>
                     <MyProfile />
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

@@ -6,6 +6,7 @@ import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import MyProgramPage from "components/myAccount/profile/MyProgram";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const MyProgram = (props) => {
 
@@ -14,10 +15,12 @@ const MyProgram = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutMyAccount>
                     <MyProgramPage />
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

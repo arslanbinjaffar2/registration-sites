@@ -6,6 +6,7 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import CmsDetail from 'components/modules/cms/CmsDetail';
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const ExhibitorDetail = (props) => {
 
@@ -14,10 +15,12 @@ const ExhibitorDetail = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutRoute>
                     <CmsDetail moduleName="additional_information" />
                 </MasterLayoutRoute>
+            ) : (
+                <PageLoader />
             )}
         </>
     )
