@@ -28,7 +28,7 @@ const Variation1 = ({map, siteLabels}) => {
           loading="lazy"
         />}
         {(map.info.image && map.info.url) && 
-          <img src={map.info.image} alt="" srcset="" />
+          <img src={map.info.image} alt="" />
         }
       </div>
     </div>
