@@ -19,10 +19,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
   return (
     <div style={{ paddingLeft: 0,paddingRight: 0 }} className="edgtf-container ebs-default-padding">
       <div className="container">
-        <div
-          className={`${sidebar ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"
-            } clearfix`}
-        >
+        <div className={`${newsSettings.subscriber_id ? "edgtf-two-columns-75-25" : "edgtf-full-width-inner"} clearfix`}>
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">

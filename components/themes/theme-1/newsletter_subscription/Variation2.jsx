@@ -37,7 +37,7 @@ const Variation2 = (props) =>  {
 
     return (
           <div className="module-section">
-            <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder">
+            <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
                 <div className="container">
                   <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'center'} />
                 </div>
