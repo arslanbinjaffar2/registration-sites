@@ -5,6 +5,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutMyAccount from "components/layout/MasterLayoutMyAccount";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const BillingHistory = (props) => {
 
@@ -13,10 +14,12 @@ const BillingHistory = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutMyAccount>
 
                 </MasterLayoutMyAccount>
+            ) : (
+                <PageLoader />
             )}
         </>
     )

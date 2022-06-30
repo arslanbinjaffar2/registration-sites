@@ -6,6 +6,7 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import CorporateLogin from "components/CorporateLogin";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
+import PageLoader from "components/ui-components/PageLoader";
 
 const Index = (props) => {
 
@@ -14,10 +15,12 @@ const Index = (props) => {
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} />
-            {event && (
+            {event ? (
                 <MasterLayoutRoute>
                     <CorporateLogin />
                 </MasterLayoutRoute>
+            ) : (
+                <PageLoader />
             )}
         </>
     )
