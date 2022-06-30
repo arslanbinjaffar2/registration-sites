@@ -60,7 +60,7 @@ const Video = (props) => {
 
   return (
     <Suspense fallback={<PageLoader/>}>
-      {(home && videos.length > 0 ) || (!home && videos) ? (
+      {(home && videos && videos.length > 0 ) || (!home && videos) ? (
         <React.Fragment>
           {!home && <Head>
               <title>{event.eventsiteModules.videos}</title>
