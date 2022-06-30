@@ -60,7 +60,7 @@ const Gallery = (props) => {
 
   return (
     <Suspense fallback={<PageLoader/>}>
-      {photos ? (
+      {(home && photos.length > 0 ) || (!home && photos) ? (
         <React.Fragment>
           {!home && <Head>
               <title>{event.eventsiteModules.gallery}</title>

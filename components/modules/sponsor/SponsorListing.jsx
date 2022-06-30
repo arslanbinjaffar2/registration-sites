@@ -42,7 +42,7 @@ const SponsorListing = (props) => {
     }, []);
   return (
     <Suspense fallback={<PageLoader/>}>
-      {sponsors && sponsors.length > 0 ? (
+      {sponsors ? (
         <React.Fragment>
           <Head>
           <title>{event.eventsiteModules.sponsors}</title>
