@@ -55,7 +55,7 @@ const Variation3 = (props) =>  {
                         <input type="checkbox" name="is_checked" required onChange={(e)=>{setIsChecked(e.currentTarget.checked)}} checked={is_checked ? true : false} />
                         <i className="material-icons"></i>
                         </span>
-                        <p>{props.settings.checkbox_content}</p>
+                        <p dangerouslySetInnerHTML={{__html: props.settings.checkbox_content}} />
                      </label>
                   </div>
                 

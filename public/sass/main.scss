@@ -337,6 +337,18 @@ a:hover {
 }
 .edgtf-parallax-section-holder {
 	background-size: cover;
+	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		color: rgba($white, 0.7);
+	}
+	::-moz-placeholder { /* Firefox 19+ */
+		color: rgba($white, 0.7);
+	}
+	:-ms-input-placeholder { /* IE 10+ */
+		color: rgba($white, 0.7);
+	}
+	:-moz-placeholder { /* Firefox 18- */
+		color: rgba($white, 0.7);
+	}
 }
 .edgtf-comment-holder {
 	margin: 0 0 73px;
@@ -2255,7 +2267,10 @@ $z-index:$back-to-top-size / 2;
 		border-radius: 6px;
 		height: 60px;
 		padding-left: 28px;
-		padding-right: 60px;	
+		padding-right: 60px;
+		&::placeholder {
+			color: rgba($black, 0.6);
+		}	
 	}
 	.fa {
 		font-size: 22px;
@@ -2686,7 +2701,7 @@ $z-index:$back-to-top-size / 2;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 9;
+	z-index: 10;
 	display: flex;
 	align-items: center;
 	justify-content: center;

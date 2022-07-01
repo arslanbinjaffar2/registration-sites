@@ -28,7 +28,7 @@ const Variation1 = ({map, siteLabels}) => {
           loading="lazy"
         />}
         {(map.info.image && map.info.url === "") && 
-          <img src={map.info.image} alt="" />
+          <img src={`${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/maps/'}${map.info.image}`} alt=""  style={{width:"100%"}}/>
         }
       </div>
     </div>

@@ -17,7 +17,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		dots: false,
 		infinite: true,
 		arrows: false,
-		speed: 2000,
+		speed: 5000,
 		margin: 0,
 		slidesToShow: 4,
 		autoplay: true,
