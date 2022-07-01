@@ -396,7 +396,6 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
   const eventduration = moment.duration(endTime.diff(startTime));
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
-  console.log(showWorkshop);
   return (
     <React.Fragment>
     {items.program_workshop  && showWorkshop && <div className="workkshop-box ebs-workshop" style={{ left: (hours * _multiplyer)+15, width: _wrappWidth, position:'absolute', top:"-10px" }} >{items.program_workshop}</div>}

@@ -24,7 +24,6 @@ function formatString(fmt, ...args) {
 const objectToArray = (obj) => {
     var arr = [];
     var arrkeys = [];
-    console.log(obj);
     for (const [key, value] of Object.entries(obj)) {
         arr.push(value);
         arrkeys.push(key);

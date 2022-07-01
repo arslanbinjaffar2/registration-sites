@@ -77,7 +77,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   const updateAttendeeFeild = (e) => {
     const { name, value } = e.currentTarget;
-    console.log(value);
     setAttendeeData({
       ...attendeeData,
       [name]: value,
@@ -86,7 +85,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   const updateAttendeeInfoFeild = (e) => {
     const { name, value } = e.currentTarget;
-    console.log(value);
     setAttendeeData({
       ...attendeeData,
       info: {
@@ -441,7 +439,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {console.log(attendeeData.country)}
               {attendeeData.info && attendeeData.info.industry && (
                 <Input
                   label="Industry"

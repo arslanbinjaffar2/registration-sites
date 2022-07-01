@@ -68,7 +68,6 @@ export const updateSubRegistrationData = (id, url, data) => {
   return async dispatch => {
     dispatch(getSubRegistrationData())
     try {
-      console.log(data)
       const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
       if (response.data.data) {
         dispatch(setSkip());

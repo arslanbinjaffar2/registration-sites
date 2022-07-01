@@ -5,7 +5,6 @@ import PageHeader from "components/modules/PageHeader";
 import HeadingElement from "components/ui-components/HeadingElement";
 
 const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
-  console.log(array, menu_id, currentPage, eventSiteModuleName);
   let returnArray = [{ id: "module", name: eventSiteModuleName, type: "menu" }];
   let toFolder = null;
   if (menu_id && menu_id !== 'module') {

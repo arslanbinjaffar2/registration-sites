@@ -99,7 +99,6 @@ const settings = {
     }
   ]
 };
-console.log(schedule.length);
   return (
     <React.Fragment>
       {programsLoc && (
@@ -204,7 +203,6 @@ const worshopProgramsByTracks = (programs, track) => {
     const items = programs.reduce((ack, program)=>{
       if(program.program_tracks.length > 0){
         const find = program.program_tracks.find((item)=>(item.name === track));
-        console.log(program.program_tracks.find((item)=>(item.name === track)));
         if(find !== null && find !== undefined){
             ack.push(program);
         }
