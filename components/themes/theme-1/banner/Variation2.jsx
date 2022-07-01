@@ -92,18 +92,23 @@ const Variation2 = ({ banner }) => {
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
-          {props.children}
+        {props.data.url ? <a href={props.data.url} target="_blank">
+              {props.children}
+            </a >: props.children}
         </div>
       );
     } else {
       return (
-        <div
-          data-fixed="false"
-          ref={_parallax}
-          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
-        >
-          {props.children}
-        </div>
+          <div
+            data-fixed="false"
+            ref={_parallax}
+            className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+          >
+            
+            {props.data.url ? <a href={props.data.url} target="_blank">
+              {props.children}
+            </a >: props.children}
+          </div>
       );
     }
 

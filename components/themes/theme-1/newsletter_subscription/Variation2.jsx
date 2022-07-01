@@ -40,6 +40,7 @@ const Variation2 = (props) =>  {
             <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
                 <div className="container">
                   <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'center'} />
+                  <p style={{color:"#fff", textAlign:"center"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
                 </div>
                 <div className="ebs-sub-newsletter-sec">
                   <div className="container">
