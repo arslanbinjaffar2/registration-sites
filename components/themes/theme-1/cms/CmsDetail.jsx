@@ -70,7 +70,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 alt="g"
                               />
                             ) : (
-                              <Image
+                              <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src=""
                                 alt="g"
@@ -150,7 +150,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 alt="g"
                               />
                             ) : (
-                              <Image
+                              <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src=""
                                 alt="g"

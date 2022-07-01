@@ -20,7 +20,7 @@ const Variation1 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 						{exhibitorsCategory.name ? <h4 style={{ textAlign: settings.text_align }}> {exhibitorsCategory.name}</h4> : ""}
 						{exhibitorsCategory.exhibitors.map((exhibitor, j) => {
 							return (<div className="col-sm-6 col-6 col-md-4" key={j}>
-								<figure onClick={() => { setData(exhibitor); setPopup(true) }} className="bghover">
+								<figure onClick={() => { setData(exhibitor); setPopup(true) }} className="bghover ebs-master-image">
 									{
 										exhibitor.logo && exhibitor.logo !== '' ? (
 											<img
@@ -29,7 +29,7 @@ const Variation1 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 												alt="x"
 											/>
 										) : (
-											<Image
+											<Image objectFit='contain' layout="fill"
 												src={require('public/img/exhibitors-default.png')}
 												className="vc_single_image-img attachment-full"
 												alt="x"

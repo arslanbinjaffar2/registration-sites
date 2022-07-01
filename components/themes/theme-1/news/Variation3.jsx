@@ -24,7 +24,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                               item.image && item.image !== '' ? (
                                 <img onLoad={(e) => e.target.style.opacity = 1} src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/eventsite_news/" + item.image} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
                               ) : (
-                                <Image onLoad={(e) => e.target.style.opacity = 1} src={""} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
+                                <Image objectFit='contain' layout="fill" onLoad={(e) => e.target.style.opacity = 1} src={""} className="attachment-full size-full wp-post-image" alt="a" width="1500" height="500" />
                               )
                             }
                           </span>

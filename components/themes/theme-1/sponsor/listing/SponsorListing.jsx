@@ -120,7 +120,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                           {sponsor.logo && sponsor.logo !== '' ? (
                             <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
                           ) : (
-                            <Image src={require('public/img/exhibitors-default.png')} alt="" />
+                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt="" />
                           )}
                         </figure>
                       </ActiveLink>

@@ -39,7 +39,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                   alt="g"
                                 />
                               ) : (
-                                <Image
+                                <Image objectFit='contain' layout="fill"
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   src={
                                     require("public/img/user-placeholder.jpg")

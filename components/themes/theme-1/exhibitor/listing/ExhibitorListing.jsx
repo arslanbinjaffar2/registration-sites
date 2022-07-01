@@ -119,7 +119,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                           {exhibitor.logo && exhibitor.logo ? (
                             <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
                           ) : (
-                            <Image src={require('public/img/exhibitors-default.png')} alt="" />
+                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt="" />
                           )}
                         </figure>
                       </ActiveLink>

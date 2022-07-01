@@ -36,7 +36,7 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                                   alt="g"
                                 />
                               ) : (
-                                <Image
+                                <Image objectFit='contain' layout="fill"
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   style={{ width: "100%" }}
                                   src={require("public/img/gallery-not-found.png")}

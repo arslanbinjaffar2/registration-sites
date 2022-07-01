@@ -20,7 +20,7 @@ const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
                 <div className="ebs-popup-inner">
                     <div className="row d-flex">
                         <div className="col-sm-4">
-                            <figure>
+                            <figure className="ebs-master-image">
                                 {data.logo && data.logo !== '' ? (
                                     <img style={{ width: '90%' }}
                                         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + data.logo}
@@ -28,7 +28,8 @@ const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
                                         alt="x"
                                     />
                                 ) : (
-                                    <Image style={{ width: '90%' }}
+                                    <Image objectFit='contain' layout="fill" 
+                                        style={{ width: '90%' }}
                                         src={require('public/img/exhibitors-default.png')}
                                         className="vc_single_image-img attachment-full"
                                         alt="x"
