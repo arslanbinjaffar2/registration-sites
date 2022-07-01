@@ -16,7 +16,7 @@ const ExhibitorDetail = (props) => {
         <>
             <MetaInfo metaInfo={props.metaInfo} />
             {event ? (
-                <MasterLayoutRoute>
+                <MasterLayoutRoute event={event}>
                     <Detail />
                 </MasterLayoutRoute>
             ) : (

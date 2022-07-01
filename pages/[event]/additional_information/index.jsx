@@ -21,7 +21,7 @@ const Index = (props) => {
         <>
             <MetaInfo metaInfo={props.metaInfo} />
             {event ? (
-                <MasterLayoutRoute>
+                <MasterLayoutRoute event={event}>
                     <CmsListing moduleName="additional_information" menu_id={menu_id} />
                 </MasterLayoutRoute>
             ) : (

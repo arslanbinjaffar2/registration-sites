@@ -83,7 +83,6 @@ export const logUserIn = (id, url, data) => {
     dispatch(setEmail(data.email));
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/login`, data);
-      console.log(response);
       if(response.data.success){
         if(response.data.redirect === "choose-provider"){
           dispatch(setForgotPasswordCode(response.data));
@@ -115,7 +114,6 @@ export const resetPasswordRequest = (id, url, data) => {
     dispatch(setEmail(data));
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/password/email`, {email:data, url});
-      console.log(response);
       if(response.data.success){
         if(response.data.redirect === "choose-provider"){
         dispatch(setForgotPasswordCode(response.data));
@@ -141,7 +139,6 @@ export const getAttendeeData = (id, url, data) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/verification/${data}`);
-      console.log(response);
       if(response.data.success){
         dispatch(setAttendeeData(response.data));
       }else{
@@ -162,7 +159,6 @@ export const verify = (id, screen, provider, code, url, authentication_id) => {
     dispatch(setMs());
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/verification/${authentication_id}`, { screen, provider, code, url, authentication_id});
-      console.log(response);
       if(response.data.success){
         if(screen === "choose-provider"){
         dispatch(setProvider(provider));
@@ -189,7 +185,6 @@ export const resetPassword = (id, url, data) => {
     dispatch(setLoading());
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/password/reset`, {...data, url});
-      console.log(response);
       if(response.data.success){
         dispatch(setRedirect(response.data));
       }else{
@@ -209,7 +204,6 @@ export const logOut = (id, url) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
-      console.log(response);
       if(response.data.success){
         localStorage.removeItem(`event${id}User`);
         dispatch(setLoggedOut(true));

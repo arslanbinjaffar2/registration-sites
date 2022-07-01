@@ -6,8 +6,6 @@ import Image from 'next/image'
 const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
-  console.log(`${process.env.NEXT_APP_URL}/${event_url}/getMailingListSubscriberForm/${newsSettings.subscriber_id}`);
-  console.log(newsSettings)
   return (
     <div style={{ padding: '80px 0' }} className='edgtf-container'>
       <div className="container">

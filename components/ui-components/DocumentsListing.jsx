@@ -12,7 +12,6 @@ const getDirectoryName = (item) => {
 }
 
 function DocumentsListing({documents, documentPage}) {
-//   console.log(documents);
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
     const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:"Documents"}]);

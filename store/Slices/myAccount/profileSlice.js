@@ -64,18 +64,15 @@ export const fetchProfileData = (id, url) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile`, { headers:header("GET", id)})
         const res = await response.json()
-        console.log(res);
         dispatch(clearError())
         dispatch(setProfileData(res.data))
       } catch (error) {
-        console.log(error)
         dispatch(setError(error))
       }
     }
   }
 export const updateProfileData = (id, url, data) => {
     return async dispatch => {
-      console.log(data)
       dispatch(getProfileData())
       try {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers:header("POST", id)})

@@ -44,21 +44,17 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
   ) => {
     if (type === "multiple") {
       if (Object.keys(surveyResult).length > 0) {
-        console.log(surveyResult[feild]);
         let newObj = surveyResult;
         newObj[feild]=
         surveyResult[feild]
           ? (surveyResult[feild].indexOf(answerId) !== -1
             ? surveyResult[feild].filter((item) => (item !== answerId))
             : [...surveyResult[feild], answerId])
-          : [answerId];
-        // console.log(newObj);
-          
+          : [answerId];          
         if (agendaId !== 0) {
             newObj[`answer_agenda_${answerId}`] = agendaId;
         }
         setSurveyResult({ ...newObj });
-        console.log(surveyResult);
       } else {
         let newObj = {
           [feild]: [answerId],
@@ -104,7 +100,6 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
     }
    else if (type === "matrix") {
       if (Object.keys(surveyResult).length > 0) {
-        console.log(feild);
         setSurveyResult({
           ...surveyResult,
           [feild]:

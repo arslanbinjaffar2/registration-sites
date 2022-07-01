@@ -84,7 +84,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
   ) => {
     if (type === "multiple") {
       if (Object.keys(subRegResult).length > 0) {
-        console.log(subRegResult[feild]);
         let newObj = subRegResult;
         newObj[feild]=
         subRegResult[feild]
@@ -92,13 +91,11 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
             ? subRegResult[feild].filter((item) => (item !== answerId))
             : [...subRegResult[feild], answerId])
           : [answerId];
-        // console.log(newObj);
           
         if (agendaId !== 0) {
             newObj[`answer_agenda_${answerId}`] = agendaId;
         }
         setSubRegResult({ ...newObj });
-        console.log(subRegResult);
       } else {
         let newObj = {
           [feild]: [answerId],
@@ -144,7 +141,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
     }
    else if (type === "matrix") {
       if (Object.keys(subRegResult).length > 0) {
-        console.log(feild);
         setSubRegResult({
           ...subRegResult,
           [feild]:

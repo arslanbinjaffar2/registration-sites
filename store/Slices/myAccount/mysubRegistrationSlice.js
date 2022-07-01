@@ -51,7 +51,6 @@ export const updateSubRegistrationData = (id, url, data) => {
     return async dispatch => {
       dispatch(getSubRegistrationData())
       try {
-        console.log(data)
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
       } catch (error) {

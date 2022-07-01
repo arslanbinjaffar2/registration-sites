@@ -25,7 +25,6 @@ const onSubmit = () =>{
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{
-        console.log(email);
       onformSubmit(email);
     }
   }

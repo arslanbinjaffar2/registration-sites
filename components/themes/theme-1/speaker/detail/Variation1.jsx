@@ -8,7 +8,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
-      <div
+      {/* <div
         style={{
           minHeight: 250,
         }}
@@ -26,7 +26,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
           </div>
         </div>
         <div></div>
-      </div>
+      </div> */}
       <div className="single-team-member">
         <div className="edgtf-container-inner container clearfix">
           <div className="edgtf-team-single-holder">
