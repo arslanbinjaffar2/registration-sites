@@ -13,7 +13,8 @@ const Variation3 = (props) =>  {
       <div className="module-section">
         <div  style={{ backgroundColor: '#F2F2F2' }} className="ebs-default-padding">
         <div className="container-fluid">
-        <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
+          <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
+          <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
         </div>
           <div className="ebs-sub-newsletter-sec ebs-dark-variation">
             {props.alert !== "" &&<p style={{color:"green"}}>
