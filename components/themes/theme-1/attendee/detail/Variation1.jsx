@@ -4,25 +4,6 @@ import Image from 'next/image'
 const Variation1 = ({ attendee }) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
-      <div
-        style={{
-          minHeight: 250,
-        }}
-        className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
-      >
-        <div className="edgtf-title-holder d-flex align-items-center justify-content-center ">
-          <div className="container">
-            <div className="edgtf-title-subtitle-holder">
-              <div className="edgtf-title-subtitle-holder-inner">
-                <h1 style={{ color: "white" }}>
-                  <span>Attendee</span>
-                </h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div></div>
-      </div>
       <div className="single-team-member">
         <div className="edgtf-container-inner container clearfix">
           <div className="edgtf-team-single-holder">
