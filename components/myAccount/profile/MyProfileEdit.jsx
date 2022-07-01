@@ -559,7 +559,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <h3 className="ebs-title">Contact information:</h3>
                 {attendeeData.phone &&
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-phone.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" />
                     <div className="form-phone-field">
                       {attendeeData.calling_code && (
                         <React.Fragment>
@@ -601,7 +601,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>}
                 {attendeeData.email && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-envelope.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -615,7 +615,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 )}
                 {attendeeData.info && attendeeData.info.website && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-web.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -629,7 +629,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 )}
                 {attendeeData.info && attendeeData.info.facebook && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-facebook.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -643,7 +643,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 )}
                 {attendeeData.info && attendeeData.info.twitter && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-twitter.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required
@@ -657,7 +657,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 )}
                 {attendeeData.info && attendeeData.info.linkedin && (
                   <div className="ebs-contact-row d-flex align-items-center">
-                    <Image src={require("public/img/ico-linkedin.svg")} alt="" />
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" />
                     <Input
                       label="E-mail"
                       required

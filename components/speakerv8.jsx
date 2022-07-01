@@ -33,7 +33,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -55,7 +55,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -77,7 +77,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -99,7 +99,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -121,7 +121,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -143,7 +143,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -165,7 +165,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />
@@ -187,7 +187,7 @@ export default class speakerv8 extends Component {
               <div className="speakerv8-wrapper">
                 <div className="speakerv8-image">
                   <span>
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       src={require('public/img/square.jpg')}
                       alt="j"
                     />

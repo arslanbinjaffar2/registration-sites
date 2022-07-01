@@ -41,7 +41,7 @@ const ProgramItem = ({ program, eventUrl }) => {
                                                         speakers.image
                                                     } alt="" />
                                             ) : (
-                                                <Image
+                                                <Image objectFit='contain' layout="fill"
                                                     onLoad={(e) => e.target.style.opacity = 1}
                                                     src={
                                                         require("public/img/user-placeholder.jpg")

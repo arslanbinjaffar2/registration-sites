@@ -29,7 +29,7 @@ const Variation2 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
                                             alt="x"
                                         />
                                     ) : (
-                                        <Image
+                                        <Image objectFit='contain' layout="fill"
                                             src={require('public/img/exhibitors-default.png')}
                                             className="vc_single_image-img attachment-full"
                                             alt="x"
