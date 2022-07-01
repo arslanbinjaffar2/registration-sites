@@ -3,11 +3,7 @@ import React from 'react'
 const WithSolidColor = ({ children }) => {
   return (
     <div
-      style={{
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-      className="edgtf-title edgtf-standard-type edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border ebs-default-padding"
+      className="edgtf-title edgtf-standard-type edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border"
     >
       <div className="edgtf-title-holder d-flex align-items-center justify-content-center">
         <div className="container">

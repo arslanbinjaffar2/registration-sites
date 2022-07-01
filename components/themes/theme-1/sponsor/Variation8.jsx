@@ -19,14 +19,14 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		arrows: false,
 		speed: 5000,
 		margin: 0,
-		slidesToShow: 4,
+		slidesToShow: 5,
 		autoplay: true,
 		autoplaySpeed: 0,
 		slidesToScroll: 1,
-		swipeToSlide: true,
+		swipeToSlide: false,
 		cssEase: 'linear',
-		pauseOnHover:true,
-		pauseOnFocus:true,
+		pauseOnHover:false,
+		pauseOnFocus:false,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -34,7 +34,11 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 					slidesToShow: 3,
 					slidesToScroll: 3,
 					infinite: true,
-					dots: false
+					speed: 500,
+					swipeToSlide: true,
+					autoplaySpeed: 5000,
+					dots: false,
+					
 				}
 			},
 			{
@@ -42,6 +46,10 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
+					infinite: true,
+					speed: 500,
+					swipeToSlide: true,
+					autoplaySpeed: 5000,
 					initialSlide: 2
 				}
 			},
@@ -75,7 +83,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 			</div>
-			<div className="container">
+			<div className="container-fluid">
 				<div className="edgtf-carousel-holder">
 					<div
 						className="edgtf-carousel edgtf-slick-slider-navigation-style"
@@ -100,11 +108,10 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 												/>
 											) : (
 												<Image
+													layout="raw"
 													onMouseDown={e => handleOnMouseDown(e)}
 													onClick={e => handleOnClick(e, sponsor)}
-													src={
-														require('public/img/exhibitors-default.png')
-													}
+													src={require('public/img/exhibitors-default.png')}
 													alt="Client 11"
 												/>
 											)}

@@ -14,14 +14,14 @@ const PageHeader = ({children, label, desc, breadCrumbs}) => {
   });
   if(moduleVariation[0]['variation_slug'] === 'Variation1'){
     return <WithBackground moduleVariation={moduleVariation[0]} >
-      <HeadingElement dark={true} label={label} page_header={true} align={"left"} desc={desc} />
-      {breadCrumbs && breadCrumbs('background')}
+        <HeadingElement breakheading dark={true} label={label} page_header={true} align={"left"} desc={desc} />
+        {breadCrumbs && breadCrumbs('background')}
     </WithBackground>
   }
   
   if(moduleVariation[0]['variation_slug'] === 'Variation2'){
     return <WithSolidColor>
-      <HeadingElement dark={false} label={label} page_header={true}  align={"left"} desc={desc} />
+      <HeadingElement breakheading dark={false} label={label} page_header={true}  align={"left"} desc={desc} />
       {breadCrumbs && breadCrumbs('color')}
 
     </WithSolidColor>
