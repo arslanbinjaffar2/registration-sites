@@ -101,7 +101,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                 </div>
               </div>}
             </div>
-            <div className="col-lg-8">
+            <div className="col-lg-9">
               <div className="ebs-top-filter-container pb-3">
                 <ul>
                   <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="#!">All</a> </li>

@@ -1441,6 +1441,8 @@
     }
   }
 }
+
+
 .ebs-timeline-wrapper {
   overflow: hidden;
   width: 100%;
@@ -1498,6 +1500,18 @@
     position: relative;
     min-height: 150px;
     margin-bottom: 10px;
+    &.ebs-workshop-wrapp {
+      min-height: 180px;
+      .workkshop-box {
+        white-space: nowrap;
+        font-size: 16px;
+        color: #000;
+      }
+      .ebs-workshop.datawrapp {
+        top: 30px;
+      }
+    }
+
     .datawrapp {
       position: absolute;
       background: #F5F4FF;
@@ -1578,6 +1592,24 @@
       &.ebs-workshop {
         border-color: #54C09F;
         background-color: #F4FFFA;
+      }
+    }
+    &.ebs-wrapper-theme-2 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #880808;
+        background: rgba(#880808,0.3);
+      }
+    }
+    &.ebs-wrapper-theme-3 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #ff8c00;
+        background: rgba(#ff8c00,0.3);
+      }
+    }
+    &.ebs-wrapper-theme-4 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #9b870c;
+        background: rgba(#9b870c,0.3);
       }
     }
   }
