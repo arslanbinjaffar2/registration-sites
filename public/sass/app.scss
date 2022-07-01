@@ -713,6 +713,16 @@
     cursor: pointer;
   }
 }
+.ebs-master-image {
+  span{
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    left: 0;
+    top: 0;
+  }
+}
 .sponsorsv3-wrapper {
   margin-bottom: 20px;
   .bghover {
@@ -723,8 +733,8 @@
     position: relative;
     cursor: pointer;
     img {
-      max-width: 80%;
-      max-height: 100%;
+      max-width: 80% !important;
+      max-height: 100% !important;
       position: absolute;
       left: 0;
       top: 0;
