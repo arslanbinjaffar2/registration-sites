@@ -7,12 +7,12 @@ import { localeProgramMoment } from 'helpers/helper';
 const customStyles = {
   control: base => ({
     ...base,
-    height: 60,
-    minHeight: 60,
-    backgroundColor: '#F4F4F4',
-    borderColor: '#ced4da',
+    height: 38,
+    minHeight: 38,
+    backgroundColor: '#FBFDFF',
+    borderColor: '#E9EDF0',
     width: '100%',
-    maxWidth: '100%'
+    maxWidth: '100%',
   })
 };
 const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters }) => {
