@@ -26,7 +26,7 @@ const Variation3 = ({ event, banner, countdown }) => {
 	}
 
 	return (
-		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
+		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box ebs-banner-full-height">
 			{banner && <SliderBanner
 				fullscreen
 				countdown={countdown}
