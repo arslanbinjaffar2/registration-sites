@@ -8,7 +8,7 @@ import {
   updateSubRegistrationData,
 } from "store/Slices/myAccount/subRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
-const SubRegForm = ({ subRegistration, event, afterLogin }) => {
+const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error }) => {
   const dispatch = useDispatch();
   const [subRegResult, setSubRegResult] = useState(afterLogin ? {} : subRegistration.questions.question
     .reduce(
@@ -620,8 +620,10 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
           </div>
         </React.Fragment>
       </div>
+      <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
+      <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
       <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+        <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
       </div>
     </React.Fragment>
   );

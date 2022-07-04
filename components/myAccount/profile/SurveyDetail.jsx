@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SurveyForm from './SurveyForm';
 import PageLoader from 'components/ui-components/PageLoader';
 import { useRouter } from 'next/router';
+import SurveyFormAnswered from './SurveyFormAnswered';
 
 const SurveyDetail = ({ match }) => {
 
@@ -23,7 +24,7 @@ const SurveyDetail = ({ match }) => {
     dispatch(fetchSurveyData(event.id, event.url, id));
   }, []);
 
-  const { surveyDetail, surveyResult } = useSelector(surveySelector);
+  const { surveyDetail, surveyResult, updating } = useSelector(surveySelector);
 
   return (
     surveyDetail ? <div className="edgtf-container ebs-my-profile-area pb-5">
@@ -32,7 +33,9 @@ const SurveyDetail = ({ match }) => {
           <h2>Surveys</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-          <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} />
+          {surveyResult.length > 0 ? 
+            <SurveyFormAnswered surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />
+          : <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />}
         </div>
       </div>
     </div> : <PageLoader />

@@ -82,7 +82,7 @@ const Speaker = (props) => {
             <title>{event.eventsiteModules.speakers}</title>
           </Head>}
           <Component speakers={speakers} siteLabels={event.labels} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
-           return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setValue={(text)=>setValue(text)}  />;
+           return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setText={(text)=>setValue(text)}  />;
           }}
           
           loadMore={()=>{

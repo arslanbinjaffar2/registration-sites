@@ -4,6 +4,7 @@ import { header } from 'helpers/header'
 const initialState = {
   subRegistration: null,
   loading:false,
+  updating:false,
   error:null,
   alert:null,
 }
@@ -19,6 +20,9 @@ export const eventSlice = createSlice({
         state.subRegistration = payload,
         state.loading = false
     },
+    setUpdating: (state, { payload }) => {
+      state.updating = payload
+    },
     setError: (state, { payload }) => {
       state.error = payload
     },
@@ -29,7 +33,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert } = eventSlice.actions
+export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setUpdating } = eventSlice.actions
 
 export const subRegistrationSelector = state => state.subRegistration
 
@@ -43,18 +47,20 @@ export const fetchSubRegistrationData = (id,url) => {
         const res = await response.json()
         dispatch(setSubRegistrationData(res.data))
       } catch (error) {
-        dispatch(setError(error))
+        dispatch(setError("Couldn't fetch Subregistration"));
       }
     }
   }
 export const updateSubRegistrationData = (id, url, data) => {
     return async dispatch => {
-      dispatch(getSubRegistrationData())
+      dispatch(setUpdating(true));
       try {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, { headers:header("POST", id)})
-        dispatch(setAlert(response.data))
+        dispatch(setAlert("Answers Successfully Updated"))
+        dispatch(setUpdating(false));
       } catch (error) {
-        dispatch(setError(error))
+        dispatch(setUpdating(false));
+        dispatch(setError("Couldn't Update Subregistration"));
       }
     }
   }

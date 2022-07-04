@@ -57,9 +57,9 @@ const MyProfile = () => {
                     </div>
                     <div className="ebs-profile-social-media">
                       <div className="ebs-profile-media-icons">
-                        {(attendee.info && attendee.info.facebook) && <a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><Image objectFit='contain' layout="fill" src={require('public/img/ico-facebook.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.twitter) && <a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><Image objectFit='contain' layout="fill" src={require('public/img/ico-twitter.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image objectFit='contain' layout="fill" src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.facebook) && <a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><Image  src={require('public/img/ico-facebook.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.twitter) && <a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><Image  src={require('public/img/ico-twitter.svg')} alt="" /></a>}
+                        {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image  src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
                       </div>
                       <div className="ebs-profile-social-links">
                         {attendee.phone && <div className="ebs-profile-social-links-row">
