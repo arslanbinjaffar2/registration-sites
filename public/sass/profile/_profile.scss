@@ -39,7 +39,7 @@
         transition: background 0.2s linear;
         &:hover,&.active {
           background: $first-main-color;
-          color: $white;
+          color: $white !important;
         }
       }
     }
@@ -139,6 +139,11 @@
             padding-bottom: 20px;
             a {
               margin-right: 15px;
+              position: relative;
+              width: 38px;
+              height: 38px;
+              display: inline-block;
+
             }
             img {
               max-width: 38px;
