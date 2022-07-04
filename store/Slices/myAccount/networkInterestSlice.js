@@ -4,6 +4,7 @@ import axios from 'axios'
 const initialState = {
   keywords: null,
   loading:false,
+  updating:false,
   error:null,
   alert:null,
 }
@@ -13,7 +14,11 @@ export const eventSlice = createSlice({
   initialState,
   reducers: {
     getInterestKeywordsData : (state) => {
-      state.loading = true
+      state.loading = true,
+      state.keywords= null,
+      state.updating=false,
+      state.error=null,
+      state.alert=null
     },
     setInterestKeywordsData: (state, { payload}) => {
         state.keywords= payload,
@@ -22,6 +27,9 @@ export const eventSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload
     },
+    setUpdating: (state, { payload }) => {
+      state.updating = payload
+    },
     setAlert: (state, { payload }) => {
       state.alert = payload
     },
@@ -29,7 +37,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getInterestKeywordsData, setInterestKeywordsData, setError, setAlert } = eventSlice.actions
+export const { getInterestKeywordsData, setInterestKeywordsData, setError, setAlert, setUpdating } = eventSlice.actions
 
 export const interestSelector = state => state.networkInterest
 
@@ -49,12 +57,14 @@ export const fetchKeywordsData = (id, url) => {
   }
 export const updateKeywordData = (id, url, data) => {
     return async dispatch => {
-      dispatch(getInterestKeywordsData())
+      dispatch(setUpdating(true));
       try {
         const response = await axios.put(`${process.env.NEXT_APP_URL}/event/${url}/update-network-interest`, {keywords:data}, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
+        dispatch(setUpdating(false));
       } catch (error) {
         dispatch(setError(error))
+        dispatch(setUpdating(false));
       }
     }
   }

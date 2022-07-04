@@ -13,7 +13,7 @@ const ManageKeywords = () => {
   useEffect(() => {
     dispatch(fetchKeywordsData(event.id, event.url));
   }, []);
-  const { keywords } = useSelector(interestSelector);
+  const { keywords, updating } = useSelector(interestSelector);
   return (
     keywords ?<div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
@@ -21,7 +21,7 @@ const ManageKeywords = () => {
           <h2>My Keywords</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-            <ManageKeywordsList keywords={keywords} event={event} />
+            <ManageKeywordsList keywords={keywords} event={event} updating={updating} />
         </div>
       </div>
     </div> : <PageLoader/>
@@ -30,7 +30,7 @@ const ManageKeywords = () => {
 
 export default ManageKeywords;
 
-const ManageKeywordsList = ({ keywords, event }) => {
+const ManageKeywordsList = ({ keywords, event, updating }) => {
   const [interestkeywords, setInterestKeywords] = useState(keywords);
   const [mykeywords, setMyKeywords] = useState(keywords.reduce((ack, item)=>{
     const childern = item.children.reduce((ack2, item2)=>{
@@ -146,7 +146,7 @@ const ManageKeywordsList = ({ keywords, event }) => {
             </div>
             ))}
             <div className="bottom-button">
-              <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+              <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}>{updating ?  "Saving..." : 'Save'}</button>
             </div>
         </div>
     </React.Fragment>

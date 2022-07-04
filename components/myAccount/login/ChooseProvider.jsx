@@ -47,7 +47,7 @@ const ChooseProvider = ({
               <input
                 type="radio"
                 name="auth"
-                value='phone'
+                value='sms'
                 onChange={(e) => {
                   setProviderLoc(e.target.value);
                 }}

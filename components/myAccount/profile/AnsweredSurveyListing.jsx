@@ -13,10 +13,10 @@ const SurveyList = () => {
   useEffect(() => {
     dispatch(fetchSurveyListData(event.id, event.url));
   }, []);
-  const { surveyList } = useSelector(surveyListSelector);
+  const { surveyListAnswered } = useSelector(surveyListSelector);
 
   return (
-    surveyList ? <div className="edgtf-container ebs-my-profile-area pb-5">
+    surveyListAnswered ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
           <h2>Surveys</h2>
@@ -24,16 +24,15 @@ const SurveyList = () => {
         <div className="wrapper-inner-content network-category-sec">
           <div className="ebs-survey-heading d-flex">
             <h4>Available Surveys</h4>
-            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >View results</ActiveLink>
           </div>
           
             <div className="ebs-survey-list">
               <ul>
-                {surveyList.map((survey) => (
+                {surveyListAnswered.map((survey) => (
                   <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
                 ))}
               </ul>
-              {surveyList.length <=0 && <p>No Surveys Availble Yet</p>}
+              {surveyListAnswered.length <=0 && <p>No Surveys Availble Yet</p>}
             </div>
           
         </div>

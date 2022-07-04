@@ -7,6 +7,7 @@ import axios from 'axios'
 const initialState = {
   subRegistration: null,
   loading: false,
+  updating:false,
   error: null,
   alert: null,
   skip: false,
@@ -20,14 +21,21 @@ export const eventSlice = createSlice({
 
   reducers: {
     getSubRegistrationData: (state) => {
-      state.loading = true
+      state.loading = true,
+      state.subRegistration = null,
+      state.updating = false,
+      state.error = null,
+      state.alert = null
     },
     setSubRegistrationData: (state, { payload }) => {
       state.subRegistration = payload,
-        state.loading = false
+      state.loading = false
     },
     setError: (state, { payload }) => {
       state.error = payload
+    },
+    setUpdating: (state, { payload }) => {
+      state.updating = payload
     },
     setAlert: (state, { payload }) => {
       state.alert = payload
@@ -40,7 +48,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setSkip } = eventSlice.actions
+export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setSkip, setUpdating } = eventSlice.actions
 
 export const subRegistrationSelector = state => state.subRegistration
 
@@ -58,7 +66,7 @@ export const fetchSubRegistrationData = (id, url) => {
       }
       dispatch(setSubRegistrationData(res.data))
     } catch (error) {
-      dispatch(setError(error))
+      dispatch(setError("Couldn't fetch Subregistration"));
     }
   }
 }
@@ -66,15 +74,18 @@ export const fetchSubRegistrationData = (id, url) => {
 export const updateSubRegistrationData = (id, url, data) => {
 
   return async dispatch => {
-    dispatch(getSubRegistrationData())
+    dispatch(setUpdating(true));
     try {
       const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
       if (response.data.data) {
         dispatch(setSkip());
       }
-      dispatch(setAlert(response.data))
+      dispatch(setUpdating(false));
+      dispatch(setAlert("Answers Successfully Updated"))
     } catch (error) {
-      dispatch(setError(error))
+      dispatch(setUpdating(false));
+      dispatch(setError("Couldn't update Subregistration"));
+
     }
   }
 

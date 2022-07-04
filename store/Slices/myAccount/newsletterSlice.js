@@ -4,6 +4,7 @@ import axios from 'axios'
 const initialState = {
   newsletter: null,
   loading:false,
+  updating:false,
   error:null,
   alert:null,
 }
@@ -13,7 +14,11 @@ export const eventSlice = createSlice({
   initialState,
   reducers: {
     getNewsletterData : (state) => {
-      state.loading = true
+      state.loading = true,
+      state.newsletter= null,
+      state.updating=false,
+      state.error=null,
+      state.alert=null
     },
     setNewsletterData: (state, { payload}) => {
         state.newsletter = payload,
@@ -22,6 +27,9 @@ export const eventSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload
     },
+    setUpdating: (state, { payload }) => {
+      state.updating = payload
+    },
     setAlert: (state, { payload }) => {
       state.alert = payload
     },
@@ -29,7 +37,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getNewsletterData, setNewsletterData, setError, setAlert } = eventSlice.actions
+export const { getNewsletterData, setNewsletterData, setError, setAlert, setUpdating } = eventSlice.actions
 
 export const newsLetterSelector = state => state.newsletter
 
@@ -49,12 +57,14 @@ export const fetchNewsletterData = (id, url) => {
   }
 export const updateNewsLetterData = (id, url, data) => {
     return async dispatch => {
-      dispatch(getNewsletterData())
+      dispatch(setUpdating(true));
       try {
         const response = await axios.put(`${process.env.NEXT_APP_URL}/event/${url}/update-newsletter-subscription`, data, { headers:header("POST", id)})
         dispatch(setAlert(response.data))
-      } catch (error) {
-        dispatch(setError(error))
+        dispatch(setUpdating(false));
+    } catch (error) {
+      dispatch(setError(error))
+      dispatch(setUpdating(false));
       }
     }
   }
