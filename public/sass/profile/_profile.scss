@@ -39,7 +39,7 @@
         transition: background 0.2s linear;
         &:hover,&.active {
           background: $first-main-color;
-          color: $white;
+          color: $white !important;
         }
       }
     }

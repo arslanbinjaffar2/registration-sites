@@ -2286,7 +2286,10 @@
     text-align: center;
     img {
       border-radius: 100%;
-      width: 120px;
+      width: 120px !important;
+      min-width: 120px !important;
+      height: 120px !important;
+      min-height: 120px !important;
       box-shadow: 0 3px 6px rgba($black, 0.16);
     }
 

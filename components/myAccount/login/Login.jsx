@@ -72,7 +72,7 @@ const onSubmit = (e) =>{
             {Number(event.attendee_settings.email_enable) === 1 && <div className="ebs-login-from">
               <label className="ebs-label-input">
                 <span className="ebs-label-title">Email</span>
-                <input className="ebs-input" name="email" type="email" autoComplete="false" placeholder="Youraddres@email.com" value={formData.email} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('email')}/>
+                <input className="ebs-input" name="email" type="email" autoComplete="false" placeholder="Email address" value={formData.email} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('email')}/>
                 {simpleValidator.current.message('email', formData.email, 'required|email')}
               </label>
             {Number(event.attendee_settings.hide_password) === 0 && Number(event.attendee_settings.registration_password) === 0 && Number(event.attendee_settings.authentication) === 0 && <label className="ebs-label-input" >

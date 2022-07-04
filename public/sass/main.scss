@@ -1767,6 +1767,7 @@ $z-index:$back-to-top-size / 2;
 							text-align: center;
 							font-size: 30px;
 							width: auto !important;
+							font-family: 'Rubik', sans-serif;
 							&:focus {
 								border-color: $first-main-color;
 							}
@@ -1778,7 +1779,7 @@ $z-index:$back-to-top-size / 2;
 					position: absolute;
 					right: 0;
 					cursor: pointer;
-					bottom: 37px;
+					top: 48px;
 				}
 				.ebs-input {
 					width: 100%;
