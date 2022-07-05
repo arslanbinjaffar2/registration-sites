@@ -678,7 +678,7 @@
       color: $white;
       font-weight: 400;
       &:hover {
-        background: $second-main-color;
+        background: $second-main-color !important;
       }
     }
   }
