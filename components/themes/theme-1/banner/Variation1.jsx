@@ -8,7 +8,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
 				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
-					{props.slides.url ? <a href={props.slides.url} target="_blank">
+					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
 					</a >: props.children}
 				</div>
@@ -17,7 +17,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 			return (
 				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud"
 					>
-					{props.slides.url ? <a href={props.slides.url} target="_blank">
+					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
 					</a >: props.children}
 				</div>
