@@ -2030,9 +2030,15 @@
         width: 33.33%;
         padding-right: 10px;
         color: $text2b;
+        word-break: break-all;
+        display: flex;
+        @include phone-portrait {
+          justify-content: center;
+        }
         i {
           color: $first-main-color;
           margin-right: 8px;
+          padding-top: 5px;
         }
         @media (max-width: 1200px) {
           width: 100%;
