@@ -15,14 +15,16 @@ const Variation9 = ({
 
   const _parallax = useRef(null);
 
+  useEffect(() => {
     if(!listing){
-      useEffect(() => {
-        window.addEventListener("scroll", scollEffect);
-        return () => {
-          window.removeEventListener("scroll", scollEffect);
-        }
-      }, [])
-    
+      window.addEventListener("scroll", scollEffect);
+      return () => {
+        window.removeEventListener("scroll", scollEffect);
+      }
+    }
+  }, [])
+  
+  if(!listing){
       function scollEffect() {
         const scrolled = window.pageYOffset;
         const itemOffset = _parallax.current.offsetTop;

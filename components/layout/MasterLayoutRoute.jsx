@@ -10,15 +10,16 @@ import {
 
 
 const MasterLayoutRoute = ({ children, event }) => {
+    const router = useRouter();
+    const { showLogin } = useSelector(globalSelector);
+    
     if (event.eventsiteSettings.eventsite_public) {    
         const CorporateLogin = localStorage.getItem(`event${event.id}UserCorporateLogin`);
-        const router = useRouter();
         if(!CorporateLogin){
             router.push(`/${event.url}/login`);
             return null;
         }
     }
-    const { showLogin } = useSelector(globalSelector);
     return (
         <>
             {event ?

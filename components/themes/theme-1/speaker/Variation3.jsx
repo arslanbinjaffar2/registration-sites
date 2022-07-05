@@ -6,15 +6,18 @@ import Image from 'next/image'
 const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
   
   const _parallax = useRef(null);
-  if(!listing)
-  {
-    useEffect(() => {
-    window.addEventListener("scroll", scollEffect);
-    return () => {
-      window.removeEventListener("scroll", scollEffect);
+  useEffect(() => {
+    if(!listing)
+    {
+      window.addEventListener("scroll", scollEffect);
+      return () => {
+        window.removeEventListener("scroll", scollEffect);
+      }
     }
-  }, [])
-
+    }, [])
+    
+    if(!listing)
+    {
   function scollEffect() {
     const scrolled = window.pageYOffset;
     const itemOffset = _parallax.current.offsetTop;
