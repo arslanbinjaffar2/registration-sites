@@ -123,20 +123,23 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   };
 
   const updateDate = (obj) => {
-    setAttendeeData({
-      ...attendeeData,
-      [obj.name]: obj.item.format("YYYY-MM-DD"),
-    });
+    console.log(obj);
+      setAttendeeData({
+        ...attendeeData,
+        [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ?  obj.item.format("YYYY-MM-DD"): obj.item,
+      });
+
   };
 
   const updateInfoDate = (obj) => {
-    setAttendeeData({
-      ...attendeeData,
-      info: {
-        ...attendeeData.info,
-        [obj.name]: obj.item.format("YYYY-MM-DD"),
-      },
-    });
+      setAttendeeData({
+        ...attendeeData,
+        info: {
+          ...attendeeData.info,
+          [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ?  obj.item.format("YYYY-MM-DD"): obj.item,
+        },
+      });
+
   };
 
   const updateSelect = (obj) => {
@@ -210,7 +213,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
           >
             <div className="ebs-edit-profile-section">
               <h3 className="ebs-title">Basic Information:</h3>
-              {attendeeData.info && attendeeData.info.initial && (
+              {attendee.info && attendee.info.initial && (
                 <Input
                   label="Initial"
                   name="initial"
@@ -220,7 +223,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.initial}
                 />
               )}
-              {attendeeData.first_name && (
+              {attendee.first_name && (
                 <Input
                   label="First name"
                   placeholder="First name"
@@ -232,7 +235,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.first_name}
                 />
               )}
-              {attendeeData.last_name && (
+              {attendee.last_name && (
                 <Input
                   label="Last Name"
                   name="last_name"
@@ -243,7 +246,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.last_name}
                 />
               )}
-              {attendeeData.info && (
+              {attendee.info && (
                 <TextArea
                   label="About"
                   name="about"
@@ -254,7 +257,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.about}
                 />
               )}
-              {attendeeData.info && attendeeData.info.age && (
+              {attendee.info && attendee.info.age && (
                 <Input
                   label="Age"
                   name="age"
@@ -264,7 +267,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.age}
                 />
               )}
-              {attendeeData.info.gender && (
+              {attendee.info.gender && (
                 <div className="inline radio-check-field style-radio radio-feild">
                   <h5>Gender</h5>
                   <label>
@@ -293,7 +296,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </label>
                 </div>
               )}
-              {attendeeData.BIRTHDAY_YEAR && (
+              {attendee.BIRTHDAY_YEAR && (
                 <DateTime
                   label={"Birth date"}
                   required={true}
@@ -304,7 +307,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendeeData.FIRST_NAME_PASSPORT && (
+              {attendee.FIRST_NAME_PASSPORT && (
                 <Input
                   label="First name (Passport)"
                   name="FIRST_NAME_PASSPORT"
@@ -314,7 +317,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.FIRST_NAME_PASSPORT}
                 />
               )}
-              {attendeeData.LAST_NAME_PASSPORT && (
+              {attendee.LAST_NAME_PASSPORT && (
                 <Input
                   label="Last name (Passport)"
                   name="LAST_NAME_PASSPORT"
@@ -324,7 +327,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.LAST_NAME_PASSPORT}
                 />
               )}
-              {attendeeData.info && attendeeData.info.place_of_birth && (
+              {attendee.info && attendee.info.place_of_birth && (
                 <Input
                   label="Place of birth (Passport)"
                   name="place_of_birth"
@@ -334,7 +337,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.place_of_birth}
                 />
               )}
-              {attendeeData.info && attendeeData.info.passport_no && (
+              {attendee.info && attendee.info.passport_no && (
                 <Input
                   label="Passport no"
                   name="passport_no"
@@ -344,7 +347,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.passport_no}
                 />
               )}
-              {attendeeData.info && attendeeData.info.date_of_issue_passport && (
+              {attendee.info && attendee.info.date_of_issue_passport && (
                 <DateTime
                   label={"Date of issue (Passport)"}
                   required={true}
@@ -355,7 +358,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendeeData.info && attendeeData.info.date_of_expiry_passport && (
+              {attendee.info && attendee.info.date_of_expiry_passport && (
                 <DateTime
                   label={"Date of expiry (Passport)"}
                   required={true}
@@ -369,7 +372,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
 
-              {attendeeData.SPOKEN_LANGUAGE && (
+              {attendee.SPOKEN_LANGUAGE && (
                 <DropDown
                   label="Spoken languages"
                   listitems={languages}
@@ -395,7 +398,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 </label>
               </div>
               <h3 className="ebs-title">Professional Information:</h3>
-              {attendeeData.info && attendeeData.info.company_name && (
+              {attendee.info && attendee.info.company_name && (
                 <Input
                   label="Company name"
                   name="company_name"
@@ -405,7 +408,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.company_name}
                 />
               )}
-              {attendeeData.info && attendeeData.info.title && (
+              {attendee.info && attendee.info.title && (
                 <Input
                   label="Title"
                   name="title"
@@ -419,7 +422,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }
                 />
               )}
-              {attendeeData.info && attendeeData.info.organization && (
+              {attendee.info && attendee.info.organization && (
                 <Input
                   label="Organization"
                   name="organization"
@@ -429,7 +432,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {attendeeData.EMPLOYMENT_DATE && (
+              {attendee.EMPLOYMENT_DATE && (
                 <DateTime
                   label={"Employment date"}
                   required={true}
@@ -440,7 +443,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendeeData.info && attendeeData.info.organization && (
+              {attendee.info && attendee.info.organization && (
                 <Input
                   label="Department"
                   name="department"
@@ -468,7 +471,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {attendeeData.info && attendeeData.info.industry && (
+              {attendee.info && attendee.info.industry && (
                 <Input
                   label="Industry"
                   name="industry"
@@ -478,7 +481,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.industry}
                 />
               )}
-              {attendeeData.info && attendeeData.info.jobs && (
+              {attendee.info && attendee.info.jobs && (
                 <Input
                   label="Job tasks"
                   name="jobs"
@@ -488,7 +491,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.jobs}
                 />
               )}
-              {attendeeData.info && attendeeData.info.interests && (
+              {attendee.info && attendee.info.interests && (
                 <Input
                   label="Interests"
                   name="interests"
@@ -498,7 +501,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.interests}
                 />
               )}
-              {attendeeData.info && attendeeData.info.network_group && (
+              {attendee.info && attendee.info.network_group && (
                 <Input
                   label="Network group"
                   name="network_group"
@@ -508,7 +511,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.network_group}
                 />
               )}
-              {attendeeData.info && attendeeData.info.delegate_number && (
+              {attendee.info && attendee.info.delegate_number && (
                 <Input
                   label="Delegate number"
                   name="delegate_number"
@@ -518,7 +521,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.delegate_number}
                 />
               )}
-              {attendeeData.info && attendeeData.info.table_number && (
+              {attendee.info && attendee.info.table_number && (
                 <Input
                   label="Delegate number"
                   name="table_number"
@@ -528,7 +531,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.table_number}
                 />
               )}
-              {attendeeData.info && attendeeData.info.private_street && (
+              {attendee.info && attendee.info.private_street && (
                 <>
                 <h3 style={{ marginTop: 40 }} className="ebs-title">
                   Address:
@@ -543,7 +546,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
                 </>
               )}
-              {attendeeData.info && attendeeData.info.private_house_number && (
+              {attendee.info && attendee.info.private_house_number && (
                 <Input
                   label="House number"
                   name="private_house_number"
@@ -553,7 +556,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_house_number}
                 />
               )}
-              {attendeeData.info && attendeeData.info.private_post_code && (
+              {attendee.info && attendee.info.private_post_code && (
                 <Input
                   label="Postal code"
                   name="private_post_code"
@@ -563,7 +566,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_post_code}
                 />
               )}
-              {attendeeData.info && attendeeData.info.private_city && (
+              {attendee.info && attendee.info.private_city && (
                 <Input
                   label="City"
                   name="private_city"
@@ -573,7 +576,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_city}
                 />
               )}
-              {attendeeData.info && attendeeData.info.private_country && (
+              {attendee.info && attendee.info.private_country && (
                 <Input
                   label="Country"
                   name="private_country"
@@ -585,11 +588,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
-                {attendeeData.phone &&
+                {attendee.phone &&
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
                     <div className="form-phone-field">
-                      {attendeeData.calling_code && (
+                      {attendee.calling_code && (
                         <React.Fragment>
                           <div style={{ minWidth: "108px" }}>
                             <Select
@@ -628,7 +631,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       )}
                     </div>
                   </div>}
-                {attendeeData.email && (
+                {attendee.email && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
@@ -642,7 +645,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                {attendeeData.info && attendeeData.info.website && (
+                {attendee.info && attendee.info.website && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
                     <Input
@@ -656,7 +659,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                {attendeeData.info && attendeeData.info.facebook && (
+                {attendee.info && attendee.info.facebook && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
                     <Input
@@ -670,7 +673,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                {attendeeData.info && attendeeData.info.twitter && (
+                {attendee.info && attendee.info.twitter && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
                     <Input
@@ -684,7 +687,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                {attendeeData.info && attendeeData.info.linkedin && (
+                {attendee.info && attendee.info.linkedin && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
                     <Input
@@ -699,7 +702,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
               </div>
-              {attendeeData.gdpr !== undefined && (
+              {attendee.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">
                   <label>
                     <input
