@@ -31,6 +31,17 @@ const Selectstyles = {
     }
   })
 };
+const Selectstyles2 = {
+  control: base => ({
+    ...base,
+    height: 50,
+    minHeight: 50,
+    width: '100%',
+    maxWidth: '100%',
+    marginBottom: 10,
+
+  })
+};
 
 const MyProfileEdit = () => {
 
@@ -441,6 +452,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {attendeeData.info && attendeeData.info.country && (
                 <Select
+                  styles={Selectstyles2}
                   placeholder="Select Country"
                   components={{ IndicatorSeparator: null }}
                   options={countries.map((item, index) => {
