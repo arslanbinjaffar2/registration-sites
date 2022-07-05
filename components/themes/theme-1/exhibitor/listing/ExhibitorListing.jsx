@@ -130,7 +130,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                       </ActiveLink>
                       }
                       <div className="d-flex ebs-container-box">
-                        {exhibitor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{exhibitor.phone_number}</div>}
+                        {exhibitor.phone_number && exhibitor.phone_number.split('-')[1]  && <div className="ebs-box"><i className="fa fa-phone" />{exhibitor.phone_number}</div>}
                         {exhibitor.email && <div className="ebs-box"><i className="fa fa-envelope" />{exhibitor.email}</div>}
                         {exhibitor.booth && <div className="ebs-box"><i className="fa fa-bank" />{exhibitor.booth}</div>}
                       </div>

@@ -132,7 +132,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                         </ActiveLink>
                       }
                       <div className="d-flex ebs-container-box">
-                        {sponsor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
+                        {sponsor.phone_number && sponsor.phone_number.split('-')[1] && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
                         {sponsor.email && <div className="ebs-box"><i className="fa fa-envelope" />{sponsor.email}</div>}
                         {sponsor.booth && <div className="ebs-box"><i className="fa fa-bank" />{sponsor.booth}</div>}
                       </div>
