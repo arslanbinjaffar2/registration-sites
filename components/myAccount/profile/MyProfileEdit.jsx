@@ -31,6 +31,17 @@ const Selectstyles = {
     }
   })
 };
+const Selectstyles2 = {
+  control: base => ({
+    ...base,
+    height: 50,
+    minHeight: 50,
+    width: '100%',
+    maxWidth: '100%',
+    marginBottom: 10,
+
+  })
+};
 
 const MyProfileEdit = () => {
 
@@ -442,8 +453,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {attendee.info && attendee.info.country && (
-                <ReactSelect
+              {attendeeData.info && attendeeData.info.country && (
+                <Select
+                  styles={Selectstyles2}
                   placeholder="Select Country"
                   components={{ IndicatorSeparator: null }}
                   options={countries.map((item, index) => {
@@ -578,7 +590,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <h3 className="ebs-title">Contact information:</h3>
                 {attendee.phone &&
                   <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}>
+                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
                     <div className="form-phone-field">
                       {attendee.calling_code && (
                         <React.Fragment>
@@ -606,17 +619,17 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                               }}
                             />
                           </div>
-                          <div style={{ width: "75%" }}>
-                            <Input
-                              label="Phone"
-                              onChange={(e) => {
-                                updateAttendeeFeild(e);
-                              }}
-                              value={attendeeData.phone}
-                            />
-                          </div>
                         </React.Fragment>
                       )}
+                      <div style={{ width: "75%" }}>
+                        <Input
+                          label="Phone"
+                          onChange={(e) => {
+                            updateAttendeeFeild(e);
+                          }}
+                          value={attendeeData.phone}
+                        />
+                      </div>
                     </div>
                   </div>}
                 {attendee.email && (

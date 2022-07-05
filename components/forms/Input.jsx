@@ -8,7 +8,7 @@ const Input = ({ onChange, label, type, value, placeholder, required, className,
           <i className="material-icons">info</i>
           <div className="app-tooltipwrapper">{tooltip}</div>
         </em>}
-      <input onChange={onChange} pattern={pattern} type={type} placeholder={placeholder} min={min} value={value} name={name} />
+      <input onChange={onChange} pattern={pattern} type={type} placeholder=" " min={min} value={value} name={name} />
       {label && (
         <span>{label}{required && (<em className='req'>*</em>)}</span>
       )}
