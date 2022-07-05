@@ -3,7 +3,7 @@ import Input from "components/forms/Input";
 import TextArea from "components/forms/TextArea";
 import DateTime from "components/forms/DateTime";
 import DropDown from "components/forms/DropDown";
-import ReactSelect from "react-select";
+import Select from "react-select";
 import Image from 'next/image'
 import {
   fetchProfileData,
@@ -583,7 +583,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       {attendee.calling_code && (
                         <React.Fragment>
                           <div style={{ minWidth: "108px" }}>
-                            <ReactSelect
+                            <Select
                               styles={Selectstyles}
                               className="w-full h-full"
                               placeholder=".."
