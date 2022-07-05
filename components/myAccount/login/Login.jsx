@@ -37,7 +37,9 @@ const onChange=(e)=>{
 const handleTermsCondition = (e) =>{
   e.preventDefault();
   e.stopPropagation();
-  setPopup(!popup)
+  if(event.disclaimer.length > 0){
+    setPopup(!popup)
+  }
 }
 const onSubmit = (e) =>{
     e.preventDefault();
@@ -54,11 +56,8 @@ const onSubmit = (e) =>{
         <span onClick={handleTermsCondition} className="btn-inner-close">
           <Image objectFit='contain' layout="fill" src={require('public/img/remove-icon-x2.png')} alt="" />
         </span>
-        <div className="ebs-content-terms">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam debitis optio aperiam ad doloribus in cupiditate accusamus voluptatum odit. Culpa pariatur illum beatae doloremque non quasi voluptates sed accusantium nisi eum a sunt veniam modi, in dolorem error tempore, consectetur cum iste dolorum vero laborum reiciendis. Quidem commodi a natus!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam debitis optio aperiam ad doloribus in cupiditate accusamus voluptatum odit. Culpa pariatur illum beatae doloremque non quasi voluptates sed accusantium nisi eum a sunt veniam modi, in dolorem error tempore, consectetur cum iste dolorum vero laborum reiciendis. Quidem commodi a natus!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam debitis optio aperiam ad doloribus in cupiditate accusamus voluptatum odit. Culpa pariatur illum beatae doloremque non quasi voluptates sed accusantium nisi eum a sunt veniam modi, in dolorem error tempore, consectetur cum iste dolorum vero laborum reiciendis. Quidem commodi a natus!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam debitis optio aperiam ad doloribus in cupiditate accusamus voluptatum odit. Culpa pariatur illum beatae doloremque non quasi voluptates sed accusantium nisi eum a sunt veniam modi, in dolorem error tempore, consectetur cum iste dolorum vero laborum reiciendis. Quidem commodi a natus!</p>
+        <div className="ebs-content-terms" dangerouslySetInnerHTML={{__html:event.disclaimer[0]['disclaimer']}}>
+
         </div>
       </div>}
       <form style={{display: popup ? 'none' : ''}} id="loginForm" onSubmit={(e)=>{onSubmit(e)}}>
