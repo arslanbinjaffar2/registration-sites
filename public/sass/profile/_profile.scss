@@ -96,6 +96,9 @@
     @include ipad-landscape {
       padding: 30px;
     }
+    @include phone-landscape {
+      padding: 0;
+    }
     .ebs-my-profile-section {
       .ebs-my-profile-left {
         max-width: 220px;
@@ -671,10 +674,11 @@
       min-width: 250px;
       font-size: 14px;
       position: relative;
-      background: $themeblue;
+      background: $first-main-color;
       color: $white;
+      font-weight: 400;
       &:hover {
-        background: $darkblue;
+        background: $second-main-color;
       }
     }
   }

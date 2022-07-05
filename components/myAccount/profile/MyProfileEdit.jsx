@@ -3,7 +3,7 @@ import Input from "components/forms/Input";
 import TextArea from "components/forms/TextArea";
 import DateTime from "components/forms/DateTime";
 import DropDown from "components/forms/DropDown";
-import Select from "react-select";
+import ReactSelect from "react-select";
 import Image from 'next/image'
 import {
   fetchProfileData,
@@ -14,6 +14,23 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import PageLoader from "components/ui-components/PageLoader";
+
+const Selectstyles = {
+  control: base => ({
+    ...base,
+    height: 38,
+    minHeight: 38,
+    backgroundColor: 'transparent',
+    border: 'none',
+    width: '90%',
+    maxWidth: '90%',
+    marginTop: 6,
+    marginLeft: 3,
+    "&:focus": {
+      borderColor: "red"
+    }
+  })
+};
 
 const MyProfileEdit = () => {
 
@@ -423,7 +440,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               {attendeeData.info && attendeeData.info.country && (
-                <Select
+                <ReactSelect
                   placeholder="Select Country"
                   components={{ IndicatorSeparator: null }}
                   options={countries.map((item, index) => {
@@ -499,10 +516,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.table_number}
                 />
               )}
-              <h3 style={{ marginTop: 40 }} className="ebs-title">
-                Address:
-              </h3>
               {attendeeData.info && attendeeData.info.private_street && (
+                <>
+                <h3 style={{ marginTop: 40 }} className="ebs-title">
+                  Address:
+                </h3>
                 <Input
                   label="Street number"
                   name="private_street"
@@ -511,6 +529,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                   value={attendeeData.info.private_street}
                 />
+                </>
               )}
               {attendeeData.info && attendeeData.info.private_house_number && (
                 <Input
@@ -555,13 +574,14 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
                 {attendeeData.phone &&
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
                     <div className="form-phone-field">
                       {attendeeData.calling_code && (
                         <React.Fragment>
-                          <div style={{ width: "25%" }}>
-                            <Select
+                          <div style={{ minWidth: "108px" }}>
+                            <ReactSelect
+                              styles={Selectstyles}
                               className="w-full h-full"
                               placeholder=".."
                               components={{ IndicatorSeparator: null }}
@@ -597,8 +617,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     </div>
                   </div>}
                 {attendeeData.email && (
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
@@ -611,8 +631,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
                 {attendeeData.info && attendeeData.info.website && (
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
@@ -625,8 +645,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
                 {attendeeData.info && attendeeData.info.facebook && (
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
@@ -639,8 +659,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
                 {attendeeData.info && attendeeData.info.twitter && (
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
@@ -653,8 +673,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
                 {attendeeData.info && attendeeData.info.linkedin && (
-                  <div className="ebs-contact-row d-flex align-items-center">
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" />
+                  <div className="ebs-contact-row d-flex">
+                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
