@@ -8,13 +8,17 @@ const Variation3 = ({ event, banner, countdown }) => {
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
 				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
-					{props.children}
+					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
+						{props.children}
+					</a >: props.children}
 				</div>
 			);
 		} else {
 			return (
 				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 					{props.children}
+					</a >: props.children}
 				</div>
 			);
 		}
@@ -22,7 +26,7 @@ const Variation3 = ({ event, banner, countdown }) => {
 	}
 
 	return (
-		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
+		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box ebs-banner-full-height">
 			{banner && <SliderBanner
 				fullscreen
 				countdown={countdown}

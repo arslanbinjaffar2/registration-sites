@@ -6,14 +6,18 @@ import Image from 'next/image'
 const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
   
   const _parallax = useRef(null);
-
   useEffect(() => {
-    window.addEventListener("scroll", scollEffect);
-    return () => {
-      window.removeEventListener("scroll", scollEffect);
+    if(!listing)
+    {
+      window.addEventListener("scroll", scollEffect);
+      return () => {
+        window.removeEventListener("scroll", scollEffect);
+      }
     }
-  }, [])
-
+    }, [])
+    
+    if(!listing)
+    {
   function scollEffect() {
     const scrolled = window.pageYOffset;
     const itemOffset = _parallax.current.offsetTop;
@@ -22,6 +26,7 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings, s
     const _scroll = (scrolled - itemOffset) + itemHeight.height;
     _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
   };
+}
 
     const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
     const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
@@ -61,7 +66,7 @@ const Variation3 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                 alt="g"
                               />
                             ) : (
-                              <Image
+                              <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={
                                   require("public/img/user-placeholder.jpg")

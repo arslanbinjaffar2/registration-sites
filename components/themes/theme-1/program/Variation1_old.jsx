@@ -103,7 +103,7 @@ const Variation1 = ({ programs }) => {
                                                 height="81"
                                               />
                                             ) : (
-                                              <Image
+                                              <Image objectFit='contain' layout="fill"
                                                 src={
                                                   require("public/img/square.jpg")
                                                 }

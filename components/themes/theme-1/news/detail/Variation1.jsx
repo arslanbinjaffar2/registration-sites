@@ -73,7 +73,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                             height="500"
                           />
                         ) : (
-                          <Image
+                          <Image objectFit='contain' layout="fill"
                             onLoad={(e) => e.target.style.opacity = 1}
                             src={
                               ""

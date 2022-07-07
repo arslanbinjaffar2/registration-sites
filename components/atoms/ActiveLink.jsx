@@ -4,7 +4,6 @@ import React, { Children } from 'react'
 
 const ActiveLink = (props) => {
     const { asPath } = useRouter()
-    console.log(asPath);
     const childClassName = props.className || ''
     const activeClassName = props.activeClassName || ''
 
@@ -12,7 +11,7 @@ const ActiveLink = (props) => {
     // pages/about.js will be matched via props.href
     // pages/[slug].js will be matched via props.as
     const className =
-        asPath === props.href || asPath === props.as
+        asPath.indexOf(props.href) !== -1 || asPath.indexOf(props.as) !== -1
             ? `${childClassName} ${activeClassName}`.trim()
             : childClassName
 

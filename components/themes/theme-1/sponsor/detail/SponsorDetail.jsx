@@ -40,7 +40,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         alt=""
                       />
                     ) : (
-                      <Image
+                      <Image objectFit='contain' layout="fill"
                         style={{ maxWidth: '90%', width: 'auto' }}
                         onLoad={(e) => e.target.style.opacity = 1}
                         src={require('public/img/exhibitors-default.png')}
@@ -182,7 +182,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         attendee.image
                       } alt="" />
                   ) : (
-                    <Image
+                    <Image objectFit='contain' layout="fill"
                       onLoad={(e) => e.target.style.opacity = 1}
                       style={{ width: '90%' }}
                       src={

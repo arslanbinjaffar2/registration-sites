@@ -32,12 +32,12 @@ function SamplePrevArrow(props) {
 const customStyles = {
   control: base => ({
     ...base,
-    height: 60,
-    minHeight: 60,
-    backgroundColor: '#F4F4F4',
-    borderColor: '#ced4da',
+    height: 38,
+    minHeight: 38,
+    backgroundColor: '#FBFDFF',
+    borderColor: '#E9EDF0',
     width: '100%',
-    maxWidth: '100%'
+    maxWidth: '100%',
   })
 };
 
@@ -99,7 +99,6 @@ const settings = {
     }
   ]
 };
-console.log(schedule.length);
   return (
     <React.Fragment>
       {programsLoc && (
@@ -204,7 +203,6 @@ const worshopProgramsByTracks = (programs, track) => {
     const items = programs.reduce((ack, program)=>{
       if(program.program_tracks.length > 0){
         const find = program.program_tracks.find((item)=>(item.name === track));
-        console.log(program.program_tracks.find((item)=>(item.name === track)));
         if(find !== null && find !== undefined){
             ack.push(program);
         }

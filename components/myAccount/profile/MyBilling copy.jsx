@@ -92,7 +92,7 @@ const MyBilling = () => {
             <div className="ebs-contact-info">
               <h3 className='ebs-title'>Contact information:</h3>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-phone.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-phone.svg')} alt="" />
                 <div className='form-phone-field'>
                   <DropDown
                     listitems={options}
@@ -102,23 +102,23 @@ const MyBilling = () => {
                 </div>
               </div>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-envelope.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-envelope.svg')} alt="" />
                 <Input label="E-mail" required />
               </div>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-web.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-web.svg')} alt="" />
                 <Input label="E-mail" required />
               </div>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-facebook.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-facebook.svg')} alt="" />
                 <Input label="E-mail" required />
               </div>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-twitter.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-twitter.svg')} alt="" />
                 <Input label="E-mail" required />
               </div>
               <div className="ebs-contact-row d-flex align-items-center">
-                <Image src={require('public/img/ico-linkedin.svg')} alt="" />
+                <Image objectFit='contain' layout="fill" src={require('public/img/ico-linkedin.svg')} alt="" />
                 <Input label="E-mail" required />
               </div>
             </div>

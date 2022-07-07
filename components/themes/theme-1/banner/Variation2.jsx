@@ -84,7 +84,7 @@ const Variation2 = ({ banner }) => {
     if (props.data && Number(props.data.video_type) === 1) {
       return (
         <div
-          data-fixed="false"
+          data-fixed="true"
           ref={_parallax}
           style={{
             backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image
@@ -92,18 +92,23 @@ const Variation2 = ({ banner }) => {
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
-          {props.children}
+        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
         </div>
       );
     } else {
       return (
-        <div
-          data-fixed="false"
-          ref={_parallax}
-          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
-        >
-          {props.children}
-        </div>
+          <div
+            data-fixed="false"
+            ref={_parallax}
+            className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+          >
+            
+            {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
+          </div>
       );
     }
 

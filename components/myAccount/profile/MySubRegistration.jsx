@@ -14,15 +14,16 @@ const MySubRegistration = () => {
     useEffect(() => {
       dispatch(fetchSubRegistrationData(event.id, event.url));
     }, []);
-    const { subRegistration } = useSelector(subRegistrationSelector);
+    const { subRegistration, loading, updating, alert, error, } = useSelector(subRegistrationSelector);
+
     return (
-      subRegistration ?(<div className="edgtf-container ebs-my-profile-area pb-5">
+      subRegistration !== null && !loading ?(<div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>My subregistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                <SubRegForm subRegistration={subRegistration} event={event} />
+                <SubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error} />
           </div>
         </div>
       </div>) : <PageLoader/>

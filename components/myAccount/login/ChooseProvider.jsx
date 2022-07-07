@@ -21,7 +21,7 @@ const ChooseProvider = ({
   return (
     <div className="ebs-login-wrapp-inner">
       <span onClick={() => onCancel()} className="btn-inner-close">
-        <Image src={require("public/img/remove-icon-x2.png")} alt="" />
+        <Image objectFit='contain' layout="fill" src={require("public/img/remove-icon-x2.png")} alt="" />
       </span>
       <h2 className="ebs-login-title">Choose Provider</h2>
       <p className="ebs-login-desc">Send the authentication code to</p>
@@ -47,7 +47,7 @@ const ChooseProvider = ({
               <input
                 type="radio"
                 name="auth"
-                value='phone'
+                value='sms'
                 onChange={(e) => {
                   setProviderLoc(e.target.value);
                 }}

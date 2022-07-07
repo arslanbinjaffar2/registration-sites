@@ -8,7 +8,7 @@ import {
   updateSubRegistrationData,
 } from "store/Slices/myAccount/subRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
-const SubRegForm = ({ subRegistration, event, afterLogin }) => {
+const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error }) => {
   const dispatch = useDispatch();
   const [subRegResult, setSubRegResult] = useState(afterLogin ? {} : subRegistration.questions.question
     .reduce(
@@ -84,7 +84,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
   ) => {
     if (type === "multiple") {
       if (Object.keys(subRegResult).length > 0) {
-        console.log(subRegResult[feild]);
         let newObj = subRegResult;
         newObj[feild]=
         subRegResult[feild]
@@ -92,13 +91,11 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
             ? subRegResult[feild].filter((item) => (item !== answerId))
             : [...subRegResult[feild], answerId])
           : [answerId];
-        // console.log(newObj);
           
         if (agendaId !== 0) {
             newObj[`answer_agenda_${answerId}`] = agendaId;
         }
         setSubRegResult({ ...newObj });
-        console.log(subRegResult);
       } else {
         let newObj = {
           [feild]: [answerId],
@@ -144,7 +141,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
     }
    else if (type === "matrix") {
       if (Object.keys(subRegResult).length > 0) {
-        console.log(feild);
         setSubRegResult({
           ...subRegResult,
           [feild]:
@@ -624,8 +620,10 @@ const SubRegForm = ({ subRegistration, event, afterLogin }) => {
           </div>
         </React.Fragment>
       </div>
+      <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
+      <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
       <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+        <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
       </div>
     </React.Fragment>
   );

@@ -46,7 +46,6 @@ const News = (props) => {
 
   useEffect(() => {
     if (initialMount.current) {
-      console.log(initialMount.current);
       initialMount.current = false;
       return;
     }

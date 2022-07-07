@@ -92,7 +92,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 													alt="Client 11"
 												/>
 											) : (
-												<Image
+												<Image objectFit='contain' layout="fill"
 													onMouseDown={e => handleOnMouseDown(e)}
 													onClick={e => handleOnClick(e, sponsor)}
 													src={
