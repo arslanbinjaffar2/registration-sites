@@ -55,7 +55,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                                 alt="g"
                               />
                             ) : (
-                              <Image
+                              <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={require("public/img/gallery-not-found.png")}
                                 alt="g"

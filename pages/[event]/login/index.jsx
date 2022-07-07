@@ -16,9 +16,7 @@ const Index = (props) => {
         <>
             <MetaInfo metaInfo={props.metaInfo} />
             {event ? (
-                <MasterLayoutRoute>
                     <CorporateLogin />
-                </MasterLayoutRoute>
             ) : (
                 <PageLoader />
             )}

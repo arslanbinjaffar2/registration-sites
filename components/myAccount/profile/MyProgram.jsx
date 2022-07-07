@@ -7,9 +7,8 @@ import { myProgramListingSelector, fetchMyPrograms ,clearState } from "store/Sli
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
-  const view = 'ProgramListing.jsx';
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/program/listing/${view}`)
+    import(`components/themes/${theme}/program/listing/Variation1`)
   );
   return Component;
 };
@@ -22,7 +21,7 @@ const MyProgram = () => {
     () => loadModule(event.theme.slug),
     [event]
   );
-  const  {myPrograms, tracks, totalPages, labels } = useSelector(myProgramListingSelector);
+  const  {myPrograms, tracks, totalPages, labels, loading } = useSelector(myProgramListingSelector);
   useEffect(() => {
       dispatch(fetchMyPrograms(eventUrl, event.id));
     return ()=>{
@@ -33,11 +32,12 @@ const MyProgram = () => {
 
   return (
     <Suspense fallback={<PageLoader/>}>
-      {myPrograms ? (
+      {myPrograms && myPrograms.length > 0 ? (
         <React.Fragment>
           <Component programs={myPrograms} eventUrl={eventUrl} tracks={tracks} filters={false} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} />
         </React.Fragment>
-      ) : <PageLoader/> }
+      ) : loading && <PageLoader/> }
+      {(!loading && (!myPrograms || myPrograms.length <= 0) ) && <h4 style={{textAlign:"center"}}>No programs found</h4> }
     </Suspense>
   );
 };

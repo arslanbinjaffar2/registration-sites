@@ -9,7 +9,7 @@ const LoadMoreButton = ({loadingLabel,loading, page, onPageChange}) => {
         disabled={(loading ) ? true : false}
         >
         {loadingLabel}
-        {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} className="fa fa-pulse fa-spinner fa-2x"></em>}
+        {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4,fontSize: 24}} className="fa fa-pulse fa-spinner"></em>}
         </button>
     </div>
   )

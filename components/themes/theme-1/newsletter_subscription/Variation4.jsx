@@ -38,6 +38,7 @@ const Variation4 = (props) =>  {
         <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
           <div className="container-fluid">
             <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'left'} />
+            <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
           </div>
           <div className="ebs-sub-newsletter-sec">
             {props.alert !== "" &&<p style={{color:"green"}}>
@@ -68,7 +69,7 @@ const Variation4 = (props) =>  {
                   <div className="ebs-right-fluid">
                   <button style={{border: '2px solid #fff', color: '#fff',  fontWeight: 500,  backgroundColor: 'transparent'}} type="submit"  disabled={props.loading ? true : false}  className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">
                     {props.settings.button_label}
-                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} className="fa fa-pulse fa-spinner fa-2x"></em>}
+                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4,fontSize: 24}} className="fa fa-pulse fa-spinner"></em>}
                   </button> 
                   </div>
                 </div>

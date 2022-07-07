@@ -98,7 +98,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 														alt="Client 11"
 													/>
 												) : (
-													<Image
+													<Image objectFit='contain' layout="fill"
 														src={require('public/img/exhibitors-default.png')}
 														alt="x"
 													/>

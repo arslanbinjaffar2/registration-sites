@@ -58,7 +58,6 @@ const Attendee = (props) => {
   }, [value]);
 
   const onPageChange = (page) => {
-    console.log(page);
     if (page > 0) {
       if (page <= totalPages) {
         setPage(page);

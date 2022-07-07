@@ -25,14 +25,13 @@ const onSubmit = () =>{
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{
-        console.log(email);
       onformSubmit(email);
     }
   }
   return (
     <div className="ebs-login-wrapp-inner">
           <span onClick={() => onCancel()} className="btn-inner-close">
-            <Image src={require('public/img/remove-icon-x2.png')} alt="" />
+            <Image objectFit='contain' layout="fill" src={require('public/img/remove-icon-x2.png')} alt="" />
           </span>
           <h2 className="ebs-login-title">Reset password</h2>
           <p className="ebs-login-desc">Enter the email  you will receive a code to reset the password , if you don’t get and any code click on resend code again.</p>

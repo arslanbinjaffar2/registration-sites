@@ -15,287 +15,6 @@ const customStyles = {
   })
 };
 
-const data = {
-	"data": {
-    "program_array": [
-      {
-        "id": 6638,
-        "name": "Hope",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "18:00",
-        "end_time": "19:00",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      },
-      {
-        "id": 6719,
-        "name": "Muhammad Waris",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "18:00",
-        "end_time": "19:00",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      },
-      {
-        "id": 6640,
-        "name": "p1",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "18:00",
-        "end_time": "18:15",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      },
-      {
-        "id": 6729,
-        "name": "Disable validate session check-in for voting",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "06:45",
-        "end_time": "19:45",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6343,
-        "name": "testing",
-        "workshop": "Mascot AS",
-        "date": "27-04-2022",
-        "start_time": "13:45",
-        "end_time": "14:45",
-        "video": 3,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": [
-          "main gate",
-          "right",
-          "1",
-          "2",
-          "3",
-          "MAIN GATE 2",
-          "left gate"
-        ]
-      },
-      {
-        "id": 6980,
-        "name": "new_program1",
-        "workshop": "Mascot AS",
-        "date": "27-04-2022",
-        "start_time": "13:45",
-        "end_time": "14:45",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6981,
-        "name": "new_program2",
-        "workshop": "Mascot AS",
-        "date": "27-04-2022",
-        "start_time": "13:45",
-        "end_time": "14:45",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6344,
-        "name": "football programe",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "17:00",
-        "end_time": "21:00",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      },
-      {
-        "id": 6783,
-        "name": "Program 13",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "20:30",
-        "end_time": "23:30",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6345,
-        "name": "Irfan sab",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "21:00",
-        "end_time": "22:45",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      },
-      {
-        "id": 6346,
-        "name": "Event program",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "15:30",
-        "end_time": "21:30",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": ["main gate"]
-      },
-      {
-        "id": 6347,
-        "name": "Entertainment",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "15:30",
-        "end_time": "22:30",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6348,
-        "name": "meeting with client",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "16:00",
-        "end_time": "20:00",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": null
-      },
-      {
-        "id": 6349,
-        "name": "hasssan",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "16:00",
-        "end_time": "20:45",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": ["MAIN GATE 2", "left gate"]
-      },
-      {
-        "id": 6364,
-        "name": "Sky in not the limit",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "15:45",
-        "end_time": "16:45",
-        "video": 2,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": ["main gate", "right", "MAIN GATE 2", "left gate"]
-      },
-      {
-        "id": 6342,
-        "name": "meeting12",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "03:00",
-        "end_time": "07:00",
-        "video": 1,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": ["main gate", "right"]
-      },
-      {
-        "id": 6362,
-        "name": "leader",
-        "workshop": null,
-        "date": "27-04-2022",
-        "start_time": "11:30",
-        "end_time": "12:30",
-        "video": 2,
-        "count_meetings": 0,
-        "attachedAttendees": 0,
-        "tracks": ["MAIN GATE 2", "left gate"]
-      },
-      {
-        "id": 6642,
-        "name": "p2",
-        "workshop": "sub registration testing program",
-        "date": "27-04-2022",
-        "start_time": "18:15",
-        "end_time": "19:15",
-        "video": 0,
-        "count_meetings": 0,
-        "attachedAttendees": 1,
-        "tracks": null
-      }
-    ],
-    "program_workshops": ["Mascot AS", "sub registration testing program"],
-    "program_tracks": [
-      { "id": 1079, "name": "main gate", "parent": true },
-      { "id": 1080, "name": "right", "parent": false },
-      { "id": 1092, "name": "1", "parent": false },
-      { "id": 1093, "name": "2", "parent": false },
-      { "id": 1094, "name": "3", "parent": false },
-      { "id": 1081, "name": "MAIN GATE 2", "parent": true },
-      { "id": 1082, "name": "left gate", "parent": false }
-    ],
-    "program_setting": {
-      "id": 2588,
-      "event_id": 2794,
-      "agenda_list": 0,
-      "session_ratings": 1,
-      "agenda_tab": 0,
-      "admin_fav_attendee": 1,
-      "attach_attendee_mobile": 1,
-      "qa": 1,
-      "program_fav": 0,
-      "show_tracks": 1,
-      "show_attach_attendee": 1,
-      "agenda_display_time": 1,
-      "show_program_dashboard": 1,
-      "show_my_program_dashboard": 1,
-      "agenda_collapse_workshop": 0,
-      "agendaTimer": 0,
-      "agenda_search_filter": 0,
-      "agenda_display_alerts": 0,
-      "enable_notes": 1,
-      "enable_program_attendee": 0,
-      "program_groups": 1,
-      "created_at": "2021-05-26T11:21:15.000000Z",
-      "updated_at": "2022-04-12T00:28:08.000000Z",
-      "deleted_at": null,
-      "program_view": "default"
-    },
-    "schedules": [
-      "2021-04-01",
-      "2021-05-01",
-      "2021-05-26",
-      "2021-05-31",
-      "2021-06-08",
-      "2021-08-01",
-      "2021-09-04",
-      "2021-09-06",
-      "2022-02-03"
-    ],
-    "current_date": "2022-02-03",
-    "selected_date": "2022-02-03",
-    "current_time": "18:00:00"
-  }
-};
 let startX;
 let scrollLeft;
 let isDown;
@@ -389,18 +108,16 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
   // const randomColor = random_rgba();
   const randomColor = '84, 192, 159';
   const styleWorkshop = items.program_workshop ? {
-    backgroundColor:`rgba(${randomColor},0.3)`,
-    borderLeftColor : `rgba(${randomColor},1)`,
+    cursor: 'pointer'
 
   } : {};
   const eventduration = moment.duration(endTime.diff(startTime));
   var _wrappWidth = (_multiplyer / 60) * eventduration.asMinutes()
   _wrappWidth = Math.round(_wrappWidth);
-  console.log(showWorkshop);
   return (
     <React.Fragment>
-    {items.program_workshop  && showWorkshop && <div className="workkshop-box ebs-workshop" style={{ left: (hours * _multiplyer)+15, width: _wrappWidth, position:'absolute', top:"-10px" }} >{items.program_workshop}</div>}
-    <div title={items.topic} onClick={() => onClick(items)} style={{ ...styleWorkshop,left: (hours * _multiplyer)+15, width: _wrappWidth, top:`${(items.program_workshop  && showWorkshop) ? '12px' : null }` }} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
+    {items.program_workshop  && showWorkshop && <div className="workkshop-box ebs-workshop" style={{ left: (hours * _multiplyer)+15, width: _wrappWidth, position:'absolute'}} >{items.program_workshop}</div>}
+    <div title={items.topic} onClick={() => onClick(items)} style={{ ...styleWorkshop,left: (hours * _multiplyer)+15, width: _wrappWidth}} className={`${items.program_workshop ? 'ebs-workshop' : ''} datawrapp`}>
       <div className="title">{items.topic}</div>
       {items.program_tracks && <div className="tracks">
         {items.program_tracks.map((track, k) =>
@@ -430,6 +147,8 @@ const TimelineContent = ({ data, program_setting }) => {
   // const [shownWorkshop, setShownWorkshop] = useState([]);
   // const [first, setfirst] = useState(false);
   var workshopShowns = [];
+  var workshopShowns2 = [];
+  let themecounter = 0;
   useEffect(() => {
     const container = document.getElementById('timelindeschdle');
 
@@ -476,7 +195,25 @@ const TimelineContent = ({ data, program_setting }) => {
       container.scrollLeft = scrollLeft - walkX;
     }
   }
-
+function getWorkShop (items) {
+  let showWorkshop = false;
+  items.forEach(item => {
+    if(item.workshop_id > 0) {
+      if(!workshopShowns2.includes(item.workshop_id)){
+        workshopShowns2.push(item.workshop_id);
+        showWorkshop = true;
+      }
+    }
+  });
+if (showWorkshop) {
+  console.log(themecounter);
+  if (themecounter === 5) {
+    themecounter = 0
+  }
+    themecounter++;
+}
+return showWorkshop;
+}
   return (
     <React.Fragment>
       {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
@@ -487,16 +224,16 @@ const TimelineContent = ({ data, program_setting }) => {
           <div id="timelinecontent">
             {data && data.program_array.map((items, k) =>(
             <React.Fragment key={k}>
-                <div className="datarow">
+                <div className={`datarow ${getWorkShop(items) ? 'ebs-workshop-wrapp' : ''} ${items[0].workshop_id > 0 ? 'ebs-wrapper-theme-'+themecounter : ''}`}>
                   {items.map((item, key) => {
-                          var showWorkshop = false;
-                          if(item.workshop_id > 0) {
-                            if(!workshopShowns.includes(item.workshop_id)){
-                              workshopShowns.push(item.workshop_id);
-                              showWorkshop = true;
-                            }
-                          }
-                     return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
+                    var showWorkshop = false;
+                    if(item.workshop_id > 0) {
+                      if(!workshopShowns.includes(item.workshop_id)){
+                        workshopShowns.push(item.workshop_id);
+                        showWorkshop = true;
+                      }
+                    }
+                  return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
                   })}
                 </div>
               </React.Fragment>)

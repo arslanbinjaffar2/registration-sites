@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { header } from 'helpers/header'
 const initialState = {
+  surveyListAnswered: null,
   surveyList: null,
   loading:false,
   error:null,
@@ -15,7 +16,8 @@ export const eventSlice = createSlice({
       state.loading = true
     },
     setSurveyListData: (state, { payload}) => {
-        state.surveyList = payload,
+        state.surveyList = payload.filter((survey)=>(!survey.answered)),
+        state.surveyListAnswered = payload.filter((survey)=>(survey.answered)),
         state.loading = false
     },
     setError: (state, { payload }) => {
@@ -40,6 +42,7 @@ export const fetchSurveyListData = (id, url) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
         const res = await response.json()
+        console.log(res.data);
         dispatch(setSurveyListData(res.data))
       } catch (error) {
         dispatch(setError(error))

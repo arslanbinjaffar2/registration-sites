@@ -2,11 +2,12 @@ import React from 'react';
 import Head from 'next/head'
 
 const MetaInfo = (props) => {
-
+    console.log(props.metaInfo.settings.third_party_header_script)
     return (
         <>
             <Head>
                 {!props.metaInfo !== undefined && (
+
                     <>
                         <title>{props.metaInfo.name}</title>
                         <meta property="og:title" content={props.metaInfo.name} />
@@ -91,8 +92,10 @@ const MetaInfo = (props) => {
                 `}
                             </script>
                         )}
+                        {props.metaInfo.settings.third_party_header_script && props.metaInfo.settings.third_party_header_script}
                     </>
                 )}
+
             </Head>
         </>
     )

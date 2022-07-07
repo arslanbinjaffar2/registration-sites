@@ -13,7 +13,8 @@ const Variation3 = (props) =>  {
       <div className="module-section">
         <div  style={{ backgroundColor: '#F2F2F2' }} className="ebs-default-padding">
         <div className="container-fluid">
-        <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
+          <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
+          <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
         </div>
           <div className="ebs-sub-newsletter-sec ebs-dark-variation">
             {props.alert !== "" &&<p style={{color:"green"}}>
@@ -44,7 +45,7 @@ const Variation3 = (props) =>  {
                   <div className="ebs-right-fluid">
                   <button style={{border: '2px solid #313131', color: '#313131',  fontWeight: 500}} type="submit"  disabled={props.loading ? true : false} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">
                     {props.settings.button_label}
-                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4}} className="fa fa-pulse fa-spinner fa-2x"></em>}
+                    {props.loading && <em style={{verticalAlign: 'bottom',marginLeft: 4,fontSize: 24}} className="fa fa-pulse fa-spinner"></em>}
                   </button> 
                   </div>
                 </div>

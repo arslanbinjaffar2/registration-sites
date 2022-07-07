@@ -16,7 +16,7 @@ const Index = (props) => {
         <>
             <MetaInfo metaInfo={props.metaInfo} />
             {event ? (
-                <MasterLayoutRoute>
+                <MasterLayoutRoute event={event}>
                     <ExhibitorListing />
                 </MasterLayoutRoute>
             ) : (

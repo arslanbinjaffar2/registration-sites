@@ -101,7 +101,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                 </div>
               </div>}
             </div>
-            <div className="col-lg-8">
+            <div className="col-lg-9">
               <div className="ebs-top-filter-container pb-3">
                 <ul>
                   <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="#!">All</a> </li>
@@ -120,7 +120,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                           {sponsor.logo && sponsor.logo !== '' ? (
                             <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
                           ) : (
-                            <Image src={require('public/img/exhibitors-default.png')} alt="" />
+                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt="" />
                           )}
                         </figure>
                       </ActiveLink>
@@ -132,7 +132,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                         </ActiveLink>
                       }
                       <div className="d-flex ebs-container-box">
-                        {sponsor.phone_number && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
+                        {sponsor.phone_number && sponsor.phone_number.split('-')[1] && <div className="ebs-box"><i className="fa fa-phone" />{sponsor.phone_number}</div>}
                         {sponsor.email && <div className="ebs-box"><i className="fa fa-envelope" />{sponsor.email}</div>}
                         {sponsor.booth && <div className="ebs-box"><i className="fa fa-bank" />{sponsor.booth}</div>}
                       </div>

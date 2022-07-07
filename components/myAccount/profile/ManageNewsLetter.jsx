@@ -13,7 +13,7 @@ const ManageNewsLetter = () => {
     useEffect(() => {
       dispatch(fetchNewsletterData(event.id, event.url));
     }, []);
-    const { newsletter } = useSelector(newsLetterSelector);
+    const { newsletter, updating } = useSelector(newsLetterSelector);
     return (
       newsletter ? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
@@ -21,7 +21,7 @@ const ManageNewsLetter = () => {
             <h2>My Subscriptions</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                 <ManageNewsLetterList newsletter={newsletter} event={event} />
+                 <ManageNewsLetterList newsletter={newsletter} event={event} updating={updating} />
           </div>
         </div>
       </div> : <PageLoader/>
@@ -31,7 +31,7 @@ const ManageNewsLetter = () => {
 export default ManageNewsLetter
 
 
-const ManageNewsLetterList = ({newsletter, event}) => {
+const ManageNewsLetterList = ({newsletter, event, updating}) => {
   const [subsriberList, setsubsriberList] = useState(newsletter.subscriber_detail.subscriber_list);
   const [mySubscriberListPrev, setmySubscriberListPrev] = useState(newsletter.subscriber_detail.subscriber_list.filter((item)=>(item.isExists)).map((item)=>(item.id)));
   const [mySubscriberListNew, setmySubscriberListNew] = useState(newsletter.subscriber_detail.subscriber_list.filter((item)=>(item.isExists)).map((item)=>(item.id)));
@@ -55,7 +55,7 @@ const ManageNewsLetterList = ({newsletter, event}) => {
         )) 
     }    
         <div className="bottom-button">
-              <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+              <button className="btn btn-save-next btn-loader" disabled={updating ? true : false}   onClick={(e)=>{handleSave(e)}}>{updating ?  "Saving..." : 'Save'}</button>
           </div>
     </div>
 

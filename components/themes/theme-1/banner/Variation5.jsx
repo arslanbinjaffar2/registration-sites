@@ -15,7 +15,9 @@ const Variation5 = ({ banner, event, countdown }) => {
           }}
           className="background parallax-backgroud"
         >
-          {props.children}
+          {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
         </div>
       );
     } else {
@@ -26,7 +28,9 @@ const Variation5 = ({ banner, event, countdown }) => {
           }}
           className="background parallax-backgroud"
         >
-          {props.children}
+          {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
         </div>
       );
     }

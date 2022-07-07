@@ -8,6 +8,7 @@ const initialState = {
   loadedSections: 0,
   fetchLoadCount:0,
   showLogin:false,
+  corporateLogin:false,
 };
 
 export const globalSlice = createSlice({
@@ -49,6 +50,9 @@ export const globalSlice = createSlice({
     incrementFetchLoadCount: (state) => {
       state.fetchLoadCount = state.fetchLoadCount + 1;
     },
+    setCorporateLogin: (state) => {
+      state.corporateLogin = true;
+    },
   },
 });
 
@@ -64,7 +68,8 @@ export const {
   incrementLoadCount,
   incrementLoadCountBy,
   setShowLogin,
-  incrementFetchLoadCount
+  incrementFetchLoadCount,
+  setCorporateLogin
 } = globalSlice.actions;
 
 export const globalSelector = (state) => state.global;
@@ -85,5 +90,10 @@ export const fetchBanner = (url) => {
     } catch (error) {
       dispatch(setError());
     }
+  };
+};
+export const postCorporateLogin = () => {
+  return async (dispatch) => {
+    dispatch(setCorporateLogin());
   };
 };

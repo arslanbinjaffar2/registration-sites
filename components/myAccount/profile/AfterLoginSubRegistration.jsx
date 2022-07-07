@@ -16,7 +16,7 @@ const AfterLoginSubRegistration = (props) => {
 
   const dispatch = useDispatch();
 
-  const { subRegistration, skip } = useSelector(subRegistrationSelector);
+  const { subRegistration, skip, loading, updating, alert, error } = useSelector(subRegistrationSelector);
 
   const router = useRouter();
 
@@ -28,14 +28,14 @@ const AfterLoginSubRegistration = (props) => {
   }, [skip]);
 
   return (
-    subRegistration !== null ? (
+    subRegistration !== null && !loading ? (
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>SubRegistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-            <SubRegForm subRegistration={subRegistration} event={event} afterLogin={true} />
+            <SubRegForm subRegistration={subRegistration} event={event} afterLogin={true} updating={updating} alert={alert} error={error} />
           </div>
         </div>
       </div>) : <PageLoader />

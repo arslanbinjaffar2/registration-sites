@@ -96,7 +96,6 @@ export default CmsListing;
 
 
 const arrayTraverse = (array, menu_id, eventSiteModuleName) => {
-  console.log(array, menu_id, eventSiteModuleName);
   let returnArray = [{ id: "module", name: eventSiteModuleName, type: "menu" }];
   let toFolder = null;
   if (menu_id && menu_id !== 'module') {
@@ -110,10 +109,8 @@ const arrayTraverse = (array, menu_id, eventSiteModuleName) => {
 
 const getListing = (array, menu_id) => {
   let arr = array;
-  console.log(array);
   if (menu_id && menu_id !== 'module') {
     arr = array.find((item) => (item.id === parseFloat(menu_id))).submenu;
-    console.log(arr);
   }
   return arr;
 }

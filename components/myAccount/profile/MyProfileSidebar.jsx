@@ -80,7 +80,7 @@ const MyProfileSidebar = (props) => {
               isAuthenticated.user.image
             } alt="" />
           ) : (
-            <Image className="ebs-image-solid" src={
+            <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
               require("public/img/square.jpg")
             } alt="" />
           )}

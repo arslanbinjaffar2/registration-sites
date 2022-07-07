@@ -134,11 +134,11 @@
   height: 100vh;
   background-size: cover !important;
 }
-.ebs-header-height-1 + .main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
+.ebs-header-height-1 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
   height: calc(100vh - 72px);
   min-height: 550px;
 }
-.ebs-header-height-2 + .main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
+.ebs-header-height-2 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
   height: calc(100vh - 146px);
   min-height: 550px;
 }
@@ -713,6 +713,7 @@
     cursor: pointer;
   }
 }
+
 .sponsorsv3-wrapper {
   margin-bottom: 20px;
   .bghover {
@@ -723,8 +724,8 @@
     position: relative;
     cursor: pointer;
     img {
-      max-width: 80%;
-      max-height: 100%;
+      max-width: 80% !important;
+      max-height: 100% !important;
       position: absolute;
       left: 0;
       top: 0;
@@ -1440,6 +1441,8 @@
     }
   }
 }
+
+
 .ebs-timeline-wrapper {
   overflow: hidden;
   width: 100%;
@@ -1496,7 +1499,19 @@
     .datarow {
     position: relative;
     min-height: 150px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    &.ebs-workshop-wrapp {
+      min-height: 180px;
+      .workkshop-box {
+        white-space: nowrap;
+        font-size: 16px;
+        color: #000;
+      }
+      .ebs-workshop.datawrapp {
+        top: 30px;
+      }
+    }
+
     .datawrapp {
       position: absolute;
       background: #F5F4FF;
@@ -1577,6 +1592,24 @@
       &.ebs-workshop {
         border-color: #54C09F;
         background-color: #F4FFFA;
+      }
+    }
+    &.ebs-wrapper-theme-2 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #880808;
+        background: rgba(#880808,0.3);
+      }
+    }
+    &.ebs-wrapper-theme-3 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #ff8c00;
+        background: rgba(#ff8c00,0.3);
+      }
+    }
+    &.ebs-wrapper-theme-4 {
+      .datawrapp.ebs-workshop {
+        border-left-color: #9b870c;
+        background: rgba(#9b870c,0.3);
       }
     }
   }
@@ -1997,9 +2030,15 @@
         width: 33.33%;
         padding-right: 10px;
         color: $text2b;
+        word-break: break-all;
+        display: flex;
+        @include phone-portrait {
+          justify-content: center;
+        }
         i {
           color: $first-main-color;
           margin-right: 8px;
+          padding-top: 5px;
         }
         @media (max-width: 1200px) {
           width: 100%;
@@ -2253,7 +2292,10 @@
     text-align: center;
     img {
       border-radius: 100%;
-      width: 120px;
+      width: 120px !important;
+      min-width: 120px !important;
+      height: 120px !important;
+      min-height: 120px !important;
       box-shadow: 0 3px 6px rgba($black, 0.16);
     }
 

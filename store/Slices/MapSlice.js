@@ -43,7 +43,6 @@ export const fetchMap = (url) => {
         `${process.env.NEXT_APP_URL}/event/${url}/map`
       );
       const res = await response.json();
-      console.log(res.data);
       dispatch(setMap(res.data));
       dispatch(incrementLoadedSection());
       dispatch(incrementFetchLoadCount());

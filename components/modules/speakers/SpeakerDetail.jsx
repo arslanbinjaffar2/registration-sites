@@ -5,6 +5,7 @@ import { speakerDetailSelector, fetchSpeakerDetail, clearState } from "store/Sli
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import Head from "next/head";
+import PageHeader from "../PageHeader";
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
@@ -46,6 +47,7 @@ const SpeakerDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.speakers}</title>
           </Head>
+          <PageHeader label={event.eventsiteModules.speakers} />
           <Component speaker={speaker} labels={labels} moduleName={event.eventsiteModules.speakers} siteLabels={event.labels} eventUrl={eventUrl} eventLanguageId={event.language_id} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : <PageLoader />}

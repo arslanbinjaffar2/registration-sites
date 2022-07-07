@@ -5,6 +5,7 @@ const initialState = {
   surveyDetail: null,
   surveyResult: null,
   loading:false,
+  updating:false,
   error:null,
   alert:null,
 }
@@ -15,11 +16,19 @@ export const eventSlice = createSlice({
   reducers: {
     getSurveyData : (state) => {
       state.loading = true
+      state.updating=false,
+      state.surveyDetail= null,
+      state.surveyResult= null,
+      state.error=null,
+      state.alert=null
     },
     setSurveyData: (state, { payload}) => {
         state.surveyDetail = payload.survey_details,
         state.surveyResult = payload.survey_result,
         state.loading = false
+    },
+    setUpdating:(state, { payload})=>{
+      state.updating = payload
     },
     setError: (state, { payload }) => {
       state.error = payload
@@ -31,7 +40,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getSurveyData, setSurveyData, setError, setAlert } = eventSlice.actions
+export const { getSurveyData, setSurveyData, setError, setAlert, setUpdating } = eventSlice.actions
 
 export const surveySelector = state => state.survey
 
@@ -51,12 +60,14 @@ export const fetchSurveyData = (id, url,survey_id) => {
   }
 export const updateSurveyData = (id, url, survey_id, data) => {
     return async dispatch => {
-      dispatch(getSurveyData())
+      dispatch(setUpdating(true))
       try {
         const response =  await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
-        dispatch(setAlert(response.data))
+        dispatch(setAlert("Answers Successfully Updated"));
+        dispatch(setUpdating(false));
       } catch (error) {
-        dispatch(setError(error))
+        dispatch(setError("Couldn't update Subregistration"));
+        dispatch(setUpdating(false));
       }
     }
   }

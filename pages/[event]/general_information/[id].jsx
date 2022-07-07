@@ -67,7 +67,7 @@ const ExhibitorDetail = (props) => {
                         
             </Head>
             {event ? (
-                <MasterLayoutRoute>
+                <MasterLayoutRoute event={event}>
                     <CmsDetail moduleName="general_information" />
                 </MasterLayoutRoute>
             ) : (
