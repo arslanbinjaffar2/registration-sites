@@ -84,7 +84,7 @@ const Variation2 = ({ banner }) => {
     if (props.data && Number(props.data.video_type) === 1) {
       return (
         <div
-          data-fixed="false"
+          data-fixed="true"
           ref={_parallax}
           style={{
             backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image
