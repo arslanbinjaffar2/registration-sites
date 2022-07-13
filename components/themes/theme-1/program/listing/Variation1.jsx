@@ -106,9 +106,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                   <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> :
                   <ProgramItem program={item} key={i} eventUrl={eventUrl} />
               ))}
-
             </div>
-
           ))}
         </div>
       </div>
