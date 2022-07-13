@@ -52,7 +52,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                alt="g"
+                                alt={`${Object.keys(photo.info)}`}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
