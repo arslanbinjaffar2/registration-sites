@@ -89,7 +89,7 @@ class Variation6 extends React.Component {
     if (window.innerWidth >= 991 && typeof window !== 'undefined') {
       var _total = 0;
       var _element = false;
-      const _container = document.getElementById('navbarSupportedContent');
+      const _container = document.getElementById('ebs-header-wrapper');
       const _list = document.querySelectorAll('#navbarSupportedContent .nav.navbar-nav > li');
       const _item = document.createElement("li");
       const _itemancor = document.createElement("span");
@@ -102,7 +102,7 @@ class Variation6 extends React.Component {
       _item.classList.add('nav-item-more');
       _item.appendChild(_itemancor);
       _list.forEach(element => {
-        if (_total < (_container.offsetWidth - 220)) {
+        if (_total < (_container.offsetWidth - 250)) {
           _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
@@ -188,7 +188,7 @@ class Variation6 extends React.Component {
                 </ActiveLink>
               </div>
             </div>
-            <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
+            <div id="ebs-header-wrapper" className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
               <nav className="navbar navbar-expand-lg navbar-light">
                 <button
                   className="navbar-toggler"
