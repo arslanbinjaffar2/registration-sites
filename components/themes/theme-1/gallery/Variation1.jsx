@@ -1,5 +1,5 @@
 import React from "react";
-import { Gallery, Item } from 'react-photoswipe-gallery'
+import { Gallery, Item } from 'react-photoswipe-gallery';
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
@@ -15,7 +15,7 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
-
+console.log(Object.keys(photos[1].info)[0]);
   return (
     <React.Fragment>
       <div className="module-section ebs-default-padding">
@@ -38,12 +38,12 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                     >
                       {({ ref, open }) => (
                         <div style={{ animationDelay: 50 * i + 'ms' }} ref={ref} onClick={open} className="edgtf-gallery-image ebs-animation-layer" >
-                          <span title="home-2-gallery-img-1" className="gallery-img-wrapper-rectangle">
+                          <span title={photo.info ? Object.keys(photo.info)[0] : 'Photo'} className="gallery-img-wrapper-rectangle">
                             {photo.image && photo.image !== "" ? (
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                alt="g"
+                                alt={photo.info ? Object.keys(photo.info)[0] : 'Photo'}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"

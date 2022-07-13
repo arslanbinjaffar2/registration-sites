@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import 'public/sass/app.scss';
+import 'photoswipe/dist/photoswipe.css';
 import { fetchEvent, eventSelector } from "store/Slices/EventSlice";
 import { store } from "store/store";
 import { Provider } from "react-redux";
