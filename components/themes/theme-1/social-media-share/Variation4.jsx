@@ -20,24 +20,24 @@ const Variation4 = ({ event, settings, socialMediaShare, labels }) => {
       <div className="container">
         <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
         <div className="ebs-social-share text-center pb-3">
-          {socialMediaShare.Facebook && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
+          {socialMediaShare.Facebook == 1 && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
             <FacebookIcon size={120} iconFillColor="#242424" bgStyle={{fill: 'transparent'}} 
              round={true} title="Facebook" />
           </FacebookShareButton>}
-          {socialMediaShare.Linkedin && <LinkedinShareButton
+          {socialMediaShare.Linkedin == 1 && <LinkedinShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <LinkedinIcon size={120} iconFillColor="#242424" bgStyle={{fill: 'transparent'}}
              round={true} title="Linked In" />
           </LinkedinShareButton>}
-          {socialMediaShare.Twitter && <TwitterShareButton
+          {socialMediaShare.Twitter == 1 && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <TwitterIcon size={120} iconFillColor="#242424" bgStyle={{fill: 'transparent'}}
               round={true} title="Twitter" />
           </TwitterShareButton>}
-          {socialMediaShare.Pinterest && <PinterestShareButton
+          {socialMediaShare.Pinterest == 1 && <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
@@ -48,7 +48,7 @@ const Variation4 = ({ event, settings, socialMediaShare, labels }) => {
             <PinterestIcon size={120} iconFillColor="#242424" bgStyle={{fill: 'transparent'}}
               round={true} title="Pinterest" />
           </PinterestShareButton>}
-          {socialMediaShare.Email && <EmailShareButton
+          {socialMediaShare.Email == 1 && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <EmailIcon size={120} iconFillColor="#242424" bgStyle={{fill: 'transparent'}}
