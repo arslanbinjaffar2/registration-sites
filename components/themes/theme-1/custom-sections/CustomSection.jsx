@@ -5,7 +5,7 @@ import Image from 'next/image'
 const CustomSection = ({ data }) => {
   return (
     <React.Fragment>
-      <div dangerouslySetInnerHTML={{__html:data}}>
+      <div className="ebs-default-padding clearfix" dangerouslySetInnerHTML={{__html:data}}>
       </div>
     </React.Fragment>
   )

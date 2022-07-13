@@ -100,15 +100,13 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
         <div className="ebs-main-program-listing">
           {programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
-              {programsLoc[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, programsLoc[key][0].heading_date)}</div>}
+              {programsLoc[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 item.workshop_id > 0 ?
                   <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> :
                   <ProgramItem program={item} key={i} eventUrl={eventUrl} />
               ))}
-
             </div>
-
           ))}
         </div>
       </div>

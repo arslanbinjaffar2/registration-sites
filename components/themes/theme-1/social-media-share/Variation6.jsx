@@ -21,20 +21,20 @@ const Variation6 = ({ event, socialMediaShare, labels}) => {
       <div className="container">
         <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
         <div className="ebs-social-share text-center pb-3 ebs-social-share-v5">
-          {socialMediaShare.Facebook && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
+          {socialMediaShare.Facebook == 1 && <FacebookShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
             <FacebookIcon size={60}  title="Facebook" /> <span>Facebook</span> 
           </FacebookShareButton>}
-          {socialMediaShare.Linkedin && <LinkedinShareButton url={`${window.location.origin.toString()}/${event.url}`}
+          {socialMediaShare.Linkedin == 1 && <LinkedinShareButton url={`${window.location.origin.toString()}/${event.url}`}
           >
             <LinkedinIcon size={60}  title="Linked In" /> <span>Linked In</span>  
           </LinkedinShareButton>}
-          {socialMediaShare.Twitter && <TwitterShareButton
+          {socialMediaShare.Twitter == 1 && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <TwitterIcon size={60}  title="Twitter" /> <span>Twitter</span> 
           </TwitterShareButton>}
-          {socialMediaShare.Pinterest && <PinterestShareButton
+          {socialMediaShare.Pinterest == 1 && <PinterestShareButton
             url={`${window.location.origin.toString()}/${event.url}/`}
             media={
               event.settings.header_logo
@@ -44,7 +44,7 @@ const Variation6 = ({ event, socialMediaShare, labels}) => {
           >
             <PinterestIcon size={60}  title="Pinterest" /> <span>Pinterest</span>
           </PinterestShareButton>}
-          {socialMediaShare.Email && <EmailShareButton
+          {socialMediaShare.Email == 1 && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <EmailIcon size={60}  title="Email" /> <span>Email</span>
