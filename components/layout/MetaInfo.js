@@ -64,35 +64,24 @@ const MetaInfo = (props) => {
                                     : props.metaInfo.name
                             }
                         />
-                        <link
+                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={
-                                props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== ""
-                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
-                                    "/assets/event/branding/" +
-                                    props.metaInfo.settings.app_icon
-                                    : ''
-                            }
-                        />
-                        {props.metaInfo.settings.google_analytics && (
-                            <script
-                                async
-                                src="https://www.google-analytics.com/analytics.js"
-                            />
-                        )}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
+                                    /assets/event/branding/
+                                    ${props.metaInfo.settings.app_icon}`}
+                        />}
                         {props.metaInfo.settings.google_analytics && (
                             <script>
                                 {`
-                    window.ga=window.ga||function()
-                    {(ga.q = ga.q || []).push(arguments)}
-                    ;ga.l=+new Date; ga('create',
-                    '${props.metaInfo.settings.google_analytics}', 'auto'); ga('send',
-                    'pageview');
-                `}
+                                    window.ga=window.ga||function()
+                                    {(ga.q = ga.q || []).push(arguments)}
+                                    ;ga.l=+new Date; ga('create',
+                                    '${props.metaInfo.settings.google_analytics}', 'auto'); ga('send',
+                                    'pageview');
+                                `}
                             </script>
                         )}
-                        {props.metaInfo.settings.third_party_header_script && props.metaInfo.settings.third_party_header_script}
                     </>
                 )}
 
