@@ -15,8 +15,8 @@ const ExhibitorDetail = (props) => {
     return (
         <>
             <Head>
-            <title>{props.cmsPage.name}</title>
-            <meta property="og:title" content={props.cmsPage.name} />
+            <title>{props.cmsPage.name && props.cmsPage.name}</title>
+            <meta property="og:title" content={props.cmsPage.name && props.cmsPage.name} />
             <meta property="og:type" content="Event" />
             <meta
                 property="og:image"
@@ -53,17 +53,13 @@ const ExhibitorDetail = (props) => {
                         <meta property="twitter:card" content="summary_large_image" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="msapplication-config" content="none" />
-                        <link
+                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={
-                                props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== ""
-                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
-                                    "/assets/event/branding/" +
-                                    props.metaInfo.settings.app_icon
-                                    : require("public/img/square.jpg")
-                            }
-                        />
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
+                                    /assets/event/branding/
+                                    ${props.metaInfo.settings.app_icon}`}
+                        />}
                         
             </Head>
             {event ? (
