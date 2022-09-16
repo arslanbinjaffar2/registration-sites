@@ -15,7 +15,6 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
-console.log(Object.keys(photos[1].info)[0]);
   return (
     <React.Fragment>
       <div className="module-section ebs-default-padding">
@@ -32,7 +31,7 @@ console.log(Object.keys(photos[1].info)[0]);
                       key={i}
                       original={imgUrl(photo)}
                       thumbnail={imgUrl(photo)}
-                      title={`${Object.keys(photo.info)}`}
+                      title={`${photo.info && Object.keys(photo.info)}`}
                       width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                       height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                     >

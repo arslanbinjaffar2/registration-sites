@@ -31,7 +31,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                       key={i}
                       original={imgUrl(photo)}
                       thumbnail={imgUrl(photo)}
-                      title={`${Object.keys(photo.info)}`}
+                      title={`${photo.info && Object.keys(photo.info)}`}
                       width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                       height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                     >
@@ -42,7 +42,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                alt={`${Object.keys(photo.info)}`}
+                                alt={`${photo.info && Object.keys(photo.info)}`}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"

@@ -9,7 +9,7 @@ const CustomSection = ({ data }) => {
   return (
     <React.Fragment>
       {/* dangerouslySetInnerHTML={{__html:data}} */}
-      <div className="ebs-default-padding clearfix">
+      {data && <div className="ebs-default-padding clearfix">
         {Loading && 
         <div className="d-flex justify-content-center"> 
           <div style={{width: '6rem', height: '6rem'}} className="spinner-border"> <span className="sr-only">Loading...</span></div>
@@ -28,7 +28,7 @@ const CustomSection = ({ data }) => {
             className="edgtf-post-excerpt"
             srcDoc={data}
           />
-      </div>
+      </div>}
     </React.Fragment>
   )
   // return (

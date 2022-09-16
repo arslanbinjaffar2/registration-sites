@@ -16,14 +16,18 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		arrows: false,
-		speed: 500,
-		margin: 30,
+		speed: 5000,
+		margin: 0,
+		slidesToShow: 5,
 		autoplay: true,
-		autoplaySpeed: 2000,
-		slidesToShow: 4,
-		slidesToScroll: 2,
+		autoplaySpeed: 0,
+		slidesToScroll: 1,
+		swipeToSlide: false,
+		cssEase: 'linear',
+		pauseOnHover:false,
+		pauseOnFocus:false,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -31,7 +35,11 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 					slidesToShow: 3,
 					slidesToScroll: 3,
 					infinite: true,
-					dots: false
+					speed: 500,
+					swipeToSlide: true,
+					autoplaySpeed: 5000,
+					dots: false,
+					
 				}
 			},
 			{
@@ -39,6 +47,10 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
+					infinite: true,
+					speed: 500,
+					swipeToSlide: true,
+					autoplaySpeed: 5000,
 					initialSlide: 2
 				}
 			},
