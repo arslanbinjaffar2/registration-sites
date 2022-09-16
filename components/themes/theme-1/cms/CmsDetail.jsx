@@ -22,6 +22,7 @@ const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
 const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, detail.menu_id, detail, eventSiteModuleName));
   const [height, setHeight] = useState(0);
+  const [Loading, setLoading] = useState(true);
   const iframe = useRef();
 
   const informationModules = {
@@ -83,6 +84,10 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                         <div className="edgtf-post-text-inner">
                           {detail.description && (
                             <div>
+                              {Loading && 
+                              <div className="d-flex justify-content-center"> 
+                                <div style={{width: '6rem', height: '6rem'}} className="spinner-border"> <span className="sr-only">Loading...</span></div>
+                              </div>}
                               <iframe
                                 ref={iframe}
                                 onLoad={() => {
@@ -91,6 +96,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                     obj.contentWindow.document.body.scrollHeight +
                                     200
                                   );
+                                  setLoading(false)
                                 }}
                                 width="100%"
                                 height={height}
