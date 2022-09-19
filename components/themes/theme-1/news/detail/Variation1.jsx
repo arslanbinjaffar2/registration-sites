@@ -133,6 +133,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                   onLoad={() => {
                     setTimeout(() => {
                       const obj = iframe.current;
+                      obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
                       setHeight(
                         obj.contentWindow.document.body.scrollHeight +
                         200

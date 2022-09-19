@@ -2555,7 +2555,9 @@
   position: relative;
   padding-bottom: 100%;
   display: block !important;
-  
+  > span {
+    overflow: unset !important;
+  }
   img {
     position: absolute;
     left: 0;
