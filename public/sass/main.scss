@@ -2762,3 +2762,9 @@ $z-index:$back-to-top-size / 2;
 			height: auto !important;
 		}
 	}
+
+	.infobooth-pdf {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}

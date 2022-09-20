@@ -18,6 +18,7 @@ const CustomSection = ({ data }) => {
             ref={iframe}
             onLoad={() => {
               const obj = iframe.current;
+              obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
               setHeight(obj.contentWindow.document.body.scrollHeight + 200);
               setLoading(false)
             }}
