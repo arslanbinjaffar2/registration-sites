@@ -23,7 +23,7 @@ const Index = () => {
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
   const { layoutSections } = event;
-  
+  console.log(event.description.info.description);
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
@@ -32,6 +32,7 @@ const Index = () => {
           layoutSections &&
           layoutSections.map((section, i) => {
             return (() => {
+   
               if (section.module_alias === "social_media_share" && section.status === 1)
                 return <SocialShare key={i} />;
               else if (section.module_alias === "event_title_info" && section.status === 1)
@@ -64,6 +65,9 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
+              {event.description.info.description && <div className="ebs-default-padding module-section">
+                <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
+              </div>}
       </React.Fragment>
     </Suspense>
 

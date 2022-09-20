@@ -36,6 +36,7 @@ const Variation1 = (props) => {
     }
 
   }
+  console.log(props.event.info);
     return (
       <div className="module-section">
         <WrapperLayout moduleVariation={props.moduleVariation}>
@@ -48,10 +49,11 @@ const Variation1 = (props) => {
                   <li>
                     <i className="material-icons">date_range</i>
                     <span className="break">{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</span>
-                    <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>
+                   {moment(props.event.end_date).format('dddd ,D MMMM YYYY') !== moment(props.event.start_date).format('dddd ,D MMMM YYYY') && <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>}
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
+                    <address>{props.event.info && props.event.info.location_name}</address>
                     <address>{props.event.info && props.event.info.location_address}</address>
                   </li>
                   <li>
