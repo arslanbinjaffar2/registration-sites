@@ -33,15 +33,19 @@ const MyProfile = () => {
                   <div className="ebs-my-profile-left">
                     <div className="ebs-my-profile-image">
                       {attendee.image && attendee.image !== "" ? (
-                        <img className="ebs-image-solid" src={
+                        <div className="ebs-image-wrapper-profile">
+                          <img className="ebs-image-solid" src={
                           process.env.NEXT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
                           attendee.image
                         } alt="" />
+                        </div>
                       ) : (
-                        <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
+                        <div className="ebs-image-wrapper-profile">
+                          <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
                           require("public/img/square.jpg")
                         } alt="" />
+                        </div>
                       )}
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">

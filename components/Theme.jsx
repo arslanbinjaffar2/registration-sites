@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const Theme = ({data}) => {
   function hexToRGBA(hex) {
-    return  '' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }) + ''
+    return  '' + (hex = hex?.replace('#', '').replace(' ', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }) + ''
 }
   const _stylesheet = `
   :root {

@@ -43,12 +43,12 @@ const Variation3 = ({ event, banner, countdown }) => {
 							<div className="caption-wrapp">
 								<div className="col-12 align-items-center d-flex inner-caption-wrapp">
 									<div style={{ position: 'relative' }} className="parallax-text">
-										{slides.info.title &&
+										{slides.info?.title &&
 											<div className="edgtf-custom-font-holder ebs-banner-title" style={{ fontFamily: 'Rubik', fontSize: '100px', lineHeight: '110px', fontWeight: '500', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
 												<span style={{ color: '#fff' }}> {slides.info.title} </span>
 											</div>
 										}
-										{slides.info.message && <div className="edgtf-custom-font-holder ebs-banner-subtitle"
+										{slides.info?.message && <div className="edgtf-custom-font-holder ebs-banner-subtitle"
 											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
 											{slides.info.message}
 										</div>}
