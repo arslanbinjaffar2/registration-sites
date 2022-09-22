@@ -23,7 +23,7 @@ const Index = () => {
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
   const { layoutSections } = event;
-  console.log(event.description.info.description);
+  console.log(event.description?.info.description);
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
@@ -65,7 +65,7 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
-              {event.description.info.description && <div className="ebs-default-padding module-section">
+              {event.description?.info.description && <div className="ebs-default-padding module-section">
                 <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
               </div>}
       </React.Fragment>

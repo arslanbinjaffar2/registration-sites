@@ -160,7 +160,7 @@ class Variation3 extends React.Component {
               </div>
             </div>
             <div className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
-              <nav className="navbar navbar-expand-lg navbar-light">
+              {!!event.eventsiteSettings.eventsite_menu && <nav className="navbar navbar-expand-lg navbar-light">
                 <button
                   className="navbar-toggler"
                   type="button"
@@ -548,7 +548,7 @@ class Variation3 extends React.Component {
                     </Scrollbars>
                   </div>
                 </div>
-              </nav>
+              </nav>}
               {this.props.userExist && <MyProfileSidebar />}
             </div>
           </div>

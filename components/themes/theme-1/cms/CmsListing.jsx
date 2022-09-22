@@ -30,7 +30,6 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
     setCurrentMenu(menu_id);
   }, [listing, breadCrumbData, eventSiteModuleName, menu_id])
 
-
   return (
    <React.Fragment>
        <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {

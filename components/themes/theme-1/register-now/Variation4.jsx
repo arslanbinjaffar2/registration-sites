@@ -81,7 +81,6 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
 
   }
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
-  console.log(labels.EVENTSITE_REGISTER_NOW )
   return (
     <div className="module-section">
       <WrapperLayout
@@ -99,7 +98,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                   </div>
                 </div>}
                 <div className={ticket_settings ? 'col-md-9' : 'col-md-12'}>
-                  <div className="ebs-caption-box">
+                  <div className="ebs-caption-box" style={{marginBottom: 20}}>
                     <div style={{ color: '#fff' }} className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
                   </div>
                 </div>
@@ -130,7 +129,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
             <div className="ebs-register-now-sec">
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
-                  <div className="ebs-caption-box">
+                  <div className="ebs-caption-box" style={{marginBottom: 20}}>
                     <div className="ebs-description-area" style={{ color: '#fff' }} >{labels.WAITING_LIST_EVENTSITE_INTRODUCTION_PARA}</div>
                     <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</a>
                   </div>

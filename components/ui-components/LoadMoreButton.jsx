@@ -8,7 +8,7 @@ const LoadMoreButton = ({loadingLabel,loading, page, onPageChange}) => {
         onClick={() => onPageChange(page +1)}
         disabled={(loading ) ? true : false}
         >
-        {loadingLabel}
+        {loadingLabel ? loadingLabel : 'Load More'}
         {loading && <em style={{verticalAlign: 'bottom',marginLeft: 4,fontSize: 24}} className="fa fa-pulse fa-spinner"></em>}
         </button>
     </div>

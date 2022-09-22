@@ -6,6 +6,7 @@ import Image from 'next/image'
 const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels}) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
+  console.log(new Date('Mon-Apr-2022 17:48 PM'))
   return (
     <div className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -13,7 +14,7 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
-                {news.map((item,i) => (
+                {news && news.map((item,i) => (
                   <article style={{animationDelay: 50*i+'ms'}} className="ebs-animation-layer" key={item.id}>
                     <div className="edgtf-post-content">
                       {item.image && <div className="edgtf-post-image">
