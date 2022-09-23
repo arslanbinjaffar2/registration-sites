@@ -207,7 +207,7 @@ class Variation7 extends React.Component {
                 style={{ padding: "0", border: "none", textAlign: "left" }}
                 className="ebs-logo-main"
               >
-                <ActiveLink href={`/${event.url}`}>
+                <ActiveLink href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}

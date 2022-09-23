@@ -23,7 +23,6 @@ const Index = () => {
   const { event } = useSelector(eventSelector);
   const { loadedSections, loadCount } = useSelector(globalSelector);
   const { layoutSections } = event;
-  console.log(event.description?.info.description);
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>

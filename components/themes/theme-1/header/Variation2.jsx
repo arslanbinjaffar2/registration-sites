@@ -181,7 +181,7 @@ class Variation2 extends React.Component {
           <div className="row d-flex align-items-center">
             <div className="col-lg-12 col-6">
               <div className="ebs-logo-main center">
-                <ActiveLink href={`/${event.url}`}>
+                <ActiveLink href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
                   {event.settings && event.settings.header_logo ? (
                     <img
                       src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}

@@ -190,7 +190,7 @@ class Variation1 extends React.Component {
                 style={{ padding: "0", border: "none" }}
                 className="ebs-logo-main text-left"
               >
-                <ActiveLink href={`/${event.url}`}>
+                <ActiveLink href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
                   
                     {event.settings.header_logo ? (
                       <img
