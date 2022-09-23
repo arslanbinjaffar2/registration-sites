@@ -9,7 +9,7 @@ const ProgramItem = ({ program, eventUrl }) => {
         <div className="ebs-program-child">
             <div className="row d-flex">
                 <div className="col-lg-2">
-                    {!!program.hide_time && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
+                    {parseInt(program.hide_time) === 0  && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
                 </div>
                 <div className="col-lg-10">
                     <div className="ebs-program-content">

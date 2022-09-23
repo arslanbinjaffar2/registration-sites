@@ -190,7 +190,7 @@ class Variation1 extends React.Component {
                 style={{ padding: "0", border: "none" }}
                 className="ebs-logo-main text-left"
               >
-                <ActiveLink href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
+                <ActiveLink target={event.eventsiteSettings?.third_party_redirect === 0 ? `_self` : '_blank'} href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
                   
                     {event.settings.header_logo ? (
                       <img
@@ -208,7 +208,7 @@ class Variation1 extends React.Component {
               </div>
             </div>
             <div id="ebs-header-wrapper" className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
-              {!!event.eventsiteSettings.eventsite_menu && <nav className="navbar navbar-expand-lg navbar-light">
+              {parseInt(event.eventsiteSettings.eventsite_menu) === 1 && <nav className="navbar navbar-expand-lg navbar-light">
                   <button
                     className="navbar-toggler"
                     type="button"
@@ -334,6 +334,8 @@ class Variation1 extends React.Component {
                                             <a
                                               className="nav-link"
                                               aria-current="page"
+                                              target="_blank"
+                                              rel="noreferrer"
                                               href={`${subitem.website_protocol}${subitem.url}`}
                                             >
                                               {subitem.info.name}
@@ -367,6 +369,8 @@ class Variation1 extends React.Component {
                                       <a
                                         className="nav-link" 
                                         aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer"
                                         href={`${pItem.website_protocol}${pItem.url}`}
                                       >
                                         {pItem.info.name}
@@ -411,6 +415,8 @@ class Variation1 extends React.Component {
                                               <a
                                                 className="nav-link"
                                                 aria-current="page"
+                                                target="_blank"
+                                                rel="noreferrer"
                                                 href={`${subitem.website_protocol}${subitem.url}`}
                                               >
                                                 {subitem.info.name}
@@ -445,6 +451,8 @@ class Variation1 extends React.Component {
                                       <a
                                         className="nav-link"
                                         aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer"
                                         href={`${aItem.website_protocol}${aItem.url}`}
                                       >
                                         {aItem.info.name}
@@ -489,6 +497,8 @@ class Variation1 extends React.Component {
                                             <a
                                               className="nav-link"
                                               aria-current="page"
+                                              target="_blank"
+                                              rel="noreferrer"
                                               href={`${subitem.website_protocol}${subitem.url}`}
                                             >
                                               {subitem.info.name}
@@ -522,6 +532,8 @@ class Variation1 extends React.Component {
                                       <a
                                         className="nav-link"
                                         aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer"
                                         href={`${gItem.website_protocol}${gItem.url}`}
                                       >
                                         {gItem.info.name}
