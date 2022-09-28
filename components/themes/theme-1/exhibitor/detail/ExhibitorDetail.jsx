@@ -170,7 +170,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
         </div>
       </div>
 
-      {exhibitor.exhibitors_attendee.length > 0 && <div style={{ paddingBottom: 50 }} className="">
+      {exhibitor.exhibitors_attendee?.length > 0 && <div style={{ paddingBottom: 50 }} className="">
         <div className="container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">Contacts</h3>
@@ -200,7 +200,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                   }
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
-                <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
+                <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
               </div>
             )}
           </div>

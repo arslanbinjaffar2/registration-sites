@@ -48,10 +48,11 @@ const Variation1 = (props) => {
                   <li>
                     <i className="material-icons">date_range</i>
                     <span className="break">{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</span>
-                    <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>
+                   {moment(props.event.end_date).format('dddd ,D MMMM YYYY') !== moment(props.event.start_date).format('dddd ,D MMMM YYYY') && <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>}
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
+                    <address>{props.event.info && props.event.info.location_name}</address>
                     <address>{props.event.info && props.event.info.location_address}</address>
                   </li>
                   <li>
@@ -59,7 +60,7 @@ const Variation1 = (props) => {
                     <strong>Check-in open: </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
                   </li>
                 </ul>
-                <a style={{border: '2px solid #fff', color: '#fff'}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">Register now </a>  
+                <a style={{border: '2px solid #fff', color: '#fff'}} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a>  
               </div>
             </div>
             <div className="col-lg-6 offset-lg-1">

@@ -79,6 +79,7 @@ const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
     }
 
   }
+  const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   return (
     <div className="module-section ebs-register-now-v5">
       <WrapperLayout
@@ -108,14 +109,14 @@ const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
           </div>
           <div className="ebs-register-now-sec">
             <div className="row d-flex align-items-center">
-              <div className="col-lg-4 ">
-                {(checkTickets.ticketsSet && eventSiteSettings.eventsite_tickets_left && checkTickets.remainingTickets > 0) && <div className="ebs-ticket-remaning d-flex align-items-center">
+            {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-lg-4 ">
+                <div className="ebs-ticket-remaning d-flex align-items-center">
                   <div style={{color: '#ffffff', paddingRight: 20 }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
-                </div>}
-              </div>
-              <div className="col-lg-8 d-flex align-items-center">
-                {(eventSiteSettings.eventsite_time_left && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
+                </div>
+              </div>}
+              <div className={`d-flex align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}>
+                {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
                 <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
             </div>
