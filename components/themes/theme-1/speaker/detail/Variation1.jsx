@@ -82,7 +82,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           className="edge-team-single-content"
                         >
                           <h4 className="info">ABOUT </h4>
-                          <p>{speaker.info.about}</p>
+                          {speaker.info.about && <div style={{marginbottom: 20}}  dangerouslySetInnerHTML={{__html: speaker.info.about}} />}
                         </div>
                       )}
                       {speaker.email && (

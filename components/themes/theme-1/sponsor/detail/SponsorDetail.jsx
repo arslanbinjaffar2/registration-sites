@@ -191,7 +191,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                   )}
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
-                <p>{attendee.info.title && (attendee.info.title)} {attendee.info.company_name && (attendee.info.company_name)}</p>
+                <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
               </div>
             )}
           </div>
