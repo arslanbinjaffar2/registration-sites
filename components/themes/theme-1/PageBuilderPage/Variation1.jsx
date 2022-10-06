@@ -362,7 +362,7 @@ img {
 React.useEffect(() => {
   if (Loaded && iframe?.current !== null) {
   const observer = new ResizeObserver(() => {
-    setHeight(iframe.current.contentWindow.document.body.offsetHeight + 80);
+    setHeight(iframe?.current !== null ? iframe.current.contentWindow.document.body.offsetHeight + 80 : height);
 });
   observer.observe(iframe.current.contentWindow.document.body);
 }
