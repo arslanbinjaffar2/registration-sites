@@ -211,20 +211,39 @@ class Variation3 extends React.Component {
                                 menu.alias !== "practicalinformation" &&
                                 menu.alias !== "additional_information" &&
                                 menu.alias !== "general_information" && (
-                                  <ActiveLink
-                                    className="nav-link" activeClassName="nav-link active"
-                                    aria-current="page"
-                                    href={
-                                      "/" +
-                                      this.props.event.url +
-                                      "/" +
-                                      menu.alias
-                                    }
-                                  >
-                                    <span className="ebs-nav-item">
+                                  menu.alias === "custom" ? (
+                                    menu.url !== "" ? (
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        href={menu.url}
+                                      >
+                                         <span className="ebs-nav-item">
                                       {menu.module}
                                     </span>
-                                  </ActiveLink>
+                                      </a>
+                                    ) : (
+                                      <ActiveLink
+                                        className="nav-link active"
+                                        aria-current="page"
+                                        href={`/${this.props.event.url}/cms/${menu.page_id}`}
+                                      >
+                                           <span className="ebs-nav-item">
+                                      {menu.module}
+                                    </span>
+                                      </ActiveLink>
+                                    )
+                                  ) : (
+                                    <ActiveLink
+                                      className="nav-link" activeClassName="nav-link active"
+                                      aria-current="page"
+                                      href={`/${this.props.event.url}/${menu.alias}`}
+                                    >
+                                       <span className="ebs-nav-item">
+                                      {menu.module}
+                                    </span>
+                                    </ActiveLink>
+                                  )
                                 )}
                               {menu.alias === "gallery" && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
