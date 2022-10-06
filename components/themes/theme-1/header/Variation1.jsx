@@ -246,7 +246,7 @@ class Variation1 extends React.Component {
                             <ActiveLink
                               className="nav-link"
                               aria-current="page"
-                              href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
+                              href={`/${this.props.event.url}/cms/${menu.page_id}`}
                             >
                                 {menu.module}
                             </ActiveLink>

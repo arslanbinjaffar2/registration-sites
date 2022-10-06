@@ -7,10 +7,12 @@ const Variation2 = ({ banner }) => {
   const _parallax = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      typeWriter();
-    }, 5000);
-    window.addEventListener("scroll", scollEffect);
+    if(typeof window !== 'undefined'){
+      setTimeout(() => {
+        typeWriter();
+      }, 5000);
+      window.addEventListener("scroll", scollEffect);
+    }
     return () => {
       window.removeEventListener("scroll", scollEffect);
     }
