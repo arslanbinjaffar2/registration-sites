@@ -4,6 +4,7 @@ import { pageBuilderPageSelector, fetchPage, clearState } from "store/Slices/Pag
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
+import PageHeader from "../PageHeader";
 import Head from 'next/head'
 
 const in_array = require("in_array");
@@ -43,6 +44,7 @@ const CmsPage = (props) => {
 
   return (
     <Suspense fallback={<PageLoader />}>
+      {page && <PageHeader label={page.name.toUpperCase()}/>}
       {page &&
         <Component data={page}  />
       }
