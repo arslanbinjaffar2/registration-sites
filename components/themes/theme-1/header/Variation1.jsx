@@ -584,7 +584,7 @@ class Variation1 extends React.Component {
                                       {gItem.submenu.map((subitem, k) => (
                                         <li className="nav-item" key={k}>
                                           {subitem.page_type &&
-                                            subitem.page_type === 2 ? (
+                                            subitem.page_type === 3 ? (
                                             <a
                                               className="nav-link"
                                               aria-current="page"
