@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import InfoPageListing from "components/modules/infoPages/infoPagesListing";
+import InfoPagesListing from "components/modules/infoPages/infoPagesListing";
 import { useRouter } from 'next/router';
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
@@ -22,7 +22,7 @@ const Index = (props) => {
             <MetaInfo metaInfo={props.metaInfo} />
             {event ? (
                 <MasterLayoutRoute event={event}>
-                    <InfoPageListing menu_id={menu_id} main_menu_id={main_menu_id} />
+                    <InfoPagesListing menu_id={menu_id} main_menu_id={main_menu_id} />
                 </MasterLayoutRoute>
             ) : (
                 <PageLoader />

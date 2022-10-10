@@ -12,7 +12,7 @@ const loadModule = (theme) => {
   return Component;
 };
 
-const InfoPageListing = (props) => {
+const InfoPagesListing = (props) => {
 
   const { event } = useSelector(eventSelector);
 
@@ -45,4 +45,4 @@ const InfoPageListing = (props) => {
   );
 };
 
-export default InfoPageListing;
+export default InfoPagesListing;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import PageHeader from "components/modules/PageHeader";
-const InfoPageListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id }) => {
+const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName, main_menu_id));
 
@@ -91,7 +91,7 @@ const InfoPageListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleN
 };
 
 
-export default InfoPageListing;
+export default InfoPagesListing;
 
 
 const arrayTraverse = (array, menu_id, eventSiteModuleName, main_menu_id) => {
