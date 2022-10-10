@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import InfoPagesListing from "components/modules/infoPages/infoPagesListing";
+import InfoPagesListing from "components/modules/infoPages/InfoPagesListing";
 import { useRouter } from 'next/router';
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
