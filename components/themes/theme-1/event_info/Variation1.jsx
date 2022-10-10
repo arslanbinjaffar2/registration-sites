@@ -40,7 +40,7 @@ const Variation1 = (props) => {
       <div className="module-section">
         <WrapperLayout moduleVariation={props.moduleVariation}>
         <div className="container">
-        <HeadingElement dark={true} label={"About the Event"}  align={'left'} />
+        <HeadingElement dark={true} label={props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined ? props.event.description.info.title : "About the Event"}  align={'left'} />
           <div className="row d-flex ebs-about-event-section">
             <div className="col-lg-5 mb-5">
               <div className="ebs-event-detail">
@@ -65,7 +65,7 @@ const Variation1 = (props) => {
             </div>
             <div className="col-lg-6 offset-lg-1">
               <figure>
-                <img style={{width: '100%'}} src="https://via.placeholder.com/660x440.png" alt="" />
+                <img style={{width: '100%'}} src={props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event_site/upload_images/temp/${props.event.description.info.image}` : "https://via.placeholder.com/660x440.png"} alt="" />
               </figure>
             </div>
           </div>

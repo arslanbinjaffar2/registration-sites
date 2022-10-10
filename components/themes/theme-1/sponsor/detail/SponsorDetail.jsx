@@ -88,7 +88,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           </p>
                         </div>
                       )}
-                      {sponsor.phone_number && (
+                      {sponsor.phone_number.split("-")[1] !== undefined && sponsor.phone_number.split("-")[1] > 4 && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -117,7 +117,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         className="edge-info-row"
                       >
                         <div className="social-icons">
-                          {sponsor.facebook && (
+                          {sponsor.facebook !== "http://" && sponsor.facebook !== "https://" && sponsor.facebook.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -126,7 +126,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               <span data-icon="&#xe0aa;"></span>
                             </a>
                           )}
-                          {sponsor.twitter && (
+                          {sponsor.twitter > "http://" && sponsor.twitter !== "https://" && sponsor.twitter.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -135,7 +135,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               <span data-icon="&#xe0ab;"></span>
                             </a>
                           )}
-                          {sponsor.linkedin && (
+                          {sponsor.linkedin > "http://" &&  sponsor.linkedin !== "https://" && sponsor.linkedin.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -144,7 +144,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
-                          {sponsor.website && (
+                          {sponsor.website > "http://" && sponsor.website !== "https://" && sponsor.website.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"

@@ -209,9 +209,33 @@ class Variation6 extends React.Component {
                   <ul className="nav navbar-nav m-0">
                     {menus["top_menu"].map((menu) => (
                       <li className="nav-item" key={menu.id}>
-                        <ActiveLink className="nav-link" activeClassName="nav-link active" aria-current="page" href={'/' + this.props.event.url + '/' + menu.alias}>
-                          {menu.module}
-                        </ActiveLink>
+                        {menu.alias === "custom" ? (
+                          menu.url !== "" ? (
+                            <a
+                              className="nav-link"
+                              aria-current="page"
+                              href={menu.url}
+                            >
+                              {menu.module}
+                            </a>
+                          ) : (
+                            <ActiveLink
+                              className="nav-link active"
+                              aria-current="page"
+                              href={`/${this.props.event.url}/cms/${menu.page_id}`}
+                            >
+                                {menu.module}
+                            </ActiveLink>
+                          )
+                        ) : (
+                          <ActiveLink
+                            className="nav-link" activeClassName="nav-link active"
+                            aria-current="page"
+                            href={`/${this.props.event.url}/${menu.alias}`}
+                          >
+                              {menu.module}
+                          </ActiveLink>
+                        )}
                         {menu.alias === "gallery" && (
                           <ul className="dropdown-menu">
                             {menus["gallery_sub_menu"].map((myaccount, k) => (

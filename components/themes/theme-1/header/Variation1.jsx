@@ -246,19 +246,29 @@ class Variation1 extends React.Component {
                             <ActiveLink
                               className="nav-link"
                               aria-current="page"
-                              href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
+                              href={`/${this.props.event.url}/cms/${menu.page_id}`}
                             >
                                 {menu.module}
                             </ActiveLink>
                           )
                         ) : (
-                          <ActiveLink
-                            className="nav-link" activeClassName="nav-link active"
-                            aria-current="page"
-                            href={`/${this.props.event.url}/${menu.alias}`}
-                          >
-                              {menu.module}
-                          </ActiveLink>
+                          menu.alias === "info_pages" ? (
+                            <ActiveLink
+                              className="nav-link"
+                              aria-current="page"
+                              href={`/${this.props.event.url}/info_pages/${menu.page_id}`}
+                            >
+                                {menu.module}
+                            </ActiveLink>
+                          ): (
+                            <ActiveLink
+                              className="nav-link" activeClassName="nav-link active"
+                              aria-current="page"
+                              href={`/${this.props.event.url}/${menu.alias}`}
+                            >
+                                {menu.module}
+                            </ActiveLink> 
+                          )
                         )}
                         {menu.alias === "gallery" && (
                           <ul className="dropdown-menu">
@@ -541,6 +551,87 @@ class Variation1 extends React.Component {
                                     ) :
                                     (
                                       <ActiveLink
+                                        aria-current="page"
+                                        className="nav-link" activeClassName="nav-link active"
+                                        href={
+                                          "/" +
+                                          this.props.event.url +
+                                          "/" +
+                                          menu.alias +
+                                          "/" +
+                                          gItem.id
+                                        }
+                                        key={gItem.id}
+                                      >
+                                          {gItem.info.name}
+                                      </ActiveLink>
+                                    )}
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        )}
+                        {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 0) && (
+                          <ul className="dropdown-menu">
+                            {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
+                              (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
+                                <li className="nav-item" key={gItem.id}>
+                                  <span className="nav-link">
+                                    {gItem.info.name}
+                                  </span>
+                                  {gItem.submenu && gItem.submenu.length > 0 && (
+                                    <ul className="dropdown-menu">
+                                      {gItem.submenu.map((subitem, k) => (
+                                        <li className="nav-item" key={k}>
+                                          {subitem.page_type &&
+                                            subitem.page_type === 3 ? (
+                                            <a
+                                              className="nav-link"
+                                              aria-current="page"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                              href={`${subitem.website_protocol}${subitem.url}`}
+                                            >
+                                              {subitem.info.name}
+                                            </a>
+                                          ) : (
+                                            <ActiveLink
+                                              aria-current="page"
+                                              className="nav-link" activeClassName="nav-link active"
+                                              href={
+                                                "/" +
+                                                this.props.event.url +
+                                                "/" +
+                                                menu.alias +
+                                                "/" +
+                                                subitem.id
+                                              }
+                                              key={subitem.id}
+                                            >
+                                                {subitem.info.name}
+                                            </ActiveLink>
+                                          )}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </li>
+                              ) : (
+                                <li className="nav-item" key={k}>
+                                  {gItem.page_type && gItem.page_type === 3 ?
+                                    (
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        href={`${gItem.website_protocol}${gItem.url}`}
+                                      >
+                                        {gItem.info.name}
+                                      </a>
+                                    ) :
+                                    (
+                                      gItem.page_type === 2 && <ActiveLink
                                         aria-current="page"
                                         className="nav-link" activeClassName="nav-link active"
                                         href={

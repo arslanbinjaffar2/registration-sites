@@ -263,7 +263,7 @@ class Variation7 extends React.Component {
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
-                              href={`/${this.props.event.url}/${menu.alias}/${menu.module}`}
+                              href={`/${this.props.event.url}/${menu.alias}/${menu.page_id}`}
                             >
                               {menu.module}
                             </ActiveLink>

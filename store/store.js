@@ -25,6 +25,7 @@ import sponsorDetailReducer from "./Slices/SponsorDetailSlice";
 import exhibitorDetailReducer from "./Slices/ExhibitorDetailSlice";
 import documentsReducer from "./Slices/DocumentsSlice";
 import cmsDetailReducer from "./Slices/CmsDetailSlice";
+import pageBuilderPageReducer from "./Slices/PageBuilderPagesSlice";
 import photoReducer from "./Slices/PhotoSlice";
 import videoReducer from "./Slices/VideoSlice";
 import programListingReducer from "./Slices/ProgramListingSlice";
@@ -62,6 +63,7 @@ export const store = configureStore({
     programListing: programListingReducer,
     program: programReducer,
     myProgramListing: myProgramListingReducer,
+    pageBuilderPage: pageBuilderPageReducer,
   },
   
 });

@@ -51,7 +51,7 @@ const ProgramListing = (props) => {
           <Head>
             <title>{event.eventsiteModules.program}</title>
           </Head>
-          <PageHeader desc={event.labels.EVENTSITE_PROGRAM_DETAIL} label={event.eventsiteModules.program}/>
+          <PageHeader desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} label={event.labels.EVENTSITE_PROGRAM}/>
           {Object.keys(programs).length > 0 ? 
           <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} /> :
           <div style={{textAlign:"center"}}>
