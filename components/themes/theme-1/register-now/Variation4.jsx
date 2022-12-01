@@ -105,7 +105,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>
               {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
               <div className="text-center">
-                <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
+                <a style={{ border: '2px solid #fff', color: '#fff' }} href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box" style={{marginBottom: 20}}>
                     <div className="ebs-description-area" style={{ color: '#fff' }} >{labels.WAITING_LIST_EVENTSITE_INTRODUCTION_PARA}</div>
-                    <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</a>
+                    <a style={{ border: '2px solid #fff', color: '#fff' }} href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</a>
                   </div>
                 </div>
               </div>
