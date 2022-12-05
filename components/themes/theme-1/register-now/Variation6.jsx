@@ -117,7 +117,7 @@ const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>}
               <div className={`d-flex align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}>
                 {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
-                <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
+                <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
             </div>
           </div>
@@ -143,7 +143,7 @@ const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               <div className="col-md-10 offset-md-1">
                 <div className="ebs-caption-box">
                   <div className="ebs-description-area">{labels.WAITING_LIST_EVENTSITE_INTRODUCTION_PARA}</div>
-                  <a href="#!" rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</span></a>
+                  <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</span></a>
                 </div>
               </div>
             </div>
