@@ -6,6 +6,7 @@
     "@next/next/no-img-element": "off",
     "@next/next/next-script-for-ga": "off",
     "react/jsx-key": "off",
-    "jsx-a11y/alt-text": "off"
+    "jsx-a11y/alt-text": "off",
+    "react/no-unknown-property": "off"
    }
 }
