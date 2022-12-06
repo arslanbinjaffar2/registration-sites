@@ -58,13 +58,24 @@ const Header = ({ location, history }) => {
     [event]
   );
 
+  const regisrationUrl = useMemo(()=>{
+    let url = '';
+    if(parseFloat(event.registration_form_id) === 1){
+        url = (event.paymentSettings && parseInt(event.paymentSettings.evensite_additional_attendee) === 1) ? `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee` : `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/manage-attendee`;
+    }else{
+      url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/registration`;
+    }
+
+    return url;
+  },[event]);
+
   const onLoginClick = (bool) => {
     dispatch(setShowLogin(bool));
   }
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} />
+      <Component event={event} regisrationUrl={regisrationUrl} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} />
     </Suspense>
   );
 };
