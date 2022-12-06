@@ -32,6 +32,17 @@ const Banner = () => {
     [event]
   );
 
+  const regisrationUrl = useMemo(()=>{
+    let url = '';
+    if(parseFloat(event.registration_form_id) === 1){
+        url = (event.paymentSettings && parseInt(event.paymentSettings.evensite_additional_attendee) === 1) ? `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee` : `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/manage-attendee`;
+    }else{
+      url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/registration`;
+    }
+
+    return url;
+  },[event]);
+
   useEffect(() => {
     if (banner === null) {
       dispatch(incrementLoadCount());
@@ -40,7 +51,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
     </Suspense>
   );
 };

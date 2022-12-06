@@ -1,7 +1,7 @@
 import React from 'react'
 import SliderBanner from './components/SliderBanner';
 
-const Variation1 = ({ event, banner, countdown }) => {
+const Variation1 = ({ event, banner, countdown, regisrationUrl }) => {
 
 	const WrapperLayout = (props) => {
 
@@ -55,7 +55,7 @@ const Variation1 = ({ event, banner, countdown }) => {
 										</div>}
 										<div className="edgtf-custom-font-holder"
 											style={{ marginTop: '40px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
-											<a href="" style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">REGISTER</a>
+											<a href={regisrationUrl} style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">REGISTER</a>
 										</div>
 									</div>
 								</div>
