@@ -28,7 +28,7 @@ const EventInformation = () => {
     if(parseFloat(event.registration_form_id) === 1){
         url = (event.paymentSettings && parseInt(event.paymentSettings.evensite_additional_attendee) === 1) ? `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee` : `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/manage-attendee`;
     }else{
-      url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/registration`;
+      url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
     return url;
