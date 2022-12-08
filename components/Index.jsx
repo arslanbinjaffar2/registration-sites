@@ -34,8 +34,10 @@ const Index = () => {
    
               if (section.module_alias === "social_media_share" && section.status === 1)
                 return <SocialShare key={i} />;
-              else if (section.module_alias === "event_title_info" && section.status === 1)
-                return <div key={i}></div>;
+              else if (section.module_alias === "event_description" && section.status === 1)
+                return (event.description?.info.description && <div className="ebs-default-padding module-section">
+                <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
+              </div>);
               else if (section.module_alias === "custom_html2" && section.status === 1)
                 return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
@@ -64,9 +66,7 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
-              {event.description?.info.description && <div className="ebs-default-padding module-section">
-                <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
-              </div>}
+              
       </React.Fragment>
     </Suspense>
 
