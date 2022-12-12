@@ -74,7 +74,7 @@ const Variation2 = ({ banner, regisrationUrl }) => {
 
     function loop() {
       var sentence = sentences[counter % sentences.length];
-      writeerase(typeline, sentence, 1500, loop);
+      typeline && writeerase(typeline, sentence, 1500, loop);
       counter++;
     }
 
@@ -102,7 +102,7 @@ const Variation2 = ({ banner, regisrationUrl }) => {
     } else {
       return (
           <div
-            data-fixed="false"
+            data-fixed="true"
             ref={_parallax}
             className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
           >

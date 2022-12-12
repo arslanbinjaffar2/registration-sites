@@ -102,6 +102,14 @@ class Variation7 extends React.Component {
               document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
                 element.addEventListener('click',this.accordionToggle.bind(this),false);
                });
+               if (document.getElementById("ebs-header-master").nextSibling.dataset && window.innerWidth >= 991) {
+                var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+                if (_nextSibling === 'true') {
+                  document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
+                } else {
+                  document.getElementById("ebs-header-master").classList.add('ebs-light-header');
+                }
+              }
             }
           );
         }
