@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation,registrationUrl }) => {
+const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
   const WrapperLayout = (props) => {
 
