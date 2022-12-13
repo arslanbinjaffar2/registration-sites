@@ -5,7 +5,7 @@ const WithBackground = ({children, moduleVariation}) => {
         if (props.moduleVariation.background_image !== '') {
           return (
             <div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, minHeight: 250,
-            marginBottom:'50px', height:"180px" }} 
+            marginBottom:'50px', height:"180px", backgroundSize: 'cover' }} 
             className="edgtf-title edgtf-standard-type edgtf-has-background edgtf-content-left-alignment edgtf-title-large-text-size edgtf-animation-no edgtf-title-image-not-responsive edgtf-title-with-border">
               {props.children}
             </div>

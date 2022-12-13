@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation }) => {
+const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   return (
     <div className="module-section ebs-register-now-v5 ebs-default-padding">
