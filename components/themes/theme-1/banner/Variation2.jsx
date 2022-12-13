@@ -99,7 +99,25 @@ const Variation2 = ({ banner, regisrationUrl }) => {
             </a >: props.children}
         </div>
       );
-    } else {
+    } else if (props.data && Number(props.data.video_type) === 2) {
+      return (
+        <div
+          data-fixed="true"
+          ref={_parallax}
+          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`, position: 'relative'
+          }}
+          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+        >
+        <div className="video-fullscreen">
+          <video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${props.data.image}`} type="video/mp4"></video>
+        </div>  
+        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
+        </div>
+      );
+    }
+     else {
       return (
           <div
             data-fixed="true"
