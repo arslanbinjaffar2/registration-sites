@@ -1273,6 +1273,18 @@
         min-width: 150px;
       }
     }
+    &.ebs-count-down-small {
+      .edgtf-countdown {
+        min-width: 120px;
+        .countdown-amount {
+          font-size: 55px;
+        }
+      }
+    }
+    &.ebs-count-down-small +  .edgtf-btn {
+      white-space: nowrap;
+      padding: 15px 30px;
+    }
   }
   .ebs-caption-box {
     .ebs-description-area {
@@ -1284,11 +1296,6 @@
     .ebs-countdown-wrapp {
       .countdown-amount {
         color: rgba($white, 0.8);
-      }
-    }
-    .ebs-countdown-wrapp {
-      @include ipad-portrait-min {
-        padding-top: 90px;
       }
     }
     .ebs-ticket-remaning .ebs-ticket-counter {

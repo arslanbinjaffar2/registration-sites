@@ -17,7 +17,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     // Render a countdown
     return (
       <React.Fragment>
-        <div className="ebs-countdown-wrapp countdown-wrapp">
+        <div className={`ebs-countdown-wrapp countdown-wrapp ${Math.floor(days / 30) > 0 ? 'ebs-count-down-small' : ''}`}>
           {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
             <span className="countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
             <span className="countdown-period">Months</span>
@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation }) => {
+const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   return (
     <div className="module-section ebs-register-now-v5 ebs-default-padding">
@@ -66,7 +66,7 @@ const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>
             </div>
             <div className="col-lg-8">
-              <div className="ebs-caption-box">
+              <div style={{paddingBottom: '40px'}} className="ebs-caption-box">
                 <div className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
               </div>
             </div>

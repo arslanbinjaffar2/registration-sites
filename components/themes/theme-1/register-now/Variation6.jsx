@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation }) => {
+const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
   const WrapperLayout = (props) => {
 
     const _parallax = React.useRef(null);
@@ -141,7 +141,7 @@ const Variation6 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
           <div className="ebs-register-now-sec">
             <div className="row d-flex">
               <div className="col-md-10 offset-md-1">
-                <div className="ebs-caption-box">
+                <div style={{paddingBottom: '40px'}} className="ebs-caption-box">
                   <div className="ebs-description-area">{labels.WAITING_LIST_EVENTSITE_INTRODUCTION_PARA}</div>
                   <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.REGISTER_FOR_WAITING_LIST_BUTTON}</span></a>
                 </div>

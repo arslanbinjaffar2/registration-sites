@@ -87,7 +87,7 @@ const Variation2 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
         moduleVariation={moduleVariation}>
         {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
           <div className="container">
-            <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />
+            <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'center'} />
             <div className="ebs-register-now-sec ebs-register-v2">
               {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="ebs-ticket-remaning">
                 <div style={{ color: "#ffffff" }} className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
