@@ -22,7 +22,6 @@ const EventInformation = () => {
     [event]
   );
 
-  console.log(process.env.NEXT_APP_REGISTRATION_FLOW_URL);
   const regisrationUrl = useMemo(()=>{
     let url = '';
     if(parseFloat(event.registration_form_id) === 1){
