@@ -17,7 +17,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     // Render a countdown
     return (
       <React.Fragment>
-        <div className="ebs-countdown-wrapp countdown-wrapp">
+        <div className={`ebs-countdown-wrapp countdown-wrapp ${Math.floor(days / 30) > 0 ? 'ebs-count-down-small' : ''}`}>
           {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
             <span className="countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
             <span className="countdown-period">Months</span>
@@ -66,7 +66,7 @@ const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>
             </div>
             <div className="col-lg-8">
-              <div className="ebs-caption-box">
+              <div style={{paddingBottom: '40px'}} className="ebs-caption-box">
                 <div className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                   <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
                 </div>
               </div>}
-              <div className={`d-flex align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}>
+              <div className={`d-flex d-block-responsive align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}>
                 {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
                 <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
