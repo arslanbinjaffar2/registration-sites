@@ -1322,7 +1322,11 @@
     }
   }
 }
-
+@include ipad-landscape {
+  .d-block-responsive{
+    display: block !important;
+  }
+}
 .ebs-timeline-area {
   .ebs-top-area {
     padding-bottom: 30px;
