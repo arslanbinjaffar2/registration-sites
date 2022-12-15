@@ -50,7 +50,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
     <div className="module-section ebs-default-padding">
         {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
           <div className="container">
-            <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />
+            <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'center'} />
             <div className="ebs-register-now-sec">
               {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="ebs-ticket-remaning">
                 <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
