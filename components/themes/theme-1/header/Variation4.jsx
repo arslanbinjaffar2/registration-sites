@@ -319,12 +319,13 @@ class Variation4 extends React.Component {
                                                   {myaccount.alias !== "login" ? (<ActiveLink
                                                     aria-current="page"
                                                     className="nav-link" activeClassName="nav-link active"
-                                                    href={
+                                                    href={`${
+                                                      myaccount.alias === 'register' ? this.props.regisrationUrl :
                                                       "/" +
                                                       this.props.event.url +
                                                       "/" +
                                                       myaccount.alias
-                                                    }
+                                                    }`}
                                                     key={myaccount.id}
                                                   >
                                                     <span className="ebs-nav-item">

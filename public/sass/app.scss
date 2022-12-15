@@ -134,11 +134,13 @@
   height: 100vh;
   background-size: cover !important;
 }
-.ebs-header-height-1 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
+.ebs-header-height-1 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp,
+.ebs-header-height-1 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp {
   height: calc(100vh - 72px);
   min-height: 550px;
 }
-.ebs-header-height-2 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp {
+.ebs-header-height-2 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp,
+.ebs-header-height-2 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp  {
   height: calc(100vh - 146px);
   min-height: 550px;
 }
@@ -1271,6 +1273,18 @@
         min-width: 150px;
       }
     }
+    &.ebs-count-down-small {
+      .edgtf-countdown {
+        min-width: 120px;
+        .countdown-amount {
+          font-size: 55px;
+        }
+      }
+    }
+    &.ebs-count-down-small +  .edgtf-btn {
+      white-space: nowrap;
+      padding: 15px 30px;
+    }
   }
   .ebs-caption-box {
     .ebs-description-area {
@@ -1282,11 +1296,6 @@
     .ebs-countdown-wrapp {
       .countdown-amount {
         color: rgba($white, 0.8);
-      }
-    }
-    .ebs-countdown-wrapp {
-      @include ipad-portrait-min {
-        padding-top: 90px;
       }
     }
     .ebs-ticket-remaning .ebs-ticket-counter {
@@ -1313,7 +1322,11 @@
     }
   }
 }
-
+@include ipad-landscape {
+  .d-block-responsive{
+    display: block !important;
+  }
+}
 .ebs-timeline-area {
   .ebs-top-area {
     padding-bottom: 30px;

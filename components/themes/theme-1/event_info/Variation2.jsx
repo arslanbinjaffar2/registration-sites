@@ -31,7 +31,7 @@ const Variation1 = (props) => {
             </div>
             <div className="col-lg-6 offset-lg-1">
               <figure>
-                <img style={{width: '100%'}} src="https://via.placeholder.com/660x440.png" alt="" />
+                <img style={{width: '100%'}} src={props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event_site/upload_images/${props.event.description.info.image}` : "https://via.placeholder.com/660x440.png"} alt="" />
               </figure>
             </div>
           </div>

@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation }) => {
+const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
   const WrapperLayout = (props) => {
 
@@ -88,7 +88,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
       >
         {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
           <div className="container">
-            <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={moduleVariation.text_align} />
+            <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'left'} />
             <div className="ebs-register-now-sec ebs-register-v2 ebs-register-v3">
               <div className="row d-flex align-items-center flex-row-reverse">
                 {(checkTickets.ticketsSet && ticket_settings  && checkTickets.remainingTickets > 0) && <div className="col-md-3">

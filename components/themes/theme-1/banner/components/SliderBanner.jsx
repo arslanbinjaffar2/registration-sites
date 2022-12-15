@@ -50,7 +50,7 @@ const SliderBanner = (props) => {
     var settings = {
         dots: true,
         fade: true,
-        autoplay: false,
+        autoplay: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,

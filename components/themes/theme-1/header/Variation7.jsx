@@ -102,6 +102,14 @@ class Variation7 extends React.Component {
               document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
                 element.addEventListener('click',this.accordionToggle.bind(this),false);
                });
+               if (document.getElementById("ebs-header-master").nextSibling.dataset && window.innerWidth >= 991) {
+                var _nextSibling = document.getElementById("ebs-header-master").nextSibling.dataset.fixed;
+                if (_nextSibling === 'true') {
+                  document.getElementById("ebs-header-master").classList.add('ebs-fixed-header');
+                } else {
+                  document.getElementById("ebs-header-master").classList.add('ebs-light-header');
+                }
+              }
             }
           );
         }
@@ -306,12 +314,13 @@ class Variation7 extends React.Component {
                                   {myaccount.alias !== "login" ? (<ActiveLink
                                     aria-current="page"
                                     className="nav-link" activeClassName="nav-link active"
-                                    href={
+                                    href={`${
+                                      myaccount.alias === 'register' ? this.props.regisrationUrl :
                                       "/" +
                                       this.props.event.url +
                                       "/" +
                                       myaccount.alias
-                                    }
+                                    }`}
                                     key={myaccount.id}
                                   >
                                     {myaccount.module}
@@ -572,6 +581,87 @@ class Variation7 extends React.Component {
                                         key={gItem.id}
                                       >
                                         {gItem.info.name}
+                                      </ActiveLink>
+                                    )}
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        )}
+                         {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 0) && (
+                          <ul className="dropdown-menu">
+                            {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
+                              (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
+                                <li className="nav-item" key={gItem.id}>
+                                  <span className="nav-link">
+                                    {gItem.info.name}
+                                  </span>
+                                  {gItem.submenu && gItem.submenu.length > 0 && (
+                                    <ul className="dropdown-menu">
+                                      {gItem.submenu.map((subitem, k) => (
+                                        <li className="nav-item" key={k}>
+                                          {subitem.page_type &&
+                                            subitem.page_type === 3 ? (
+                                            <a
+                                              className="nav-link"
+                                              aria-current="page"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                              href={`${subitem.website_protocol}${subitem.url}`}
+                                            >
+                                              {subitem.info.name}
+                                            </a>
+                                          ) : (
+                                            <ActiveLink
+                                              aria-current="page"
+                                              className="nav-link" activeClassName="nav-link active"
+                                              href={
+                                                "/" +
+                                                this.props.event.url +
+                                                "/" +
+                                                menu.alias +
+                                                "/" +
+                                                subitem.id
+                                              }
+                                              key={subitem.id}
+                                            >
+                                                {subitem.info.name}
+                                            </ActiveLink>
+                                          )}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </li>
+                              ) : (
+                                <li className="nav-item" key={k}>
+                                  {gItem.page_type && gItem.page_type === 3 ?
+                                    (
+                                      <a
+                                        className="nav-link"
+                                        aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        href={`${gItem.website_protocol}${gItem.url}`}
+                                      >
+                                        {gItem.info.name}
+                                      </a>
+                                    ) :
+                                    (
+                                      gItem.page_type === 2 && <ActiveLink
+                                        aria-current="page"
+                                        className="nav-link" activeClassName="nav-link active"
+                                        href={
+                                          "/" +
+                                          this.props.event.url +
+                                          "/" +
+                                          menu.alias +
+                                          "/" +
+                                          gItem.id
+                                        }
+                                        key={gItem.id}
+                                      >
+                                          {gItem.info.name}
                                       </ActiveLink>
                                     )}
                                 </li>
