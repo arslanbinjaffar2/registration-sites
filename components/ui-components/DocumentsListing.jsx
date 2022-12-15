@@ -72,23 +72,23 @@ function DocumentsListing({documents, documentPage}) {
                     <ul className="breadcrumb">
                             {
                                 breadCrumbs.map((crumb, i) => (
-                                        <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                                        <li className="breadcrumb-item" key={i} ><span  style={{cursor: 'pointer'}} onClick={()=>{onBreadCrumbClick(crumb, i);}}>{crumb.pname}</span></li>
                                 ))
                             }
                     </ul>
                 </nav>)
         }} />}
-    <div style={{paddingTop: 50}} className="ebs-document-module">
+    <div style={{paddingTop: 30}} className="ebs-document-module">
     {!documentPage && <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ebs-dark`}>
         <ul className="breadcrumb">
                 {
                     breadCrumbs.map((crumb, i) => (
-                            <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                            <li className="breadcrumb-item" key={i}><span style={{cursor: 'pointer'}} onClick={()=>{onBreadCrumbClick(crumb, i);}}>{crumb.pname}</span></li>
                     ))
                 }
         </ul>
     </nav>}
-        <div className="container">
+        <div style={{padding: 0}} className="container">
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">
