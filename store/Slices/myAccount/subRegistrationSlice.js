@@ -61,7 +61,7 @@ export const fetchSubRegistrationData = (id, url) => {
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sub-registration-after-login`, { headers: header("GET", id) })
       const res = await response.json()
-      if (res.data.questions.question.length <= 0) {
+      if (res.data.questions.question.length <= 0 || res.data.settings['show_sub_registration_on_web_app'] === 0) {
         dispatch(setSkip());
       }
       dispatch(setSubRegistrationData(res.data))

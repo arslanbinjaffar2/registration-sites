@@ -23,7 +23,7 @@ const MySubRegistration = () => {
             <h2>My subregistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-                <SubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error} />
+                <SubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error} afterLogin={subRegistration.settings.answer === 1 ? true : false} />
           </div>
         </div>
       </div>) : <PageLoader/>
