@@ -195,7 +195,9 @@ class Variation5 extends React.Component {
                                 menu.alias === "myaccount" ||
                                 menu.alias === "practicalinformation" ||
                                 menu.alias === "additional_information" ||
-                                menu.alias === "general_information") && (
+                                menu.alias === "general_information" ||
+                                menu.alias === "info_pages" 
+                                ) && (
                                   <span
                                     onClick={this.accordionToggle.bind(this)}
                                     className="nav-link ebs-accordion-button"
@@ -207,6 +209,7 @@ class Variation5 extends React.Component {
                                 )}
                               {menu.alias !== "gallery" &&
                                 menu.alias !== "myaccount" &&
+                                menu.alias !== "info_pages" &&
                                 menu.alias !== "practicalinformation" &&
                                 menu.alias !== "additional_information" &&
                                 menu.alias !== "general_information" && (
@@ -590,7 +593,6 @@ class Variation5 extends React.Component {
                               
                               {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 0) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
-                                  {console.log(menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))))}
                                   {menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))) !== undefined && menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))).submenu.map((gItem, k) =>
                                 (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
                                   <li className="nav-item" key={gItem.id}>
@@ -611,7 +613,7 @@ class Variation5 extends React.Component {
                                                 {subitem.page_type &&
                                                   subitem.page_type === 3 ? (
                                                   <a
-                                                    className="nav-link"
+                                                    className="nav-link if1"
                                                     aria-current="page"
                                                     target="_blank"
                                                     rel="noreferrer"
@@ -622,7 +624,7 @@ class Variation5 extends React.Component {
                                                 ) : (
                                                   <ActiveLink
                                                     aria-current="page"
-                                                    className="nav-link" activeClassName="nav-link active"
+                                                    className="nav-link if2" activeClassName="nav-link active"
                                                     href={
                                                       "/" +
                                                       this.props.event.url +
@@ -646,7 +648,7 @@ class Variation5 extends React.Component {
                                         {gItem.page_type &&
                                           gItem.page_type === 3 ? (
                                           <a
-                                            className="nav-link"
+                                            className="nav-link else1"
                                             aria-current="page"
                                             target="_blank"
                                             rel="noreferrer"
@@ -657,7 +659,7 @@ class Variation5 extends React.Component {
                                         ) : (
                                           gItem.page_type === 2 && <ActiveLink
                                             aria-current="page"
-                                            className="nav-link" activeClassName="nav-link active"
+                                            className="nav-link else2" activeClassName="nav-link active"
                                             href={
                                               "/" +
                                               this.props.event.url +

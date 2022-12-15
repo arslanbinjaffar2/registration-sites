@@ -13,11 +13,13 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
   const onCrumbClick = (e, crumb) => {
     e.preventDefault();
     if (crumb.id !== currentMenu) {
-      if (crumb.id === main_menu_id) {
+      if (parseInt(crumb.id) === parseInt(main_menu_id)) {
+        console.log("if....bread");
         setBreadCrumbs([{ id: main_menu_id, name: eventSiteModuleName, type: "main_menu" }]);
         setCmsListing(getListing(listing, crumb.id, main_menu_id));
       } else {
         setCurrentMenu(crumb.id);
+        console.log("else....bread");
         setBreadCrumbs([{ id: main_menu_id, name: eventSiteModuleName, type: "main_menu" }, { id: crumb.id, name: crumb.info.name, type: "menu" }]);
         setCmsListing(getListing(listing, crumb.id, main_menu_id));
       }
