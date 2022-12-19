@@ -30,7 +30,20 @@ const MyProfileSidebar = (props) => {
       router.push(`/${event.url}`);
     }
   }, [loggedout])
+useEffect(() => {
+  window.addEventListener('scroll',handleScroll,false);
 
+  return () => {
+    window.removeEventListener('scroll',handleScroll,false);
+  }
+}, [])
+const handleScroll = () => {
+  if (typeof window !== 'undefined') {
+    if (window.scrollY > 250) {
+      setstatetoggleMenu(false);
+    }
+  }
+} 
   const handleClick = () => {
     setstatetoggleMenu(!toggleMenu);
   }
