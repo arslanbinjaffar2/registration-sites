@@ -13,7 +13,7 @@ import profileReducer from "./Slices/myAccount/profileSlice";
 import interestReducer from "./Slices/myAccount/networkInterestSlice";
 import newsletterReducer from "./Slices/myAccount/newsletterSlice";
 import subRegistrationReducer from "./Slices/myAccount/subRegistrationSlice";
-import mysubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice";
+import mySubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice";
 import surveyListReducer from "./Slices/myAccount/surveyListSlice";
 import surveyReducer from "./Slices/myAccount/surveySlice";
 import userReducer from "./Slices/myAccount/userSlice";
@@ -46,7 +46,7 @@ export const store = configureStore({
     networkInterest: interestReducer,
     newsletter: newsletterReducer,
     subRegistration: subRegistrationReducer,
-    mysubRegistration: mysubRegistrationReducer,
+    mySubRegistration: mySubRegistrationReducer,
     surveyList: surveyListReducer,
     survey: surveyReducer,
     user: userReducer,
