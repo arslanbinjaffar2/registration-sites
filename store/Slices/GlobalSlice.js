@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   banner: null,
+  banner_sort: null,
   loading: false,
   error: null,
   loadCount: 0,
@@ -19,7 +20,8 @@ export const globalSlice = createSlice({
       state.loading = true;
     },
     setBanner: (state, { payload }) => {
-      state.banner = payload;
+      state.banner = payload.banner_top;
+      state.banner_sort = payload.banner_sort;
       state.loading = false;
     },
     setError: (state, { payload }) => {
