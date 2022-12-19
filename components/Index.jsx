@@ -50,6 +50,7 @@ const Index = () => {
               else if (section.module_alias === "sponsor" && section.status === 1)
                 return <Sponsor homePage={true} key={i} />;
               else if (section.module_alias === "top_banner" && section.status === 1) return <Banner key={i} />;
+              else if (section.module_alias === "banner_sort" && section.status === 1) return <SortableBanner key={i} />;
               else if (section.module_alias === "register_now" && section.status === 1)
                 return <RegisterNow key={i}/>;
               else if (section.module_alias === "exhibitor" && section.status === 1)
@@ -67,11 +68,7 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
-
-          <SortableBanner/>
-
-  
-              
+                
       </React.Fragment>
     </Suspense>
 
