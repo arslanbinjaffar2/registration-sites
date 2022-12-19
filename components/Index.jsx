@@ -17,6 +17,7 @@ const EventInformation = lazy(() => import("components/modules/EventInformation"
 const NewsLetterSubscription = lazy(() => import("components/modules/NewsLetterSubscription"));
 const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
 const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
+const SortableBanner = lazy(() => import("components/modules/SortableBanner"));
 
 const Index = () => {
   
@@ -66,6 +67,10 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
+
+          <SortableBanner/>
+
+  
               
       </React.Fragment>
     </Suspense>
