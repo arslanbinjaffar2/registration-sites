@@ -222,6 +222,7 @@ class Variation4 extends React.Component {
                                       <li className="nav-item" key={menu.id}>
                                         {(menu.alias === "gallery" ||
                                           menu.alias === "myaccount" ||
+                                          menu.alias === "info_pages" ||
                                           menu.alias ===
                                           "practicalinformation" ||
                                           menu.alias ===
@@ -239,6 +240,7 @@ class Variation4 extends React.Component {
                                           )}
                                         {menu.alias !== "gallery" &&
                                           menu.alias !== "myaccount" &&
+                                          menu.alias !== "info_pages" &&
                                           menu.alias !==
                                           "practicalinformation" &&
                                           menu.alias !==
@@ -664,6 +666,94 @@ class Variation4 extends React.Component {
                                               )}
                                             </ul>
                                           )}
+                                        
+                                        {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 0) && (
+                                <ul className="dropdown-menu ebs-accordion-dropdown">
+                                  {menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))) !== undefined && menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))).submenu.map((gItem, k) =>
+                                (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
+                                  <li className="nav-item" key={gItem.id}>
+                                        <span
+                                          onClick={this.accordionToggle.bind(
+                                            this
+                                            )}
+                                            className="nav-link ebs-accordion-button"
+                                            >
+                                          <span className="ebs-nav-item">
+                                            {gItem.info.name}
+                                          </span>
+                                        </span>
+                                        {gItem.submenu.length > 0 && (
+                                          <ul className="dropdown-menu ebs-accordion-dropdown">
+                                            {gItem.submenu.map((subitem, k) => (
+                                              <li className="nav-item" key={k}>
+                                                {subitem.page_type &&
+                                                  subitem.page_type === 3 ? (
+                                                  <a
+                                                    className="nav-link if1"
+                                                    aria-current="page"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    href={`${subitem.website_protocol}${subitem.url}`}
+                                                  >
+                                                    {subitem.info.name}
+                                                  </a>
+                                                ) : (
+                                                  <ActiveLink
+                                                    aria-current="page"
+                                                    className="nav-link if2" activeClassName="nav-link active"
+                                                    href={
+                                                      "/" +
+                                                      this.props.event.url +
+                                                      "/" +
+                                                      menu.alias +
+                                                      "/" +
+                                                      subitem.id
+                                                    }
+                                                    key={subitem.id}
+                                                  >
+                                                    {subitem.info.name}
+                                                  </ActiveLink>
+                                                )}
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        )}
+                                      </li>
+                                    ) : (
+                                      <li className="nav-item" key={k}>
+                                        {gItem.page_type &&
+                                          gItem.page_type === 3 ? (
+                                          <a
+                                            className="nav-link else1"
+                                            aria-current="page"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            href={`${gItem.website_protocol}${gItem.url}`}
+                                          >
+                                            {gItem.info.name}
+                                          </a>
+                                        ) : (
+                                          gItem.page_type === 2 && <ActiveLink
+                                            aria-current="page"
+                                            className="nav-link else2" activeClassName="nav-link active"
+                                            href={
+                                              "/" +
+                                              this.props.event.url +
+                                              "/" +
+                                              menu.alias +
+                                              "/" +
+                                              gItem.id
+                                            }
+                                            key={gItem.id}
+                                          >
+                                            {gItem.info.name}
+                                          </ActiveLink>
+                                        )}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              )}
                                       </li>
                                     ))}
                                   </ul>

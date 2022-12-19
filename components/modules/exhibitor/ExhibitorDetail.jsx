@@ -1,4 +1,5 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import ActiveLink from "components/atoms/ActiveLink";
 import { eventSelector } from "store/Slices/EventSlice";
 import { exhibitorDetailSelector, fetchExhibitor, clearState } from "store/Slices/ExhibitorDetailSlice";
 import {
@@ -36,6 +37,11 @@ const ExhibitorDetail = (props) => {
     [event]
   );
 
+  const [breadCrumbs, setbreadCrumbs] = useState([
+    {name:"Home page", url:`/${eventUrl}`, type:"link"},
+    {name:"Exhibitors", url:`/${eventUrl}/exhibitors`, type:"link"},
+    {name:"Overview of exhibitor", url:"", type:"name"},
+  ]);
   useEffect(() => {
     dispatch(incrementLoadCount());
     dispatch(fetchExhibitor(eventUrl, id));
@@ -53,7 +59,17 @@ const ExhibitorDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
           </Head>
-          <PageHeader label={event.eventsiteModules.exhibitors} />
+          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} breadCrumbs={(type)=>{
+            return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
+            <ul className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                </li>
+              ))}
+            </ul>
+            </nav>)
+        }} />
           <Component exhibitor={exhibitor} labels={labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
         </React.Fragment>
       ) : <PageLoader />

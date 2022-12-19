@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export const eventSlice = createSlice({
-  name: 'subRegistration',
+  name: 'mySubRegistration',
   initialState,
   reducers: {
     getSubRegistrationData : (state) => {
@@ -29,13 +29,16 @@ export const eventSlice = createSlice({
     setAlert: (state, { payload }) => {
       state.alert = payload
     },
+    setLoading: (state, { payload }) => {
+      state.loading = payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setUpdating } = eventSlice.actions
+export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setUpdating, setLoading } = eventSlice.actions
 
-export const subRegistrationSelector = state => state.subRegistration
+export const mySubRegistrationSelector = state => state.mySubRegistration
 
 export default eventSlice.reducer
 
@@ -45,7 +48,11 @@ export const fetchSubRegistrationData = (id,url) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/my-sub-registration`, { headers:header("GET", id)})
         const res = await response.json()
-        dispatch(setSubRegistrationData(res.data))
+        console.log(res.data);
+        if(res.data.answered !== 0){
+          dispatch(setSubRegistrationData(res.data))
+        }
+        dispatch(setLoading(false));
       } catch (error) {
         dispatch(setError("Couldn't fetch Subregistration"));
       }
