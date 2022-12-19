@@ -30,7 +30,20 @@ const MyProfileSidebar = (props) => {
       router.push(`/${event.url}`);
     }
   }, [loggedout])
+useEffect(() => {
+  window.addEventListener('scroll',handleScroll,false);
 
+  return () => {
+    window.removeEventListener('scroll',handleScroll,false);
+  }
+}, [])
+const handleScroll = () => {
+  if (typeof window !== 'undefined') {
+    if (window.scrollY > 250) {
+      setstatetoggleMenu(false);
+    }
+  }
+} 
   const handleClick = () => {
     setstatetoggleMenu(!toggleMenu);
   }
@@ -91,7 +104,7 @@ const MyProfileSidebar = (props) => {
             <li><ActiveLink href={`/${event.url}/profile`} >My billing</ActiveLink></li>
             <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>
             <li><ActiveLink href={`/${event.url}/profile`}>Cancel registration</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>
+            {event.eventsiteSettings.attendee_my_sub_registration === 1 && <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>}
             <li><ActiveLink className={location === `/${event.url}/profile/my-program` ? 'active' : ''} href={`/${event.url}/profile/my-program`}>My program</ActiveLink></li>
             <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>
             <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>

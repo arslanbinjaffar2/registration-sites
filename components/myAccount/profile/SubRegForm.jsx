@@ -47,7 +47,11 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
         return Object.assign(ack, {...newObj, ...matrix} );
       }
       else{
-        return Object.assign(ack, { [`answer_${item.question_type}${item.id}`]: [item.result[0].answer]} );
+        if(item.result !== undefined && item.result.length > 0){
+          return Object.assign(ack, { [`answer_${item.question_type}${item.id}`]: [item.result[0].answer]} );
+        }else{
+          return ack;
+        }
       }
     },{}));
   const [subRegId] = useState(subRegistration.questions.id);

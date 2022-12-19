@@ -2323,6 +2323,14 @@
       color: $text2b;
       line-height: 1.2;
     }
+    &.ebs-detail-image-sponsors {
+      img {
+        width: 100% !important;
+        min-width: 100% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+      }
+    }
   }
 }
 .ebs-social-share-v5 {
@@ -2421,14 +2429,14 @@
       }
       i {
         color: $first-main-color;
-        margin-right: 3px;
+        margin-right: 5px;
         font-size: 28px;
       }
     }
     .ebs-date {
       display: flex;
       align-items: center;
-      font-size: 16px;
+      font-size: 15px;
       color: $text2b;
       span {
         display: inline-block;
@@ -2903,4 +2911,9 @@
 .ebs-default-padding {
   padding-top: 60px;
   padding-bottom: 60px;
+}
+.infobooth-pdf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

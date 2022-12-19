@@ -170,8 +170,8 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
           </div>
           <div className="row d-flex ebs-program-speakers">
             {sponsor.sponsors_attendee.map((attendee, o) =>
-              <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
-                <span style={{ marginBottom: 10 }} className="gallery-img-wrapper-square">
+              <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
+                <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {attendee.image && attendee.image !== "" ? (
                     <img
                       onLoad={(e) => e.target.style.opacity = 1}
