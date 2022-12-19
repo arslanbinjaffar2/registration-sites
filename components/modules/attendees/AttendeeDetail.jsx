@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { attendeeDetailSelector, fetchAttendeeDetail, clearState } from "store/Slices/AttendeeDetailSlice";
 import PageLoader from "components/ui-components/PageLoader";
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import Head from "next/head";
 import PageHeader from "../PageHeader";
+import ActiveLink from "components/atoms/ActiveLink";
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
     import(`components/themes/${theme}/attendee/detail/${variation}`)
@@ -33,6 +34,12 @@ const AttendeeDetail = (props) => {
     [event]
   );
 
+  const [breadCrumbs, setbreadCrumbs] = useState([
+    {name:"Home page", url:`/${eventUrl}`, type:"link"},
+    {name:"Attendees", url:`/${eventUrl}/attendees`, type:"link"},
+    {name:"Overview of attendee", url:"", type:"name"},
+  ]);
+
   useEffect(() => {
     dispatch(fetchAttendeeDetail(eventUrl, id));
     return () => {
@@ -47,7 +54,17 @@ const AttendeeDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.attendees}</title>
           </Head>
-          <PageHeader label={event.eventsiteModules.attendees} />
+          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} breadCrumbs={(type)=>{
+            return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
+            <ul className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                </li>
+              ))}
+            </ul>
+            </nav>)
+        }} />
           <Component attendee={attendee} labels={labels} />
         </React.Fragment>
       ) : <PageLoader />}
