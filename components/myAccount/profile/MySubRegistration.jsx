@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import SubRegForm from './SubRegForm';
+import MySubRegForm from './MySubRegForm';
 import {
     fetchSubRegistrationData,
     mySubRegistrationSelector,
@@ -27,7 +27,7 @@ const MySubRegistration = () => {
             <h2>My subregistration</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-            {subRegistration !== null ? <SubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error}  /> : 
+            {subRegistration !== null ? <MySubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error}  /> : 
               <div>
                 You have no answers yet...
               </div>

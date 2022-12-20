@@ -36,7 +36,7 @@ const Index = () => {
               if (section.module_alias === "social_media_share" && section.status === 1)
                 return <SocialShare key={i} />;
               else if (section.module_alias === "event_description" && section.status === 1)
-                return (event.description?.info.description && <div className="ebs-default-padding module-section">
+                return (event.description?.info.description && <div className="ebs-default-padding module-section" key={i}>
                 <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
               </div>);
               else if (section.module_alias === "custom_html2" && section.status === 1)
