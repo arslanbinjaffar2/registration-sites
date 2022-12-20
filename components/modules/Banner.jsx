@@ -18,7 +18,7 @@ const loadModule = (theme, variation) => {
 
 const Banner = () => {
   const { event } = useSelector(eventSelector);
-  const { banner } = useSelector(globalSelector);
+  const { banner, settings } = useSelector(globalSelector);
   const dispatch = useDispatch();
 
   const eventUrl = event.url;
@@ -31,6 +31,13 @@ const Banner = () => {
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
     [event]
   );
+
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date) :  moment(event.end_date);
+    let diff = currentDate.diff(endDate) > 0;
+    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : true;
+  },[event]);
 
   const regisrationUrl = useMemo(()=>{
     let url = '';
@@ -51,7 +58,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={registerDateEnd} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date):null} /> : null}
     </Suspense>
   );
 };
