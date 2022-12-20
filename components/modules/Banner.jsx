@@ -51,7 +51,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} countdown={(event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" && event.eventsiteSettings.eventsite_time_left === 1) ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
     </Suspense>
   );
 };
