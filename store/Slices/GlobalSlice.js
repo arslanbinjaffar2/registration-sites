@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   banner: null,
   banner_sort: null,
+  settings: null,
   loading: false,
   error: null,
   loadCount: 0,
@@ -22,6 +23,7 @@ export const globalSlice = createSlice({
     setBanner: (state, { payload }) => {
       state.banner = payload.banner_top;
       state.banner_sort = payload.banner_sort;
+      state.settings = payload.settings;
       state.loading = false;
     },
     setError: (state, { payload }) => {
@@ -86,6 +88,7 @@ export const fetchBanner = (url) => {
         `${process.env.NEXT_APP_URL}/event/${url}/banner`
       );
       const res = await response.json();
+      console.log(res.data);
       dispatch(setBanner(res.data));
       dispatch(incrementLoadedSection());
       dispatch(incrementFetchLoadCount());
