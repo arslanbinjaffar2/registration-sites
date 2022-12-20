@@ -17,6 +17,7 @@ const MasterLayoutMyAccount = (props) => {
   const { skip } = useSelector(subRegistrationSelector);
 
   const isAuthenticated = localStorage.getItem(`event${event.id}User`);
+  const sub_reg_skip = localStorage.getItem(`${event.url}_sub_reg_skip`);
 
   const router = useRouter();
 
@@ -29,7 +30,7 @@ const MasterLayoutMyAccount = (props) => {
   return (
     <>
       <Header />
-      {skip ? props.children : <AfterLoginSubRegistration {...props} />}
+      {(skip || sub_reg_skip) ? props.children : <AfterLoginSubRegistration {...props} />}
     </>
   )
 }

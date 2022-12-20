@@ -23,13 +23,7 @@ const MyProfileSidebar = (props) => {
   const frame = useRef()
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (loggedout) {
-      dispatch(reset());
-      router.push(`/${event.url}`);
-    }
-  }, [loggedout])
+  
 useEffect(() => {
   window.addEventListener('scroll',handleScroll,false);
 
@@ -109,7 +103,10 @@ const handleScroll = () => {
             {event.eventsiteSettings.show_survey === 1 && <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>}
             {event.eventsiteSettings.network_interest === 1 && <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>}
             {event.eventsiteSettings.show_subscriber === 1 && <li><ActiveLink className={location === `/${event.url}/profile/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/profile/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>}
-            <li><a onClick={(e) => { onLogout(); }} >Logout</a></li>
+            <li><a onClick={(e) => { 
+              onLogout(); 
+              router.push(`/${event.url}`);
+            }} >Logout</a></li>
           </ul>
         </div>}
       </div>}

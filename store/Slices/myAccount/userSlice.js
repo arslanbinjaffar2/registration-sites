@@ -206,7 +206,9 @@ export const logOut = (id, url) => {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
       if(response.data.success){
         localStorage.removeItem(`event${id}User`);
+        localStorage.removeItem(`${url}_sub_reg_skip`);
         dispatch(setLoggedOut(true));
+        dispatch(reset(true));
       }
     } catch (error) {
       if(error.response.data.message){
