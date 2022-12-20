@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head'
 
 const MetaInfo = (props) => {
-    console.log(props.metaInfo.settings.third_party_header_script)
     return (
         <>
             <Head>
