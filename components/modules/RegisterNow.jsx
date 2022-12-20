@@ -29,7 +29,7 @@ const RegisterNow = () => {
 
   const registerDateEnd = useMemo(()=>{
     let currentDate = moment();
-    let endDate = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" && event.eventsiteSettings.eventsite_time_left === 1 ? moment(event.eventsiteSettings.registration_end_date) :  moment(event.end_date);
+    let endDate = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date) :  moment(event.end_date);
     let diff = currentDate.diff(endDate) > 0;
     return diff
   },[event]);
