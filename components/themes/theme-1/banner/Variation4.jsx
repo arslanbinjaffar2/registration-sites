@@ -2,7 +2,7 @@ import SliderBanner from "./components/SliderBanner";
 import moment from "moment";
 import React from "react";
 
-const Variation4 = ({ banner, event, countdown, regisrationUrl, settings }) => {
+const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
   const WrapperLayout = (props) => {
 
@@ -44,6 +44,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings }) => {
         {banner && (
           <SliderBanner
             countdown={countdown}
+            registerDateEnd={registerDateEnd}
           >
             {banner.map((slides, i) => (
               <div key={i} className="slide-wrapper">

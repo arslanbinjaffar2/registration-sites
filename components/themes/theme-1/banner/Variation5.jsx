@@ -1,7 +1,7 @@
 import SliderBanner from "./components/SliderBanner";
 import React from "react";
 
-const Variation5 = ({ banner, event, countdown, regisrationUrl, settings }) => {
+const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
   const WrapperLayout = (props) => {
 
@@ -40,7 +40,10 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings }) => {
   return (
     <div className="main-slider-wrapper">
       {banner && (
-        <SliderBanner countdown={countdown} >
+        <SliderBanner 
+        countdown={countdown}
+        registerDateEnd={registerDateEnd}
+         >
           {banner.map((slides, i) => (
             <div key={i} className="slide-wrapper">
               <WrapperLayout

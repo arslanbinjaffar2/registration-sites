@@ -1,7 +1,7 @@
 import React from 'react'
 import SliderBanner from './components/SliderBanner';
 
-const Variation1 = ({ event, banner, countdown, regisrationUrl, settings }) => {
+const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
 	const WrapperLayout = (props) => {
 
@@ -30,6 +30,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings }) => {
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
 				countdown={countdown} //{dateTime}
+				registerDateEnd={registerDateEnd} //{dateTime}
 				fullscreen
 			>
 				{banner.map((slides, i) =>
