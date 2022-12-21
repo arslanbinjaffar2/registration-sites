@@ -58,11 +58,8 @@ const ExhibitorDetail = (props) => {
                         {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
-                                    /assets/event/branding/
-                                    ${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
                         />}
-                        
           </Head>
             {event ? (
                 <MasterLayoutRoute event={event}>
