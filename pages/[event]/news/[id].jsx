@@ -5,7 +5,6 @@ import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import NewsDetail from 'components/modules/news/NewsDetail';
 import { metaInfo } from 'helpers/helper';
-import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
 
 const ExhibitorDetail = (props) => {
@@ -18,6 +17,9 @@ const ExhibitorDetail = (props) => {
             <title>{props.news.title}</title>
             <meta property="og:title" content={props.news.title} />
             <meta property="og:type" content="Event" />
+            {props.metaInfo.eventsiteSettings && props.metaInfo.eventsiteSettings.search_engine_visibility == 0 &&
+                            <meta name="robots" content="noindex"></meta>
+                        }
             <meta
                 property="og:image"
                 content={
@@ -53,18 +55,11 @@ const ExhibitorDetail = (props) => {
                         <meta property="twitter:card" content="summary_large_image" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="msapplication-config" content="none" />
-                        <link
+                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={
-                                props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== ""
-                                    ? process.env.NEXT_APP_EVENTCENTER_URL +
-                                    "/assets/event/branding/" +
-                                    props.metaInfo.settings.app_icon
-                                    : require("public/img/square.jpg")
-                            }
-                        />
-                        
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
+                        />}
           </Head>
             {event ? (
                 <MasterLayoutRoute event={event}>
@@ -80,9 +75,10 @@ const ExhibitorDetail = (props) => {
 export async function getServerSideProps(context) {
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/news/${context.query.id}/detail`);
     const res = await response.json();
+    const rota = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            metaInfo: rota,
             news:res.data,
             url: context.resolvedUrl
         },

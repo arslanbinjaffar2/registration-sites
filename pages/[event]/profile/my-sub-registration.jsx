@@ -28,9 +28,10 @@ const MySubRegistration = (props) => {
 }
 
 export async function getServerSideProps(context) {
+    const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            metaInfo: eventData,
             url: context.resolvedUrl
         },
     }
