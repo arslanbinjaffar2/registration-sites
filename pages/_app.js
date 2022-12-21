@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { useRouter } from 'next/router';
 import FullPageLoader from "components/ui-components/FullPageLoader";
 import Theme from "components/Theme";
-
+import ErrorBoundary from 'components/ErrorBoundary';
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
@@ -40,7 +40,9 @@ function MyApp({ Component, pageProps }) {
               <Theme data={_eventObj.event} />
             </>
           )}
-          <Component {...pageProps} />
+           <ErrorBoundary>
+              <Component {...pageProps} />
+           </ErrorBoundary>
         </Provider>
       </div>
     </React.Fragment>

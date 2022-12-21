@@ -56,9 +56,7 @@ const ExhibitorDetail = (props) => {
                         {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
-                                    /assets/event/branding/
-                                    ${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
                         />}
                         
             </Head>
@@ -76,10 +74,11 @@ const ExhibitorDetail = (props) => {
 export async function getServerSideProps(context) {
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/page/${context.query.id}`);
     const res = await response.json();
-    // console.log(res);
+    const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
+
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            metaInfo:eventData,
             cmsPage: res.data,
             url: context.resolvedUrl
         },
