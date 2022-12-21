@@ -76,9 +76,10 @@ const InfoDetail = (props) => {
 export async function getServerSideProps(context) {
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/info_pages/page/${context.query.id}`);
     const res = await response.json();
+    const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            metaInfo: eventData,
             infoPage: res.data,
             url: context.resolvedUrl
         },
