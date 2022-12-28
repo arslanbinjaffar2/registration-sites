@@ -33,7 +33,6 @@ const EventInformation = () => {
     return url;
   },[event]);
 
-
   return (
     <Suspense fallback={''}>
       <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} regisrationUrl={regisrationUrl} />
