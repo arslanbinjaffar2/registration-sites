@@ -13,7 +13,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const [subRegResult, setSubRegResult] = useState(subRegistration.questions.question
     .reduce(
       (ack, item) => {
-      if(item.question_type === "multiple"){
+      if(item.question_type === "multiple" && item.result.length > 0){
         let newObj ={ [`answer${item.id}`]: item.result.map(item=>(item.answer_id)) }
         let agendas = item.answer.filter((filterItem)=>(filterItem.link_to > 0)).reduce((ack, ritem) => {
           if(item.result.map(item=>(item.answer_id)).indexOf(ritem) !== -1){
@@ -27,18 +27,18 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
         }
         return Object.assign(ack, {...newObj} );
       }
-      else if(item.question_type === "single"){
+      else if(item.question_type === "single" && item.result.length > 0){
         let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id] }
         if(item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to > 0){
           newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer[item.result[0].answer_id].link_to};
         }
         return Object.assign(ack, {...newObj} );
       }
-      else if(item.question_type === "dropdown"){
+      else if(item.question_type === "dropdown" && item.result.length > 0){
         let newObj ={ [`answer_dropdown${item.id}`]: [`${item.result[0].answer_id}-${item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to}`] }
         return Object.assign(ack, {...newObj} );
       }
-      else if(item.question_type === "matrix"){
+      else if(item.question_type === "matrix" && item.result.length > 0){
         let newObj ={ [`answer${item.id}`]: item.result.map((anwser)=>(anwser.answer_id)) }
         let matrix = item.result.reduce((ack, ritem) => {
            return Object.assign(ack, { [`answer_matrix${item.id}_${ritem.answer_id}`] : [`${ritem.answer_id}-${ritem.answer}`] })},
