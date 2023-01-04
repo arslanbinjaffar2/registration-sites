@@ -14,7 +14,7 @@ const Vimeo = ({photo}) => {
        onLoad={(e) => e.target.style.opacity = 1}
        style={{ width: "100%", height: '100%', objectFit: 'cover' }}
        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-       alt={`${photo.info && Object.keys(photo.info)}`}
+       alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
      />
    );
  } else {
@@ -23,7 +23,7 @@ const Vimeo = ({photo}) => {
      onLoad={(e) => e.target.style.opacity = 1}
      style={{ width: "100%", height: '100%', objectFit: 'cover' }}
      src={`https://vumbnail.com/${match[4]}.jpg`}
-     alt={`${photo.info && Object.keys(photo.info)}`}
+     alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
    />
   )
  }
@@ -37,7 +37,7 @@ const DailyMotion = ({photo}) => {
        onLoad={(e) => e.target.style.opacity = 1}
        style={{ width: "100%", height: '100%', objectFit: 'cover' }}
        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-       alt={`${photo.info && Object.keys(photo.info)}`}
+       alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
      />
    );
  } else {
@@ -46,7 +46,7 @@ const DailyMotion = ({photo}) => {
      onLoad={(e) => e.target.style.opacity = 1}
      style={{ width: "100%", height: '100%', objectFit: 'cover' }}
      src={`http://www.dailymotion.com/thumbnail/video/${match[1]}`}
-     alt={`${photo.info && Object.keys(photo.info)}`}
+     alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
    />
   )
  }
@@ -60,7 +60,7 @@ const YouTubeVideo = ({photo}) => {
        onLoad={(e) => e.target.style.opacity = 1}
        style={{ width: "100%", height: '100%', objectFit: 'cover' }}
        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-       alt={`${photo.info && Object.keys(photo.info)}`}
+       alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
      />
    );
  } else {
@@ -69,7 +69,7 @@ const YouTubeVideo = ({photo}) => {
      onLoad={(e) => e.target.style.opacity = 1}
      style={{ width: "100%", height: '100%', objectFit: 'cover' }}
      src={`https://img.youtube.com/vi/${match[2]}/maxresdefault.jpg`}
-     alt={`${photo.info && Object.keys(photo.info)}`}
+     alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
    />
   )
  }
@@ -81,7 +81,7 @@ const NormalVideo = ({photo}) => {
        onLoad={(e) => e.target.style.opacity = 1}
        style={{ width: "100%", height: '100%', objectFit: 'cover' }}
        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-       alt={`${photo.info && Object.keys(photo.info)}`}
+       alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
      />
    );
  } else {
@@ -129,7 +129,7 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
                                 <div className="edgtf-iwt-text-cell">
                                   {photo.info && (
                                     <h3 className="edgtf-iwt-title">
-                                      {photo.info && Object.keys(photo.info)}
+                                      {photo.info && photo.info.title !== undefined && photo.info.title}
                                     </h3>
                                   )}
                                 </div>
