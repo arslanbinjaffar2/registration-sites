@@ -61,7 +61,13 @@ const Variation1 = (props) => {
                   <li>
                     <i className="material-icons">watch_later</i>
                     <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
-                    <p>{moment(props.event.start_time, 'h:mm a').format("hh:mm A")}</p>
+                    {props.openingHours.length > 0 && props.openingHours.map((item)=>(
+                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(item.start_time, 'h:mm a').format("hh:mm a")}-{moment(item.end_time, 'h:mm a').format("hh:mm a")}</p>
+                    ))}
+
+                    {props.openingHours.length <=0 && 
+                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(props.event.start_time, 'h:mm a').format("hh:mm a")}-{moment(props.event.end_time, 'h:mm a').format("hh:mm a")}</p>
+                    }
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
