@@ -23,26 +23,29 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
         </div>}
         <div className="edgtf-image-gallery clearfix">
           <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
-            <Gallery shareButton={false} id="my-gallery">
+            <Gallery shareButton={false} withCaption={true} id="my-gallery">
               {photos &&
                 photos.map((photo, i) => {
                   return (
                     <Item
                       key={i}
+                      caption={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                       original={imgUrl(photo)}
                       thumbnail={imgUrl(photo)}
-                      title={`${photo.info && Object.keys(photo.info)}`}
+                      title={`${photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}`}
                       width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                       height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                     >
                       {({ ref, open }) => (
+                        
                         <div style={{ animationDelay: 50 * i + 'ms' }} ref={ref} onClick={open} className="edgtf-gallery-image ebs-animation-layer" >
-                          <span title={photo.info ? Object.keys(photo.info)[0] : 'Photo'} className="gallery-img-wrapper-rectangle">
+                          {console.log(photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo')}
+                          <span title={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'} className="gallery-img-wrapper-rectangle">
                             {photo.image && photo.image !== "" ? (
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                alt={photo.info ? Object.keys(photo.info)[0] : 'Photo'}
+                                alt={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
