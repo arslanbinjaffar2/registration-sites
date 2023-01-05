@@ -47,17 +47,18 @@ const Variation1 = (props) => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <span className="break">{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</span>
-                   {moment(props.event.end_date).format('dddd ,D MMMM YYYY') !== moment(props.event.start_date).format('dddd ,D MMMM YYYY') && <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>}
-                  </li>
-                  <li>
-                    <i className="material-icons">location_on</i>
-                    <address>{props.event.info && props.event.info.location_name}</address>
-                    <address>{props.event.info && props.event.info.location_address}</address>
+                    <strong className="break">DATES</strong>
+                    <p>{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</p>
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong>Check-in open: </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
+                    <strong className="break">Opening Hours</strong>
+                    <p>{moment(props.event.start_time, 'h:mm a').format("hh:mm A")}</p>
+                  </li>
+                  <li>
+                    <i className="material-icons">location_on</i>
+                    <strong className="break">location</strong>
+                    <p>{props.event.info && props.event.info.location_address}</p>
                   </li>
                 </ul>
                 <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a>  
