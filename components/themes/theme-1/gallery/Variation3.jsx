@@ -22,15 +22,16 @@ const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, to
         <div className="edgtf-portfolio-list-holder-outer">
           <div className="edgtf-portfolio-list-holder">
             <div className="d-flex row">
-              <Gallery shareButton={false} id="my-gallery">
+              <Gallery shareButton={false} id="my-gallery" withCaption>
                 {photos &&
                   photos.map((photo, i) => (
                     <div key={i} className="col-md-4 col-sm-6">
                       <Item
                         key={i}
+                        caption={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                         original={imgUrl(photo)}
                         thumbnail={imgUrl(photo)}
-                        title={`${photo.info && Object.keys(photo.info)}`}
+                        title={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
                         width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                         height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                       >
@@ -42,7 +43,7 @@ const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, to
                                   <img
                                     onLoad={(e) => e.target.style.opacity = 1}
                                     src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                    alt={`${photo.info && Object.keys(photo.info)}`}
+                                    alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
                                   />
                                 ) : (
                                   <Image objectFit='contain' layout="fill"
@@ -58,7 +59,7 @@ const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, to
                                 <div className="edgtf-iwt-text-cell">
                                   {photo.info && (
                                     <h3 className="edgtf-iwt-title">
-                                      {Object.keys(photo.info)}
+                                      {photo.info.title !== undefined && photo.info.title}
                                     </h3>
                                   )}
                                 </div>

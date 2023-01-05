@@ -14,7 +14,7 @@ const Vimeo = ({photo}) => {
         onLoad={(e) => e.target.style.opacity = 1}
         style={{ width: "100%", height: '100%', objectFit: 'cover' }}
         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-        alt={`${photo.info && Object.keys(photo.info)}`}
+        alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
       />
     );
   } else {
@@ -23,7 +23,7 @@ const Vimeo = ({photo}) => {
       onLoad={(e) => e.target.style.opacity = 1}
       style={{ width: "100%", height: '100%', objectFit: 'cover' }}
       src={`https://vumbnail.com/${match[4]}.jpg`}
-      alt={`${photo.info && Object.keys(photo.info)}`}
+      alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
     />
    )
   }
@@ -37,7 +37,7 @@ const DailyMotion = ({photo}) => {
         onLoad={(e) => e.target.style.opacity = 1}
         style={{ width: "100%", height: '100%', objectFit: 'cover' }}
         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-        alt={`${photo.info && Object.keys(photo.info)}`}
+        alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
       />
     );
   } else {
@@ -46,7 +46,7 @@ const DailyMotion = ({photo}) => {
       onLoad={(e) => e.target.style.opacity = 1}
       style={{ width: "100%", height: '100%', objectFit: 'cover' }}
       src={`http://www.dailymotion.com/thumbnail/video/${match[1]}`}
-      alt={`${photo.info && Object.keys(photo.info)}`}
+      alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
     />
    )
   }
@@ -60,7 +60,7 @@ const YouTubeVideo = ({photo}) => {
         onLoad={(e) => e.target.style.opacity = 1}
         style={{ width: "100%", height: '100%', objectFit: 'cover' }}
         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-        alt={`${photo.info && Object.keys(photo.info)}`}
+        alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
       />
     );
   } else {
@@ -69,7 +69,7 @@ const YouTubeVideo = ({photo}) => {
       onLoad={(e) => e.target.style.opacity = 1}
       style={{ width: "100%", height: '100%', objectFit: 'cover' }}
       src={`https://img.youtube.com/vi/${match[2]}/maxresdefault.jpg`}
-      alt={`${photo.info && Object.keys(photo.info)}`}
+      alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
     />
    )
   }
@@ -81,7 +81,7 @@ const NormalVideo = ({photo}) => {
         onLoad={(e) => e.target.style.opacity = 1}
         style={{ width: "100%", height: '100%', objectFit: 'cover' }}
         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.thumnail}
-        alt={`${photo.info && Object.keys(photo.info)}`}
+        alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
       />
     );
   } else {
@@ -111,7 +111,7 @@ const Variation1 = ({ videos, loadMore, eventUrl, home, siteLabels, totalPages }
                   <PortalWithState closeOnOutsideClick closeOnEsc>
                     {({ openPortal, closePortal, isOpen, portal }) => (
                       <React.Fragment>
-                        <span className="gallery-img-wrapper-rectangle" style={{ display: 'block', position: 'relative' }} onClick={openPortal} title={`${photo.info && Object.keys(photo.info)}`}>
+                        <span className="gallery-img-wrapper-rectangle" style={{ display: 'block', position: 'relative' }} onClick={openPortal} title={`${photo.info && photo.info.title !== undefined && photo.info.title}`}>
                           <div className="ebs-video-button-inner">
                             <i className="fa fa-play-circle" aria-hidden="true"></i>
                           </div>

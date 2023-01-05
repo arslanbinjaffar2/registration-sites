@@ -47,8 +47,8 @@ const Variation1 = (props) => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <span className="break">{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</span>
-                   {moment(props.event.end_date).format('dddd ,D MMMM YYYY') !== moment(props.event.start_date).format('dddd ,D MMMM YYYY') && <span className="break">{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</span>}
+                    <span className="break">{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</span>
+                   {moment(props.event.end_date).format('dddd, MMMM Do, YYYY') !== moment(props.event.start_date).format('dddd, MMMM Do, YYYY') && <span className="break">{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</span>}
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
@@ -57,10 +57,10 @@ const Variation1 = (props) => {
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong>Check-in open: </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
+                    <strong>{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Check-in open:"} </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
                   </li>
                 </ul>
-                <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a>  
+                {(props.event.description && props.event.description.info.show_register_now == 1) &&  <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a>  }
               </div>
             </div>
             <div className="col-lg-6 offset-lg-1">
