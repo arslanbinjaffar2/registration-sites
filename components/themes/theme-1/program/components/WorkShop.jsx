@@ -4,7 +4,6 @@ import ProgramItem from "components/themes/theme-1/program/components/ProgramIte
 
 const WorkShop = ({item, eventUrl, showWorkshop}) => {
   const [open, setOpen] = useState(showWorkshop);
-  console.log(item)
   return (
     <div className="ebs-program-parent ebs-program-workshop">
     <div onClick={()=>{setOpen(!open)}} className="ebs-workshop-header">

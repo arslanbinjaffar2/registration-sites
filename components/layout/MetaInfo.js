@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head'
 
 const MetaInfo = (props) => {
-    console.log(props.metaInfo.settings.third_party_header_script)
     return (
         <>
             <Head>
@@ -67,9 +66,7 @@ const MetaInfo = (props) => {
                         {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
-                                    /assets/event/branding/
-                                    ${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
                         />}
                         {props.metaInfo.settings.google_analytics && (
                             <script>

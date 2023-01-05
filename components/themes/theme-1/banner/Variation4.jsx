@@ -2,7 +2,7 @@ import SliderBanner from "./components/SliderBanner";
 import moment from "moment";
 import React from "react";
 
-const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
+const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
   const WrapperLayout = (props) => {
 
@@ -44,6 +44,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
         {banner && (
           <SliderBanner
             countdown={countdown}
+            registerDateEnd={registerDateEnd}
           >
             {banner.map((slides, i) => (
               <div key={i} className="slide-wrapper">
@@ -61,7 +62,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
                         style={{ position: "relative" }}
                         className="parallax-text"
                       >
-                        {slides.info.title && (
+                        {slides.info.title && settings.title === 1 && (
                           <div
                             className="edgtf-custom-font-holder text-center ebs-banner-title"
                             style={{
@@ -80,7 +81,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
                             </span>
                           </div>
                         )}
-                        {slides.info.message && (
+                        {slides.info.message && settings.caption === 1 && (
                           <div
                             className="edgtf-custom-font-holder text-center ebs-banner-subtitle"
                             style={{
@@ -97,7 +98,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
                             {slides.info.message}
                           </div>
                         )}
-                        <div
+                        {settings.register_button && <div
                           className="edgtf-custom-font-holder text-center"
                           style={{
                             marginTop: "40px",
@@ -110,7 +111,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl }) => {
                           }}
                         >
                           <a href={regisrationUrl} style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">REGISTER</a>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-const Variation2 = ({ banner, regisrationUrl }) => {
+const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
 
   let data = banner ? banner[0] : [];
 
@@ -161,12 +161,11 @@ const Variation2 = ({ banner, regisrationUrl }) => {
                 >
                   <span style={{ color: "#fff" }}>
                     {" "}
-                    {data && data.info
-                      ? data.info.title
-                      : "Event Banner"}
+                    {data && data.info && settings.title === 1
+                      && data.info.title}
                   </span>
                 </div>
-                {data.info.message && <div
+                {data.info.message && settings.caption === 1 && <div
                   className="edgtf-custom-font-holder ebs-banner-title"
                   style={{
                     fontFamily: "Rubik",

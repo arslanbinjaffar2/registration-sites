@@ -22,7 +22,7 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
           <div className="edgtf-portfolio-list-holder">
             <div className="d-flex row">
-              <Gallery shareButton={false} id="my-gallery">
+              <Gallery shareButton={false} id="my-gallery" withCaption>
                 {photos &&
                   photos.map((photo, i) => (
                     <div key={i} className="col-lg-3 col-md-4 col-sm-6">
@@ -30,7 +30,8 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                         key={i}
                         original={imgUrl(photo)}
                         thumbnail={imgUrl(photo)}
-                        title={`${Object.keys(photo.info)}`}
+                        caption={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
+                        title={`${photo.info.title !== undefined && photo.info.title}`}
                         width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                         height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                       >
@@ -46,7 +47,7 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   style={{ width: "100%" }}
                                   src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                  alt={`${photo.info && Object.keys(photo.info)}`}
+                                  alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
                                 />
                               ) : (
                                 <Image objectFit='contain' layout="fill"
@@ -62,7 +63,7 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                                 <div className="edgtf-item-text-holder">
                                   {photo.info && (
                                     <h4 className="edgtf-item-title">
-                                      {Object.keys(photo.info)}
+                                      {photo.info.title !== undefined && photo.info.title}
                                     </h4>
                                   )}
                                 </div>
