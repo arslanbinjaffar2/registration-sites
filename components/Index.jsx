@@ -17,6 +17,7 @@ const EventInformation = lazy(() => import("components/modules/EventInformation"
 const NewsLetterSubscription = lazy(() => import("components/modules/NewsLetterSubscription"));
 const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
 const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
+const CustomSection3 = lazy(() => import("components/modules/CustomSection3"));
 const SortableBanner = lazy(() => import("components/modules/SortableBanner"));
 
 const Index = () => {
@@ -43,6 +44,8 @@ const Index = () => {
                 return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
                 return <CustomSection1 key={i} />;
+              else if (section.module_alias === "custom_html3" && section.status === 1)
+                return <CustomSection3 key={i} />;
               else if (section.module_alias === "event_info" && section.status === 1) return <EventInformation key={i}/>;
               else if (section.module_alias === "newsletter_subscription" && section.status === 1) return <NewsLetterSubscription key={i}/>;
               else if (section.module_alias === "agenda" && section.status === 1)

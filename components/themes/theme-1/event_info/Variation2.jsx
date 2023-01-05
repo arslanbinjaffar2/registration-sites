@@ -2,7 +2,7 @@ import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from 'moment';
 const Variation1 = (props) => {
-
+  console.log(props.labels.EVENT_INFO_CHECK_IN_START);
     return (
       <div className="module-section">
         <div className="ebs-default-padding">
