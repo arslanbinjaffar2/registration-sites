@@ -2,7 +2,7 @@ import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from 'moment';
 const Variation1 = (props) => {
-
+  console.log(props.labels.EVENT_INFO_CHECK_IN_START);
     return (
       <div className="module-section">
         <div className="ebs-default-padding">
@@ -14,16 +14,34 @@ const Variation1 = (props) => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <span className="break">{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</span>
-                    <span className="break">{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</span>
-                  </li>
-                  <li>
-                    <i className="material-icons">location_on</i>
-                    <address>{props.event.info && props.event.info.location_address}</address>
+                    <strong className="break">DATES</strong>
+                    {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
+                      <p>{moment(item).format('dddd ,D MMMM YYYY')}</p>
+                      ))}
+                    {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
+                      <>
+                        <p>{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</p>
+                        <p>{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</p>
+                      </>
+                    }
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong>{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Check-in open:"} </strong> {moment(props.event.start_time, 'h:mm a').format("hh:mm A")}
+                    <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
+                    {props.openingHours.length > 0 && props.openingHours.map((item)=>(
+                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(item.start_time, 'h:mm a').format("hh:mm a")}-{moment(item.end_time, 'h:mm a').format("hh:mm a")}</p>
+                    ))}
+
+                    {props.openingHours.length <=0 && 
+                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(props.event.start_time, 'h:mm a').format("hh:mm a")}-{moment(props.event.end_time, 'h:mm a').format("hh:mm a")}</p>
+                    }
+                    
+                  </li>
+                  <li>
+                    <i className="material-icons">location_on</i>
+                    <strong className="break">location</strong>
+                    <p>{props.event.info && props.event.info.location_name}</p>
+                    <p>{props.event.info && props.event.info.location_address}</p>
                   </li>
                 </ul>
                 { (props.event.description && props.event.description.info.show_register_now == 1) && <a style={{border: '2px solid #363636', color: '#363636'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"> {props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a> } 
