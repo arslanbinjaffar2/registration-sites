@@ -13,6 +13,7 @@ const SocialShare = lazy(() => import("components/modules/SocialShare"));
 const RegisterNow = lazy(() => import("components/modules/RegisterNow"));
 const Banner = lazy(() => import("components/modules/Banner"));
 const Map = lazy(() => import("components/modules/Map"));
+const Footer = lazy(() => import("components/modules/Footer"));
 const EventInformation = lazy(() => import("components/modules/EventInformation"));
 const NewsLetterSubscription = lazy(() => import("components/modules/NewsLetterSubscription"));
 const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
@@ -71,7 +72,7 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
-                
+          {/* <Footer />  */}
       </React.Fragment>
     </Suspense>
 

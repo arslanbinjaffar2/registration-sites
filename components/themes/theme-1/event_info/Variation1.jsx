@@ -48,7 +48,15 @@ const Variation1 = (props) => {
                   <li>
                     <i className="material-icons">date_range</i>
                     <strong className="break">DATES</strong>
-                    <p>{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</p>
+                    {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
+                      <p>{moment(item).format('dddd ,D MMMM YYYY')}</p>
+                      ))}
+                    {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
+                      <>
+                        <p>{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</p>
+                        <p>{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</p>
+                      </>
+                    }
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
@@ -58,6 +66,7 @@ const Variation1 = (props) => {
                   <li>
                     <i className="material-icons">location_on</i>
                     <strong className="break">location</strong>
+                    <p>{props.event.info && props.event.info.location_name}</p>
                     <p>{props.event.info && props.event.info.location_address}</p>
                   </li>
                 </ul>

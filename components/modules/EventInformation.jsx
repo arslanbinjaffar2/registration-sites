@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
-
+import moment from "moment";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -9,6 +9,20 @@ const loadModule = (theme, variation) => {
     import(`components/themes/${theme}/event_info/${variation}`)
   );
   return Component;
+};
+
+var enumerateDaysBetweenDates = function(startDate, endDate) {
+  var dates = [];
+
+  var currDate = moment(startDate).startOf('day');
+  var lastDate = moment(endDate).startOf('day');
+
+  while(currDate.add(1, 'days').diff(lastDate) < 0) {
+      console.log(currDate.toDate());
+      dates.push(currDate.clone().toDate());
+  }
+
+  return dates;
 };
 
 const EventInformation = () => {
@@ -33,9 +47,13 @@ const EventInformation = () => {
     return url;
   },[event]);
 
+  let eventDates = useMemo(() => enumerateDaysBetweenDates(event.start_date, event.end_date), [event]);
+
+  console.log(eventDates);
+
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} regisrationUrl={regisrationUrl} />
+      <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} regisrationUrl={regisrationUrl} eventDates={eventDates} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };
