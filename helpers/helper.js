@@ -1,5 +1,5 @@
 import moment from "moment";
-
+require("moment/min/locales.min");
 function ltrim(str, chr) {
     var rgxtrim = (!chr) ? new RegExp('^\\s+') : new RegExp('^' + chr + '+');
     return str.replace(rgxtrim, '');
@@ -107,3 +107,23 @@ export const metaInfo = async (url, screen) => {
 
     return data.event;
 }
+
+export const localeMoment = (date, locale_id, format) => {
+    console.log(date, locale_id, format);
+    
+    // import 'moment/locale/' + locales[locale_id-1];
+    moment.locale('da');
+    return moment(date).format(format);
+}
+
+export const locales = [
+    'en',
+    'da',
+    'no',
+    'de',
+    'lt',
+    'fi',
+    'se',
+    'nl',
+    'be'
+];
