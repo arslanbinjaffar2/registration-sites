@@ -49,7 +49,7 @@ const Variation1 = (props) => {
                     <i className="material-icons">date_range</i>
                     <strong className="break">DATES</strong>
                     {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
-                      <p>{moment(item).format('dddd ,D MMMM YYYY')}</p>
+                      <p>{moment(item).format('dddd, MMMM Do, YYYY')}</p>
                       ))}
                     {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
                       <>
@@ -62,11 +62,11 @@ const Variation1 = (props) => {
                     <i className="material-icons">watch_later</i>
                     <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
                     {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                      <p>{moment(item.date).format('dddd')}, {" "} {moment(item.start_time, 'h:mm a').format("hh:mm a")}-{moment(item.end_time, 'h:mm a').format("hh:mm a")}</p>
+                      <p> {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
                     ))}
 
                     {props.openingHours.length <=0 && 
-                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(props.event.start_time, 'h:mm a').format("hh:mm a")}-{moment(props.event.end_time, 'h:mm a').format("hh:mm a")}</p>
+                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}</p>
                     }
                   </li>
                   <li>
@@ -74,6 +74,7 @@ const Variation1 = (props) => {
                     <strong className="break">location</strong>
                     <p>{props.event.info && props.event.info.location_name}</p>
                     <p>{props.event.info && props.event.info.location_address}</p>
+                    <p>{props.event.country}</p>
                   </li>
                 </ul>
                 {(props.event.description && props.event.description.info.show_register_now == 1) &&  <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.labels.EVENTSITE_REGISTER_NOW ? props.labels.EVENTSITE_REGISTER_NOW : 'Register Now'} </a>  }

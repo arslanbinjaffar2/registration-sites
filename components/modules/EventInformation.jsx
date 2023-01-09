@@ -21,6 +21,9 @@ var enumerateDaysBetweenDates = function(startDate, endDate) {
       dates.push(currDate.clone().toDate());
   }
 
+  dates.unshift(startDate);
+  dates.push(endDate);
+
   return dates;
 };
 
