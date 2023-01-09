@@ -34,7 +34,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     {event.eventOpeningHours.length > 0 && event.eventOpeningHours.map((item)=>(
                                         <p className="icon">
                                             <i className='material-icons'>access_time</i>
-                                            {moment(item.start_date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + event?.end_time).format('HH:mm')}`}
+                                            {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
                                         </p>
                                     ))}
 
@@ -46,11 +46,10 @@ const Variation1 = ({event, siteLabels}) => {
                                     }
 
                                     
-                                    <a href="#!" style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
+                                    <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>LOCATION</h5>
-                                    <h4>Eventbuizz</h4>
                                     <address>
                                         <i className="material-icons">room</i>
                                         {event?.info?.location_name && (
@@ -63,12 +62,17 @@ const Variation1 = ({event, siteLabels}) => {
                                                 {event?.info?.location_address}<br />
                                             </React.Fragment>
                                         )}
+                                        
+                                        {event?.country && (
+                                            <React.Fragment>
+                                                {event?.country}<br />
+                                            </React.Fragment>
+                                        )}
                                        
                                     </address>
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>CONTACT PERSON</h5>
-                                    <h4>{event?.organizer_name}</h4>
                                     {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person)=>(
                                         <>
                                         <p>Name: {person.first_name} {" "} {person.last_name}</p>
@@ -79,7 +83,7 @@ const Variation1 = ({event, siteLabels}) => {
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>ORGANIZER</h5>
-                                    <h4>Eventbuizz</h4>
+                                    <h4>{event?.organizer_name}</h4>
                                 </div>
                             </div>
                         </div>

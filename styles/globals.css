@@ -14,3 +14,6 @@ a {
 * {
   box-sizing: border-box;
 }
+.footer {
+  padding: 2rem 0;
+}
