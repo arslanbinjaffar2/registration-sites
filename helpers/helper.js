@@ -110,18 +110,20 @@ export const metaInfo = async (url, screen) => {
 
 export const localeMoment = (date, locale_id, format) => {
     console.log(date, locale_id, format);
-    const locales = [
-        'en',
-        'da',
-        'no',
-        'de',
-        'lt',
-        'fi',
-        'se',
-        'nl',
-        'be'
-    ];
+    
     // import 'moment/locale/' + locales[locale_id-1];
     moment.locale('da');
     return moment(date).format(format);
 }
+
+export const locales = [
+    'en',
+    'da',
+    'no',
+    'de',
+    'lt',
+    'fi',
+    'se',
+    'nl',
+    'be'
+];
