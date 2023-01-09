@@ -46,7 +46,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     }
 
                                     
-                                    <a href="{}" style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
+                                    <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>LOCATION</h5>
