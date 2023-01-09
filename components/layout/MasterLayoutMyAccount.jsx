@@ -9,6 +9,8 @@ import {
   eventSelector
 } from "store/Slices/EventSlice";
 import AfterLoginSubRegistration from "components/myAccount/profile/AfterLoginSubRegistration";
+import Footer from "../modules/Footer";
+
 
 const MasterLayoutMyAccount = (props) => {
 
@@ -31,6 +33,7 @@ const MasterLayoutMyAccount = (props) => {
     <>
       <Header />
       {(skip || sub_reg_skip) ? props.children : <AfterLoginSubRegistration {...props} />}
+      <Footer /> 
     </>
   )
 }
