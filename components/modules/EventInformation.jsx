@@ -18,9 +18,11 @@ var enumerateDaysBetweenDates = function(startDate, endDate) {
   var lastDate = moment(endDate).startOf('day');
 
   while(currDate.add(1, 'days').diff(lastDate) < 0) {
-      console.log(currDate.toDate());
       dates.push(currDate.clone().toDate());
   }
+
+  dates.unshift(startDate);
+  dates.push(endDate);
 
   return dates;
 };
@@ -49,7 +51,6 @@ const EventInformation = () => {
 
   let eventDates = useMemo(() => enumerateDaysBetweenDates(event.start_date, event.end_date), [event]);
 
-  console.log(eventDates);
 
   return (
     <Suspense fallback={''}>

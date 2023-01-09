@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import {
     globalSelector
 } from "store/Slices/GlobalSlice";
-
+import Footer from "../modules/Footer";
 
 const MasterLayoutRoute = ({ children, event }) => {
     const router = useRouter();
@@ -27,6 +27,7 @@ const MasterLayoutRoute = ({ children, event }) => {
                     <Header />
                     {showLogin && <LoginScreen />}
                     {children}
+                    <Footer /> 
                 </>) : (
                     <PageLoader/>
                 )

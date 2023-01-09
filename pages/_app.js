@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import FullPageLoader from "components/ui-components/FullPageLoader";
 import Theme from "components/Theme";
 import ErrorBoundary from 'components/ErrorBoundary';
+require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
@@ -35,6 +36,7 @@ function MyApp({ Component, pageProps }) {
       {_eventObj.loading && <FullPageLoader className="fixed" />}
       <div style={{ transform: 'none' }} id="App">
         <Provider store={store}>
+
           {_eventObj.event && (
             <>
               <Theme data={_eventObj.event} />

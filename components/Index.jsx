@@ -72,7 +72,6 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
-          {/* <Footer />  */}
       </React.Fragment>
     </Suspense>
 
