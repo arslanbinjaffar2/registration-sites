@@ -1,6 +1,7 @@
 import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from "moment";
+import { localeMoment } from 'helpers/helper';
 const Variation1 = (props) => {
   const WrapperLayout = (props) => {
 
@@ -53,8 +54,10 @@ const Variation1 = (props) => {
                       ))}
                     {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
                       <>
-                        <p>{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</p>
-                        <p>{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</p>
+                        <p>{localeMoment(props.event.start_date, props.event.language_id, 'dddd, MMMM Do, YYYY')}</p>
+                        <p>{localeMoment(props.event.end_date, props.event.language_id, 'dddd, MMMM Do, YYYY')}</p>
+                        {/* <p>{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</p>
+                        <p>{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</p> */}
                       </>
                     }
                   </li>
