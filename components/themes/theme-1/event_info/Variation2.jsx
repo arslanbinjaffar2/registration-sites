@@ -20,8 +20,8 @@ const Variation1 = (props) => {
                       ))}
                     {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
                       <>
-                        <p>{moment(props.event.start_date).format('dddd ,D MMMM YYYY')}</p>
-                        <p>{moment(props.event.end_date).format('dddd ,D MMMM YYYY')}</p>
+                        <p>{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</p>
+                        <p>{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</p>
                       </>
                     }
                   </li>
@@ -29,7 +29,7 @@ const Variation1 = (props) => {
                     <i className="material-icons">watch_later</i>
                     <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
                     {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {moment(item.start_time, 'h:mm a').format("hh:mm a")}-{moment(item.end_time, 'h:mm a').format("hh:mm a")}</p>
+                      <p>{moment(item.date).format('dddd')}, {" "} {moment(item.start_time, 'h:mm a').format("hh:mm a")}-{moment(item.end_time, 'h:mm a').format("hh:mm a")}</p>
                     ))}
 
                     {props.openingHours.length <=0 && 

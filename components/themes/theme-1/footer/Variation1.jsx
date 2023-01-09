@@ -30,10 +30,22 @@ const Variation1 = ({event, siteLabels}) => {
                                         <i className='material-icons'>date_range</i>
                                         <time dateTime="2019-31-12">{`${moment(event?.start_date).format('MMM DD')} - ${moment(event?.end_date).format('MMM DD YYYY')}`}</time>
                                     </p>
+                                    
+                                    {event.eventOpeningHours.length > 0 && event.eventOpeningHours.map((item)=>(
+                                        <p className="icon">
+                                            <i className='material-icons'>access_time</i>
+                                            {moment(item.start_date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + event?.end_time).format('HH:mm')}`}
+                                        </p>
+                                    ))}
+
+                                    {event.eventOpeningHours.length <=0 && 
                                     <p className="icon">
                                         <i className='material-icons'>access_time</i>
-                                        {`${moment(event?.start_date + ' ' + event?.start_time).format('HH:mm')} - ${moment(event?.start_date + ' ' + event?.end_time).format('HH:mm')}`}
+                                        {moment(event.start_date).format('dddd')}, {" "} {`${moment(event?.start_date + ' ' + event?.start_time).format('HH:mm')} - ${moment(event?.start_date + ' ' + event?.end_time).format('HH:mm')}`}
                                     </p>
+                                    }
+
+                                    
                                     <a href="#!" style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
                                 </div>
                                 <div className="col">
@@ -56,10 +68,14 @@ const Variation1 = ({event, siteLabels}) => {
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>CONTACT PERSON</h5>
-                                    <h4>{event?.organizer?.name}</h4>
-                                    <p>Founder &amp; CEO</p>
-                                    <p>E-mail: <a href={event?.organizer?.email}>{event?.organizer?.email}</a></p>
-                                    <p>Phone: {event?.organizer?.phone}</p>
+                                    <h4>{event?.organizer_name}</h4>
+                                    {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person)=>(
+                                        <>
+                                        <p>Name: {person.first_name} {" "} {person.last_name}</p>
+                                        <p>E-mail: <a href={person.email}>{person.email}</a></p>
+                                        <p>Phone: {person.phone}</p>
+                                        </>
+                                    ))}
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>ORGANIZER</h5>
