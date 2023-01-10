@@ -17,7 +17,7 @@ const Variation1 = ({event, siteLabels}) => {
         }
         {event.eventsiteSettings.use_reg_form_footer === 1 && 
             <>
-            <footer id="ebs-footer" className="footer">
+            <footer id="ebs-footer" className="footer ebs-variation-dark">
                 <style dangerouslySetInnerHTML={{ __html: height }}></style>
                 <div style={{paddingLeft: 0, paddingRight:0, borderRadius: 0,margin: 0}} className="wrapper-box order-summry">
                     <div className="container">
@@ -25,7 +25,7 @@ const Variation1 = ({event, siteLabels}) => {
                             <h3>{event?.name} </h3>
                             <div className="row">
                                 <div className="col">
-                                    <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_ONE}</h5>
+                                    <h5 className='link'>WHEN</h5>
                                     <p className='icon d-flex'>
                                         <i className='material-icons'>date_range</i>
                                         <time dateTime="2019-31-12">{`${moment(event?.start_date).format('MMM DD')} - ${moment(event?.end_date).format('MMM DD YYYY')}`}</time>
@@ -49,7 +49,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
                                 </div>
                                 <div className="col">
-                                    <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_TWO}</h5>
+                                    <h5 className='link'>LOCATION</h5>
                                     <address className="d-flex icon">
                                         <i className="material-icons">room</i>
                                         {event?.info?.location_name && (
@@ -72,7 +72,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     </address>
                                 </div>
                                 <div className="col">
-                                    <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
+                                    <h5 className='link'>CONTACT PERSON</h5>
                                     {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person)=>(
                                         <>
                                         <p>Name: {person.first_name} {" "} {person.last_name}</p>
@@ -82,7 +82,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     ))}
                                 </div>
                                 <div className="col">
-                                    <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_FOUR}</h5>
+                                    <h5 className='link'>ORGANIZER</h5>
                                     <h4>{event?.organizer_name}</h4>
                                 </div>
                             </div>
