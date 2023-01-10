@@ -47,7 +47,7 @@ const Variation1 = (props) => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <strong className="break">DATES</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
                     {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
                       <p>{moment(item).format('dddd, MMMM Do, YYYY')}</p>
                       ))}
@@ -60,7 +60,7 @@ const Variation1 = (props) => {
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
                     {props.openingHours.length > 0 && props.openingHours.map((item)=>(
                       <p> {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
                     ))}
@@ -71,7 +71,7 @@ const Variation1 = (props) => {
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
-                    <strong className="break">location</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_LOCATION !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_LOCATION : "Location"}</strong>
                     <p>{props.event.info && props.event.info.location_name}</p>
                     <p>{props.event.info && props.event.info.location_address}</p>
                     <p>{props.event.country}</p>

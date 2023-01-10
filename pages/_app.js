@@ -36,7 +36,6 @@ function MyApp({ Component, pageProps }) {
       {_eventObj.loading && <FullPageLoader className="fixed" />}
       <div style={{ transform: 'none' }} id="App">
         <Provider store={store}>
-
           {_eventObj.event && (
             <>
               <Theme data={_eventObj.event} />
