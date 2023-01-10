@@ -1,6 +1,8 @@
 import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from "moment";
+import {localeMomentEventDates, localeMomentOpeningHours} from "../../../../helpers/helper";
+
 const Variation1 = (props) => {
   const WrapperLayout = (props) => {
 
@@ -47,31 +49,31 @@ const Variation1 = (props) => {
                 <ul>
                   <li>
                     <i className="material-icons">date_range</i>
-                    <strong className="break">DATES</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
                     {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
-                      <p>{moment(item).format('dddd, MMMM Do, YYYY')}</p>
+                      <p>{localeMomentEventDates(item, props.event.language_id)}</p>
                       ))}
                     {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
                       <>
-                        <p>{moment(props.event.start_date).format('dddd, MMMM Do, YYYY')}</p>
-                        <p>{moment(props.event.end_date).format('dddd, MMMM Do, YYYY')}</p>
+                        <p>{localeMomentEventDates(props.event.start_date, props.event.language_id)}</p>
+                        <p>{localeMomentEventDates(props.event.end_date, props.event.language_id)}</p>
                       </>
                     }
                   </li>
                   <li>
                     <i className="material-icons">watch_later</i>
-                    <strong className="break">{props.labels.EVENT_INFO_CHECK_IN_START !== undefined ? props.labels.EVENT_INFO_CHECK_IN_START : "Opening Hours"}</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
                     {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                      <p> {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
+                      <p> {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
                     ))}
 
                     {props.openingHours.length <=0 && 
-                      <p>{moment(props.event.start_date).format('dddd')}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}</p>
+                      <p>{localeMomentOpeningHours(props.event.start_date, props.event.language_id)}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}</p>
                     }
                   </li>
                   <li>
                     <i className="material-icons">location_on</i>
-                    <strong className="break">location</strong>
+                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_LOCATION !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_LOCATION : "Location"}</strong>
                     <p>{props.event.info && props.event.info.location_name}</p>
                     <p>{props.event.info && props.event.info.location_address}</p>
                     <p>{props.event.country}</p>

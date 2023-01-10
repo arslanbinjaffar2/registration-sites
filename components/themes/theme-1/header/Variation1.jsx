@@ -113,7 +113,7 @@ class Variation1 extends React.Component {
       _item.classList.add("nav-item-more");
       _item.appendChild(_itemancor);
       _list.forEach((element) => {
-        if (_total < _container.offsetWidth - 250) {
+        if (_total < _container.offsetWidth - 295) {
           _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
