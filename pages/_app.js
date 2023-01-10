@@ -12,14 +12,14 @@ require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
-
-  const { event } = router.query;
+  console.log(router);
+  const { event, layout } = router.query;
 
   const [_eventObj, setEventObj] = useState({});
 
   useEffect(() => {
     if (event) {
-      store.dispatch(fetchEvent(event));
+      store.dispatch(fetchEvent(event, layout));
     }
   }, [store, event]);
 

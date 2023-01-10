@@ -30,11 +30,11 @@ export const eventSelector = state => state.event
 
 export default eventSlice.reducer
 
-export const fetchEvent = (url) => {
+export const fetchEvent = (url, layout=null) => {
   return async dispatch => {
     dispatch(getEvent())
     try {
-      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}`)
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}?layout=${layout}`)
       const res = await response.json()
       // const count = res.data.eventsiteSections.filter((i)=> i.status === 1).length;
       // dispatch(setLoadCount(count))
