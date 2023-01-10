@@ -35,7 +35,7 @@ const Variation1 = (props) => {
 
                     {props.openingHours.length <=0 && 
                       <p> 
-                        {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}
+                        {localeMomentOpeningHours(props.event?.start_date, props.event.language_id)}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}
                       </p>
                     }
                   </li>

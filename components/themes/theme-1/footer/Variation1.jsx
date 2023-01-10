@@ -76,7 +76,7 @@ const Variation1 = ({event, siteLabels}) => {
                                     {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person)=>(
                                         <>
                                         <p>Name: {person.first_name} {" "} {person.last_name}</p>
-                                        <p>E-mail: <a href={person.email}>{person.email}</a></p>
+                                        <p>E-mail: <a href={`mailto:${person.email}`}>{person.email}</a></p>
                                         <p>Phone: {person.phone}</p>
                                         </>
                                     ))}
