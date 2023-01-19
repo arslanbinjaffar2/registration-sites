@@ -7,14 +7,19 @@ import { Provider } from "react-redux";
 import { useRouter } from 'next/router';
 import FullPageLoader from "components/ui-components/FullPageLoader";
 import Theme from "components/Theme";
+import {setWithExpiry} from "helpers/helper";
 import ErrorBoundary from 'components/ErrorBoundary';
 require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
-  const { event, layout } = router.query;
-
+  const { event, layout, autoregister } = router.query;
   const [_eventObj, setEventObj] = useState({});
+
+  
+  if(autoregister !== undefined && typeof window !== 'undefined'){
+    setWithExpiry("autoregister", autoregister, 300000);
+  }
 
   useEffect(() => {
     if (event) {

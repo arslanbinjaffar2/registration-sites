@@ -24,30 +24,23 @@ const Variation1 = ({event, siteLabels}) => {
                         <div className="inner-container ebs-collaspe-item" id="collaspe-item">
                             <h3>{event?.name} </h3>
                             <div className="row">
-                                <div className="col-3">
+                                {event.eventOpeningHours.length > 0 && <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_ONE}</h5>
-                                    <p className='icon d-flex'>
-                                        <i className='material-icons'>date_range</i>
-                                        <time dateTime="2019-31-12">{`${moment(event?.start_date).format('MMM DD')} - ${moment(event?.end_date).format('MMM DD YYYY')}`}</time>
-                                    </p>
                                     
-                                    {event.eventOpeningHours.length > 0 && event.eventOpeningHours.map((item, i)=>(
-                                        <p className="icon d-flex" key={i}>
-                                            <i className='material-icons'>access_time</i>
-                                            {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
-                                        </p>
+                                    { event.eventOpeningHours.map((item, i)=>(
+                                        <React.Fragment key={i}>
+                                            <p className='icon d-flex'>
+                                                <i className='material-icons'>date_range</i>
+                                                <time dateTime="2019-31-12">{`${moment(event?.start_date).format('dddd, MMMM Do, YYYY')}`}</time>
+                                            </p>
+                                            <p className="icon d-flex" >
+                                                <i className='material-icons'>access_time</i>
+                                                {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
+                                            </p>
+                                        </React.Fragment>
                                     ))}
-
-                                    {event.eventOpeningHours.length <=0 && 
-                                    <p className="icon d-flex">
-                                        <i className='material-icons'>access_time</i>
-                                        {moment(event.start_date).format('dddd')}, {" "} {`${moment(event?.start_date + ' ' + event?.start_time).format('HH:mm')} - ${moment(event?.start_date + ' ' + event?.end_time).format('HH:mm')}`}
-                                    </p>
-                                    }
-
-                                    
-                                    <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>
-                                </div>
+                                    {event.eventsiteSettings.eventsite_add_calender == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>}
+                                </div>}
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_TWO}</h5>
                                     <address style={{paddingRight: '20px'}} className="d-flex icon">

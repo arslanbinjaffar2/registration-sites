@@ -52,15 +52,15 @@ const Variation1 = (props) => {
                       <li>
                         <i className="material-icons">date_range</i>
                         <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
-                        {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                          <p>{localeMomentEventDates(item.date, props.event.language_id)}</p>
+                        {props.openingHours.length > 0 && props.openingHours.map((item, i)=>(
+                          <p key={i}>{localeMomentEventDates(item.date, props.event.language_id)}</p>
                           ))}
                       </li>
                       <li>
                         <i className="material-icons">watch_later</i>
                         <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
-                        {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                          <p> {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
+                        {props.openingHours.length > 0 && props.openingHours.map((item,i)=>(
+                          <p key={i}> {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
                         ))}
                       </li>
                     </>
