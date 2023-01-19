@@ -31,8 +31,8 @@ const Variation1 = ({event, siteLabels}) => {
                                         <time dateTime="2019-31-12">{`${moment(event?.start_date).format('MMM DD')} - ${moment(event?.end_date).format('MMM DD YYYY')}`}</time>
                                     </p>
                                     
-                                    {event.eventOpeningHours.length > 0 && event.eventOpeningHours.map((item)=>(
-                                        <p className="icon d-flex">
+                                    {event.eventOpeningHours.length > 0 && event.eventOpeningHours.map((item, i)=>(
+                                        <p className="icon d-flex" key={i}>
                                             <i className='material-icons'>access_time</i>
                                             {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
                                         </p>
@@ -73,12 +73,12 @@ const Variation1 = ({event, siteLabels}) => {
                                 </div>
                                 <div className="col">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
-                                    {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person)=>(
-                                        <>
+                                    {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
+                                        <React.Fragment key={i}>
                                         <p>Name: {person.first_name} {" "} {person.last_name}</p>
                                         <p>E-mail: <a href={`mailto:${person.email}`}>{person.email}</a></p>
                                         <p>Phone: {person.phone}</p>
-                                        </>
+                                        </React.Fragment>
                                     ))}
                                 </div>
                                 <div className="col">

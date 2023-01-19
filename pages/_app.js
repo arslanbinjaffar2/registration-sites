@@ -12,7 +12,6 @@ require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
-  console.log(router);
   const { event, layout } = router.query;
 
   const [_eventObj, setEventObj] = useState({});
