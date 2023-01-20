@@ -7,6 +7,7 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { getWithExpiry } from "helpers/helper";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -45,6 +46,11 @@ const Banner = () => {
         url = (event.paymentSettings && parseInt(event.paymentSettings.evensite_additional_attendee) === 1) ? `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee` : `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/manage-attendee`;
     }else{
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
+    }
+
+    let autoregister = getWithExpiry('autoregister');
+    if(autoregister !== null){
+        url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
     }
 
     return url;

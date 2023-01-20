@@ -47,30 +47,24 @@ const Variation1 = (props) => {
             <div className="col-lg-5 mb-5">
               <div className="ebs-event-detail">
                 <ul>
-                  <li>
-                    <i className="material-icons">date_range</i>
-                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
-                    {props.eventDates.length > 0 && props.eventDates.length <= 7 && props.eventDates.map((item)=>(
-                      <p>{localeMomentEventDates(item, props.event.language_id)}</p>
-                      ))}
-                    {(props.eventDates.length <=0 || props.eventDates.length > 7) && 
-                      <>
-                        <p>{localeMomentEventDates(props.event.start_date, props.event.language_id)}</p>
-                        <p>{localeMomentEventDates(props.event.end_date, props.event.language_id)}</p>
-                      </>
-                    }
-                  </li>
-                  <li>
-                    <i className="material-icons">watch_later</i>
-                    <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
-                    {props.openingHours.length > 0 && props.openingHours.map((item)=>(
-                      <p> {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
-                    ))}
-
-                    {props.openingHours.length <=0 && 
-                      <p>{localeMomentOpeningHours(props.event.start_date, props.event.language_id)}, {" "} {`${moment(props.event?.start_date + ' ' + props.event?.start_time).format('HH:mm')} - ${moment(props.event?.start_date + ' ' + props.event?.end_time).format('HH:mm')}`}</p>
-                    }
-                  </li>
+                  {props.openingHours.length > 0 && 
+                    <>
+                      <li>
+                        <i className="material-icons">date_range</i>
+                        <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
+                        {props.openingHours.length > 0 && props.openingHours.map((item, i)=>(
+                          <p key={i}>{localeMomentEventDates(item.date, props.event.language_id)}</p>
+                          ))}
+                      </li>
+                      <li>
+                        <i className="material-icons">watch_later</i>
+                        <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
+                        {props.openingHours.length > 0 && props.openingHours.map((item,i)=>(
+                          <p key={i}> {localeMomentOpeningHours(item.date, props.event.language_id)}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
+                        ))}
+                      </li>
+                    </>
+                  }
                   <li>
                     <i className="material-icons">location_on</i>
                     <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_LOCATION !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_LOCATION : "Location"}</strong>
