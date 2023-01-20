@@ -16,12 +16,12 @@ function MyApp({ Component, pageProps }) {
   const { event, layout, autoregister } = router.query;
   const [_eventObj, setEventObj] = useState({});
 
-  
   if(autoregister !== undefined && typeof window !== 'undefined'){
     let autoregister_stored = getWithExpiry('autoregister');
     if(autoregister_stored === null || autoregister_stored !== autoregister){
-        setWithExpiry("autoregister", autoregister, 300000);
+      setWithExpiry("autoregister", autoregister, 300000);
     }
+    router.replace(`/${event}`, undefined, { shallow: true });
   }
 
   useEffect(() => {

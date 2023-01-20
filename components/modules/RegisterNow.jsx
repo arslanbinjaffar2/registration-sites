@@ -53,7 +53,6 @@ const RegisterNow = () => {
     }
 
     let autoregister = getWithExpiry('autoregister');
-    console.log(autoregister);
     if(autoregister !== null){
         url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
     }

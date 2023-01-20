@@ -63,10 +63,10 @@ const MetaInfo = (props) => {
                                     : props.metaInfo.name
                             }
                         />
-                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
+                        {(props.metaInfo.settings.fav_icon && props.metaInfo.settings.fav_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.fav_icon}`}
                         />}
                         {props.metaInfo.settings.google_analytics && (
                             <script>
