@@ -2,6 +2,7 @@ import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { getWithExpiry } from "helpers/helper";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -45,7 +46,10 @@ const EventInformation = () => {
     }else{
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
-
+    let autoregister = getWithExpiry('autoregister');
+    if(autoregister !== null){
+        url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
+    }
     return url;
   },[event]);
 

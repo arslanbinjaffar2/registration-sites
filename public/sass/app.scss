@@ -2928,18 +2928,73 @@
 .footer {
   padding: 2rem 0;
   &#ebs-footer {
+    color: $black;
+    font-size: 14px;
+    line-height: 1.6;
+    p {
+      margin: 0;
+    }
+    h3 {
+      text-transform: none;
+      margin: 0 0 25px;
+      color: $black;
+      font-weight: 500;
+    }
+    h4 {
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 7px;
+      font-weight: 500;
+      color: $black;
+    }
+    h5 {
+      margin: 0 0 10px;
+      font-size: 11px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    a.link {
+      margin-top: 12px;
+      display: inline-block;
+
+    }
     .icon {
-      margin-bottom: 25px;
+      margin-bottom: 0px;
+      padding-left: 22px;
+      position: relative;
       i.material-icons {
-        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 18px;
       } 
     }
-  }
-  &.ebs-variation-dark {
-    background: $default-heading-color;
-    color: $white;
-    h1,h2,h3,h4,h5 {
+    &.ebs-variation-dark {
       color: $white;
+      background: $default-heading-color;
+      color: $white;
+      h1,h2,h3,h4,h5,a {
+        color: $white;
+      }
+    }
+    @include laptop-landscape {
+      h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      .col-3 {
+        width: 50%;
+        margin-bottom: 25px;
+      }
+    }
+    @include phone-portrait {
+      .col-3 {
+        width: 100%;
+      }
     }
   }
 }
