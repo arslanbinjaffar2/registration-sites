@@ -55,10 +55,10 @@ const ExhibitorDetail = (props) => {
                         <meta property="twitter:card" content="summary_large_image" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="msapplication-config" content="none" />
-                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
+                        {(props.metaInfo.settings.fav_icon && props.metaInfo.settings.fav_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.fav_icon}`}
                         />}
           </Head>
             {event ? (

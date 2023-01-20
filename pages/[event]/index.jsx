@@ -27,7 +27,7 @@ const Index = (props) => {
 
 export async function getServerSideProps(context) {
     const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
-
+    console.log(eventData);
     return {
         props: {
             metaInfo: eventData,
