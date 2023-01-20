@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { useRouter } from 'next/router';
 import FullPageLoader from "components/ui-components/FullPageLoader";
 import Theme from "components/Theme";
-import {setWithExpiry} from "helpers/helper";
+import {setWithExpiry, getWithExpiry} from "helpers/helper";
 import ErrorBoundary from 'components/ErrorBoundary';
 require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
@@ -18,7 +18,10 @@ function MyApp({ Component, pageProps }) {
 
   
   if(autoregister !== undefined && typeof window !== 'undefined'){
-    setWithExpiry("autoregister", autoregister, 300000);
+    let autoregister_stored = getWithExpiry('autoregister');
+    if(autoregister_stored === null || autoregister_stored !== autoregister){
+        setWithExpiry("autoregister", autoregister, 300000);
+    }
   }
 
   useEffect(() => {
