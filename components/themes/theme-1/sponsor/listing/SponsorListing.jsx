@@ -87,10 +87,10 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                 <em className="fa fa-search"></em>
               </div>
               {sponsorCategories.length > 0 && <div className="ebs-filter-box pb-4">
-                <h4>Filter by Categories</h4>
+                <h4>{siteLabels.EVENTSITE_FILTER_BY_CATEGORIES_LABEL !== undefined ? siteLabels.EVENTSITE_FILTER_BY_CATEGORIES_LABEL :"Filter by Categories"}</h4>
                 <div className="ebs-filter-items">
                   <ul>
-                    <li><a className={selectedCategory === 'all' ? 'active' : ''} onClick={() => { filterbyCategory('all') }} href="#!">All</a> </li>
+                    <li><a className={selectedCategory === 'all' ? 'active' : ''} onClick={() => { filterbyCategory('all') }} href="#!">{siteLabels.EVENTSITE_LIST_ALL_LABEL !== undefined ? siteLabels.EVENTSITE_LIST_ALL_LABEL : "All"}</a> </li>
                     {
                       sponsorCategories.map((cat) => (
                         <li key={cat.id}><a href="#!" className={selectedCategory === cat.id ? 'active' : ''} onClick={() => { filterbyCategory(cat.id) }} >{cat.name}</a> </li>

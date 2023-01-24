@@ -66,7 +66,7 @@ const SponsorDetail = (props) => {
             </ul>
             </nav>)
         }} />
-          <Component sponsor={sponsor} labels={labels} documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
+          <Component sponsor={sponsor} labels={event.labels} documents={documents} sponsorSettings={event.sponsor_settings} moduleName={event.eventsiteModules.sponsors} />
         </React.Fragment>
       ) : <PageLoader />
       }

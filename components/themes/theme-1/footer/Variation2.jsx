@@ -39,7 +39,7 @@ const Variation2 = ({event, siteLabels}) => {
                                         </React.Fragment>
                                     ))}
 
-                                   {event.eventsiteSettings.eventsite_add_calender == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">Add to Calendar</a>}
+                                   {event.eventsiteSettings.eventsite_add_calender == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">{event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
                                 </div>}
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_TWO}</h5>
@@ -53,7 +53,7 @@ const Variation2 = ({event, siteLabels}) => {
                                         {event?.info?.location_address && (
                                             <React.Fragment>
                                                 {event?.info?.location_address}<br />
-                                            </React.Fragment>
+                                                </React.Fragment>
                                         )}
                                         
                                         {event?.country && (
