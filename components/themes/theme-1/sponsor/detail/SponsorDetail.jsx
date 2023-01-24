@@ -60,7 +60,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">ABOUT </h4>
+                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
                           <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: sponsor.description }} ></div>
                         </div>
                       )}
@@ -100,7 +100,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                             }}
                             className="info"
                           >
-                            Phone{" "}
+                            {labels.EVENTSITE_PHONE_LABEL !== undefined ? labels.EVENTSITE_PHONE_LABEL :"Phone"}
                           </h4>
                           <p>
                             <a
@@ -166,7 +166,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
       {sponsor?.sponsors_attendee.length > 0 && <div style={{ paddingBottom: 50 }} className="">
         <div className="container">
           <div className="edgtf-title-section-holder pb-1">
-            <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">Contacts</h3>
+            <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
             {sponsor.sponsors_attendee.map((attendee, o) =>

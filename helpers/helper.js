@@ -86,11 +86,14 @@ export const localeProgramMoment = (language_id, date = null) => {
         locale = 'be';
         format = 'D MMMM YYYY';
     }
-    if (date !== null) {
-        return moment(date).locale(locale).format(format);
-    }
 
-    return moment().locale(locale).format(format)
+    
+    if (date !== null) {
+        let localeBasedMoment = moment(date).locale(locale);
+        return localeBasedMoment.format(format);
+    }
+    let localeBasedMoment = moment().locale(locale);
+    return localeBasedMoment.format(format)
 }
 
 export const metaInfo = async (url, screen) => {
@@ -164,42 +167,42 @@ export const localeMomentEventDates = (date, language_id) => {
 
 export const localeMomentOpeningHours = (date, language_id) => {
     let locale = 'en';
-    let format = 'dddd';
+    let format = 'dddd:';
     if (language_id == 2) {
         locale = 'da';
-        format = 'dddd';
+        format = 'dddd:';
     }
     else if (language_id == 3) {
         locale = 'no';
-        format = 'dddd';
+        format = 'dddd:';
     }
     else if (language_id == 4) {
         locale = 'de';
-        format = 'dddd';
+        format = 'dddd:';
     }
     else if (language_id == 5) {
         locale = 'lt';
-        format = 'dddd';
+        format = 'dddd:';
 
     }
     else if (language_id == 6) {
         locale = 'fi';
-        format = 'dddd';
+        format = 'dddd:';
 
     }
     else if (language_id == 7) {
         locale = 'se';
-        format = 'dddd';
+        format = 'dddd:';
 
     }
     else if (language_id == 8) {
         locale = 'nl';
-        format = 'dddd';
+        format = 'dddd:';
 
     }
     else if (language_id == 9) {
         locale = 'be';
-        format = 'dddd';
+        format = 'dddd:';
     }
     let localeBasedMoment = moment(date).locale(locale);
     return localeBasedMoment.format(format);
