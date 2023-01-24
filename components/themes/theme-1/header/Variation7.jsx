@@ -129,7 +129,7 @@ class Variation7 extends React.Component {
       const _item = document.createElement("li");
       const _itemancor = document.createElement("span");
       _itemancor.classList.add("nav-link");
-      const textnode = document.createTextNode(event.labels.EVENTSITE_TOP_MENU_MORE_LABEL !== undefined ? event.labels.EVENTSITE_TOP_MENU_MORE_LABEL :"More");
+      const textnode = document.createTextNode(this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL !== undefined ? this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL :"More");
       const _ul = document.createElement("ul");
       _ul.classList.add("dropdown-menu");
       _itemancor.appendChild(textnode);

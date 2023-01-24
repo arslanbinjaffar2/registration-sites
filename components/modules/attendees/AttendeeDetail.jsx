@@ -35,9 +35,9 @@ const AttendeeDetail = (props) => {
   );
 
   const [breadCrumbs, setbreadCrumbs] = useState([
-    {name:"Home page", url:`/${eventUrl}`, type:"link"},
-    {name:"Attendees", url:`/${eventUrl}/attendees`, type:"link"},
-    {name:"Overview of attendee", url:"", type:"name"},
+    {name:event.labels.HOME_PAGE_ATTENDEE, url:`/${eventUrl}`, type:"link"},
+    {name:event.labels.EVENTSITE_ATTENDEES, url:`/${eventUrl}/attendees`, type:"link"},
+    {name:event.labels.OVERVIEW_OF_ATTENDEES, url:"", type:"name"},
   ]);
 
   useEffect(() => {

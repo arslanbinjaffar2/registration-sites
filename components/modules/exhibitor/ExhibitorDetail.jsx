@@ -38,9 +38,9 @@ const ExhibitorDetail = (props) => {
   );
 
   const [breadCrumbs, setbreadCrumbs] = useState([
-    {name:"Home page", url:`/${eventUrl}`, type:"link"},
-    {name:"Exhibitors", url:`/${eventUrl}/exhibitors`, type:"link"},
-    {name:"Overview of exhibitor", url:"", type:"name"},
+    {name:event.labels.HOME_PAGE_EXHIBIOR, url:`/${eventUrl}`, type:"link"},
+    {name:event.labels.EVENTSITE_EXHIBITORS, url:`/${eventUrl}/exhibitors`, type:"link"},
+    {name:event.labels.OVERVIEW_OF_EXHIBITORS, url:"", type:"name"},
   ]);
   useEffect(() => {
     dispatch(incrementLoadCount());

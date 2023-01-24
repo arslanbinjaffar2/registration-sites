@@ -41,9 +41,9 @@ const SponsorDetail = (props) => {
   }, []);
   
   const [breadCrumbs, setbreadCrumbs] = useState([
-    {name:"Home page", url:`/${eventUrl}`, type:"link"},
-    {name:"Sponsors", url:`/${eventUrl}/sponsors`, type:"link"},
-    {name:"Overview of sponsor", url:"", type:"name"},
+    {name:event.labels.HOME_PAGE_SPONSOR, url:`/${eventUrl}`, type:"link"},
+    {name:event.labels.EVENTSITE_SPONSORS, url:`/${eventUrl}/sponsors`, type:"link"},
+    {name:event.labels.OVERVIEW_OF_SPONSORS, url:"", type:"name"},
   ]);
 
   const { sponsor, labels, documents, loading, error } = useSelector(sponsorDetailSelector);
