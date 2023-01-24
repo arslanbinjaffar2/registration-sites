@@ -34,9 +34,9 @@ const SpeakerDetail = (props) => {
   );
 
   const [breadCrumbs, setbreadCrumbs] = useState([
-    {name:"Home page", url:`/${eventUrl}`, type:"link"},
-    {name:"Speakers", url:`/${eventUrl}/speakers`, type:"link"},
-    {name:"Overview of speaker", url:"", type:"name"},
+    {name:event.labels.HOME_PAGE, url:`/${eventUrl}`, type:"link"},
+    {name:event.labels.EVENTSITE_SPEAKERS, url:`/${eventUrl}/speakers`, type:"link"},
+    {name:event.labels.OVERVIEW_OF_SPEAKER, url:"", type:"name"},
   ]);
 
   useEffect(() => {

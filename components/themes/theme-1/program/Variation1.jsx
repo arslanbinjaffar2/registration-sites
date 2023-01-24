@@ -104,7 +104,7 @@ const settings = {
       {programsLoc && (
         <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding">
       <div className="container">
-        <HeadingElement dark={false} label={siteLabels.EVENTSITE_PROGRAM} desc={siteLabels.EVENTSITE_AMAZING_SPEAKERS} align={'center'} />
+        <HeadingElement dark={false} label={siteLabels.EVENTSITE_PROGRAM} desc={siteLabels.EVENTSITE_PROGRAM_DETAIL} align={'center'} />
       </div>
       <div className="ebs-program-top">
         <div className="container">
