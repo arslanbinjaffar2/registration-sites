@@ -104,7 +104,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
             <div className="col-lg-9">
               <div className="ebs-top-filter-container pb-3">
                 <ul>
-                  <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="javascript:void(0)">All</a> </li>
+                  <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="javascript:void(0)">{siteLabels.EVENTSITE_LIST_ALL_LABEL ? siteLabels.EVENTSITE_LIST_ALL_LABEL : "All"}</a> </li>
                   <li><a href="javascript:void(0)">#</a> </li>
                   {_alphabet.split('').map((item, k) =>
                     <li className="alpha" key={k}><a href="javascript:void(0)" className={filterAlphabet === item ? "active" : ''} onClick={() => { filterbyAlphabet(item.toLowerCase()); }}>{item}</a></li>
