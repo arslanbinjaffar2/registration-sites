@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import moment from "moment";
+import {localeMomentEventDates, localeMomentOpeningHours} from "helpers/helper";
+
 const Variation1 = ({event, siteLabels}) => {
 
     const [height, setheight] = useState('');
@@ -28,16 +30,16 @@ const Variation1 = ({event, siteLabels}) => {
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_ONE}</h5>
                                     
                                     { event.eventOpeningHours.map((item, i)=>(
-                                        <React.Fragment key={i}>
+                                        <div style={{marginBottom:"10px"}} key={i}>
                                             <p className='icon d-flex'>
                                                 <i className='material-icons'>date_range</i>
-                                                <time dateTime="2019-31-12">{`${moment(event?.start_date).format('dddd, MMMM Do, YYYY')}`}</time>
+                                                <time dateTime="2019-31-12" style={{textTransform:'capitalize'}}>{`${localeMomentEventDates(item.date, event.language_id)}`}</time>
                                             </p>
                                             <p className="icon d-flex" >
                                                 <i className='material-icons'>access_time</i>
-                                                {moment(item.date).format('dddd')}, {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
+                                                {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
                                             </p>
-                                        </React.Fragment>
+                                        </div> 
                                     ))}
                                     {event.eventsiteSettings.eventsite_add_calender == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">  {event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
                                 </div>}
@@ -67,11 +69,11 @@ const Variation1 = ({event, siteLabels}) => {
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
                                     {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
-                                        <React.Fragment key={i}>
-                                        <h4>{person.first_name} {" "} {person.last_name}</h4>
+                                        <div style={{marginBottom:"10px"}} key={i}>
+                                        <h4 style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</h4>
                                         <p>E-mail: <a href={`mailto:${person.email}`}>{person.email}</a></p>
                                         <p>Phone: {person.phone}</p>
-                                        </React.Fragment>
+                                        </div>
                                     ))}
                                 </div>
                                 <div className="col-3">

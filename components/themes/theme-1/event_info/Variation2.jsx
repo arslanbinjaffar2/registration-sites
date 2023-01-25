@@ -1,7 +1,7 @@
 import * as React from 'react';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from 'moment';
-import {localeMomentEventDates, localeMomentOpeningHours} from "../../../../helpers/helper";
+import {localeMomentEventDates, localeMomentOpeningHours} from "helpers/helper";
 const Variation1 = (props) => {
     return (
       <div className="module-section">

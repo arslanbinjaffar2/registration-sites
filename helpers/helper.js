@@ -177,7 +177,7 @@ export const localeMomentEventDates = (date, language_id) => {
     let format = 'dddd, MMMM Do, YYYY';
     if (language_id == 2) {
         locale = 'da';
-        format = 'dddd, MMMM Do YYYY';
+        format = 'dddd, D MMMM  YYYY';
     }
     else if (language_id == 3) {
         locale = 'no';
