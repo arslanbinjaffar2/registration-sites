@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
+import { localeProgramMomentHome } from 'helpers/helper';
+
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -41,7 +43,7 @@ const customStyles = {
   })
 };
 
-const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl }) => {
+const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl, language_id }) => {
   const [schedule, setSchedule] = useState(Object.keys(programs));
   const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]]);
   const [selectedDate, setSelectedDate] = useState(schedule[0]);
@@ -117,7 +119,7 @@ const settings = {
                 <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
-                    placeholder="Select track"
+                    placeholder={siteLabels.EVENTSITE_SELECT_TRACK ? siteLabels.EVENTSITE_SELECT_TRACK : "Select track"}
                     components={{ IndicatorSeparator: null }}
                     onChange={(track)=>{onTrackChange(track)}}
                     value={selectedTrack}
@@ -136,29 +138,29 @@ const settings = {
             <Slider {...settings}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
-                <a href="#!">{moment(date).format('Do MMMM')}</a>
+                <a href="javascript:void(0)" style={{ textTransform:'capitalize' }}>{localeProgramMomentHome(language_id,date)}</a>
               </div>
               )}
               {/* <div  className={`ebs-date-box`}>
-                <a href="#!">2 Oct</a>
+                <a href="javascript:void(0)">2 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">3 Oct</a>
+                <a href="javascript:void(0)">3 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">4 Oct</a>
+                <a href="javascript:void(0)">4 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">5 Oct</a>
+                <a href="javascript:void(0)">5 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">6 Oct</a>
+                <a href="javascript:void(0)">6 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">7 Oct</a>
+                <a href="javascript:void(0)">7 Oct</a>
               </div>
               <div  className={`ebs-date-box`}>
-                <a href="#!">8 Oct</a>
+                <a href="javascript:void(0)">8 Oct</a>
               </div> */}
             </Slider>
           </div>
@@ -166,8 +168,8 @@ const settings = {
               <div  className="ebs-program-parent">
                 {programsLoc && programsLoc.map((item,i) =>
                       item.workshop_id > 0  ? 
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} />:
-                      <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} />:
+                      <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels} />
                 )}
               </div>
           </div>

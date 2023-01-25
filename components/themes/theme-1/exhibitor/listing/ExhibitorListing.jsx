@@ -89,10 +89,10 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                 <h4>{siteLabels.EVENTSITE_FILTER_BY_CATEGORIES_LABEL !== undefined ? siteLabels.EVENTSITE_FILTER_BY_CATEGORIES_LABEL :"Filter by Categories"}</h4>
                 <div className="ebs-filter-items">
                   <ul>
-                    <li><a className={selectedCategory === 'all' ? 'active' : ''} onClick={() => { filterbyCategory('all') }} href="#!">{siteLabels.EVENTSITE_LIST_ALL_LABEL ? siteLabels.EVENTSITE_LIST_ALL_LABEL : "All"}</a> </li>
+                    <li><a className={selectedCategory === 'all' ? 'active' : ''} onClick={() => { filterbyCategory('all') }} href="javascript:void(0)">{siteLabels.EVENTSITE_LIST_ALL_LABEL ? siteLabels.EVENTSITE_LIST_ALL_LABEL : "All"}</a> </li>
                     {
                       exhibitorCategories.map((cat) => (
-                        <li key={cat.id}><a href="#!" className={selectedCategory === cat.id ? 'active' : ''} onClick={() => { filterbyCategory(cat.id) }} >{cat.name}</a> </li>
+                        <li key={cat.id}><a href="javascript:void(0)" className={selectedCategory === cat.id ? 'active' : ''} onClick={() => { filterbyCategory(cat.id) }} >{cat.name}</a> </li>
                       ))
                     }
 
@@ -103,10 +103,10 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
             <div className="col-lg-9">
               <div className="ebs-top-filter-container pb-3">
                 <ul>
-                  <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="#!">All</a> </li>
-                  <li><a href="#!">#</a> </li>
+                  <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="javascript:void(0)">All</a> </li>
+                  <li><a href="javascript:void(0)">#</a> </li>
                   {_alphabet.split('').map((item, k) =>
-                    <li className="alpha" key={k}><a href="#!" className={filterAlphabet === item ? "active" : ''} onClick={() => { filterbyAlphabet(item.toLowerCase()); }}>{item}</a></li>
+                    <li className="alpha" key={k}><a href="javascript:void(0)" className={filterAlphabet === item ? "active" : ''} onClick={() => { filterbyAlphabet(item.toLowerCase()); }}>{item}</a></li>
                   )}
                 </ul>
               </div>

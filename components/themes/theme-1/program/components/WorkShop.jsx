@@ -2,18 +2,18 @@ import React, {useState} from 'react'
 import moment from 'moment'
 import ProgramItem from "components/themes/theme-1/program/components/ProgramItem";
 
-const WorkShop = ({item, eventUrl, showWorkshop}) => {
+const WorkShop = ({item, eventUrl, showWorkshop, labels}) => {
   const [open, setOpen] = useState(showWorkshop);
   return (
     <div className="ebs-program-parent ebs-program-workshop">
     <div onClick={()=>{setOpen(!open)}} className="ebs-workshop-header">
       {item.program_workshop} 
       {parseInt(item.hide_time) === 0  && <>
-      {" "}({moment(item?.start_time, "HH:mm:ss").format("hh:mm A")} - {moment(item?.end_time, "HH:mm:ss").format("hh:mm A")})
+      {" "}({moment(item?.start_time, "HH:mm:ss").format("hh:mm")} - {moment(item?.end_time, "HH:mm:ss").format("hh:mm")})
       </>}
       <i className="material-icons">{open ? 'expand_less' : 'expand_more'}</i></div>
           {open && item.workshop_programs.map((program,i) =>
-                <ProgramItem key={i} eventUrl={eventUrl} program={program}/>           
+                <ProgramItem key={i} eventUrl={eventUrl} program={program} labels={labels}/>           
           )}
     </div>
   )
