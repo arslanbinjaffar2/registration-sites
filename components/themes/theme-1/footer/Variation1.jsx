@@ -33,7 +33,7 @@ const Variation1 = ({event, siteLabels}) => {
                                         <div style={{marginBottom:"10px"}} key={i}>
                                             <p className='icon d-flex'>
                                                 <i className='material-icons'>date_range</i>
-                                                <time dateTime="2019-31-12" style={{textTransform:'capitalize'}}>{`${localeMomentEventDates(item.date, event.language_id)}`}</time>
+                                                <time dateTime="2019-31-12">{`${localeMomentEventDates(item.date, event.language_id)}`}</time>
                                             </p>
                                             <p className="icon d-flex" >
                                                 <i className='material-icons'>access_time</i>

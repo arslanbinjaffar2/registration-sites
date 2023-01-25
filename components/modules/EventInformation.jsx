@@ -46,7 +46,7 @@ const EventInformation = () => {
     }else{
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
-    let autoregister = getWithExpiry('autoregister');
+    let autoregister = getWithExpiry(`autoregister_${event.id}`);
     if(autoregister !== null){
         url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
     }

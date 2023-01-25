@@ -172,48 +172,30 @@ export const locales = [
     'be'
 ];
 
-export const localeMomentEventDates = (date, language_id) => {
-    let locale = 'en';
-    let format = 'dddd, MMMM Do, YYYY';
-    if (language_id == 2) {
-        locale = 'da';
-        format = 'dddd, D MMMM  YYYY';
+export const localeMomentEventDates = (date, language_id) => { 
+     let locale = 'en';
+      let format = 'dddd, D. MMMM YYYY';
+       if (language_id == 2) {
+         locale = 'da';
+         format = 'dddd, D. MMMM YYYY';
+       } else if (language_id == 3) {
+         locale = 'no';
+          format = 'dddd, D. MMMM YYYY'; 
+        } else if (language_id == 4) {    
+            locale = 'de';    format = 'dddd, D. MMMM YYYY';
+        } else if (language_id == 5) {   
+            locale = 'lt';    format = 'dddd, D. MMMM YYYY';
+        } else if (language_id == 6) {   
+            locale = 'fi';    format = 'dddd, D. MMMM YYYY';
+        } else if (language_id == 7) { 
+            locale = 'se';    format = 'dddd, D. MMMM YYYY';  
+        } else if (language_id == 8) {
+            locale = 'nl';    format = 'dddd, D. MMMM YYYY';  
+        } else if (language_id == 9) {
+            locale = 'be';    format = 'dddd, D. MMMM YYYY';  
+        }  
+        return moment(date).locale(locale).format(format).charAt(0).toUpperCase() + moment(date).locale(locale).format(format).slice(1);
     }
-    else if (language_id == 3) {
-        locale = 'no';
-        format = 'dddd, MMMM Do YYYY';
-    }
-    else if (language_id == 4) {
-        locale = 'de';
-        format = 'dddd, MMMM Do YYYY';
-    }
-    else if (language_id == 5) {
-        locale = 'lt';
-        format = 'dddd, MMMM Do YYYY';
-
-    }
-    else if (language_id == 6) {
-        locale = 'fi';
-        format = 'dddd, MMMM Do YYYY';
-
-    }
-    else if (language_id == 7) {
-        locale = 'se';
-        format = 'dddd, MMMM Do YYYY';
-
-    }
-    else if (language_id == 8) {
-        locale = 'nl';
-        format = 'dddd, MMMM Do YYYY';
-
-    }
-    else if (language_id == 9) {
-        locale = 'be';
-        format = 'dddd, MMMM Do YYYY';
-    }
-    let localeBasedMoment = moment(date).locale(locale);
-    return localeBasedMoment.format(format);
-}
 
 export const localeMomentOpeningHours = (date, language_id) => {
     let locale = 'en';
