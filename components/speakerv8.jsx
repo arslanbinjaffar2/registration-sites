@@ -39,11 +39,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -61,11 +61,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -83,11 +83,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -105,11 +105,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -127,11 +127,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -149,11 +149,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -171,11 +171,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">
@@ -193,11 +193,11 @@ export default class speakerv8 extends Component {
                     />
                   </span>
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div> 
                 </div>
                 <div className="speakerv8-caption">

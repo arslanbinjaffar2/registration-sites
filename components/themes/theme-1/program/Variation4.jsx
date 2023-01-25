@@ -43,7 +43,7 @@ const Variation4 = ({ programs }) => {
                         }}
                         onClick={() => setActiveIndex(k)}
                         className={k === activeIndex ? "active" : ""}
-                        href="#!"
+                        href="javascript:void(0)"
                       >
                         {moment(new Date(element[0].date)).format("DD MMM")}
                       </a>

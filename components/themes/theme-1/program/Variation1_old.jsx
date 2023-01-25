@@ -19,7 +19,7 @@ const Variation1 = ({ programs }) => {
                       }`}
                   >
                     <a
-                      href="#!"
+                      href="javascript:void(0)"
                       onClick={() => setActiveIndex(k)}
                       className="ui-tabs-anchor"
                     >

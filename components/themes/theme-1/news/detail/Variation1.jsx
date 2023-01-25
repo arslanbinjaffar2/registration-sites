@@ -94,7 +94,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                         >
                           <a
                             itemProp="url"
-                            href="#!"
+                            href="javascript:void(0)"
                             title="Web Analytics Made Easy"
                           >
                             {news.title}

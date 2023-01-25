@@ -37,7 +37,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {(crumb.id === currentMenu) ? crumb.name : <a href="#!" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
+                  {(crumb.id === currentMenu) ? crumb.name : <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
                 </li>
               ))}
             </ul>
@@ -59,7 +59,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                   <a href={`${item.website_protocol}${item.url}`} target="_blank" rel="noreferrer"  >{item.info.name}</a>
                 }
                 {item.page_type === "menu" &&
-                  <a href="#!" onClick={(e) => { onCrumbClick(e, item) }}>
+                  <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, item) }}>
                     {item.info.name}
                   </a>
                 }

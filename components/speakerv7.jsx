@@ -47,13 +47,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -76,13 +76,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -105,13 +105,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -134,13 +134,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -163,13 +163,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -192,13 +192,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -221,13 +221,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
@@ -250,13 +250,13 @@ export default class speakerv7 extends Component {
                   </div>
                   <div className="d-flex align-items-baseline">
                     <div className="social-icons">
-                      <a href="#!"><span data-icon="&#xe0aa;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0ab;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b1;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b4;"></span></a>
-                      <a href="#!"><span data-icon="&#xe0b9;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0aa;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0ab;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b1;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b4;"></span></a>
+                      <a href="javascript:void(0)"><span data-icon="&#xe0b9;"></span></a>
                     </div>
-                    <span className="email"><a href="#!" data-icon="&#xe010;"> </a></span>
+                    <span className="email"><a href="javascript:void(0)" data-icon="&#xe010;"> </a></span>
                   </div>
                 </div>
               </div>
