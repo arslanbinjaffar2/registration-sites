@@ -88,12 +88,12 @@ export const localeProgramMoment = (language_id, date = null) => {
     }
 
     
-    if (date !== null) {
-        let localeBasedMoment = moment(date).locale(locale);
-        return localeBasedMoment.format(format);
-    }
-    let localeBasedMoment = moment().locale(locale);
-    return localeBasedMoment.format(format)
+    // if (date !== null) {
+    //     let localeBasedMoment = moment(date).locale(locale);
+    //     return localeBasedMoment.format(format);
+    // }
+    // let localeBasedMoment = moment().locale(locale);
+    return moment(date).locale(locale).format(format).charAt(0).toUpperCase() + moment(date).locale(locale).format(format).slice(1)
 }
 
 export const localeProgramMomentHome = (language_id, date = null) => {

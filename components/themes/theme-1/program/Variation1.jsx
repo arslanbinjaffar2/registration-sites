@@ -117,14 +117,14 @@ const settings = {
               <div className="row flex-row-reverse">
                
                 <div className="col-md-5 col-6">
-                  <ReactSelect
+                  {tracks.length > 0 && <ReactSelect
                     styles={customStyles}
                     placeholder={siteLabels.EVENTSITE_SELECT_TRACK ? siteLabels.EVENTSITE_SELECT_TRACK : "Select track"}
                     components={{ IndicatorSeparator: null }}
                     onChange={(track)=>{onTrackChange(track)}}
                     value={selectedTrack}
                     options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
-                  />
+                  />}
                 </div>
                 <div className="col-md-5 col-6">
                 </div>
@@ -138,7 +138,7 @@ const settings = {
             <Slider {...settings}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
-                <a href="javascript:void(0)" style={{ textTransform:'capitalize' }}>{localeProgramMomentHome(language_id,date)}</a>
+                <a href="javascript:void(0)" >{localeProgramMomentHome(language_id,date)}</a>
               </div>
               )}
               {/* <div  className={`ebs-date-box`}>
