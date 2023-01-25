@@ -17,9 +17,9 @@ function MyApp({ Component, pageProps }) {
   const [_eventObj, setEventObj] = useState({});
 
   if(autoregister !== undefined && typeof window !== 'undefined'){
-    let autoregister_stored = getWithExpiry(`autoregister_${event.id}`);
+    let autoregister_stored = getWithExpiry(`autoregister_${event}`);
     if(autoregister_stored === null || autoregister_stored !== autoregister){
-      setWithExpiry(`autoregister_${event.id}`, autoregister, 300000);
+      setWithExpiry(`autoregister_${event}`, autoregister, 300000);
     }
     router.replace(`/${event}`, undefined, { shallow: true });
   }
