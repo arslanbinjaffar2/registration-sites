@@ -9,27 +9,27 @@ class Variation1 extends React.Component {
                             <div className="tt_navigation_cell timetable_clearfix">
                                 <ul className="timetable_clearfix tt_tabs_navigation events_categories_filter ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
                                     <li className="ui-state-default ui-corner-top ui-tabs-active ui-state-active">
-                                        <a href="#!" className="ui-tabs-anchor">
+                                        <a href="javascript:void(0)" className="ui-tabs-anchor">
                                             All Events
                                         </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
-                                        <a href="#!" className="ui-tabs-anchor">
+                                        <a href="javascript:void(0)" className="ui-tabs-anchor">
                                             Festivity
                                         </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
-                                        <a href="#!" className="ui-tabs-anchor">
+                                        <a href="javascript:void(0)" className="ui-tabs-anchor">
                                             Masterclass
                                         </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
-                                        <a href="#!" className="ui-tabs-anchor">
+                                        <a href="javascript:void(0)" className="ui-tabs-anchor">
                                             Seminar
                                         </a>
                                     </li>
                                     <li className="ui-state-default ui-corner-top">
-                                        <a href="#!" className="ui-tabs-anchor">
+                                        <a href="javascript:void(0)" className="ui-tabs-anchor">
                                             Workshop
                                         </a>
                                     </li>

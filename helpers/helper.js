@@ -96,6 +96,56 @@ export const localeProgramMoment = (language_id, date = null) => {
     return localeBasedMoment.format(format)
 }
 
+export const localeProgramMomentHome = (language_id, date = null) => {
+    let locale = 'en';
+    let format = 'Do MMMM';
+
+    if (language_id == 2) {
+        locale = 'da';
+        format = 'Do MMMM';
+    }
+    else if (language_id == 3) {
+        locale = 'no';
+        format = 'Do MMMM';
+    }
+    else if (language_id == 4) {
+        locale = 'de';
+        format = 'Do MMMM';
+    }
+    else if (language_id == 5) {
+        locale = 'lt';
+        format = 'Do MMMM';
+
+    }
+    else if (language_id == 6) {
+        locale = 'fi';
+        format = 'Do MMMM';
+
+    }
+    else if (language_id == 7) {
+        locale = 'se';
+        format = 'Do MMMM';
+
+    }
+    else if (language_id == 8) {
+        locale = 'nl';
+        format = 'Do MMMM';
+
+    }
+    else if (language_id == 9) {
+        locale = 'be';
+        format = 'Do MMMM';
+    }
+
+    
+    if (date !== null) {
+        let localeBasedMoment = moment(date).locale(locale);
+        return localeBasedMoment.format(format);
+    }
+    let localeBasedMoment = moment().locale(locale);
+    return localeBasedMoment.format(format)
+}
+
 export const metaInfo = async (url, screen) => {
 
     const res = await fetch(url, {

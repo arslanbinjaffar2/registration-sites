@@ -15,7 +15,7 @@ const customStyles = {
     maxWidth: '100%',
   })
 };
-const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters }) => {
+const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters  }) => {
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -100,11 +100,11 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
         <div className="ebs-main-program-listing">
           {programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
-              {programsLoc[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
+              {programsLoc[key][0] && <div className="ebs-date-border" style={{ textTransform:'capitalize' }} >{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 item.workshop_id > 0 ?
-                  <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> :
-                  <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+                  <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels}/> :
+                  <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels}/>
               ))}
             </div>
           ))}
