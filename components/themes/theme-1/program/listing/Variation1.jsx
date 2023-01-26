@@ -82,15 +82,16 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                     options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: key }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                   />
                 </div>
-                <div className="col-md-5 col-6">
-                  {tracks.length > 0 && <ReactSelect
-                    styles={customStyles}
-                    placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
-                    components={{ IndicatorSeparator: null }}
-                    onChange={(track) => { onTrackChange(track) }}
-                    options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
-                  />}
-                </div>
+                  {tracks.length > 0 &&
+                      <div className="col-md-5 col-6">
+                        <ReactSelect
+                          styles={customStyles}
+                          placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
+                          components={{ IndicatorSeparator: null }}
+                          onChange={(track) => { onTrackChange(track) }}
+                          options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
+                        />
+                  </div>}
               </div>
             </div>
           </div>
