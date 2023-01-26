@@ -237,7 +237,7 @@ export const localeMomentOpeningHours = (date, language_id) => {
         format = 'dddd:';
     }
     let localeBasedMoment = moment(date).locale(locale);
-    return localeBasedMoment.format(format);
+    return localeBasedMoment.format(format).charAt(0).toUpperCase() + localeBasedMoment.format(format).slice(1);
 }
 
 export function setWithExpiry(key, value, ttl) {
