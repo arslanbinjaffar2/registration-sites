@@ -83,13 +83,13 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                   />
                 </div>
                 <div className="col-md-5 col-6">
-                  <ReactSelect
+                  {tracks.length > 0 && <ReactSelect
                     styles={customStyles}
                     placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
                     components={{ IndicatorSeparator: null }}
                     onChange={(track) => { onTrackChange(track) }}
                     options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
-                  />
+                  />}
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
         <div className="ebs-main-program-listing">
           {programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
-              {programsLoc[key][0] && <div className="ebs-date-border" style={{ textTransform:'capitalize' }} >{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
+              {programsLoc[key][0] && <div className="ebs-date-border" >{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 item.workshop_id > 0 ?
                   <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels}/> :
