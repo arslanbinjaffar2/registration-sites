@@ -39,7 +39,6 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                       {({ ref, open }) => (
                         
                         <div style={{ animationDelay: 50 * i + 'ms' }} ref={ref} onClick={open} className="edgtf-gallery-image ebs-animation-layer" >
-                          {console.log(photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo')}
                           <span title={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'} className="gallery-img-wrapper-rectangle">
                             {photo.image && photo.image !== "" ? (
                               <img

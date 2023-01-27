@@ -76,7 +76,6 @@ const SliderBanner = (props) => {
       //       }
       //     });
       // }, [])
-      console.log(props);
     return (
         <div className={`banner-wrapper ${props.countdown && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
         <Slider {...settings}>

@@ -19,7 +19,6 @@ const MySubRegistration = () => {
     if(loading){
       return <PageLoader/>;
     }
-    console.log(loading);
     return (
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">

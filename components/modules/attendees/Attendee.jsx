@@ -67,7 +67,6 @@ const Attendee = (props) => {
   const setTextValue =(data) =>{
     setValue(data);
   };
-console.log(event.labels.EVENTSITE_LOAD_MORE)
   return (
     <Suspense fallback={<PageLoader/>}>
       {attendees ? (

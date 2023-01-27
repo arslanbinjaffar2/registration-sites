@@ -88,7 +88,6 @@ export const fetchBanner = (url) => {
         `${process.env.NEXT_APP_URL}/event/${url}/banner`
       );
       const res = await response.json();
-      console.log(res.data);
       dispatch(setBanner(res.data));
       dispatch(incrementLoadedSection());
       dispatch(incrementFetchLoadCount());

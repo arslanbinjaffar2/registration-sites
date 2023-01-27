@@ -206,7 +206,6 @@ function getWorkShop (items) {
     }
   });
 if (showWorkshop) {
-  console.log(themecounter);
   if (themecounter === 5) {
     themecounter = 0
   }

@@ -48,7 +48,6 @@ export const fetchSubRegistrationData = (id,url) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/my-sub-registration`, { headers:header("GET", id)})
         const res = await response.json()
-        console.log(res.data.answered !== 0 || res.data.settings.answer === 1);
         if(res.data.answered !== 0 || res.data.settings.answer === 1){
           dispatch(setSubRegistrationData(res.data))
         }

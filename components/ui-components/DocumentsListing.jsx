@@ -18,7 +18,6 @@ function DocumentsListing({documents, documentPage}) {
     const onDirectoryClick = (id) =>{
         let currentFolder =currentDirectory.find((item)=>(item.id === id))
         setCurrentFolder(currentFolder);
-        console.log()
         setCurrentDirectory(currentFolder.children_files);
         let newObj = {cid:currentFolder.id, pname:getDirectoryName(currentFolder)}
         setBreadCrumbs([...breadCrumbs, newObj ]);
