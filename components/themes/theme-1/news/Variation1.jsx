@@ -6,7 +6,6 @@ import Image from 'next/image'
 const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels}) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
-  console.log(new Date('Mon-Apr-2022 17:48 PM'))
   return (
     <div className="edgtf-container ebs-default-padding">
       <div className="container">

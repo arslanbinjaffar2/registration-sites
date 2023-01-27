@@ -42,7 +42,6 @@ const ProgramListing = (props) => {
       dispatch(fetchPrograms(eventUrl));
     }
   }, []);
-  console.log(programs);
 
   return (
     <Suspense fallback={<PageLoader />}>

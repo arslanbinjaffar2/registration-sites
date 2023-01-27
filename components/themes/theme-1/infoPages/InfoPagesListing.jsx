@@ -14,12 +14,10 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
     e.preventDefault();
     if (crumb.id !== currentMenu) {
       if (parseInt(crumb.id) === parseInt(main_menu_id)) {
-        console.log("if....bread");
         setBreadCrumbs([{ id: main_menu_id, name: eventSiteModuleName, type: "main_menu" }]);
         setCmsListing(getListing(listing, crumb.id, main_menu_id));
       } else {
         setCurrentMenu(crumb.id);
-        console.log("else....bread");
         setBreadCrumbs([{ id: main_menu_id, name: eventSiteModuleName, type: "main_menu" }, { id: crumb.id, name: crumb.info.name, type: "menu" }]);
         setCmsListing(getListing(listing, crumb.id, main_menu_id));
       }
@@ -109,7 +107,6 @@ const arrayTraverse = (array, menu_id, eventSiteModuleName, main_menu_id) => {
 }
 
 const getListing = (array, menu_id, main_menu_id) => {
-    console.log(array.find((item) => (item.id === parseFloat(main_menu_id))));
     let arr = array.find((item) => (item.id === parseFloat(main_menu_id))) !== (undefined || null) ? array.find((item) => (item.id === parseFloat(main_menu_id))).submenu : [];
     if (menu_id && parseFloat(menu_id) !== parseFloat(main_menu_id)) {     
         arr = arr.find((item) => (item.id === parseFloat(menu_id))) !== (null || undefined) ? arr.find((item) => (item.id === parseFloat(menu_id))).submenu : [];

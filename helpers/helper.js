@@ -242,7 +242,6 @@ export const localeMomentOpeningHours = (date, language_id) => {
 
 export function setWithExpiry(key, value, ttl) {
 	const now = new Date()
-    console.log("ca")
 	// `item` is an object which contains the original value
 	// as well as the time when it's supposed to expire
 	const item = {

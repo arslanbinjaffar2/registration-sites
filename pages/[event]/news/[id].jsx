@@ -6,6 +6,7 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import NewsDetail from 'components/modules/news/NewsDetail';
 import { metaInfo } from 'helpers/helper';
 import PageLoader from "components/ui-components/PageLoader";
+import { getCookie, setCookie } from 'cookies-next';
 
 const ExhibitorDetail = (props) => {
 
@@ -73,6 +74,7 @@ const ExhibitorDetail = (props) => {
 }
 
 export async function getServerSideProps(context) {
+    const {req, res} = context;
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/news/${context.query.id}/detail`);
     const res = await response.json();
     const rota = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');

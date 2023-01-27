@@ -3,6 +3,7 @@ import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
+import EventDescription from "./modules/EventDescription";
 const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("components/modules/Gallery"));
 const Video = lazy(() => import("components/modules/Video"));
@@ -38,9 +39,7 @@ const Index = () => {
               if (section.module_alias === "social_media_share" && section.status === 1)
                 return <SocialShare key={i} />;
               else if (section.module_alias === "event_description" && section.status === 1)
-                return (event.description?.info.description && <div className="ebs-default-padding module-section" key={i}>
-                <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
-              </div>);
+                return <EventDescription event={event} key={i} />;
               else if (section.module_alias === "custom_html2" && section.status === 1)
                 return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
