@@ -42,7 +42,6 @@ export const fetchSurveyListData = (id, url) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
         const res = await response.json()
-        console.log(res.data);
         dispatch(setSurveyListData(res.data))
       } catch (error) {
         dispatch(setError(error))

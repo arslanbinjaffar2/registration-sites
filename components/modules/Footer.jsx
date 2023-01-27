@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
-  console.log(variation);
   const Component = React.lazy(() =>
     import(`components/themes/${theme}/footer/${variation}`)
   );

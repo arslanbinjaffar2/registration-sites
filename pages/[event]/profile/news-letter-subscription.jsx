@@ -7,6 +7,7 @@ import ManageNewsLetter from "components/myAccount/profile/ManageNewsLetter";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
+import { getCookie, setCookie } from 'cookies-next';
 
 const NewsLetterSubscription = (props) => {
 
@@ -28,10 +29,16 @@ const NewsLetterSubscription = (props) => {
 }
 
 export async function getServerSideProps(context) {
+    const {req, res} = context;
     const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
+    const serverCookie = getCookie(`cookie__${context.query.event}`, { req, res });
+    if(serverCookie === null || serverCookie === undefined){
+        setCookie(`cookie__${context.query.event}`, 'necessary', { req, res, maxAge: 30*24*60*60 })
+    }
     return {
         props: {
             metaInfo: eventData,
+            cookie : serverCookie !== null || serverCookie !== undefined ? serverCookie : 'necessary',
             url: context.resolvedUrl
         },
     }

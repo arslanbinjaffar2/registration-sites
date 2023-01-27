@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import 'public/sass/app.scss';
 import 'photoswipe/dist/photoswipe.css';
-import { fetchEvent, eventSelector } from "store/Slices/EventSlice";
+import { fetchEvent, eventSelector, updateCookie } from "store/Slices/EventSlice";
 import { store } from "store/store";
 import { Provider } from "react-redux";
 import { useRouter } from 'next/router';
@@ -22,11 +22,16 @@ function MyApp({ Component, pageProps }) {
       setWithExpiry(`autoregister_${event}`, autoregister, 300000);
     }
     router.replace(`/${event}`, undefined, { shallow: true });
+    
+
   }
 
   useEffect(() => {
     if (event) {
       store.dispatch(fetchEvent(event, layout));
+      if(typeof window !== 'undefined' && localStorage.getItem(`cookie_${event}`) !== null){
+        store.dispatch(updateCookie(localStorage.getItem(`cookie_${event}`), event));
+      }
     }
   }, [store, event]);
 

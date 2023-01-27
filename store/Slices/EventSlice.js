@@ -4,6 +4,7 @@ const initialState = {
   event: null,
   loading: false,
   error: null,
+  cookie: "necessary",
 }
 
 export const eventSlice = createSlice({
@@ -20,11 +21,14 @@ export const eventSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload
     },
+    setCookie: (state, { payload }) => {
+      state.cookie = payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getEvent, setEvent, setError } = eventSlice.actions
+export const { getEvent, setEvent, setError, setCookie } = eventSlice.actions
 
 export const eventSelector = state => state.event
 
@@ -44,3 +48,11 @@ export const fetchEvent = (url, layout=null) => {
     }
   }
 }
+
+export const updateCookie = (cookie, url) => {
+  return async dispatch => {   
+      dispatch(setCookie(cookie))
+      localStorage.setItem(`cookie_${url}`, cookie);
+  }
+}
+

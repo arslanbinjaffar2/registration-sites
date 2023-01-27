@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 
 const MetaInfo = (props) => {
+    console.log(props.cookie);
     return (
         <>
             <Head>
@@ -68,7 +69,7 @@ const MetaInfo = (props) => {
                             type="image/x-icon"
                             href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.fav_icon}`}
                         />}
-                        {props.metaInfo.settings.google_analytics && (
+                        {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" &&  (
                             <script>
                                 {`
                                     window.ga=window.ga||function()

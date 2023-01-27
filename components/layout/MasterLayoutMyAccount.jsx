@@ -10,6 +10,7 @@ import {
 } from "store/Slices/EventSlice";
 import AfterLoginSubRegistration from "components/myAccount/profile/AfterLoginSubRegistration";
 import Footer from "../modules/Footer";
+import CookiePolicy from 'components/ui-components/CookiePolicy';
 
 
 const MasterLayoutMyAccount = (props) => {
@@ -34,6 +35,7 @@ const MasterLayoutMyAccount = (props) => {
       <Header />
       {(skip || sub_reg_skip) ? props.children : <AfterLoginSubRegistration {...props} />}
       <Footer /> 
+      <CookiePolicy/>
     </>
   )
 }
