@@ -75,7 +75,7 @@ const ExhibitorDetail = (props) => {
 export async function getServerSideProps(context) {
     const {req, res} = context;
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/general_information/page/${context.query.id}`);
-    const res = await response.json();
+    const resData = await response.json();
     const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
     const serverCookie = getCookie(`cookie__${context.query.event}`, { req, res });
     if(serverCookie === null || serverCookie === undefined){
@@ -85,7 +85,7 @@ export async function getServerSideProps(context) {
         props: {
             metaInfo: eventData,
             cookie : serverCookie !== null || serverCookie !== undefined ? serverCookie : 'necessary',
-            cmsPage:res.data,
+            cmsPage:resData.data,
             url: context.resolvedUrl
         },
     }
