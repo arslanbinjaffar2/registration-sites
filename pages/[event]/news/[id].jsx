@@ -76,12 +76,12 @@ const ExhibitorDetail = (props) => {
 export async function getServerSideProps(context) {
     const {req, res} = context;
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/news/${context.query.id}/detail`);
-    const res = await response.json();
+    const resData = await response.json();
     const rota = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
     return {
         props: {
             metaInfo: rota,
-            news:res.data,
+            news:resData.data,
             url: context.resolvedUrl
         },
     }
