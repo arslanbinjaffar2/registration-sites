@@ -42,7 +42,7 @@ const Variation1 = (props) => {
       <div className="module-section">
         <WrapperLayout moduleVariation={props.moduleVariation}>
         <div className="container">
-        <HeadingElement dark={true} label={props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined ? props.event.description.info.title : "About the Event"}  align={'left'} />
+        {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined && props.event.description.info.title !== "" && <HeadingElement dark={true} label={props.event.description.info.title}  align={'left'} />}
           <div className="row d-flex ebs-about-event-section">
             <div className="col-lg-5 mb-5">
               <div className="ebs-event-detail">
