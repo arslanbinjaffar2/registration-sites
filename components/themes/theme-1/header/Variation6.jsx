@@ -291,7 +291,7 @@ class Variation6 extends React.Component {
                           </ul>
                         )}
 
-                        {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 1) && (
+                        {(menu.alias === "practicalinformation" && (menus["practical_info_menu"].length > 1 || (menus["practical_info_menu"].length == 1 && event.header_data["practical_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["practical_info_menu"].map((pItem, k) =>
                               pItem.page_type && pItem.page_type === "menu" ? (
@@ -372,7 +372,7 @@ class Variation6 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "additional_information" && menus["additional_info_menu"].length > 1) && (
+                        {(menu.alias === "additional_information" && (menus["additional_info_menu"].length > 1 ||  (menus["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["additional_info_menu"].map((aItem, k) =>
                               aItem.page_type && aItem.page_type === "menu" ? (
@@ -454,7 +454,7 @@ class Variation6 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "general_information" && menus["general_info_menu"].length > 1) && (
+                        {(menu.alias === "general_information" && (menus["general_info_menu"].length > 1 || (menus["general_info_menu"].length == 1 && event.header_data["general_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["general_info_menu"].map((gItem, k) =>
                               gItem.page_type && gItem.page_type === "menu" ? (
@@ -535,7 +535,7 @@ class Variation6 extends React.Component {
                             )}
                           </ul>
                         )}
-{(menu.alias === "info_pages" && menus["info_pages_menu"].length > 1) && (
+{(menu.alias === "info_pages" && (menus["info_pages_menu"].length > 1 ||  (menus["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type !== "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (

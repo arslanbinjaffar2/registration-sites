@@ -78,19 +78,19 @@ const Header = ({ location, history }) => {
         rItem['menu_url'] = `/${event.url}/${item.alias}`;
       }
       else if(item.alias == 'practicalinformation'){
-        rItem['menu_url'] =  event.header_data["practical_info_menu"].length == 1 ? (event.header_data["practical_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["practical_info_menu"][0].id}` : `${event.header_data["practical_info_menu"][0].website_protocol}${event.header_data["practical_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['menu_url'] =  event.header_data["practical_info_menu"].length == 1 && event.header_data["practical_info_menu"][0].page_type !== "menu" ? (event.header_data["practical_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["practical_info_menu"][0].id}` : `${event.header_data["practical_info_menu"][0].website_protocol}${event.header_data["practical_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
         rItem['link_path'] = event.header_data["practical_info_menu"].length == 1 ? true : false;
       }
       else if(item.alias == 'additional_information'){
-        rItem['menu_url'] =  event.header_data["additional_info_menu"].length == 1 ? (event.header_data["additional_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["additional_info_menu"][0].id}` : `${event.header_data["additional_info_menu"][0].website_protocol}${event.header_data["additional_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['menu_url'] =  event.header_data["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type !== "menu" ? (event.header_data["additional_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["additional_info_menu"][0].id}` : `${event.header_data["additional_info_menu"][0].website_protocol}${event.header_data["additional_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
         rItem['link_path'] = event.header_data["additional_info_menu"].length == 1 ? true : false;
       }
       else if(item.alias == 'general_information'){
-        rItem['menu_url'] =  event.header_data["general_info_menu"].length == 1 ? (event.header_data["general_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["general_info_menu"][0].id}` : `${event.header_data["general_info_menu"][0].website_protocol}${event.header_data["general_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['menu_url'] =  event.header_data["general_info_menu"].length == 1 && event.header_data["general_info_menu"][0].page_type !== "menu" ? (event.header_data["general_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["general_info_menu"][0].id}` : `${event.header_data["general_info_menu"][0].website_protocol}${event.header_data["general_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
         rItem['link_path'] = event.header_data["general_info_menu"].length == 1 ? true : false;
       }
       else if(item.alias == 'info_pages'){
-        rItem['menu_url'] =  event.header_data["info_pages_menu"].length == 1 ? (event.header_data["info_pages_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["info_pages_menu"][0].id}` : `${event.header_data["info_pages_menu"][0].website_protocol}${event.header_data["info_pages_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['menu_url'] =  event.header_data["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type !== "menu" ? (event.header_data["info_pages_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["info_pages_menu"][0].id}` : `${event.header_data["info_pages_menu"][0].website_protocol}${event.header_data["info_pages_menu"][0].url}`) : `/${event.url}/${item.alias}`;
         rItem['link_path'] = event.header_data["info_pages_menu"].length == 1 ? true : false;
       }
       return rItem;
