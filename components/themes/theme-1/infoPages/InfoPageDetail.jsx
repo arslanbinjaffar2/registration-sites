@@ -31,6 +31,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
     additional_information: "additional_info",
     general_information: "general_info",
     practicalinformation: "event_info",
+    info_pages: "information_pages",
   };
 
   return (
@@ -70,7 +71,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={
                                   process.env.NEXT_APP_EVENTCENTER_URL +
-                                  `/assets/${informationModules[moduleName]}/` +
+                                  `/assets/${informationModules[moduleName]}/temp/` +
                                   detail.image
                                 }
                                 className="attachment-full size-full wp-post-image"
@@ -156,7 +157,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={
                                   process.env.NEXT_APP_EVENTCENTER_URL +
-                                  `/assets/${informationModules[moduleName]}/` +
+                                  `/assets/${informationModules[moduleName]}/temp/` +
                                   detail.image
                                 }
                                 className="attachment-full size-full wp-post-image"
