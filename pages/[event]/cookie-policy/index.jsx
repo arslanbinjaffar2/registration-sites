@@ -5,6 +5,8 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
 import { metaInfo } from 'helpers/helper';
+import { getCookie, setCookie } from 'cookies-next';
+
 const CookiePolicy = (props)=> {
 
     const { event, cookie } = useSelector(eventSelector);
