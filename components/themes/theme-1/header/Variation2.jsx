@@ -244,7 +244,7 @@ class Variation2 extends React.Component {
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
-                              href={`/${menu.menu_url}`}
+                              href={`${menu.menu_url}`}
                             >
                                 {menu.module}
                             </ActiveLink>
@@ -551,7 +551,7 @@ class Variation2 extends React.Component {
                           </ul>
                         )}
 
-{(menu.alias === "info_pages" && (menus["info_pages_menu"].length > 1 ||  (menus["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type !== "menu"))) && (
+{(menu.alias === "info_pages" && (menus["info_pages_menu"].length > 1 ||  (menus["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
