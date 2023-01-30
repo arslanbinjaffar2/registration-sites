@@ -3014,6 +3014,9 @@
   cursor: pointer;
   box-shadow: 0 3px 6px rgba($black, 0.16);
 }
+.ebs-btn-cookie svg path {
+  fill: var(--primary);
+}
 .ebs-cookie-container {
   position: fixed;
   right: 15px;
@@ -3052,6 +3055,7 @@
         padding-left: 32px;
        &::before {
         position: absolute;
+        border-radius: 0;
         left: 0;
         top: 2px;
        }
