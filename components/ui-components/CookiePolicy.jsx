@@ -6,7 +6,7 @@ import { eventSelector, updateCookie } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { getCookies, getCookie, setCookie, removeCookies } from 'cookies-next';
 import { useRouter } from 'next/router'
-
+import ActiveLink from 'components/atoms/ActiveLink';
 const CookiePolicy = () => {
 
   const { event } = useSelector(eventSelector);
@@ -42,35 +42,43 @@ const CookiePolicy = () => {
             <i className="material-icons">close</i>
         </span>
         <h4>Cookies Policy</h4>
-        <p>We use cookies: You can always revoke your consent by blocking the use of cookies in your browser.
-          {/* <Link className="ebs-logo" to={`/${event.url}/attendee/cookie-policy`}>
-          More info
-								</Link> */}
+        <p>{event?.interface_labels?.cookie.COOKIES_PRAGHRAP} 
+          <ActiveLink className="ebs-logo" href={`/${event.url}/cookie-policy`}>
+          {event?.interface_labels?.cookie.COOKIES_MORE_INFO} 
+					</ActiveLink>
         </p>
         <div className="ebs-cookie-type">
           <label className="label-radio" onClick={() => {
             setCookie('necessary')
           }}>
             <input type="checkbox" name="cookie" defaultChecked={(serverCookie === 'necessary' || serverCookie === "all")} />
-            <span>Necessary</span>
+            <span>
+            {event?.interface_labels?.cookie.COOKIES_NECESSARY} 
+            </span>
           </label>
           <label className="label-radio" onClick={() => {
             setCookie('all');
           }}>
             <input type="checkbox" name="cookie" defaultChecked={serverCookie === 'all'} />
-            <span>Statistics</span>
+            <span>
+            {event?.interface_labels?.cookie.COOKIES_STATISTICS} 
+            </span>
           </label>
         </div>
         <button className="btn" onClick={() => {
           setCookie(`cookie__${event.url}`, 'all')
           setShow(false);
           router.reload(window.location.pathname)
-        }}>Accept all cookies</button>
+        }}>
+          {event?.interface_labels?.cookie.COOKIES_ACCEPT} 
+        </button>
         <button className="btn bordered" onClick={() => {
-            setCookie(`cookie__${event.url}`, '')
-            setShow(false);
-            router.reload(window.location.pathname)
-        }}>Reject cookies</button>
+          setCookie(`cookie__${event.url}`, '')
+          setShow(false);
+          router.reload(window.location.pathname)
+        }}>
+          {event?.interface_labels?.cookie.COOKIES_REJECT_COOKIES} 
+        </button>
       </div>}
       </div>
     </React.Fragment>
