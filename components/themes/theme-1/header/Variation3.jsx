@@ -329,7 +329,7 @@ class Variation3 extends React.Component {
                                 </ul>
                               )}
 
-                              {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 1) && (
+                              {(menu.alias === "practicalinformation" && (menus["practical_info_menu"].length > 1 || (menus["practical_info_menu"].length == 1 && event.header_data["practical_info_menu"][0].page_type === "menu"))) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["practical_info_menu"].map(
                                     (pItem, k) =>
@@ -416,7 +416,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {(menu.alias === "additional_information" && menus["additional_info_menu"].length > 1) && (
+                              {(menu.alias === "additional_information" && (menus["additional_info_menu"].length > 1 ||  (menus["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type === "menu"))) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["additional_info_menu"].map(
                                     (aItem, k) =>
@@ -503,7 +503,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {(menu.alias === "general_information" && menus["general_info_menu"].length > 1) && (
+                              {(menu.alias === "general_information" && (menus["general_info_menu"].length > 1 || (menus["general_info_menu"].length == 1 && event.header_data["general_info_menu"][0].page_type === "menu"))) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["general_info_menu"].map(
                                     (gItem, k) =>
@@ -590,7 +590,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 1) && (
+                              {(menu.alias === "info_pages" && (menus["info_pages_menu"].length > 1 ||  (menus["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type !== "menu"))) && (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))) !== undefined && menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))).submenu.map((gItem, k) =>
                                 (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (

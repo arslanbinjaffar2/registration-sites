@@ -14,8 +14,10 @@ const CookiePolicy = () => {
   const router = useRouter();
 
   const serverCookie = getCookie(`cookie__${event.url}`);
+  const actionCookie = getCookie(`action_cookie__${event.url}`);
   
   const [show, setShow] = useState(serverCookie == 'all' ? false : true);
+  const [showAction, setShowAction] = useState(actionCookie == 'cookie_action' ? true : false);
 
   useEffect(() => {
   }, [])
@@ -37,49 +39,55 @@ const CookiePolicy = () => {
           </g>
         </svg>
       </div>}
-      {show && <div className="ebs-cookie-container">
-        <span onClick={() => setShow(false)} className="btn-close">
-            <i className="material-icons">close</i>
-        </span>
-        <h4>Cookies Policy</h4>
-        <p>{event?.interface_labels?.cookie.COOKIES_PRAGHRAP} 
-          <ActiveLink className="ebs-logo" href={`/${event.url}/cookie-policy`}>
-          {event?.interface_labels?.cookie.COOKIES_MORE_INFO} 
-					</ActiveLink>
-        </p>
-        <div className="ebs-cookie-type">
-          <label className="label-radio" onClick={() => {
-            setCookie('necessary')
-          }}>
-            <input type="checkbox" name="cookie" defaultChecked={(serverCookie === 'necessary' || serverCookie === "all")} />
-            <span>
-            {event?.interface_labels?.cookie.COOKIES_NECESSARY} 
-            </span>
-          </label>
-          <label className="label-radio" onClick={() => {
-            setCookie('all');
-          }}>
-            <input type="checkbox" name="cookie" defaultChecked={serverCookie === 'all'} />
-            <span>
-            {event?.interface_labels?.cookie.COOKIES_STATISTICS} 
-            </span>
-          </label>
-        </div>
-        <button className="btn" onClick={() => {
-          setCookie(`cookie__${event.url}`, 'all')
-          setShow(false);
-          router.reload(window.location.pathname)
-        }}>
-          {event?.interface_labels?.cookie.COOKIES_ACCEPT} 
-        </button>
-        <button className="btn bordered" onClick={() => {
-          setCookie(`cookie__${event.url}`, '')
-          setShow(false);
-          router.reload(window.location.pathname)
-        }}>
-          {event?.interface_labels?.cookie.COOKIES_REJECT_COOKIES} 
-        </button>
-      </div>}
+      {show && 
+        <>
+          <div className="ebs-cookie-container">
+            {showAction && <span onClick={() => setShow(false)} className="btn-close">
+                <i className="material-icons">close</i>
+            </span>}
+            <h4>Cookies Policy</h4>
+            <p>{event?.interface_labels?.cookie.COOKIES_PRAGHRAP} 
+              <ActiveLink className="ebs-logo" href={`/${event.url}/cookie-policy`}>
+              {event?.interface_labels?.cookie.COOKIES_MORE_INFO} 
+              </ActiveLink>
+            </p>
+            <div className="ebs-cookie-type">
+              <label className="label-radio" onClick={() => {
+                setCookie('necessary')
+              }}>
+                <input type="checkbox" name="cookie" defaultChecked={(serverCookie === 'necessary' || serverCookie === "all")} />
+                <span>
+                {event?.interface_labels?.cookie.COOKIES_NECESSARY} 
+                </span>
+              </label>
+              <label className="label-radio" onClick={() => {
+                setCookie('all');
+              }}>
+                <input type="checkbox" name="cookie" defaultChecked={serverCookie === 'all'} />
+                <span>
+                {event?.interface_labels?.cookie.COOKIES_STATISTICS} 
+                </span>
+              </label>
+            </div>
+            <button className="btn" onClick={() => {
+              setCookie(`cookie__${event.url}`, 'all', {maxAge: 30*24*60*60})
+              setCookie(`action_cookie__${event.url}`, 'cookie_action', {maxAge: 30*24*60*60})
+              setShow(false);
+              router.reload(window.location.pathname)
+            }}>
+              {event?.interface_labels?.cookie.COOKIES_ACCEPT} 
+            </button>
+            <button className="btn bordered" onClick={() => {
+              setCookie(`cookie__${event.url}`, 'necessary', {maxAge: 30*24*60*60})
+              setCookie(`action_cookie__${event.url}`, 'cookie_action', {maxAge: 30*24*60*60})
+              setShow(false);
+              router.reload(window.location.pathname)
+            }}>
+              {event?.interface_labels?.cookie.COOKIES_REJECT_COOKIES} 
+            </button>
+          </div>
+        </>
+      }
       </div>
     </React.Fragment>
   );
