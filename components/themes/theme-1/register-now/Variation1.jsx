@@ -48,7 +48,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   return (
     <div className="module-section ebs-default-padding">
-        {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
+        {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
           <div className="container">
             <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'center'} />
             <div className="ebs-register-now-sec">
@@ -69,19 +69,19 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
             </div>
           </div>
         )} 
-        {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
+        {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
           <div className="container">
             <div className="alert alert-danger alert-dismissable">{labels.REGISTER_DATE_END}</div>
           </div>
         )}
         
-        {(!registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList ) && (
+        {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList ) && (
           <div className="container">
             <div className="alert alert-danger alert-dismissable">{labels.REGISTER_TICKET_END}</div>
           </div>
         )}
         
-        {(!registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
+        {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
           <div className="container">
             {labels.REGISTER_FOR_WAITING_LIST || labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST && <HeadingElement dark={false} label={labels.REGISTER_FOR_WAITING_LIST} desc={labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST} align={moduleVariation.text_align} />}
             <div className="ebs-register-now-sec">
