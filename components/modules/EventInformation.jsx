@@ -63,7 +63,7 @@ const EventInformation = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} labels={event.labels} regisrationUrl={regisrationUrl} eventDates={eventDates} openingHours={event.eventOpeningHours} />
+      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };
