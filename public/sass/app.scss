@@ -138,16 +138,21 @@
 .ebs-header-height-1 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp {
   height: calc(100vh - 72px);
   min-height: 550px;
+  background-color: rgba($black, 0.2);
+  background-blend-mode: overlay;
 }
 .ebs-header-height-2 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp,
 .ebs-header-height-2 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp  {
   height: calc(100vh - 146px);
   min-height: 550px;
+  background-color: rgba($black, 0.2);
+  background-blend-mode: overlay;
 }
 .banner-wrapper {
   position: relative;
   .background {
     background-size: cover;
+    mix-blend-mode: hard-light;
 	}
 	&.slider-fullscreen {
 	.inner-caption-wrapp {
@@ -3079,10 +3084,18 @@
     height: 50px;
     background: var(--primary);
     color: $white;
+    &:hover {
+      background: var(--secondary);
+    }
     &.bordered {
       background: transparent;
       color: var(--primary);
       border: 1px solid var(--primary);
+      &:hover {
+        background: var(--secondary);
+        color: $white;
+        border-color: var(--secondary);
+      }
 
     }
   }
