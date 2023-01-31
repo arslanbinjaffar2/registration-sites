@@ -53,7 +53,7 @@ const EventInformation = () => {
     return url;
   },[event]);
 
-  let eventDates = useMemo(() => enumerateDaysBetweenDates(event.start_date, event.end_date), [event]);
+  // let eventDates = useMemo(() => enumerateDaysBetweenDates(event.start_date, event.end_date), [event]);
 
 
   return (
