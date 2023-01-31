@@ -19,8 +19,13 @@ const CookiePolicy = () => {
   const [show, setShow] = useState(serverCookie == 'all' ? false : true);
   const [showAction, setShowAction] = useState(actionCookie == 'cookie_action' ? true : false);
 
-  useEffect(() => {
-  }, [])
+  const [statisticsCheck, setStatisticsCheck] = useState(false);
+
+  const [cookieStatus, setCookieStatus] = useState(serverCookie);
+
+
+    
+  
 
   return (
     <React.Fragment>
@@ -55,7 +60,7 @@ const CookiePolicy = () => {
               <label className="label-radio" onClick={() => {
                 setCookie('necessary')
               }}>
-                <input type="checkbox" name="cookie" defaultChecked={(serverCookie === 'necessary' || serverCookie === "all")} />
+                <input type="checkbox" name="cookie" disabled defaultChecked={(serverCookie === 'necessary' || serverCookie === "all")} />
                 <span>
                 {event?.interface_labels?.cookie.COOKIES_NECESSARY} 
                 </span>
@@ -63,19 +68,19 @@ const CookiePolicy = () => {
               <label className="label-radio" onClick={() => {
                 setCookie('all');
               }}>
-                <input type="checkbox" name="cookie" defaultChecked={serverCookie === 'all'} />
+                <input type="checkbox" name="cookie" defaultChecked={serverCookie === 'all'} onChange={(e)=>{ setStatisticsCheck(true); setCookieStatus(e.currentTarget.checked ? 'all' : 'necessary') }} />
                 <span>
                 {event?.interface_labels?.cookie.COOKIES_STATISTICS} 
                 </span>
               </label>
             </div>
             <button className="btn" onClick={() => {
-              setCookie(`cookie__${event.url}`, 'all', {maxAge: 30*24*60*60})
+              setCookie(`cookie__${event.url}`, statisticsCheck == true ? cookieStatus : 'all', {maxAge: 30*24*60*60})
               setCookie(`action_cookie__${event.url}`, 'cookie_action', {maxAge: 30*24*60*60})
               setShow(false);
               router.reload(window.location.pathname)
             }}>
-              {event?.interface_labels?.cookie.COOKIES_ACCEPT} 
+              {statisticsCheck == true ? 'Save changes'  : event?.interface_labels?.cookie.COOKIES_ACCEPT} 
             </button>
             <button className="btn bordered" onClick={() => {
               setCookie(`cookie__${event.url}`, 'necessary', {maxAge: 30*24*60*60})
