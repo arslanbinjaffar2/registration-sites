@@ -1,7 +1,14 @@
 import React, { useMemo } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import { getWithExpiry } from "helpers/helper";
+import moment from "moment";
 const EventDescription = ({event}) => {
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate = moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : false;
+  },[event]);
     const regisrationUrl = useMemo(()=>{
         let url = '';
         if(parseFloat(event.registration_form_id) === 1){
@@ -20,7 +27,7 @@ const EventDescription = ({event}) => {
       <div className="container">
         {event.description !== undefined && event.description.info !== undefined && event.description.info.ed_title !== undefined && event.description.info.ed_title !== "" && <HeadingElement dark={false} label={event.description.info.ed_title}  align={'left'} />}
         <div dangerouslySetInnerHTML={{__html: event.description.info.description}} />
-        {(event.description && event.description.info.ed_show_register_now == 1) &&  <a style={{border: '2px solid #363636', color: '#363636', marginTop:"20px"}} href={regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
+        {(event.description && event.description.info.ed_show_register_now == 1) && registerDateEnd &&  <a style={{border: '2px solid #363636', color: '#363636', marginTop:"20px"}} href={regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
       </div>
     </div>
   ;

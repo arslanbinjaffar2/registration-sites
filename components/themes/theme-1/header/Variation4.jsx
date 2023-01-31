@@ -333,7 +333,9 @@ class Variation4 extends React.Component {
                                                   className="nav-item"
                                                   key={k}
                                                 >
-                                                  {myaccount.alias !== "login" ? (<ActiveLink
+                                                  {myaccount.alias !== "login" ? (
+                                                  ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
+                                                  <ActiveLink
                                                     aria-current="page"
                                                     className="nav-link" activeClassName="nav-link active"
                                                     href={`${
@@ -348,7 +350,9 @@ class Variation4 extends React.Component {
                                                     <span className="ebs-nav-item">
                                                       {myaccount.module}
                                                     </span>
-                                                  </ActiveLink>) :
+                                                  </ActiveLink>
+                                                  : null
+                                                  ) :
                                                     <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                                       <span className="ebs-nav-item">
                                                         {myaccount.module}

@@ -36,8 +36,8 @@ const Banner = () => {
   const registerDateEnd = useMemo(()=>{
     let currentDate = moment();
     let endDate =  moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) > 0 : true;
-    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : true;
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : false;
   },[event]);
 
   const regisrationUrl = useMemo(()=>{
