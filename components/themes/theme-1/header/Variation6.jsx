@@ -258,7 +258,9 @@ class Variation6 extends React.Component {
                             {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
-                                  {myaccount.alias !== "login" ? (<ActiveLink
+                                  {myaccount.alias !== "login" ? (
+                                  ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
+                                  <ActiveLink
                                     aria-current="page"
                                     className="nav-link" activeClassName="nav-link active"
                                     href={`${
@@ -271,7 +273,9 @@ class Variation6 extends React.Component {
                                     key={myaccount.id}
                                   >
                                     {myaccount.module}
-                                  </ActiveLink>) :
+                                  </ActiveLink>
+                                  : null
+                                  ) :
                                     <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>

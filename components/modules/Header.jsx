@@ -5,7 +5,7 @@ import {
   globalSelector, setShowLogin, incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import { useRouter } from "next/router";
-
+import moment from "moment";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -70,6 +70,13 @@ const Header = ({ location, history }) => {
     return url;
   },[event]);
 
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate = moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : false;
+  },[event]);
+
   const top_menu =  useMemo(()=>{
 
     let menu = event.header_data.top_menu.map((item)=>{
@@ -104,7 +111,7 @@ const Header = ({ location, history }) => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} regisrationUrl={regisrationUrl} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
+      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={registerDateEnd} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
     </Suspense>
   );
 };
