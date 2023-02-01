@@ -81,7 +81,7 @@ const SliderBanner = (props) => {
         <Slider {...settings}>
           {props.children}
         </Slider>
-        {props.registerDateEnd && props.countdown !== null &&(
+        {props.registerDateEnd && props.countdown !== null && props.eventsiteSettings.eventsite_time_left === 1 && (
           <div className="timer-wrapper">
             <div className="container">
               <div className="row d-flex align-items-center">
