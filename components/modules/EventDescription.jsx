@@ -7,7 +7,7 @@ const EventDescription = ({event}) => {
     let currentDate = moment();
     let endDate = moment(event.eventsiteSettings.registration_end_date);
     let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return event.eventsiteSettings.eventsite_time_left === 1 ? diff : false;
+    return diff;
   },[event]);
     const regisrationUrl = useMemo(()=>{
         let url = '';
