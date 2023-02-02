@@ -113,10 +113,10 @@ function DocumentsListing({documents, documentPage, labels}) {
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">
-                    <h6>{labels.GENERAL_DOCUMENT_NAME !== undefined ? labels.GENERAL_DOCUMENT : 'Name'} <i className="material-icons">arrow_downward</i></h6>
+                    <h6>{labels.GENERAL_DOCUMENT_NAME !== undefined ? labels.GENERAL_DOCUMENT_NAME : 'Name'} <i className="material-icons">arrow_downward</i></h6>
                   </div>
                   <div className="col-6 col-sm-4 col-lg-3">
-                    <h6>{labels.GENERAL_DOCUMENT_MODIFIED !== undefined ? labels.GENERAL_DOCUMENT : 'Modified'}</h6>
+                    <h6>{labels.GENERAL_DOCUMENT_MODIFIED !== undefined ? labels.GENERAL_DOCUMENT_MODIFIED : 'Modified'}</h6>
                   </div>
                 </div>
               </div>
