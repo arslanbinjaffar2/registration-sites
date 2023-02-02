@@ -45,6 +45,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, regist
           <SliderBanner
             countdown={countdown}
             registerDateEnd={registerDateEnd}
+            eventsiteSettings={event.eventsiteSettings}
           >
             {banner.map((slides, i) => (
               <div key={i} className="slide-wrapper">
