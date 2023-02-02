@@ -11,10 +11,10 @@ const getDirectoryName = (item) => {
     else if(item['Other'] !== undefined) return item.Other
 }
 
-function DocumentsListing({documents, documentPage}) {
+function DocumentsListing({documents, documentPage, labels}) {
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
-    const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:"Documents"}]);
+    const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:labels.GENERAL_DOCUMENT}]);
     const onDirectoryClick = (id) =>{
         let currentFolder =currentDirectory.find((item)=>(item.id === id))
         setCurrentFolder(currentFolder);
@@ -84,10 +84,11 @@ function DocumentsListing({documents, documentPage}) {
         return files;
     }
 
+    let filesCount = 0;
 
   return (
     <React.Fragment>
-        {documentPage && <PageHeader label={'My Documents'} breadCrumbs={(type) => {
+        {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} breadCrumbs={(type) => {
                 return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {
@@ -112,17 +113,21 @@ function DocumentsListing({documents, documentPage}) {
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">
-                    <h6>Name <i className="material-icons">arrow_downward</i></h6>
+                    <h6>{labels.GENERAL_DOCUMENT_NAME !== undefined ? labels.GENERAL_DOCUMENT : 'Name'} <i className="material-icons">arrow_downward</i></h6>
                   </div>
                   <div className="col-6 col-sm-4 col-lg-3">
-                    <h6>Modified</h6>
+                    <h6>{labels.GENERAL_DOCUMENT_MODIFIED !== undefined ? labels.GENERAL_DOCUMENT : 'Modified'}</h6>
                   </div>
                 </div>
               </div>
                 
               {currentDirectory && currentDirectory.length > 0 &&
                 currentDirectory.map((item, i)=>{
+                            filesCount = 0;
+                            console.log(item['directory_id'] === undefined)
+                            console.log(checkFile(item))
                       if((item['directory_id'] === undefined) &&  checkFile(item)){
+                            filesCount++;
                           return  (<div key={i} className="ebs-document-content">
                             <div className="row d-flex align-items-center"
                             onClick={()=>{ onDirectoryClick(item.id) }} 
@@ -140,6 +145,7 @@ function DocumentsListing({documents, documentPage}) {
                       }
                      
                      if(item['directory_id'] !== undefined) {
+                        filesCount ++;
                         return (<div key={i} className="ebs-document-content">
                             <a  href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
                                 <div className="row d-flex align-items-center">
@@ -166,10 +172,10 @@ function DocumentsListing({documents, documentPage}) {
                             
                 })
               }
-              {(!currentDirectory ||currentDirectory.length <= 0) &&
+              {(!currentDirectory ||currentDirectory.length <= 0) || (filesCount <= 0) &&
                 <div  className="ebs-document-content">
                     <div className="row d-flex align-items-center">
-                        <div className="ebs-title">No Folders or Files found in current Directory</div>
+                        <div className="ebs-title">{labels.GENERAL_NO_RECORD ? labels.GENERAL_NO_RECORD : "No Folders or Files found in current Directory"}</div>
                     </div>
                 </div>
               }
