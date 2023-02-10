@@ -33,11 +33,11 @@ export async function getServerSideProps(context) {
     if(serverCookie === null || serverCookie === undefined){
         setCookie(`cookie__${context.query.event}`, 'necessary', { req, res, maxAge: 30*24*60*60 })
     }
+    console.log(serverCookie, 'cookie');
     return {
         props: {
             metaInfo: eventData,
-            cookie : serverCookie !== null || serverCookie !== undefined ? serverCookie : 'necessary',
-            cookie : serverCookie !== null || serverCookie !== undefined ? serverCookie : 'necessary',
+            cookie : (serverCookie !== null && serverCookie !== undefined) ? serverCookie : 'necessary',
             url: context.resolvedUrl,
         },
     }

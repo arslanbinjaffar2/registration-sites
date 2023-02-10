@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             metaInfo: eventData,
-            cookie : serverCookie !== null || serverCookie !== undefined ? serverCookie : 'necessary',
+            cookie : (serverCookie !== null && serverCookie !== undefined) ? serverCookie : 'necessary',
             url: context.resolvedUrl
         },
     }
