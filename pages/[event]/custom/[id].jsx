@@ -86,6 +86,7 @@ export async function getServerSideProps(context) {
         props: {
             metaInfo:eventData,
             cmsPage: resData.data,
+            cookie : (serverCookie !== null && serverCookie !== undefined) ? serverCookie : 'necessary',
             url: context.resolvedUrl
         },
     }
