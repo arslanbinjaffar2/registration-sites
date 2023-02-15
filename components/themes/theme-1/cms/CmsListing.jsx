@@ -32,7 +32,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
 
   return (
    <React.Fragment>
-       <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {
+       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type) => {
             return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (

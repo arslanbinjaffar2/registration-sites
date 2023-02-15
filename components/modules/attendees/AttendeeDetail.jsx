@@ -54,7 +54,7 @@ const AttendeeDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.attendees}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (

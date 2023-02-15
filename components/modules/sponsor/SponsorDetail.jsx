@@ -55,7 +55,7 @@ const SponsorDetail = (props) => {
           <Head>
           <title>{event.eventsiteModules.sponsors}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_SPONSORS} desc={event.labels.EVENTSITE_SPONSORS_SUB} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_SPONSORS} desc={event.labels.EVENTSITE_SPONSORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
