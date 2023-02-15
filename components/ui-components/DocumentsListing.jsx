@@ -88,7 +88,7 @@ function DocumentsListing({documents, documentPage, labels}) {
 
   return (
     <React.Fragment>
-        {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} breadCrumbs={(type) => {
+        {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} showBreadcrumb={true} breadCrumbs={(type) => {
                 return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {

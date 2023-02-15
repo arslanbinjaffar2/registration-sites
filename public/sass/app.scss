@@ -2248,7 +2248,7 @@
         font-size: 18px;
       }
       .ebs-program-child {
-        padding-bottom: 25px;
+        padding-bottom: 15px;
         &:last-of-type {
           border-bottom: none;
           padding-bottom: 0;
@@ -2289,11 +2289,11 @@
             }
           }
           .ebs-description {
-            padding-bottom: 18px;
+            // padding-bottom: 18px;
             font-size: 16px;
             color: $text;
             > .ebs-contain {
-              padding-bottom: 15px;
+              padding-bottom: 0px;
             }
             .ebs-more {
               display: inline-block;

@@ -27,7 +27,7 @@ const ProgramItem = ({ program, eventUrl, labels }) => {
                             {program.description.length > 450 && <span className='ebs-more' onClick={() => { setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
                         </div>}
 
-                        <div className="row d-flex ebs-program-speakers">
+                        {program.program_speakers.length > 0 && <div className="row d-flex ebs-program-speakers">
                             {program.program_speakers?.map((speakers, o) =>
                                 <div style={{ animationDelay: 50 * o + 'ms' }} key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
                                     <ActiveLink href={`/${eventUrl}/speakers/${speakers.id}`}>
@@ -53,7 +53,7 @@ const ProgramItem = ({ program, eventUrl, labels }) => {
                                     </ActiveLink>
                                 </div>
                             )}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>

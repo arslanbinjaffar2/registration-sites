@@ -39,7 +39,9 @@ const InfoPagesListing = (props) => {
         eventSiteModuleName={event.header_data.info_pages_menu.find((data)=>(data.id == props.main_menu_id)) !== (undefined || null) ? 
           event.header_data.info_pages_menu.find((data)=>(data.id == props.main_menu_id)).info.name 
           : "Information Pages"}
-        breadCrumbData={event.header_data.info_pages_menu} />
+        breadCrumbData={event.header_data.info_pages_menu}
+        eventsiteSettings={event.eventsiteSettings}
+        />
       </React.Fragment>
     </Suspense>
   );
