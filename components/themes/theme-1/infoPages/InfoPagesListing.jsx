@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import PageHeader from "components/modules/PageHeader";
-const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id }) => {
+const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id, eventsiteSettings }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName, main_menu_id));
 
@@ -32,7 +32,7 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
 
   return (
    <React.Fragment>
-       <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {
+       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type) => {
             return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (

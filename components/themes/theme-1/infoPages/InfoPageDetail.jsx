@@ -21,7 +21,7 @@ const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName, section
 
 
 
-const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl }) => {
+const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, eventsiteSettings }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData.submenu, detail.parent_id, detail, eventSiteModuleName, detail.section_id));
   const [height, setHeight] = useState(0);
   const [Loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
 
   return (
     <React.Fragment>
-    <PageHeader label={detail.name}  align={'left'} breadCrumbs={(type)=>{
+    <PageHeader label={detail.name}  align={'left'} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
       return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
        <ul className="breadcrumb">
          {breadCrumbs.map((crumb, i) => (

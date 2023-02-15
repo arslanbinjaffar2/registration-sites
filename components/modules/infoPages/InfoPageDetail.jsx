@@ -47,7 +47,7 @@ const CmsDetail = (props) => {
     <Suspense fallback={<PageLoader />}>
       {cmsPage ? (
         <React.Fragment>
-          <Component detail={cmsPage} labels={labels} moduleName={'info_pages'} eventUrl={event.url} eventSiteModuleName={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)).info.name : cmsPage.name} breadCrumbData={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) : []} />
+          <Component detail={cmsPage} labels={labels} moduleName={'info_pages'} eventUrl={event.url} eventsiteSettings={event.eventsiteSettings} eventSiteModuleName={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)).info.name : cmsPage.name} breadCrumbData={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) : []} />
         </React.Fragment>
       ) : <PageLoader />
       }

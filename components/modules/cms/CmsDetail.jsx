@@ -57,7 +57,7 @@ const CmsDetail = (props) => {
     <Suspense fallback={<PageLoader />}>
       {cmsPage ? (
         <React.Fragment>
-          <Component detail={cmsPage} labels={labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} />
+          <Component detail={cmsPage} labels={labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} eventsiteSettings={event.eventsiteSettings} />
         </React.Fragment>
       ) : <PageLoader />
       }
