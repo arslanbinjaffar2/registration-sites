@@ -232,6 +232,7 @@ class Variation6 extends React.Component {
                           <ActiveLink
                             className="nav-link" activeClassName="nav-link active"
                             aria-current="page"
+                            target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
                             href={`${menu.menu_url}`}
                           >
                               {menu.module}
