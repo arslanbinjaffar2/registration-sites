@@ -17,7 +17,10 @@ const ActiveLink = (props) => {
 
     return (
         <Link scroll={false} {...props}>
-            <a className={className}>{props.children}</a>
+            {props.target === '_blank' ? 
+                <a target="_blank" className={className}>{props.children}</a>:
+                <a className={className}>{props.children}</a>
+            }
         </Link>
     )
 }
