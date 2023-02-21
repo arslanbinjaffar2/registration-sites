@@ -147,7 +147,7 @@ function DocumentsListing({documents, documentPage, labels}) {
                      if(item['directory_id'] !== undefined) {
                         filesCount ++;
                         return (<div key={i} className="ebs-document-content">
-                            <a  href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
+                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
                                 <div className="row d-flex align-items-center">
                                     <div className="col-6 col-sm-8 col-lg-9">
                                         <div className="ebs-title" >
