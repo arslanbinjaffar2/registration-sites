@@ -44,8 +44,8 @@ const Index = (props) => {
                                 <div className="ebs-event-description">
                                     {event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG !== undefined ? event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG : "Are you sure you want cancel coming to the event." }
                                 </div>
-                                <div className='btn-container' onClick={(e)=> {onConfirm();}}>
-                                    <button className="btn btn-default">
+                                <div className='btn-container' >
+                                    <button className="btn btn-default" onClick={(e)=> {onConfirm();}}>
                                         {event.labels.GENERAL_OK !== undefined ? event.labels.GENERAL_OK : "Confirm" }
                                     </button>
                                     <button className="btn btn-default" onClick={(e)=> {onCancel();}}>
