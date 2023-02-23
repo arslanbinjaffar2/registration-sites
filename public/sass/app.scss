@@ -3135,3 +3135,50 @@
     z-index: 3;
   }
 }*/
+
+.not-attending-popup {
+  width: 100%;
+  height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: #F2F2F2;
+  .ebs-not-attending-fields {
+    width: 100%;
+    max-width: 520px;
+    padding: 24px 40px;
+    background: $white;
+    border-radius: 5px;
+    @include phone-landscape {
+      padding: 18px 20px;
+    }
+    .ebs-not-attending-heading {
+      text-align: left;
+      font-size: 22px;
+      padding-bottom: 18px;
+    }
+    .ebs-event-description {
+      color: $black;
+      line-height: 1.4;
+      padding-bottom: 15px;
+      font-size: 14px;
+    }
+    .btn-container{
+      display: flex;
+      justify-content: flex-end;
+      .btn {
+        display: block;
+        width: 100px;
+        height: 40px;
+        margin-top: 20px;
+        margin-left: 20px;
+        background: $first-main-color;
+        color: $white;
+        &:hover {
+          background: $second-main-color;
+        }
+      }
+    }
+  }
+}
