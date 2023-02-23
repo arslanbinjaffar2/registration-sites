@@ -22,8 +22,6 @@ function MyApp({ Component, pageProps }) {
       setWithExpiry(`autoregister_${event}`, autoregister, 300000);
     }
     router.replace(`/${event}`, undefined, { shallow: true });
-    
-
   }
 
   useEffect(() => {
