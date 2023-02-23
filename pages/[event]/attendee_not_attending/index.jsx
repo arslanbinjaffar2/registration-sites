@@ -10,7 +10,7 @@ import { getCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import axios from "axios";
 
-const attendee_not_attending = (props) => {
+const Index = (props) => {
     const { event } = useSelector(eventSelector);
     const router = useRouter();
     const { id, event_id, email } = router.query;
@@ -80,4 +80,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default attendee_not_attending
+export default Index
