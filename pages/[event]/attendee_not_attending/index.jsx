@@ -13,16 +13,17 @@ import axios from "axios";
 const Index = (props) => {
     const { event } = useSelector(eventSelector);
     const router = useRouter();
-    const { id, event_id, email } = router.query;
+    const { id, event_id, email, confirm, already_done } = router.query;
 
     const onConfirm = async () => {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${event.url}/attendee-not-attending`, {id, event_id, email, confirm:1});
         console.log(response);
         if(response.data.success){
-            router.push(`/${event.url}`);
-        }
-        else{ 
-            router.push(`/${event.url}`);
+            if(response.data.data.already_done == 1){
+                router.push(`/${event.url}/attendee_not_attending?id=${id}&event_id=${event_id}&email=${email}&confirm=1&already_done=1`);
+            }else{
+                router.push(`/${event.url}/attendee_not_attending?id=${id}&event_id=${event_id}&email=${email}&confirm=1`);
+            }
         }
     }
 
@@ -37,7 +38,7 @@ const Index = (props) => {
                 <MasterLayoutRoute event={event}>
                     <div style={{height:"90vh"}}>
                         <div className="not-attending-popup">
-                            <div className="ebs-not-attending-fields">
+                            {(confirm === undefined) && <div className="ebs-not-attending-fields">
                                 <div className="ebs-not-attending-heading">
                                     {event.labels.EVENTSITE_BILLING_CONFIRMATION !== undefined ? event.labels.EVENTSITE_BILLING_CONFIRMATION : "Confirmation" }
                                 </div>
@@ -46,13 +47,23 @@ const Index = (props) => {
                                 </div>
                                 <div className='btn-container' >
                                     <button className="btn btn-default" onClick={(e)=> {onConfirm();}}>
-                                        {event.labels.GENERAL_OK !== undefined ? event.labels.GENERAL_OK : "Confirm" }
+                                        {event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN !== undefined ? event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN : "Confirm" }
                                     </button>
                                     <button className="btn btn-default" onClick={(e)=> {onCancel();}}>
                                         {event.labels.GENERAL_CANCEL !== undefined ? event.labels.GENERAL_CANCEL : "Cancel" }
                                     </button>
                                 </div>
+                            </div>}
+                            {
+                                (confirm !== undefined && confirm == 1) && <div className="alert alert-success text-center" style={{minWidth:"500px"}}>
+                                   {(already_done !== undefined && already_done == 1) ? <div className=" success-message">
+                                        {event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN : "You have already given you feedback" }
+                                    </div> :  <div className=" success-message">
+                                        {event.labels.EVENTSITE_UNSUBSCRIBE_THANK !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK : "Are you sure you want cancel coming to the event." }
+                                    </div> 
+                                    }
                             </div>
+                            }
                         </div>
                     </div>
                 </MasterLayoutRoute>
