@@ -3182,3 +3182,12 @@
     }
   }
 }
+
+.site-blocker{
+  height: 100%;
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    background-color: #060606ab;
+}
