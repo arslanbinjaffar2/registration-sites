@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { header } from 'helpers/header'
+import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 const initialState = {
   attendee: null,
   countries: null,
@@ -13,6 +14,7 @@ const initialState = {
   loading:false,
   error:null,
   alert:null,
+  invoice:null,
 }
 
 export const eventSlice = createSlice({
@@ -48,11 +50,14 @@ export const eventSlice = createSlice({
     setLoading: (state) => {
       state.loading = false
     },
+    setInvoice: (state, {payload}) => {
+      state.invoice = payload.invoice
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
@@ -96,6 +101,36 @@ export const updateProfileData = (id, url, data) => {
         setTimeout(()=>{
           dispatch(clearAlert())
         }, 1000)
+      }
+    }
+  }
+
+  export const fetchInvoiceData = (id, url) => {
+    return async dispatch => {
+      dispatch(getProfileData())
+      try {
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/getInvoice`, { headers:header("GET", id)})
+        const res = await response.json()
+        dispatch(clearError())
+        console.log(res.data);
+        dispatch(setInvoice(res.data))
+      } catch (error) {
+        dispatch(setError(error))
+      }
+    }
+  }
+
+  export const cancelRegistrationRequest = (id, url) => {
+    return async dispatch => {
+      dispatch(getProfileData())
+      try {
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/cancel-registration`, { method:"POST", headers:header("POST", id)})
+        const res = await response.json()
+        dispatch(clearError());
+        console.log(res.data);
+        dispatch(logOut(id, url));
+      } catch (error) {
+        dispatch(setError(error))
       }
     }
   }
