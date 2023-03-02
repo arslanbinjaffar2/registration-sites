@@ -13,6 +13,7 @@ const initialState = {
   loading:false,
   error:null,
   alert:null,
+  invoice:null,
 }
 
 export const eventSlice = createSlice({
@@ -48,11 +49,14 @@ export const eventSlice = createSlice({
     setLoading: (state) => {
       state.loading = false
     },
+    setInvoice: (state, {payload}) => {
+      state.invoice = payload.invoice
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
@@ -96,6 +100,21 @@ export const updateProfileData = (id, url, data) => {
         setTimeout(()=>{
           dispatch(clearAlert())
         }, 1000)
+      }
+    }
+  }
+
+  export const fetchInvoiceData = (id, url) => {
+    return async dispatch => {
+      dispatch(getProfileData())
+      try {
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/getInvoice`, { headers:header("GET", id)})
+        const res = await response.json()
+        dispatch(clearError())
+        console.log(res.data);
+        dispatch(setInvoice(res.data))
+      } catch (error) {
+        dispatch(setError(error))
       }
     }
   }
