@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { header } from 'helpers/header'
+import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 const initialState = {
   attendee: null,
   countries: null,
@@ -113,6 +114,21 @@ export const updateProfileData = (id, url, data) => {
         dispatch(clearError())
         console.log(res.data);
         dispatch(setInvoice(res.data))
+      } catch (error) {
+        dispatch(setError(error))
+      }
+    }
+  }
+
+  export const cancelRegistrationRequest = (id, url) => {
+    return async dispatch => {
+      dispatch(getProfileData())
+      try {
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/cancel-registration`, { method:"POST", headers:header("POST", id)})
+        const res = await response.json()
+        dispatch(clearError());
+        console.log(res.data);
+        dispatch(logOut(id, url));
       } catch (error) {
         dispatch(setError(error))
       }

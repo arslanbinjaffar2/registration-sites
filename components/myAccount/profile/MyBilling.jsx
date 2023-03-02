@@ -23,8 +23,8 @@ const MyBilling = () => {
         <div className="ebs-header text-center">
           <h2>My registration invoice</h2>
         </div>
-      {invoice && <div dangerouslySetInnerHTML={{__html: invoice}}>
-       </div>}
+        {invoice && <div dangerouslySetInnerHTML={{__html: invoice}}>
+        </div>}
       </div>
     </div>
   )
