@@ -126,9 +126,12 @@ export const updateProfileData = (id, url, data) => {
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/cancel-registration`, { method:"POST", headers:header("POST", id)})
         const res = await response.json()
-        dispatch(clearError());
-        console.log(res.data);
-        dispatch(logOut(id, url));
+        if(res.success) {
+          dispatch(clearError());
+          dispatch(logOut(id, url));
+        } else {
+          dispatch(setError(res.message))
+        }
       } catch (error) {
         dispatch(setError(error))
       }
