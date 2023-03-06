@@ -70,6 +70,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
     )
   );
   const [, forceUpdate] = useState(0);
+  const [validationErros, setValidationErrors] = useState({});
 
   const simpleValidator = useRef(new SimpleReactValidator({
     element: (message) => <p className="error-message">{message}</p>,
@@ -84,16 +85,19 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
     answerId = 0,
     questionId,
     agendaId = 0,
-    matrixId = 0
+    matrixId = 0,
   ) => {
+    console.log();
+    setValidationErrors({})
     if (type === "multiple") {
       if (Object.keys(subRegResult).length > 0) {
+        let question = questions.find((question)=>(question.id === questionId));
         let newObj = subRegResult;
         newObj[feild]=
         subRegResult[feild]
           ? (subRegResult[feild].indexOf(answerId) !== -1
             ? subRegResult[feild].filter((item) => (item !== answerId))
-            : [...subRegResult[feild], answerId])
+            : (question !== null && question.max_options > 0 && subRegResult[feild].length == question.max_options) ? [...subRegResult[feild]] : [...subRegResult[feild], answerId])
           : [answerId];
           
         if (agendaId !== 0) {
@@ -174,11 +178,19 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
 
 
 
-  const handleSave =(e) =>{
+  const handleSave = async (e) =>{
     const formValid = simpleValidator.current.allValid()
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{
+
+     let validator = await validateFromDatabeforesubmit(questions, subRegResult);
+      console.log(validator);
+      if(!validator.valid){
+        setValidationErrors(validator.errors);
+        return
+      }
+
       if(afterLogin){
         dispatch(updateSubRegistrationData(event.id, event.url, {
             first_time:"yes",
@@ -199,7 +211,29 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
           ...subRegResult,
         }))
       }
+
     }  
+  }
+
+  const validateFromDatabeforesubmit = (question, formdata) => {
+    return new Promise(function(resolve, reject) {
+      let errors = {}; 
+
+      question.forEach(async (element) => {
+            if(element.question_type === "multiple"){
+              if(formdata[`answer${element.id}`] !== undefined){
+                if(element.min_options > 0){
+                  if(formdata[`answer${element.id}`].length < element.min_options){
+                      errors[element.id] = `Select at least ${element.min_options} options`
+                  }
+                }
+              }
+            }
+      });
+
+      let valid = Object.keys(errors).length > 0 ? false : true;
+      resolve({valid:valid, errors:errors});
+    });
   }
 
   return (
@@ -221,12 +255,16 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
                             <label
                               key={answer.id}
                               onClick={() => {
+                                let max_options = question.max_options;
+                                console.log(max_options);
                                 updateResult(
                                   `answer${question.id}`,
                                   "multiple",
                                   answer.id,
                                   question.id,
-                                  answer.link_to
+                                  answer.link_to,
+                                  max_options,
+                                  question.min_options,
                                 );
                               }}
                               className={
@@ -243,6 +281,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
                             </label>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
+                          {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
                               <p>Your comment:</p>

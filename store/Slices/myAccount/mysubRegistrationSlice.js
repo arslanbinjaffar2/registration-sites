@@ -14,7 +14,8 @@ export const eventSlice = createSlice({
   initialState,
   reducers: {
     getSubRegistrationData : (state) => {
-      state.loading = true
+      state.loading = true,
+      state.subRegistration = null
     },
     setSubRegistrationData: (state, { payload}) => {
         state.subRegistration = payload,

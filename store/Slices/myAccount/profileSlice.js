@@ -120,13 +120,12 @@ export const updateProfileData = (id, url, data) => {
     }
   }
 
-  export const cancelRegistrationRequest = (id, url) => {
+  export const cancelRegistrationRequest = (id, url, data) => {
     return async dispatch => {
       dispatch(getProfileData())
       try {
-        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/cancel-registration`, { method:"POST", headers:header("POST", id)})
-        const res = await response.json()
-        if(res.success) {
+        const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/cancel-registration`, data, { headers:header("POST", id)})
+        if(response.data.success) {
           dispatch(clearError());
           dispatch(logOut(id, url));
         } else {
