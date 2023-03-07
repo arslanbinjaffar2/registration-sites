@@ -263,8 +263,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
                                   answer.id,
                                   question.id,
                                   answer.link_to,
-                                  max_options,
-                                  question.min_options,
                                 );
                               }}
                               className={
