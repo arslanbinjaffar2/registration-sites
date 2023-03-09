@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import PageHeader from "components/modules/PageHeader";
-const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
+const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, eventsiteSettings }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
 
