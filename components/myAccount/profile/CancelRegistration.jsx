@@ -16,6 +16,7 @@ const CancelRegistration = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [comment, setComment] = useState("");
+  const [cancelling, setCancelling] = useState(false);
   const cancellationDatePassed = useMemo(()=>{
     if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
       return 0;
@@ -31,6 +32,7 @@ const CancelRegistration = () => {
   }
 
   const cancel = async () => {
+    setCancelling(true);
    dispatch(cancelRegistrationRequest(event.id, event.url, {comment:comment})) 
   }
 
@@ -55,7 +57,7 @@ const CancelRegistration = () => {
                 onChange={(e)=> setComment(e.currentTarget.value)}
               ></textarea>
             </div>
-          <button className="btn btn-save-next btn-loader btn-danger" onClick={()=>{ cancel() }} > Confirm cancelling registration </button>
+          <button className="btn btn-save-next btn-loader btn-danger" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
 
         </div>
       </div> : <PageLoader/>}
