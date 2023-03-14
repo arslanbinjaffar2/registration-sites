@@ -6,7 +6,7 @@ import Select from "react-select";
 import SimpleReactValidator from "simple-react-validator";
 import {
   updateSubRegistrationData,
-} from "store/Slices/myAccount/subRegistrationSlice";
+} from "store/Slices/myAccount/mysubRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
 const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const dispatch = useDispatch();
@@ -71,6 +71,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   );
   const [subRegSettings, setsubRegSettings] = useState(subRegistration.settings);
   const [, forceUpdate] = useState(0);
+  const [validationErros, setValidationErrors] = useState({});
 
   const simpleValidator = useRef(new SimpleReactValidator({
     element: (message) => <p className="error-message">{message}</p>,
@@ -87,14 +88,16 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     agendaId = 0,
     matrixId = 0
   ) => {
+    setValidationErrors({})
     if (type === "multiple") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = subRegResult;
+        let question = questions.find((question)=>(question.id === questionId));
         newObj[feild]=
         subRegResult[feild]
           ? (subRegResult[feild].indexOf(answerId) !== -1
             ? subRegResult[feild].filter((item) => (item !== answerId))
-            : [...subRegResult[feild], answerId])
+            : (question !== null && question.max_options > 0 && subRegResult[feild].length == question.max_options) ? [...subRegResult[feild]] : [...subRegResult[feild], answerId])
           : [answerId];
           
         if (agendaId !== 0) {
@@ -173,13 +176,38 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     }
   };
 
+  const validateFromDatabeforesubmit = (question, formdata) => {
+    return new Promise(function(resolve, reject) {
+      let errors = {}; 
 
+      question.forEach(async (element) => {
+            if(element.question_type === "multiple"){
+              if(formdata[`answer${element.id}`] !== undefined){
+                if(element.min_options > 0){
+                  if(formdata[`answer${element.id}`].length < element.min_options){
+                      errors[element.id] = `Select at least ${element.min_options} options`
+                  }
+                }
+              }
+            }
+      });
 
-  const handleSave =(e) =>{
+      let valid = Object.keys(errors).length > 0 ? false : true;
+      resolve({valid:valid, errors:errors});
+    });
+  }
+
+  const handleSave = async (e) =>{
     const formValid = simpleValidator.current.allValid()
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{
+      let validator = await validateFromDatabeforesubmit(questions, subRegResult);
+      console.log(validator);
+      if(!validator.valid){
+        setValidationErrors(validator.errors);
+        return
+      }
         dispatch(updateSubRegistrationData(event.id, event.url, {
           first_time:"no",
           sub_reg_id: subRegId,
@@ -234,6 +262,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             </label>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
+                          {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
                               <p>Your comment:</p>
@@ -631,9 +660,10 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       </div>
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
-      <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" disabled={subRegSettings.answer === 1 ?  (updating ? true : false) : true } onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
-      </div>
+      {subRegSettings.answer === 1 && <div className="bottom-button">
+        <button className="btn btn-save-next btn-loader" disabled={(updating ? true : false)} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
+      </div>}
+      {console.log(updating, 'updating')}
     </React.Fragment>
   );
 };
