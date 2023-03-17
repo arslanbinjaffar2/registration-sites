@@ -16,7 +16,10 @@ const CancelRegistration = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [comment, setComment] = useState("");
+  const [cancelOption, setCancelOption] = useState("registration_only");
   const [cancelling, setCancelling] = useState(false);
+  const enable_cancel = JSON.parse(localStorage.getItem(`EI${event.url}EC`));
+
   const cancellationDatePassed = useMemo(()=>{
     if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
       return 0;
@@ -33,7 +36,7 @@ const CancelRegistration = () => {
 
   const cancel = async () => {
     setCancelling(true);
-   dispatch(cancelRegistrationRequest(event.id, event.url, {comment:comment})) 
+   dispatch(cancelRegistrationRequest(event.id, event.url, {comment:comment, cancelOption:cancelOption})) 
   }
 
   if(loggedout){
@@ -42,12 +45,41 @@ const CancelRegistration = () => {
 
   return (
     <React.Fragment>
-     {(cancellationDatePassed !== undefined && cancellationDatePassed === 0) ? <div className="edgtf-container ebs-my-profile-area pb-5">
+     {(cancellationDatePassed !== undefined && cancellationDatePassed === 0) &&  (enable_cancel == true)? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header text-center">
             <h2>Are you sure you want to cancel</h2>
           </div>
             <div className="generic-form">
+            <div className='d-flex justify-content-between w-25'>
+                <div style={{textAlign:'left', fontSize:'bold', color:'#000'}} className="col-md-6">
+                        {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order'}
+                </div>
+                <div className='d-flex justify-content-between'>
+                  <label className="label-radio me-2">
+                  {event.labels.GENERAL_YES !== undefined ? event.labels.GENERAL_YES : 'Yes'}
+                    </label>
+                    <input
+                      type="radio"
+                      name="canceloption" 
+                      value="whole_order"
+                      checked={cancelOption === "whole_order" ? true : false }
+                      onChange={(e)=>{setCancelOption(e.target.value)}}
+                    />
+                </div>
+                  <div className='d-flex justify-content-between'>
+                    <label className="label-radio me-2">
+                    {event.labels.GENERAL_NO !== undefined ? event.labels.GENERAL_NO : 'No'}
+                    </label>
+                    <input
+                      type="radio"
+                      name="canceloption" 
+                      value="registration_only"
+                      checked={cancelOption === "registration_only" ? true : false }
+                      onChange={(e)=>{setCancelOption(e.target.value)}}
+                    />
+                  </div>
+            </div>
               <p>Your comment:</p>
               <textarea
                 placeholder="Your comment"
