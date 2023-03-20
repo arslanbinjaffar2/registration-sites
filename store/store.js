@@ -65,6 +65,6 @@ export const store = configureStore({
     myProgramListing: myProgramListingReducer,
     pageBuilderPage: pageBuilderPageReducer,
   },
-  
+  devTools: true,
 });
 setupListeners(store.dispatch);

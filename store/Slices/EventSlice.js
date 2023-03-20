@@ -5,6 +5,8 @@ const initialState = {
   loading: false,
   error: null,
   cookie: "necessary",
+  verification_id: null,
+  validatettendee: null,
 }
 
 export const eventSlice = createSlice({
@@ -24,11 +26,15 @@ export const eventSlice = createSlice({
     setCookie: (state, { payload }) => {
       state.cookie = payload
     },
+    setVerificationids: (state, { payload }) => {
+      state.verification_id = payload.verification_id
+      state.validateAttendee = payload.validateAttendee
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getEvent, setEvent, setError, setCookie } = eventSlice.actions
+export const { getEvent, setEvent, setError, setCookie, setVerificationids } = eventSlice.actions
 
 export const eventSelector = state => state.event
 
@@ -55,4 +61,6 @@ export const updateCookie = (cookie, url) => {
       localStorage.setItem(`cookie_${url}`, cookie);
   }
 }
+
+
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import 'public/sass/app.scss';
 import 'photoswipe/dist/photoswipe.css';
-import { fetchEvent, eventSelector, updateCookie } from "store/Slices/EventSlice";
+import { fetchEvent, eventSelector, updateCookie, checkVerificationCode, setVerificationids } from "store/Slices/EventSlice";
 import { store } from "store/store";
 import { Provider } from "react-redux";
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ require("moment/min/locales.min");
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
-  const { event, layout, autoregister } = router.query;
+  const { event, layout, autoregister, validateAttendee, verification_id } = router.query;
   const [_eventObj, setEventObj] = useState({});
 
   if(autoregister !== undefined && typeof window !== 'undefined'){
@@ -22,6 +22,11 @@ function MyApp({ Component, pageProps }) {
       setWithExpiry(`autoregister_${event}`, autoregister, 300000);
     }
     router.replace(`/${event}`, undefined, { shallow: true });
+  }
+  
+  if(validateAttendee !== undefined && verification_id !== undefined && typeof window !== 'undefined'){
+    store.dispatch(setVerificationids({validateAttendee, verification_id}));
+    router.replace(`/${event}/validate-attendee`);
   }
 
   useEffect(() => {
