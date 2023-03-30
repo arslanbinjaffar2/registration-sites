@@ -35,7 +35,7 @@ const Index = (props) => {
     
   return (
         <>
-            <MetaInfo metaInfo={props.metaInfo} />
+            <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutRoute event={event}>
                     <div style={{height:"90vh"}}>

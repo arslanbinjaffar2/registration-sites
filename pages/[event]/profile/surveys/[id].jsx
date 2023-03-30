@@ -15,7 +15,7 @@ const Detail = (props) => {
 
     return (
         <>
-            <MetaInfo metaInfo={props.metaInfo} />
+            <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutMyAccount>
                     <SurveyDetail />
