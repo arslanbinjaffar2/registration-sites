@@ -1,8 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
+
+const pageview = (GA_MEASUREMENT_ID, url) => {
+        window.gtag("config", GA_MEASUREMENT_ID, {
+            page_path: url,
+        });
+};
+
 
 const MetaInfo = (props) => {
+    const router = useRouter();
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            pageview(props.metaInfo.settings.google_analytics, url);
+        };
+        router.events.on("routeChangeComplete", handleRouteChange);
+
+        return () => {
+        router.events.off("routeChangeComplete", handleRouteChange);
+        };
+    }, [router.events]);
+
     return (
         <>
             <Head>
@@ -75,17 +95,15 @@ const MetaInfo = (props) => {
             </Head>
             {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" &&  (
                 <>
-                <Script id='google-tag-manager' strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                <Script id='google-analytics' strategy="lazyOnload">
-                    {`
+                <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                <Script id='google-analytics' strategy="afterInteractive" dangerouslySetInnerHTML={{__html:`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', '${props.metaInfo.settings.google_analytics}', {
                         page_path: window.location.pathname,
                         });
-                    `}
-                </Script>
+                    `}}/>
                 </>
 
             )}
