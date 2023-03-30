@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 
 const MetaInfo = (props) => {
-    console.log(props.cookie);
+    console.log(props.cookie, 'cookie');
     return (
         <>
             <Head>
@@ -70,14 +70,14 @@ const MetaInfo = (props) => {
                             href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.fav_icon}`}
                         />}
                         {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" &&  (
-                            <script>
-                                {`
-                                    window.ga=window.ga||function()
-                                    {(ga.q = ga.q || []).push(arguments)}
-                                    ;ga.l=+new Date; ga('create',
-                                    '${props.metaInfo.settings.google_analytics}', 'auto'); ga('send',
-                                    'pageview');
-                                `}
+                            <script dangerouslySetInnerHTML={{__html:`
+                            window.ga=window.ga||function()
+                            {(ga.q = ga.q || []).push(arguments)}
+                            ;ga.l=+new Date; ga('create',
+                            '${props.metaInfo.settings.google_analytics}', 'auto'); ga('send',
+                            'pageview');
+                        `}}>
+                               
                             </script>
                         )}
                     </>
