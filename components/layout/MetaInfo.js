@@ -75,8 +75,8 @@ const MetaInfo = (props) => {
             </Head>
             {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" &&  (
                 <>
-                <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                <Script strategy="lazyOnload">
+                <Script id='google-tag-manager' strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                <Script id='google-analytics' strategy="lazyOnload">
                     {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
