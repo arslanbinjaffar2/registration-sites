@@ -52,7 +52,7 @@ const Index = (props) => {
 
   return (
         <>
-            <MetaInfo metaInfo={props.metaInfo} />
+            <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event && !loading? (
                 <MasterLayoutRoute event={event}>
                     <div style={{height:"90vh"}}>

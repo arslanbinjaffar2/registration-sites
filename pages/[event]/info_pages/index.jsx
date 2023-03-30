@@ -20,7 +20,7 @@ const Index = (props) => {
 
     return (
         <>
-            <MetaInfo metaInfo={props.metaInfo} />
+            <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutRoute event={event}>
                     <InfoPagesListing menu_id={menu_id} main_menu_id={main_menu_id} />
