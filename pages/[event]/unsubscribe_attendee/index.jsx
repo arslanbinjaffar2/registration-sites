@@ -32,7 +32,7 @@ const Index = (props) => {
         }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         const response = await axios.get(
             `${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
         );
