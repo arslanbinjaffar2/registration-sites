@@ -12,6 +12,7 @@ const initialState = {
   ms:null,
   error: null,
   loggedout:false,
+  enabel_cancel:false,
 };
 
 export const userSlice = createSlice({
@@ -66,12 +67,15 @@ export const userSlice = createSlice({
     setLoggedOut: (state, { payload }) => {
       state.loggedout = payload;
     },
+    setEnableCancel: (state, { payload }) => {
+      state.enabel_cancel = payload;
+    },
     reset: () => initialState
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setLoading, setLoginData, setError, setForgotPasswordCode, setAttendeeData, setAuthId, setEmail, setRedirect, setProvider, setMs, reset, setLoggedOut } = userSlice.actions;
+export const { setLoading, setLoginData, setError, setForgotPasswordCode, setEnableCancel, setAttendeeData, setAuthId, setEmail, setRedirect, setProvider, setMs, reset, setLoggedOut } = userSlice.actions;
 
 export const userSelector = (state) => state.user;
 
@@ -202,11 +206,13 @@ export const resetPassword = (id, url, data) => {
 
 export const logOut = (id, url) => {
   return async (dispatch) => {
+
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
       if(response.data.success){
         localStorage.removeItem(`event${id}User`);
         localStorage.removeItem(`${url}_sub_reg_skip`);
+        localStorage.removeItem(`EI${url}EC`);
         dispatch(setLoggedOut(true));
         dispatch(reset(true));
       }

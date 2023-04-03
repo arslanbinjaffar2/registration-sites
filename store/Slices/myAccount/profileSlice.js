@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { header } from 'helpers/header'
-import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
+import { logOut, userSelector, reset, setEnableCancel } from "store/Slices/myAccount/userSlice";
 const initialState = {
   attendee: null,
   countries: null,
@@ -66,11 +66,13 @@ export default eventSlice.reducer
 export const fetchProfileData = (id, url) => {
     return async dispatch => {
       dispatch(getProfileData())
+      let userObj = JSON.parse(localStorage.getItem(`event${id}User`));
       try {
         const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(clearError())
         dispatch(setProfileData(res.data))
+        localStorage.setItem(`EI${url}EC`, res.data.enable_cancel == true ? true : false);
       } catch (error) {
         dispatch(setError(error))
       }
