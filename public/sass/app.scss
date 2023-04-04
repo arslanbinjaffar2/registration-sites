@@ -158,6 +158,10 @@
     background-blend-mode: overlay;
     &.ebs-no-opacity {
       background-blend-mode: normal;
+      .inner-caption-wrapp {
+        background-blend-mode: normal !important;
+        background-color: transparent !important;
+      }
     }
 	}
 	&.slider-fullscreen {
