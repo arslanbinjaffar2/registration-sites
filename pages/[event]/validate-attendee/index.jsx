@@ -61,11 +61,11 @@ const Index = (props) => {
                                 <div className="ebs-not-attending-heading text-center">
                                     { message }
                                 </div>
-                                <div className='btn-container justify-content-center'>
+                                {(event.header_data.my_account_sub_menu.length > 0) && (event.header_data.my_account_sub_menu.findIndex((item)=>item.alias == 'login') > -1) && <div className='btn-container justify-content-center'>
                                     <button className="btn btn-default" onClick={()=>{onLoginClick(true)}}>
                                         {event.labels.EVENTSITE_LOGIN !== undefined ? event.labels.EVENTSITE_LOGIN : "Login" }
                                     </button>
-                                </div>
+                                </div>}
                             </div>
                             
                         </div>
