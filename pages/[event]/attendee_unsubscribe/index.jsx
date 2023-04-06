@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
@@ -9,13 +9,16 @@ import PageLoader from "components/ui-components/PageLoader";
 import { getCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import axios from "axios";
+import Spinner from 'components/ui-components/Spinner';
 
 const Index = (props) => {
     const { event } = useSelector(eventSelector);
     const router = useRouter();
     const { id, event_id, email, confirm, already_done } = router.query;
+    const [confirming, setConfirming] = useState(false);
 
     const onConfirm = async () => {
+        setConfirming(true);
         const response = await axios.post(
           `${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee`,
           { id, event_id, email, confirm: 1 }
@@ -48,8 +51,9 @@ const Index = (props) => {
                                     {event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG !== undefined ? event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG : "Are you sure you want cancel coming to the event." }
                                 </div>
                                 <div className='btn-container' >
-                                    <button className="btn btn-default" onClick={(e)=> {onConfirm();}}>
+                                    <button disabled={confirming} className="spinner-btn btn btn-default" onClick={(e)=> {onConfirm();}}>
                                         {event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN !== undefined ? event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN : "Confirm" }
+                                        {confirming && <Spinner/>}
                                     </button>
                                     <button className="btn btn-default" onClick={(e)=> {onCancel();}}>
                                         {event.labels.GENERAL_CANCEL !== undefined ? event.labels.GENERAL_CANCEL : "Cancel" }
