@@ -3185,6 +3185,18 @@
         &:hover {
           background: $second-main-color;
         }
+        &.spinner-btn{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          min-width: 100px;
+          width: auto;
+          height: 40px;
+          margin-top: 20px;
+          margin-left: 20px;
+          background: var(--primary);
+          color: #fff;
+      }
       }
     }
   }
@@ -3197,4 +3209,25 @@
     position: absolute;
     top: 0;
     background-color: #060606ab;
+}
+
+.spinner{
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: .75rem;
+  margin-right: -.25rem;
+}
+
+
+.animate-spin{
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
