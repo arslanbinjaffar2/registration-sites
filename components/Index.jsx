@@ -4,6 +4,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
 import EventDescription from "./modules/EventDescription";
+import PageContent from "./modules/manage-packages/PageContent";
 const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("components/modules/Gallery"));
 const Video = lazy(() => import("components/modules/Video"));
@@ -71,6 +72,7 @@ const Index = () => {
                 return <div key={i}></div>;
             })();
           })}
+          <PageContent />
       </React.Fragment>
     </Suspense>
 
