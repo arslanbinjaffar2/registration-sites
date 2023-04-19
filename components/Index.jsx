@@ -70,9 +70,11 @@ const Index = () => {
               else if (section.module_alias === "streaming" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "waiting_list" && section.status === 1)
                 return <div key={i}></div>;
+              else if (section.module_alias === "registration_packages" && section.status === 1)
+                return <PageContent key={i} />;
             })();
           })}
-          <PageContent />
+          
       </React.Fragment>
     </Suspense>
 
