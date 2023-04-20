@@ -4,6 +4,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
 import EventDescription from "./modules/EventDescription";
+import PageContent from "./modules/manage-packages/PageContent";
 const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("components/modules/Gallery"));
 const Video = lazy(() => import("components/modules/Video"));
@@ -69,8 +70,11 @@ const Index = () => {
               else if (section.module_alias === "streaming" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "waiting_list" && section.status === 1)
                 return <div key={i}></div>;
+              else if (section.module_alias === "registration_packages" && section.status === 1)
+                return <PageContent key={i} />;
             })();
           })}
+          
       </React.Fragment>
     </Suspense>
 

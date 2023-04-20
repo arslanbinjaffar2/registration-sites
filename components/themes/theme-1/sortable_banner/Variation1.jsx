@@ -4,10 +4,9 @@ import SliderBanner from './components/SliderBanner';
 const Variation1 = ({ event, banner, countdown, regisrationUrl }) => {
 
 	const WrapperLayout = (props) => {
-
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
-				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud ebs-no-opacity">
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
 					</a >: props.children}
@@ -15,7 +14,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl }) => {
 			);
 		} else {
 			return (
-				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud"
+				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud ebs-no-opacity"
 					>
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}

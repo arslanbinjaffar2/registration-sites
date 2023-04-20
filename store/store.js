@@ -30,6 +30,7 @@ import photoReducer from "./Slices/PhotoSlice";
 import videoReducer from "./Slices/VideoSlice";
 import programListingReducer from "./Slices/ProgramListingSlice";
 import programReducer from "./Slices/ProgramSlice";
+import formPackageReducer from "./Slices/FormPackageSlice";
 import myProgramListingReducer from "./Slices/myAccount/MyProgramListingSlice";
 export const store = configureStore({
   reducer: {
@@ -64,6 +65,7 @@ export const store = configureStore({
     program: programReducer,
     myProgramListing: myProgramListingReducer,
     pageBuilderPage: pageBuilderPageReducer,
+    formPackages: formPackageReducer,
   },
   devTools: true,
 });

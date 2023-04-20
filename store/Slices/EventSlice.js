@@ -46,8 +46,6 @@ export const fetchEvent = (url, layout=null) => {
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}?layout=${layout}`)
       const res = await response.json()
-      // const count = res.data.eventsiteSections.filter((i)=> i.status === 1).length;
-      // dispatch(setLoadCount(count))
       dispatch(setEvent(res.data))
     } catch (error) {
       dispatch(setError())

@@ -701,6 +701,15 @@ class Variation5 extends React.Component {
                               
                             </li>
                           ))}
+                           <li className="nav-item">
+                                <ActiveLink
+                                    className="nav-link"
+                                    aria-current="page"
+                                    href={`/${this.props.event.url}/manage-packages`}
+                                >
+                                      Registration Packages
+                                </ActiveLink>
+                          </li>
                         </ul>
                       </div>
                     </Scrollbars>

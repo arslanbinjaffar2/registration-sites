@@ -156,6 +156,13 @@
     background-size: cover;
     background-color: rgba($black, 0.2);
     background-blend-mode: overlay;
+    &.ebs-no-opacity {
+      background-blend-mode: normal;
+      .inner-caption-wrapp {
+        background-blend-mode: normal !important;
+        background-color: transparent !important;
+      }
+    }
 	}
 	&.slider-fullscreen {
 	.inner-caption-wrapp {
