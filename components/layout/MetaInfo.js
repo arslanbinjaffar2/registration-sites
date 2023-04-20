@@ -4,9 +4,12 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 
 const pageview = (GA_MEASUREMENT_ID, url) => {
+    if(window !== undefined){
         window.gtag("config", GA_MEASUREMENT_ID, {
             page_path: url,
         });
+    }
+
 };
 
 
@@ -14,7 +17,9 @@ const MetaInfo = (props) => {
     const router = useRouter();
     useEffect(() => {
         const handleRouteChange = (url) => {
-            pageview(props.metaInfo.settings.google_analytics, url);
+            if(props.metaInfo.settings.google_analytics){
+                pageview(props.metaInfo.settings.google_analytics, url);
+            }
         };
         router.events.on("routeChangeComplete", handleRouteChange);
 
