@@ -5,7 +5,7 @@ const Documents = ({documents, documentPage, labels}) => {
     <React.Fragment>
     <div 
       className="edgtf-parallax-section-holder">
-        <DocumentsListing documents={documents} documentPage={documentPage} labels={labels} />
+        <DocumentsListing documents={documents} documentPage={documentPage} page={'general'} labels={labels} />
     </div>
     </React.Fragment>
   );
