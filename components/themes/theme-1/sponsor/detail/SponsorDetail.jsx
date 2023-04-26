@@ -202,7 +202,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
           </div>
-          <DocumentsListing documents={documents} />
+          <DocumentsListing documents={documents} page={'sponsor'} />
         </div>
       </div>}
     </div>

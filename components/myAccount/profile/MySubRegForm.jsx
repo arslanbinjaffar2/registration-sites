@@ -14,7 +14,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     .reduce(
       (ack, item) => {
       if(item.question_type === "multiple" && item.result.length > 0){
-        let newObj ={ [`answer${item.id}`]: item.result.map(item=>(item.answer_id)) }
+        let newObj ={ [`answer${item.id}`]: item.result.map(item=>(item.answer_id)), [`comments${item.id}`]:item.result[0].comments }
         let agendas = item.answer.filter((filterItem)=>(filterItem.link_to > 0)).reduce((ack, ritem) => {
           if(item.result.map(item=>(item.answer_id)).indexOf(ritem) !== -1){
            return Object.assign(ack, { [`answer_agenda_${ritem.id}`] : ritem.link_to })
@@ -28,18 +28,18 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
         return Object.assign(ack, {...newObj} );
       }
       else if(item.question_type === "single" && item.result.length > 0){
-        let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id] }
+        let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id], [`comments${item.id}`]:item.result[0].comments }
         if(item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to > 0){
           newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer[item.result[0].answer_id].link_to};
         }
         return Object.assign(ack, {...newObj} );
       }
       else if(item.question_type === "dropdown" && item.result.length > 0){
-        let newObj ={ [`answer_dropdown${item.id}`]: [`${item.result[0].answer_id}-${item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to}`] }
+        let newObj ={ [`answer_dropdown${item.id}`]: [`${item.result[0].answer_id}-${item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to}`], [`comments${item.id}`]:item.result[0].comments }
         return Object.assign(ack, {...newObj} );
       }
       else if(item.question_type === "matrix" && item.result.length > 0){
-        let newObj ={ [`answer${item.id}`]: item.result.map((anwser)=>(anwser.answer_id)) }
+        let newObj ={ [`answer${item.id}`]: item.result.map((anwser)=>(anwser.answer_id)), [`comments${item.id}`]:item.result[0].comments }
         let matrix = item.result.reduce((ack, ritem) => {
            return Object.assign(ack, { [`answer_matrix${item.id}_${ritem.answer_id}`] : [`${ritem.answer_id}-${ritem.answer}`] })},
           
@@ -48,7 +48,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       }
       else{
         if(item.result !== undefined && item.result.length > 0){
-          return Object.assign(ack, { [`answer_${item.question_type}${item.id}`]: [item.result[0].answer]} );
+          return Object.assign(ack, { [`answer_${item.question_type}${item.id}`]: [item.result[0].answer], [`comments${item.id}`]:item.result[0].comments} );
         }else{
           return ack;
         }
@@ -169,6 +169,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
           ],
         });
       }
+    } 
+    else if (type === "comment") {
+      Object.keys(subRegResult).length > 0
+      ? setSubRegResult({ ...subRegResult, [feild]: answerId })
+      : setSubRegResult({ [feild]: answerId });
     } else {
       Object.keys(subRegResult).length > 0
         ? setSubRegResult({ ...subRegResult, [feild]: [answerId] })
@@ -270,6 +275,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 placeholder="Your comment"
                                 cols={30}
                                 rows={5}
+                                defaultValue={subRegResult[`comments${question.id}`]}
                                 disabled={subRegSettings.answer === 1 ? subRegResult[`answer${question.id}`] !== undefined ? false : true : true}
                                 onChange={(e) => {
                                   updateResult(
@@ -315,6 +321,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               placeholder="Your comment"
                               cols={30}
                               rows={5}
+                              defaultValue={subRegResult[`comments${question.id}`]}
                               disabled={ subRegSettings.answer === 1 ? subRegResult[`answer_number${question.id}`] !== undefined ? false : true : true}
                               onChange={(e) => {
                                 updateResult(
@@ -361,6 +368,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               placeholder="Your comment"
                               cols={30}
                               rows={5}
+                              defaultValue={subRegResult[`comments${question.id}`]}
                               disabled={subRegSettings.answer === 1 ? subRegResult[`answer_open${question.id}`] !== undefined ? false : true : true}
                               onChange={(e) => {
                                 updateResult(
@@ -415,6 +423,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 placeholder="Your comment"
                                 cols={30}
                                 rows={5}
+                                defaultValue={subRegResult[`comments${question.id}`]}
                                 disabled={subRegSettings.answer === 1 ? subRegResult[`answer_dropdown${question.id}`] !== undefined ? false : true : true}
                                 onChange={(e) => {
                                   updateResult(
@@ -461,6 +470,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               placeholder="Your comment"
                               cols={30}
                               rows={5}
+                              defaultValue={subRegResult[`comments${question.id}`]}
                               disabled={subRegSettings.answer === 1 ? subRegResult[`answer_date${question.id}`] !== undefined ? false : true : true}
                               onChange={(e) => {
                                 updateResult(
@@ -507,6 +517,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               placeholder="Your comment"
                               cols={30}
                               rows={5}
+                              defaultValue={subRegResult[`comments${question.id}`]}
                               disabled={subRegSettings.answer === 1 ? subRegResult[`answer_date_time${question.id}`] !== undefined ? false : true : true}
                               onChange={(e) => {
                                 updateResult(
@@ -563,7 +574,15 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 placeholder="Your comment"
                                 cols={30}
                                 rows={5}
+                                defaultValue={subRegResult[`comments${question.id}`]}
                                 disabled={subRegSettings.answer === 1 ? subRegResult[`answer${question.id}`] !== undefined ? false : true : true}
+                                onChange={(e) => {
+                                  updateResult(
+                                    `comments${question.id}`,
+                                    "comment",
+                                    e.target.value
+                                  );
+                                }}
                               ></textarea>
                             </div>
                           )}
@@ -637,6 +656,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 placeholder="Your comment"
                                 cols={30}
                                 rows={5}
+                                defaultValue={subRegResult[`comments${question.id}`]}
                                 disabled={subRegSettings.answer === 1 ? subRegResult[`answer${question.id}`] !== undefined ? false : true : true}
                                 onChange={(e) => {
                                   updateResult(
