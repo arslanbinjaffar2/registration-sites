@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import moment from 'moment';
 import Image from 'next/image'
 import PageHeader from 'components/modules/PageHeader';
+import {GATrackEventDocumentDownloadEvent} from '../../helpers/helper';
 const getDirectoryName = (item) => {
     if(item['name'] !== undefined) return item.name
     else if(item['Program'] !== undefined) return item.Program
@@ -11,7 +12,7 @@ const getDirectoryName = (item) => {
     else if(item['Other'] !== undefined) return item.Other
 }
 
-function DocumentsListing({documents, documentPage, labels}) {
+function DocumentsListing({documents, documentPage, labels, page}) {
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
     const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:labels.GENERAL_DOCUMENT}]);
@@ -147,7 +148,7 @@ function DocumentsListing({documents, documentPage, labels}) {
                      if(item['directory_id'] !== undefined) {
                         filesCount ++;
                         return (<div key={i} className="ebs-document-content">
-                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
+                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  onClick={() => GATrackEventDocumentDownloadEvent('DownloadedDocuments', page, '::'+item['id']+"::"+item['parent_id'])} target="_blank" rel="noreferrer">                 
                                 <div className="row d-flex align-items-center">
                                     <div className="col-6 col-sm-8 col-lg-9">
                                         <div className="ebs-title" >
