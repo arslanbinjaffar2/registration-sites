@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
+
 // import { setLoadCount } from './GlobalSlice'
 const initialState = {
   packages: null,
@@ -37,6 +39,8 @@ export const fetchPackages = (url, layout=null) => {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/form-packages`)
       const res = await response.json()
       dispatch(setFormPackages(res.data))
+      dispatch(incrementLoadedSection());
+      dispatch(incrementFetchLoadCount());
     } catch (error) {
       dispatch(setError())
     }
