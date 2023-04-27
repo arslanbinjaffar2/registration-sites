@@ -272,7 +272,7 @@ export function getWithExpiry(key) {
 
 
 export function GATrackEventDocumentDownloadEvent(event_cat, event_name, event_label){
-    if(window !== undefined){
+    if(window !== undefined && window.gtag !== undefined){
         window.gtag('event', event_cat, {
             event_category: event_cat,
             event_action: event_name,
