@@ -55,7 +55,7 @@ const PackageTable = ({eventUrl, item}) => {
   console.log(registerDateEnd);
   return (
     <div className='ebs-package-table-wrapp'>
-      <h5>Remaining tickets : {(item.total_tickets - item.sold_tickets)}</h5>
+      <h5>Remaining tickets : {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
       <div className="ebs-table-price">{item.price}<small>DKK</small></div>
