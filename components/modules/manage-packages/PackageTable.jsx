@@ -47,12 +47,11 @@ const PackageTable = ({eventUrl, item}) => {
 
   const registerDateEnd = React.useMemo(()=>{
     let currentDate = moment();
-    let endDate = moment(item.eventsite_setting.registration_end_date);
+    let endDate = moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`);
     let diff = item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" ? (currentDate.diff(endDate) < 0) : false;
     return diff;
   },[item]);
 
-  console.log(registerDateEnd);
   return (
     <div className='ebs-package-table-wrapp'>
       <h5>Remaining tickets : {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
@@ -64,7 +63,7 @@ const PackageTable = ({eventUrl, item}) => {
       {registerDateEnd && 
         <div className="ebs-table-timer">
           <h4>Ticket remaining time :</h4>
-          <Countdown date={moment(item.eventsite_setting.registration_end_date)} renderer={renderer} />
+          <Countdown date={moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)} renderer={renderer} />
         </div>
       }
     <div className="ebs-footer-table">
