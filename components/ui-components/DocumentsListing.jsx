@@ -148,7 +148,7 @@ function DocumentsListing({documents, documentPage, labels, page}) {
                      if(item['directory_id'] !== undefined) {
                         filesCount ++;
                         return (<div key={i} className="ebs-document-content">
-                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  onClick={() => GATrackEventDocumentDownloadEvent('DownloadedDocuments', page, '::'+item['id']+"::"+item['parent_id'])} target="_blank" rel="noreferrer">                 
+                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  onClick={() => GATrackEventDocumentDownloadEvent('DownloadedDocuments', page, '::'+item['id']+"::"+item['directory_id'])} target="_blank" rel="noreferrer">                 
                                 <div className="row d-flex align-items-center">
                                     <div className="col-6 col-sm-8 col-lg-9">
                                         <div className="ebs-title" >
