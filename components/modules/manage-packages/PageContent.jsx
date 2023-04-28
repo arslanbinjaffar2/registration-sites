@@ -31,9 +31,9 @@ const PageContent = () => {
         </div>
         <div className="ebs-package-content-area">
           <div className="container">
-            <div className="row d-flex">
+            <div className="row">
               {packages && packages.length > 0 && packages.map((item)=>(
-                <div key={item.id} className="col-md-6 col-lg-4 h-100">
+                <div key={item.id} className="col-md-6 col-lg-4">
                   <PackageTable item={item} eventUrl={event.url}/>
                 </div>
               ))}
