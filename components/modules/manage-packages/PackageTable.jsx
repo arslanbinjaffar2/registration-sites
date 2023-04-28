@@ -59,7 +59,7 @@ const PackageTable = ({eventUrl, item}) => {
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
       <div className="ebs-table-price">{item.price}<small>DKK</small></div>
-      <div dangerouslySetInnerHTML={{__html:item.description}}>
+      <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{__html:item.description}}>
       </div>
       {registerDateEnd && 
         <div className="ebs-table-timer">
