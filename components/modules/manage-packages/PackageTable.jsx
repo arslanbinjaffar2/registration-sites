@@ -43,19 +43,18 @@ const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
   }
 };
 
-const PackageTable = ({eventUrl, item}) => {
+const PackageTable = ({eventUrl, item, labels}) => {
 
   const registerDateEnd = React.useMemo(()=>{
     let currentDate = moment();
-    let endDate = moment(item.eventsite_setting.registration_end_date);
+    let endDate = moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`);
     let diff = item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" ? (currentDate.diff(endDate) < 0) : false;
     return diff;
   },[item]);
 
-  console.log(registerDateEnd);
   return (
     <div className='ebs-package-table-wrapp'>
-      <h5>Remaining tickets : {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
+      <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left:"} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
       <div className="ebs-table-price">{item.price}<small>DKK</small></div>
@@ -63,12 +62,12 @@ const PackageTable = ({eventUrl, item}) => {
       </div>
       {registerDateEnd && 
         <div className="ebs-table-timer">
-          <h4>Ticket remaining time :</h4>
-          <Countdown date={moment(item.eventsite_setting.registration_end_date)} renderer={renderer} />
+          <h4>{(labels.EVENTSITE_TIME_LEFT !== undefined && labels.EVENTSITE_TIME_LEFT !== "") ?  labels.EVENTSITE_TIME_LEFT : "Time left:"}</h4>
+          <Countdown date={moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)} renderer={renderer} />
         </div>
       }
     <div className="ebs-footer-table">
-      <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/registration-form/${item.registration_form_id}`} className="btn-table">REGISTER</a>  
+      <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/registration-form/${item.registration_form_id}`} className="btn-table">{labels.EVENTSITE_REGISTER_NOW2}</a>  
     </div>
     </div>
   )

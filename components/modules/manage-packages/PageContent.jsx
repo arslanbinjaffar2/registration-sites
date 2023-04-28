@@ -24,8 +24,8 @@ const PageContent = () => {
         <div className="ebs-header-packages">
            <div className="container">
              <div className="ebs-header-content">
-              <h1>Get your tickets</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet.</p>
+              <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : "Get your tickets"}</h1>
+              <p>{(event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION : "All different packages to register against"}</p>
              </div>
             </div> 
         </div>
@@ -34,7 +34,7 @@ const PageContent = () => {
             <div className="row">
               {packages && packages.length > 0 && packages.map((item)=>(
                 <div key={item.id} className="col-md-6 col-lg-4">
-                  <PackageTable item={item} eventUrl={event.url}/>
+                  <PackageTable item={item} eventUrl={event.url} labels={event.labels}/>
                 </div>
               ))}
             </div>
