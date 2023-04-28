@@ -67,6 +67,10 @@ const Header = ({ location, history }) => {
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/manage-packages`;
+    }
+
     return url;
   },[event]);
 
