@@ -66,9 +66,9 @@ const PackageTable = ({eventUrl, item, labels}) => {
           <Countdown date={moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)} renderer={renderer} />
         </div>
       }
-    <div className="ebs-footer-table">
+    {registerDateEnd && <div className="ebs-footer-table">
       <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/registration-form/${item.registration_form_id}`} className="btn-table">{labels.EVENTSITE_REGISTER_NOW2}</a>  
-    </div>
+    </div>}
     </div>
   )
 }
