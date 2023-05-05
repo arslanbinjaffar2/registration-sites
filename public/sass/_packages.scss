@@ -31,7 +31,9 @@
 		border-radius: 4px 4px 0 0;
 		border-top: 4px solid var(--primary);
 		position: relative;
-		margin-bottom: 30px;
+		&.ebs-no-table-footer {
+			padding-bottom: 10px;
+		}
 		h5 {
 			font-size: 14px;
 			color: #313131;
@@ -133,7 +135,7 @@
 		}
 	}
 	.ebs-footer-table {
-		padding: 0 15px 50px;
+		padding: 0 15px 20px;
 		position: absolute;
 		left: 0;
 		width: 100%;

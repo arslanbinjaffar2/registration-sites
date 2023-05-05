@@ -53,7 +53,7 @@ const PackageTable = ({eventUrl, item, labels}) => {
   },[item]);
 
   return (
-    <div className='ebs-package-table-wrapp'>
+    <div className={`ebs-package-table-wrapp ${!registerDateEnd && 'ebs-no-table-footer'}`}>
       <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left:"} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
