@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementFetchLoadCount, incrementLoadCount
 } from "store/Slices/GlobalSlice";
+import PageLoader from 'components/ui-components/PageLoader';
 const PageContent = () => {
   const { event } = useSelector(eventSelector);
   const { packages, loading } = useSelector(formPackageSelector);
@@ -20,7 +21,7 @@ const PageContent = () => {
   
   return (
     <React.Fragment>
-      {packages && packages.length > 0 && <main className="ebs-manage-packages" role="main">
+      {packages && packages.length > 0 ? <main className="ebs-manage-packages" role="main">
         <div className="ebs-header-packages">
            <div className="container">
              <div className="ebs-header-content">
@@ -40,7 +41,9 @@ const PageContent = () => {
             </div>
           </div>
         </div> 
-      </main>}
+      </main> : 
+        <PageLoader />
+      }
     </React.Fragment>
   )
 }
