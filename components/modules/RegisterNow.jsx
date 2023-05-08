@@ -53,7 +53,7 @@ const RegisterNow = () => {
     }
 
     if(event.eventsiteSettings.manage_package === 1){
-       url = `/${event.url}/manage-packages`;
+       url = `/${event.url}/registration_packages`;
     }
     
     let autoregister = getWithExpiry(`autoregister_${event.url}`);
