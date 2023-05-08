@@ -68,7 +68,7 @@ const Header = ({ location, history }) => {
     }
 
     if(event.eventsiteSettings.manage_package === 1){
-      url = `/${event.url}/manage-packages`;
+      url = `/${event.url}/registration_packages`;
     }
 
     return url;
