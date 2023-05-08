@@ -43,7 +43,7 @@ const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
   }
 };
 
-const PackageTable = ({eventUrl, item, labels}) => {
+const PackageTable = ({eventUrl, item, labels, package_currency}) => {
 
   const registerDateEnd = React.useMemo(()=>{
     let currentDate = moment();
@@ -57,7 +57,7 @@ const PackageTable = ({eventUrl, item, labels}) => {
       <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left:"} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
-      <div className="ebs-table-price">{item.price}<small>DKK</small></div>
+      <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div>
       <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{__html:item.description}}>
       </div>
       {registerDateEnd && 
@@ -67,7 +67,7 @@ const PackageTable = ({eventUrl, item, labels}) => {
         </div>
       }
     {registerDateEnd && <div className="ebs-footer-table">
-      <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/registration-form/${item.registration_form_id}`} className="btn-table">{labels.EVENTSITE_REGISTER_NOW2}</a>  
+      <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/manage-attendee?attendee_types=${item.attendee_type}`} className="btn-table">{labels.EVENTSITE_REGISTER_NOW2}</a>  
     </div>}
     </div>
   )

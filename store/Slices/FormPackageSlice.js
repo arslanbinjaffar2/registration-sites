@@ -4,6 +4,7 @@ import { incrementLoadedSection, incrementFetchLoadCount } from "./GlobalSlice";
 // import { setLoadCount } from './GlobalSlice'
 const initialState = {
   packages: null,
+  package_currency: null,
   loading: false,
   error: null,
 }
@@ -16,7 +17,8 @@ export const formPackageSlice = createSlice({
       state.loading = true
     },
     setFormPackages: (state, { payload }) => {
-      state.packages = payload
+      state.packages = payload.data
+      state.package_currency = payload.currency
       state.loading = false
     },
     setError: (state, { payload }) => {
@@ -38,7 +40,7 @@ export const fetchPackages = (url, layout=null) => {
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/form-packages`)
       const res = await response.json()
-      dispatch(setFormPackages(res.data))
+      dispatch(setFormPackages(res))
       dispatch(incrementLoadedSection());
       dispatch(incrementFetchLoadCount());
     } catch (error) {
