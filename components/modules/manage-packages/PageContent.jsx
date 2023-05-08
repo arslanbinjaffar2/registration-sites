@@ -9,7 +9,7 @@ import {
 import PageLoader from 'components/ui-components/PageLoader';
 const PageContent = () => {
   const { event } = useSelector(eventSelector);
-  const { packages, loading } = useSelector(formPackageSelector);
+  const { packages, loading, package_currency } = useSelector(formPackageSelector);
   const dispatch = useDispatch();
   React.useEffect(() => { 
     if(packages === null){
@@ -21,7 +21,7 @@ const PageContent = () => {
   
   return (
     <React.Fragment>
-      {packages && packages.length > 0 ? <main className="ebs-manage-packages" role="main">
+      {packages ? (packages.length > 0 ? <main className="ebs-manage-packages" role="main">
         <div className="ebs-header-packages">
            <div className="container">
              <div className="ebs-header-content">
@@ -35,13 +35,13 @@ const PageContent = () => {
             <div className="row">
               {packages && packages.length > 0 && packages.map((item)=>(
                 <div key={item.id} className="col-md-6 col-lg-4 mb-4">
-                  <PackageTable item={item} eventUrl={event.url} labels={event.labels}/>
+                  <PackageTable item={item} eventUrl={event.url} labels={event.labels} package_currency={package_currency}/>
                 </div>
               ))}
             </div>
           </div>
         </div> 
-      </main> : 
+      </main> : null) : 
         <PageLoader />
       }
     </React.Fragment>
