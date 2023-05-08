@@ -623,6 +623,7 @@ class Variation6 extends React.Component {
                         )}
                       </li>
                     ))}
+                    
                   </ul>
                 </div>
               </nav>}

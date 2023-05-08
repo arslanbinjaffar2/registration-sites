@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import 'public/sass/app.scss';
 import 'photoswipe/dist/photoswipe.css';
 import 'public/sass/404.scss';
+import 'public/sass/_packages.scss';
 import { fetchEvent, eventSelector, updateCookie, checkVerificationCode, setVerificationids } from "store/Slices/EventSlice";
 import { store } from "store/store";
 import { Provider } from "react-redux";

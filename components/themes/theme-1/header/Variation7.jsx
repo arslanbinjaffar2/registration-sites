@@ -677,6 +677,7 @@ class Variation7 extends React.Component {
                         )}
                       </li>
                     ))}
+                    
                   </ul>
                 </div>
               </nav>}
