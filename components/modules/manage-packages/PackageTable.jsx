@@ -57,7 +57,7 @@ const PackageTable = ({eventUrl, item, labels, package_currency}) => {
       <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left:"} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5>
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
-      <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div>
+      {item.enable_price === 1 ? <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div> : null}
       <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{__html:item.description}}>
       </div>
       {registerDateEnd && 
