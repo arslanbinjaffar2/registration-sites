@@ -187,7 +187,7 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
       <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
-            <h2 className="edgtf-title-with-dots edgtf-appeared">Programes</h2>
+            <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.EVENTSITE_PROGRAM !== undefined ? labels.EVENTSITE_PROGRAM :"Programes"}</h2>
             <span className="edge-title-separator edge-enable-separator"></span>
             <div className="ebs-main-program-listing">
 
