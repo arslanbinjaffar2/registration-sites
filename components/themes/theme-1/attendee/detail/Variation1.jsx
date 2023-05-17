@@ -1,7 +1,7 @@
 import React from "react";
 import Image from 'next/image'
 
-const Variation1 = ({ attendee }) => {
+const Variation1 = ({ attendee, labels }) => {
   return (
     <div data-fixed="false" className="ebs-transparent-box">
       <div className="single-team-member">
@@ -58,7 +58,7 @@ const Variation1 = ({ attendee }) => {
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">ABOUT </h4>
+                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
                           <p>{attendee.info.about}</p>
                         </div>
                       )}

@@ -4,7 +4,7 @@ import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import { localeProgramMoment } from 'helpers/helper';
 import Image from 'next/image'
 
-const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, eventLanguageId }) => {
+const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId }) => {
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -81,7 +81,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">ABOUT </h4>
+                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
                           {speaker.info.about && <div style={{marginbottom: 20}}  dangerouslySetInnerHTML={{__html: speaker.info.about}} />}
                         </div>
                       )}
