@@ -301,6 +301,11 @@
 			}
 		}
 	}
+  .ebs-custom-button-holder {
+    @include phone-landscape {
+      display: none !important;
+    }
+  }
 }
 .timer-wrapper {
   position: absolute;

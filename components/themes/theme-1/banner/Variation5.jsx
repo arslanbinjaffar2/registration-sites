@@ -98,7 +98,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                         </div>
                       )}
                       {settings.register_button === 1 && registerDateEnd  && <div
-                        className="edgtf-custom-font-holder"
+                        className="edgtf-custom-font-holder ebs-custom-button-holder"
                         style={{
                           marginTop: "40px",
                           fontSize: "26px",
