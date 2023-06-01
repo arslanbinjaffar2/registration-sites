@@ -46,6 +46,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                         />
                       ) : (
                         <Image objectFit='contain' layout="fill"
+                          onLoad={(e) => e.target.style.opacity = 1}
                           src={require('public/img/exhibitors-default.png')}
                           className="vc_single_image-img attachment-full"
                           alt="x"
@@ -193,6 +194,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                       />
                     ) : (
                       <Image objectFit='contain' layout="fill"
+                        onLoad={(e) => e.target.style.opacity = 1}
                         src={require('public/img/user-placeholder.jpg')}
                         alt="x"
                       />
