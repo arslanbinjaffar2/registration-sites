@@ -11,10 +11,10 @@ const WorkShop = ({item, eventUrl, showWorkshop, labels}) => {
       {parseInt(item.hide_time) === 0  && <>
       {" "}({moment(item?.program_workshop_start_time, "HH:mm:ss").format("HH:mm")} - {moment(item?.program_workshop_end_time, "HH:mm:ss").format("HH:mm")})
       </>}
-      <i className="material-icons">{open ? 'expand_less' : 'expand_more'}</i></div>
-          {open && item.workshop_programs.map((program,i) =>
+      <i className="material-icons">{!open ? 'expand_less' : 'expand_more'}</i></div>
+          {!open ? item.workshop_programs.map((program,i) =>
                 <ProgramItem key={i} eventUrl={eventUrl} program={program} labels={labels}/>           
-          )}
+          ) : ''}
     </div>
   )
 }

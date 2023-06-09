@@ -43,7 +43,7 @@ const Program = (props) => {
     <Suspense fallback={''}>
       {programs ? (
         <React.Fragment>
-          <Component programs={programs} tracks={tracks} siteLabels={event.labels} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
+          <Component programs={programs} tracks={tracks} siteLabels={event.labels} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : null
       }

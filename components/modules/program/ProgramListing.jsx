@@ -52,7 +52,7 @@ const ProgramListing = (props) => {
           </Head>
           <PageHeader desc={event.labels.EVENTSITE_PROGRAM_DETAIL} label={event.labels.EVENTSITE_PROGRAM}/>
           {Object.keys(programs).length > 0 ? 
-          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} eventsiteSettings={event.eventsiteSettings} /> :
+          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.agenda_settings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} eventsiteSettings={event.eventsiteSettings} /> :
           <div style={{textAlign:"center"}}>
             <h4>No programs found...</h4>
           </div>

@@ -43,7 +43,7 @@ const ExhibitorDetail = (props) => {
     {name:event.labels.OVERVIEW_OF_EXHIBITORS, url:"", type:"name"},
   ]);
   useEffect(() => {
-    dispatch(incrementLoadCount());
+    //dispatch(incrementLoadCount());
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());

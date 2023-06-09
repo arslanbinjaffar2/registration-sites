@@ -64,7 +64,7 @@ const SpeakerDetail = (props) => {
             </ul>
             </nav>)
         }} />
-          <Component speaker={speaker} labels={labels} moduleName={event.eventsiteModules.speakers} siteLabels={event.labels} eventUrl={eventUrl} eventLanguageId={event.language_id} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} />
+          <Component speaker={speaker} labels={event.labels} moduleName={event.eventsiteModules.speakers} siteLabels={event.labels} eventUrl={eventUrl} eventLanguageId={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : <PageLoader />}
     </Suspense>
