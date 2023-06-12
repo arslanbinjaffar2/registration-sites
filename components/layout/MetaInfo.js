@@ -138,7 +138,7 @@ const MetaInfo = (props) => {
                         window._linkedin_data_partner_ids.push(_linkedin_partner_id);
                         `}
                     </Script>
-                    <Script strategy="afterInteractive">
+                    <Script id='linkedin-analytics' strategy="afterInteractive">
                         {`
                         (function(l) {
                             if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
