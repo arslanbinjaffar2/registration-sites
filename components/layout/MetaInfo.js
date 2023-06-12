@@ -100,8 +100,8 @@ const MetaInfo = (props) => {
             </Head>
             {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" && (
                 <>
-                    <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                    <Script id='google-analytics' strategy="afterInteractive" dangerouslySetInnerHTML={{
+                    <Script id='google-analytics-1' strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                    <Script id='google-analytics-2' strategy="afterInteractive" dangerouslySetInnerHTML={{
                         __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
@@ -131,14 +131,14 @@ const MetaInfo = (props) => {
             )}
             {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && (
                 <>
-                    <Script strategy="afterInteractive">
+                    <Script id='linkedin-analytics-1' strategy="afterInteractive">
                         {`
                         _linkedin_partner_id = '${props.metaInfo.settings?.linkedin_partner_id}';
                         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
                         window._linkedin_data_partner_ids.push(_linkedin_partner_id);
                         `}
                     </Script>
-                    <Script id='linkedin-analytics' strategy="afterInteractive">
+                    <Script id='linkedin-analytics-2' strategy="afterInteractive">
                         {`
                         (function(l) {
                             if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
@@ -159,10 +159,11 @@ const MetaInfo = (props) => {
             {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && (
                 <>
                     <Script
+                        id="facebook-analytics-1"
                         src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
                         strategy="afterInteractive"
                     />
-                    <Script id="facebook-analytics" strategy="afterInteractive">
+                    <Script id="facebook-analytics-2" strategy="afterInteractive">
                         {`
                         !function(f,b,e,v,n,t,s)
                         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
