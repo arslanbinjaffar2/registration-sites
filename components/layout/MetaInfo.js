@@ -113,13 +113,14 @@ const MetaInfo = (props) => {
                 </>
 
             )}
-            {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && (
+            {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && props.cookie !== null && props.cookie == "all" && (
                 <>
                     <Script
+                        id="thirdyparty-google-analytics-1"
                         src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
                         strategy="afterInteractive"
                     />
-                    <Script id="thirdyparty-google-analytics" strategy="afterInteractive">
+                    <Script id="thirdyparty-google-analytics-2" strategy="afterInteractive">
                         {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){window.dataLayer.push(arguments);}
@@ -129,7 +130,7 @@ const MetaInfo = (props) => {
                     </Script>
                 </>
             )}
-            {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && (
+            {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && props.cookie !== null && props.cookie == "all" && (
                 <>
                     <Script id='linkedin-analytics-1' strategy="afterInteractive">
                         {`
@@ -156,7 +157,7 @@ const MetaInfo = (props) => {
                     </noscript>
                 </>
             )}
-            {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && (
+            {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && props.cookie !== null && props.cookie == "all" && (
                 <>
                     <Script
                         id="facebook-analytics-1"
