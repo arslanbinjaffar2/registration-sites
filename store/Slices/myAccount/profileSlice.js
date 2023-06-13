@@ -16,7 +16,7 @@ const initialState = {
   alert: null,
   invoice: null,
   order_id: null,
-  is_invoice: null,
+  is_invoice_update: null,
 }
 
 export const eventSlice = createSlice({
@@ -55,7 +55,7 @@ export const eventSlice = createSlice({
     setInvoice: (state, { payload }) => {
       state.invoice = payload.invoice
       state.order_id = payload.order_id
-      state.is_invoice = payload.is_invoice
+      state.is_invoice_update = payload.is_invoice_update
     },
   },
 })
