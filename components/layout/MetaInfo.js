@@ -153,7 +153,7 @@ const MetaInfo = (props) => {
                         `}
                     </Script>
                     <noscript>
-                        <img height="1" width="1" style={{ display: 'none' }} alt="" src="https://px.ads.linkedin.com/collect/?pid=79632&fmt=gif" />
+                        <img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=${props.metaInfo.settings?.linkedin_partner_id}&fmt=gif`} />
                     </noscript>
                 </>
             )}
@@ -179,7 +179,7 @@ const MetaInfo = (props) => {
                         `}
                     </Script>
                     <noscript>
-                        <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=1780143162357147&ev=PageView&noscript=1" />
+                        <img height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${props.metaInfo.settings?.facebook_pixel_id}&ev=PageView&noscript=1`} />
                     </noscript>
                 </>
             )}
