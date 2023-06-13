@@ -97,12 +97,11 @@ const MetaInfo = (props) => {
                     </>
                 )}
 
-            </Head>
-            {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" && (
-                <>
-                    <Script id='google-analytics-1' strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                    <Script id='google-analytics-2' strategy="afterInteractive" dangerouslySetInnerHTML={{
-                        __html: `
+                {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <Script id='google-analytics-1' strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                        <Script id='google-analytics-2' strategy="afterInteractive" dangerouslySetInnerHTML={{
+                            __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
@@ -110,37 +109,39 @@ const MetaInfo = (props) => {
                         page_path: window.location.pathname,
                         });
                     `}} />
-                </>
+                    </>
 
-            )}
-            {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && props.cookie !== null && props.cookie == "all" && (
-                <>
-                    <Script
-                        id="thirdyparty-google-analytics-1"
-                        src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
-                        strategy="afterInteractive"
-                    />
-                    <Script id="thirdyparty-google-analytics-2" strategy="afterInteractive">
-                        {`
+                )}
+
+                {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <Script
+                            id="thirdyparty-google-analytics-1"
+                            src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
+                            strategy="afterInteractive"
+                        />
+                        <Script id="thirdyparty-google-analytics-2" strategy="afterInteractive">
+                            {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){window.dataLayer.push(arguments);}
                     gtag('js', new Date());
                     gtag('config', '${props.metaInfo.settings?.google_analytics_id}');
                     `}
-                    </Script>
-                </>
-            )}
-            {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && props.cookie !== null && props.cookie == "all" && (
-                <>
-                    <Script id='linkedin-analytics-1' strategy="afterInteractive">
-                        {`
+                        </Script>
+                    </>
+                )}
+
+                {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <Script id='linkedin-analytics-1' strategy="afterInteractive">
+                            {`
                         _linkedin_partner_id = '${props.metaInfo.settings?.linkedin_partner_id}';
                         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
                         window._linkedin_data_partner_ids.push(_linkedin_partner_id);
                         `}
-                    </Script>
-                    <Script id='linkedin-analytics-2' strategy="afterInteractive">
-                        {`
+                        </Script>
+                        <Script id='linkedin-analytics-2' strategy="afterInteractive">
+                            {`
                         (function(l) {
                             if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
                             window.lintrk.q=[]}
@@ -151,21 +152,22 @@ const MetaInfo = (props) => {
                             s.parentNode.insertBefore(b, s);
                         })(window.lintrk);
                         `}
-                    </Script>
-                    <noscript>
-                        <img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=${props.metaInfo.settings?.linkedin_partner_id}&fmt=gif`} />
-                    </noscript>
-                </>
-            )}
-            {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && props.cookie !== null && props.cookie == "all" && (
-                <>
-                    <Script
-                        id="facebook-analytics-1"
-                        src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
-                        strategy="afterInteractive"
-                    />
-                    <Script id="facebook-analytics-2" strategy="afterInteractive">
-                        {`
+                        </Script>
+                        <noscript>
+                            <img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=${props.metaInfo.settings?.linkedin_partner_id}&fmt=gif`} />
+                        </noscript>
+                    </>
+                )}
+                
+                {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <Script
+                            id="facebook-analytics-1"
+                            src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`}
+                            strategy="afterInteractive"
+                        />
+                        <Script id="facebook-analytics-2" strategy="afterInteractive">
+                            {`
                         !function(f,b,e,v,n,t,s)
                         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
                         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -177,12 +179,13 @@ const MetaInfo = (props) => {
                         fbq('init', '${props.metaInfo.settings?.facebook_pixel_id}');
                         fbq('track', '${(props.metaInfo.settings?.analytics_page_view_event_name !== undefined && props.metaInfo.settings?.analytics_page_view_event_name ? props.metaInfo.settings?.analytics_page_view_event_name : 'PageView')}');
                         `}
-                    </Script>
-                    <noscript>
-                        <img height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${props.metaInfo.settings?.facebook_pixel_id}&ev=PageView&noscript=1`} />
-                    </noscript>
-                </>
-            )}
+                        </Script>
+                        <noscript>
+                            <img height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${props.metaInfo.settings?.facebook_pixel_id}&ev=PageView&noscript=1`} />
+                        </noscript>
+                    </>
+                )}
+            </Head>
         </>
     )
 }
