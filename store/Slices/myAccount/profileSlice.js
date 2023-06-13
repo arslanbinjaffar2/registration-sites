@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { header } from 'helpers/header'
 import { logOut, userSelector, reset, setEnableCancel } from "store/Slices/myAccount/userSlice";
+
 const initialState = {
   attendee: null,
   countries: null,
@@ -16,6 +17,7 @@ const initialState = {
   alert: null,
   invoice: null,
   order_id: null,
+  is_invoice_update: null,
 }
 
 export const eventSlice = createSlice({
@@ -54,6 +56,7 @@ export const eventSlice = createSlice({
     setInvoice: (state, { payload }) => {
       state.invoice = payload.invoice
       state.order_id = payload.order_id
+      state.is_invoice_update = payload.is_invoice_update
     },
   },
 })
