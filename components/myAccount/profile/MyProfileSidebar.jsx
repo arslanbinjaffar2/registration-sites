@@ -108,8 +108,7 @@ const handleScroll = () => {
         {toggleMenu && <div className="ebs-sidebar-account">
           <ul>
             {event.eventsiteSettings.attendee_my_profile === 1 && <li><ActiveLink className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</ActiveLink></li>}
-            {event.eventsiteSettings.attendee_my_billing === 1 && <li><ActiveLink href={`/${event.url}/profile/my-billing`} >My billing</ActiveLink></li>}
-            {event.eventsiteSettings.attendee_my_billing_history === 1 && <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>}
+            {event.eventsiteSettings.attendee_my_billing_history === 1 && <li><ActiveLink href={`/${event.url}/profile/my-billing`} >My billing history</ActiveLink></li>}
             {(event.eventsiteSettings.attendee_my_reg_cancel === 1 && cancellationDatePassed === 0 && (enable_cancel == true)) && <li><ActiveLink href={`/${event.url}/profile/cancel-registration`}>Cancel registration</ActiveLink></li>}
             {event.eventsiteSettings.attendee_my_sub_registration === 1 && <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>}
             {event.eventsiteSettings.attendee_my_program === 1 && <li><ActiveLink className={location === `/${event.url}/profile/my-program` ? 'active' : ''} href={`/${event.url}/profile/my-program`}>My program</ActiveLink></li>}
