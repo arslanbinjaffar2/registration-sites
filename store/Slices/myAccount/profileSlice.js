@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { header } from 'helpers/header'
 import { logOut, userSelector, reset, setEnableCancel } from "store/Slices/myAccount/userSlice";
+
 const initialState = {
   attendee: null,
   countries: null,
