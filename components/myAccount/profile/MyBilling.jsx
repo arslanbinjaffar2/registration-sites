@@ -14,7 +14,7 @@ const MyBilling = () => {
     dispatch(fetchInvoiceData(event.id, event.url));
   }, []);
 
-  const { invoice, order_id } = useSelector(profileSelector);
+  const { invoice, order_id, is_invoice } = useSelector(profileSelector);
 
   return (
     <div className="edgtf-container ebs-my-profile-area pb-5">
@@ -22,7 +22,7 @@ const MyBilling = () => {
         <div className="ebs-header text-center">
           <h2>My registration invoice</h2>
         </div>
-        {invoice && (
+        {is_invoice && invoice && (
           <>
             <div className="bottom-button">
               <ActiveLink href={`/${event.url}/profile/update-billing/${order_id}`}>
