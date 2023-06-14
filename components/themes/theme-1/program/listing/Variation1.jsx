@@ -15,7 +15,7 @@ const customStyles = {
     maxWidth: '100%',
   })
 };
-const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters }) => {
+const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings }) => {
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -66,12 +66,12 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       {filters && <div className="ebs-program-top">
         <div className="container">
           <div className="row d-flex">
-            <div className="col-md-5">
+            {eventsiteSettings.agenda_search_filter === 1 && <div className="col-md-5">
               <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
                 <em className="fa fa-search"></em>
               </div>
-            </div>
-            <div className="col-md-7">
+            </div>}
+            <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
               <div className="row flex-row justify-content-end">
                 <div className="col-md-5 col-6">
                   <ReactSelect
@@ -82,15 +82,16 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                     options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: key }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                   />
                 </div>
-                <div className="col-md-5 col-6">
-                  <ReactSelect
-                    styles={customStyles}
-                    placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
-                    components={{ IndicatorSeparator: null }}
-                    onChange={(track) => { onTrackChange(track) }}
-                    options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
-                  />
-                </div>
+                  {tracks.length > 0 &&
+                      <div className="col-md-5 col-6">
+                        <ReactSelect
+                          styles={customStyles}
+                          placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
+                          components={{ IndicatorSeparator: null }}
+                          onChange={(track) => { onTrackChange(track) }}
+                          options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
+                        />
+                  </div>}
               </div>
             </div>
           </div>
@@ -100,11 +101,11 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
         <div className="ebs-main-program-listing">
           {programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
-              {programsLoc[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
+              {programsLoc[key][0] && <div className="ebs-date-border" >{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 item.workshop_id > 0 ?
-                  <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> :
-                  <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+                  <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels}/> :
+                  <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels}/>
               ))}
             </div>
           ))}

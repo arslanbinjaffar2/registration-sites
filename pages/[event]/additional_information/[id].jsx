@@ -7,6 +7,8 @@ import CmsDetail from 'components/modules/cms/CmsDetail';
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
+import { getCookie, setCookie } from 'cookies-next';
+
 
 const ExhibitorDetail = (props) => {
 
@@ -53,12 +55,10 @@ const ExhibitorDetail = (props) => {
                         <meta property="twitter:card" content="summary_large_image" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="msapplication-config" content="none" />
-                        {(props.metaInfo.settings.app_icon && props.metaInfo.settings.app_icon !== "") && <link
+                        {(props.metaInfo.settings.fav_icon && props.metaInfo.settings.fav_icon !== "") && <link
                             rel="icon"
                             type="image/x-icon"
-                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}
-                                    /assets/event/branding/
-                                    ${props.metaInfo.settings.app_icon}`}
+                            href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${props.metaInfo.settings.fav_icon}`}
                         />}
                         
             </Head>
@@ -74,12 +74,19 @@ const ExhibitorDetail = (props) => {
 }
 
 export async function getServerSideProps(context) {
+    const {req, res} = context;
     const response = await fetch(`${process.env.NEXT_APP_URL}/event/${context.query.event}/additional_information/page/${context.query.id}`);
-    const res = await response.json();
+    const resData = await response.json();
+    const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
+    const serverCookie = getCookie(`cookie__${context.query.event}`, { req, res });
+    if(serverCookie === null || serverCookie === undefined){
+        setCookie(`cookie__${context.query.event}`, 'necessary', { req, res, maxAge: 30*24*60*60 })
+    }
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
-            cmsPage: res.data,
+            metaInfo: eventData,
+            cookie : (serverCookie !== null && serverCookie !== undefined) ? serverCookie : 'necessary',
+            cmsPage: resData.data,
             url: context.resolvedUrl
         },
     }

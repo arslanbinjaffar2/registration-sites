@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import PageHeader from "components/modules/PageHeader";
-const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id }) => {
+const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, main_menu_id, eventsiteSettings }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName, main_menu_id));
 
@@ -13,7 +13,7 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
   const onCrumbClick = (e, crumb) => {
     e.preventDefault();
     if (crumb.id !== currentMenu) {
-      if (crumb.id === main_menu_id) {
+      if (parseInt(crumb.id) === parseInt(main_menu_id)) {
         setBreadCrumbs([{ id: main_menu_id, name: eventSiteModuleName, type: "main_menu" }]);
         setCmsListing(getListing(listing, crumb.id, main_menu_id));
       } else {
@@ -32,12 +32,12 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
 
   return (
    <React.Fragment>
-       <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {
+       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type) => {
             return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {(crumb.id === currentMenu) ? crumb.name : <a href="#!" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
+                  {(crumb.id === currentMenu) ? crumb.name : <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
                 </li>
               ))}
             </ul>
@@ -59,7 +59,7 @@ const InfoPagesListing = ({ listing, moduleName, breadCrumbData, eventSiteModule
                   <a href={`${item.website_protocol}${item.url}`} target="_blank" rel="noreferrer"  >{item.info.name}</a>
                 }
                 {item.page_type === 1 &&
-                  <a href="#!" onClick={(e) => { onCrumbClick(e, item) }}>
+                  <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, item) }}>
                     {item.info.name}
                   </a>
                 }
@@ -107,7 +107,6 @@ const arrayTraverse = (array, menu_id, eventSiteModuleName, main_menu_id) => {
 }
 
 const getListing = (array, menu_id, main_menu_id) => {
-    console.log(array.find((item) => (item.id === parseFloat(main_menu_id))));
     let arr = array.find((item) => (item.id === parseFloat(main_menu_id))) !== (undefined || null) ? array.find((item) => (item.id === parseFloat(main_menu_id))).submenu : [];
     if (menu_id && parseFloat(menu_id) !== parseFloat(main_menu_id)) {     
         arr = arr.find((item) => (item.id === parseFloat(menu_id))) !== (null || undefined) ? arr.find((item) => (item.id === parseFloat(menu_id))).submenu : [];

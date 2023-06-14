@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ActiveLink from "components/atoms/ActiveLink";
 import { eventSelector } from "store/Slices/EventSlice";
 import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+import moment from "moment";
 
 const MyProfileSidebar = (props) => {
 
@@ -20,17 +21,36 @@ const MyProfileSidebar = (props) => {
 
   const isAuthenticated = JSON.parse(localStorage.getItem(`event${event.id}User`));
 
+  const enable_cancel = isAuthenticated ? JSON.parse(localStorage.getItem(`EI${event.url}EC`)) : false;
+
   const frame = useRef()
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (loggedout) {
-      dispatch(reset());
-      router.push(`/${event.url}`);
+  const cancellationDatePassed = useMemo(()=>{
+    if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
+      return 0;
     }
-  }, [loggedout])
+    let dateToday = moment();
+    let cancelationEndDate = moment(`${moment(event.eventsiteSettings.cancellation_date).format("YYYY-MM-DD")} ${event.eventsiteSettings.cancellation_end_time}`);
+    let passed = cancelationEndDate.diff(dateToday);
+    return passed > 0 ? 0 : 1;
+  },[event]);
+  
+useEffect(() => {
+  window.addEventListener('scroll',handleScroll,false);
 
+  return () => {
+    window.removeEventListener('scroll',handleScroll,false);
+  }
+}, [])
+const handleScroll = () => {
+  if (typeof window !== 'undefined') {
+    if (window.scrollY > 250) {
+      setstatetoggleMenu(false);
+    }
+  }
+} 
   const handleClick = () => {
     setstatetoggleMenu(!toggleMenu);
   }
@@ -87,16 +107,19 @@ const MyProfileSidebar = (props) => {
         </div>
         {toggleMenu && <div className="ebs-sidebar-account">
           <ul>
-            <li><ActiveLink className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</ActiveLink></li>
-            <li><ActiveLink href={`/${event.url}/profile`} >My billing</ActiveLink></li>
-            <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>
-            <li><ActiveLink href={`/${event.url}/profile`}>Cancel registration</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/my-program` ? 'active' : ''} href={`/${event.url}/profile/my-program`}>My program</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>
-            <li><ActiveLink className={location === `/${event.url}/profile/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/profile/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>
-            <li><a onClick={(e) => { onLogout(); }} >Logout</a></li>
+            {event.eventsiteSettings.attendee_my_profile === 1 && <li><ActiveLink className={location === `/${event.url}/profile` ? 'active' : ''} href={`/${event.url}/profile`} >My profile</ActiveLink></li>}
+            {event.eventsiteSettings.attendee_my_billing === 1 && <li><ActiveLink href={`/${event.url}/profile/my-billing`} >My billing</ActiveLink></li>}
+            {event.eventsiteSettings.attendee_my_billing_history === 1 && <li><ActiveLink href={`/${event.url}/profile`} >My billing history</ActiveLink></li>}
+            {(event.eventsiteSettings.attendee_my_reg_cancel === 1 && cancellationDatePassed === 0 && (enable_cancel == true)) && <li><ActiveLink href={`/${event.url}/profile/cancel-registration`}>Cancel registration</ActiveLink></li>}
+            {event.eventsiteSettings.attendee_my_sub_registration === 1 && <li><ActiveLink className={location === `/${event.url}/profile/my-sub-registration` ? 'active' : ''} href={`/${event.url}/profile/my-sub-registration`}>My Sub registration</ActiveLink></li>}
+            {event.eventsiteSettings.attendee_my_program === 1 && <li><ActiveLink className={location === `/${event.url}/profile/my-program` ? 'active' : ''} href={`/${event.url}/profile/my-program`}>My program</ActiveLink></li>}
+            {event.eventsiteSettings.show_survey === 1 && <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>}
+            {event.eventsiteSettings.network_interest === 1 && <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>}
+            {event.eventsiteSettings.show_subscriber === 1 && <li><ActiveLink className={location === `/${event.url}/profile/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/profile/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>}
+            <li><a onClick={(e) => { 
+              onLogout(); 
+              router.push(`/${event.url}`);
+            }} >Logout</a></li>
           </ul>
         </div>}
       </div>}

@@ -61,7 +61,9 @@ export const fetchSubRegistrationData = (id, url) => {
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sub-registration-after-login`, { headers: header("GET", id) })
       const res = await response.json()
-      if (res.data.questions.question.length <= 0) {
+      console.log(res);
+      if (res.data.questions == undefined || res.data.questions.question.length <= 0 || res.data.settings['show_sub_registration_on_web_app'] === 0) {
+        localStorage.setItem(`${url}_sub_reg_skip`, 'true');
         dispatch(setSkip());
       }
       dispatch(setSubRegistrationData(res.data))
@@ -78,6 +80,7 @@ export const updateSubRegistrationData = (id, url, data) => {
     try {
       const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
       if (response.data.data) {
+        localStorage.setItem(`${url}_sub_reg_skip`, 'true');
         dispatch(setSkip());
       }
       dispatch(setUpdating(false));

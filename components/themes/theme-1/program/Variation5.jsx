@@ -83,7 +83,7 @@ const Variation5 = () => {
         </div>
         <div className="d-flex justify-content-center mt-5">
           <a
-            href="#!"
+            href="javascript:void(0)"
             rel="noopener"
             className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"
           >

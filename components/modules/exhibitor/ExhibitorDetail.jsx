@@ -1,4 +1,5 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import ActiveLink from "components/atoms/ActiveLink";
 import { eventSelector } from "store/Slices/EventSlice";
 import { exhibitorDetailSelector, fetchExhibitor, clearState } from "store/Slices/ExhibitorDetailSlice";
 import {
@@ -36,8 +37,13 @@ const ExhibitorDetail = (props) => {
     [event]
   );
 
+  const [breadCrumbs, setbreadCrumbs] = useState([
+    {name:event.labels.HOME_PAGE_EXHIBIOR, url:`/${eventUrl}`, type:"link"},
+    {name:event.labels.EVENTSITE_EXHIBITORS, url:`/${eventUrl}/exhibitors`, type:"link"},
+    {name:event.labels.OVERVIEW_OF_EXHIBITORS, url:"", type:"name"},
+  ]);
   useEffect(() => {
-    dispatch(incrementLoadCount());
+    //dispatch(incrementLoadCount());
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());
@@ -53,8 +59,18 @@ const ExhibitorDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
           </Head>
-          <PageHeader label={event.eventsiteModules.exhibitors} />
-          <Component exhibitor={exhibitor} labels={labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
+          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+            return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
+            <ul className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                </li>
+              ))}
+            </ul>
+            </nav>)
+        }} />
+          <Component exhibitor={exhibitor} labels={event.labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
         </React.Fragment>
       ) : <PageLoader />
       }

@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import moment from 'moment';
-
+import { getWithExpiry } from "helpers/helper";
 // import {
 //   incrementLoadCount,
 // } from "store/Slices/GlobalSlice";
@@ -29,9 +29,9 @@ const RegisterNow = () => {
 
   const registerDateEnd = useMemo(()=>{
     let currentDate = moment();
-    let endDate = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date) :  moment(event.end_date);
-    let diff = currentDate.diff(endDate) > 0;
-    return diff
+    let endDate = moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return diff;
   },[event]);
   
   const checkTickets = useMemo(()=>{
@@ -50,6 +50,15 @@ const RegisterNow = () => {
         url = (event.paymentSettings && parseInt(event.paymentSettings.evensite_additional_attendee) === 1) ? `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee` : `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/manage-attendee`;
     }else{
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
+    }
+
+    if(event.eventsiteSettings.manage_package === 1){
+       url = `/${event.url}/registration_packages`;
+    }
+    
+    let autoregister = getWithExpiry(`autoregister_${event.url}`);
+    if(autoregister !== null){
+        url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
     }
 
     return url;

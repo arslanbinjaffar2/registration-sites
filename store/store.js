@@ -13,7 +13,7 @@ import profileReducer from "./Slices/myAccount/profileSlice";
 import interestReducer from "./Slices/myAccount/networkInterestSlice";
 import newsletterReducer from "./Slices/myAccount/newsletterSlice";
 import subRegistrationReducer from "./Slices/myAccount/subRegistrationSlice";
-import mysubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice";
+import mySubRegistrationReducer from "./Slices/myAccount/mysubRegistrationSlice";
 import surveyListReducer from "./Slices/myAccount/surveyListSlice";
 import surveyReducer from "./Slices/myAccount/surveySlice";
 import userReducer from "./Slices/myAccount/userSlice";
@@ -30,6 +30,7 @@ import photoReducer from "./Slices/PhotoSlice";
 import videoReducer from "./Slices/VideoSlice";
 import programListingReducer from "./Slices/ProgramListingSlice";
 import programReducer from "./Slices/ProgramSlice";
+import formPackageReducer from "./Slices/FormPackageSlice";
 import myProgramListingReducer from "./Slices/myAccount/MyProgramListingSlice";
 export const store = configureStore({
   reducer: {
@@ -46,7 +47,7 @@ export const store = configureStore({
     networkInterest: interestReducer,
     newsletter: newsletterReducer,
     subRegistration: subRegistrationReducer,
-    mysubRegistration: mysubRegistrationReducer,
+    mySubRegistration: mySubRegistrationReducer,
     surveyList: surveyListReducer,
     survey: surveyReducer,
     user: userReducer,
@@ -64,7 +65,8 @@ export const store = configureStore({
     program: programReducer,
     myProgramListing: myProgramListingReducer,
     pageBuilderPage: pageBuilderPageReducer,
+    formPackages: formPackageReducer,
   },
-  
+  devTools: true,
 });
 setupListeners(store.dispatch);

@@ -3,7 +3,7 @@ import moment from 'moment'
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
-const ProgramItem = ({ program, eventUrl }) => {
+const ProgramItem = ({ program, eventUrl, labels }) => {
     const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
     return (
         <div className="ebs-program-child">
@@ -24,10 +24,10 @@ const ProgramItem = ({ program, eventUrl }) => {
                         </div>}
                         {program.description && <div className="ebs-description">
                             <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program.description }} />
-                            {program.description.length > 450 && <span className='ebs-more' onClick={() => { setShowText(!showText) }}>{showText ? 'Collapse' : 'Read More'}</span>}
+                            {program.description.length > 450 && <span className='ebs-more' onClick={() => { setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
                         </div>}
 
-                        <div className="row d-flex ebs-program-speakers">
+                        {program.program_speakers.length > 0 && <div className="row d-flex ebs-program-speakers">
                             {program.program_speakers?.map((speakers, o) =>
                                 <div style={{ animationDelay: 50 * o + 'ms' }} key={o} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-animation-layer">
                                     <ActiveLink href={`/${eventUrl}/speakers/${speakers.id}`}>
@@ -53,7 +53,7 @@ const ProgramItem = ({ program, eventUrl }) => {
                                     </ActiveLink>
                                 </div>
                             )}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>

@@ -87,10 +87,10 @@ const NewsDetail = (props) => {
                             rel="icon"
                             type="image/x-icon"
                             href={
-                                event.settings.app_icon && event.settings.app_icon !== ""
+                                event.settings.fav_icon && event.settings.fav_icon !== ""
                                     ? process.env.NEXT_APP_EVENTCENTER_URL +
                                     "/assets/event/branding/" +
-                                    event.settings.app_icon
+                                    event.settings.fav_icon
                                     : require("public/img/square.jpg")
                             }
                         />

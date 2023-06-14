@@ -94,7 +94,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                         >
                           <a
                             itemProp="url"
-                            href="#!"
+                            href="javascript:void(0)"
                             title="Web Analytics Made Easy"
                           >
                             {news.title}
@@ -125,20 +125,13 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
               </div>
             </div>
           </div>
-          {newsSettings.subscriber_id !== null && (
+          {newsSettings.subscriber_id !== null && typeof window !== 'undefined' && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe
                   ref={iframe}
                   onLoad={() => {
-                    setTimeout(() => {
-                      const obj = iframe.current;
-                      obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
-                      setHeight(
-                        obj.contentWindow.document.body.scrollHeight +
-                        200
-                      );
-                    }, 1000);
+                    setHeight(iframe.current.contentWindow.window.top.document.body.scrollHeight - window.innerHeight > 400 ? iframe.current.contentWindow.window.top.document.body.scrollHeight - 200 : window.innerHeight);
                   }}
                   width="100%"
                   height={height > 0 ? height : 400}

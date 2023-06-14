@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadingElement from "components/ui-components/HeadingElement";
 import ActiveLink from "components/atoms/ActiveLink";
 import PageHeader from "components/modules/PageHeader";
-const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id }) => {
+const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, menu_id, eventsiteSettings }) => {
 
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, menu_id, eventSiteModuleName));
 
@@ -32,12 +32,12 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
 
   return (
    <React.Fragment>
-       <PageHeader label={eventSiteModuleName} breadCrumbs={(type) => {
+       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type) => {
             return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {(crumb.id === currentMenu) ? crumb.name : <a href="#!" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
+                  {(crumb.id === currentMenu) ? crumb.name : <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
                 </li>
               ))}
             </ul>
@@ -59,7 +59,7 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
                   <a href={`${item.website_protocol}${item.url}`} target="_blank" rel="noreferrer"  >{item.info.name}</a>
                 }
                 {item.page_type === "menu" &&
-                  <a href="#!" onClick={(e) => { onCrumbClick(e, item) }}>
+                  <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, item) }}>
                     {item.info.name}
                   </a>
                 }

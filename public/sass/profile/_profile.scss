@@ -1,4 +1,8 @@
 // My sidebar Styles
+.ebs-profile-top-area * {
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
+}
 .ebs-profile-top-area {
   position: relative;
   margin-left: 5px;
@@ -20,6 +24,7 @@
   box-shadow: 0 3px 6px rgba($black,.16);
   border-top: 5px solid $first-main-color;
   margin-top: 16px;
+  max-height: calc(100vh - 150px);
   ul {
     list-style: none;
     padding: 40px 0;

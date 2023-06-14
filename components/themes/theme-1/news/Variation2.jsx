@@ -106,14 +106,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                 <iframe
                   ref={iframe}
                   onLoad={() => {
-                    setTimeout(() => {
-                      const obj = iframe.current;
-                      obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
-                      setHeight(
-                        obj.contentWindow.document.body.scrollHeight +
-                        200
-                      );
-                    }, 1000);
+                    setHeight(iframe.current.contentWindow.window.top.document.body.scrollHeight - window.innerHeight > 400 ? iframe.current.contentWindow.window.top.document.body.scrollHeight - 200 : window.innerHeight);
                   }}
                   width="100%"
                   height={height > 0 ? height : 400}

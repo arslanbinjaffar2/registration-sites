@@ -7,6 +7,7 @@ import {
   incrementLoadCount,
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { getWithExpiry } from "helpers/helper";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -18,7 +19,7 @@ const loadModule = (theme, variation) => {
 
 const Banner = () => {
   const { event } = useSelector(eventSelector);
-  const { banner } = useSelector(globalSelector);
+  const { banner, settings } = useSelector(globalSelector);
   const dispatch = useDispatch();
 
   const eventUrl = event.url;
@@ -32,6 +33,13 @@ const Banner = () => {
     [event]
   );
 
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate =  moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return diff;
+  },[event]);
+
   const regisrationUrl = useMemo(()=>{
     let url = '';
     if(parseFloat(event.registration_form_id) === 1){
@@ -40,6 +48,14 @@ const Banner = () => {
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/registration_packages`;
+    }
+    
+    let autoregister = getWithExpiry(`autoregister_${event.url}`);
+    if(autoregister !== null){
+        url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
+    }
     return url;
   },[event]);
 
@@ -51,7 +67,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} banner={banner} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={registerDateEnd} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date):null} /> : null}
     </Suspense>
   );
 };

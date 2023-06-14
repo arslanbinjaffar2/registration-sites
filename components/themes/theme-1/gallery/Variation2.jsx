@@ -30,7 +30,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
         {home && <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />}
         <div className="gallerMasonry">
           {photos && (
-            <Gallery shareButton={false} id="my-gallery">
+            <Gallery shareButton={false} id="my-gallery" withCaption>
               <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="my-masonry-grid"
@@ -40,9 +40,10 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                   photos.map((photo, i) => (
                     <div style={{ animationDelay: 50 * i + 'ms' }} key={i} className="gallerMasonry ebs-animation-layer">
                       <Item
+                        caption={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                         original={imgUrl(photo)}
                         thumbnail={imgUrl(photo)}
-                        title={`${photo.info && Object.keys(photo.info)}`}
+                        title={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
                         width={getMeta(imgUrl(photo), 'width') !== 0 ? getMeta(imgUrl(photo), 'width') : 1000}
                         height={getMeta(imgUrl(photo), 'height') !== 0 ? getMeta(imgUrl(photo), 'height') : 665}
                       >
@@ -52,7 +53,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/photos/" + photo.image}
-                                alt={`${photo.info && Object.keys(photo.info)}`}
+                                alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
@@ -74,7 +75,7 @@ const Variation2 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                                     lineHeight: "1.2",
                                   }}
                                 >
-                                  {`${Object.keys(photo.info)}`}
+                                  {`${photo.info.title !== undefined && photo.info.title}`}
                                 </div>
                               )}
                             </figcaption>

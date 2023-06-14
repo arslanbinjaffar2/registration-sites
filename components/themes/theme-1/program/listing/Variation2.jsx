@@ -206,7 +206,6 @@ function getWorkShop (items) {
     }
   });
 if (showWorkshop) {
-  console.log(themecounter);
   if (themecounter === 5) {
     themecounter = 0
   }
@@ -325,7 +324,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[])}
                           />
 												</div>
-												<div className="ebs-select-box">
+												{tracks.length > 0 && <div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
@@ -334,7 +333,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             value={selectedTrack}
                             options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                           />
-												</div>
+												</div>}
 											</div>
 											{/* <div className="col-md-6">
 												<div className="right-panel-area">

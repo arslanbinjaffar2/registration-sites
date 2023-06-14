@@ -5,7 +5,7 @@ import {
   globalSelector, setShowLogin, incrementFetchLoadCount
 } from "store/Slices/GlobalSlice";
 import { useRouter } from "next/router";
-
+import moment from "moment";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -67,7 +67,48 @@ const Header = ({ location, history }) => {
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/registration_packages`;
+    }
+
     return url;
+  },[event]);
+
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate = moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return diff;
+  },[event]);
+
+  const top_menu =  useMemo(()=>{
+
+    let menu = event.header_data.top_menu.map((item)=>{
+       let rItem = {...item};
+      if(!['practicalinformation', 'additional_information', 'general_information', 'info_pages'].includes(item.alias)){
+        rItem['menu_url'] = `/${event.url}/${item.alias}`;
+      }
+      else if(item.alias == 'practicalinformation'){
+        rItem['menu_url'] =  event.header_data["practical_info_menu"].length == 1 && event.header_data["practical_info_menu"][0].page_type !== "menu" ? (event.header_data["practical_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["practical_info_menu"][0].id}` : `${event.header_data["practical_info_menu"][0].website_protocol}${event.header_data["practical_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = event.header_data["practical_info_menu"].length == 1 ? true : false;
+      }
+      else if(item.alias == 'additional_information'){
+        rItem['menu_url'] =  event.header_data["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type !== "menu" ? (event.header_data["additional_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["additional_info_menu"][0].id}` : `${event.header_data["additional_info_menu"][0].website_protocol}${event.header_data["additional_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = event.header_data["additional_info_menu"].length == 1 ? true : false;
+      }
+      else if(item.alias == 'general_information'){
+        rItem['menu_url'] =  event.header_data["general_info_menu"].length == 1 && event.header_data["general_info_menu"][0].page_type !== "menu" ? (event.header_data["general_info_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["general_info_menu"][0].id}` : `${event.header_data["general_info_menu"][0].website_protocol}${event.header_data["general_info_menu"][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = event.header_data["general_info_menu"].length == 1 ? true : false;
+      }
+      else if(item.alias == 'info_pages'){
+        let page = event.header_data["info_pages_menu"].find((p)=>p.id == item.page_id);
+        console.log(page);
+        rItem['menu_url'] =  page !== null && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : `${page['submenu'][0].website_protocol}${page['submenu'][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = page !== null && page['submenu'].length == 1 ? true : false;
+      }
+      return rItem;
+    })
+    return menu;
   },[event]);
 
   const onLoginClick = (bool) => {
@@ -76,7 +117,7 @@ const Header = ({ location, history }) => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} regisrationUrl={regisrationUrl} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} />
+      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={registerDateEnd} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
     </Suspense>
   );
 };

@@ -11,6 +11,7 @@ class Variation7 extends React.Component {
     this.state = {
       module: false,
       menus: this.props.event.header_data,
+      topMenu: this.props.topMenu,
       showMenu: false,
       menuresponsive: this.props.event.header_data,
       width: window.innerWidth,
@@ -129,7 +130,7 @@ class Variation7 extends React.Component {
       const _item = document.createElement("li");
       const _itemancor = document.createElement("span");
       _itemancor.classList.add("nav-link");
-      const textnode = document.createTextNode("More");
+      const textnode = document.createTextNode(this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL !== undefined ? this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL :"More");
       const _ul = document.createElement("ul");
       _ul.classList.add("dropdown-menu");
       _itemancor.appendChild(textnode);
@@ -137,7 +138,7 @@ class Variation7 extends React.Component {
       _item.classList.add("nav-item-more");
       _item.appendChild(_itemancor);
       _list.forEach((element) => {
-        if (_total < _container.offsetWidth - 260) {
+        if (_total < _container.offsetWidth - 295) {
           _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
@@ -204,7 +205,7 @@ class Variation7 extends React.Component {
     }
   };
   render() {
-    const { menus, event } = this.state;
+    const { menus, event, topMenu } = this.state;
     if (menus.length === 0) return <div>Loading...</div>;
     return (
       <div style={{ transform: 'none' }} id="ebs-header-master" className="ebs-main-header ebs-main-header-v1 ebs-main-header-v2 ebs-header-main-wrapper ebs-header-shadow ebs-main-light-header ebs-header-shadow ebs-main-light-header">
@@ -256,7 +257,7 @@ class Variation7 extends React.Component {
                   id="navbarSupportedContent"
                 >
                   <ul className="nav navbar-nav m-0">
-                    {menus["top_menu"].map((menu) => (
+                    {topMenu.map((menu) => (
                       <li className="nav-item" key={menu.id}>
                         {menu.alias === "custom" ? (
                           menu.url !== "" ? (
@@ -280,7 +281,8 @@ class Variation7 extends React.Component {
                           <ActiveLink
                             className="nav-link" activeClassName="nav-link active"
                             aria-current="page"
-                            href={`/${this.props.event.url}/${menu.alias}`}
+                            target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
+                            href={`${menu.menu_url}`}
                           >
                             {menu.module}
                           </ActiveLink>
@@ -311,7 +313,9 @@ class Variation7 extends React.Component {
                             {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
-                                  {myaccount.alias !== "login" ? (<ActiveLink
+                                  {myaccount.alias !== "login" ? (
+                                  ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
+                                  <ActiveLink
                                     aria-current="page"
                                     className="nav-link" activeClassName="nav-link active"
                                     href={`${
@@ -324,7 +328,9 @@ class Variation7 extends React.Component {
                                     key={myaccount.id}
                                   >
                                     {myaccount.module}
-                                  </ActiveLink>) :
+                                  </ActiveLink>
+                                  : null
+                                  ) :
                                     <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>
@@ -344,7 +350,7 @@ class Variation7 extends React.Component {
                           </ul>
                         )}
 
-                        {(menu.alias === "practicalinformation" && menus["practical_info_menu"].length > 0) && (
+                        {(menu.alias === "practicalinformation" && (menus["practical_info_menu"].length > 1 || (menus["practical_info_menu"].length == 1 && event.header_data["practical_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["practical_info_menu"].map((pItem, k) =>
                               pItem.page_type && pItem.page_type === "menu" ? (
@@ -425,7 +431,7 @@ class Variation7 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "additional_information" && menus["additional_info_menu"].length > 0) && (
+                        {(menu.alias === "additional_information" && (menus["additional_info_menu"].length > 1 ||  (menus["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["additional_info_menu"].map((aItem, k) =>
                               aItem.page_type && aItem.page_type === "menu" ? (
@@ -507,7 +513,7 @@ class Variation7 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "general_information" && menus["general_info_menu"].length > 0) && (
+                        {(menu.alias === "general_information" && (menus["general_info_menu"].length > 1 || (menus["general_info_menu"].length == 1 && event.header_data["general_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["general_info_menu"].map((gItem, k) =>
                               gItem.page_type && gItem.page_type === "menu" ? (
@@ -588,7 +594,7 @@ class Variation7 extends React.Component {
                             )}
                           </ul>
                         )}
-                         {(menu.alias === "info_pages" && menus["info_pages_menu"].length > 0) && (
+                         {(menu.alias === "info_pages" && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
@@ -671,6 +677,7 @@ class Variation7 extends React.Component {
                         )}
                       </li>
                     ))}
+                    
                   </ul>
                 </div>
               </nav>}

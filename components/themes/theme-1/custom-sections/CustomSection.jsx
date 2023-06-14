@@ -19,14 +19,16 @@ const CustomSection = ({ data }) => {
             onLoad={() => {
               const obj = iframe.current;
               obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
-              setHeight(obj.contentWindow.document.body.scrollHeight + 200);
-              setLoading(false)
+              obj.contentWindow.document.body.style.margin = '0';
+              setTimeout(() => {
+                setHeight(obj.contentWindow.document.body.scrollHeight);
+                setLoading(false)
+              }, 1000);
             }}
             width="100%"
             height={height}
             title="test"
             itemProp="description"
-            className="edgtf-post-excerpt"
             srcDoc={data}
           />
       </div>}

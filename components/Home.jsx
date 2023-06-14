@@ -29,7 +29,7 @@ class Home extends React.Component {
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
 							<div>
-								<a href="#!" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
+								<a href="javascript:void(0)" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -39,7 +39,7 @@ class Home extends React.Component {
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
 							<div>
-								<a href="#!" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
+								<a href="javascript:void(0)" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -49,7 +49,7 @@ class Home extends React.Component {
 							<h3 className="mt-4 mb-3">Conference</h3>
 							<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at vel.</p>
 							<div>
-								<a href="#!" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
+								<a href="javascript:void(0)" className="edgtf-btn edgtf-btn-small edgtf-btn-transparent edgtf-btn-custom-hover-color">READ MORE</a>
 							</div>
 						</div>
 					</div>

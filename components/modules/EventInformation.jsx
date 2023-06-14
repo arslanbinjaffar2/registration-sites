@@ -1,7 +1,8 @@
 import React, { Suspense, useMemo } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
-
+import moment from "moment";
+import { getWithExpiry } from "helpers/helper";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -9,6 +10,22 @@ const loadModule = (theme, variation) => {
     import(`components/themes/${theme}/event_info/${variation}`)
   );
   return Component;
+};
+
+var enumerateDaysBetweenDates = function(startDate, endDate) {
+  var dates = [];
+
+  var currDate = moment(startDate).startOf('day');
+  var lastDate = moment(endDate).startOf('day');
+
+  while(currDate.add(1, 'days').diff(lastDate) < 0) {
+      dates.push(currDate.clone().toDate());
+  }
+
+  dates.unshift(startDate);
+  dates.push(endDate);
+
+  return dates;
 };
 
 const EventInformation = () => {
@@ -29,14 +46,30 @@ const EventInformation = () => {
     }else{
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
+    
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/registration_packages`;
+    }
+    
+    let autoregister = getWithExpiry(`autoregister_${event.url}`);
+    if(autoregister !== null){
+        url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
+    }
 
     return url;
+  },[event]);
+  
+  const registerDateEnd = useMemo(()=>{
+    let currentDate = moment();
+    let endDate = moment(event.eventsiteSettings.registration_end_date);
+    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
+    return diff;
   },[event]);
 
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} labels={event.labels} regisrationUrl={regisrationUrl} />
+      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };

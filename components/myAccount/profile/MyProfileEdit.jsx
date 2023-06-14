@@ -123,7 +123,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   };
 
   const updateDate = (obj) => {
-    console.log(obj);
       setAttendeeData({
         ...attendeeData,
         [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ?  obj.item.format("YYYY-MM-DD"): obj.item,

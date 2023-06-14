@@ -7,7 +7,8 @@ import { useRouter } from 'next/router';
 import {
     globalSelector
 } from "store/Slices/GlobalSlice";
-
+import Footer from "../modules/Footer";
+import CookiePolicy from 'components/ui-components/CookiePolicy';
 
 const MasterLayoutRoute = ({ children, event }) => {
     const router = useRouter();
@@ -27,6 +28,8 @@ const MasterLayoutRoute = ({ children, event }) => {
                     <Header />
                     {showLogin && <LoginScreen />}
                     {children}
+                    <Footer /> 
+                    <CookiePolicy/>
                 </>) : (
                     <PageLoader/>
                 )

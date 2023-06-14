@@ -16,7 +16,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: true,
+		infinite: exhibitors?.length >= 5 ? true : false,
 		arrows: false,
 		speed: 5000,
 		margin: 0,

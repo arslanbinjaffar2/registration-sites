@@ -77,11 +77,11 @@ const SliderBanner = (props) => {
       //     });
       // }, [])
     return (
-        <div className={`banner-wrapper ${props.countdown && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
+        <div className={`banner-wrapper ${props.countdown !== null && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
         <Slider {...settings}>
           {props.children}
         </Slider>
-        {props.countdown && (
+        {props.registerDateEnd && props.countdown !== null && props.eventsiteSettings.eventsite_time_left === 1 && (
           <div className="timer-wrapper">
             <div className="container">
               <div className="row d-flex align-items-center">

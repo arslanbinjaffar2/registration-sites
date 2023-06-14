@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import moment from 'moment';
 import Image from 'next/image'
 import PageHeader from 'components/modules/PageHeader';
+import {GATrackEventDocumentDownloadEvent} from '../../helpers/helper';
 const getDirectoryName = (item) => {
     if(item['name'] !== undefined) return item.name
     else if(item['Program'] !== undefined) return item.Program
@@ -11,10 +12,10 @@ const getDirectoryName = (item) => {
     else if(item['Other'] !== undefined) return item.Other
 }
 
-function DocumentsListing({documents, documentPage}) {
+function DocumentsListing({documents, documentPage, labels, page}) {
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
-    const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:"Documents"}]);
+    const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:labels.GENERAL_DOCUMENT}]);
     const onDirectoryClick = (id) =>{
         let currentFolder =currentDirectory.find((item)=>(item.id === id))
         setCurrentFolder(currentFolder);
@@ -64,88 +65,118 @@ function DocumentsListing({documents, documentPage}) {
         return arr;
     }
 
+    const checkFile = (directory) => {
+        let files = false;
+        if(directory.files !== undefined && directory.files.length >0) {
+            return true;
+        }
+
+        if(directory.children_files){
+            directory.children_files.every((directory, i) =>{
+                if(directory.files !== undefined && directory.files.length > 0) {
+                    files = true;
+                }
+                else{
+                    files = checkFile(directory);
+                }
+            });
+        }
+
+        return files;
+    }
+
+    let filesCount = 0;
 
   return (
     <React.Fragment>
-        {documentPage && <PageHeader label={'My Documents'} breadCrumbs={(type) => {
+        {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} showBreadcrumb={1} breadCrumbs={(type) => {
                 return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
                     <ul className="breadcrumb">
                             {
                                 breadCrumbs.map((crumb, i) => (
-                                        <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                                        <li className="breadcrumb-item" key={i} ><span  style={{cursor: 'pointer'}} onClick={()=>{onBreadCrumbClick(crumb, i);}}>{crumb.pname}</span></li>
                                 ))
                             }
                     </ul>
                 </nav>)
         }} />}
-    <div style={{paddingTop: 50}} className="ebs-document-module">
+    <div style={{paddingTop: 30}} className="ebs-document-module">
     {!documentPage && <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ebs-dark`}>
         <ul className="breadcrumb">
                 {
                     breadCrumbs.map((crumb, i) => (
-                            <li className="breadcrumb-item" key={i} onClick={()=>{onBreadCrumbClick(crumb, i);}} >{crumb.pname}</li>
+                            <li className="breadcrumb-item" key={i}><span style={{cursor: 'pointer'}} onClick={()=>{onBreadCrumbClick(crumb, i);}}>{crumb.pname}</span></li>
                     ))
                 }
         </ul>
     </nav>}
-        <div className="container">
+        <div style={{padding: 0}} className="container">
               <div className="ebs-document-header">
                 <div className="row d-flex align-items-center">
                   <div className="col-6 col-sm-8 col-lg-9">
-                    <h6>Name <i className="material-icons">arrow_downward</i></h6>
+                    <h6>{labels.GENERAL_DOCUMENT_NAME !== undefined ? labels.GENERAL_DOCUMENT_NAME : 'Name'} <i className="material-icons">arrow_downward</i></h6>
                   </div>
                   <div className="col-6 col-sm-4 col-lg-3">
-                    <h6>Modified</h6>
+                    <h6>{labels.GENERAL_DOCUMENT_MODIFIED !== undefined ? labels.GENERAL_DOCUMENT_MODIFIED : 'Modified'}</h6>
                   </div>
                 </div>
               </div>
                 
               {currentDirectory && currentDirectory.length > 0 &&
-                currentDirectory.map((item, i)=>(
-                    <div key={i} className="ebs-document-content">
-                     {(item['directory_id'] === undefined) && 
-                      <div className="row d-flex align-items-center"
-                      onClick={()=>{ onDirectoryClick(item.id) }} 
-                      >
-                        <div className="col-6 col-sm-8 col-lg-9">
-                            <div className="ebs-title" ><i className="material-icons">folder</i>{getDirectoryName(item)}</div>
-                        </div>
-                        
-                        <div className="col-6 col-sm-4 col-lg-3">
-                            <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
-                                </span></div>
-                        </div>
-                     </div>
-                     }
-                     {(item['directory_id'] !== undefined) &&
-                        <a  href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  target="_blank" rel="noreferrer">                 
-                            <div className="row d-flex align-items-center">
+                currentDirectory.map((item, i)=>{
+                            filesCount = 0;
+                            console.log(item['directory_id'] === undefined)
+                            console.log(checkFile(item))
+                      if((item['directory_id'] === undefined) &&  checkFile(item)){
+                            filesCount++;
+                          return  (<div key={i} className="ebs-document-content">
+                            <div className="row d-flex align-items-center"
+                            onClick={()=>{ onDirectoryClick(item.id) }} 
+                            >
                                 <div className="col-6 col-sm-8 col-lg-9">
-                                    <div className="ebs-title" >
-                                    <FileImageByType type={item.path.split('.')[1]} path={item.path} />    
-                                        {item.name}
-                                    </div>
-                                    
+                                    <div className="ebs-title" ><i className="material-icons">folder</i>{getDirectoryName(item)}</div>
                                 </div>
-                            
+                                
                                 <div className="col-6 col-sm-4 col-lg-3">
                                     <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
-                                        {(moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
-                                        <i className="material-icons">file_download</i>
-                                        }
-                                    </span></div>
+                                        </span></div>
                                 </div>
                             </div>
-                        </a>
+                            </div>)
+                      }
+                     
+                     if(item['directory_id'] !== undefined) {
+                        filesCount ++;
+                        return (<div key={i} className="ebs-document-content">
+                            <a  href={item.s3 === 1 ? item.s3_url :`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/directory/${item.path}`} download  onClick={() => GATrackEventDocumentDownloadEvent('DownloadedDocuments', page, '::'+item['id']+"::"+item['directory_id'])} target="_blank" rel="noreferrer">                 
+                                <div className="row d-flex align-items-center">
+                                    <div className="col-6 col-sm-8 col-lg-9">
+                                        <div className="ebs-title" >
+                                        <FileImageByType type={item.path.split('.')[1]} path={item.path} />    
+                                            {item.name}
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div className="col-6 col-sm-4 col-lg-3">
+                                        <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
+                                            {(moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
+                                            <i className="material-icons">file_download</i>
+                                            }
+                                        </span></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>)
                      }
+                     
                             
-                    </div>
-                ))
+                })
               }
-              {(!currentDirectory ||currentDirectory.length <= 0) &&
+              {(!currentDirectory ||currentDirectory.length <= 0) || (filesCount <= 0) &&
                 <div  className="ebs-document-content">
                     <div className="row d-flex align-items-center">
-                        <div className="ebs-title">No Folders or Files found in current Directory</div>
+                        <div className="ebs-title">{labels.GENERAL_NO_RECORD ? labels.GENERAL_NO_RECORD : "No Folders or Files found in current Directory"}</div>
                     </div>
                 </div>
               }

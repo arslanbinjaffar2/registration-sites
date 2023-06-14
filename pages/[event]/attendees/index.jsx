@@ -6,6 +6,7 @@ import Attendee from "components/modules/attendees/Attendee";
 import { metaInfo } from 'helpers/helper';
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
+import { getCookie, setCookie } from 'cookies-next';
 
 const Index = (props) => {
 
@@ -13,7 +14,7 @@ const Index = (props) => {
 
     return (
         <>
-            <MetaInfo metaInfo={props.metaInfo} />
+            <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutRoute event={event} >
                     <Attendee pagination={true} />
@@ -26,9 +27,16 @@ const Index = (props) => {
 }
 
 export async function getServerSideProps(context) {
+    const {req, res} = context;
+    const eventData = await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, '');
+    const serverCookie = getCookie(`cookie__${context.query.event}`, { req, res });
+    if(serverCookie === null || serverCookie === undefined){
+        setCookie(`cookie__${context.query.event}`, 'necessary', { req, res, maxAge: 30*24*60*60 })
+    }
     return {
         props: {
-            metaInfo: await metaInfo(`${process.env.NEXT_APP_URL}/event/${context.query.event}/meta-info`, ''),
+            metaInfo: eventData,
+            cookie : (serverCookie !== null && serverCookie !== undefined) ? serverCookie : 'necessary',
             url: context.resolvedUrl
         },
     }

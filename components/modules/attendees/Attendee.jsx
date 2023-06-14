@@ -67,7 +67,6 @@ const Attendee = (props) => {
   const setTextValue =(data) =>{
     setValue(data);
   };
-console.log(event.labels.EVENTSITE_LOAD_MORE)
   return (
     <Suspense fallback={<PageLoader/>}>
       {attendees ? (
@@ -82,7 +81,7 @@ console.log(event.labels.EVENTSITE_LOAD_MORE)
             settings={moduleVariation[0]}
             event={event}
             searchBar={() => {
-              return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH} loading={loading} setText={(data)=> {setTextValue(data)}}  />;
+              return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH !== undefined ? event.labels.EVENTSITE_GENERAL_SEARCH : "Search..."} loading={loading} setText={(data)=> {setTextValue(data)}}  />;
             }}
             loadMore={() => {
                 if(page < totalPages){

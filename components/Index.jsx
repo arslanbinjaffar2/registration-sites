@@ -3,6 +3,8 @@ import { globalSelector } from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector } from "react-redux";
 import PageLoader from "./ui-components/PageLoader";
+import EventDescription from "./modules/EventDescription";
+import PageContent from "./modules/manage-packages/PageContent";
 const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("components/modules/Gallery"));
 const Video = lazy(() => import("components/modules/Video"));
@@ -13,10 +15,13 @@ const SocialShare = lazy(() => import("components/modules/SocialShare"));
 const RegisterNow = lazy(() => import("components/modules/RegisterNow"));
 const Banner = lazy(() => import("components/modules/Banner"));
 const Map = lazy(() => import("components/modules/Map"));
+const Footer = lazy(() => import("components/modules/Footer"));
 const EventInformation = lazy(() => import("components/modules/EventInformation"));
 const NewsLetterSubscription = lazy(() => import("components/modules/NewsLetterSubscription"));
 const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
 const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
+const CustomSection3 = lazy(() => import("components/modules/CustomSection3"));
+const SortableBanner = lazy(() => import("components/modules/SortableBanner"));
 
 const Index = () => {
   
@@ -35,13 +40,13 @@ const Index = () => {
               if (section.module_alias === "social_media_share" && section.status === 1)
                 return <SocialShare key={i} />;
               else if (section.module_alias === "event_description" && section.status === 1)
-                return (event.description?.info.description && <div className="ebs-default-padding module-section">
-                <div className="container" dangerouslySetInnerHTML={{__html: event.description.info.description}} />
-              </div>);
+                return <EventDescription event={event} key={i} />;
               else if (section.module_alias === "custom_html2" && section.status === 1)
                 return <CustomSection2 key={i}/>;
               else if (section.module_alias === "custom_html1" && section.status === 1)
                 return <CustomSection1 key={i} />;
+              else if (section.module_alias === "custom_html3" && section.status === 1)
+                return <CustomSection3 key={i} />;
               else if (section.module_alias === "event_info" && section.status === 1) return <EventInformation key={i}/>;
               else if (section.module_alias === "newsletter_subscription" && section.status === 1) return <NewsLetterSubscription key={i}/>;
               else if (section.module_alias === "agenda" && section.status === 1)
@@ -49,6 +54,7 @@ const Index = () => {
               else if (section.module_alias === "sponsor" && section.status === 1)
                 return <Sponsor homePage={true} key={i} />;
               else if (section.module_alias === "top_banner" && section.status === 1) return <Banner key={i} />;
+              else if (section.module_alias === "banner_sort" && section.status === 1) return <SortableBanner key={i} />;
               else if (section.module_alias === "register_now" && section.status === 1)
                 return <RegisterNow key={i}/>;
               else if (section.module_alias === "exhibitor" && section.status === 1)
@@ -64,9 +70,11 @@ const Index = () => {
               else if (section.module_alias === "streaming" && section.status === 1) return <div key={i}></div>;
               else if (section.module_alias === "waiting_list" && section.status === 1)
                 return <div key={i}></div>;
+              else if (section.module_alias === "registration_packages" && section.status === 1)
+                return <PageContent key={i} />;
             })();
           })}
-              
+          
       </React.Fragment>
     </Suspense>
 

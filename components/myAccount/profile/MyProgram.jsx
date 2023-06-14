@@ -34,7 +34,7 @@ const MyProgram = () => {
     <Suspense fallback={<PageLoader/>}>
       {myPrograms && myPrograms.length > 0 ? (
         <React.Fragment>
-          <Component programs={myPrograms} eventUrl={eventUrl} tracks={tracks} filters={false} showWorkshop={event.eventsiteSettings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} />
+          <Component programs={myPrograms} eventUrl={eventUrl} tracks={tracks} filters={false} showWorkshop={event.agenda_settings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} />
         </React.Fragment>
       ) : loading && <PageLoader/> }
       {(!loading && (!myPrograms || myPrograms.length <= 0) ) && <h4 style={{textAlign:"center"}}>No programs found</h4> }
