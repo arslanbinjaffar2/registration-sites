@@ -99,8 +99,8 @@ const MetaInfo = (props) => {
 
                 {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" && (
                     <>
-                        <Script id='google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                        <Script id='google-analytics-2' dangerouslySetInnerHTML={{
+                        <script id='google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                        <script id='google-analytics-2' dangerouslySetInnerHTML={{
                             __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
@@ -115,8 +115,8 @@ const MetaInfo = (props) => {
 
                 {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && props.cookie !== null && props.cookie == "all" && (
                     <>
-                        <Script id='thirdyparty-google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`} />
-                        <Script id='thirdyparty-google-analytics-2' dangerouslySetInnerHTML={{
+                        <script id='thirdyparty-google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`} />
+                        <script id='thirdyparty-google-analytics-2' dangerouslySetInnerHTML={{
                             __html: `
                                     window.dataLayer = window.dataLayer || [];
                                     function gtag(){dataLayer.push(arguments);}
