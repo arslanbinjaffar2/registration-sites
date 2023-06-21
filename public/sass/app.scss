@@ -173,6 +173,9 @@
   .inner-caption-wrapp {
 		padding: 5% 50px;
 		min-height: 700px;
+    @include phone-landscape {
+      min-height: 250px;
+    }
     > .parallax-text {
       max-width: 1300px;
       margin: auto;
@@ -3235,4 +3238,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+.slick-track {
+  margin: auto;
 }

@@ -1,7 +1,7 @@
 import SliderBanner from "./components/SliderBanner";
 import React from "react";
 
-const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
+const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd, checkTickets }) => {
 
   const WrapperLayout = (props) => {
 
@@ -97,7 +97,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                           {slides.info.message}
                         </div>
                       )}
-                      {settings.register_button === 1 && registerDateEnd  && <div
+                      {settings.register_button === 1 && registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && <div
                         className="edgtf-custom-font-holder ebs-custom-button-holder"
                         style={{
                           marginTop: "40px",

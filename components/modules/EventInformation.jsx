@@ -66,10 +66,19 @@ const EventInformation = () => {
     return diff;
   },[event]);
 
+  const checkTickets = useMemo(()=>{
+    let ticketsSet = false;
+    if(parseFloat(event.eventsiteSettings.ticket_left) > 0){
+        ticketsSet = true;
+    }
+    let remainingTickets =  event.eventsiteSettings.ticket_left - event.totalAttendees;
+
+    return { ticketsSet, remainingTickets };
+  },[event]);
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
+      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} checkTickets={checkTickets}  labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };

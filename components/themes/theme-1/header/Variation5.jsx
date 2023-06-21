@@ -294,7 +294,7 @@ class Variation5 extends React.Component {
                                     (myaccount, k) => (
                                       <li className="nav-item" key={k}>
                                         {myaccount.alias !== "login" ? (
-                                        ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
+                                        ((myaccount.alias === 'register' && this.props.registerDateEnd && (!this.props.checkTickets.ticketsSet || this.props.checkTickets.remainingTickets > 0)) || (myaccount.alias !== 'register')) ?
                                         <ActiveLink
                                           aria-current="page"
                                           className="nav-link" activeClassName="nav-link active"
