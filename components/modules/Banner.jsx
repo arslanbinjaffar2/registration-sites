@@ -40,6 +40,16 @@ const Banner = () => {
     return diff;
   },[event]);
 
+  const checkTickets = useMemo(()=>{
+    let ticketsSet = false;
+    if(parseFloat(event.eventsiteSettings.ticket_left) > 0){
+        ticketsSet = true;
+    }
+    let remainingTickets =  event.eventsiteSettings.ticket_left - event.totalAttendees;
+
+    return { ticketsSet, remainingTickets };
+  },[event]);
+
   const regisrationUrl = useMemo(()=>{
     let url = '';
     if(parseFloat(event.registration_form_id) === 1){
@@ -67,7 +77,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={registerDateEnd} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date):null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} checkTickets={checkTickets} settings={settings} banner={banner} event={event} registerDateEnd={registerDateEnd} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date):null} /> : null}
     </Suspense>
   );
 };

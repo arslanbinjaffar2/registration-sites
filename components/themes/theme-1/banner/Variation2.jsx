@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
+const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd, checkTickets }) => {
 
   let data = banner ? banner[0] : [];
 
