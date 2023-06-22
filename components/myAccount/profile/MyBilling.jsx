@@ -58,7 +58,7 @@ const MyBilling = () => {
           </div>
           {invoice && (
             <>
-              {is_invoice_update && (
+              {is_invoice_update ? (
                 <div className="bottom-button">
                   <button
                     className="btn btn-save-next btn-loader"
@@ -69,7 +69,7 @@ const MyBilling = () => {
                     {event.labels.EVENTSITE_BILLING_EDIT_LABEL !== undefined ? event.labels.EVENTSITE_BILLING_EDIT_LABEL : 'Edit'}
                   </button>
                 </div>
-              )}
+              ) : ''}
               <div dangerouslySetInnerHTML={{ __html: invoice }}>
               </div>
             </>
