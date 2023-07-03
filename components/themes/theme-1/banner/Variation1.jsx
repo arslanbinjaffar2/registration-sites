@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import SliderBanner from './components/SliderBanner';
 
 const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, registerDateEnd }) => {
@@ -25,7 +26,21 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 		}
 
 	}
-
+	useEffect(() => {
+		if (window.innerWidth >= 991) {
+			const elem = document.getElementById("ebs-header-master");
+			if (elem && elem.nextSibling.dataset) {
+				elem.classList.remove("ebs-light-header");
+				var _nextSibling = elem.nextSibling.dataset.fixed;
+				if (_nextSibling === 'true') {
+					elem.classList.add('ebs-fixed-header');
+				} else {
+					elem.classList.add('ebs-light-header');
+				}
+			}
+		}
+	}, [])
+	
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
