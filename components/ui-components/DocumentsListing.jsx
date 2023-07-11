@@ -22,8 +22,7 @@ function DocumentsListing({documents, documentPage, labels, page, eventTimezone}
         setCurrentDirectory(currentFolder.children_files);
         let newObj = {cid:currentFolder.id, pname:getDirectoryName(currentFolder)}
         setBreadCrumbs([...breadCrumbs, newObj ]);
-    }
-    
+    }    
     const onBreadCrumbClick = (crumb, index) =>{
         if(crumb.cid === 0){
             setCurrentFolder({});
@@ -138,7 +137,7 @@ function DocumentsListing({documents, documentPage, labels, page, eventTimezone}
                                 </div>
                                 
                                 <div className="col-6 col-sm-4 col-lg-3">
-                                    <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).tz(eventTimezone).format('D-MM-YYYY hh:mm')}
+                                    <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).tz(eventTimezone).format('D-MM-YYYY HH:mm')}
                                         </span></div>
                                 </div>
                             </div>
@@ -159,7 +158,7 @@ function DocumentsListing({documents, documentPage, labels, page, eventTimezone}
                                     </div>
                                 
                                     <div className="col-6 col-sm-4 col-lg-3">
-                                        <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).tz(eventTimezone).format('D-MM-YYYY hh:mm')}
+                                        <div className="ebs-date"><span>{item.start_date ? moment(`${item.start_date} ${item.start_time}`).format('D-MM-YYYY HH:mm') : moment(item.updated_at).tz(eventTimezone).format('D-MM-YYYY HH:mm')}
                                             {(moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
                                             <i className="material-icons">file_download</i>
                                             }
