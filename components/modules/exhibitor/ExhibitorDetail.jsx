@@ -70,7 +70,7 @@ const ExhibitorDetail = (props) => {
             </ul>
             </nav>)
         }} />
-          <Component exhibitor={exhibitor} labels={event.labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
+          <Component exhibitor={exhibitor} labels={event.labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} eventTimezone={event.timezone.timezone} />
         </React.Fragment>
       ) : <PageLoader />
       }

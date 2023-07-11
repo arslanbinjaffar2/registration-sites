@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Image from 'next/image'
 import PageHeader from 'components/modules/PageHeader';
 import {GATrackEventDocumentDownloadEvent} from '../../helpers/helper';
@@ -12,7 +12,7 @@ const getDirectoryName = (item) => {
     else if(item['Other'] !== undefined) return item.Other
 }
 
-function DocumentsListing({documents, documentPage, labels, page}) {
+function DocumentsListing({documents, documentPage, labels, page, eventTimezone}) {
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
     const [breadCrumbs, setBreadCrumbs] = useState([{pid:0, cid:0, pname:labels.GENERAL_DOCUMENT}]);
@@ -138,7 +138,7 @@ function DocumentsListing({documents, documentPage, labels, page}) {
                                 </div>
                                 
                                 <div className="col-6 col-sm-4 col-lg-3">
-                                    <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
+                                    <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).tz(eventTimezone).format('D-MM-YYYY hh:mm')}
                                         </span></div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@ function DocumentsListing({documents, documentPage, labels, page}) {
                                     </div>
                                 
                                     <div className="col-6 col-sm-4 col-lg-3">
-                                        <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).format('D-MM-YYYY h:mm')}
+                                        <div className="ebs-date"><span>{moment(item.start_date ? `${item.start_date} ${item.start_time}` : item.updated_at).tz(eventTimezone).format('D-MM-YYYY hh:mm')}
                                             {(moment().diff(moment(item.start_date ? item.start_date : item.created_at)) > 0) &&
                                             <i className="material-icons">file_download</i>
                                             }

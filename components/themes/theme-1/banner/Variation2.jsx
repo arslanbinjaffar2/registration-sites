@@ -133,7 +133,20 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd, checkTi
     }
 
   }
-
+	useEffect(() => {
+		if (window.innerWidth >= 991) {
+			const elem = document.getElementById("ebs-header-master");
+			if (elem && elem.nextSibling.dataset) {
+				elem.classList.remove("ebs-light-header");
+				var _nextSibling = elem.nextSibling.dataset.fixed;
+				if (_nextSibling === 'true') {
+					elem.classList.add('ebs-fixed-header');
+				} else {
+					elem.classList.add('ebs-light-header');
+				}
+			}
+		}
+	}, [])
   return (
     <React.Fragment>
       <WrapperLayout
