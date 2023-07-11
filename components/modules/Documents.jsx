@@ -33,7 +33,7 @@ const Documents = () => {
         <Head>
         <title>{event.eventsiteModules.documents}</title>
         </Head>
-       {documents ? <CustomComponent documents={documents} documentPage={true} labels={event.labels} /> : <PageLoader/>}
+       {documents ? <CustomComponent documents={documents} documentPage={true} labels={event.labels} eventTimezone={event.timezone.timezone} /> : <PageLoader/>}
     </Suspense>
   );
 };
