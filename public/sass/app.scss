@@ -2650,7 +2650,9 @@
 {
   text-overflow:ellipsis;
   overflow:hidden;
-  max-height:130px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .ebs-corporate-login {
   width: 100%;
