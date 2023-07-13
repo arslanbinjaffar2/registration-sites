@@ -168,7 +168,7 @@ const settings = {
               <div  className="ebs-program-parent">
                 {programsLoc && programsLoc.map((item,i) =>
                       item.workshop_id > 0  ? 
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} />:
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
                       <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
                 )}
               </div>
