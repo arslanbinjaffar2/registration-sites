@@ -2650,7 +2650,9 @@
 {
   text-overflow:ellipsis;
   overflow:hidden;
-  max-height:130px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .ebs-corporate-login {
   width: 100%;
@@ -3241,4 +3243,85 @@
 }
 .slick-track {
   margin: auto;
+}
+.classic-caption-wrapp {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  bottom: 0px;
+  background: rgba($black, 0.5);
+  width: 100%;
+  padding: 20px 0 25px;
+  @include ipad-landscape{ 
+    position: relative;
+  }
+  .ebs-banner-title {
+    font-size: 50px;
+    color: $white;
+    font-weight: 500;
+    font-family: $first-font;
+    line-height: 1;
+    padding-bottom: 15px;
+    @include ipad-landscape{ 
+      font-size: 30px;
+    }
+  }
+  .ebs-banner-subtitle {
+    font-size: 30px;
+    color: $white;
+    font-weight: 400;
+    font-family: $first-font;
+    line-height: 1;
+    padding-bottom: 15px;
+    @include ipad-landscape{ 
+      font-size: 20px;
+    }
+  }
+  .ebs-custom-button-holder {
+    margin-bottom: 15px;
+    .edgtf-btn {
+      border: 2px solid $white !important;
+      color: $white;
+      padding: 12px 56px;
+      @include ipad-landscape{ 
+        padding: 10px 30px !important;
+      }
+      &:hover {
+        border-color: var(--primary) !important;
+      }
+    }
+    @include ipad-portrait {
+      display: block !important;
+    }
+  }
+}
+.ebs-classic-figure {
+  margin: 0;
+  line-height: 0;
+  width: 100%;
+  img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+.ebs-video-fullscreen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-size: 0;
+  padding-bottom: 56.25%;
+  line-height: 0;
+  video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.ebs-classic-banner .banner-wrapper .slick-slide {
+  line-height: 0;
+}
+.ebs-classic-banner .banner-wrapper .slick-dots {
+  bottom: 10px !important;
 }
