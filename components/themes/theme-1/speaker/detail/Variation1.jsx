@@ -4,7 +4,7 @@ import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import { localeProgramMoment } from 'helpers/helper';
 import Image from 'next/image'
 
-const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId }) => {
+const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId, agendaSettings }) => {
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -196,7 +196,7 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
                   {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
                   {speaker.programs[key].map((item, i) =>
                     item.workshop_id > 0 ?
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={labels} />
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} agendaSettings={agendaSettings} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={labels} agendaSettings={agendaSettings} />
 
                   )}
                 </div>
