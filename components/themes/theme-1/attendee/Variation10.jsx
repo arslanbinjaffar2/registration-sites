@@ -3,30 +3,30 @@ import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
-const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
+const Variation10 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   return (
     <div className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
       <div className="container">
-        <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
+        <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
-      {listing && searchBar()}
+      {searchBar()}
       <div className="container">
         <div className="row">
-          {speakers &&
-            speakers.map((speaker, i) => (
+          {attendees &&
+            attendees.map((attendee, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">
                 <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv5-wrapper ebs-animation-layer">
                   <div className="speakerv5-area text-center ebs-speakerv5-area-dark">
                     <div className="speakerv5-image">
-                      <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
+                      <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
-                          {speaker.image && speaker.image !== "" ? (
+                          {attendee.image && attendee.image !== "" ? (
                             <img
                               onLoad={(e) => e.target.style.opacity = 1}
                               src={
                                 process.env.NEXT_APP_EVENTCENTER_URL +
                                 "/assets/attendees/" +
-                                speaker.image
+                                attendee.image
                               }
                               alt="g"
                             />
@@ -42,79 +42,79 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
                         </span>
                       </ActiveLink>
                     </div>
-                    {(speaker.first_name || speaker.last_name) && (
-                      <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
+                    {(attendee.first_name || attendee.last_name) && (
+                      <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <h5>
-                          {speaker.first_name && speaker.first_name}{" "}
-                          {speaker.last_name && speaker.last_name}
+                          {attendee.first_name && attendee.first_name}{" "}
+                          {attendee.last_name && attendee.last_name}
                         </h5>
                       </ActiveLink>
                     )}
-                    {speaker.info &&
-                      (speaker.info.company_name || speaker.info.title) && (
+                    {attendee.info &&
+                      (attendee.info.company_name || attendee.info.title) && (
                         <div className="ebs-attendee-designation">
-                          {speaker.info.title && speaker.info.title}
-                          {speaker.info.company_name && speaker.info.title && ", "}
-                          {speaker.info.company_name &&
-                            speaker.info.company_name}
+                          {attendee.info.title && attendee.info.title}
+                          {attendee.info.company_name && attendee.info.title && ", "}
+                          {attendee.info.company_name &&
+                            attendee.info.company_name}
                         </div>
                       )}
 
-                    {listing && speaker.email && (
+                    {attendee.email && (
                       <div className="ebs-email-phone">
                         <a
-                          href={`mailto:${speaker.email}`}
+                          href={`mailto:${attendee.email}`}
                           className="edgtf-team-position"
                         >
-                          {speaker.email}
+                          {attendee.email}
                         </a>
                       </div>
                     )}
-                    {listing && speaker.phone && (
+                    {attendee.phone && (
                       <div className="ebs-email-phone">
                         <a
-                          href={`tel: ${speaker.phone}`}
+                          href={`tel: ${attendee.phone}`}
                           className="edgtf-team-position"
                         >
-                          {speaker.phone}
+                          {attendee.phone}
                         </a>
                       </div>
                     )}
-                    {listing &&
-                      speaker.info &&
-                      (speaker.info.facebook ||
-                        speaker.info.twitter ||
-                        speaker.info.linkedin ||
-                        speaker.info.website) && (
+                    {
+                      attendee.info &&
+                      (attendee.info.facebook ||
+                        attendee.info.twitter ||
+                        attendee.info.linkedin ||
+                        attendee.info.website) && (
                         <div className="social-icons">
-                          {speaker.info.facebook && (
+                          {attendee.info.facebook && (
                             <a
                               target="_blank" rel="noreferrer"
-                              href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                              href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
                             >
                               <span data-icon="&#xe0aa;"></span>
                             </a>
                           )}
-                          {speaker.info.twitter && (
+                          {attendee.info.twitter && (
                             <a
                               target="_blank" rel="noreferrer"
-                              href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                              href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
                             >
                               <span data-icon="&#xe0ab;"></span>
                             </a>
                           )}
-                          {speaker.info.linkedin && (
+                          {attendee.info.linkedin && (
                             <a
                               target="_blank" rel="noreferrer"
-                              href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                              href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
                             >
                               <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
-                          {speaker.info.website && (
+                          {attendee.info.website && (
                             <a
                               target="_blank" rel="noreferrer"
-                              href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                              href={`${attendee.info.website_protocol}${attendee.info.website}`}
                             >
                               <span data-icon="&#xe0e3;"></span>
                             </a>
@@ -126,8 +126,8 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
               </div>
             ))}
         </div>
-        {listing && speakers.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-        {listing && speakers.length > 0 && loadMore()}
+        {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );
