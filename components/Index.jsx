@@ -22,6 +22,7 @@ const CustomSection1 = lazy(() => import("components/modules/CustomSection1"));
 const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
 const CustomSection3 = lazy(() => import("components/modules/CustomSection3"));
 const SortableBanner = lazy(() => import("components/modules/SortableBanner"));
+const News = lazy(() => import("components/modules/news/News"));
 
 const Index = () => {
   
@@ -72,6 +73,8 @@ const Index = () => {
                 return <div key={i}></div>;
               else if (section.module_alias === "registration_packages" && section.status === 1)
                 return <PageContent key={i} />;
+              else if (section.module_alias === "news" && section.status === 1)
+                return <News key={i} homePage={true} />;
             })();
           })}
           

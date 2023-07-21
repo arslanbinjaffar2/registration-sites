@@ -564,6 +564,16 @@
         }
       }
     }
+    &.ebs-speakerv5-area-dark {
+      h5,.ebs-attendee-designation,.ebs-email-phone a,.social-icons a {
+        color: $white;
+      }
+      .ebs-email-phone a,.social-icons a {
+        &:hover {
+          color: $first-main-color;
+        }
+      }
+    }
   }
 }
 .speakerv6-wrapper {

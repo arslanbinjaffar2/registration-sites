@@ -31,7 +31,7 @@ const News = (props) => {
     return in_array(module.alias, ["news"]);
   });
 
-  const limit = 10;
+  const limit = props.homePage ? 6 : 10;
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
@@ -70,13 +70,14 @@ const News = (props) => {
           <Head>
             <title>{event.eventsiteModules.news}</title>
         </Head>
-        <PageHeader label={event.eventsiteModules.news}/>
+        {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
         <Component
           news={news}
           event_url={eventUrl}
           siteLabels={event.labels}
           newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
+          homePage={props.homePage ? true : false}
           loadMore={() => {
             if (page < totalPages) {
               return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data) => onPageChange(data)} />
