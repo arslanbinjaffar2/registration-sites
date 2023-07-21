@@ -1585,7 +1585,11 @@
         position: absolute;
         font-size: 11px;
         bottom: 5px;
+        padding-right: 15px;
+        width: 100%;
+        
         .ebs-box {
+          float: right;
           div {
             padding-right: 4px;
             color: $first-main-color;

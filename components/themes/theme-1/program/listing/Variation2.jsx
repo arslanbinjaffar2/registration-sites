@@ -244,13 +244,14 @@ return showWorkshop;
   )
 }
 
-const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
+const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings}) => {
 
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
     const [selectedDate, setSelectedDate] = useState({value:schedule[0], label:schedule[0]});
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [value, setValue] = useState('');
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -313,6 +314,11 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                 <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
 										<div className="row d-flex">
+                      {eventsiteSettings.agenda_search_filter === 1 && <div className="col-md-5">
+                        <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+                          <em className="fa fa-search"></em>
+                        </div>
+                      </div>}
 											<div className="col-md-6 d-flex align-items-center">
 												<div className="ebs-select-box">
                           <ReactSelect
@@ -357,7 +363,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                     <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
                   </div>
                  
-					<TimelineContent  data={itemSorting({
+					<TimelineContent data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
                         "program_setting": agendaSettings,
