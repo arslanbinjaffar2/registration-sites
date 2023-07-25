@@ -3,11 +3,13 @@ import React, { useState, useRef } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 
-const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage }) => {
+const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+
   return (
-    <div style={{ padding: '80px 0' }} className='edgtf-container'>
+    <div style={{ padding: '80px 0', ...bgStyle}} className='edgtf-container'>
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
 

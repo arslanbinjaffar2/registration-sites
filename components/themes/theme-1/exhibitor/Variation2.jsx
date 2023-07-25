@@ -10,8 +10,10 @@ const Variation2 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
         setPopup(!popup);
         setData('');
     }
+    const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
     return (
-        <div  className="module-section ebs-default-padding">
+        <div style={bgStyle} className="module-section ebs-default-padding">
             {popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
             <div className="container">
                 <HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
