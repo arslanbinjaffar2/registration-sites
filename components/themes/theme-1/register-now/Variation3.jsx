@@ -47,8 +47,10 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
 
 const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl} ) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
       <div className="container">
         <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'left'} />
