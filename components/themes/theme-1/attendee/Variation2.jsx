@@ -4,7 +4,7 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation2 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
-  const bgStyle = (settings && settings.background_color !== "") ? { backgroundImage: settings.background_color} : {}
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
     <div
