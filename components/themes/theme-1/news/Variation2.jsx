@@ -4,7 +4,7 @@ import ActiveLink from "components/atoms/ActiveLink";
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 
-const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage }) => {
+const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const breakpointColumnsObj = {
@@ -13,8 +13,10 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     700: 2,
     500: 1,
   };
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+
   return (
-    <div style={{paddingLeft: 0, paddingRight: 0}} className="edgtf-container ebs-default-padding">
+    <div style={{paddingLeft: 0, paddingRight: 0, ...bgStyle}} className="edgtf-container ebs-default-padding">
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">

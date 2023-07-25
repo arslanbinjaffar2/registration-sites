@@ -78,6 +78,7 @@ const News = (props) => {
           newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
           homePage={props.homePage ? true : false}
+          moduleVariation={moduleVariation[0]}
           loadMore={() => {
             if (page < totalPages) {
               return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data) => onPageChange(data)} />
