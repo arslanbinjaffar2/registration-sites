@@ -71,7 +71,7 @@ const News = (props) => {
             <title>{event.eventsiteModules.news}</title>
         </Head>
         {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
-        <Component
+        {news.length > 0 ? <Component
           news={news}
           event_url={eventUrl}
           siteLabels={event.labels}
@@ -84,7 +84,7 @@ const News = (props) => {
               return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data) => onPageChange(data)} />
             }
           }}
-        />
+        /> : null}
         </React.Fragment>
       ) : <PageLoader />}
     </Suspense>
