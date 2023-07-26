@@ -14,9 +14,10 @@ const Variation8 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       <div className="container">
         {home && <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />}
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">

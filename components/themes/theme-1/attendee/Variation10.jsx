@@ -3,13 +3,14 @@ import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
-const Variation5 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
-  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+const Variation10 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
+  const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
+    const bgStyle =  (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`  } : {}
   return (
-    <div style={bgStyle} className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
       <div className="container">
-        <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
+        <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
       {searchBar()}
       <div className="container">
@@ -18,7 +19,7 @@ const Variation5 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
             attendees.map((attendee, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">
                 <div style={{ animationDelay: 50 * i + 'ms' }} className="speakerv5-wrapper ebs-animation-layer">
-                  <div className="speakerv5-area text-center">
+                  <div className="speakerv5-area text-center ebs-speakerv5-area-dark">
                     <div className="speakerv5-image">
                       <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                         <span className="gallery-img-wrapper-square">
@@ -135,4 +136,4 @@ const Variation5 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
   );
 };
 
-export default Variation5;
+export default Variation10;

@@ -14,9 +14,10 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "public/img/gallery-not-found.png"
     }
   };
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       {home && <div className="container">
       <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
       </div>}

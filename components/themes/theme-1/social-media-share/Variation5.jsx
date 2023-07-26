@@ -14,8 +14,11 @@ import {
 } from "react-share";
 
 const Variation5 = ({ event, settings, socialMediaShare, labels }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
   return (
     <div
+      style={bgStyle}
       className="edgtf-parallax-section-holder ebs-default-padding">
       <div className="container">
         <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE}  align={'center'} />
