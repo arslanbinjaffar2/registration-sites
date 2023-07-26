@@ -199,6 +199,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     dispatch(updateProfileData(event.id, event.url, data));
   };
 
+  console.log(settings)
   return (
     <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
@@ -242,7 +243,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 placeholder="Last name"
                 value={attendeeData.last_name}
               />
-              {settings.bio_info === 1 && (
+              {settings?.bio_info === 1 && (
                 <TextArea
                   label="About"
                   name="about"
@@ -253,7 +254,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.about}
                 />
               )}
-              {settings.age === 1 && (
+              {settings?.age === 1 && (
                 <Input
                   label="Age"
                   name="age"
@@ -263,7 +264,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.age}
                 />
               )}
-              {settings.gender === 1 && (
+              {settings?.gender === 1 && (
                 <div className="inline radio-check-field style-radio radio-feild">
                   <h5>Gender</h5>
                   <label>
@@ -292,7 +293,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </label>
                 </div>
               )}
-              {settings.birth_date === 1 && (
+              {settings?.birth_date === 1 && (
                 <DateTime
                   label={"Birth date"}
                   required={true}
@@ -303,7 +304,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings.first_name_passport === 1 && (
+              {settings?.first_name_passport === 1 && (
                 <Input
                   label="First name (Passport)"
                   name="FIRST_NAME_PASSPORT"
@@ -313,7 +314,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.FIRST_NAME_PASSPORT}
                 />
               )}
-              {settings.last_name_passport === 1 && (
+              {settings?.last_name_passport === 1 && (
                 <Input
                   label="Last name (Passport)"
                   name="LAST_NAME_PASSPORT"
@@ -323,7 +324,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.LAST_NAME_PASSPORT}
                 />
               )}
-              {settings.place_of_birth === 1 && (
+              {settings?.place_of_birth === 1 && (
                 <Input
                   label="Place of birth (Passport)"
                   name="place_of_birth"
@@ -333,7 +334,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.place_of_birth}
                 />
               )}
-              {settings.passport_no === 1 && (
+              {settings?.passport_no === 1 && (
                 <Input
                   label="Passport no"
                   name="passport_no"
@@ -343,7 +344,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.passport_no}
                 />
               )}
-              {settings.date_of_issue_passport === 1 && (
+              {settings?.date_of_issue_passport === 1 && (
                 <DateTime
                   label={"Date of issue (Passport)"}
                   required={true}
@@ -354,7 +355,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings.date_of_expiry_passport === 1 && (
+              {settings?.date_of_expiry_passport === 1 && (
                 <DateTime
                   label={"Date of expiry (Passport)"}
                   required={true}
@@ -368,7 +369,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
 
-              {settings.spoken_languages === 1 && (
+              {settings?.spoken_languages === 1 && (
                 <DropDown
                   label="Spoken languages"
                   listitems={languages}
@@ -386,7 +387,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {settings.profile_picture === 1 && (
+              {settings?.profile_picture === 1 && (
                 <div className="ebs-profile-image">
                   <label>
                     <img src="https://via.placeholder.com/155.png" alt="" />
@@ -396,7 +397,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 </div>
               )}
               <h3 className="ebs-title">Professional Information:</h3>
-              {settings.company_name === 1 && (
+              {settings?.company_name === 1 && (
                 <Input
                   label="Company name"
                   name="company_name"
@@ -406,7 +407,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.company_name}
                 />
               )}
-              {settings.title === 1 && (
+              {settings?.title === 1 && (
                 <Input
                   label="Title"
                   name="title"
@@ -420,7 +421,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }
                 />
               )}
-              {settings.organization === 1 && (
+              {settings?.organization === 1 && (
                 <Input
                   label="Organization"
                   name="organization"
@@ -430,7 +431,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {settings.employment_date === 1 && (
+              {settings?.employment_date === 1 && (
                 <DateTime
                   label={"Employment date"}
                   required={true}
@@ -441,7 +442,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings.department === 1 && (
+              {settings?.department === 1 && (
                 <Input
                   label="Department"
                   name="department"
@@ -451,7 +452,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {settings.country === 1 && (
+              {settings?.country === 1 && (
                 <Select
                   styles={Selectstyles2}
                   placeholder="Select Country"
@@ -469,7 +470,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {settings.show_industry === 1 && (
+              {settings?.show_industry === 1 && (
                 <Input
                   label="Industry"
                   name="industry"
@@ -479,7 +480,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.industry}
                 />
               )}
-              {settings.show_job_tasks === 1 && (
+              {settings?.show_job_tasks === 1 && (
                 <Input
                   label="Job tasks"
                   name="jobs"
@@ -489,7 +490,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.jobs}
                 />
               )}
-              {settings.interest === 1 && (
+              {settings?.interest === 1 && (
                 <Input
                   label="Interests"
                   name="interests"
@@ -499,7 +500,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.interests}
                 />
               )}
-              {settings.network_group === 1 && (
+              {settings?.network_group === 1 && (
                 <Input
                   label="Network group"
                   name="network_group"
@@ -509,7 +510,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.network_group}
                 />
               )}
-              {settings.delegate_number === 1 && (
+              {settings?.delegate_number === 1 && (
                 <Input
                   label="Delegate number"
                   name="delegate_number"
@@ -519,7 +520,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.delegate_number}
                 />
               )}
-              {settings.table_number === 1 && (
+              {settings?.table_number === 1 && (
                 <Input
                   label="Table number"
                   name="table_number"
@@ -529,7 +530,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.table_number}
                 />
               )}
-              {settings.private_street === 1 && (
+              {settings?.private_street === 1 && (
                 <>
                   <h3 style={{ marginTop: 40 }} className="ebs-title">
                     Address:
@@ -544,7 +545,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   />
                 </>
               )}
-              {settings.private_house_number === 1 && (
+              {settings?.private_house_number === 1 && (
                 <Input
                   label="House number"
                   name="private_house_number"
@@ -554,7 +555,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_house_number}
                 />
               )}
-              {settings.private_post_code === 1 && (
+              {settings?.private_post_code === 1 && (
                 <Input
                   label="Postal code"
                   name="private_post_code"
@@ -564,7 +565,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_post_code}
                 />
               )}
-              {settings.private_city === 1 && (
+              {settings?.private_city === 1 && (
                 <Input
                   label="City"
                   name="private_city"
@@ -574,7 +575,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_city}
                 />
               )}
-              {settings.private_country === 1 && (
+              {settings?.private_country === 1 && (
                 <Input
                   label="Country"
                   name="private_country"
@@ -586,7 +587,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
-                {settings.phone === 1 &&
+                {settings?.phone === 1 &&
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}>
                       <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
@@ -630,7 +631,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </div>
                     </div>
                   </div>}
-                {settings.email === 1 && (
+                {settings?.email === 1 && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
