@@ -116,7 +116,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                 {locSponsors.map((sponsor) => (<div className="ebs-sponsor-item" key={sponsor.id}>
                   <div className="d-flex align-items-center ebs-break-block">
                     <div className="ebs-img-listing">
-                      <ActiveLink href={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                      <ActiveLink href={sponsor.url != "http://" ? sponsor.url : `/${eventUrl}/sponsors/${sponsor.id}`}>
                         <figure>
                           {sponsor.logo && sponsor.logo !== '' ? (
                             <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
@@ -128,7 +128,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                     </div>
                     <div className="ebs-detail-listing">
                       {sponsor.name &&
-                        <ActiveLink href={`/${eventUrl}/sponsors/${sponsor.id}`}>
+                        <ActiveLink href={sponsor.url != "http://" ? sponsor.url : `/${eventUrl}/sponsors/${sponsor.id}`}>
                           <h2>{sponsor.name}</h2>
                         </ActiveLink>
                       }

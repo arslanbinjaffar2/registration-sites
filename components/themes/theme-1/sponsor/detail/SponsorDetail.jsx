@@ -112,6 +112,25 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           </p>
                         </div>
                       )}
+                      {sponsor.booth && (
+                        <div
+                          style={{ marginBottom: 20 }}
+                          className="edge-info-row"
+                        >
+                          <h4
+                            style={{
+                              textTransform: "uppercase",
+                              marginBottom: 10,
+                            }}
+                            className="info"
+                          >
+                            booth{" "}
+                          </h4>
+                          <p>
+                            {sponsor.booth}
+                          </p>
+                        </div>
+                      )}
                       <div
                         style={{ marginBottom: 20 }}
                         className="edge-info-row"
