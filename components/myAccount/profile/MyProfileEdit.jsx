@@ -449,7 +449,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
-                  value={attendeeData.info.organization}
+                  value={attendeeData.info.department}
                 />
               )}
               {settings?.country === 1 && (
