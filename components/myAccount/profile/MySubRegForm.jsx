@@ -30,7 +30,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       else if(item.question_type === "single" && item.result.length > 0){
         let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id], [`comments${item.id}`]:item.result[0].comments }
         if(item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to > 0){
-          newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer[item.result[0].answer_id].link_to};
+          newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to};
         }
         return Object.assign(ack, {...newObj} );
       }

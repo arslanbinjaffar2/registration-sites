@@ -62,13 +62,15 @@ export const fetchSubRegistrationData = (id,url) => {
 export const updateSubRegistrationData = (id, url, data) => {
     return async dispatch => {
       dispatch(setUpdating(true));
+      dispatch(setAlert(null));
+      dispatch(setError(null));
       try {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data,{ headers:header("POST", id)})
         console.log(response);
-        if(response.data.data){
-          dispatch(setAlert("Answers Successfully Updated..."))
+        if(response.data.data.status){
+          dispatch(setAlert(response.data.data.message))
         }else{
-          dispatch(setAlert("Couldn't update something went wrong..."));
+          dispatch(setAlert(response.data.data.message));
         }
         dispatch(setUpdating(false));
       } catch (error) {
