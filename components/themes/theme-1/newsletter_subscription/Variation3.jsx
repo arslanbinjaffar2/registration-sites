@@ -9,12 +9,12 @@ const Variation3 = (props) =>  {
     props.handleSubmit({email,first_name,last_name,is_checked});
 
   }
-  const bgStyle = (props.moduleVariation && props.moduleVariation.background_color !== "") ? { backgroundColor: props.moduleVariation.background_color} : {}
+  const bgStyle = (props.moduleVariation && props.moduleVariation.background_color !== "") ? { backgroundColor: props.moduleVariation.background_color} : { backgroundColor: '#F2F2F2' }
 
     return (
       <React.Fragment>
-        {props.settings && <div style={bgStyle} className="module-section">
-          <div  style={{ backgroundColor: '#F2F2F2' }} className="ebs-default-padding">
+        {props.settings && <div className="module-section">
+          <div style={bgStyle} className="ebs-default-padding">
           <div className="container-fluid">
             <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
             <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
