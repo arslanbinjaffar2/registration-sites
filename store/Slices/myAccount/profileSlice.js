@@ -11,6 +11,7 @@ const initialState = {
   eventFoodDisclaimers: null,
   attendeeFeildSettings: null,
   customFields: null,
+  settings: null,
   languages: null,
   loading: false,
   error: null,
@@ -29,14 +30,15 @@ export const eventSlice = createSlice({
     },
     setProfileData: (state, { payload }) => {
       state.attendee = payload.attendee,
-        state.countries = payload.countries,
-        state.eventLanguageDetails = payload.eventLanguageDetails,
-        state.callingCodes = payload.callingCodes,
-        state.eventFoodDisclaimers = payload.eventFoodDisclaimers,
-        state.attendeeFeildSettings = payload.attendeeFeildSettings,
-        state.customFields = payload.customFields,
-        state.languages = payload.languages,
-        state.loading = false
+      state.countries = payload.countries,
+      state.eventLanguageDetails = payload.eventLanguageDetails,
+      state.callingCodes = payload.callingCodes,
+      state.eventFoodDisclaimers = payload.eventFoodDisclaimers,
+      state.attendeeFeildSettings = payload.attendeeFeildSettings,
+      state.customFields = payload.customFields,
+      state.settings = payload.settings,
+      state.languages = payload.languages,
+      state.loading = false
     },
     setError: (state, { payload }) => {
       state.error = payload

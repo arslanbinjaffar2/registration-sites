@@ -53,7 +53,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error } =
+  const { attendee, languages, callingCodes, countries, loading, alert, error, settings } =
     useSelector(profileSelector);
 
   return (
@@ -67,6 +67,7 @@ const MyProfileEdit = () => {
         loading={loading}
         alert={alert}
         error={error}
+        settings={settings}
       />) : <PageLoader />
 
   );
@@ -74,7 +75,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings }) => {
 
   const dispatch = useDispatch();
 
@@ -123,21 +124,21 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   };
 
   const updateDate = (obj) => {
-      setAttendeeData({
-        ...attendeeData,
-        [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ?  obj.item.format("YYYY-MM-DD"): obj.item,
-      });
+    setAttendeeData({
+      ...attendeeData,
+      [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ? obj.item.format("YYYY-MM-DD") : obj.item,
+    });
 
   };
 
   const updateInfoDate = (obj) => {
-      setAttendeeData({
-        ...attendeeData,
-        info: {
-          ...attendeeData.info,
-          [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ?  obj.item.format("YYYY-MM-DD"): obj.item,
-        },
-      });
+    setAttendeeData({
+      ...attendeeData,
+      info: {
+        ...attendeeData.info,
+        [obj.name]: (typeof obj.item === 'object' && obj.item !== null) ? obj.item.format("YYYY-MM-DD") : obj.item,
+      },
+    });
 
   };
 
@@ -222,30 +223,26 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.initial}
                 />
               )}
-              {attendee.first_name && (
-                <Input
-                  label="First name"
-                  placeholder="First name"
-                  name="first_name"
-                  required={true}
-                  onChange={(e) => {
-                    updateAttendeeFeild(e);
-                  }}
-                  value={attendeeData.first_name}
-                />
-              )}
-              {attendee.last_name && (
-                <Input
-                  label="Last Name"
-                  name="last_name"
-                  onChange={(e) => {
-                    updateAttendeeFeild(e);
-                  }}
-                  placeholder="Last name"
-                  value={attendeeData.last_name}
-                />
-              )}
-              {attendee.info && (
+              <Input
+                label="First name"
+                placeholder="First name"
+                name="first_name"
+                required={true}
+                onChange={(e) => {
+                  updateAttendeeFeild(e);
+                }}
+                value={attendeeData.first_name}
+              />
+              <Input
+                label="Last Name"
+                name="last_name"
+                onChange={(e) => {
+                  updateAttendeeFeild(e);
+                }}
+                placeholder="Last name"
+                value={attendeeData.last_name}
+              />
+              {settings.bio_info === 1 && (
                 <TextArea
                   label="About"
                   name="about"
@@ -256,7 +253,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.about}
                 />
               )}
-              {attendee.info && attendee.info.age && (
+              {settings.age === 1 && (
                 <Input
                   label="Age"
                   name="age"
@@ -266,7 +263,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.age}
                 />
               )}
-              {attendee.info.gender && (
+              {settings.gender === 1 && (
                 <div className="inline radio-check-field style-radio radio-feild">
                   <h5>Gender</h5>
                   <label>
@@ -295,7 +292,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </label>
                 </div>
               )}
-              {attendee.BIRTHDAY_YEAR && (
+              {settings.birth_date === 1 && (
                 <DateTime
                   label={"Birth date"}
                   required={true}
@@ -306,7 +303,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendee.FIRST_NAME_PASSPORT && (
+              {settings.first_name_passport === 1 && (
                 <Input
                   label="First name (Passport)"
                   name="FIRST_NAME_PASSPORT"
@@ -316,7 +313,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.FIRST_NAME_PASSPORT}
                 />
               )}
-              {attendee.LAST_NAME_PASSPORT && (
+              {settings.last_name_passport === 1 && (
                 <Input
                   label="Last name (Passport)"
                   name="LAST_NAME_PASSPORT"
@@ -326,7 +323,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.LAST_NAME_PASSPORT}
                 />
               )}
-              {attendee.info && attendee.info.place_of_birth && (
+              {settings.place_of_birth === 1 && (
                 <Input
                   label="Place of birth (Passport)"
                   name="place_of_birth"
@@ -336,7 +333,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.place_of_birth}
                 />
               )}
-              {attendee.info && attendee.info.passport_no && (
+              {settings.passport_no === 1 && (
                 <Input
                   label="Passport no"
                   name="passport_no"
@@ -346,7 +343,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.passport_no}
                 />
               )}
-              {attendee.info && attendee.info.date_of_issue_passport && (
+              {settings.date_of_issue_passport === 1 && (
                 <DateTime
                   label={"Date of issue (Passport)"}
                   required={true}
@@ -357,7 +354,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendee.info && attendee.info.date_of_expiry_passport && (
+              {settings.date_of_expiry_passport === 1 && (
                 <DateTime
                   label={"Date of expiry (Passport)"}
                   required={true}
@@ -371,7 +368,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
 
-              {attendee.SPOKEN_LANGUAGE && (
+              {settings.spoken_languages === 1 && (
                 <DropDown
                   label="Spoken languages"
                   listitems={languages}
@@ -389,15 +386,17 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              <div className="ebs-profile-image">
-                <label>
-                  <img src="https://via.placeholder.com/155.png" alt="" />
-                  <span>Uplaod Photo</span>
-                  <input type="file" />
-                </label>
-              </div>
+              {settings.profile_picture === 1 && (
+                <div className="ebs-profile-image">
+                  <label>
+                    <img src="https://via.placeholder.com/155.png" alt="" />
+                    <span>Uplaod Photo</span>
+                    <input type="file" />
+                  </label>
+                </div>
+              )}
               <h3 className="ebs-title">Professional Information:</h3>
-              {attendee.info && attendee.info.company_name && (
+              {settings.company_name === 1 && (
                 <Input
                   label="Company name"
                   name="company_name"
@@ -407,7 +406,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.company_name}
                 />
               )}
-              {attendee.info && attendee.info.title && (
+              {settings.title === 1 && (
                 <Input
                   label="Title"
                   name="title"
@@ -421,7 +420,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }
                 />
               )}
-              {attendee.info && attendee.info.organization && (
+              {settings.organization === 1 && (
                 <Input
                   label="Organization"
                   name="organization"
@@ -431,7 +430,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {attendee.EMPLOYMENT_DATE && (
+              {settings.employment_date === 1 && (
                 <DateTime
                   label={"Employment date"}
                   required={true}
@@ -442,7 +441,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {attendee.info && attendee.info.organization && (
+              {settings.department === 1 && (
                 <Input
                   label="Department"
                   name="department"
@@ -452,7 +451,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.organization}
                 />
               )}
-              {attendeeData.info && attendeeData.info.country && (
+              {settings.country === 1 && (
                 <Select
                   styles={Selectstyles2}
                   placeholder="Select Country"
@@ -470,7 +469,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {attendee.info && attendee.info.industry && (
+              {settings.show_industry === 1 && (
                 <Input
                   label="Industry"
                   name="industry"
@@ -480,7 +479,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.industry}
                 />
               )}
-              {attendee.info && attendee.info.jobs && (
+              {settings.show_job_tasks === 1 && (
                 <Input
                   label="Job tasks"
                   name="jobs"
@@ -490,7 +489,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.jobs}
                 />
               )}
-              {attendee.info && attendee.info.interests && (
+              {settings.interest === 1 && (
                 <Input
                   label="Interests"
                   name="interests"
@@ -500,7 +499,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.interests}
                 />
               )}
-              {attendee.info && attendee.info.network_group && (
+              {settings.network_group === 1 && (
                 <Input
                   label="Network group"
                   name="network_group"
@@ -510,7 +509,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.network_group}
                 />
               )}
-              {attendee.info && attendee.info.delegate_number && (
+              {settings.delegate_number === 1 && (
                 <Input
                   label="Delegate number"
                   name="delegate_number"
@@ -520,9 +519,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.delegate_number}
                 />
               )}
-              {attendee.info && attendee.info.table_number && (
+              {settings.table_number === 1 && (
                 <Input
-                  label="Delegate number"
+                  label="Table number"
                   name="table_number"
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
@@ -530,22 +529,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.table_number}
                 />
               )}
-              {attendee.info && attendee.info.private_street && (
+              {settings.private_street === 1 && (
                 <>
-                <h3 style={{ marginTop: 40 }} className="ebs-title">
-                  Address:
-                </h3>
-                <Input
-                  label="Street number"
-                  name="private_street"
-                  onChange={(e) => {
-                    updateAttendeeInfoFeild(e);
-                  }}
-                  value={attendeeData.info.private_street}
-                />
+                  <h3 style={{ marginTop: 40 }} className="ebs-title">
+                    Address:
+                  </h3>
+                  <Input
+                    label="Street number"
+                    name="private_street"
+                    onChange={(e) => {
+                      updateAttendeeInfoFeild(e);
+                    }}
+                    value={attendeeData.info.private_street}
+                  />
                 </>
               )}
-              {attendee.info && attendee.info.private_house_number && (
+              {settings.private_house_number === 1 && (
                 <Input
                   label="House number"
                   name="private_house_number"
@@ -555,7 +554,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_house_number}
                 />
               )}
-              {attendee.info && attendee.info.private_post_code && (
+              {settings.private_post_code === 1 && (
                 <Input
                   label="Postal code"
                   name="private_post_code"
@@ -565,7 +564,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_post_code}
                 />
               )}
-              {attendee.info && attendee.info.private_city && (
+              {settings.private_city === 1 && (
                 <Input
                   label="City"
                   name="private_city"
@@ -575,7 +574,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.private_city}
                 />
               )}
-              {attendee.info && attendee.info.private_country && (
+              {settings.private_country === 1 && (
                 <Input
                   label="Country"
                   name="private_country"
@@ -587,10 +586,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
-                {attendee.phone &&
+                {settings.phone === 1 &&
                   <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}>
-                    <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
+                    <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}>
+                      <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
                     <div className="form-phone-field">
                       {attendee.calling_code && (
                         <React.Fragment>
@@ -631,9 +630,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </div>
                     </div>
                   </div>}
-                {attendee.email && (
+                {settings.email === 1 && (
                   <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
+                    <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
                       label="E-mail"
                       required
@@ -645,62 +644,54 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                {attendee.info && attendee.info.website && (
-                  <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
-                    <Input
-                      label="E-mail"
-                      required
-                      name="website"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.website}
-                    />
-                  </div>
-                )}
-                {attendee.info && attendee.info.facebook && (
-                  <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
-                    <Input
-                      label="E-mail"
-                      required
-                      name="facebook"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.facebook}
-                    />
-                  </div>
-                )}
-                {attendee.info && attendee.info.twitter && (
-                  <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
-                    <Input
-                      label="E-mail"
-                      required
-                      name="twitter"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.twitter}
-                    />
-                  </div>
-                )}
-                {attendee.info && attendee.info.linkedin && (
-                  <div className="ebs-contact-row d-flex">
-                    <div style={{width: 55, height: 55, position: 'relative', marginRight: 5}}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
-                    <Input
-                      label="E-mail"
-                      required
-                      name="linkedin"
-                      onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
-                      }}
-                      value={attendeeData.info.linkedin}
-                    />
-                  </div>
-                )}
+                <div className="ebs-contact-row d-flex">
+                  <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
+                  <Input
+                    label="Website"
+                    required
+                    name="website"
+                    onChange={(e) => {
+                      updateAttendeeInfoFeild(e);
+                    }}
+                    value={attendeeData.info.website}
+                  />
+                </div>
+                <div className="ebs-contact-row d-flex">
+                  <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
+                  <Input
+                    label="E-mail"
+                    required
+                    name="facebook"
+                    onChange={(e) => {
+                      updateAttendeeInfoFeild(e);
+                    }}
+                    value={attendeeData.info.facebook}
+                  />
+                </div>
+                <div className="ebs-contact-row d-flex">
+                  <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
+                  <Input
+                    label="E-mail"
+                    required
+                    name="twitter"
+                    onChange={(e) => {
+                      updateAttendeeInfoFeild(e);
+                    }}
+                    value={attendeeData.info.twitter}
+                  />
+                </div>
+                <div className="ebs-contact-row d-flex">
+                  <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
+                  <Input
+                    label="E-mail"
+                    required
+                    name="linkedin"
+                    onChange={(e) => {
+                      updateAttendeeInfoFeild(e);
+                    }}
+                    value={attendeeData.info.linkedin}
+                  />
+                </div>
               </div>
               {attendee.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">
