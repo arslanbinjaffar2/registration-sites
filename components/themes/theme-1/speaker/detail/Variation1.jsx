@@ -4,7 +4,7 @@ import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import { localeProgramMoment } from 'helpers/helper';
 import Image from 'next/image'
 
-const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, eventLanguageId }) => {
+const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId, agendaSettings }) => {
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -81,7 +81,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">ABOUT </h4>
+                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
                           {speaker.info.about && <div style={{marginbottom: 20}}  dangerouslySetInnerHTML={{__html: speaker.info.about}} />}
                         </div>
                       )}
@@ -187,7 +187,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
       <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
-            <h2 className="edgtf-title-with-dots edgtf-appeared">Programes</h2>
+            <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.EVENTSITE_PROGRAM !== undefined ? labels.EVENTSITE_PROGRAM :"Programes"}</h2>
             <span className="edge-title-separator edge-enable-separator"></span>
             <div className="ebs-main-program-listing">
 
@@ -196,7 +196,7 @@ const Variation1 = ({ speaker, moduleName, siteLabels, eventUrl, showWorkshop, e
                   {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
                   {speaker.programs[key].map((item, i) =>
                     item.workshop_id > 0 ?
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} labels={labels} showWorkshop={showWorkshop} agendaSettings={agendaSettings} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={labels} agendaSettings={agendaSettings} />
 
                   )}
                 </div>

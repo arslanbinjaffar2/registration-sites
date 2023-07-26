@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 
 const pageview = (GA_MEASUREMENT_ID, url) => {
-    if(window !== undefined){
+    if (window !== undefined) {
         window.gtag("config", GA_MEASUREMENT_ID, {
             page_path: url,
         });
@@ -17,14 +17,14 @@ const MetaInfo = (props) => {
     const router = useRouter();
     useEffect(() => {
         const handleRouteChange = (url) => {
-            if(props.metaInfo.settings.google_analytics){
+            if (props.metaInfo.settings.google_analytics) {
                 pageview(props.metaInfo.settings.google_analytics, url);
             }
         };
         router.events.on("routeChangeComplete", handleRouteChange);
 
         return () => {
-        router.events.off("routeChangeComplete", handleRouteChange);
+            router.events.off("routeChangeComplete", handleRouteChange);
         };
     }, [router.events]);
 
@@ -97,21 +97,83 @@ const MetaInfo = (props) => {
                     </>
                 )}
 
-            </Head>
-            {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" &&  (
-                <>
-                <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
-                <Script id='google-analytics' strategy="afterInteractive" dangerouslySetInnerHTML={{__html:`
+                {props.metaInfo.settings.google_analytics && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <script id='google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings.google_analytics}`} />
+                        <script id='google-analytics-2' dangerouslySetInnerHTML={{
+                            __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', '${props.metaInfo.settings.google_analytics}', {
                         page_path: window.location.pathname,
                         });
-                    `}}/>
-                </>
+                    `}} />
+                    </>
 
-            )}
+                )}
+
+                {props.metaInfo.settings?.google_analytics_id !== undefined && props.metaInfo.settings?.google_analytics_id && props.cookie !== null && props.cookie == "all" && (
+                    <>
+                        <script id='thirdyparty-google-analytics-1' src={`https://www.googletagmanager.com/gtag/js?id=${props.metaInfo.settings?.google_analytics_id}`} />
+                        <script id='thirdyparty-google-analytics-2' dangerouslySetInnerHTML={{
+                            __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', '${props.metaInfo.settings?.google_analytics_id}', {
+                                    page_path: window.location.pathname,
+                                    });
+                                `}} />
+                    </>
+                )}
+
+                {props.metaInfo.settings?.linkedin_partner_id !== undefined && props.metaInfo.settings?.linkedin_partner_id && props.cookie !== null && props.cookie == "all" && (
+                    <React.Fragment>
+                        <script id='linkedin-analytics' dangerouslySetInnerHTML={{
+                            __html: `_linkedin_partner_id = '${props.metaInfo.settings?.linkedin_partner_id}';
+                                            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+                                            window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+                                            (function(l) {
+                                                if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+                                                window.lintrk.q=[]}
+                                                var s = document.getElementsByTagName("script")[0];
+                                                var b = document.createElement("script");
+                                                b.type = "text/javascript";b.async = true;
+                                                b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+                                                s.parentNode.insertBefore(b, s);
+                                            })(window.lintrk);`
+                                        }}
+                        />
+                        <noscript dangerouslySetInnerHTML={{
+                            __html: `<img height="1" width="1" style="display:none" src="https://px.ads.linkedin.com/collect/?pid=${props.metaInfo.settings?.linkedin_partner_id}&fmt=gif" />`
+                        }}
+                        />
+                    </React.Fragment>
+                )}
+
+                {props.metaInfo.settings?.facebook_pixel_id !== undefined && props.metaInfo.settings?.facebook_pixel_id && props.cookie !== null && props.cookie == "all" && (
+                    <React.Fragment>
+                        <script id='facebook-analytics' dangerouslySetInnerHTML={{
+                            __html: `!function(f,b,e,v,n,t,s)
+                                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                                    n.queue=[];t=b.createElement(e);t.async=!0;
+                                    t.src=v;s=b.getElementsByTagName(e)[0];
+                                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                                    'https://connect.facebook.net/en_US/fbevents.js');
+                                    fbq('init', '${props.metaInfo.settings?.facebook_pixel_id}');
+                                    fbq('track', '${(props.metaInfo.settings?.analytics_page_view_event_name !== undefined && props.metaInfo.settings?.analytics_page_view_event_name ? props.metaInfo.settings?.analytics_page_view_event_name : 'PageView')}');`
+                                }}
+                        />
+                        <noscript dangerouslySetInnerHTML={{
+                            __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${props.metaInfo.settings?.facebook_pixel_id}&ev=${(props.metaInfo.settings?.analytics_page_view_event_name !== undefined && props.metaInfo.settings?.analytics_page_view_event_name ? props.metaInfo.settings?.analytics_page_view_event_name : 'PageView')}&noscript=1" />`
+                        }}
+                        />
+                    </React.Fragment>
+                )}
+            </Head>
         </>
     )
 }

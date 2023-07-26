@@ -4,8 +4,10 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation8 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>

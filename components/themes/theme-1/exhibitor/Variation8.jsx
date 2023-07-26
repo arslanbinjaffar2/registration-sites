@@ -16,7 +16,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: true,
+		infinite: exhibitors?.length >= 5 ? true : false,
 		arrows: false,
 		speed: 5000,
 		margin: 0,
@@ -78,8 +78,10 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 			setPopup(true)
 		}
 	}
+    const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
+
 	return (
-		<div style={{ backgroundColor: '#f2f2f2' }} className="module-section ebs-colored-logo-grid ebs-default-padding">
+		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />

@@ -48,11 +48,14 @@ const Banner = () => {
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/registration_packages`;
+    }
+    
     let autoregister = getWithExpiry(`autoregister_${event.url}`);
     if(autoregister !== null){
         url = `${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee/autoregister/${autoregister}`;
     }
-
     return url;
   },[event]);
 

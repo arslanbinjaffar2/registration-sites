@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import SliderBanner from './components/SliderBanner';
 
 const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, registerDateEnd }) => {
@@ -25,7 +26,21 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 		}
 
 	}
-
+	useEffect(() => {
+		if (window.innerWidth >= 991) {
+			const elem = document.getElementById("ebs-header-master");
+			if (elem && elem.nextSibling.dataset) {
+				elem.classList.remove("ebs-light-header");
+				var _nextSibling = elem.nextSibling.dataset.fixed;
+				if (_nextSibling === 'true') {
+					elem.classList.add('ebs-fixed-header');
+				} else {
+					elem.classList.add('ebs-light-header');
+				}
+			}
+		}
+	}, [])
+	
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
@@ -55,7 +70,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
 											{slides.info.message}
 										</div>}
-										{settings.register_button === 1 && registerDateEnd  && <div className="edgtf-custom-font-holder"
+										{settings.register_button === 1 && registerDateEnd  && <div className="edgtf-custom-font-holder ebs-custom-button-holder"
 											style={{ marginTop: '40px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff' }}>
 											<a href={regisrationUrl} style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #fff', color: '#fff', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}</a>
 										</div>}

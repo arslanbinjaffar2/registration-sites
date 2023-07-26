@@ -2,7 +2,7 @@ import React from "react";
 import DocumentsListing from "components/ui-components/DocumentsListing";
 import Image from 'next/image'
 
-const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName }) => {
+const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName, eventTimezone }) => {
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -202,7 +202,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
           </div>
-          <DocumentsListing documents={documents} page={'sponsor'} />
+          <DocumentsListing documents={documents} page={'sponsor'} labels={labels} eventTimezone={eventTimezone} />
         </div>
       </div>}
     </div>

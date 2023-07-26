@@ -2,7 +2,7 @@ import React from "react";
 import DocumentsListing from "components/ui-components/DocumentsListing";
 import Image from 'next/image'
 
-const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
+const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone }) => {
   
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -46,6 +46,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                         />
                       ) : (
                         <Image objectFit='contain' layout="fill"
+                          onLoad={(e) => e.target.style.opacity = 1}
                           src={require('public/img/exhibitors-default.png')}
                           className="vc_single_image-img attachment-full"
                           alt="x"
@@ -193,6 +194,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
                       />
                     ) : (
                       <Image objectFit='contain' layout="fill"
+                        onLoad={(e) => e.target.style.opacity = 1}
                         src={require('public/img/user-placeholder.jpg')}
                         alt="x"
                       />
@@ -211,7 +213,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName }) => {
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
           </div>
-          <DocumentsListing documents={documents} page={'exhibitor'} />
+          <DocumentsListing documents={documents} page={'exhibitor'} labels={labels} eventTimezone={eventTimezone} />
         </div>
       </div>}
     </div>

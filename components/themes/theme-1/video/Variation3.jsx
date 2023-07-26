@@ -98,8 +98,10 @@ const NormalVideo = ({photo}) => {
 
 
 const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       {home && <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>}

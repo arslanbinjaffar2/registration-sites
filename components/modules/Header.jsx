@@ -67,6 +67,10 @@ const Header = ({ location, history }) => {
       url = `${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/${event.eventsiteSettings.payment_type === 0 ? 'free/' : ''}registration`;
     }
 
+    if(event.eventsiteSettings.manage_package === 1){
+      url = `/${event.url}/registration_packages`;
+    }
+
     return url;
   },[event]);
 
@@ -97,8 +101,10 @@ const Header = ({ location, history }) => {
         rItem['link_path'] = event.header_data["general_info_menu"].length == 1 ? true : false;
       }
       else if(item.alias == 'info_pages'){
-        rItem['menu_url'] =  event.header_data["info_pages_menu"].length == 1 && event.header_data["info_pages_menu"][0].page_type !== "menu" ? (event.header_data["info_pages_menu"][0].page_type === 1 ? `/${event.url}/${item.alias}/${event.header_data["info_pages_menu"][0].id}` : `${event.header_data["info_pages_menu"][0].website_protocol}${event.header_data["info_pages_menu"][0].url}`) : `/${event.url}/${item.alias}`;
-        rItem['link_path'] = event.header_data["info_pages_menu"].length == 1 ? true : false;
+        let page = event.header_data["info_pages_menu"].find((p)=>p.id == item.page_id);
+        console.log(page);
+        rItem['menu_url'] =  page !== null && page !== undefined && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : `${page['submenu'][0].website_protocol}${page['submenu'][0].url}`) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = page !== null && page !== undefined && page['submenu'].length == 1 ? true : false;
       }
       return rItem;
     })

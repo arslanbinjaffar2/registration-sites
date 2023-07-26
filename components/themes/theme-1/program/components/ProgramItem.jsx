@@ -3,13 +3,13 @@ import moment from 'moment'
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
-const ProgramItem = ({ program, eventUrl, labels }) => {
+const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
     const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
     return (
         <div className="ebs-program-child">
             <div className="row d-flex">
                 <div className="col-lg-2">
-                    {parseInt(program.hide_time) === 0  && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
+                    {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0  && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
                 </div>
                 <div className="col-lg-10">
                     <div className="ebs-program-content">

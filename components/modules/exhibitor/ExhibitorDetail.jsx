@@ -43,7 +43,7 @@ const ExhibitorDetail = (props) => {
     {name:event.labels.OVERVIEW_OF_EXHIBITORS, url:"", type:"name"},
   ]);
   useEffect(() => {
-    dispatch(incrementLoadCount());
+    //dispatch(incrementLoadCount());
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());
@@ -70,7 +70,7 @@ const ExhibitorDetail = (props) => {
             </ul>
             </nav>)
         }} />
-          <Component exhibitor={exhibitor} labels={event.labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} />
+          <Component exhibitor={exhibitor} labels={event.labels} documents={documents} moduleName={event.eventsiteModules.exhibitors} eventTimezone={event.timezone.timezone} />
         </React.Fragment>
       ) : <PageLoader />
       }
