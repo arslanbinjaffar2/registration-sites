@@ -81,6 +81,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   const [attendeeData, setAttendeeData] = useState(attendee);
 
+  const userInfo = localStorage.getItem(`event${event.id}User`);
+
+  const isAuthenticated = userInfo !== undefined && userInfo !== null ? JSON.parse(userInfo) : {};
+  
   useEffect(() => {
     setAttendeeData({
       ...attendeeData,
@@ -406,7 +410,15 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               {settings?.profile_picture?.status === 1 && (
                 <div className="ebs-profile-image">
                   <label>
-                    <img src="https://via.placeholder.com/155.png" alt="" />
+                    {isAuthenticated && isAuthenticated?.user?.image && isAuthenticated?.user?.image !== "" ? (
+                      <img src={
+                        process.env.NEXT_APP_EVENTCENTER_URL +
+                        "/assets/attendees/" +
+                        isAuthenticated?.user?.image
+                      } alt="" />
+                    ) : (
+                      <img src="https://via.placeholder.com/155.png" alt="" />
+                    )}
                     {settings?.profile_picture?.is_editable === 1 && (
                       <>
                         <span>Uplaod Photo</span>
@@ -676,6 +688,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       label="E-mail"
                       required
                       name="email"
+                      readOnly={true}
                       onChange={(e) => {
                         updateAttendeeFeild(e);
                       }}
