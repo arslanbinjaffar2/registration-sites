@@ -12,6 +12,7 @@ const initialState = {
   attendeeFeildSettings: null,
   customFields: null,
   settings: null,
+  labels: null,
   languages: null,
   loading: false,
   error: null,
@@ -37,6 +38,7 @@ export const eventSlice = createSlice({
       state.attendeeFeildSettings = payload.attendeeFeildSettings,
       state.customFields = payload.customFields,
       state.settings = payload.settings,
+      state.labels = payload.labels,
       state.languages = payload.languages,
       state.loading = false
     },
