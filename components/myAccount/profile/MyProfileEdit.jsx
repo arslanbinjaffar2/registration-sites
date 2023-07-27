@@ -677,7 +677,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
-                          value={attendeeData.phone}
+                          value={attendeeData.phone} 
                         />
                       </div>
                     </div>
