@@ -672,6 +672,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       <div style={{ width: "75%" }}>
                         <Input
                           label="Phone"
+                          name="phone"
                           readOnly={settings?.phone?.is_editable === 1 ? false : true}
                           onChange={(e) => {
                             updateAttendeeFeild(e);
