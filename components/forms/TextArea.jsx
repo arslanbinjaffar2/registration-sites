@@ -1,9 +1,9 @@
 import React from "react";
 
-const TextArea = ({ className, label, required, onChange, value, placeholder }) => {
+const TextArea = ({ className, label, required, onChange, value, placeholder, readOnly }) => {
   return (
     <label className={`${className && className} label-textarea`}>
-      <textarea onChange={onChange} name="" cols={30} rows={10} defaultValue={value ? value : ''} placeholder=" "></textarea>
+      <textarea onChange={onChange} name="" cols={30} rows={10} defaultValue={value ? value : ''} placeholder=" " readOnly={readOnly}></textarea>
       {label && (
         <span>{label}{required && (<em className='req'>*</em>)}</span>
       )}
