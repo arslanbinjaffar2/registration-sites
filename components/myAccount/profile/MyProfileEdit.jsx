@@ -53,7 +53,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error, settings } =
+  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels } =
     useSelector(profileSelector);
 
   return (
@@ -68,6 +68,7 @@ const MyProfileEdit = () => {
         alert={alert}
         error={error}
         settings={settings}
+        labels={labels}
       />) : <PageLoader />
 
   );
@@ -75,7 +76,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels }) => {
 
   const dispatch = useDispatch();
 
@@ -84,7 +85,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const userInfo = localStorage.getItem(`event${event.id}User`);
 
   const isAuthenticated = userInfo !== undefined && userInfo !== null ? JSON.parse(userInfo) : {};
-  
+
   useEffect(() => {
     setAttendeeData({
       ...attendeeData,
@@ -219,7 +220,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               <h3 className="ebs-title">Basic Information:</h3>
               {settings?.initial?.status === 1 && (
                 <Input
-                  label="Initial"
+                  label={labels?.initial}
                   name="initial"
                   readOnly={settings?.initial?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -229,7 +230,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               <Input
-                label="First name"
+                label={labels?.first_name}
                 placeholder="First name"
                 name="first_name"
                 required={true}
@@ -240,7 +241,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 value={attendeeData.first_name}
               />
               <Input
-                label="Last Name"
+                label={labels?.last_name}
                 name="last_name"
                 readOnly={settings?.last_name?.is_editable === 1 ? false : true}
                 onChange={(e) => {
@@ -251,7 +252,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               />
               {settings?.bio_info?.status === 1 && (
                 <TextArea
-                  label="About"
+                  label={labels?.about}
                   name="about"
                   readOnly={settings?.bio_info?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -263,7 +264,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.age?.status === 1 && (
                 <Input
-                  label="Age"
+                  label={labels?.age}
                   name="age"
                   readOnly={settings?.age?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -274,7 +275,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.gender?.status === 1 && (
                 <div className="inline radio-check-field style-radio radio-feild">
-                  <h5>Gender</h5>
+                  <h5>{labels?.gender}</h5>
                   <label>
                     <input
                       type="radio"
@@ -307,7 +308,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.birth_date?.status === 1 && (
                 <DateTime
-                  label={"Birth date"}
+                  label={labels?.BIRTHDAY_YEAR}
                   required={true}
                   readOnly={settings?.birth_date?.is_editable === 1 ? false : true}
                   onChange={(item) => {
@@ -317,9 +318,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings?.first_name_passport?.status === 1 && (
+              {settings?.FIRST_NAME_PASSPORT?.status === 1 && (
                 <Input
-                  label="First name (Passport)"
+                  label={labels?.initial}
                   name="FIRST_NAME_PASSPORT"
                   readOnly={settings?.first_name_passport?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -330,7 +331,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.last_name_passport?.status === 1 && (
                 <Input
-                  label="Last name (Passport)"
+                  label={labels?.LAST_NAME_PASSPORT}
                   name="LAST_NAME_PASSPORT"
                   readOnly={settings?.last_name_passport?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -341,7 +342,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.place_of_birth?.status === 1 && (
                 <Input
-                  label="Place of birth (Passport)"
+                  label={labels?.place_of_birth}
                   readOnly={settings?.place_of_birth?.is_editable === 1 ? false : true}
                   name="place_of_birth"
                   onChange={(e) => {
@@ -352,7 +353,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.passport_no?.status === 1 && (
                 <Input
-                  label="Passport no"
+                  label={labels?.passport_no}
                   name="passport_no"
                   readOnly={settings?.passport_no?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -363,7 +364,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.date_of_issue_passport?.status === 1 && (
                 <DateTime
-                  label={"Date of issue (Passport)"}
+                  label={labels?.date_of_issue_passport}
                   readOnly={settings?.date_of_issue_passport?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
@@ -375,7 +376,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.date_of_expiry_passport?.status === 1 && (
                 <DateTime
-                  label={"Date of expiry (Passport)"}
+                  label={labels?.date_of_expiry_passport}
                   readOnly={settings?.date_of_expiry_passport?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
@@ -390,10 +391,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
               {settings?.spoken_languages?.status === 1 && (
                 <DropDown
-                  label="Spoken languages"
+                  label={labels?.SPOKEN_LANGUAGE}
                   listitems={languages}
                   required={false}
-                  isDisabled={settings?.date_of_expiry_passport?.is_editable === 1 ? false : true}
+                  isDisabled={settings?.spoken_languages?.is_editable === 1 ? false : true}
                   isMulti={true}
                   selected={
                     attendeeData.SPOKEN_LANGUAGE &&
@@ -431,7 +432,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               <h3 className="ebs-title">Professional Information:</h3>
               {settings?.company_name?.status === 1 && (
                 <Input
-                  label="Company name"
+                  label={labels?.company_name}
                   name="company_name"
                   readOnly={settings?.company_name?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -442,7 +443,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.title?.status === 1 && (
                 <Input
-                  label="Title"
+                  label={labels?.title}
                   name="title"
                   readOnly={settings?.title?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -457,7 +458,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.organization?.status === 1 && (
                 <Input
-                  label="Organization"
+                  label={labels?.organization}
                   name="organization"
                   readOnly={settings?.organization?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -468,7 +469,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.employment_date?.status === 1 && (
                 <DateTime
-                  label={"Employment date"}
+                  label={labels?.EMPLOYMENT_DATE}
                   readOnly={settings?.employment_date?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
@@ -480,7 +481,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.department?.status === 1 && (
                 <Input
-                  label="Department"
+                  label={labels?.department}
                   name="department"
                   readOnly={settings?.department?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -493,7 +494,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <Select
                   styles={Selectstyles2}
                   isDisabled={settings?.country?.is_editable === 1 ? false : true}
-                  placeholder="Select Country"
+                  placeholder={labels?.country}
                   components={{ IndicatorSeparator: null }}
                   options={countries.map((item, index) => {
                     return {
@@ -510,7 +511,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.show_industry?.status === 1 && (
                 <Input
-                  label="Industry"
+                  label={labels?.industry}
                   name="industry"
                   readOnly={settings?.show_industry?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -521,7 +522,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.show_job_tasks?.status === 1 && (
                 <Input
-                  label="Job tasks"
+                  label={labels?.jobs}
                   name="jobs"
                   readOnly={settings?.show_job_tasks?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -532,7 +533,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.interest?.status === 1 && (
                 <Input
-                  label="Interests"
+                  label={labels?.interests}
                   name="interests"
                   readOnly={settings?.interest?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -543,7 +544,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.network_group?.status === 1 && (
                 <Input
-                  label="Network group"
+                  label={labels?.network_group}
                   name="network_group"
                   readOnly={settings?.network_group?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -554,7 +555,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.delegate_number?.status === 1 && (
                 <Input
-                  label="Delegate number"
+                  label={labels?.delegate}
                   name="delegate_number"
                   readOnly={settings?.delegate_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -565,7 +566,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.table_number?.status === 1 && (
                 <Input
-                  label="Table number"
+                  label={labels?.table_number}
                   name="table_number"
                   readOnly={settings?.table_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -580,7 +581,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     Address:
                   </h3>
                   <Input
-                    label="Street number"
+                    label={labels?.private_street}
                     name="private_street"
                     readOnly={settings?.private_street?.is_editable === 1 ? false : true}
                     onChange={(e) => {
@@ -592,7 +593,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.private_house_number?.status === 1 && (
                 <Input
-                  label="House number"
+                  label={labels?.private_house_number}
                   name="private_house_number"
                   readOnly={settings?.private_house_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -603,7 +604,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.private_post_code?.status === 1 && (
                 <Input
-                  label="Postal code"
+                  label={labels?.private_post_code}
                   name="private_post_code"
                   readOnly={settings?.private_post_code?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -614,7 +615,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.private_city?.status === 1 && (
                 <Input
-                  label="City"
+                  label={labels?.private_city}
                   name="private_city"
                   readOnly={settings?.private_city?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -625,7 +626,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               {settings?.private_country?.status === 1 && (
                 <Input
-                  label="Country"
+                  label={labels?.private_country}
                   name="private_country"
                   readOnly={settings?.private_country?.is_editable === 1 ? false : true}
                   onChange={(e) => {
@@ -671,7 +672,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       )}
                       <div style={{ width: "75%" }}>
                         <Input
-                          label="Phone"
+                          label={labels?.phone}
                           name="phone"
                           readOnly={settings?.phone?.is_editable === 1 ? false : true}
                           onChange={(e) => {
@@ -686,7 +687,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
-                      label="E-mail"
+                      label={labels?.email}
                       required
                       name="email"
                       readOnly={true}
@@ -712,7 +713,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
                   <Input
-                    label="E-mail"
+                    label="Facebook"
                     required
                     name="facebook"
                     onChange={(e) => {
@@ -724,7 +725,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
                   <Input
-                    label="E-mail"
+                    label="Twitter"
                     required
                     name="twitter"
                     onChange={(e) => {
@@ -736,7 +737,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
                   <Input
-                    label="E-mail"
+                    label="Linkedin"
                     required
                     name="linkedin"
                     onChange={(e) => {
