@@ -10,6 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const dispatch = useDispatch();
+  const [programs, setPrograms] = useState(subRegistration.all_programs);
   const [subRegResult, setSubRegResult] = useState(subRegistration.questions.question
     .reduce(
       (ack, item) => {
@@ -80,7 +81,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     },
     autoForceUpdate: { forceUpdate: () => forceUpdate(1) }
   }))
-  const updateResult = (
+  const updateResult = async (
     feild,
     type,
     answerId = 0,
@@ -90,6 +91,36 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   ) => {
     setValidationErrors({})
     if (type === "multiple") {
+      if(agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
+        let selectedProgram = programs.find((item)=>(item.id == agendaId))
+        let start_time1 = selectedProgram.start_time;
+        let end_time1 = selectedProgram.end_time;
+        let exit = false;
+        await subRegResult[feild].forEach(answer => {
+          let pId = subRegResult['answer_agenda_'+answer];
+          let thisPrograms = programs.find((item)=>(item.id == pId));
+          let start_time2 = thisPrograms.start_time;
+          let end_time2 = thisPrograms.end_time;
+          start_time1 = moment(start_time1,'HH:mm');
+          end_time1 = moment(end_time1, 'HH:mm');
+          start_time2 = moment(start_time2, 'HH:mm');
+          end_time2 = moment(end_time2, 'HH:mm');
+          console.log(start_time1);
+          console.log(start_time2);
+          console.log(pId != agendaId && (moment(thisPrograms.start_date, 'DD-MM-YYYY').isSame(moment(selectedProgram.start_date, 'DD-MM-YYYY'))) == true)
+          console.log((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1))
+          if(pId != agendaId && (moment(thisPrograms.date, 'DD-MM-YYYY').isSame(moment(selectedProgram.date, 'DD-MM-YYYY'))) == true ){
+              if ((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1)) {
+                      window.alert('Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
+                      exit = true;
+
+              }
+          }
+        });
+        if(exit){
+          return;
+        }
+      }
       if (Object.keys(subRegResult).length > 0) {
         let newObj = subRegResult;
         let question = questions.find((question)=>(question.id === questionId));
