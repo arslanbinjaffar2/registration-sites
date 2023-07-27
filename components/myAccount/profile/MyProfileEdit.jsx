@@ -199,7 +199,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     dispatch(updateProfileData(event.id, event.url, data));
   };
 
-  console.log(settings)
   return (
     <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
@@ -214,10 +213,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
           >
             <div className="ebs-edit-profile-section">
               <h3 className="ebs-title">Basic Information:</h3>
-              {attendee.info && attendee.info.initial && (
+              {settings?.initial?.status === 1 && (
                 <Input
                   label="Initial"
                   name="initial"
+                  readOnly={settings?.initial?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
@@ -229,6 +229,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 placeholder="First name"
                 name="first_name"
                 required={true}
+                readOnly={settings?.first_name?.is_editable === 1 ? false : true}
                 onChange={(e) => {
                   updateAttendeeFeild(e);
                 }}
@@ -237,16 +238,18 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               <Input
                 label="Last Name"
                 name="last_name"
+                readOnly={settings?.last_name?.is_editable === 1 ? false : true}
                 onChange={(e) => {
                   updateAttendeeFeild(e);
                 }}
                 placeholder="Last name"
                 value={attendeeData.last_name}
               />
-              {settings?.bio_info === 1 && (
+              {settings?.bio_info?.status === 1 && (
                 <TextArea
                   label="About"
                   name="about"
+                  readOnly={settings?.bio_info?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
@@ -254,17 +257,18 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.about}
                 />
               )}
-              {settings?.age === 1 && (
+              {settings?.age?.status === 1 && (
                 <Input
                   label="Age"
                   name="age"
+                  readOnly={settings?.age?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.age}
                 />
               )}
-              {settings?.gender === 1 && (
+              {settings?.gender?.status === 1 && (
                 <div className="inline radio-check-field style-radio radio-feild">
                   <h5>Gender</h5>
                   <label>
@@ -273,7 +277,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       name="gender"
                       value="male"
                       onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
+                        if (settings?.gender?.is_editable === 1) {
+                          updateAttendeeInfoFeild(e);
+                        }
                       }}
                       checked={attendeeData.info.gender === "male"}
                     />
@@ -285,7 +291,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       name="gender"
                       value="female"
                       onChange={(e) => {
-                        updateAttendeeInfoFeild(e);
+                        if (settings?.gender?.is_editable === 1) {
+                          updateAttendeeInfoFeild(e);
+                        }
                       }}
                       checked={attendeeData.info.gender === "female"}
                     />
@@ -293,10 +301,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </label>
                 </div>
               )}
-              {settings?.birth_date === 1 && (
+              {settings?.birth_date?.status === 1 && (
                 <DateTime
                   label={"Birth date"}
                   required={true}
+                  readOnly={settings?.birth_date?.is_editable === 1 ? false : true}
                   onChange={(item) => {
                     updateDate({ item, name: "BIRTHDAY_YEAR" });
                   }}
@@ -304,29 +313,32 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings?.first_name_passport === 1 && (
+              {settings?.first_name_passport?.status === 1 && (
                 <Input
                   label="First name (Passport)"
                   name="FIRST_NAME_PASSPORT"
+                  readOnly={settings?.first_name_passport?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeFeild(e);
                   }}
                   value={attendeeData.FIRST_NAME_PASSPORT}
                 />
               )}
-              {settings?.last_name_passport === 1 && (
+              {settings?.last_name_passport?.status === 1 && (
                 <Input
                   label="Last name (Passport)"
                   name="LAST_NAME_PASSPORT"
+                  readOnly={settings?.last_name_passport?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeFeild(e);
                   }}
                   value={attendeeData.LAST_NAME_PASSPORT}
                 />
               )}
-              {settings?.place_of_birth === 1 && (
+              {settings?.place_of_birth?.status === 1 && (
                 <Input
                   label="Place of birth (Passport)"
+                  readOnly={settings?.place_of_birth?.is_editable === 1 ? false : true}
                   name="place_of_birth"
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
@@ -334,19 +346,21 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.place_of_birth}
                 />
               )}
-              {settings?.passport_no === 1 && (
+              {settings?.passport_no?.status === 1 && (
                 <Input
                   label="Passport no"
                   name="passport_no"
+                  readOnly={settings?.passport_no?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.passport_no}
                 />
               )}
-              {settings?.date_of_issue_passport === 1 && (
+              {settings?.date_of_issue_passport?.status === 1 && (
                 <DateTime
                   label={"Date of issue (Passport)"}
+                  readOnly={settings?.date_of_issue_passport?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
                     updateInfoDate({ item, name: "date_of_issue_passport" });
@@ -355,9 +369,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings?.date_of_expiry_passport === 1 && (
+              {settings?.date_of_expiry_passport?.status === 1 && (
                 <DateTime
                   label={"Date of expiry (Passport)"}
+                  readOnly={settings?.date_of_expiry_passport?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
                     updateInfoDate({ item, name: "date_of_expiry_passport" });
@@ -369,11 +384,12 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
 
-              {settings?.spoken_languages === 1 && (
+              {settings?.spoken_languages?.status === 1 && (
                 <DropDown
                   label="Spoken languages"
                   listitems={languages}
                   required={false}
+                  isDisabled={settings?.date_of_expiry_passport?.is_editable === 1 ? false : true}
                   isMulti={true}
                   selected={
                     attendeeData.SPOKEN_LANGUAGE &&
@@ -387,30 +403,36 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {settings?.profile_picture === 1 && (
+              {settings?.profile_picture?.status === 1 && (
                 <div className="ebs-profile-image">
                   <label>
                     <img src="https://via.placeholder.com/155.png" alt="" />
-                    <span>Uplaod Photo</span>
-                    <input type="file" />
+                    {settings?.profile_picture?.is_editable === 1 && (
+                      <>
+                        <span>Uplaod Photo</span>
+                        <input type="file" />
+                      </>
+                    )}
                   </label>
                 </div>
               )}
               <h3 className="ebs-title">Professional Information:</h3>
-              {settings?.company_name === 1 && (
+              {settings?.company_name?.status === 1 && (
                 <Input
                   label="Company name"
                   name="company_name"
+                  readOnly={settings?.company_name?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.company_name}
                 />
               )}
-              {settings?.title === 1 && (
+              {settings?.title?.status === 1 && (
                 <Input
                   label="Title"
                   name="title"
+                  readOnly={settings?.title?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
@@ -421,19 +443,21 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }
                 />
               )}
-              {settings?.organization === 1 && (
+              {settings?.organization?.status === 1 && (
                 <Input
                   label="Organization"
                   name="organization"
+                  readOnly={settings?.organization?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.organization}
                 />
               )}
-              {settings?.employment_date === 1 && (
+              {settings?.employment_date?.status === 1 && (
                 <DateTime
                   label={"Employment date"}
+                  readOnly={settings?.employment_date?.is_editable === 1 ? false : true}
                   required={true}
                   onChange={(item) => {
                     updateDate({ item, name: "EMPLOYMENT_DATE" });
@@ -442,19 +466,21 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   showdate={"YYYY-MM-DD"}
                 />
               )}
-              {settings?.department === 1 && (
+              {settings?.department?.status === 1 && (
                 <Input
                   label="Department"
                   name="department"
+                  readOnly={settings?.department?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.department}
                 />
               )}
-              {settings?.country === 1 && (
+              {settings?.country?.status === 1 && (
                 <Select
                   styles={Selectstyles2}
+                  isDisabled={settings?.country?.is_editable === 1 ? false : true}
                   placeholder="Select Country"
                   components={{ IndicatorSeparator: null }}
                   options={countries.map((item, index) => {
@@ -470,67 +496,73 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
-              {settings?.show_industry === 1 && (
+              {settings?.show_industry?.status === 1 && (
                 <Input
                   label="Industry"
                   name="industry"
+                  readOnly={settings?.show_industry?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.industry}
                 />
               )}
-              {settings?.show_job_tasks === 1 && (
+              {settings?.show_job_tasks?.status === 1 && (
                 <Input
                   label="Job tasks"
                   name="jobs"
+                  readOnly={settings?.show_job_tasks?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.jobs}
                 />
               )}
-              {settings?.interest === 1 && (
+              {settings?.interest?.status === 1 && (
                 <Input
                   label="Interests"
                   name="interests"
+                  readOnly={settings?.interest?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.interests}
                 />
               )}
-              {settings?.network_group === 1 && (
+              {settings?.network_group?.status === 1 && (
                 <Input
                   label="Network group"
                   name="network_group"
+                  readOnly={settings?.network_group?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.network_group}
                 />
               )}
-              {settings?.delegate_number === 1 && (
+              {settings?.delegate_number?.status === 1 && (
                 <Input
                   label="Delegate number"
                   name="delegate_number"
+                  readOnly={settings?.delegate_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.delegate_number}
                 />
               )}
-              {settings?.table_number === 1 && (
+              {settings?.table_number?.status === 1 && (
                 <Input
                   label="Table number"
                   name="table_number"
+                  readOnly={settings?.table_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.table_number}
                 />
               )}
-              {settings?.private_street === 1 && (
+              {settings?.private_street?.status === 1 && (
                 <>
                   <h3 style={{ marginTop: 40 }} className="ebs-title">
                     Address:
@@ -538,6 +570,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   <Input
                     label="Street number"
                     name="private_street"
+                    readOnly={settings?.private_street?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -545,40 +578,44 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   />
                 </>
               )}
-              {settings?.private_house_number === 1 && (
+              {settings?.private_house_number?.status === 1 && (
                 <Input
                   label="House number"
                   name="private_house_number"
+                  readOnly={settings?.private_house_number?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_house_number}
                 />
               )}
-              {settings?.private_post_code === 1 && (
+              {settings?.private_post_code?.status === 1 && (
                 <Input
                   label="Postal code"
                   name="private_post_code"
+                  readOnly={settings?.private_post_code?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_post_code}
                 />
               )}
-              {settings?.private_city === 1 && (
+              {settings?.private_city?.status === 1 && (
                 <Input
                   label="City"
                   name="private_city"
+                  readOnly={settings?.private_city?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_city}
                 />
               )}
-              {settings?.private_country === 1 && (
+              {settings?.private_country?.status === 1 && (
                 <Input
                   label="Country"
                   name="private_country"
+                  readOnly={settings?.private_country?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
@@ -587,7 +624,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
               )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
-                {settings?.phone === 1 &&
+                {settings?.phone?.status === 1 &&
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}>
                       <Image objectFit='contain' layout="fill" src={require("public/img/ico-phone.svg")} alt="" /></div>
@@ -623,6 +660,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       <div style={{ width: "75%" }}>
                         <Input
                           label="Phone"
+                          readOnly={settings?.phone?.is_editable === 1 ? false : true}
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
@@ -631,7 +669,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </div>
                     </div>
                   </div>}
-                {settings?.email === 1 && (
+                {settings?.email?.status === 1 && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
                     <Input
