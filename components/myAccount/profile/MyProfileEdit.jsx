@@ -221,8 +221,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   useEffect(() => {
     dispatch(cleanRedirect(''))
-    if (redirect !== '' && mounted.current) {
-      router.push(`/${event.url}/profile`);
+    if (redirect !== '' && redirect !== null && mounted.current) {
+      setTimeout(() => {
+        router.push(`/${event.url}/profile`);
+      }, 1000)
     }
   }, [redirect])
 
@@ -448,11 +450,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     )}
                   </label>
                   <input type="file" style={{ display: 'none' }} ref={inputFileRef} onChange={(e) => {
-                    setAttendeeData({
-                      ...attendeeData,
-                      file: e.target.files[0],
-                      blob_image: URL.createObjectURL(e.target.files[0]),
-                    });
+                    if (e.target.files.length > 0) {
+                      setAttendeeData({
+                        ...attendeeData,
+                        file: e.target.files[0],
+                        blob_image: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
                   }} />
                 </div>
               )}
