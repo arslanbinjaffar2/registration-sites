@@ -123,7 +123,7 @@ const MyProfile = () => {
                             <span>{moment(attendee.EMPLOYMENT_DATE).format('D MMMM YYYY')}</span>
                           </div>}
                           {attendee.countryName && <div className="ebs-info-row">
-                            <strong>{labels?.countryName}:</strong>
+                            <strong>{labels?.country}:</strong>
                             <span>{attendee.countryName}</span>
                           </div>}
                           {(attendee.info && attendee.info.interests) && <div className="ebs-info-row">
@@ -200,7 +200,7 @@ const MyProfile = () => {
                           </div>}
                           {(attendee.info && attendee.info.private_country) && <div className="ebs-info-row">
                             <strong>{labels?.private_country}:</strong>
-                            <span>{attendee.info.private_country}</span>
+                            <span>{attendee.info.private_country_name}</span>
                           </div>}
                         </div>
                       </div>
