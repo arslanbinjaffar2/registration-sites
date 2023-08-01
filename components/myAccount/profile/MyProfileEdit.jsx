@@ -120,9 +120,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       phone: attendeeData.phone && attendeeData.phone.split("-")[1],
       gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
       country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.country) { return { label: item.name, value: item.id } } return ack; }, {}),
-    });
-    setAttendeeData({
-      ...attendeeData,
       info: {
         ...attendeeData.info,
         private_country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.private_country) { return { label: item.name, value: item.id } } return ack; }, {}),
