@@ -449,15 +449,17 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </>
                     )}
                   </label>
-                  <input type="file" style={{ display: 'none' }} ref={inputFileRef} onChange={(e) => {
-                    if (e.target.files.length > 0) {
-                      setAttendeeData({
-                        ...attendeeData,
-                        file: e.target.files[0],
-                        blob_image: URL.createObjectURL(e.target.files[0]),
-                      });
-                    }
-                  }} />
+                  {settings?.profile_picture?.is_editable === 1 && (
+                    <input type="file" style={{ display: 'none' }} ref={inputFileRef} onChange={(e) => {
+                      if (e.target.files.length > 0) {
+                        setAttendeeData({
+                          ...attendeeData,
+                          file: e.target.files[0],
+                          blob_image: URL.createObjectURL(e.target.files[0]),
+                        });
+                      }
+                    }} />
+                  )}
                 </div>
               )}
               <h3 className="ebs-title">Professional Information:</h3>
