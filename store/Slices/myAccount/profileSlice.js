@@ -106,7 +106,8 @@ export const updateProfileData = (id, url, data) => {
         dispatch(setAlert(response.data.message))
         dispatch(setLoading())
         setTimeout(() => {
-          dispatch(clearAlert())
+          dispatch(clearAlert());
+          dispatch(fetchProfileData(id, url));
           dispatch(setRedirect(`/${url}/profile`))
         }, 1000)
       }
