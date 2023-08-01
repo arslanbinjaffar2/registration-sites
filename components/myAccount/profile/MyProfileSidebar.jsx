@@ -6,6 +6,7 @@ import { logOut, userSelector, reset } from "store/Slices/myAccount/userSlice";
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import moment from "moment";
+import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 
 const MyProfileSidebar = (props) => {
 
@@ -27,30 +28,34 @@ const MyProfileSidebar = (props) => {
 
   const router = useRouter();
 
-  const cancellationDatePassed = useMemo(()=>{
-    if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
+  const { attendee, settings } = useSelector(profileSelector);
+
+  const cancellationDatePassed = useMemo(() => {
+    if (event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00") {
       return 0;
     }
     let dateToday = moment();
     let cancelationEndDate = moment(`${moment(event.eventsiteSettings.cancellation_date).format("YYYY-MM-DD")} ${event.eventsiteSettings.cancellation_end_time}`);
     let passed = cancelationEndDate.diff(dateToday);
     return passed > 0 ? 0 : 1;
-  },[event]);
-  
-useEffect(() => {
-  window.addEventListener('scroll',handleScroll,false);
+  }, [event]);
 
-  return () => {
-    window.removeEventListener('scroll',handleScroll,false);
-  }
-}, [])
-const handleScroll = () => {
-  if (typeof window !== 'undefined') {
-    if (window.scrollY > 250) {
-      setstatetoggleMenu(false);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, false);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll, false);
+    }
+  }, [])
+
+  const handleScroll = () => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > 250) {
+        setstatetoggleMenu(false);
+      }
     }
   }
-} 
+
   const handleClick = () => {
     setstatetoggleMenu(!toggleMenu);
   }
@@ -89,15 +94,19 @@ const handleScroll = () => {
     }
   }
 
+  useEffect(() => {
+    dispatch(fetchProfileData(event.id, event.url));
+  }, [])
+
   return (
     <React.Fragment>
-      {isAuthenticated && <div ref={frame} className="ebs-profile-top-area">
+      {attendee && attendee?.image && <div ref={frame} className="ebs-profile-top-area">
         <div onClick={handleClick} className={`${toggleMenu ? 'ebs-active-state' : ''} ebs-sideber-icon`}>
-          {isAuthenticated.user.image && isAuthenticated.user.image !== "" ? (
+          {settings?.profile_picture?.status ===1 && attendee?.image && attendee?.image !== "" ? (
             <img className="ebs-image-solid" src={
               process.env.NEXT_APP_EVENTCENTER_URL +
               "/assets/attendees/" +
-              isAuthenticated.user.image
+              attendee?.image
             } alt="" />
           ) : (
             <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
@@ -115,8 +124,8 @@ const handleScroll = () => {
             {event.eventsiteSettings.show_survey === 1 && <li><ActiveLink className={location === `/${event.url}/profile/surveys` ? 'active' : ''} href={`/${event.url}/profile/surveys`}>Surveys</ActiveLink></li>}
             {event.eventsiteSettings.network_interest === 1 && <li><ActiveLink className={location === `/${event.url}/profile/keyword-interest` ? 'active' : ''} href={`/${event.url}/profile/keyword-interest`}>Networking interests</ActiveLink></li>}
             {event.eventsiteSettings.show_subscriber === 1 && <li><ActiveLink className={location === `/${event.url}/profile/news-letter-subscription` ? 'active' : ''} href={`/${event.url}/profile/news-letter-subscription`}>Newsletter subscription</ActiveLink></li>}
-            <li><a onClick={(e) => { 
-              onLogout(); 
+            <li><a onClick={(e) => {
+              onLogout();
               router.push(`/${event.url}`);
             }} >Logout</a></li>
           </ul>

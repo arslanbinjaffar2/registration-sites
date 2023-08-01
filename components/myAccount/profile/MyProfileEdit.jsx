@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Input from "components/forms/Input";
 import TextArea from "components/forms/TextArea";
 import DateTime from "components/forms/DateTime";
@@ -8,12 +8,14 @@ import Image from 'next/image'
 import {
   fetchProfileData,
   profileSelector,
-  updateProfileData
+  updateProfileData,
+  cleanRedirect
 } from "store/Slices/myAccount/profileSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import PageLoader from "components/ui-components/PageLoader";
+import { useRouter } from 'next/router';
 
 const Selectstyles = {
   control: base => ({
@@ -53,7 +55,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels } =
+  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect } =
     useSelector(profileSelector);
 
   return (
@@ -69,6 +71,7 @@ const MyProfileEdit = () => {
         error={error}
         settings={settings}
         labels={labels}
+        redirect={redirect}
       />) : <PageLoader />
 
   );
@@ -76,7 +79,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect }) => {
 
   const dispatch = useDispatch();
 
@@ -85,6 +88,17 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const userInfo = localStorage.getItem(`event${event.id}User`);
 
   const isAuthenticated = userInfo !== undefined && userInfo !== null ? JSON.parse(userInfo) : {};
+
+  const router = useRouter();
+
+  const mounted = useRef(false);
+
+  const inputFileRef = React.useRef();
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
 
   useEffect(() => {
     setAttendeeData({
@@ -189,6 +203,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if (attendeeData.BIRTHDAY_YEAR) attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
     if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
     if (attendeeData.image) attendeeObj.image = attendeeData.image;
+    if (attendeeData.file) attendeeObj.file = attendeeData.file;
     if (attendeeData.SPOKEN_LANGUAGE) attendeeObj.SPOKEN_LANGUAGE = attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
       if (index !== attendeeData.SPOKEN_LANGUAGE.length - 1) {
         return ack += `${item.label},`
@@ -204,12 +219,18 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     dispatch(updateProfileData(event.id, event.url, data));
   };
 
+  useEffect(() => {
+    dispatch(cleanRedirect(''))
+    if (redirect !== '' && mounted.current) {
+      router.push(`/${event.url}/profile`);
+    }
+  }, [redirect])
+
   return (
     <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
           <h2>Edit profile</h2>
-          <span className='btn-link'>Save Changes</span>
         </div>
         <form onSubmit={(e) => updateAttendee(e)}>
           <div
@@ -409,24 +430,30 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               {settings?.profile_picture?.status === 1 && (
-                <div className="ebs-profile-image">
+                <div className="ebs-profile-image" onClick={() => {
+                  inputFileRef.current.click();
+                }}>
                   <label>
-                    {isAuthenticated && isAuthenticated?.user?.image && isAuthenticated?.user?.image !== "" ? (
-                      <img src={
-                        process.env.NEXT_APP_EVENTCENTER_URL +
+                    {((attendeeData && attendeeData?.image && attendeeData?.image !== "") || attendeeData?.blob_image !== undefined) ? (
+                      <img src={`${attendeeData?.blob_image !== undefined ? attendeeData?.blob_image : process.env.NEXT_APP_EVENTCENTER_URL +
                         "/assets/attendees/" +
-                        isAuthenticated?.user?.image
-                      } alt="" />
+                        attendeeData?.image}`} alt="" />
                     ) : (
                       <img src="https://via.placeholder.com/155.png" alt="" />
                     )}
                     {settings?.profile_picture?.is_editable === 1 && (
                       <>
                         <span>Uplaod Photo</span>
-                        <input type="file" />
                       </>
                     )}
                   </label>
+                  <input type="file" style={{ display: 'none' }} ref={inputFileRef} onChange={(e) => {
+                    setAttendeeData({
+                      ...attendeeData,
+                      file: e.target.files[0],
+                      blob_image: URL.createObjectURL(e.target.files[0]),
+                    });
+                  }} />
                 </div>
               )}
               <h3 className="ebs-title">Professional Information:</h3>
@@ -575,15 +602,17 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   value={attendeeData.info.table_number}
                 />
               )}
-              {settings?.private_street?.status === 1 && (
+              {(settings?.pa_street?.status === 1 || settings?.pa_house_no?.status === 1 || settings?.pa_post_code?.status === 1 || settings?.pa_post_code?.status === 1 || settings?.pa_city?.status === 1) && (
+                <h3 style={{ marginTop: 40 }} className="ebs-title">
+                  Address:
+                </h3>
+              )}
+              {settings?.pa_street?.status === 1 && (
                 <>
-                  <h3 style={{ marginTop: 40 }} className="ebs-title">
-                    Address:
-                  </h3>
                   <Input
                     label={labels?.private_street}
                     name="private_street"
-                    readOnly={settings?.private_street?.is_editable === 1 ? false : true}
+                    readOnly={settings?.pa_street?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -591,44 +620,44 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   />
                 </>
               )}
-              {settings?.private_house_number?.status === 1 && (
+              {settings?.pa_house_no?.status === 1 && (
                 <Input
                   label={labels?.private_house_number}
                   name="private_house_number"
-                  readOnly={settings?.private_house_number?.is_editable === 1 ? false : true}
+                  readOnly={settings?.pa_house_no?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_house_number}
                 />
               )}
-              {settings?.private_post_code?.status === 1 && (
+              {settings?.pa_post_code?.status === 1 && (
                 <Input
                   label={labels?.private_post_code}
                   name="private_post_code"
-                  readOnly={settings?.private_post_code?.is_editable === 1 ? false : true}
+                  readOnly={settings?.pa_post_code?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_post_code}
                 />
               )}
-              {settings?.private_city?.status === 1 && (
+              {settings?.pa_city?.status === 1 && (
                 <Input
                   label={labels?.private_city}
                   name="private_city"
-                  readOnly={settings?.private_city?.is_editable === 1 ? false : true}
+                  readOnly={settings?.pa_city?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
                   value={attendeeData.info.private_city}
                 />
               )}
-              {settings?.private_country?.status === 1 && (
+              {settings?.pa_country?.status === 1 && (
                 <Input
                   label={labels?.private_country}
                   name="private_country"
-                  readOnly={settings?.private_country?.is_editable === 1 ? false : true}
+                  readOnly={settings?.pa_country?.is_editable === 1 ? false : true}
                   onChange={(e) => {
                     updateAttendeeInfoFeild(e);
                   }}
