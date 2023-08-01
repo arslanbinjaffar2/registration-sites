@@ -121,6 +121,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       gdpr: attendeeData.phone && attendeeData.current_event_attendee.gdpr,
       country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.country) { return { label: item.name, value: item.id } } return ack; }, {}),
     });
+    setAttendeeData({
+      ...attendeeData,
+      info: {
+        ...attendeeData.info,
+        private_country: countries.reduce((ack, item) => { if (item.id == attendeeData.info.private_country) { return { label: item.name, value: item.id } } return ack; }, {}),
+      },
+    });
   }, []);
 
   const updateAttendeeFeild = (e) => {
@@ -182,12 +189,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     e.preventDefault();
 
     let attendeeObj = {
-      phone: `${attendeeData.calling_code.value}-${attendeeData.phone}`,
+      phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
     };
 
     let infoObj = {
       ...attendeeData.info,
-      country: attendeeData.country ? attendeeData.country.value : attendeeData.info.country,
+      country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
+      private_country: attendeeData?.info?.private_country?.value,
     }
 
     let settings = {
@@ -660,14 +668,22 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 />
               )}
               {settings?.pa_country?.status === 1 && (
-                <Input
-                  label={labels?.private_country}
-                  name="private_country"
-                  readOnly={settings?.pa_country?.is_editable === 1 ? false : true}
-                  onChange={(e) => {
-                    updateAttendeeInfoFeild(e);
+                <Select
+                  styles={Selectstyles2}
+                  isDisabled={settings?.pa_country?.is_editable === 1 ? false : true}
+                  placeholder={labels?.private_country}
+                  components={{ IndicatorSeparator: null }}
+                  options={countries.map((item, index) => {
+                    return {
+                      label: item.name,
+                      value: item.id,
+                      key: index,
+                    };
+                  })}
+                  value={attendeeData?.info?.private_country}
+                  onChange={(item) => {
+                    updateInfoSelect({ item, name: "private_country" });
                   }}
-                  value={attendeeData.info.private_country}
                 />
               )}
               <div className="ebs-contact-info">
