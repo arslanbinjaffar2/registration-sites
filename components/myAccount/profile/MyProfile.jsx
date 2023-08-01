@@ -78,7 +78,7 @@ const MyProfile = () => {
                         </div>}
                         {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row">
                           <strong>Website:</strong>
-                          <span><a target='_blank' href={`${attendee.info.website_protocol}${attendee.info.website}`}>{`${attendee.info.website_protocol}${attendee.info.website}`}</a></span>
+                          <span><a target='_blank' rel="noreferrer" href={`${attendee.info.website_protocol}${attendee.info.website}`}>{`${attendee.info.website_protocol}${attendee.info.website}`}</a></span>
                         </div>}
                       </div>
                     </div>
