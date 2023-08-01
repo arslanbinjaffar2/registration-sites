@@ -16,6 +16,7 @@ const initialState = {
   languages: null,
   loading: false,
   error: null,
+  redirect: null,
   alert: null,
   invoice: null,
   order_id: null,
@@ -31,16 +32,16 @@ export const eventSlice = createSlice({
     },
     setProfileData: (state, { payload }) => {
       state.attendee = payload.attendee,
-      state.countries = payload.countries,
-      state.eventLanguageDetails = payload.eventLanguageDetails,
-      state.callingCodes = payload.callingCodes,
-      state.eventFoodDisclaimers = payload.eventFoodDisclaimers,
-      state.attendeeFeildSettings = payload.attendeeFeildSettings,
-      state.customFields = payload.customFields,
-      state.settings = payload.settings,
-      state.labels = payload.labels,
-      state.languages = payload.languages,
-      state.loading = false
+        state.countries = payload.countries,
+        state.eventLanguageDetails = payload.eventLanguageDetails,
+        state.callingCodes = payload.callingCodes,
+        state.eventFoodDisclaimers = payload.eventFoodDisclaimers,
+        state.attendeeFeildSettings = payload.attendeeFeildSettings,
+        state.customFields = payload.customFields,
+        state.settings = payload.settings,
+        state.labels = payload.labels,
+        state.languages = payload.languages,
+        state.loading = false
     },
     setError: (state, { payload }) => {
       state.error = payload
@@ -50,6 +51,9 @@ export const eventSlice = createSlice({
     },
     setAlert: (state, { payload }) => {
       state.alert = payload
+    },
+    setRedirect: (state, { payload }) => {
+      state.redirect = payload
     },
     clearAlert: (state) => {
       state.alert = null
@@ -66,7 +70,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
@@ -92,12 +96,18 @@ export const updateProfileData = (id, url, data) => {
   return async dispatch => {
     dispatch(getProfileData())
     try {
-      const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers: header("POST", id) })
-      if (response.data.status === 1) {
+      const formData = new FormData();
+      formData.append('attendeeObj', JSON.stringify(data.attendeeObj));
+      formData.append('infoObj', JSON.stringify(data.infoObj));
+      formData.append('settings', JSON.stringify(data.settings));
+      formData.append('file', data.attendeeObj.file);
+      const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, formData, { headers: header("UPLOAD", id) })
+      if (response?.data?.data?.status) {
         dispatch(setAlert(response.data.message))
         dispatch(setLoading())
         setTimeout(() => {
           dispatch(clearAlert())
+          dispatch(setRedirect(`/${url}/profile`))
         }, 1000)
       }
       else {
@@ -146,5 +156,11 @@ export const cancelRegistrationRequest = (id, url, data) => {
     } catch (error) {
       dispatch(setError(error))
     }
+  }
+}
+
+export const cleanRedirect = (url) => {
+  return async dispatch => {
+    dispatch(setRedirect(url))
   }
 }
