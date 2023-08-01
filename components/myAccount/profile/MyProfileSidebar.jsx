@@ -100,7 +100,7 @@ const MyProfileSidebar = (props) => {
 
   return (
     <React.Fragment>
-      {attendee && attendee?.image && <div ref={frame} className="ebs-profile-top-area">
+      {<div ref={frame} className="ebs-profile-top-area">
         <div onClick={handleClick} className={`${toggleMenu ? 'ebs-active-state' : ''} ebs-sideber-icon`}>
           {settings?.profile_picture?.status ===1 && attendee?.image && attendee?.image !== "" ? (
             <img className="ebs-image-solid" src={
