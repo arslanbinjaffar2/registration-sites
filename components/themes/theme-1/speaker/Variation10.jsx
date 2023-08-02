@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
   const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
-    const bgStyle =  (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`  } : {}
+  const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
   return (
     <div style={bgStyle} className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
       <div className="container">
@@ -48,6 +48,13 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
                     {(speaker.first_name || speaker.last_name) && (
                       <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <h5>
+                          {speaker.info &&
+                            speaker.info.initial && (
+                              <>
+                                {speaker.info.initial &&
+                                  speaker.info.initial}&nbsp;
+                              </>
+                            )}
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}
                         </h5>
