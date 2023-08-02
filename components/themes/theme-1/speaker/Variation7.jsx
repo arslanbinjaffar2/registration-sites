@@ -4,8 +4,8 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
-  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
-  
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : {}
+
   return (
     <div
       style={bgStyle}
@@ -58,6 +58,13 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                           {(speaker.first_name || speaker.last_name) && (
                             <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                               <h3 className="edgtf-team-name">
+                                {speaker.info &&
+                                  speaker.info.initial && (
+                                    <>
+                                      {speaker.info.initial &&
+                                        speaker.info.initial}&nbsp;
+                                    </>
+                                  )}
                                 {speaker.first_name && speaker.first_name}{" "}
                                 {speaker.last_name && speaker.last_name}
                               </h3>
