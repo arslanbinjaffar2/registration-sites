@@ -4,6 +4,7 @@ import axios from 'axios'
 const initialState = {
   surveyDetail: null,
   surveyResult: null,
+  survey: null,
   loading:false,
   updating:false,
   error:null,
@@ -19,12 +20,14 @@ export const eventSlice = createSlice({
       state.updating=false,
       state.surveyDetail= null,
       state.surveyResult= null,
+      state.survey= null,
       state.error=null,
       state.alert=null
     },
     setSurveyData: (state, { payload}) => {
         state.surveyDetail = payload.survey_details,
         state.surveyResult = payload.survey_result,
+        state.survey = payload.survey,
         state.loading = false
     },
     setUpdating:(state, { payload})=>{
@@ -58,12 +61,13 @@ export const fetchSurveyData = (id, url,survey_id) => {
       }
     }
   }
-export const updateSurveyData = (id, url, survey_id, data) => {
+export const updateSurveyData = (id, url, survey_id, data, success) => {
     return async dispatch => {
       dispatch(setUpdating(true))
       try {
         const response =  await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
         dispatch(setAlert("Answers Successfully Updated"));
+        success();
         dispatch(setUpdating(false));
       } catch (error) {
         dispatch(setError("Couldn't update Subregistration"));

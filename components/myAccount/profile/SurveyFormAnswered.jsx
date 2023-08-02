@@ -264,8 +264,15 @@ const SurveyFormAnswered = ({ surveyDetail, event, surveyResults, survey_id }) =
                                     <React.Fragment key={matrix.id}>
                                       <div className="matrix-box">
                                         <label className="label-radio">
+                                          {console.log(surveyResult.find((item)=>((item.question_id === question.id) )) )}
+                                          {console.log(matrix.id )}
                                           <input
                                           readOnly
+                                          checked={
+                                            surveyResult.find((item)=>((item.question_id === question.id) && (item.answer == matrix.id) && (item.answer_id === answer.id))) 
+                                              ? true
+                                              : false
+                                          }
                                             type="radio"
                                             disabled
                                           />

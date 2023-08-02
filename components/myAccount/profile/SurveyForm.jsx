@@ -7,8 +7,10 @@ import {
     updateSurveyData,
   } from "store/Slices/myAccount/surveySlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [surveyResult, setSurveyResult] = useState({});
   const [surveyId, setSurveyId] = useState(survey_id);
   const [questions, setQuestions] = useState(
@@ -108,7 +110,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                 ? surveyResult[feild]
                 : [...surveyResult[feild], answerId]
               : [answerId],
-          [`answer_matrix${questionId}_${answerId}`]: [
+          [`matrix${questionId}_${answerId}`]: [
             `${answerId}-${matrixId}`,
           ],
         });
@@ -140,6 +142,8 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
           questionsType,
           questions:questions.reduce((ack, item) => { return ack.concat(item.id)},[]),
           ...surveyResult,
+        }, ()=>{
+            router.push(`/${event.url}/profile/surveys`);
         }))
     }  
   }
@@ -521,10 +525,10 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                                           <input
                                             checked={
                                               surveyResult[
-                                                `answer_matrix${question.id}_${answer.id}`
+                                                `matrix${question.id}_${answer.id}`
                                               ] !== undefined &&
                                               surveyResult[
-                                                `answer_matrix${question.id}_${answer.id}`
+                                                `matrix${question.id}_${answer.id}`
                                               ][0].indexOf(matrix.id) !== -1
                                                 ? true
                                                 : false

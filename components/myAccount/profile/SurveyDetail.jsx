@@ -24,13 +24,13 @@ const SurveyDetail = ({ match }) => {
     dispatch(fetchSurveyData(event.id, event.url, id));
   }, []);
 
-  const { surveyDetail, surveyResult, updating } = useSelector(surveySelector);
+  const { surveyDetail, surveyResult, updating, survey } = useSelector(surveySelector);
 
   return (
     surveyDetail ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>Surveys</h2>
+          <h2>{survey ? survey?.info?.name : 'Surveys'}</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
           {surveyResult.length > 0 ? 
