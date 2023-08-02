@@ -157,7 +157,10 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "multiple" &&
                       <React.Fragment>
                         <div className="radio-check-field">
-                          <h5>{question.value}</h5>
+                          <h5>{question.value}
+                          {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                          
+                          </h5>
                           {question.answer.map((answer) => (
                             <label
                               key={answer.id}
@@ -208,7 +211,9 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "number" && (
                     <React.Fragment>
                       <div className="generic-form">
-                        <h5>{question.value}</h5>
+                        <h5>{question.value}
+                          {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                        </h5>
                         <Input
                           type="number"
                           placeholder={"Answer"}
@@ -251,7 +256,10 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "open" && (
                     <React.Fragment>
                       <div className="generic-form">
-                        <h5>{question.value}</h5>
+                        <h5>{question.value}
+                        {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                        
+                        </h5>
                         <textarea
                           placeholder="Answer"
                           value={
@@ -295,7 +303,10 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "dropdown" && (
                       <React.Fragment>
                         <div className="generic-form">
-                          <h5>{question.value}</h5>
+                          <h5>{question.value}
+                          {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                          
+                          </h5>
                           <div
                             className="custom-label-select"
                             style={{ width: "46%" }}
@@ -346,7 +357,10 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "date" && (
                     <React.Fragment>
                       <div className="generic-form" style={{ width: "46%" }}>
-                        <h5>{question.value}</h5>
+                        <h5>{question.value}
+                        {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                        
+                        </h5>
                         <DateTime
                           onChange={(item) => {
                             updateResult(
@@ -390,7 +404,9 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "date_time" && (
                     <React.Fragment>
                       <div className="generic-form" style={{ width: "46%" }}>
-                        <h5>{question.value}</h5>
+                        <h5>{question.value}
+                          {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                        </h5>
                         <DateTime
                           onChange={(item) => {
                             updateResult(
@@ -434,7 +450,9 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "single" && (
                       <React.Fragment>
                         <div className="radio-check-field style-radio">
-                          <h5>{question.value}</h5>
+                          <h5>{question.value}
+                          {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}                       
+                          </h5>
                           {question.answer.map((answer) => (
                             <label
                               key={answer.id}
@@ -478,7 +496,9 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                   {question.question_type === "matrix" && (
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
-                          <h5>{question.value}</h5>
+                          <h5>{question.value}
+                            {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                          </h5>
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
