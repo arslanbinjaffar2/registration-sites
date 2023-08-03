@@ -22,12 +22,16 @@ const MasterLayoutRoute = ({ children, event }) => {
     }
     const segs = router.asPath.split('/');
     const lastSegment = segs.filter((segment) => segment !== '').pop();
-    if (lastSegment == 'documents') {
-        event.header_data.top_menu.map((item) => {
-            if (item.alias != 'documents') {
-                router.push(`/${event.url}`)
-            }
-        });
+    const isFound = event.header_data.top_menu.some(item => {
+        if (item.alias == "documents") {
+            return true;
+        }
+
+        return false;
+    });
+
+    if (lastSegment == 'documents' && !isFound) {
+        router.push(`/${event.url}`)
     }
 
     return (
