@@ -168,8 +168,6 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
       
         });
 
-        console.log(submittedQuestion);
-        console.log(surveyResult);
         let attendee_id = JSON.parse(localStorage.getItem(`event${event.id}User`)).user.id;
         dispatch(updateSurveyData(event.id, event.url ,surveyId, {
           survey_id: surveyId,
@@ -408,7 +406,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                             updateResult(
                               `answer_date${question.id}`,
                               "date",
-                              item.format("YYYY-MM-DD"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD") : item,
                               question.id
                             );
                             
@@ -451,10 +449,11 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                         </h5>
                         <DateTime
                           onChange={(item) => {
+                            console.log(item)
                             updateResult(
                               `answer_date_time${question.id}`,
                               "date_time",
-                              item.format("YYYY-MM-DD HH:mm:ss"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD HH:mm:ss") : item,
                               question.id
                             );
                           }}
