@@ -33,9 +33,7 @@ const SurveyDetail = ({ match }) => {
           <h2>{survey ? survey?.info?.name : 'Surveys'}</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-          {surveyResult.length > 0 ? 
-            <SurveyFormAnswered surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />
-          : <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />}
+          <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />
         </div>
       </div>
     </div> : <PageLoader />
