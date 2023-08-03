@@ -120,7 +120,7 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                     {currentDirectory && currentDirectory.length > 0 &&
                         currentDirectory.map((item, i) => {
 
-                            filesCount = 0;
+                            // filesCount = 0;
                             // console.log(item['directory_id'] === undefined)
                             
                             if ((item['directory_id'] === undefined) && checkFile(item)) {
@@ -167,13 +167,13 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                             }
                         })
                     }
-                    {/* {(!currentDirectory || currentDirectory.length <= 0) || (filesCount <= 0) &&
+                    {(!currentDirectory || currentDirectory.length <= 0) || (filesCount <= 0) &&
                         <div className="ebs-document-content">
                             <div className="row d-flex align-items-center">
                                 <div className="ebs-title">{labels.GENERAL_NO_RECORD ? labels.GENERAL_NO_RECORD : "No Folders or Files found in current Directory"}</div>
                             </div>
                         </div>
-                    } */}
+                    }
                 </div>
             </div>
         </>
