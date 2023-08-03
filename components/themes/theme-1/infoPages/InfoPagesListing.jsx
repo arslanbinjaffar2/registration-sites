@@ -107,9 +107,9 @@ const arrayTraverse = (array, menu_id, eventSiteModuleName, main_menu_id) => {
 }
 
 const getListing = (array, menu_id, main_menu_id) => {
-    let arr = array.find((item) => (item.id === parseFloat(main_menu_id))) !== (undefined || null) ? array.find((item) => (item.id === parseFloat(main_menu_id))).submenu : [];
+    let arr = array.find((item) => (item.id === parseFloat(main_menu_id))) != (undefined || null) ? array.find((item) => (item.id === parseFloat(main_menu_id))).submenu : [];
     if (menu_id && parseFloat(menu_id) !== parseFloat(main_menu_id)) {     
-        arr = arr.find((item) => (item.id === parseFloat(menu_id))) !== (null || undefined) ? arr.find((item) => (item.id === parseFloat(menu_id))).submenu : [];
+        arr = arr.find((item) => (item.id === parseFloat(menu_id))) != (null || undefined) ? arr.find((item) => (item.id === parseFloat(menu_id))).submenu : [];
     }
     return arr;
 }
