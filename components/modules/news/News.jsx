@@ -71,19 +71,20 @@ const News = (props) => {
             <title>{event.eventsiteModules.news}</title>
         </Head>
         {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
-        <Component
+        {news.length > 0 ? <Component
           news={news}
           event_url={eventUrl}
           siteLabels={event.labels}
           newsSettings={event.news_settings}
           makeNewDetailURL={makeNewDetailURL}
           homePage={props.homePage ? true : false}
+          moduleVariation={moduleVariation[0]}
           loadMore={() => {
             if (page < totalPages) {
               return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data) => onPageChange(data)} />
             }
           }}
-        />
+        /> : null}
         </React.Fragment>
       ) : <PageLoader />}
     </Suspense>

@@ -4,8 +4,10 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : {}
+
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
       </div>
@@ -45,6 +47,13 @@ const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                     {(speaker.first_name || speaker.last_name) && (
                       <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <h5>
+                          {speaker.info &&
+                            speaker.info.initial && (
+                              <>
+                                {speaker.info.initial &&
+                                  speaker.info.initial}&nbsp;
+                              </>
+                            )}
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}
                         </h5>

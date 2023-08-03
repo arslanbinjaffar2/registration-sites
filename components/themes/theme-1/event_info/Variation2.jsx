@@ -3,8 +3,9 @@ import HeadingElement from 'components/ui-components/HeadingElement';
 import moment from 'moment';
 import {localeMomentEventDates, localeMomentOpeningHours} from "helpers/helper";
 const Variation1 = (props) => {
+  const bgStyle = (props.moduleVariation && props.moduleVariation.background_color !== "") ? { backgroundColor: props.moduleVariation.background_color} : {}
     return (
-      <div className="module-section">
+      <div style={bgStyle} className="module-section">
         <div className="ebs-default-padding">
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined  && props.event.description.info.title !== "" && <HeadingElement dark={false} label={props.event.description.info.title}  align={'left'} />}

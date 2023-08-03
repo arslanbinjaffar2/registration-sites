@@ -15,9 +15,11 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
       return "img/home-2-gallery-img-1-480x400.jpg"
     }
   };
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
   return (
     <React.Fragment>
-      <div className="module-section ebs-default-padding">
+      <div style={bgStyle} className="module-section ebs-default-padding">
         {home && <div className="container">
           <HeadingElement dark={false} label={sitelabels.EVENTSITE_PHOTOS} desc={sitelabels.EVENTSITE_PHOTOS_SUB} align={settings.text_align} />
         </div>}

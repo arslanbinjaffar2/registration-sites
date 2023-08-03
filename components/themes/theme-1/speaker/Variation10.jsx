@@ -4,8 +4,11 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
+  const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+
+  const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
   return (
-    <div className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+    <div style={bgStyle} className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
       <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
       </div>
@@ -45,6 +48,13 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
                     {(speaker.first_name || speaker.last_name) && (
                       <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                         <h5>
+                          {speaker.info &&
+                            speaker.info.initial && (
+                              <>
+                                {speaker.info.initial &&
+                                  speaker.info.initial}&nbsp;
+                              </>
+                            )}
                           {speaker.first_name && speaker.first_name}{" "}
                           {speaker.last_name && speaker.last_name}
                         </h5>
