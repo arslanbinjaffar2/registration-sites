@@ -12,6 +12,7 @@ import moment from 'moment';
 const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, error }) => {
   const dispatch = useDispatch();
   const [programs, setPrograms] = useState(subRegistration.all_programs);
+  const [settings, setSettings] = useState(subRegistration.settings);
   const [subRegResult, setSubRegResult] = useState(afterLogin ? {} : subRegistration.questions.question
     .reduce(
       (ack, item) => {
@@ -93,7 +94,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     setValidationErrors({})
     if (type === "multiple") {
     
-        if(agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
+        if(settings.favorite_session_registration_same_time != 1 && agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
           let selectedProgram = programs.find((item)=>(item.id == agendaId))
           let start_time1 = selectedProgram.start_time;
           let end_time1 = selectedProgram.end_time;
