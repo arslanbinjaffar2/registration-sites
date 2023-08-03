@@ -13,6 +13,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [surveyResult, setSurveyResult] = useState({});
+  const [submittingForm, setSubmittingForm] = useState(false);
   const [surveyId, setSurveyId] = useState(survey_id);
   const [questions, setQuestions] = useState(
     surveyDetail
@@ -167,7 +168,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
           return questionsObject;
       
         });
-
+        setSubmittingForm(true);
         let attendee_id = JSON.parse(localStorage.getItem(`event${event.id}User`)).user.id;
         dispatch(updateSurveyData(event.id, event.url ,surveyId, {
           survey_id: surveyId,
@@ -628,7 +629,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
         </React.Fragment>
       </div>
       <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" onClick={(e)=>{handleSave(e)}}> Save </button>
+        <button className="btn btn-save-next btn-loader" disabled={submittingForm} onClick={(e)=>{handleSave(e)}}> {submittingForm ? "Saving..." : "Save"} </button>
       </div>
     </React.Fragment>
   );
