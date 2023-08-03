@@ -24,7 +24,7 @@ const SurveyList = () => {
         <div className="wrapper-inner-content network-category-sec">
           <div className="ebs-survey-heading d-flex">
             <h4>Available Surveys</h4>
-            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >View results</ActiveLink>
+            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >Answered Surveys</ActiveLink>
           </div>
           
             <div className="ebs-survey-list">

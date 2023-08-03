@@ -16,8 +16,8 @@ export const eventSlice = createSlice({
       state.loading = true
     },
     setSurveyListData: (state, { payload}) => {
-        state.surveyList = payload.filter((survey)=>(!survey.answered)),
-        state.surveyListAnswered = payload.filter((survey)=>(survey.answered)),
+        state.surveyList = payload.filter((survey)=>(!survey.complete_answered)),
+        state.surveyListAnswered = payload.filter((survey)=>(survey.complete_answered)),
         state.loading = false
     },
     setError: (state, { payload }) => {
@@ -40,7 +40,7 @@ export const fetchSurveyListData = (id, url) => {
     return async dispatch => {
       dispatch(getSurveyListData())
       try {
-        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-listing`, { headers:header("GET", id)})
+        const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/survey-listing?ALL_SURVEYS=1`, { headers:header("GET", id)})
         const res = await response.json()
         dispatch(setSurveyListData(res.data))
       } catch (error) {

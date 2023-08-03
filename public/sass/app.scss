@@ -1889,6 +1889,7 @@
       text-align: center;
       color: $black;
       padding: 0 20px;
+      word-wrap: break-word;
       &.matrix-heading {
         text-align: left;
         font-size: 14px;
@@ -1939,7 +1940,7 @@
   }
 }
 .error-message{
-  color:#ff0000;
+  color:#ff0000 !important;
   font-size: 12px;
 }
 .alert-message{
