@@ -9,7 +9,8 @@ import { globalSelector } from "store/Slices/GlobalSlice";
 import Footer from "../modules/Footer";
 import CookiePolicy from 'components/ui-components/CookiePolicy';
 
-const MasterLayoutRoute = ({ children, event }) => {+
+const MasterLayoutRoute = ({ children, event }) => {
+    +
     console.log()
     const router = useRouter();
     const [modulehas, setmodulehas] = useState(false);
@@ -25,9 +26,7 @@ const MasterLayoutRoute = ({ children, event }) => {+
     const segs = router.asPath.split('/');
     const lastSegment = segs.filter((segment) => segment !== '').pop();
     useEffect(() => {
-        if (lastSegment != `${event.url}`) {
-            router.push(`/${event.url}`)
-        } else {
+        if (lastSegment != `${event.url}`){
             event.header_data.top_menu.map((item) => {
                 if (![lastSegment].includes(item.alias)) {
                     router.push(`/${event.url}`)
@@ -37,19 +36,19 @@ const MasterLayoutRoute = ({ children, event }) => {+
     }, []);
     return (
         <>
-            
-               {event ? (
-                    <>
-                        <Header />
-                        {showLogin && <LoginScreen />}
-                        {children}
-                        <Footer />
-                        <CookiePolicy/>
-                    </>
-                ) : (
-                    <PageLoader />
-                )}
-            
+
+            {event ? (
+                <>
+                    <Header />
+                    {showLogin && <LoginScreen />}
+                    {children}
+                    <Footer />
+                    <CookiePolicy/>
+                </>
+            ) : (
+                <PageLoader />
+            )}
+
         </>
     )
 }
