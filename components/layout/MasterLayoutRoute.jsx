@@ -10,8 +10,6 @@ import Footer from "../modules/Footer";
 import CookiePolicy from 'components/ui-components/CookiePolicy';
 
 const MasterLayoutRoute = ({ children, event }) => {
-    +
-    console.log()
     const router = useRouter();
     const [modulehas, setmodulehas] = useState(false);
     const { showLogin } = useSelector(globalSelector);
@@ -25,10 +23,11 @@ const MasterLayoutRoute = ({ children, event }) => {
 
     const segs = router.asPath.split('/');
     const lastSegment = segs.filter((segment) => segment !== '').pop();
+   
     useEffect(() => {
-        if (lastSegment != `${event.url}`){
+        if (lastSegment == 'documents'){
             event.header_data.top_menu.map((item) => {
-                if (![lastSegment].includes(item.alias)) {
+                if (item.alias != 'documents'){
                     router.push(`/${event.url}`)
                 }
             });
