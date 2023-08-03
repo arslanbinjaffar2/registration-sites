@@ -32,11 +32,13 @@ export const documentsSelector = (state) => state.documents;
 
 export default documentsSlice.reducer;
 
-export const fetchDocuments = (url) => {
+export const fetchDocuments = (url, event_id) => {
   return async (dispatch) => {
     dispatch(getDocuments());    
     try {
-      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/documents`);
+      const user_data = JSON.parse(localStorage.getItem(`event${event_id}User`)); ;
+      const attendee_id = user_data ? user_data.user.id : 0;
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/documents?attendee=${attendee_id}`);
       const res = await response.json();
       dispatch(setDocuments(res));
       dispatch(incrementFetchLoadCount());
