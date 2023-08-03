@@ -8,6 +8,7 @@ import {
   } from "store/Slices/myAccount/surveySlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
+import moment from "moment";
 const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -111,7 +112,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                 : [...surveyResult[feild], answerId]
               : [answerId],
           [`matrix${questionId}_${answerId}`]: [
-            `${answerId}-${matrixId}`,
+            `${answerId}_${matrixId}`,
           ],
         });
       } else {
@@ -136,12 +137,49 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
     if (!formValid) {
       simpleValidator.current.showMessages()
     }else{ 
+        let submittedQuestion = surveyDetail.map((item) => {
+          let questionsObject = {
+            id: item.id,
+            type: item.question_type,
+            required: item.required_question,
+            is_anonymous: item.is_anonymous,
+            comment: surveyResult[`comments${item.id}`] !== undefined ? surveyResult[`comments${item.id}`][0] : '',
+          }
+          if(item.question_type === 'single' || item.question_type === 'multiple' || item.question_type === 'dropdown' || item.question_type === 'matrix'){
+            questionsObject['original_answers']= item.answer.map((answer)=>({id:answer.id, correct:answer.correct}));
+            if(item.question_type === 'single'){
+              questionsObject['answers'] = [{id:surveyResult[`answer${item.id}`] !== undefined ? surveyResult[`answer${item.id}`][0] : ''}]
+            }
+            else if(item.question_type === 'dropdown'){
+              questionsObject['answers'] = [{id:surveyResult[`answer_${item.question_type}${item.id}`] !== undefined ? surveyResult[`answer_${item.question_type}${item.id}`][0] : ''}]
+            }
+            else if(item.question_type === 'multiple'){
+              questionsObject['answers'] = surveyResult[`answer${item.id}`] !== undefined ? surveyResult[`answer${item.id}`].map((i)=>({id:i})) : [];
+            }
+            else if(item.question_type === 'matrix'){
+              questionsObject['answers'] = surveyResult[`answer${item.id}`] !== undefined ? surveyResult[`answer${item.id}`].map((i)=>({id:surveyResult[`matrix${item.id}_${i}`][0]})) : [];
+            }
+          }else{
+            
+            questionsObject['answers'] = [{value:surveyResult[`answer_${item.question_type}${item.id}`] !== undefined ? surveyResult[`answer_${item.question_type}${item.id}`][0] : ''}]
+          }
+      
+          return questionsObject;
+      
+        });
+
+        console.log(submittedQuestion);
+        console.log(surveyResult);
+        let attendee_id = JSON.parse(localStorage.getItem(`event${event.id}User`)).user.id;
         dispatch(updateSurveyData(event.id, event.url ,surveyId, {
           survey_id: surveyId,
-          optionals,
-          questionsType,
-          questions:questions.reduce((ack, item) => { return ack.concat(item.id)},[]),
-          ...surveyResult,
+          event_id: event.id,
+          attendee_id: attendee_id,
+          base_url: process.env.NEXT_APP_EVENTCENTER_URL,
+          organizer_id: event.owner_id,
+          create_date: moment().toDate().toDateString(),
+          env: process.env.NEXT_APP_APP_ENVIRONMENT,
+          submitted_questions:submittedQuestion
         }, ()=>{
             router.push(`/${event.url}/profile/surveys`);
         }))
@@ -490,6 +528,13 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                                 cols={30}
                                 rows={5}
                                 disabled={surveyResult[`answer${question.id}`] !== undefined ? false : true}
+                                onChange={(e) => {
+                                  updateResult(
+                                    `comments${question.id}`,
+                                    "comment",
+                                    e.target.value
+                                  );
+                                }}
                               ></textarea>
                             </div>
                           )}

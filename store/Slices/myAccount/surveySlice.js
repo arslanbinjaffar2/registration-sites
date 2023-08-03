@@ -63,9 +63,10 @@ export const fetchSurveyData = (id, url,survey_id) => {
   }
 export const updateSurveyData = (id, url, survey_id, data, success) => {
     return async dispatch => {
+      console.log(data);
       dispatch(setUpdating(true))
       try {
-        const response =  await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-survey/${survey_id}`, data, { headers:header("POST", id)})
+        const response =  await axios.post(`${process.env.NEXT_APP_API_GATEWAY_URL}/v2/save-surveys`, data, { headers:header("POST", id)})
         dispatch(setAlert("Answers Successfully Updated"));
         success();
         dispatch(setUpdating(false));
