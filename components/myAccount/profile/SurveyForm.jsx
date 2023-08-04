@@ -257,7 +257,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                         </h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             surveyResult[`answer_number${question.id}`] ?
                             surveyResult[`answer_number${question.id}`][0]: ''
@@ -548,6 +548,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                           <h5>{question.value}
                             {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
                           </h5>
+                          <div className="matrix-wrapper">
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
@@ -598,6 +599,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                                 </div>
                               </React.Fragment>
                             ))}
+                          </div>
                           </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer${question.id}`] !== undefined && surveyResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (

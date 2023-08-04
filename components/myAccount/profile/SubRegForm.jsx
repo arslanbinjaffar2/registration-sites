@@ -313,7 +313,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
@@ -586,56 +586,58 @@ const SubRegForm = ({ subRegistration, event, afterLogin, updating, alert, error
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
                           <h5>{question.info[0].value}</h5>
-                          <div className="matrix-table">
-                            <div className="martix-row matrix-header">
-                              <div className="matrix-box matrix-heading"></div>
-                              {question.matrix.map((matrix) => (
-                                <div key={matrix.id} className="matrix-box">
-                                  {matrix.name}
-                                </div>
+                          <div className="matrix-wrapper">
+                            <div className="matrix-table">
+                              <div className="martix-row matrix-header">
+                                <div className="matrix-box matrix-heading"></div>
+                                {question.matrix.map((matrix) => (
+                                  <div key={matrix.id} className="matrix-box">
+                                    {matrix.name}
+                                  </div>
+                                ))}
+                              </div>
+                              {question.answer.map((answer) => (
+                                <React.Fragment key={answer.id}>
+                                  <div className="martix-row">
+                                    <div className="matrix-box matrix-heading">
+                                      {answer.info[0].value}
+                                    </div>
+                                    {question.matrix.map((matrix) => (
+                                      <React.Fragment key={matrix.id}>
+                                        <div className="matrix-box">
+                                          <label className="label-radio">
+                                            <input
+                                              checked={
+                                                subRegResult[
+                                                  `answer_matrix${question.id}_${answer.id}`
+                                                ] !== undefined &&
+                                                subRegResult[
+                                                  `answer_matrix${question.id}_${answer.id}`
+                                                ][0].indexOf(matrix.id) !== -1
+                                                  ? true
+                                                  : false
+                                              }
+                                              type="radio"
+                                              onChange={() => {
+                                                updateResult(
+                                                  `answer${question.id}`,
+                                                  "matrix",
+                                                  answer.id,
+                                                  question.id,
+                                                  answer.link_to,
+                                                  matrix.id
+                                                );
+                                              }}
+                                            />
+                                            <span></span>
+                                          </label>
+                                        </div>
+                                      </React.Fragment>
+                                    ))}
+                                  </div>
+                                </React.Fragment>
                               ))}
                             </div>
-                            {question.answer.map((answer) => (
-                              <React.Fragment key={answer.id}>
-                                <div className="martix-row">
-                                  <div className="matrix-box matrix-heading">
-                                    {answer.info[0].value}
-                                  </div>
-                                  {question.matrix.map((matrix) => (
-                                    <React.Fragment key={matrix.id}>
-                                      <div className="matrix-box">
-                                        <label className="label-radio">
-                                          <input
-                                            checked={
-                                              subRegResult[
-                                                `answer_matrix${question.id}_${answer.id}`
-                                              ] !== undefined &&
-                                              subRegResult[
-                                                `answer_matrix${question.id}_${answer.id}`
-                                              ][0].indexOf(matrix.id) !== -1
-                                                ? true
-                                                : false
-                                            }
-                                            type="radio"
-                                            onChange={() => {
-                                              updateResult(
-                                                `answer${question.id}`,
-                                                "matrix",
-                                                answer.id,
-                                                question.id,
-                                                answer.link_to,
-                                                matrix.id
-                                              );
-                                            }}
-                                          />
-                                          <span></span>
-                                        </label>
-                                      </div>
-                                    </React.Fragment>
-                                  ))}
-                                </div>
-                              </React.Fragment>
-                            ))}
                           </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined && subRegResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
