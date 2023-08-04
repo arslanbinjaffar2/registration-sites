@@ -96,7 +96,7 @@ const NewsDetail = (props) => {
                         />
                         
           </Head> */}
-          <Component  news={news} event={event} sidebar={sidebar} newsSettings={event.news_settings} />
+          <Component news={news} event={event} sidebar={sidebar} newsSettings={event.news_settings} newsSubscriberSetting={event.news_subscriber_setting} />
         </React.Fragment>
       ) : <PageLoader/>}
     </Suspense>
