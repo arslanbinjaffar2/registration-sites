@@ -52,7 +52,7 @@ const MyProfileEdit = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProfileData(event.id, event.url));
+    dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
   const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect } =

@@ -76,12 +76,12 @@ export const profileSelector = state => state.profile
 
 export default eventSlice.reducer
 
-export const fetchProfileData = (id, url) => {
+export const fetchProfileData = (id, url, is_edit) => {
   return async dispatch => {
     dispatch(getProfileData())
     let userObj = JSON.parse(localStorage.getItem(`event${id}User`));
     try {
-      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile`, { headers: header("GET", id) })
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile${is_edit === 1 ? '?is_edit=true' : ''}`, { headers: header("GET", id) })
       const res = await response.json()
       dispatch(clearError())
       dispatch(setProfileData(res.data))

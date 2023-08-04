@@ -14,7 +14,7 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProfileData(event.id, event.url));
+    dispatch(fetchProfileData(event.id, event.url, 0));
   }, [])
 
   const { attendee, labels, settings } = useSelector(profileSelector);
