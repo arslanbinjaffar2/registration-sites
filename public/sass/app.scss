@@ -1879,25 +1879,39 @@
     font-size: 14px;
     margin-bottom: 30px;
   }
-  .martix-row {
-    display: flex;
-    margin-bottom: 8px;
-    align-items: center;
-    &.matrix-header {
-      align-items: flex-end;
-      margin-bottom: 14px;
+  .matrix-wrapper {
+    overflow-x: auto;
+    padding-bottom: 30px;
+    .matrix-table {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
     }
+
+  }
+  .martix-row {
+    display: table-row;
+    align-items: center;
     .matrix-box {
-      min-width: 120px;
-      max-width: 120px;
+      display: table-cell;
       text-align: center;
+      vertical-align: middle;
       color: $black;
-      padding: 0 20px;
+      width: 180px;
+      padding: 0 10px;
       word-wrap: break-word;
       &.matrix-heading {
         text-align: left;
         font-size: 14px;
         padding-left: 0;
+        position: sticky;
+        padding-left: 15px;
+        position: sticky;
+        left: 0;
+        top: 0;
+        width: 250px;
+        background: #f9f9f9;
+        z-index: 2;
       }
     }
   }

@@ -204,18 +204,17 @@ export const resetPassword = (id, url, data) => {
   };
 };
 
-export const logOut = (id, url) => {
+export const logOut = (id, url, success) => {
   return async (dispatch) => {
 
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
-      if(response.data.success){
         localStorage.removeItem(`event${id}User`);
         localStorage.removeItem(`${url}_sub_reg_skip`);
         localStorage.removeItem(`EI${url}EC`);
         dispatch(setLoggedOut(true));
         dispatch(reset(true));
-      }
+        success();
     } catch (error) {
       if(error.response.data.message){
         dispatch(setError(error.response.data.message));

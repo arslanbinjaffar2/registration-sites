@@ -331,7 +331,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
@@ -629,6 +629,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
                           <h5>{question.info[0].value}</h5>
+                          <div className="matrix-wrapper">
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
@@ -680,6 +681,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 </div>
                               </React.Fragment>
                             ))}
+                          </div>
                           </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined && subRegResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
