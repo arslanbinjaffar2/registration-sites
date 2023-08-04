@@ -64,6 +64,7 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
     }
 
     const checkFile = (directory) => {
+        
         let files = false;
         if (directory.files !== undefined && directory.files.length > 0) {
             return true;
@@ -73,11 +74,12 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                 if (directory.files !== undefined && directory.files.length > 0) {
                     files = true;
                 }
-                else {
+                else if ((directory.files !== undefined && directory.files.length > 0) || directory.children_files.length > 0) {
                     files = checkFile(directory);
                 }
             });
         }
+        console.log(files)
         return files;
     }
 
@@ -119,10 +121,6 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                     </div>
                     {currentDirectory && currentDirectory.length > 0 &&
                         currentDirectory.map((item, i) => {
-
-                            // filesCount = 0;
-                            // console.log(item['directory_id'] === undefined)
-                            
                             if ((item['directory_id'] === undefined) && checkFile(item)) {
                                 filesCount++;
                                 return (<div key={i} className="ebs-document-content">
