@@ -720,7 +720,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       </div>
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
-      {subRegSettings.answer === 1 && <div className="bottom-button">
+      {subRegSettings.answer === 1 && subRegistration.show_save === 1 && <div className="bottom-button">
         <button className="btn btn-save-next btn-loader" disabled={(updating ? true : false)} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
       </div>}
       {console.log(updating, 'updating')}
