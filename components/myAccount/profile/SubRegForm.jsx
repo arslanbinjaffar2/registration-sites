@@ -349,7 +349,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
