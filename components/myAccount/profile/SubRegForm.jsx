@@ -295,8 +295,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             <label
                               key={answer.id}
                               onClick={() => {
-                                let max_options = question.max_options;
-                                console.log(max_options);
+                                if((answer.tickets !== undefined &&  (answer.tickets <= 0))){
+                                    return;
+                                }
                                 updateResult(
                                   `answer${question.id}`,
                                   "multiple",
@@ -312,7 +313,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -446,6 +447,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                 value: answer.id,
                                 linkTo: answer.link_to,
                                 key: i,
+                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : false
                               }))}
                               
                               value={subRegResult[`answer_dropdown${question.id}`] !== undefined && { label:  question.answer.find((answer) => ( answer.id == subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] )).info[0].value , value: subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] }}
@@ -579,6 +581,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             <label
                               key={answer.id}
                               onClick={() => {
+                                if((answer.tickets !== undefined && (answer.tickets <= 0))){
+                                  return;
+                                }
                                 updateResult(
                                   `answer${question.id}`,
                                   "single",
@@ -594,7 +599,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
