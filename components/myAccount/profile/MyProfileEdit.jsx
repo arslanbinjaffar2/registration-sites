@@ -55,7 +55,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect } =
+  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
     useSelector(profileSelector);
 
   return (
@@ -72,6 +72,7 @@ const MyProfileEdit = () => {
         settings={settings}
         labels={labels}
         redirect={redirect}
+        customFields={customFields}
       />) : <PageLoader />
 
   );
@@ -79,7 +80,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields }) => {
 
   const dispatch = useDispatch();
 
@@ -731,6 +732,31 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </div>
                     </div>
                   </div>}
+                  
+                  {settings?.show_custom_field?.status === 1 && (
+                    customFields.map((question)=>(
+                      <Select
+                        styles={Selectstyles2}
+                        isDisabled={settings?.country?.is_editable === 1 ? false : true}
+                        placeholder={question.name}
+                        components={{ IndicatorSeparator: null }}
+                        options={question.children_recursive.map((item, index) => {
+                          return {
+                            label: item.name,
+                            value: item.id,
+                            key: index,
+                          };
+                        })}
+                        value={attendee.info[`custom_field_id${question.event_id}`].split(',')}
+                        isMulti={true}
+                        onChange={(item) => {
+                          updateSelect({ item, name: "country" });
+                        }}
+                      />
+                    ))
+              )}
+
+
                 {settings?.email?.status === 1 && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
