@@ -24,13 +24,13 @@ const SurveyList = () => {
         <div className="wrapper-inner-content network-category-sec">
           <div className="ebs-survey-heading d-flex">
             <h4>Available Surveys</h4>
-            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >View results</ActiveLink>
+            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >Answered Surveys</ActiveLink>
           </div>
           
             <div className="ebs-survey-list">
               <ul>
                 {surveyList.map((survey) => (
-                  <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
+                  survey.available === 'yes' ? <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info.name}</ActiveLink> </li> : null
                 ))}
               </ul>
               {surveyList.length <=0 && <p>No Surveys Availble Yet</p>}

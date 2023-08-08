@@ -58,8 +58,8 @@ const Variation1 = ({ attendee, labels }) => {
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
-                          <p>{attendee.info.about}</p>
+                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL : "ABOUT"} </h4>
+                          <p dangerouslySetInnerHTML={{ __html: attendee.info.about }}></p>
                         </div>
                       )}
                       {attendee.email && (

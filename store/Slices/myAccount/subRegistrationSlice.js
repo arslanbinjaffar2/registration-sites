@@ -80,7 +80,7 @@ export const updateSubRegistrationData = (id, url, data) => {
     dispatch(setAlert(null))
     try {
       const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data, { headers: header("POST", id) })
-      if (response.data.data.status) {
+      if (response.data.data.status || response.data.data.message == "Change answer date ended") {
         localStorage.setItem(`${url}_sub_reg_skip`, 'true');
         dispatch(setSkip());
       }

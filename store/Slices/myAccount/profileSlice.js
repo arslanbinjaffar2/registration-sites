@@ -11,9 +11,12 @@ const initialState = {
   eventFoodDisclaimers: null,
   attendeeFeildSettings: null,
   customFields: null,
+  settings: null,
+  labels: null,
   languages: null,
   loading: false,
   error: null,
+  redirect: null,
   alert: null,
   invoice: null,
   order_id: null,
@@ -35,6 +38,8 @@ export const eventSlice = createSlice({
         state.eventFoodDisclaimers = payload.eventFoodDisclaimers,
         state.attendeeFeildSettings = payload.attendeeFeildSettings,
         state.customFields = payload.customFields,
+        state.settings = payload.settings,
+        state.labels = payload.labels,
         state.languages = payload.languages,
         state.loading = false
     },
@@ -46,6 +51,9 @@ export const eventSlice = createSlice({
     },
     setAlert: (state, { payload }) => {
       state.alert = payload
+    },
+    setRedirect: (state, { payload }) => {
+      state.redirect = payload
     },
     clearAlert: (state) => {
       state.alert = null
@@ -62,18 +70,18 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
 export default eventSlice.reducer
 
-export const fetchProfileData = (id, url) => {
+export const fetchProfileData = (id, url, is_edit) => {
   return async dispatch => {
     dispatch(getProfileData())
     let userObj = JSON.parse(localStorage.getItem(`event${id}User`));
     try {
-      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile`, { headers: header("GET", id) })
+      const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile${is_edit === 1 ? '?is_edit=true' : ''}`, { headers: header("GET", id) })
       const res = await response.json()
       dispatch(clearError())
       dispatch(setProfileData(res.data))
@@ -88,12 +96,20 @@ export const updateProfileData = (id, url, data) => {
   return async dispatch => {
     dispatch(getProfileData())
     try {
-      const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, data, { headers: header("POST", id) })
-      if (response.data.status === 1) {
+      const formData = new FormData();
+      formData.append('attendeeObj', JSON.stringify(data.attendeeObj));
+      formData.append('infoObj', JSON.stringify(data.infoObj));
+      formData.append('settings', JSON.stringify(data.settings));
+      formData.append('file', data.attendeeObj.file);
+      formData.append('attendee_cv', data.attendeeObj.att_cv);
+      const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, formData, { headers: header("UPLOAD", id) })
+      if (response?.data?.data?.status) {
         dispatch(setAlert(response.data.message))
         dispatch(setLoading())
         setTimeout(() => {
-          dispatch(clearAlert())
+          dispatch(clearAlert());
+          dispatch(fetchProfileData(id, url));
+          dispatch(setRedirect(`/${url}/profile`))
         }, 1000)
       }
       else {
@@ -142,5 +158,11 @@ export const cancelRegistrationRequest = (id, url, data) => {
     } catch (error) {
       dispatch(setError(error))
     }
+  }
+}
+
+export const cleanRedirect = (url) => {
+  return async dispatch => {
+    dispatch(setRedirect(url))
   }
 }

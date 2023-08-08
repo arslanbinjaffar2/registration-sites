@@ -54,7 +54,17 @@ const TimelinePopup = ({ width, onClick, data }) => {
 
 								</span>
 								<h4>{speakers.first_name} {speakers.last_name}</h4>
-								{speakers.info && <p>{speakers.info.title}</p>}
+								{speakers.info &&
+									(speakers.info.company_name || speakers.info.title) && (
+										<div className="edge-info-row">
+											<p className="info">
+												{speakers.info.title &&
+													`${speakers.info.title},`}{" "}
+												{speakers.info.company_name &&
+													speakers.info.company_name}
+											</p>
+										</div>
+									)}
 							</div>)}
 					</div>}
 				</div>
