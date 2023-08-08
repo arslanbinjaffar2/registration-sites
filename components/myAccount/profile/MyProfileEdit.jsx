@@ -86,6 +86,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   const [attendeeData, setAttendeeData] = useState(attendee);
 
+  const [customFieldData, setCustomFieldData] = useState({});
+
   const userInfo = localStorage.getItem(`event${event.id}User`);
 
   const isAuthenticated = userInfo !== undefined && userInfo !== null ? JSON.parse(userInfo) : {};
@@ -182,6 +184,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
     });
   };
+  
+  const updateCustomFieldSelect = (obj) => {
+    setCustomFieldData({
+      ...customFieldData,
+      [obj.name]: obj.item,
+    });
+  };
 
   const updateAttendee = (e) => {
     e.preventDefault();
@@ -190,11 +199,24 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
     };
 
+    let custom_field_id = customFields.reduce((ack, question, i)=>{
+      if(customFieldData[`custom_field_id_q${i}`] !== undefined){
+         let ids =question.allow_multiple === 1 ? customFieldData[`custom_field_id_q${i}`].map((ans)=>(ans.value)).join(',') + "," : customFieldData[`custom_field_id_q${i}`].value +',';
+          ack += ids;
+      }
+      return ack;
+    }, '');
+
     let infoObj = {
       ...attendeeData.info,
       country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
       private_country: attendeeData?.info?.private_country?.value,
+      
     }
+
+    infoObj[`custom_field_id${event.id}`] = custom_field_id;
+
+    console.log(infoObj)
 
     let settings = {
       gdpr: attendeeData.gdpr
@@ -734,7 +756,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>}
                   
                   {settings?.show_custom_field?.status === 1 && (
-                    customFields.map((question)=>(
+                    customFields.map((question, i)=>(
+                      <>
                       <Select
                         styles={Selectstyles2}
                         isDisabled={settings?.country?.is_editable === 1 ? false : true}
@@ -747,12 +770,23 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             key: index,
                           };
                         })}
-                        value={attendee.info[`custom_field_id${question.event_id}`].split(',')}
-                        isMulti={true}
+                        value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, id, i)=>{ 
+                          let is_answer = question.children_recursive.find((answer)=>(answer.id == id));
+                          if(is_answer !== undefined){
+                            ack.push({
+                              label: is_answer.name,
+                              value: is_answer.id,
+                            });
+                          }
+                          return ack;
+                        }, [])}
+                        isMulti={question.allow_multiple === 1 ? true : 0}
                         onChange={(item) => {
-                          updateSelect({ item, name: "country" });
+                          console.log(item);
+                          updateCustomFieldSelect({ item, name: `custom_field_id_q${i}` });
                         }}
                       />
+                      </>
                     ))
               )}
 
