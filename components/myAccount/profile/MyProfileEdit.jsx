@@ -86,7 +86,20 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
   const [attendeeData, setAttendeeData] = useState(attendee);
 
-  const [customFieldData, setCustomFieldData] = useState({});
+  const [customFieldData, setCustomFieldData] = useState(customFields.reduce((ack1, question, i)=>{
+       let answers = attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack2, id, i)=>{ 
+          let is_answer = question.children_recursive.find((answer)=>(answer.id == id));
+          if(is_answer !== undefined){
+            ack2.push({
+              label: is_answer.name,
+              value: is_answer.id,
+            });
+          }
+          return ack2;
+        }, []);
+        ack1[`custom_field_id_q${i}`] = question.allow_multiple === 1 ? answers : answers[0];
+        return ack1;
+    }, {}));
 
   const userInfo = localStorage.getItem(`event${event.id}User`);
 
@@ -97,6 +110,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const mounted = useRef(false);
 
   const inputFileRef = React.useRef();
+
+  const inputresumeFileRef = React.useRef();
 
   useEffect(() => {
     mounted.current = true;
@@ -490,6 +505,37 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                 </div>
               )}
+              {settings?.resume?.status === 1 && (
+                <div className="ebs-profile-image" onClick={() => {
+                  inputresumeFileRef.current.click();
+                }}>
+                  <label>
+                    {((attendeeData && attendeeData?.resume && attendeeData?.resume !== "") || attendeeData?.blob_resume !== undefined) ? (
+                      <img src={`${attendeeData?.blob_resume !== undefined ? attendeeData?.blob_resume : process.env.NEXT_APP_EVENTCENTER_URL +
+                        "/assets/attendees/" +
+                        attendeeData?.resume}`} alt="" />
+                    ) : (
+                      <img src="https://via.placeholder.com/155.png" alt="" />
+                    )}
+                    {settings?.resume?.is_editable === 1 && (
+                      <>
+                        <span>Uplaod Resume</span>
+                      </>
+                    )}
+                  </label>
+                  {settings?.resume?.is_editable === 1 && (
+                    <input type="file" style={{ display: 'none' }} ref={inputresumeFileRef} onChange={(e) => {
+                      if (e.target.files.length > 0) {
+                        setAttendeeData({
+                          ...attendeeData,
+                          resume_file: e.target.files[0],
+                          blob_resume: URL.createObjectURL(e.target.files[0]),
+                        });
+                      }
+                    }} />
+                  )}
+                </div>
+              )}
               <h3 className="ebs-title">Professional Information:</h3>
               {settings?.company_name?.status === 1 && (
                 <Input
@@ -770,16 +816,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             key: index,
                           };
                         })}
-                        value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, id, i)=>{ 
-                          let is_answer = question.children_recursive.find((answer)=>(answer.id == id));
-                          if(is_answer !== undefined){
-                            ack.push({
-                              label: is_answer.name,
-                              value: is_answer.id,
-                            });
-                          }
-                          return ack;
-                        }, [])}
+                        value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : null}
                         isMulti={question.allow_multiple === 1 ? true : 0}
                         onChange={(item) => {
                           console.log(item);
