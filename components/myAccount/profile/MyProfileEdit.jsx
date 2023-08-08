@@ -52,10 +52,10 @@ const MyProfileEdit = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProfileData(event.id, event.url));
+    dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect } =
+  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
     useSelector(profileSelector);
 
   return (
@@ -72,6 +72,7 @@ const MyProfileEdit = () => {
         settings={settings}
         labels={labels}
         redirect={redirect}
+        customFields={customFields}
       />) : <PageLoader />
 
   );
@@ -79,11 +80,26 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields }) => {
 
   const dispatch = useDispatch();
 
   const [attendeeData, setAttendeeData] = useState(attendee);
+
+  const [customFieldData, setCustomFieldData] = useState(customFields.reduce((ack1, question, i)=>{
+       let answers = attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack2, id, i)=>{ 
+          let is_answer = question.children_recursive.find((answer)=>(answer.id == id));
+          if(is_answer !== undefined){
+            ack2.push({
+              label: is_answer.name,
+              value: is_answer.id,
+            });
+          }
+          return ack2;
+        }, []);
+        ack1[`custom_field_id_q${i}`] = question.allow_multiple === 1 ? answers : answers[0];
+        return ack1;
+    }, {}));
 
   const userInfo = localStorage.getItem(`event${event.id}User`);
 
@@ -94,6 +110,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const mounted = useRef(false);
 
   const inputFileRef = React.useRef();
+
+  const inputresumeFileRef = React.useRef();
 
   useEffect(() => {
     mounted.current = true;
@@ -181,6 +199,13 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       },
     });
   };
+  
+  const updateCustomFieldSelect = (obj) => {
+    setCustomFieldData({
+      ...customFieldData,
+      [obj.name]: obj.item,
+    });
+  };
 
   const updateAttendee = (e) => {
     e.preventDefault();
@@ -189,11 +214,24 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
     };
 
+    let custom_field_id = customFields.reduce((ack, question, i)=>{
+      if(customFieldData[`custom_field_id_q${i}`] !== undefined){
+         let ids =question.allow_multiple === 1 ? customFieldData[`custom_field_id_q${i}`].map((ans)=>(ans.value)).join(',') + "," : customFieldData[`custom_field_id_q${i}`].value +',';
+          ack += ids;
+      }
+      return ack;
+    }, '');
+
     let infoObj = {
       ...attendeeData.info,
       country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
       private_country: attendeeData?.info?.private_country?.value,
+      
     }
+
+    infoObj[`custom_field_id${event.id}`] = custom_field_id;
+
+    console.log(infoObj)
 
     let settings = {
       gdpr: attendeeData.gdpr
@@ -209,6 +247,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
     if (attendeeData.image) attendeeObj.image = attendeeData.image;
     if (attendeeData.file) attendeeObj.file = attendeeData.file;
+    if (attendeeData.attendee_cv) attendeeObj.att_cv = attendeeData.attendee_cv;
     if (attendeeData.SPOKEN_LANGUAGE) attendeeObj.SPOKEN_LANGUAGE = attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
       if (index !== attendeeData.SPOKEN_LANGUAGE.length - 1) {
         return ack += `${item.label},`
@@ -467,6 +506,43 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                 </div>
               )}
+              {settings?.resume?.status === 1 && (
+                <div className="ebs-profile-image" >
+                  <label>
+                    {((attendeeData && attendeeData?.attendee_cv && attendeeData?.attendee_cv !== "")) ? (
+                      <>
+                        {(typeof attendeeData.attendee_cv === 'string')  ? <a class="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
+                          <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
+                            '/_admin_assets/images/pdf512.png'}`} alt="" />
+                        </a> : <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
+                            '/_admin_assets/images/pdf512.png'}`} alt="" />
+                        }
+                      </>
+                    ) : (
+                      <img src="https://via.placeholder.com/155.png" alt="" />
+                    )}
+                    {settings?.resume?.is_editable === 1 && (
+                      <>
+                        <span onClick={() => {
+                          inputresumeFileRef.current.click();
+                        }}>
+                          Uplaod Resume
+                        </span>
+                      </>
+                    )}
+                  </label>
+                  {settings?.resume?.is_editable === 1 && (
+                    <input type="file" style={{ display: 'none' }} ref={inputresumeFileRef} onChange={(e) => {
+                      if (e.target.files.length > 0) {
+                        setAttendeeData({
+                          ...attendeeData,
+                          attendee_cv: e.target.files[0],
+                        });
+                      }
+                    }} />
+                  )}
+                </div>
+              )}
               <h3 className="ebs-title">Professional Information:</h3>
               {settings?.company_name?.status === 1 && (
                 <Input
@@ -683,6 +759,31 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
+              {settings?.show_custom_field?.status === 1 && (
+                  customFields.map((question, i)=>(
+                    <>
+                    <Select
+                      styles={Selectstyles2}
+                      isDisabled={settings?.show_custom_field?.is_editable === 1 ? false : true}
+                      placeholder={question.name}
+                      components={{ IndicatorSeparator: null }}
+                      options={question.children_recursive.map((item, index) => {
+                        return {
+                          label: item.name,
+                          value: item.id,
+                          key: index,
+                        };
+                      })}
+                      value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : null}
+                      isMulti={question.allow_multiple === 1 ? true : 0}
+                      onChange={(item) => {
+                        console.log(item);
+                        updateCustomFieldSelect({ item, name: `custom_field_id_q${i}` });
+                      }}
+                    />
+                    </>
+                  ))
+                )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
                 {settings?.phone?.status === 1 &&
@@ -731,6 +832,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       </div>
                     </div>
                   </div>}
+                  
+                
+
+
                 {settings?.email?.status === 1 && (
                   <div className="ebs-contact-row d-flex">
                     <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-envelope.svg")} alt="" /></div>
