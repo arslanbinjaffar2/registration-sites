@@ -44,9 +44,9 @@ const Variation1 = (props) => {
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined && props.event.description.info.title !== "" && <HeadingElement dark={true} label={props.event.description.info.title}  align={'left'} />}
           <div className="row d-flex ebs-about-event-section">
-            <div className="col-lg-5 mb-5">
+            <div className="col-lg-5">
               <div className="ebs-event-detail">
-                <ul>
+                <ul className="py-0">
                   {props.openingHours.length > 0 && 
                     <>
                       <li>
@@ -73,7 +73,7 @@ const Variation1 = (props) => {
                     <p>{props.event.country}</p>
                   </li>
                 </ul>
-                {(props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd &&  <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
+                {(props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd &&  <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn mt-4 edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
               </div>
             </div>
             {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined && <div className="col-lg-6 offset-lg-1">
