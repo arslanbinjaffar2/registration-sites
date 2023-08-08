@@ -247,6 +247,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
     if (attendeeData.image) attendeeObj.image = attendeeData.image;
     if (attendeeData.file) attendeeObj.file = attendeeData.file;
+    if (attendeeData.attendee_cv) attendeeObj.att_cv = attendeeData.attendee_cv;
     if (attendeeData.SPOKEN_LANGUAGE) attendeeObj.SPOKEN_LANGUAGE = attendeeData.SPOKEN_LANGUAGE.reduce((ack, item, index) => {
       if (index !== attendeeData.SPOKEN_LANGUAGE.length - 1) {
         return ack += `${item.label},`
@@ -506,20 +507,27 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 </div>
               )}
               {settings?.resume?.status === 1 && (
-                <div className="ebs-profile-image" onClick={() => {
-                  inputresumeFileRef.current.click();
-                }}>
+                <div className="ebs-profile-image" >
                   <label>
-                    {((attendeeData && attendeeData?.resume && attendeeData?.resume !== "") || attendeeData?.blob_resume !== undefined) ? (
-                      <img src={`${attendeeData?.blob_resume !== undefined ? attendeeData?.blob_resume : process.env.NEXT_APP_EVENTCENTER_URL +
-                        "/assets/attendees/" +
-                        attendeeData?.resume}`} alt="" />
+                    {((attendeeData && attendeeData?.attendee_cv && attendeeData?.attendee_cv !== "")) ? (
+                      <>
+                        {(typeof attendeeData.attendee_cv === 'string')  ? <a class="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
+                          <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
+                            '/_admin_assets/images/pdf512.png'}`} alt="" />
+                        </a> : <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
+                            '/_admin_assets/images/pdf512.png'}`} alt="" />
+                        }
+                      </>
                     ) : (
                       <img src="https://via.placeholder.com/155.png" alt="" />
                     )}
                     {settings?.resume?.is_editable === 1 && (
                       <>
-                        <span>Uplaod Resume</span>
+                        <span onClick={() => {
+                          inputresumeFileRef.current.click();
+                        }}>
+                          Uplaod Resume
+                        </span>
                       </>
                     )}
                   </label>
@@ -528,8 +536,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       if (e.target.files.length > 0) {
                         setAttendeeData({
                           ...attendeeData,
-                          resume_file: e.target.files[0],
-                          blob_resume: URL.createObjectURL(e.target.files[0]),
+                          attendee_cv: e.target.files[0],
                         });
                       }
                     }} />
@@ -752,6 +759,31 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   }}
                 />
               )}
+              {settings?.show_custom_field?.status === 1 && (
+                  customFields.map((question, i)=>(
+                    <>
+                    <Select
+                      styles={Selectstyles2}
+                      isDisabled={settings?.show_custom_field?.is_editable === 1 ? false : true}
+                      placeholder={question.name}
+                      components={{ IndicatorSeparator: null }}
+                      options={question.children_recursive.map((item, index) => {
+                        return {
+                          label: item.name,
+                          value: item.id,
+                          key: index,
+                        };
+                      })}
+                      value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : null}
+                      isMulti={question.allow_multiple === 1 ? true : 0}
+                      onChange={(item) => {
+                        console.log(item);
+                        updateCustomFieldSelect({ item, name: `custom_field_id_q${i}` });
+                      }}
+                    />
+                    </>
+                  ))
+                )}
               <div className="ebs-contact-info">
                 <h3 className="ebs-title">Contact information:</h3>
                 {settings?.phone?.status === 1 &&
@@ -801,31 +833,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     </div>
                   </div>}
                   
-                  {settings?.show_custom_field?.status === 1 && (
-                    customFields.map((question, i)=>(
-                      <>
-                      <Select
-                        styles={Selectstyles2}
-                        isDisabled={settings?.country?.is_editable === 1 ? false : true}
-                        placeholder={question.name}
-                        components={{ IndicatorSeparator: null }}
-                        options={question.children_recursive.map((item, index) => {
-                          return {
-                            label: item.name,
-                            value: item.id,
-                            key: index,
-                          };
-                        })}
-                        value={customFieldData[`custom_field_id_q${i}`] !== undefined ? customFieldData[`custom_field_id_q${i}`] : null}
-                        isMulti={question.allow_multiple === 1 ? true : 0}
-                        onChange={(item) => {
-                          console.log(item);
-                          updateCustomFieldSelect({ item, name: `custom_field_id_q${i}` });
-                        }}
-                      />
-                      </>
-                    ))
-              )}
+                
 
 
                 {settings?.email?.status === 1 && (

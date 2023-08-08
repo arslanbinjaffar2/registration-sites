@@ -101,6 +101,7 @@ export const updateProfileData = (id, url, data) => {
       formData.append('infoObj', JSON.stringify(data.infoObj));
       formData.append('settings', JSON.stringify(data.settings));
       formData.append('file', data.attendeeObj.file);
+      formData.append('attendee_cv', data.attendeeObj.att_cv);
       const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile/update`, formData, { headers: header("UPLOAD", id) })
       if (response?.data?.data?.status) {
         dispatch(setAlert(response.data.message))
