@@ -55,13 +55,13 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
-  const { attendee, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
+  const { attendee_edit, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
     useSelector(profileSelector);
 
   return (
-    attendee ? (
+    attendee_edit ? (
       <ProfileEditForm
-        attendee={attendee}
+        attendee={attendee_edit}
         languages={languages}
         callingCodes={callingCodes}
         countries={countries}
@@ -921,11 +921,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
             </div>
           </div>
           <div className="bottom-button">
-            <input className="btn btn-save-next btn-loader" type="submit" value="Update" />
-            {
-              loading && attendee !== null && "updating..."
-            }
-
+            <input className="btn btn-save-next btn-loader" type="submit" value={loading && attendee !== null ? "updating..." : "Update"} />
           </div>
         </form>
       </div>

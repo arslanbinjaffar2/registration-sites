@@ -95,7 +95,7 @@ const MyProfileSidebar = (props) => {
   }
 
   useEffect(() => {
-    dispatch(fetchProfileData(event.id, event.url));
+    dispatch(fetchProfileData(event.id, event.url, 0));
   }, [])
 
   return (
