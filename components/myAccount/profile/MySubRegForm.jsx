@@ -276,6 +276,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             <label
                               key={answer.id}
                               onClick={() => {
+                                if((answer.tickets !== undefined && (answer.tickets <= 0))){
+                                  return;
+                                }
                                 if(subRegSettings.answer === 1){
                                     updateResult(
                                       `answer${question.id}`,
@@ -293,7 +296,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -331,7 +334,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
@@ -435,6 +438,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 value: answer.id,
                                 linkTo: answer.link_to,
                                 key: i,
+                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : false
                               }))}
                               disabled={subRegSettings.answer === 1 ? false : true}
                               value={subRegResult[`answer_dropdown${question.id}`] !== undefined && { label:  question.answer.find((answer) => ( answer.id == subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] )).info[0].value , value: subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] }}
@@ -576,6 +580,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             <label
                               key={answer.id}
                               onClick={() => {
+                                if((answer.tickets !== undefined && (answer.tickets <= 0))){
+                                  return;
+                                }
                                 if(subRegSettings.answer === 1){
                                     updateResult(
                                       `answer${question.id}`,
@@ -593,7 +600,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -629,6 +636,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
                           <h5>{question.info[0].value}</h5>
+                          <div className="matrix-wrapper">
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
@@ -681,6 +689,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               </React.Fragment>
                             ))}
                           </div>
+                          </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined && subRegResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
@@ -713,7 +722,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       </div>
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
-      {subRegSettings.answer === 1 && <div className="bottom-button">
+      {subRegSettings.answer === 1 && subRegistration.show_save === 1 && <div className="bottom-button">
         <button className="btn btn-save-next btn-loader" disabled={(updating ? true : false)} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
       </div>}
       {console.log(updating, 'updating')}

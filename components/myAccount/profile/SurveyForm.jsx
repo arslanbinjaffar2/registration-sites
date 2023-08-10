@@ -161,13 +161,27 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
               questionsObject['answers'] = surveyResult[`answer${item.id}`] !== undefined ? surveyResult[`answer${item.id}`].map((i)=>({id:surveyResult[`matrix${item.id}_${i}`][0]})) : [];
             }
           }else{
-            
-            questionsObject['answers'] = [{value:surveyResult[`answer_${item.question_type}${item.id}`] !== undefined ? surveyResult[`answer_${item.question_type}${item.id}`][0] : ''}]
+            if(item.question_type === 'world_cloud'){
+              console.log('hello')
+              questionsObject['answers'] = Array.apply(null, Array(item.entries_per_participant)).reduce((ack, t, index)=>{
+                if(surveyResult[`answer_${item.question_type}${item.id}_${index}`] !== undefined){
+                  ack.push({value:surveyResult[`answer_${item.question_type}${item.id}_${index}`][0]});
+                  
+                } 
+                return ack; 
+              },[]); 
+            }
+            else{
+              questionsObject['answers'] = [{value:surveyResult[`answer_${item.question_type}${item.id}`] !== undefined ? surveyResult[`answer_${item.question_type}${item.id}`][0] : ''}]
+            }
           }
       
           return questionsObject;
       
         });
+
+        console.log(submittedQuestion);
+
         setSubmittingForm(true);
         let attendee_id = JSON.parse(localStorage.getItem(`event${event.id}User`)).user.id;
         dispatch(updateSurveyData(event.id, event.url ,surveyId, {
@@ -257,7 +271,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                         </h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             surveyResult[`answer_number${question.id}`] ?
                             surveyResult[`answer_number${question.id}`][0]: ''
@@ -548,6 +562,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                           <h5>{question.value}
                             {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
                           </h5>
+                          <div className="matrix-wrapper">
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
@@ -599,6 +614,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                               </React.Fragment>
                             ))}
                           </div>
+                          </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer${question.id}`] !== undefined && surveyResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
@@ -621,6 +637,63 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                         </div>
                       </React.Fragment>
                     )}
+                
+                {question.question_type === "world_cloud" && (
+                    <React.Fragment>
+                      <div className="generic-form">
+                        <h5>{question.value}
+                        {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
+                        
+                        </h5>
+                        {Array.apply(null, Array(question.entries_per_participant))
+                          .map((i, index)=>(
+                            <React.Fragment key={index}>
+                              <textarea
+                                placeholder="Answer"
+                                value={
+                                  surveyResult[`answer_world_cloud${question.id}_${index}`] &&
+                                  surveyResult[`answer_world_cloud${question.id}_${index}`][0]
+                                }
+                                onChange={(e) => {
+                                  updateResult(
+                                    `answer_world_cloud${question.id}_${index}`,
+                                    "world_cloud",
+                                    e.target.value,
+                                    question.id
+                                  );
+                                }}
+                                cols={30}
+                                rows={10}
+                              ></textarea>
+                              <br/>
+                            </React.Fragment>
+                          ))
+                          
+                          }
+                        {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer_open${question.id}`] !== undefined ? true : null, 'required')}
+                        {Number(question.enable_comments) === 1 && (
+                          <div className="generic-form">
+                            <p>Your comment:</p>
+                            <textarea
+                              placeholder="Your comment"
+                              cols={30}
+                              rows={5}
+                              // disabled={surveyResult[`answer_world_cloud${question.id}`] !== undefined ? false : true}
+                              onChange={(e) => {
+                                updateResult(
+                                  `comments${question.id}`,
+                                  "comment",
+                                  e.target.value
+                                );
+                              }}
+                            ></textarea>
+                          </div>
+                        )}
+                      </div>
+                    </React.Fragment>
+                  )}
+
+
                   <div className="ebs-seperator" />
                 </React.Fragment>
               ))}
