@@ -10,9 +10,9 @@ const Variation1 = (props) => {
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined  && props.event.description.info.title !== "" && <HeadingElement dark={false} label={props.event.description.info.title}  align={'left'} />}
           <div className="row d-flex ebs-about-event-section">
-            <div className="col-lg-5 mb-5">
+            <div className="col-lg-5">
               <div className="ebs-event-detail ebs-dark-about">
-                <ul>
+                <ul className='py-0'>
                   {props.openingHours.length > 0 &&
                     <>
                       <li>
