@@ -212,6 +212,51 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
                 <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
+                <p>{attendee.info?.phone && (attendee.info?.phone)}</p>
+                <p>{attendee.info?.email && (attendee.info?.email)}</p>
+                <div
+                  style={{ marginBottom: 20 }}
+                  className="edge-info-row"
+                >
+                  <div className="social-icons">
+                    {attendee.info.facebook && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                      >
+                        <span data-icon="&#xe0aa;"></span>
+                      </a>
+                    )}
+                    {attendee.info.twitter && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                      >
+                        <span data-icon="&#xe0ab;"></span>
+                      </a>
+                    )}
+                    {attendee.info.linkedin && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                      >
+                        <span data-icon="&#xe0b4;"></span>
+                      </a>
+                    )}
+                    {attendee.info.website && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={'https://' + `${attendee.info.website}`}
+                      >
+                        <span data-icon="&#xe0e3;"></span>
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
             )}
           </div>
