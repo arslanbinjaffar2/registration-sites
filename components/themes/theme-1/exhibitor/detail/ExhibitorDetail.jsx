@@ -119,12 +119,31 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                           </p>
                         </div>
                       )}
+                      {exhibitor.booth && (
+                        <div
+                          style={{ marginBottom: 20 }}
+                          className="edge-info-row"
+                        >
+                          <h4
+                            style={{
+                              textTransform: "uppercase",
+                              marginBottom: 10,
+                            }}
+                            className="info"
+                          >
+                            booth{" "}
+                          </h4>
+                          <p>
+                            {exhibitor.booth}
+                          </p>
+                        </div>
+                      )}
                       <div
                         style={{ marginBottom: 20 }}
                         className="edge-info-row"
                       >
                         <div className="social-icons">
-                          {exhibitor.facebook && (
+                          {exhibitor.facebook.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -133,7 +152,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0aa;"></span>
                             </a>
                           )}
-                          {exhibitor.twitter && (
+                          {exhibitor.twitter.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -142,7 +161,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0ab;"></span>
                             </a>
                           )}
-                          {exhibitor.linkedin && (
+                          {exhibitor.linkedin.replace(/^https?:\/\//, "")  && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -151,7 +170,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
-                          {exhibitor.website && (
+                          {exhibitor.website.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -203,7 +222,53 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                 </span>
                 <h4>{attendee.first_name} {attendee.last_name}</h4>
                 <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
+                <p>{attendee.email && (attendee.email)}</p>
+                <p>{attendee.phone && (attendee.phone)}</p>
+                <div
+                  style={{ marginBottom: 20 }}
+                  className="edge-info-row"
+                >
+                  <div className="social-icons">
+                    {attendee.info.facebook && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                      >
+                        <span data-icon="&#xe0aa;"></span>
+                      </a>
+                    )}
+                    {attendee.info.twitter && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                      >
+                        <span data-icon="&#xe0ab;"></span>
+                      </a>
+                    )}
+                    {attendee.info.linkedin && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                      >
+                        <span data-icon="&#xe0b4;"></span>
+                      </a>
+                    )}
+                    {attendee.info.website && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={'https://'+`${attendee.info.website}`}
+                      >
+                        <span data-icon="&#xe0e3;"></span>
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
+              
             )}
           </div>
         </div>

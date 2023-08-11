@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
@@ -26,8 +26,8 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		slidesToScroll: 1,
 		swipeToSlide: false,
 		cssEase: 'linear',
-		pauseOnHover:false,
-		pauseOnFocus:false,
+		pauseOnHover: false,
+		pauseOnFocus: false,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -39,7 +39,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 					swipeToSlide: true,
 					autoplaySpeed: 5000,
 					dots: false,
-					
+
 				}
 			},
 			{
@@ -57,10 +57,14 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 
 		]
 	};
-
 	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item) => {
-		return [...ack, ...item.exhibitors];
+		const newExhibitors = item.exhibitors.filter(exhibitor => !ack.some(existing => existing.id === exhibitor.id));
+		return [...ack, ...newExhibitors];
 	}, []));
+	useEffect(()=>{
+		console.log(exhibitors)
+	},[])
+
 	const handleOnMouseDown = (e) => {
 		setClientXonMouseDown(e.clientX)
 		setClientYonMouseDown(e.clientY)
@@ -78,7 +82,7 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 			setPopup(true)
 		}
 	}
-    const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
+	const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : { backgroundColor: '#f2f2f2' }
 
 	return (
 		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
