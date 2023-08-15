@@ -580,6 +580,7 @@ class Variation1 extends React.Component {
                                     <ul className="dropdown-menu">
                                       {gItem.submenu.map((subitem, k) => (
                                         subitem.status == 1 && (
+                                          
                                           <li className="nav-item" key={k}>
                                             {subitem.page_type && subitem.page_type === 3 ? (
                                               <a
