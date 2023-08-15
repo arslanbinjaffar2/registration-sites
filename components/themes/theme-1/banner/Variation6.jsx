@@ -24,7 +24,6 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
     }
 
   }
-
   return (
     <div className="main-slider-wrapper ebs-classic-banner">
       {banner && (
@@ -48,7 +47,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                     <img src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                   </figure>
                 )}
-                {(settings.register_button === 1 || settings.title.length > 0 ||  settings.caption.length > 1) && <div className="classic-caption-wrapp">
+                {((settings.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
                   <div className="text-center classic-inner-caption-wrapp">
                     <div style={{ position: "relative" }}
                       className="parallax-text"
