@@ -82,15 +82,14 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
   };
 
   const WrapperLayout = (props) => {
-
+    const _bgLayer = settings.caption !== 1 && ((props.slides.info?.title.length > 0) || (props.slides.info?.message.length > 0) || (settings.register_button !== 1));
     if (props.data && Number(props.data.video_type) === 1) {
       return (
         <div
           data-fixed="true"
           ref={_parallax}
-          style={{
-            backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image
-              })`,
+          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`,
+          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
@@ -104,7 +103,8 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
         <div
           data-fixed="true"
           ref={_parallax}
-          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`, position: 'relative'
+          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`, position: 'relative',
+          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
           }}
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
