@@ -580,36 +580,38 @@ class Variation1 extends React.Component {
                                   {gItem.submenu && gItem.submenu.length > 0 && (
                                     <ul className="dropdown-menu">
                                       {gItem.submenu.map((subitem, k) => (
-                                        <li className="nav-item" key={k}>
-                                          {subitem.page_type &&
-                                            subitem.page_type === 3 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              target="_blank"
-                                              rel="noreferrer"
-                                              href={`${subitem.website_protocol}${subitem.url}`}
-                                            >
-                                              {subitem.info.name}
-                                            </a>
-                                          ) : (
-                                            <ActiveLink
-                                              aria-current="page"
-                                              className="nav-link" activeClassName="nav-link active"
-                                              href={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                subitem.id
-                                              }
-                                              key={subitem.id}
-                                            >
+                                        subitem.status == 1 && (
+                                          <li className="nav-item" key={k}>
+                                            {subitem.page_type && subitem.page_type === 3 ? (
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
                                                 {subitem.info.name}
-                                            </ActiveLink>
-                                          )}
-                                        </li>
+                                              </a>
+                                            ) : (
+                                              <ActiveLink
+                                                aria-current="page"
+                                                className="nav-link"
+                                                activeClassName="nav-link active"
+                                                href={
+                                                  "/" +
+                                                  this.props.event.url +
+                                                  "/" +
+                                                  menu.alias +
+                                                  "/" +
+                                                  subitem.id
+                                                }
+                                                key={subitem.id}
+                                              >
+                                                {subitem.info.name}
+                                              </ActiveLink>
+                                            )}
+                                          </li>
+                                        )
                                       ))}
                                     </ul>
                                   )}
