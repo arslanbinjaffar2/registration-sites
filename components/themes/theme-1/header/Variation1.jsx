@@ -28,9 +28,9 @@ class Variation1 extends React.Component {
     window.addEventListener("resize", this.handleResize.bind(this), false);
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
     document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
-          element.addEventListener('click',this.accordionToggle.bind(this),false);
+      element.addEventListener('click', this.accordionToggle.bind(this), false);
     });
-    
+
   }
 
   componentWillUnmount() {
@@ -86,7 +86,7 @@ class Variation1 extends React.Component {
             () => {
               this.handleMenu();
               document.querySelectorAll('.has-drop-down > .nav-link').forEach(element => {
-                  element.addEventListener('click',this.accordionToggle.bind(this),false);
+                element.addEventListener('click', this.accordionToggle.bind(this), false);
               });
             }
           );
@@ -98,34 +98,34 @@ class Variation1 extends React.Component {
   handleMenu = () => {
     if (typeof window !== 'undefined') {
       if (window.innerWidth >= 991) {
-      var _total = 0;
-      var _element = false;
-      const _container = document.getElementById("ebs-header-wrapper");
-      const _list = document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav > li");
-      const _item = document.createElement("li");
-      const _itemancor = document.createElement("span");
+        var _total = 0;
+        var _element = false;
+        const _container = document.getElementById("ebs-header-wrapper");
+        const _list = document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav > li");
+        const _item = document.createElement("li");
+        const _itemancor = document.createElement("span");
 
-      _itemancor.classList.add("nav-link");
-      const textnode = document.createTextNode(this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL !== undefined ? this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL :"More");
-      const _ul = document.createElement("ul");
-      _ul.classList.add("dropdown-menu");
-      _itemancor.appendChild(textnode);
-      _item.classList.add("nav-item");
-      _item.classList.add("nav-item-more");
-      _item.appendChild(_itemancor);
-      _list.forEach((element) => {
-        if (_total < _container.offsetWidth - 295) {
-          _total = _total + element.offsetWidth + 10;
-        } else {
-          _element = true;
-          _ul.appendChild(element);
+        _itemancor.classList.add("nav-link");
+        const textnode = document.createTextNode(this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL !== undefined ? this.props.event.labels.EVENTSITE_TOP_MENU_MORE_LABEL : "More");
+        const _ul = document.createElement("ul");
+        _ul.classList.add("dropdown-menu");
+        _itemancor.appendChild(textnode);
+        _item.classList.add("nav-item");
+        _item.classList.add("nav-item-more");
+        _item.appendChild(_itemancor);
+        _list.forEach((element) => {
+          if (_total < _container.offsetWidth - 295) {
+            _total = _total + element.offsetWidth + 10;
+          } else {
+            _element = true;
+            _ul.appendChild(element);
+          }
+        });
+        if (_element) {
+          _item.appendChild(_ul);
+          document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0].appendChild(_item);
         }
-      });
-      if (_element) {
-        _item.appendChild(_ul);
-        document.querySelectorAll("#navbarSupportedContent .nav.navbar-nav")[0].appendChild(_item);
       }
-    }
       const _nav = document.querySelectorAll('.navbar.navbar-expand-lg .nav .nav-item');
       _nav.forEach(element => {
         if (element.childNodes[1]) {
@@ -137,7 +137,7 @@ class Variation1 extends React.Component {
           element.classList.add('has-drop-down');
           element.childNodes[0].appendChild(_arrow);
           element.childNodes[1].classList.add('ebs-accordion-dropdown');
-          const _html =  element.childNodes[0].innerHTML;
+          const _html = element.childNodes[0].innerHTML;
           const _span = document.createElement('span');
           _span.innerHTML = _html;
           _span.classList.add('nav-link');
@@ -159,7 +159,7 @@ class Variation1 extends React.Component {
     if (panel) {
       /*if pannel is already open - minimize*/
       if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
+        panel.style.maxHeight = null;
         _this.classList.remove("ebs-menu-active");
       } else {
 
@@ -192,40 +192,40 @@ class Variation1 extends React.Component {
                 className="ebs-logo-main text-left"
               >
                 <ActiveLink target={event.eventsiteSettings?.third_party_redirect === 0 ? `_self` : '_blank'} href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
-                  
-                    {event.settings.header_logo ? (
-                      <img
-                        src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
-                        alt=""
-                      />
-                    ) : (
-                      <img
-                        src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
-                        alt=""
-                      />
-                    )}
-                  
+
+                  {event.settings.header_logo ? (
+                    <img
+                      src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
+                      alt=""
+                    />
+                  )}
+
                 </ActiveLink>
               </div>
             </div>
             <div id="ebs-header-wrapper" className="col-lg-9 col-6 d-flex align-items-center justify-content-end">
               {parseInt(event.eventsiteSettings.eventsite_menu) === 1 && <nav className="navbar navbar-expand-lg navbar-light">
-                  <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    onClick={() => {
-                      document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
-                      this.setState({ showMenu: !this.state.showMenu })
-                    }
-                    }
-                    aria-label="Toggle navigation"
-                  >
-                    {!this.state.showMenu ? <span className="navbar-toggler-icon"></span> : <span style={{fontSize: 34, marginTop: 2 ,lineHeight: 1 ,height: 30}} className="material-icons">close</span>}
-                  </button>
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  onClick={() => {
+                    document.getElementsByTagName('body')[0].classList.toggle('un-scroll');
+                    this.setState({ showMenu: !this.state.showMenu })
+                  }
+                  }
+                  aria-label="Toggle navigation"
+                >
+                  {!this.state.showMenu ? <span className="navbar-toggler-icon"></span> : <span style={{ fontSize: 34, marginTop: 2, lineHeight: 1, height: 30 }} className="material-icons">close</span>}
+                </button>
                 <div
                   className={`collapse navbar-collapse ${this.state.showMenu ? "show" : ""
                     }`}
@@ -249,19 +249,19 @@ class Variation1 extends React.Component {
                               aria-current="page"
                               href={`/${this.props.event.url}/cms/${menu.page_id}`}
                             >
-                                {menu.module}
+                              {menu.module}
                             </ActiveLink>
                           )
                         ) : (
-                           (
+                          (
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
                               target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
                               href={`${menu.menu_url}`}
                             >
-                                {menu.module}
-                            </ActiveLink> 
+                              {menu.module}
+                            </ActiveLink>
                           )
                         )}
                         {menu.alias === "gallery" && (
@@ -279,7 +279,7 @@ class Variation1 extends React.Component {
                                   }
                                   key={myaccount.id}
                                 >
-                                    {myaccount.module}
+                                  {myaccount.module}
                                 </ActiveLink>
                               </li>
                             ))}
@@ -291,23 +291,22 @@ class Variation1 extends React.Component {
                               (myaccount, k) => (
                                 <li className="nav-item" key={k}>
                                   {myaccount.alias !== "login" ? (
-                                 ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
-                                   <ActiveLink
-                                    aria-current="page"
-                                    className="nav-link" activeClassName="nav-link active"
-                                    href={`${
-                                      myaccount.alias === 'register' ? this.props.regisrationUrl :
-                                      "/" +
-                                      this.props.event.url +
-                                      "/" +
-                                      myaccount.alias
-                                    }`}
-                                    key={myaccount.id}
-                                  >
-                                      {myaccount.module}
-                                  </ActiveLink> : null
+                                    ((myaccount.alias === 'register' && this.props.registerDateEnd) || (myaccount.alias !== 'register')) ?
+                                      <ActiveLink
+                                        aria-current="page"
+                                        className="nav-link" activeClassName="nav-link active"
+                                        href={`${myaccount.alias === 'register' ? this.props.regisrationUrl :
+                                          "/" +
+                                          this.props.event.url +
+                                          "/" +
+                                          myaccount.alias
+                                          }`}
+                                        key={myaccount.id}
+                                      >
+                                        {myaccount.module}
+                                      </ActiveLink> : null
                                   ) :
-                                    <div className="nav-link"  onClick={() => { this.props.setShowLogin(true) }}>
+                                    <div className="nav-link" onClick={() => { this.props.setShowLogin(true) }}>
                                       {myaccount.module}
                                     </div>
                                   }
@@ -319,7 +318,7 @@ class Variation1 extends React.Component {
                                 className="nav-link" activeClassName="nav-link active"
                                 href={`/${event.url}/profile`}
                               >
-                                  My Profile
+                                My Profile
                               </ActiveLink>
                             </li>
                             )}
@@ -362,7 +361,7 @@ class Variation1 extends React.Component {
                                               }
                                               key={subitem.id}
                                             >
-                                                {subitem.info.name}
+                                              {subitem.info.name}
                                             </ActiveLink>
                                           )}
                                         </li>
@@ -375,7 +374,7 @@ class Variation1 extends React.Component {
                                   {pItem.page_type && pItem.page_type === 2 ?
                                     (
                                       <a
-                                        className="nav-link" 
+                                        className="nav-link"
                                         aria-current="page"
                                         target="_blank"
                                         rel="noreferrer"
@@ -398,7 +397,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={pItem.id}
                                       >
-                                          {pItem.info.name}
+                                        {pItem.info.name}
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -406,7 +405,7 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "additional_information" && (menus["additional_info_menu"].length > 1 ||  (menus["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type === "menu"))) && (
+                        {(menu.alias === "additional_information" && (menus["additional_info_menu"].length > 1 || (menus["additional_info_menu"].length == 1 && event.header_data["additional_info_menu"][0].page_type === "menu"))) && (
                           <ul className="dropdown-menu">
                             {menus["additional_info_menu"].map((aItem, k) =>
                               aItem.page_type && aItem.page_type === "menu" ? (
@@ -444,7 +443,7 @@ class Variation1 extends React.Component {
                                                 }
                                                 key={subitem.id}
                                               >
-                                                  {subitem.info.name}
+                                                {subitem.info.name}
                                               </ActiveLink>
                                             )}
                                         </li>
@@ -480,7 +479,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={aItem.id}
                                       >
-                                          {aItem.info.name}
+                                        {aItem.info.name}
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -525,7 +524,7 @@ class Variation1 extends React.Component {
                                               }
                                               key={subitem.id}
                                             >
-                                                {subitem.info.name}
+                                              {subitem.info.name}
                                             </ActiveLink>
                                           )}
                                         </li>
@@ -561,7 +560,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={gItem.id}
                                       >
-                                          {gItem.info.name}
+                                        {gItem.info.name}
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -569,10 +568,10 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p)=>p.id == menu.page_id) !== undefined && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) && (
+                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p) => p.id == menu.page_id) !== undefined && (menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length > 1 || menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length == 1)) && (
                           <ul className="dropdown-menu">
-                            {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
-                              (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
+                            {menus["info_pages_menu"].find((item) => (item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item) => (item.id == menu.page_id)).submenu.map((gItem, k) =>
+                              (gItem.page_type && gItem.page_type === 1 && gItem.submenu && gItem.submenu.length > 0) ? (
                                 <li className="nav-item" key={gItem.id}>
                                   <span className="nav-link">
                                     {gItem.info.name}
@@ -580,36 +579,38 @@ class Variation1 extends React.Component {
                                   {gItem.submenu && gItem.submenu.length > 0 && (
                                     <ul className="dropdown-menu">
                                       {gItem.submenu.map((subitem, k) => (
-                                        <li className="nav-item" key={k}>
-                                          {subitem.page_type &&
-                                            subitem.page_type === 3 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              target="_blank"
-                                              rel="noreferrer"
-                                              href={`${subitem.website_protocol}${subitem.url}`}
-                                            >
-                                              {subitem.info.name}
-                                            </a>
-                                          ) : (
-                                            <ActiveLink
-                                              aria-current="page"
-                                              className="nav-link" activeClassName="nav-link active"
-                                              href={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                subitem.id
-                                              }
-                                              key={subitem.id}
-                                            >
+                                        subitem.status == 1 && (
+                                          <li className="nav-item" key={k}>
+                                            {subitem.page_type && subitem.page_type === 3 ? (
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
                                                 {subitem.info.name}
-                                            </ActiveLink>
-                                          )}
-                                        </li>
+                                              </a>
+                                            ) : (
+                                              <ActiveLink
+                                                aria-current="page"
+                                                className="nav-link"
+                                                activeClassName="nav-link active"
+                                                href={
+                                                  "/" +
+                                                  this.props.event.url +
+                                                  "/" +
+                                                  menu.alias +
+                                                  "/" +
+                                                  subitem.id
+                                                }
+                                                key={subitem.id}
+                                              >
+                                                {subitem.info.name}
+                                              </ActiveLink>
+                                            )}
+                                          </li>
+                                        )
                                       ))}
                                     </ul>
                                   )}
@@ -642,7 +643,7 @@ class Variation1 extends React.Component {
                                         }
                                         key={gItem.id}
                                       >
-                                          {gItem.info.name}
+                                        {gItem.info.name}
                                       </ActiveLink>
                                     )}
                                 </li>
@@ -652,7 +653,7 @@ class Variation1 extends React.Component {
                         )}
                       </li>
                     ))}
-                   
+
                   </ul>
                 </div>
               </nav>}
