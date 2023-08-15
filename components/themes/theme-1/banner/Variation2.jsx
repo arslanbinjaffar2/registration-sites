@@ -82,7 +82,7 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
   };
 
   const WrapperLayout = (props) => {
-    const _bgLayer = (props.data?.info?.title.length > 0 && settings.title === 1) || (props.data?.info?.message.length > 0 && settings.caption === 1) || (settings.register_button === 1);
+    const _bgLayer = (props.data?.info?.title.length > 0 && settings.title === 1) || (props.data?.info?.message.length > 0 && settings.caption === 1);
 
     if (props.data && Number(props.data.video_type) === 1) {
       return (
