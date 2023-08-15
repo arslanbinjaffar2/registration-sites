@@ -568,7 +568,7 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p) => p.id == menu.page_id) !== undefined && (menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length > 1 || menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length == 1)) && (
+                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p) => p.id == menu.page_id) !== undefined && (menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length > 1 ||  menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length == 1) ) && (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item) => (item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item) => (item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1 && gItem.submenu && gItem.submenu.length > 0) ? (
