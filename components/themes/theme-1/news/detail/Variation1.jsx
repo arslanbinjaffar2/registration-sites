@@ -13,7 +13,7 @@ import {
 } from "react-share";
 import Image from 'next/image'
 
-const Variation1 = ({ event, news, sidebar, newsSettings, newsSubscriberSetting }) => {
+const Variation1 = ({ event, news, sidebar, newsSettings }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   return (
@@ -125,7 +125,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings, newsSubscriberSetting 
               </div>
             </div>
           </div>
-          {newsSubscriberSetting.status != 0 && typeof window !== 'undefined' && (
+          {newsSettings.subscriber_id != null && newsSettings.status != 0 && typeof window !== 'undefined' && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe
