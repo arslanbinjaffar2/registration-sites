@@ -67,9 +67,7 @@ const News = (props) => {
     <Suspense fallback={<PageLoader />}>
       {news ? (
         <React.Fragment>
-          <Head>
-            <title>{event.eventsiteModules.news}</title>
-        </Head>
+        {!props.homePage && <Head><title>{event.eventsiteModules.news}</title></Head>}
         {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
         {news.length > 0 ? <Component
           news={news}
