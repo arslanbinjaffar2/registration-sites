@@ -22,27 +22,27 @@ const Index = (props) => {
 
     const onConfirm = async () => {
         const response = await axios.post(
-            `${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee`,
+            `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee`,
             { id, event_id, email }
-        );
-        if (response.data.success) {
-            router.push(
-                `/${event.url}`
-            );
-        }
-    }
-
-    useEffect(async () => {
-        const response = await axios.get(
-            `${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
         );
         if (response.data.success) {
             if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
                 window.location = event?.eventsiteSettings?.third_party_redirect_url;
             }
             else {
-                router.push(`/${event.url}`);
+                router.push(
+                    `/${event.url}`
+                );
             }
+        }
+    }
+
+    useEffect(async () => {
+        const response = await axios.get(
+            `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
+        );
+        if (response.data.success) {
+            router.push(`/${event.url}`);
         } else {
             setError(response.data.message)
         }
