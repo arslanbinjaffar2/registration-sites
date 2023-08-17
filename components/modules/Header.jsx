@@ -112,7 +112,7 @@ const Header = ({ location, history }) => {
       }
       else if(item.alias == 'info_pages'){
         let page = event.header_data["info_pages_menu"].find((p)=>p.id == item.page_id);
-        rItem['menu_url'] =  page !== null && page !== undefined && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : (page['submenu'][0].page_type === 3 ? `/${page['submenu'][0].website_protocol}${page['submenu'][0].url}` : `/${event.url}/${item.alias}` ) ) : `/${event.url}/${item.alias}`;
+        rItem['menu_url'] =  page !== null && page !== undefined && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : (page['submenu'][0].page_type === 3 ? `${page['submenu'][0].website_protocol}${page['submenu'][0].url}` : `/${event.url}/${item.alias}` ) ) : `/${event.url}/${item.alias}`;
         rItem['link_path'] = page !== null && page !== undefined && page['submenu'].length == 1 ? true : false;
       }
       return rItem;

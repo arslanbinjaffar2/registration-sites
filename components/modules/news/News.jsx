@@ -31,7 +31,7 @@ const News = (props) => {
     return in_array(module.alias, ["news"]);
   });
 
-  const limit = props.homePage ? 6 : 10;
+  const limit = props.homePage ? "default_setting" : 10;
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
