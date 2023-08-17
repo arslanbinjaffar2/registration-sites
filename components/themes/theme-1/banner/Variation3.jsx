@@ -61,11 +61,11 @@ const Variation3 = ({ event, banner, countdown, regisrationUrl, settings, regist
 									<div style={{ position: 'relative' }} className="parallax-text">
 										{slides.info?.title && settings.title === 1 &&
 											<div className="edgtf-custom-font-holder ebs-banner-title" style={{ fontFamily: 'Rubik', fontSize: '100px', lineHeight: '110px', fontWeight: '500', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-												<span style={{ color: '#fff' }}> {slides.info.title} </span>
+												<span style={{ color:  slides?.title_color ? slides?.title_color : "#fff" }}> {slides.info.title} </span>
 											</div>
 										}
 										{slides.info?.message && settings.caption === 1 && <div className="edgtf-custom-font-holder ebs-banner-subtitle"
-											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
+											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff", maxWidth: 850 }}>
 											{slides.info.message}
 										</div>}
 										{settings.register_button === 1 && registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && <div className="edgtf-custom-font-holder ebs-custom-button-holder"

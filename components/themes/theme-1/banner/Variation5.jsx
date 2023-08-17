@@ -75,7 +75,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                             color: "#ec008c",
                           }}
                         >
-                          <span style={{ color: "#fff" }}>
+                          <span style={{ color:  slides?.title_color ? slides?.title_color : "#fff" }}>
                             {" "}
                             {slides.info.title}{" "}
                           </span>
@@ -91,7 +91,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                             fontWeight: "400",
                             letterSpacing: "0px",
                             textAlign: "left",
-                            color: "#ffffff",
+                            color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff",
                             maxWidth: 850,
                           }}
                         >
