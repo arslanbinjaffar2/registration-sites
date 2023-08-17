@@ -173,7 +173,7 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
                     color: "#ec008c",
                   }}
                 >
-                  <span style={{ color: "#fff" }}>
+                  <span style={{ color:  data?.title_color ? data?.title_color : "#fff" }}>
                     {" "}
                     {data && data.info && settings.title === 1
                       && data.info.title}
@@ -193,8 +193,8 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
                     minHeight: 151
                   }}
                 >
-                  <div id="typewriter"></div>
-                  <span style={{ animation: 'blink .7s infinite' }} className="typed-cursor">_</span>
+                  <div style={{ color:  data?.sub_title_color ? data?.sub_title_color : "#fff" }}  id="typewriter"></div>
+                  <span  style={{ animation: 'blink .7s infinite', color:  data?.sub_title_color ? data?.sub_title_color : "#fff" }} className="typed-cursor">_</span>
                 </div>}
                 {/* <div
                     className="edgtf-custom-font-holder ebs-banner-subtitle"
