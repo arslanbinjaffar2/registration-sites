@@ -183,7 +183,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
           </div>
         </div>
       </div>
-      {sponsor?.sponsors_attendee.length > 0 && <div style={{ paddingBottom: 50 }} className="">
+      {sponsor?.sponsors_attendee?.length > 0 && <div style={{ paddingBottom: 50 }} className="">
         <div className="container">
           <div className="edgtf-title-section-holder pb-1">
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
