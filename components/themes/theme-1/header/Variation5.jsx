@@ -26,11 +26,15 @@ class Variation5 extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     window.addEventListener("scroll", this.handleScroll.bind(this), false);
+    if (!this.state.showMenu) {
+      document.getElementsByTagName("body")[0].classList.remove("ebs-scroll-body-content");
+    }
   }
 
   componentWillUnmount() {
     this._isMounted = false;
     window.removeEventListener("scroll", this.handleScroll.bind(this));
+    
   }
 
   componentDidUpdate(prevProps) {
