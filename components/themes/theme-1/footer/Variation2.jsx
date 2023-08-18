@@ -71,9 +71,9 @@ const Variation2 = ({event, siteLabels}) => {
                                         <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
                                         {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
                                             <div style={{marginBottom:"10px"}}  key={i}>
-                                            <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>
-                                            <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>
-                                            <p>{event?.labels?.GENERAL_PHONE}:  {person.phone}</p>
+                                            {(person.first_name !== '' || person.first_name !== '') && <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>}
+                                            {person.email !== '' && <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>}
+                                            {person.phone !== '' && <p>{event?.labels?.GENERAL_PHONE}: {person.phone}</p>}
                                             </div>
                                         ))}
                                     </div>
