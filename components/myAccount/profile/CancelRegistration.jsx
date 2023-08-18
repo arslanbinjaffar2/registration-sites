@@ -48,8 +48,9 @@ const CancelRegistration = () => {
      {(cancellationDatePassed !== undefined && cancellationDatePassed === 0) &&  (enable_cancel == true)? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
         <div className="ebs-cancel-registaration">
-          <div className="ebs-header">
-            <h2><i className="material-icons">highlight_off</i>Are you sure you want to cancel</h2>
+          <div className="ebs-header" style={{display:'block'}}>
+            <h2><i className="material-icons">highlight_off</i>Cancel registration order</h2>
+            <span>Are you sure you want to cancel registration order</span>
           </div>
             <div className="generic-form">
             <div className='mb-3'>
