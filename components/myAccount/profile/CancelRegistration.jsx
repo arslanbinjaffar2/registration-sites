@@ -47,50 +47,61 @@ const CancelRegistration = () => {
     <React.Fragment>
      {(cancellationDatePassed !== undefined && cancellationDatePassed === 0) &&  (enable_cancel == true)? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
-          <div className="ebs-header text-center">
-            <h2>Are you sure you want to cancel</h2>
+        <div className="ebs-cancel-registaration">
+          <div className="ebs-header" style={{display:'block'}}>
+            <h2><i className="material-icons">highlight_off</i>Cancel registration order</h2>
+            <span style={{marginLeft:'6px'}}>Are you sure you want to cancel registration order</span>
           </div>
             <div className="generic-form">
-            <div className='d-flex justify-content-between w-25'>
-                <div style={{textAlign:'left', fontSize:'bold', color:'#000'}} className="col-md-6">
-                        {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order'}
+            <div className='mb-3'>
+                <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
+                        {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
                 </div>
-                <div className='d-flex justify-content-between'>
-                  <label className="label-radio me-2">
-                  {event.labels.GENERAL_YES !== undefined ? event.labels.GENERAL_YES : 'Yes'}
-                    </label>
+                <div className='form-check mb-0 form-check-inline me-5'>
+                   
                     <input
+                      className='form-check-input mt-1'
                       type="radio"
                       name="canceloption" 
+                      id="whole_order" 
                       value="whole_order"
                       checked={cancelOption === "whole_order" ? true : false }
                       onChange={(e)=>{setCancelOption(e.target.value)}}
                     />
-                </div>
-                  <div className='d-flex justify-content-between'>
-                    <label className="label-radio me-2">
-                    {event.labels.GENERAL_NO !== undefined ? event.labels.GENERAL_NO : 'No'}
+                     <label for="whole_order" className="form-check-label text-dark">
+                      {event.labels.GENERAL_YES !== undefined ? event.labels.GENERAL_YES : 'Yes'}
                     </label>
+                </div>
+                  <div className='form-check-inline mb-0 form-check'>
                     <input
+                      className='form-check-input mt-1'
                       type="radio"
                       name="canceloption" 
+                      id="registration_only" 
                       value="registration_only"
                       checked={cancelOption === "registration_only" ? true : false }
                       onChange={(e)=>{setCancelOption(e.target.value)}}
                     />
+                    <label for="registration_only" className="form-check-label text-dark">
+                      {event.labels.GENERAL_NO !== undefined ? event.labels.GENERAL_NO : 'No'}
+                    </label>
                   </div>
             </div>
-              <p>Your comment:</p>
+              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>Your comments:</p>
               <textarea
-                placeholder="Your comment"
+                placeholder="Comments here..."
                 cols={30}
                 rows={5}
                 value={comment}
                 onChange={(e)=> setComment(e.currentTarget.value)}
               ></textarea>
-            </div>
-          <button className="btn btn-save-next btn-loader btn-danger" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
+              <div className='pt-3'>
+                <button className="btn px-3 btn-save-next btn-loader btn-danger rounded-1" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
+              </div>
 
+            </div>
+
+        </div>
         </div>
       </div> : <PageLoader/>}
     </React.Fragment>

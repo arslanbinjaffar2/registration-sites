@@ -101,6 +101,10 @@ $enable-hover-media-query:  false !default;
 $enable-grid-classes:       true !default;
 $enable-print-styles:       true !default;
 
+$form-check-input-width: 1.3em;
+$form-check-input-height: 1.3em;
+$form-check-padding-start: $form-check-input-width + 0.8em;
+
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.

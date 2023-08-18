@@ -94,8 +94,8 @@ export const logUserIn = (id, url, data) => {
           dispatch(setAuthId(response.data));
         }
         else if(response.data.redirect === "dashboard"){
-          dispatch(setLoginData(response.data));
           localStorage.setItem(`event${id}User`, JSON.stringify(response.data.data));
+          dispatch(setLoginData(response.data));
         }else{
           dispatch(setError("Something went wrong...."));
         }

@@ -3358,3 +3358,38 @@
 .ebs-classic-banner .banner-wrapper .slick-dots {
   bottom: 10px !important;
 }
+
+.ebs-cancel-registaration {
+  background: #F8F8F8;
+  .ebs-header {
+    border-bottom: 1px solid $border;
+    padding: 30px;
+    h2 {
+      font-size: 26px;
+      font-weight: 500;
+      color: $black;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      .material-icons {
+        font-size: 34px;
+        margin-right: 10px;
+        color: #343A40;
+      }
+    }
+  }
+  .generic-form {
+    padding: 30px;
+    textarea {
+      resize: none;
+      min-height: 140px;
+      border-radius: 0;
+      border: 1px solid $border;
+    }
+    .form-check-input:checked[type="radio"] {
+      background-image: url(/img/ico-input-radio.svg);
+      background-color: transparent;
+      border-color: $color-danger;
+    }
+  }
+}
