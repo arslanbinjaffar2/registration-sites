@@ -241,6 +241,7 @@ class Variation2 extends React.Component {
                           )
                         ) : (
                          
+                          (menu.alias !== "myaccount") ? (
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
@@ -248,7 +249,17 @@ class Variation2 extends React.Component {
                               href={`${menu.menu_url}`}
                             >
                                 {menu.module}
-                            </ActiveLink>
+                            </ActiveLink> 
+                          ) : (menu.alias === "myaccount" && !this.props.userExist) ? (
+                            <ActiveLink
+                              className="nav-link" activeClassName="nav-link active"
+                              aria-current="page"
+                              target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
+                              href={`${menu.menu_url}`}
+                            >
+                                {menu.module}
+                            </ActiveLink> 
+                          ) : null
                           
                         )}
 

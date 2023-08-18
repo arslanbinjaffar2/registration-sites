@@ -217,7 +217,7 @@ class Variation4 extends React.Component {
                                     {menues.map((menu) => (
                                       <li className="nav-item" key={menu.id}>
                                         {(menu.alias === "gallery" ||
-                                          (menu.alias === "myaccount" && !this.props.userExist && !this.props.userExist) ||
+                                          (menu.alias === "myaccount" && !this.props.userExist) ||
                                           menu.alias === "info_pages" ||
                                           menu.alias ===
                                           "practicalinformation" ||
