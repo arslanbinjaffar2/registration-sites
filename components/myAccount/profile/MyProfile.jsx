@@ -51,7 +51,7 @@ const MyProfile = () => {
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">
                           {(attendee.info && attendee.info.initial) && attendee.info.initial}
-                          {attendee.first_name && attendee.first_name}
+                          {attendee.first_name && attendee.first_name} {" "}
                           {attendee.last_name && attendee.last_name}
                         </div>
                         {(attendee.info && attendee.info.registration_type) && <div className="ebs-profile-status">{attendee.info.registration_type}</div>}
@@ -67,17 +67,16 @@ const MyProfile = () => {
                         {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
                       </div>
                       <div className="ebs-profile-social-links">
-                        {attendee.phone && <div className="ebs-profile-social-links-row">
-                          <strong>{labels?.phone}:</strong>
-                          <span>{attendee.phone}</span>
+                        {attendee.phone && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5">phone_iphone</em><span>{attendee.phone}</span>
                         </div>
                         }
-                        {attendee.email && <div className="ebs-profile-social-links-row">
-                          <strong>{labels?.email}:</strong>
-                          <span>{attendee.email}</span>
+                         {attendee.email && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5 me-1">mail_outline</em>
+                          <a href={`mailto:${attendee.email}`}>{attendee.email}</a>
                         </div>}
-                        {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row">
-                          <strong>Website:</strong>
+                        {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5 me-1">language</em>
                           <span><a target='_blank' rel="noreferrer" href={`${attendee.info.website_protocol}${attendee.info.website}`}>{`${attendee.info.website_protocol}${attendee.info.website}`}</a></span>
                         </div>}
                       </div>
