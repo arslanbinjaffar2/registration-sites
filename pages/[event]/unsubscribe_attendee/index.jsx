@@ -64,7 +64,7 @@ const Index = (props) => {
                                     {error ? (
                                         <>{event.labels.REGISTRATION_SITE_HEADER_ALERT !== undefined ? event.labels.REGISTRATION_SITE_HEADER_ALERT : "Error"}</>
                                     ) : (
-                                        <>{event.labels.EVENTSITE_BILLING_CONFIRMATION !== undefined ? event.labels.EVENTSITE_BILLING_CONFIRMATION : "Confirmation"}</>
+                                        <>{event.labels.EVENTSITE_ATTENDEE_CANCELLATION_CONFIRMATION !== undefined ? event.labels.EVENTSITE_ATTENDEE_CANCELLATION_CONFIRMATION : "Confirmation"}</>
                                     )}
                                 </div>
                                 <div className="ebs-event-description">
