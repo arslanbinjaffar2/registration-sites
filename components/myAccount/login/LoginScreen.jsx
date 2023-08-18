@@ -33,6 +33,8 @@ const LoginScreen = (props) => {
   const [step, setStep] = useState("login");
 
   const router = useRouter();
+  
+  const isAuthenticated = JSON.parse(localStorage.getItem(`event${event.id}User`));
 
   const enable_cancel = isAuthenticated ? JSON.parse(localStorage.getItem(`EI${event.url}EC`)) : false;
 
