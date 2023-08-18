@@ -5,6 +5,7 @@ import React from "react";
 const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
   const WrapperLayout = (props) => {
+  const _bgLayer = (props.slides.info?.title.length > 0 && settings.title === 1) || (props.slides.info?.message.length > 0 && settings.caption === 1) || (settings.register_button === 1);
 
     if (props.slides && Number(props.slides.video_type) === 1) {
       return (
@@ -12,7 +13,8 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, regist
           style={{
             backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image
               })`,
-            backgroundPosition: "50% 0",
+            backgroundPosition: "50% 0"
+            , backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
           }}
           className="background parallax-backgroud"
         >
@@ -25,7 +27,8 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, regist
       return (
         <div
           style={{
-            backgroundPosition: "50% 0",
+            backgroundPosition: "50% 0"
+            , backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
           }}
           className="background parallax-backgroud"
         >
