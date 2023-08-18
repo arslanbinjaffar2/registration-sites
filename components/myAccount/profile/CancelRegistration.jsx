@@ -94,8 +94,8 @@ const CancelRegistration = () => {
                 value={comment}
                 onChange={(e)=> setComment(e.currentTarget.value)}
               ></textarea>
-              <div className='pt-2'>
-                <button className="btn btn-save-next btn-loader btn-danger" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
+              <div className='pt-3'>
+                <button className="btn px-3 btn-save-next btn-loader btn-danger rounded-1" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
               </div>
 
             </div>
