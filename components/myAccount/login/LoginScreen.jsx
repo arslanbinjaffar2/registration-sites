@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setShowLogin
@@ -21,6 +21,7 @@ import ResetPassword from "./ResetPassword";
 import Login from "./Login";
 import ChooseProvider from "./ChooseProvider";
 import { useRouter } from 'next/router';
+import moment from "moment";
 
 const LoginScreen = (props) => {
 
@@ -33,7 +34,7 @@ const LoginScreen = (props) => {
   const [step, setStep] = useState("login");
 
   const router = useRouter();
-  
+
   const isAuthenticated = JSON.parse(localStorage.getItem(`event${event.id}User`));
 
   const enable_cancel = isAuthenticated ? JSON.parse(localStorage.getItem(`EI${event.url}EC`)) : false;
