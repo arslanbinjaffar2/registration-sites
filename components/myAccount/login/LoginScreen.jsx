@@ -34,6 +34,18 @@ const LoginScreen = (props) => {
 
   const router = useRouter();
 
+  const enable_cancel = isAuthenticated ? JSON.parse(localStorage.getItem(`EI${event.url}EC`)) : false;
+
+  const cancellationDatePassed = useMemo(() => {
+    if (event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00") {
+      return 0;
+    }
+    let dateToday = moment();
+    let cancelationEndDate = moment(`${moment(event.eventsiteSettings.cancellation_date).format("YYYY-MM-DD")} ${event.eventsiteSettings.cancellation_end_time}`);
+    let passed = cancelationEndDate.diff(dateToday);
+    return passed > 0 ? 0 : 1;
+  }, [event]);
+
   useEffect(() => {
     if (authenticationId !== null && redirect === "choose-provider") {
       setStep("chooseProvider");
@@ -44,6 +56,9 @@ const LoginScreen = (props) => {
       } 
       else if(event.eventsiteSettings.attendee_my_billing_history === 1){
         router.push(`/${event.url}/profile/my-billing`);
+      }
+      else if((event.eventsiteSettings.attendee_my_reg_cancel === 1 && cancellationDatePassed === 0 && (enable_cancel == true))){
+        router.push(`/${event.url}/profile/cancel-registration`);
       }
       else if(event.eventsiteSettings.attendee_my_sub_registration === 1){
         router.push(`/${event.url}/profile/my-sub-registration`);
