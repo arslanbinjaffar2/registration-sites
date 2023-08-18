@@ -11,6 +11,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
 
   const search = (text) => {
     setFilterAlphabet('all');
+    setSelectedCategory('all');
     setSearchText(text);
   }
 
