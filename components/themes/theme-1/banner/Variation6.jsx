@@ -53,12 +53,12 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                       className="parallax-text"
                     >
                       {slides.info.title && settings.title === 1 && (
-                        <div className="ebs-banner-title">
+                        <div style={{color:  slides?.title_color ? slides?.title_color : "#fff"}} className="ebs-banner-title">
                           {slides.info.title}
                         </div>
                       )}
                       {slides.info.message && settings.caption === 1 && (
-                        <div className="ebs-banner-subtitle">
+                        <div style={{color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff"}} className="ebs-banner-subtitle">
                           {slides.info.message}
                         </div>
                       )}

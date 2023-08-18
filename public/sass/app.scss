@@ -2816,6 +2816,12 @@
           margin-bottom: 25px;
           text-transform: uppercase;
           padding-top: 4px;
+          &:empty {
+            display: none;
+          }
+          &:empty ~ p {
+            margin-left: 0;
+          }
         }
       }
     }
