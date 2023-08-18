@@ -39,7 +39,30 @@ const LoginScreen = (props) => {
       setStep("chooseProvider");
     }
     else if (userData !== null && redirect === "dashboard") {
-      router.push(`/${event.url}/profile`);
+      if(event.eventsiteSettings.attendee_my_profile === 1){
+        router.push(`/${event.url}/profile`);
+      } 
+      else if(event.eventsiteSettings.attendee_my_billing_history === 1){
+        router.push(`/${event.url}/profile/my-billing`);
+      }
+      else if(event.eventsiteSettings.attendee_my_sub_registration === 1){
+        router.push(`/${event.url}/profile/my-sub-registration`);
+      }
+      else if(event.eventsiteSettings.attendee_my_program === 1) {
+        router.push(`/${event.url}/profile/my-program`);
+      }
+      else if(event.eventsiteSettings.show_survey === 1){
+        router.push(`/${event.url}/profile/surveys`);
+      }
+      else if(event.eventsiteSettings.network_interest === 1){
+        router.push(`/${event.url}/profile/keyword-interest`);
+      }
+      else if (event.eventsiteSettings.show_subscriber === 1){
+        router.push(`/${event.url}/profile/news-letter-subscription`);
+      }
+      else {
+        router.push(`/${event.url}`);
+      }
       onCancel();
     }
     else if (authenticationId !== null && redirect === "verification") {

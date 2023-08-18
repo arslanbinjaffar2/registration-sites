@@ -104,17 +104,23 @@ const MyProfileSidebar = (props) => {
     <React.Fragment>
       {<div ref={frame} className="ebs-profile-top-area">
         <div onClick={handleClick} className={`${toggleMenu ? 'ebs-active-state' : ''} ebs-sideber-icon`}>
-          {settings?.profile_picture?.status ===1 && attendee?.image && attendee?.image !== "" ? (
-            <img className="ebs-image-solid" src={
-              process.env.NEXT_APP_EVENTCENTER_URL +
-              "/assets/attendees/" +
-              attendee?.image
-            } alt="" />
-          ) : (
-            <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
-              require("public/img/square.jpg")
-            } alt="" />
-          )}
+          <div className="d-flex align-items-center">
+            <span className="d-block position-relative" style={{width: 26,height: 26}}>
+              {settings?.profile_picture?.status ===1 && attendee?.image && attendee?.image !== "" ? (
+                <img className="ebs-image-solid" width="26" src={
+                  process.env.NEXT_APP_EVENTCENTER_URL +
+                  "/assets/attendees/" +
+                  attendee?.image
+                } alt="" />
+              ) : (
+                <Image objectFit='contain' width="26" layout="fill" className="ebs-image-solid" src={
+                  require("public/img/square.jpg")
+                } alt="" />
+              )}
+            </span>
+            {!toggleMenu && <i style={{fontSize: 16}} className="material-icons ml-2">expand_more</i>}
+            {toggleMenu && <i style={{fontSize: 16}} className="material-icons ml-2">expand_less</i>}
+          </div>
         </div>
         {toggleMenu && <div className="ebs-sidebar-account">
           <ul>

@@ -35,7 +35,7 @@ const Header = ({ location, history }) => {
     if (typeof window !== 'undefined') {
       const handleRouteChange = (url) => {
         document.getElementsByTagName('body')[0].classList.remove('un-scroll');
-        setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false);
+        setUserExist(localStorage?.getItem(`event${event.id}User`) ? true : false);
       }
 
       router.events.on('routeChangeStart', handleRouteChange)
