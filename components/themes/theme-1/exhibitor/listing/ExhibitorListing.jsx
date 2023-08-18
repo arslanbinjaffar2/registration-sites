@@ -10,6 +10,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
   const element = useRef();
 
   const search = (text) => {
+    setSelectedCategory('all')
     setFilterAlphabet('all');
     setSearchText(text);
   }
