@@ -50,7 +50,7 @@ const MyProfile = () => {
                       )}
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">
-                          {(attendee.info && attendee.info.initial) && attendee.info.initial}
+                          {(attendee.info && attendee.info.initial) && attendee.info.initial} {" "}
                           {attendee.first_name && attendee.first_name} {" "}
                           {attendee.last_name && attendee.last_name}
                         </div>
