@@ -50,12 +50,12 @@ const CancelRegistration = () => {
         <div className="ebs-cancel-registaration">
           <div className="ebs-header" style={{display:'block'}}>
             <h2><i className="material-icons">highlight_off</i>Cancel registration order</h2>
-            <span>Are you sure you want to cancel registration order</span>
+            <span style={{marginLeft:'6px'}}>Are you sure you want to cancel registration order</span>
           </div>
             <div className="generic-form">
             <div className='mb-3'>
                 <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
-                        {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order'}
+                        {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
                 </div>
                 <div className='form-check mb-0 form-check-inline me-5'>
                    
@@ -87,9 +87,9 @@ const CancelRegistration = () => {
                     </label>
                   </div>
             </div>
-              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>Your comment:</p>
+              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>Your comments:</p>
               <textarea
-                placeholder="Your comment"
+                placeholder="Comments here..."
                 cols={30}
                 rows={5}
                 value={comment}
