@@ -193,7 +193,7 @@ class Variation5 extends React.Component {
                           {topMenu.map((menu) => (
                             <li className="nav-item" key={menu.id}>
                               {(menu.alias === "gallery" ||
-                                menu.alias === "myaccount" ||
+                                (menu.alias === "myaccount" && !this.props.userExist) ||
                                 menu.alias === "practicalinformation" ||
                                 menu.alias === "additional_information" ||
                                 menu.alias === "general_information" ||

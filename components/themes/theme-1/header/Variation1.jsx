@@ -253,7 +253,7 @@ class Variation1 extends React.Component {
                             </ActiveLink>
                           )
                         ) : (
-                           (
+                         
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
@@ -262,7 +262,7 @@ class Variation1 extends React.Component {
                             >
                                 {menu.module}
                             </ActiveLink> 
-                          )
+                          
                         )}
                         {menu.alias === "gallery" && (
                           <ul className="dropdown-menu">
