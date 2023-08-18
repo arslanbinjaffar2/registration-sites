@@ -42,7 +42,7 @@ const ExhibitorPopup = ({ width, onClick, data, eventUrl }) => {
                                 {data.name && <h2>{data.name}</h2>}
                                 {data.description && <p dangerouslySetInnerHTML={{ __html: data.description }}></p>}
                                 <div className="ebs-social-icons">
-                                    {exhibitor.facebook.replace(/^https?:\/\//, "") && <a href={data.facebook}><i className="fa fa-facebook" /></a>}
+                                    {data.facebook.replace(/^https?:\/\//, "") && <a href={data.facebook}><i className="fa fa-facebook" /></a>}
                                     {data.twitter.replace(/^https?:\/\//, "") && <a href={data.twitter}><i className="fa fa-twitter" /></a>}
                                     {data.linkedin.replace(/^https?:\/\//, "") && <a href={data.linkedin}><i className="fa fa-linkedin" /></a>}
                                 </div>
