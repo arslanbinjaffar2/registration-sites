@@ -49,8 +49,8 @@ const CancelRegistration = () => {
         <div className="edgtf-container-inner container">
         <div className="ebs-cancel-registaration">
           <div className="ebs-header" style={{display:'block'}}>
-            <h2><i className="material-icons">highlight_off</i>Cancel registration order</h2>
-            <span style={{marginLeft:'6px'}}>Are you sure you want to cancel registration order</span>
+            <h2><i className="material-icons">highlight_off</i>{event.labels.CANCEL_REGISTRATION_ORDER_HEADING}</h2>
+            <span style={{marginLeft:'6px'}}>{event.labels.REGISTRATION_CANCEL_MESSAGE}</span>
           </div>
             <div className="generic-form">
             <div className='mb-3'>
@@ -87,16 +87,16 @@ const CancelRegistration = () => {
                     </label>
                   </div>
             </div>
-              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>Your comments:</p>
+              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>{event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}</p>
               <textarea
-                placeholder="Comments here..."
+                placeholder={event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}
                 cols={30}
                 rows={5}
                 value={comment}
                 onChange={(e)=> setComment(e.currentTarget.value)}
               ></textarea>
               <div className='pt-3'>
-                <button className="btn px-3 btn-save-next btn-loader btn-danger rounded-1" onClick={()=>{ cancel() }} > {cancelling ? "Cancelling..." : "Confirm cancelling registration"} </button>
+                <button disabled={cancelling} className="btn px-3 btn-save-next btn-loader btn-danger rounded-1" onClick={()=>{ cancel() }} > {event.labels.REGISTRATION_CANCEL_BUTTON_LABEL} </button>
               </div>
 
             </div>
