@@ -87,7 +87,7 @@ const onSubmit = (e) =>{
             {Number(event.attendee_settings.hide_password) === 0 && Number(event.attendee_settings.forgot_link) === 0 && Number(event.attendee_settings.authentication) === 0 && <div className="ebs-forgot-password"><span onClick={() => setStep("requestResetPassword") }>{event.labels.EVENTSITE_FORGOT_PASSWORD !== undefined ? event.labels.EVENTSITE_FORGOT_PASSWORD : "Forgot your password?"}</span></div>}
               <div className="ebs-form-accept">
                 <label className="ebs-label-accept">
-                  <input type="checkbox" name="acceptTermsConditions" value={formData.acceptTermsConditions} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('acceptTermsConditions')} /> <span className="ebs-accept-text">{event.labels.LOGIN_ACCEPT_TERMS_CONDITIONS ? event.labels.LOGIN_ACCEPT_TERMS_CONDITIONS : 'I accept'} <span onClick={handleTermsCondition}>{event.labels.EVENTSITE_TERMANDCONDITIONS !== undefined ? event.labels.EVENTSITE_TERMANDCONDITIONS : "term and conditions"}</span>.</span>
+                  <input type="checkbox" name="acceptTermsConditions" value={formData.acceptTermsConditions} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('acceptTermsConditions')} /> <span className="ebs-accept-text">{event.labels.EVENTSITE_TERM_AGREE ? event.labels.EVENTSITE_TERM_AGREE : 'I accept'} <span onClick={handleTermsCondition}>{event.labels.EVENTSITE_TERMANDCONDITIONS !== undefined ? event.labels.EVENTSITE_TERMANDCONDITIONS : "term and conditions"}</span>.</span>
                     {simpleValidator.current.message('acceptTermsConditions', formData.acceptTermsConditions, 'accepted')}
                 </label>
               </div>
