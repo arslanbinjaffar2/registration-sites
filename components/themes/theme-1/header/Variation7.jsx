@@ -308,7 +308,7 @@ class Variation7 extends React.Component {
                             ))}
                           </ul>
                         )}
-                        {menu.alias === "myaccount" && (
+                        {menu.alias === "myaccount" && !this.props.userExist && (
                           <ul className="dropdown-menu">
                             {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
