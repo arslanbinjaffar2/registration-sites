@@ -253,7 +253,7 @@ class Variation1 extends React.Component {
                             </ActiveLink>
                           )
                         ) : (
-                          (menu.alias !== "myaccount") ? (
+                         
                             <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
@@ -262,16 +262,7 @@ class Variation1 extends React.Component {
                             >
                                 {menu.module}
                             </ActiveLink> 
-                          ) : (menu.alias === "myaccount" && !this.props.userExist) ? (
-                            <ActiveLink
-                              className="nav-link" activeClassName="nav-link active"
-                              aria-current="page"
-                              target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
-                              href={`${menu.menu_url}`}
-                            >
-                                {menu.module}
-                            </ActiveLink> 
-                          ) : null
+                          
                         )}
                         {menu.alias === "gallery" && (
                           <ul className="dropdown-menu">
