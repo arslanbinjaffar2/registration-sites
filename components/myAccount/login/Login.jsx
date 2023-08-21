@@ -70,7 +70,7 @@ const onSubmit = (e) =>{
             {error && <AlertMessage message={error}/>}
             {Number(event.attendee_settings.email_enable) === 1 && <div className="ebs-login-from">
               <label className="ebs-label-input">
-                <span className="ebs-label-title">Email</span>
+                <span className="ebs-label-title">{event.labels.EVENTSITE_LOGIN_PLACEHOLDER !== undefined ? event.labels.EVENTSITE_LOGIN_PLACEHOLDER : "Email"}</span>
                 <input className="ebs-input" name="email" type="email" autoComplete="false" placeholder={event.labels.EVENTSITE_LOGIN_PLACEHOLDER !== undefined ? event.labels.EVENTSITE_LOGIN_PLACEHOLDER : "Email Address"} value={formData.email} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('email')}/>
                 {simpleValidator.current.message('email', formData.email, 'required|email')}
               </label>
