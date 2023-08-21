@@ -79,7 +79,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const simpleValidator = useRef(new SimpleReactValidator({
     element: (message) => <p className="error-message">{message}</p>,
     messages: {
-      required: "This field is required!"
+      required: event.labels.REGISTRATION_FORM_FIELD_REQUIRED
     },
     autoForceUpdate: { forceUpdate: () => forceUpdate(1) }
   }))

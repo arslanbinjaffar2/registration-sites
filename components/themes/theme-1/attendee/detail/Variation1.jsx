@@ -74,7 +74,7 @@ const Variation1 = ({ attendee, labels }) => {
                             }}
                             className="info"
                           >
-                            {attendee.labels.Email !== undefined ? attendee.labels.Email : 'Email'}
+                            {attendee.labels.email !== undefined ? attendee.labels.email : 'Email'}
                           </h4>
                           <p>
                             <a
