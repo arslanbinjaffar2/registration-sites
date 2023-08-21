@@ -49,7 +49,14 @@ const Index = (props) => {
     }, []);
 
     const onCancel = () => {
-        router.push(`/${event.url}`);
+        if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
+            window.location = event?.eventsiteSettings?.third_party_redirect_url;
+        }
+        else {
+            router.push(
+                `/${event.url}`
+            );
+        }
     }
 
     return (
