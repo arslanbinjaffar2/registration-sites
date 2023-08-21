@@ -87,7 +87,7 @@ const Speaker = (props) => {
           
           loadMore={()=>{
             if(page < totalPages){
-              return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+              return <LoadMoreButton loadingLabel={event.labels.GENERAL_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
             }
           }}
           />
