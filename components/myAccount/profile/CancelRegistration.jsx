@@ -50,7 +50,7 @@ const CancelRegistration = () => {
         <div className="ebs-cancel-registaration">
           <div className="ebs-header" style={{display:'block'}}>
             <h2><i className="material-icons">highlight_off</i>{event.labels.CANCEL_REGISTRATION_ORDER_HEADING}</h2>
-            <span style={{marginLeft:'6px'}}>{event.labels.REGISTRATION_CANCEL_MESSAGE}</span>
+            {/* <span style={{marginLeft:'6px'}}>{event.labels.REGISTRATION_CANCEL_MESSAGE}</span> */}
           </div>
             <div className="generic-form">
             <div className='mb-3'>
