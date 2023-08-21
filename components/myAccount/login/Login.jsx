@@ -8,7 +8,7 @@ const Login = ({setStep, onCancel, onformSubmit, event, error, loading}) => {
     const simpleValidator = useRef(new SimpleReactValidator({
       element: (message) => <p className="error-message">{message}</p>,
       messages: {
-        required: "This field is required!",
+        required: event.labels.REGISTRATION_FORM_FIELD_REQUIRED,
         email:"Enter a valid email address",
         min:'Minimum 6 characters are required'
       },

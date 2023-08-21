@@ -24,8 +24,8 @@ const MyProfile = () => {
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
-            <h2>My profile</h2>
-            <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>Edit profile</ActiveLink>
+            <h2>{event.labels.EVENTSITE_MY_PROFILE}</h2>
+            <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>{event.labels.GENERAL_EDIT_PROFILE}</ActiveLink>
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">
@@ -85,7 +85,7 @@ const MyProfile = () => {
                 </div>
                 <div className="col-lg-9">
                   <div className="ebs-my-profile-right">
-                    <h3 className="ebs-title">Basic Information:</h3>
+                    <h3 className="ebs-title">{event.labels.REG_BASIC_INFO}</h3>
                     <div className="row d-flex">
                       <div className="col-sm-6">
                         <div className="ebs-profile-information">
