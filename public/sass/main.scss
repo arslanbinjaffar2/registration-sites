@@ -1749,11 +1749,12 @@ $z-index:$back-to-top-size / 2;
 			}
 		}
 		.ebs-login-title {
-			font-size: 40px;
+			font-size: 24px;
 			font-weight: 700;
 			margin: 0 0 15px 0;
 			line-height: 1;
 			color: $first-main-color;
+			word-wrap: break-word;
 		}
 		.ebs-login-desc {
 			font-size: 14px;
