@@ -70,13 +70,13 @@ const onSubmit = (e) =>{
             {error && <AlertMessage message={error}/>}
             {Number(event.attendee_settings.email_enable) === 1 && <div className="ebs-login-from">
               <label className="ebs-label-input">
-                <span className="ebs-label-title">{event.labels.EVENTSITE_LOGIN_PLACEHOLDER !== undefined ? event.labels.EVENTSITE_LOGIN_PLACEHOLDER : "Email"}</span>
-                <input className="ebs-input" name="email" type="email" autoComplete="false" placeholder={event.labels.EVENTSITE_LOGIN_PLACEHOLDER !== undefined ? event.labels.EVENTSITE_LOGIN_PLACEHOLDER : "Email Address"} value={formData.email} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('email')}/>
+                <span className="ebs-label-title">{event.labels.GENERAL_EMAIL !== undefined ? event.labels.GENERAL_EMAIL : "Email"}</span>
+                <input className="ebs-input" name="email" type="email" autoComplete="false" placeholder={event.labels.GENERAL_EMAIL !== undefined ? event.labels.GENERAL_EMAIL : "Email Address"} value={formData.email} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('email')}/>
                 {simpleValidator.current.message('email', formData.email, 'required|email')}
               </label>
             {Number(event.attendee_settings.hide_password) === 0 && Number(event.attendee_settings.registration_password) === 0 && Number(event.attendee_settings.authentication) === 0 && <label className="ebs-label-input" >
-                <span className="ebs-label-title">Password</span>
-                <input className="ebs-input" name="password" type={showPassword ? "text" : "password"} autoComplete="false" placeholder="*********" value={formData.password} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('password')} />
+                <span className="ebs-label-title">{event.labels.GENERAL_PASSWORD}</span>
+                <input className="ebs-input" name="password" type={showPassword ? "text" : "password"} autoComplete="false" placeholder={event.labels.GENERAL_PASSWORD} value={formData.password} onChange={(e)=>{onChange(e)}} onBlur={()=>simpleValidator.current.showMessageFor('password')} />
                 <span className="ebs-show-password">
                   <div style={{width: 17, height: 12, position: 'relative'}}>
                     <Image objectFit='contain' layout="fill" src={showPassword ? require('public/img/icon-eye-close.svg'): require('public/img/icon-eye.svg')} onClick ={()=>{setShowPassword(!showPassword)}} alt="" />
@@ -92,7 +92,7 @@ const onSubmit = (e) =>{
                 </label>
               </div>
               <div className="ebs-btn-wrapp">
-                <button className="btn btn-default" type="submit" disabled={(!valid || loading) ? true : false}>{loading ? 'Loading...': event.labels.EVENTSITE_LOGIN !== undefined ? event.labels.EVENTSITE_LOGIN : "Login"}</button>
+                <button className="btn btn-default" type="submit" disabled={(!valid || loading) ? true : false}>{ event.labels.GENERAL_SIGN_IN !== undefined ? event.labels.GENERAL_SIGN_IN : "Sign in"}</button>
               </div>
             </div>}
             {(Number(event.attendee_settings.linkedin_registration) === 1 || Number(event.attendee_settings.facebook_enable) === 1) && <div className="ebs-social-meida-login">
