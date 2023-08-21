@@ -67,7 +67,13 @@ const News = (props) => {
     <Suspense fallback={<PageLoader />}>
       {news ? (
         <React.Fragment>
+<<<<<<< HEAD
         {!props.homePage && <Head><title>{event.eventsiteModules.news}</title></Head>}
+=======
+          {!props.homePage ? <Head>
+            <title>{event.eventsiteModules.news}</title>
+          </Head> : null}
+>>>>>>> hotfix/RS20-1115
         {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
         {news.length > 0 ? <Component
           news={news}
@@ -85,7 +91,7 @@ const News = (props) => {
           }}
         /> : null}
         </React.Fragment>
-      ) : <PageLoader />}
+      ) : !props.homePage ? <PageLoader /> : null}
     </Suspense>
   );
 };
