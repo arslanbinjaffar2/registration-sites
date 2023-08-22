@@ -173,6 +173,7 @@ export const verify = (id, screen, provider, code, url, authentication_id) => {
       else if(screen === "verification"){
         dispatch(setLoginData(response.data));
         localStorage.setItem(`event${id}User`, JSON.stringify(response.data.data));
+        localStorage.setItem(`event${id}UserLogged`, true);
       }
     }else{
       dispatch(setError(response.data.message));
