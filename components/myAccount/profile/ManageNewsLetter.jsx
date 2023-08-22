@@ -18,7 +18,7 @@ const ManageNewsLetter = () => {
       newsletter ? <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
-            <h2>My Subscriptions</h2>
+            <h2>{event.labels.EVENTSITE_TAB_NEWSLETTER_SUBSCRIPTION}</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
                  <ManageNewsLetterList newsletter={newsletter} event={event} updating={updating} />
@@ -55,7 +55,7 @@ const ManageNewsLetterList = ({newsletter, event, updating}) => {
         )) 
     }    
         <div className="bottom-button">
-              <button className="btn btn-save-next btn-loader" disabled={updating ? true : false}   onClick={(e)=>{handleSave(e)}}>{updating ?  "Saving..." : 'Save'}</button>
+              <button className="btn btn-save-next btn-loader" disabled={updating ? true : false}   onClick={(e)=>{handleSave(e)}}>{event.labels.GENERAL_SAVE}</button>
           </div>
     </div>
 

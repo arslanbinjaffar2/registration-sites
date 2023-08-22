@@ -78,7 +78,7 @@ const Gallery = (props) => {
             <Component settings={moduleVariation[0]} sitelabels={event.labels} photos={photos} totalPages={totalPages} home={home} eventUrl={eventUrl}
             loadMore={() => {
               if(page < totalPages){
-                return <LoadMoreButton loadingLabel={event.labels.EVENTSITE_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
+                return <LoadMoreButton loadingLabel={event.labels.GENERAL_LOAD_MORE} page={page} loading={loading} onPageChange={(data)=> onPageChange(data)} />
               }
             }}
             />
