@@ -33,7 +33,7 @@ const SurveyList = () => {
                   survey.available === 'yes' ? <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info.name}</ActiveLink> </li> : null
                 ))}
               </ul>
-              {surveyList.length <=0 && <p>No Surveys Availble Yet</p>}
+              {surveyList.length <=0 && <p>{event.labels.GENERAL_NO_RECORD ? event.labels.GENERAL_NO_RECORD : "No Surveys Availble Yet"}</p>}
             </div>
           
         </div>
