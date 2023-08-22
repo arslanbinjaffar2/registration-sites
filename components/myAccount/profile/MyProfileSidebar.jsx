@@ -8,9 +8,11 @@ import { useRouter } from 'next/router';
 import moment from "moment";
 import { fetchProfileData, profileSelector } from 'store/Slices/myAccount/profileSlice';
 
-const MyProfileSidebar = (props) => {
 
-  const [toggleMenu, setstatetoggleMenu] = useState(false);
+const MyProfileSidebar = (props) => {
+  
+  var _counter = 0;
+
 
   const [location, setLocation] = useState(false)
 
@@ -19,6 +21,9 @@ const MyProfileSidebar = (props) => {
   const { event } = useSelector(eventSelector);
 
   const { loggedout } = useSelector(userSelector);
+
+  const isLoggedIn = JSON.parse(localStorage.getItem(`event${event.id}UserLogged`));
+  const [toggleMenu, setstatetoggleMenu] = useState(isLoggedIn ? true : false);
 
   const isAuthenticated = JSON.parse(localStorage.getItem(`event${event.id}User`));
 
@@ -57,6 +62,7 @@ const MyProfileSidebar = (props) => {
   }
 
   const handleClick = () => {
+    localStorage.setItem(`event${event.id}UserLogged`, false);
     setstatetoggleMenu(!toggleMenu);
   }
 
@@ -73,17 +79,22 @@ const MyProfileSidebar = (props) => {
       const handleRouteChange = (url) => {
         setLocation(url);
         setstatetoggleMenu(false);
+        if (url.indexOf('/profile') !== -1) { 
+          if (_counter === 0) {
+            localStorage.setItem(`event${event.id}UserLogged`, false);
+            _counter++;
+          }
+        }
       }
-
-      router.events.on('routeChangeStart', handleRouteChange)
+      router.events.on('routeChangeStart', handleRouteChange);
 
       // If the component is unmounted, unsubscribe
       // from the event with the `off` method:
       return () => {
         router.events.off('routeChangeStart', handleRouteChange)
       }
+      
     }
-
     window.addEventListener("scroll", scollEffect);
     return () => {
       window.removeEventListener("scroll", scollEffect);

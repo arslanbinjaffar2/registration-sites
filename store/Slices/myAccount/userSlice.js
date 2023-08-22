@@ -95,6 +95,8 @@ export const logUserIn = (id, url, data) => {
         }
         else if(response.data.redirect === "dashboard"){
           localStorage.setItem(`event${id}User`, JSON.stringify(response.data.data));
+          localStorage.setItem(`event${id}UserLogged`, true);
+
           dispatch(setLoginData(response.data));
         }else{
           dispatch(setError("Something went wrong...."));
@@ -210,6 +212,7 @@ export const logOut = (id, url, success) => {
     try {
       const response = await axios.post(`${process.env.NEXT_APP_AUTH_URL}event/${url}/auth/logout`, null ,{ headers:header("POST", id)});
         localStorage.removeItem(`event${id}User`);
+        localStorage.removeItem(`event${id}UserLogged`);
         localStorage.removeItem(`${url}_sub_reg_skip`);
         localStorage.removeItem(`EI${url}EC`);
         dispatch(setLoggedOut(true));
