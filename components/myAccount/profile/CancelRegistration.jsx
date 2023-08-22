@@ -16,9 +16,10 @@ const CancelRegistration = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [comment, setComment] = useState("");
-  const [cancelOption, setCancelOption] = useState("registration_only");
   const [cancelling, setCancelling] = useState(false);
   const enable_cancel = JSON.parse(localStorage.getItem(`EI${event.url}EC`));
+  const order_attendee_count = JSON.parse(localStorage.getItem(`EI${event.url}EC_COUNT`));
+  const [cancelOption, setCancelOption] = useState(order_attendee_count > 1 ? "whole_order" :"registration_only");
 
   const cancellationDatePassed = useMemo(()=>{
     if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
@@ -40,7 +41,14 @@ const CancelRegistration = () => {
   }
 
   if(loggedout){
-     router.push(`/${event.url}`);
+    if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
+      window.location = event?.eventsiteSettings?.third_party_redirect_url;
+    }
+    else {
+        router.push(
+            `/${event.url}`
+        );
+    }
    }
 
   return (
@@ -53,7 +61,7 @@ const CancelRegistration = () => {
             {/* <span style={{marginLeft:'6px'}}>{event.labels.REGISTRATION_CANCEL_MESSAGE}</span> */}
           </div>
             <div className="generic-form">
-            <div className='mb-3'>
+            {order_attendee_count > 1 && <div className='mb-3'>
                 <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
                         {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
                 </div>
@@ -86,7 +94,7 @@ const CancelRegistration = () => {
                       {event.labels.GENERAL_NO !== undefined ? event.labels.GENERAL_NO : 'No'}
                     </label>
                   </div>
-            </div>
+            </div>}
               <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>{event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}</p>
               <textarea
                 placeholder={event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}

@@ -86,6 +86,7 @@ export const fetchProfileData = (id, url) => {
       dispatch(clearError())
       dispatch(setProfileData(res.data))
       localStorage.setItem(`EI${url}EC`, res.data.enable_cancel == true ? true : false);
+      localStorage.setItem(`EI${url}EC_COUNT`, res.data.order_attendee_count);
     } catch (error) {
       dispatch(setError(error))
     }
