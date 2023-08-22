@@ -46,7 +46,6 @@ const MyProfileSidebar = (props) => {
   }, [event]);
 
   useEffect(() => {
-    console.log('here')
     window.addEventListener('scroll', handleScroll, false);
 
     return () => {
