@@ -114,7 +114,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
             console.log((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1))
             if(pId != agendaId && (moment(thisPrograms.date, 'DD-MM-YYYY').isSame(moment(selectedProgram.date, 'DD-MM-YYYY'))) == true ){
                 if ((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1)) {
-                        window.alert('Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
+                        window.alert(event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT ? event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT : 'Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
                         exit = true;
 
                 }
