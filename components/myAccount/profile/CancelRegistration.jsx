@@ -20,7 +20,11 @@ const CancelRegistration = () => {
   const enable_cancel = JSON.parse(localStorage.getItem(`EI${event.url}EC`));
   const order_attendee_count = JSON.parse(localStorage.getItem(`EI${event.url}EC_COUNT`));
   const [cancelOption, setCancelOption] = useState(order_attendee_count > 1 ? "whole_order" :"registration_only");
-
+  
+  if(enable_cancel != true){
+    router.push(`/${event.url}`);
+  }
+  
   const cancellationDatePassed = useMemo(()=>{
     if(event.eventsiteSettings.cancellation_date === "0000-00-00 00:00:00"){
       return 0;
