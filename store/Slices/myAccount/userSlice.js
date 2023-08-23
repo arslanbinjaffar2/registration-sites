@@ -216,6 +216,7 @@ export const logOut = (id, url, success) => {
         localStorage.removeItem(`event${id}UserLogged`);
         localStorage.removeItem(`${url}_sub_reg_skip`);
         localStorage.removeItem(`EI${url}EC`);
+        localStorage.removeItem(`EI${url}EC_COUNT`);
         dispatch(setLoggedOut(true));
         dispatch(reset(true));
         success();

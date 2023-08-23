@@ -59,9 +59,6 @@ const LoginScreen = (props) => {
       else if(event.eventsiteSettings.attendee_my_billing_history === 1){
         router.push(`/${event.url}/profile/my-billing`);
       }
-      else if((event.eventsiteSettings.attendee_my_reg_cancel === 1 && cancellationDatePassed === 0)){
-        router.push(`/${event.url}/profile/cancel-registration`);
-      }
       else if(event.eventsiteSettings.attendee_my_sub_registration === 1){
         router.push(`/${event.url}/profile/my-sub-registration`);
       }
@@ -76,6 +73,9 @@ const LoginScreen = (props) => {
       }
       else if (event.eventsiteSettings.show_subscriber === 1){
         router.push(`/${event.url}/profile/news-letter-subscription`);
+      }
+      else if((event.eventsiteSettings.attendee_my_reg_cancel === 1 && cancellationDatePassed === 0)){
+        router.push(`/${event.url}/profile/cancel-registration`);
       }
       else {
         router.push(`/${event.url}`);
