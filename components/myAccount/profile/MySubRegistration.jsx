@@ -28,7 +28,7 @@ const MySubRegistration = () => {
           <div className="wrapper-inner-content network-category-sec">
             {subRegistration !== null ? <MySubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error}  /> : 
               <div>
-                You have no answers yet...
+               {event.labels.GENERAL_NO_RECORD ? event.labels.GENERAL_NO_RECORD : " You have no answers yet..."}
               </div>
              }
           </div>
