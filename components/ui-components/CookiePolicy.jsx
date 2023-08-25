@@ -14,7 +14,7 @@ const CookiePolicy = () => {
 
   const actionCookie = getCookie(`action_cookie__${event.url}`);
 
-  const [show, setShow] = useState(serverCookie == 'all' ? false : true);
+  const [show, setShow] = useState(((serverCookie == 'all') | (serverCookie == 'necessary')) ? false : true);
 
   const [showAction, setShowAction] = useState(actionCookie == 'cookie_action' ? true : false);
 
