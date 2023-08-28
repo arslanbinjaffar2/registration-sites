@@ -14,10 +14,10 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProfileData(event.id, event.url));
+    dispatch(fetchProfileData(event.id, event.url, 0));
   }, [])
 
-  const { attendee, labels, settings } = useSelector(profileSelector);
+  const { attendee, labels, settings, customFields } = useSelector(profileSelector);
 
   return (
     attendee ? (
@@ -201,6 +201,21 @@ const MyProfile = () => {
                             <strong>{labels?.private_country}:</strong>
                             <span>{attendee.info.private_country_name}</span>
                           </div>}
+                          
+                          {settings?.show_custom_field?.status === 1 && customFields && customFields.length > 0  ? customFields.map((question)=>(
+                            <div className="ebs-info-row">
+                            <strong>{question.name}:</strong>
+                            <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i)=>{ 
+                                   let ans = question.children_recursive.find((child)=>(child.id == answer))?.name !== undefined ? question.children_recursive.find((child)=>(child.id == answer))?.name : '';
+                                   ack += ans;
+                                   if(i > 0 && i < attendee.info[`custom_field_id${question.event_id}`].split(',').length && ans !== ''){
+                                      ack +=',';
+                                   }
+                                   return ack;
+                                }, '') }</span>
+                          </div>
+                          )) : ''
+                          }
                         </div>
                       </div>
                     </div>
