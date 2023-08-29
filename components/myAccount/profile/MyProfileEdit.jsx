@@ -284,7 +284,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
             className="ebs-my-account-container"
           >
             <div className="ebs-edit-profile-section">
-              <h3 className="ebs-title">Basic Information:</h3>
+              {/* <h3 className="ebs-title">Basic Information:</h3> */}
               {settings?.initial?.status === 1 && (
                 <Input
                   label={labels?.initial}
