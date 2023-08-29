@@ -70,7 +70,7 @@ export const updateSubRegistrationData = (id, url, data) => {
         if(response.data.data.status){
           dispatch(setAlert(response.data.data.message))
         }else{
-          dispatch(setAlert(response.data.data.message));
+          dispatch(setError(response.data.data.message));
         }
         dispatch(setUpdating(false));
       } catch (error) {

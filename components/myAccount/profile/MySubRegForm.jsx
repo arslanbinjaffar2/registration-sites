@@ -486,7 +486,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             updateResult(
                               `answer_date${question.id}`,
                               "date",
-                              item.format("YYYY-MM-DD"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD") : item,
                               question.id
                             );
                             
@@ -533,7 +533,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             updateResult(
                               `answer_date_time${question.id}`,
                               "date_time",
-                              item.format("YYYY-MM-DD HH:mm:ss"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD HH:mm:ss") : item,
                               question.id
                             );
                           }}
