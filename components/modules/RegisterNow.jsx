@@ -27,13 +27,6 @@ const RegisterNow = () => {
     [event]
   );
 
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate = moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
-  
   const checkTickets = useMemo(()=>{
     let ticketsSet = false;
     if(parseFloat(event.eventsiteSettings.ticket_left) > 0){
@@ -74,7 +67,7 @@ const RegisterNow = () => {
 
   return (
     <Suspense fallback={''}>
-       <Component eventSiteSettings={event.eventsiteSettings} registrationUrl={regisrationUrl} labels={event.labels} registerDateEnd={registerDateEnd} checkTickets={checkTickets}  waitingList={waitingList} moduleVariation={moduleVariation[0]} /> 
+       <Component eventSiteSettings={event.eventsiteSettings} registrationUrl={regisrationUrl} labels={event.labels} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} checkTickets={checkTickets}  waitingList={waitingList} moduleVariation={moduleVariation[0]} /> 
     </Suspense>
   );
 };

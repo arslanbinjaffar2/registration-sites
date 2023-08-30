@@ -59,13 +59,6 @@ const EventInformation = () => {
     return url;
   },[event]);
   
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate = moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
-
   const checkTickets = useMemo(()=>{
     let ticketsSet = false;
     if(parseFloat(event.eventsiteSettings.ticket_left) > 0){
@@ -75,10 +68,10 @@ const EventInformation = () => {
 
     return { ticketsSet, remainingTickets };
   },[event]);
-
+  
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} checkTickets={checkTickets}  labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
+      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} checkTickets={checkTickets} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };
