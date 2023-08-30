@@ -51,18 +51,18 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
 
   return (
     <div style={bgStyle} className="module-section ebs-default-padding">
-      {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
+      {registerDateEnd  && (
       <div className="container">
         <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'left'} />
             <div className="ebs-register-now-sec ebs-register-v3">
               <div className="row d-flex align-items-center flex-row-reverse">
-              {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-md-3">
+              {/* {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-md-3">
                   <div className="ebs-ticket-remaning">
                     <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
                     <div className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   </div>
                 
-                </div>}
+                </div>} */}
                 <div className={ticket_settings ? 'col-md-9' : 'col-md-12'}>
                   <div className="ebs-caption-box">
                     <div className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
@@ -78,19 +78,19 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
 
       )}
 
-      {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
+      {!registerDateEnd && (
         <div className="container">
           <div className="alert alert-danger alert-dismissable">{labels.REGISTER_DATE_END}</div>
         </div>
       )}
       
-      {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList ) && (
+      {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList ) && (
         <div className="container">
           <div className="alert alert-danger alert-dismissable">{labels.REGISTER_TICKET_END}</div>
         </div>
-      )}
+      )} */}
 
-    {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
+    {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList ) && (
           <div className="container">
             <HeadingElement dark={false} label={labels.REGISTER_FOR_WAITING_LIST} desc={labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST} align={moduleVariation.text_align} />
             <div className="ebs-register-now-sec">
@@ -104,7 +104,7 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>
               </div>
           </div>
-        )}
+        )} */}
 
     </div>
   );
