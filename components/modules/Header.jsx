@@ -74,18 +74,6 @@ const Header = ({ location, history }) => {
     return url;
   },[event]);
 
-
-
-  const checkTickets = useMemo(()=>{
-    let ticketsSet = false;
-    if(parseFloat(event.eventsiteSettings.ticket_left) > 0){
-        ticketsSet = true;
-    }
-    let remainingTickets =  event.eventsiteSettings.ticket_left - event.totalAttendees;
-
-    return { ticketsSet, remainingTickets };
-  },[event]);
-
   const top_menu =  useMemo(()=>{
 
     let menu = event.header_data.top_menu.map((item)=>{

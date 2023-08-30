@@ -39,7 +39,7 @@ const Variation1 = (props) => {
                     <p>{props.event.country}</p>
                   </li>
                 </ul>
-                { (props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd && (!props.checkTickets.ticketsSet || props.checkTickets.remainingTickets > 0) && <a style={{border: '2px solid #363636', color: '#363636'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"> {props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}  </a> } 
+                { (props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd && <a style={{border: '2px solid #363636', color: '#363636'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"> {props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}  </a> } 
               </div>
             </div>
               {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined && <div className="col-lg-6 offset-lg-1">
