@@ -78,7 +78,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
   const simpleValidator = useRef(new SimpleReactValidator({
     element: (message) => <p className="error-message">{message}</p>,
     messages: {
-      required: "This field is required!"
+      required: event.labels.REGISTRATION_FORM_FIELD_REQUIRED
     },
     autoForceUpdate: { forceUpdate: () => forceUpdate(1) }
   }))
@@ -323,9 +323,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 disabled={subRegResult[`answer${question.id}`] !== undefined ? false : true}
@@ -366,9 +366,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_number${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               disabled={subRegResult[`answer_number${question.id}`] !== undefined ? false : true}
@@ -410,9 +410,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_open${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               disabled={subRegResult[`answer_open${question.id}`] !== undefined ? false : true}
@@ -464,9 +464,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_dropdown${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 disabled={subRegResult[`answer_dropdown${question.id}`] !== undefined ? false : true}
@@ -508,9 +508,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               disabled={subRegResult[`answer_date${question.id}`] !== undefined ? false : true}
@@ -552,9 +552,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               disabled={subRegResult[`answer_date_time${question.id}`] !== undefined ? false : true}
@@ -608,9 +608,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 disabled={subRegResult[`answer${question.id}`] !== undefined ? false : true}
@@ -682,9 +682,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined && subRegResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 disabled={subRegResult[`answer${question.id}`] !== undefined ? false : true}
@@ -711,7 +711,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
       <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
+        <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {event.labels.GENERAL_SEND} </button>
       </div>
     </React.Fragment>
   );

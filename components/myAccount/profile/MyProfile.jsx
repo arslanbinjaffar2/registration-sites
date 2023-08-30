@@ -24,8 +24,8 @@ const MyProfile = () => {
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
-            <h2>My profile</h2>
-            <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>Edit profile</ActiveLink>
+            <h2>{event.labels.EVENTSITE_MY_PROFILE}</h2>
+            <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>{event.labels.GENERAL_EDIT_PROFILE}</ActiveLink>
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">
@@ -33,7 +33,7 @@ const MyProfile = () => {
                 <div className="col-lg-3">
                   <div className="ebs-my-profile-left">
                     <div className="ebs-my-profile-image">
-                      {settings?.profile_picture?.status === 1 && attendee.image && attendee.image !== "" ? (
+                      {settings?.find((setting)=>(setting.name === 'profile_picture')) !== undefined  && attendee.image && attendee.image !== "" ? (
                         <div className="ebs-image-wrapper-profile">
                           <img className="ebs-image-solid" src={
                             process.env.NEXT_APP_EVENTCENTER_URL +
@@ -50,8 +50,8 @@ const MyProfile = () => {
                       )}
                       <div className="ebs-my-profile-detail">
                         <div className="ebs-profile-name">
-                          {(attendee.info && attendee.info.initial) && attendee.info.initial}
-                          {attendee.first_name && attendee.first_name}
+                          {(attendee.info && attendee.info.initial) && attendee.info.initial} {" "}
+                          {attendee.first_name && attendee.first_name} {" "}
                           {attendee.last_name && attendee.last_name}
                         </div>
                         {(attendee.info && attendee.info.registration_type) && <div className="ebs-profile-status">{attendee.info.registration_type}</div>}
@@ -67,17 +67,16 @@ const MyProfile = () => {
                         {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
                       </div>
                       <div className="ebs-profile-social-links">
-                        {attendee.phone && <div className="ebs-profile-social-links-row">
-                          <strong>{labels?.phone}:</strong>
-                          <span>{attendee.phone}</span>
+                        {attendee.phone && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5">phone_iphone</em><span>{attendee.phone}</span>
                         </div>
                         }
-                        {attendee.email && <div className="ebs-profile-social-links-row">
-                          <strong>{labels?.email}:</strong>
-                          <span>{attendee.email}</span>
+                         {attendee.email && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5 me-1">mail_outline</em>
+                          <a href={`mailto:${attendee.email}`}>{attendee.email}</a>
                         </div>}
-                        {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row">
-                          <strong>Website:</strong>
+                        {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row align-items-center pb-2">
+                          <em class="material-icons fs-5 me-1">language</em>
                           <span><a target='_blank' rel="noreferrer" href={`${attendee.info.website_protocol}${attendee.info.website}`}>{`${attendee.info.website_protocol}${attendee.info.website}`}</a></span>
                         </div>}
                       </div>
@@ -86,7 +85,7 @@ const MyProfile = () => {
                 </div>
                 <div className="col-lg-9">
                   <div className="ebs-my-profile-right">
-                    <h3 className="ebs-title">Basic Information:</h3>
+                    <h3 className="ebs-title">{event.labels.REG_BASIC_INFO}</h3>
                     <div className="row d-flex">
                       <div className="col-sm-6">
                         <div className="ebs-profile-information">
@@ -203,7 +202,7 @@ const MyProfile = () => {
                             <span>{attendee.info.private_country_name}</span>
                           </div>}
                           
-                          {settings?.show_custom_field?.status === 1 && customFields && customFields.length > 0  ? customFields.map((question)=>(
+                          {settings?.find((setting)=>(setting.name === 'show_custom_field')) !== undefined && customFields && customFields.length > 0  ? customFields.map((question)=>(
                             <div className="ebs-info-row">
                             <strong>{question.name}:</strong>
                             <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i)=>{ 

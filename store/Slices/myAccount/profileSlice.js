@@ -5,6 +5,7 @@ import { logOut, userSelector, reset, setEnableCancel } from "store/Slices/myAcc
 
 const initialState = {
   attendee: null,
+  attendee_edit: null,
   countries: null,
   eventLanguageDetails: null,
   callingCodes: null,
@@ -43,6 +44,12 @@ export const eventSlice = createSlice({
         state.languages = payload.languages,
         state.loading = false
     },
+    setAttendeeEdit: (state, { payload }) => {
+      state.attendee_edit = payload.attendee
+    },
+    clearAttendeeEdit: (state, { payload }) => {
+      state.attendee_edit = null
+    },
     setError: (state, { payload }) => {
       state.error = payload
     },
@@ -70,7 +77,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect, setAttendeeEdit, clearAttendeeEdit } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
@@ -79,13 +86,20 @@ export default eventSlice.reducer
 export const fetchProfileData = (id, url, is_edit) => {
   return async dispatch => {
     dispatch(getProfileData())
+    if(is_edit === 1){
+      dispatch(clearAttendeeEdit())
+    }
     let userObj = JSON.parse(localStorage.getItem(`event${id}User`));
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/attendee/profile${is_edit === 1 ? '?is_edit=true' : ''}`, { headers: header("GET", id) })
       const res = await response.json()
       dispatch(clearError())
       dispatch(setProfileData(res.data))
+      if(is_edit === 1){
+          dispatch(setAttendeeEdit(res.data));
+      }
       localStorage.setItem(`EI${url}EC`, res.data.enable_cancel == true ? true : false);
+      localStorage.setItem(`EI${url}EC_COUNT`, res.data.order_attendee_count);
     } catch (error) {
       dispatch(setError(error))
     }

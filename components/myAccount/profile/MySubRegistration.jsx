@@ -23,12 +23,12 @@ const MySubRegistration = () => {
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
-            <h2>My subregistration</h2>
+            <h2>{event.labels.EVENTSITE_QUESTIONAIRS_MAIN}</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
             {subRegistration !== null ? <MySubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error}  /> : 
               <div>
-                You have no answers yet...
+               {event.labels.GENERAL_NO_RECORD ? event.labels.GENERAL_NO_RECORD : " You have no answers yet..."}
               </div>
              }
           </div>

@@ -84,7 +84,7 @@ const News = (props) => {
           }}
         /> : null}
         </React.Fragment>
-      ) : <PageLoader />}
+      ) : !props.homePage ? <PageLoader /> : null}
     </Suspense>
   );
 };

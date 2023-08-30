@@ -23,8 +23,8 @@ const ChooseProvider = ({
       <span onClick={() => onCancel()} className="btn-inner-close">
         <Image objectFit='contain' layout="fill" src={require("public/img/remove-icon-x2.png")} alt="" />
       </span>
-      <h2 className="ebs-login-title">Choose Provider</h2>
-      <p className="ebs-login-desc">Send the authentication code to</p>
+      <h2 className="ebs-login-title">{event.labels.EVENTSITE_TWO_FACTOR_AUTHENTICATION}</h2>
+      <p className="ebs-login-desc">{event.labels.EVENTSITE_AUTHENTICATION_CONTACT_METHOD}</p>
       {error && <AlertMessage message={error}/>}
       {attendee && (
         <React.Fragment>
@@ -59,7 +59,7 @@ const ChooseProvider = ({
       )}
       <div className="ebs-btn-wrapp">
         <button className="btn btn-default" type="submit" disabled={(attendee && !loading) ? false : true} onClick={()=>{verification(event.id, "choose-provider", providerloc, null, event.url, authenticationId)}}>
-        {loading ? "Loading...":"Send"}
+        {event.labels.GENERAL_SUBMIT}
         </button>
       </div>
     </div>

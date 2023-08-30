@@ -83,7 +83,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                             }}
                             className="info"
                           >
-                            Email{" "}
+                            {labels.GENERAL_EMAIL !== undefined ? labels.GENERAL_EMAIL :"Email"}
                           </h4>
                           <p>
                             <a
@@ -276,7 +276,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
       {documents && documents.length > 0 && <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
         <div className="edgtf-container-inner container">
           <div className="edgtf-title-section-holder pb-1">
-            <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">Documents</h3>
+            <h3 className="edgtf-title-with-dots edgtf-appeared mb-0 pb-2">{labels.DOCUMENT_HEADING_DOCUMENT ? labels.DOCUMENT_HEADING_DOCUMENT : labels.GENERAL_DOCUMENT}</h3>
           </div>
           <DocumentsListing documents={documents} page={'exhibitor'} labels={labels} eventTimezone={eventTimezone} />
         </div>

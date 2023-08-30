@@ -197,7 +197,7 @@ class Variation5 extends React.Component {
                           {topMenu.map((menu) => (
                             <li className="nav-item" key={menu.id}>
                               {(menu.alias === "gallery" ||
-                                menu.alias === "myaccount" ||
+                                (menu.alias === "myaccount" && !this.props.userExist) ||
                                 menu.alias === "practicalinformation" ||
                                 menu.alias === "additional_information" ||
                                 menu.alias === "general_information" ||
@@ -292,7 +292,7 @@ class Variation5 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {menu.alias === "myaccount" && (
+                              {menu.alias === "myaccount" && !this.props.userExist && (
                                 <ul className="dropdown-menu">
                                   {!this.props.userExist ? menus["my_account_sub_menu"].map(
                                     (myaccount, k) => (
