@@ -74,12 +74,7 @@ const Header = ({ location, history }) => {
     return url;
   },[event]);
 
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate = moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
+
 
   const top_menu =  useMemo(()=>{
 
@@ -116,7 +111,7 @@ const Header = ({ location, history }) => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={registerDateEnd} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
+      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
     </Suspense>
   );
 };

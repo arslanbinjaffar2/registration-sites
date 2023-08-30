@@ -51,7 +51,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner_sort && banner_sort?.length > 0 ? <Component regisrationUrl={regisrationUrl} banner={banner_sort} event={event} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date): null} /> : null}
+      {banner_sort && banner_sort?.length > 0 ? <Component regisrationUrl={regisrationUrl} banner={banner_sort} event={event} countdown={null} /> : null}
     </Suspense>
   );
 };

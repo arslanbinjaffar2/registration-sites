@@ -59,17 +59,10 @@ const EventInformation = () => {
     return url;
   },[event]);
   
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate = moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
-
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={registerDateEnd} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
+      <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />
     </Suspense>
   );
 };
