@@ -33,7 +33,7 @@ const MyProfile = () => {
                 <div className="col-lg-3">
                   <div className="ebs-my-profile-left">
                     <div className="ebs-my-profile-image">
-                      {settings?.find((setting)=>(setting.name === 'profile_picture')) !== undefined  && attendee.image && attendee.image !== "" ? (
+                      {settings?.profile_picture?.status === 1 && attendee.image && attendee.image !== "" ? (
                         <div className="ebs-image-wrapper-profile">
                           <img className="ebs-image-solid" src={
                             process.env.NEXT_APP_EVENTCENTER_URL +
@@ -86,8 +86,8 @@ const MyProfile = () => {
                 <div className="col-lg-9">
                   <div className="ebs-my-profile-right">
                     <h3 className="ebs-title">{event.labels.REG_BASIC_INFO}</h3>
-                      <div className="">
-                        <div className="ebs-profile-information">
+                    <div className="">
+                      <div className="ebs-profile-information">
                         <div className="row d-flex">
                           {settings.map((setting, index) => (
                             <React.Fragment key={index}>
@@ -131,7 +131,7 @@ const MyProfile = () => {
                                 <strong>{labels?.interests}:</strong>
                                 <span>{attendee.info.interests}</span>
                               </div></div>}
-                              {setting?.name === 'delegate_number' &&(attendee.info && attendee.info.delegate_number) && <div className="col-sm-6"><div className="ebs-info-row">
+                              {setting?.name === 'delegate_number' && (attendee.info && attendee.info.delegate_number) && <div className="col-sm-6"><div className="ebs-info-row">
                                 <strong>{labels?.delegate}:</strong>
                                 <span>{attendee.info.delegate_number}</span>
                               </div></div>}
@@ -201,30 +201,29 @@ const MyProfile = () => {
                                 <strong>{labels?.private_country}:</strong>
                                 <span>{attendee.info.private_country_name}</span>
                               </div></div>}
-                              
+
                             </React.Fragment>
                           ))}
                         </div>
                       </div>
-                      {/* {console.log(settings)} */}
                       {/* <div className="col-sm-6">
                       
                         <div className="ebs-profile-information"> */}
-                          {settings?.show_custom_field?.status === 1 && customFields && customFields.length > 0 ? customFields.map((question) => (
-                            <div className="ebs-info-row">
-                              <strong>{question.name}:</strong>
-                              <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i) => {
-                                let ans = question.children_recursive.find((child) => (child.id == answer))?.name !== undefined ? question.children_recursive.find((child) => (child.id == answer))?.name : '';
-                                ack += ans;
-                                if (i > 0 && i < attendee.info[`custom_field_id${question.event_id}`].split(',').length && ans !== '') {
-                                  ack += ',';
-                                }
-                                return ack;
-                              }, '')}</span>
-                            </div>
-                          )) : ''
-                          }
-                       {/*  </div>
+                      {settings?.show_custom_field?.status === 1 && customFields && customFields.length > 0 ? customFields.map((question) => (
+                        <div className="ebs-info-row">
+                          <strong>{question.name}:</strong>
+                          <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i) => {
+                            let ans = question.children_recursive.find((child) => (child.id == answer))?.name !== undefined ? question.children_recursive.find((child) => (child.id == answer))?.name : '';
+                            ack += ans;
+                            if (i > 0 && i < attendee.info[`custom_field_id${question.event_id}`].split(',').length && ans !== '') {
+                              ack += ',';
+                            }
+                            return ack;
+                          }, '')}</span>
+                        </div>
+                      )) : ''
+                      }
+                      {/*  </div>
                       </div> */}
                     </div>
                   </div>

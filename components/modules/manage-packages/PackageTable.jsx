@@ -48,7 +48,7 @@ const PackageTable = ({eventUrl, item, labels, package_currency}) => {
   const registerDateEnd = React.useMemo(()=>{
     let currentDate = moment();
     let endDate = moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`);
-    let diff = item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" ? (currentDate.diff(endDate) < 0) : false;
+    let diff = item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" ? (currentDate.diff(endDate) < 0) : true;
     return diff;
   },[item]);
 
@@ -60,13 +60,13 @@ const PackageTable = ({eventUrl, item, labels, package_currency}) => {
       {item.enable_price === 1 ? <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div> : null}
       <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{__html:item.description}}>
       </div>
-      {registerDateEnd && 
+      {registerDateEnd && item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" &&
         <div className="ebs-table-timer">
           <h4>{(labels.EVENTSITE_TIME_LEFT !== undefined && labels.EVENTSITE_TIME_LEFT !== "") ?  labels.EVENTSITE_TIME_LEFT : "Time left:"}</h4>
           <Countdown date={moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)} renderer={renderer} />
         </div>
       }
-    {!registerDateEnd && <div className="ebs-footer-table">
+    {registerDateEnd && <div className="ebs-footer-table">
       <a href={`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${eventUrl}/attendee/manage-attendee?attendee_types=${item.attendee_type}`} className="btn-table">{labels.EVENTSITE_REGISTER_NOW2}</a>  
     </div>}
     </div>
