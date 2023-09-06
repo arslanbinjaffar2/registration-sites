@@ -57,6 +57,7 @@ const ManageKeywordsList = ({ keywords, event, updating }) => {
 
   const setFilter= (kid)=>{
     setSearchTerm("");
+    addMyKeyword(kid)
     if(kid !== 0){
       if(filters.indexOf(kid) === -1) {
         setFilters([...filters, kid])
@@ -126,7 +127,7 @@ const ManageKeywordsList = ({ keywords, event, updating }) => {
               {item.children.map((child) => (
                 <li key={child.id}>
                   <label>
-                    <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} />
+                    <input type="checkbox" checked={mykeywords.indexOf(child.id) !== -1 ? true : false} onChange={() => { addMyKeyword(child.id) }} />
                     <span>{child.name}</span>
                   </label>
                 </li>
