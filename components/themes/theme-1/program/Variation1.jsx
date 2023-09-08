@@ -43,7 +43,7 @@ const customStyles = {
   })
 };
 
-const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl, language_id }) => {
+const Variation1 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl, language_id, agendaSettings }) => {
   const [schedule, setSchedule] = useState(Object.keys(programs));
   const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]]);
   const [selectedDate, setSelectedDate] = useState(schedule[0]);
@@ -168,8 +168,8 @@ const settings = {
               <div  className="ebs-program-parent">
                 {programsLoc && programsLoc.map((item,i) =>
                       item.workshop_id > 0  ? 
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} />:
-                      <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels} />
+                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
+                      <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
                 )}
               </div>
           </div>

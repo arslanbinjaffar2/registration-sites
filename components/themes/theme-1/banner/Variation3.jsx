@@ -1,13 +1,14 @@
 import SliderBanner from './components/SliderBanner';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Variation3 = ({ event, banner, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
 	const WrapperLayout = (props) => {
+  const _bgLayer = (props.slides.info?.title.length > 0 && settings.title === 1) || (props.slides.info?.message.length > 0 && settings.caption === 1) || (settings.register_button === 1);
 
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
-				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'  }} className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}>
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
 					</a >: props.children}
@@ -15,7 +16,7 @@ const Variation3 = ({ event, banner, countdown, regisrationUrl, settings, regist
 			);
 		} else {
 			return (
-				<div style={{ backgroundPosition: '50% 0' }} className="background parallax-backgroud">
+				<div style={{ backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' }} className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}>
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 					{props.children}
 					</a >: props.children}
@@ -24,7 +25,20 @@ const Variation3 = ({ event, banner, countdown, regisrationUrl, settings, regist
 		}
 
 	}
-
+	useEffect(() => {
+		if (window.innerWidth >= 991) {
+			const elem = document.getElementById("ebs-header-master");
+			if (elem && elem.nextSibling.dataset) {
+				elem.classList.remove("ebs-light-header");
+				var _nextSibling = elem.nextSibling.dataset.fixed;
+				if (_nextSibling === 'true') {
+					elem.classList.add('ebs-fixed-header');
+				} else {
+					elem.classList.add('ebs-light-header');
+				}
+			}
+		}
+	}, [])
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box ebs-banner-full-height">
 			{banner && <SliderBanner
@@ -47,11 +61,11 @@ const Variation3 = ({ event, banner, countdown, regisrationUrl, settings, regist
 									<div style={{ position: 'relative' }} className="parallax-text">
 										{slides.info?.title && settings.title === 1 &&
 											<div className="edgtf-custom-font-holder ebs-banner-title" style={{ fontFamily: 'Rubik', fontSize: '100px', lineHeight: '110px', fontWeight: '500', textTransform: 'uppercase', textAlign: 'left', color: '#ec008c' }}>
-												<span style={{ color: '#fff' }}> {slides.info.title} </span>
+												<span style={{ color:  slides?.title_color ? slides?.title_color : "#fff" }}> {slides.info.title} </span>
 											</div>
 										}
 										{slides.info?.message && settings.caption === 1 && <div className="edgtf-custom-font-holder ebs-banner-subtitle"
-											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#ffffff', maxWidth: 850 }}>
+											style={{ marginTop: '15px', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff", maxWidth: 850 }}>
 											{slides.info.message}
 										</div>}
 										{settings.register_button === 1 && registerDateEnd && <div className="edgtf-custom-font-holder ebs-custom-button-holder"

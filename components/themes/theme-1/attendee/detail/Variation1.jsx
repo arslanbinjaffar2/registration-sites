@@ -58,8 +58,8 @@ const Variation1 = ({ attendee, labels }) => {
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
-                          <p>{attendee.info.about}</p>
+                          <h4 className="info">{attendee.labels.about !== undefined ? attendee.labels.about : "ABOUT"} </h4>
+                          <p dangerouslySetInnerHTML={{ __html: attendee.info.about }}></p>
                         </div>
                       )}
                       {attendee.email && (
@@ -74,7 +74,7 @@ const Variation1 = ({ attendee, labels }) => {
                             }}
                             className="info"
                           >
-                            Email{" "}
+                            {attendee.labels.email !== undefined ? attendee.labels.email : 'Email'}
                           </h4>
                           <p>
                             <a
@@ -98,7 +98,7 @@ const Variation1 = ({ attendee, labels }) => {
                             }}
                             className="info"
                           >
-                            Phone{" "}
+                            {attendee.labels.phone !== undefined ? attendee.labels.phone : 'Email'}
                           </h4>
                           <p>
                             <a

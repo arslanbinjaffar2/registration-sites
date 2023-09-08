@@ -13,9 +13,11 @@ import {
   EmailShareButton,
 } from "react-share";
 
-const Variation2 = ({ event, socialMediaShare, labels }) => {
+const Variation2 = ({ event, socialMediaShare, labels, settings }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+
   return (
-    <div className="edgtf-container ebs-default-padding">
+    <div style={bgStyle} className="edgtf-container ebs-default-padding">
       <div className="edgtf-container-inner container">
       <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE} align={'center'} />
         <div className="ebs-social-share text-center pb-3">

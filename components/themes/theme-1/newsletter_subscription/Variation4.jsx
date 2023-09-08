@@ -40,7 +40,7 @@ const Variation4 = (props) =>  {
         {props.settings && <div className="module-section">
           <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
             <div className="container-fluid">
-              <HeadingElement dark={true} label={"Subscribe to our newsletter "}  align={'left'} />
+              <HeadingElement dark={true} label={props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING ? props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING : "Subscribe to our newsletter "}  align={'left'} />
               <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
             </div>
             <div className="ebs-sub-newsletter-sec">

@@ -21,7 +21,11 @@ const ManageKeywords = () => {
           <h2>My Keywords</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
-            <ManageKeywordsList keywords={keywords} event={event} updating={updating} />
+            {keywords.length > 0 ? <ManageKeywordsList keywords={keywords} event={event} updating={updating} /> : 
+              <div>
+              {event.labels.GENERAL_NO_RECORD ? event.labels.GENERAL_NO_RECORD : " You have no answers yet..."}
+             </div>
+            }
         </div>
       </div>
     </div> : <PageLoader/>

@@ -35,7 +35,7 @@ const Header = ({ location, history }) => {
     if (typeof window !== 'undefined') {
       const handleRouteChange = (url) => {
         document.getElementsByTagName('body')[0].classList.remove('un-scroll');
-        setUserExist(localStorage.getItem(`event${event.id}User`) ? true : false);
+        setUserExist(localStorage?.getItem(`event${event.id}User`) ? true : false);
       }
 
       router.events.on('routeChangeStart', handleRouteChange)
@@ -74,12 +74,7 @@ const Header = ({ location, history }) => {
     return url;
   },[event]);
 
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate = moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
+
 
   const top_menu =  useMemo(()=>{
 
@@ -102,9 +97,8 @@ const Header = ({ location, history }) => {
       }
       else if(item.alias == 'info_pages'){
         let page = event.header_data["info_pages_menu"].find((p)=>p.id == item.page_id);
-        console.log(page);
-        rItem['menu_url'] =  page !== null && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : `${page['submenu'][0].website_protocol}${page['submenu'][0].url}`) : `/${event.url}/${item.alias}`;
-        rItem['link_path'] = page !== null && page['submenu'].length == 1 ? true : false;
+        rItem['menu_url'] =  page !== null && page !== undefined && page['submenu'].length == 1 && page['submenu'][0].page_type !== "menu" ? (page['submenu'][0].page_type === 2 ? `/${event.url}/${item.alias}/${page['submenu'][0].id}` : (page['submenu'][0].page_type === 3 ? `${page['submenu'][0].website_protocol}${page['submenu'][0].url}` : `/${event.url}/${item.alias}` ) ) : `/${event.url}/${item.alias}`;
+        rItem['link_path'] = page !== null && page !== undefined && page['submenu'].length == 1 ? true : false;
       }
       return rItem;
     })
@@ -117,7 +111,7 @@ const Header = ({ location, history }) => {
 
   return (
     <Suspense fallback={''}>
-      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={registerDateEnd} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
+      <Component event={event} regisrationUrl={regisrationUrl} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} loaded={fetchLoadCount} userExist={userExist} location={location} setShowLogin={onLoginClick} topMenu={top_menu} />
     </Suspense>
   );
 };

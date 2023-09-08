@@ -46,9 +46,11 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 
 const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+
   return (
-    <div className="module-section ebs-register-now-v5 ebs-default-padding">
-      {(registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0)) && (
+    <div style={bgStyle} className="module-section ebs-register-now-v5 ebs-default-padding">
+      {registerDateEnd && (
         <div className="container">
           <div className="row d-flex align-items-center">
             <div className="col-lg-4">
@@ -73,33 +75,34 @@ const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
           </div>
           <div className="ebs-register-now-sec">
             <div className="row d-flex align-items-center">
-            {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-lg-4 ">
+            {/* {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-lg-4 ">
                 <div className="ebs-ticket-remaning d-flex align-items-center">
                   <div style={{ paddingRight: 20 }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
                 </div>
-              </div>}
-              <div className={`d-flex d-block-responsive align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}>
-                {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
+              </div>} */}
+              {/* <div className={`d-flex d-block-responsive align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}> */}
+              <div className={`d-flex d-block-responsive align-items-center ${'col-lg-12'}`}>
+                {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
                 <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
             </div>
           </div>
         </div>
       )}
-      {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
+      {!registerDateEnd  && (
         <div className="container">
           <div className="alert alert-danger alert-dismissable">{labels.REGISTER_DATE_END}</div>
         </div>
       )}
 
-      {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList) && (
+      {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList) && (
         <div className="container">
           <div className="alert alert-danger alert-dismissable">{labels.REGISTER_TICKET_END}</div>
         </div>
-      )}
+      )} */}
 
-      {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList) && (
+      {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList) && (
         <div className="container">
           <HeadingElement dark={false} label={labels.REGISTER_FOR_WAITING_LIST} desc={labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST} align={moduleVariation.text_align} />
           <div className="ebs-register-now-sec">
@@ -113,7 +116,7 @@ const Variation5 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

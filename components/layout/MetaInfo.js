@@ -173,6 +173,20 @@ const MetaInfo = (props) => {
                         />
                     </React.Fragment>
                 )}
+
+                {props.metaInfo.settings?.matomo_domain_id !== undefined && props.metaInfo.settings?.matomo_domain_id && props.cookie !== null && props.cookie == "all" && (
+                    <React.Fragment>
+                        <script id='matomo-analytics' dangerouslySetInnerHTML={{
+                            __html: `var _mtm = window._mtm = window._mtm || [];
+                            _mtm.push({ 'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start' });
+                            (function () {
+                                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                                g.async = true; g.src = 'https://cdn.matomo.cloud/${props.metaInfo.settings?.matomo_domain_id}/container_ynlL2iw5.js'; s.parentNode.insertBefore(g, s);
+                            })();`
+                                }}
+                        />
+                    </React.Fragment>
+                )}
             </Head>
         </>
     )

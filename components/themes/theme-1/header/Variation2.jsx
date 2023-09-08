@@ -241,14 +241,14 @@ class Variation2 extends React.Component {
                           )
                         ) : (
                          
-                            <ActiveLink
+                          <ActiveLink
                               className="nav-link" activeClassName="nav-link active"
                               aria-current="page"
                               target={menu.menu_url.indexOf("http") !== -1 ? "_blank" : ""}
-                              href={`${menu.menu_url}`}
+                              href={menu.alias === "myaccount" ? '#!' : `${menu.menu_url}`}
                             >
                                 {menu.module}
-                            </ActiveLink>
+                            </ActiveLink> 
                           
                         )}
 
@@ -269,7 +269,7 @@ class Variation2 extends React.Component {
                             ))}
                           </ul>
                         )}
-                        {menu.alias === "myaccount" && (
+                        {menu.alias === "myaccount" && !this.props.userExist && (
                           <ul className="dropdown-menu">
                             {!this.props.userExist ? menus["my_account_sub_menu"].map(
                               (myaccount, k) => (
@@ -556,7 +556,7 @@ class Variation2 extends React.Component {
                           </ul>
                         )}
 
-                        {(menu.alias === "info_pages" && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) &&  (
+                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p)=>p.id == menu.page_id) !== undefined && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) &&  (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (

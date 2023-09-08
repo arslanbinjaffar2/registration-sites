@@ -41,7 +41,7 @@ const Variation1 = ({event, siteLabels}) => {
                                             </p>
                                         </div> 
                                     ))}
-                                    {event.eventsiteSettings.eventsite_add_calender == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">  {event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
+                                    {event.eventsiteSettings.calender_show == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">  {event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
                                 </div>}
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_TWO}</h5>
@@ -66,16 +66,18 @@ const Variation1 = ({event, siteLabels}) => {
                                        
                                     </address>
                                 </div>
-                                <div className="col-3">
-                                    <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
-                                    {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
-                                        <div style={{marginBottom:"10px"}} key={i}>
-                                        <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>
-                                        <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>
-                                        <p>{event?.labels?.GENERAL_PHONE}: {person.phone}</p>
-                                        </div>
-                                    ))}
-                                </div>
+                                {event.eventContactPersons.length > 0 &&
+                                    <div className="col-3">
+                                        <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
+                                        {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
+                                            <div style={{marginBottom:"10px"}} key={i}>
+                                                {(person.first_name !== '' || person.first_name !== '') && <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>}
+                                                {person.email !== '' && <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>}
+                                                {person.phone !== '' && <p>{event?.labels?.GENERAL_PHONE}: {person.phone}</p>}
+                                            </div>
+                                        ))}
+                                    </div>
+                                }
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_FOUR}</h5>
                                     <p>{event?.organizer_name}</p>

@@ -4,9 +4,11 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
 const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : {}
+
   return (
     <div>
-      <div className="module-section ebs-default-padding">
+      <div style={bgStyle} className="module-section ebs-default-padding">
         <div className="container">
           <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
         </div>
@@ -49,6 +51,13 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                       {(attendee.first_name || attendee.last_name) && (
                         <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                           <h3>
+                            {attendee.info &&
+                              attendee.info.initial && (
+                                <>
+                                  {attendee.info.initial &&
+                                    attendee.info.initial}&nbsp;
+                                </>
+                              )}
                             {attendee.first_name && attendee.first_name}{" "}
                             {attendee.last_name && attendee.last_name}
                           </h3>

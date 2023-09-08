@@ -3,13 +3,15 @@ import React, { useState, useRef } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 
-const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels }) => {
+const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+
   return (
-    <div style={{ padding: '80px 0' }} className='edgtf-container'>
+    <div style={{ padding: '80px 0', ...bgStyle}} className='edgtf-container'>
       <div className="container">
-        <div className={`${!newsSettings.subscriber_id ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
+        <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
 
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
@@ -53,10 +55,10 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                 ))}
               </div>
             </div>
-            {news.length > 0 && loadMore()}
+            {(news.length > 0 && !homePage) && loadMore()}
           </div>
-          {news.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-          {newsSettings.subscriber_id !== null && (
+          {(news.length === 0 && !homePage) && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+          {newsSettings.subscriber_id !== null && newsSettings.subscriber_id !== '' && !homePage && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe

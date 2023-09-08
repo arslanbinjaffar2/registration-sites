@@ -4,7 +4,7 @@ import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import { localeProgramMoment } from 'helpers/helper';
 import Image from 'next/image'
 
-const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId }) => {
+const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, eventLanguageId, agendaSettings, event }) => {
 
   return (
     <div data-fixed="false" className="ebs-transparent-box">
@@ -81,8 +81,8 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
-                          <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
-                          {speaker.info.about && <div style={{marginbottom: 20}}  dangerouslySetInnerHTML={{__html: speaker.info.about}} />}
+                          <h4 className="info">{speaker.labels.about !== undefined ? speaker.labels.about : "ABOUT"} </h4>
+                          {speaker.info.about && <div style={{ marginbottom: 20 }} dangerouslySetInnerHTML={{ __html: speaker.info.about }} />}
                         </div>
                       )}
                       {speaker.email && (
@@ -97,7 +97,7 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
                             }}
                             className="info"
                           >
-                            Email{" "}
+                            {speaker.labels.email !== undefined ? speaker.labels.email : "Email"}
                           </h4>
                           <p>
                             <a
@@ -121,7 +121,7 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
                             }}
                             className="info"
                           >
-                            Phone{" "}
+                            {speaker.labels.phone !== undefined ? speaker.labels.phone : "Email"}
                           </h4>
                           <p>
                             <a
@@ -184,27 +184,28 @@ const Variation1 = ({ speaker, moduleName, labels, eventUrl, showWorkshop, event
           </div>
         </div>
       </div>
-      <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
-        <div className="edgtf-container-inner container">
-          <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
-            <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.EVENTSITE_PROGRAM !== undefined ? labels.EVENTSITE_PROGRAM :"Programes"}</h2>
-            <span className="edge-title-separator edge-enable-separator"></span>
-            <div className="ebs-main-program-listing">
+      {event?.speaker_settings?.program === 1 && (
+        <div style={{ paddingBottom: 80 }} className="edgtf-full-width">
+          <div className="edgtf-container-inner container">
+            <div className="edgtf-title-section-holder pb-1 ebs-program-listing-wrapper">
+              <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.EVENTSITE_PROGRAM !== undefined ? labels.EVENTSITE_PROGRAM : "Programes"}</h2>
+              <span className="edge-title-separator edge-enable-separator"></span>
+              <div className="ebs-main-program-listing">
+                {speaker.programs && Object.keys(speaker.programs).map((key, k) => (
+                  <div className="ebs-program-parent" key={k}>
+                    {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
+                    {speaker.programs[key].map((item, i) =>
+                      item.workshop_id > 0 ?
+                        <WorkShop item={item} key={i} eventUrl={eventUrl} labels={labels} showWorkshop={showWorkshop} agendaSettings={agendaSettings} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} labels={labels} agendaSettings={agendaSettings} />
 
-              {speaker.programs && Object.keys(speaker.programs).map((key, k) => (
-                <div className="ebs-program-parent" key={k}>
-                  {speaker.programs[key][0] && <div className="ebs-date-border">{localeProgramMoment(eventLanguageId, speaker.programs[key][0].heading_date)}</div>}
-                  {speaker.programs[key].map((item, i) =>
-                    item.workshop_id > 0 ?
-                      <WorkShop item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} /> : <ProgramItem program={item} key={i} eventUrl={eventUrl} />
-
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

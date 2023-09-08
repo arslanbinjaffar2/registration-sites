@@ -9,12 +9,14 @@ const Variation1 = (props) =>  {
     props.handleSubmit({email,first_name,last_name,is_checked});
 
 }
+  const bgStyle = (props.moduleVariation && props.moduleVariation.background_color !== "") ? { backgroundColor: props.moduleVariation.background_color} : {backgroundColor: '#F2F2F2' }
+
     return (
       <React.Fragment>
-        {props.settings && <div className="module-section">
-          <div  style={{backgroundColor: '#F2F2F2' }} className="ebs-default-padding">
+        {props.settings && <div  className="module-section">
+          <div style={bgStyle}  className="ebs-default-padding">
           <div className="container">
-            <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'center'} />
+            <HeadingElement dark={false} label={props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING ? props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING : "Subscribe to our newsletter "}  align={'center'} />
             <p style={{color:"#fff", textAlign:"center"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
           </div>
             <div className="ebs-sub-newsletter-sec ebs-dark-variation">

@@ -19,18 +19,18 @@ const SurveyList = () => {
     surveyList ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>Surveys</h2>
+          <h2>{event.labels.EVENTSITE_TAB_SURVEY}</h2>
         </div>
         <div className="wrapper-inner-content network-category-sec">
           <div className="ebs-survey-heading d-flex">
-            <h4>Available Surveys</h4>
-            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >View results</ActiveLink>
+            <h4>{event.labels.EVENTSITE_TAB_SURVEY}</h4>
+            <ActiveLink href={`/${event.url}/profile/surveys/answered`} className="btn-view-result" >{event.labels.EVENTSITE_SUBMITTED_SURVEY}</ActiveLink>
           </div>
           
             <div className="ebs-survey-list">
               <ul>
                 {surveyList.map((survey) => (
-                  <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info[0].value}</ActiveLink> </li>
+                  survey.available === 'yes' ? <li key={survey.id}> <ActiveLink href={`/${event.url}/profile/surveys/${survey.id}`} >{survey.info.name}</ActiveLink> </li> : null
                 ))}
               </ul>
               {surveyList.length <=0 && <p>No Surveys Availble Yet</p>}

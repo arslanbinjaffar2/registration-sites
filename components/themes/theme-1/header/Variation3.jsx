@@ -194,7 +194,7 @@ class Variation3 extends React.Component {
                           {topMenu.map((menu) => (
                             <li className="nav-item" key={menu.id}>
                               {(menu.alias === "gallery" ||
-                                menu.alias === "myaccount" ||
+                                (menu.alias === "myaccount" && !this.props.userExist) ||
                                 menu.alias === "info_pages" ||
                                 menu.alias === "practicalinformation" ||
                                 menu.alias === "additional_information" ||
@@ -288,7 +288,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {menu.alias === "myaccount" && (
+                              {menu.alias === "myaccount" && !this.props.userExist && (
                                 <ul className="dropdown-menu">
                                   {!this.props.userExist ? menus["my_account_sub_menu"].map(
                                     (myaccount, k) => (
@@ -595,7 +595,7 @@ class Variation3 extends React.Component {
                                   )}
                                 </ul>
                               )}
-                              {(menu.alias === "info_pages" && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) &&  (
+                              {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p)=>p.id == menu.page_id) !== undefined && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) &&  (
                                 <ul className="dropdown-menu ebs-accordion-dropdown">
                                   {menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))) !== undefined && menus["info_pages_menu"].find((item)=>(parseInt(item.id) === parseInt(menu.page_id))).submenu.map((gItem, k) =>
                                 (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (

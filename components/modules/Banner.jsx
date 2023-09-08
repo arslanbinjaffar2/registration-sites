@@ -33,13 +33,6 @@ const Banner = () => {
     [event]
   );
 
-  const registerDateEnd = useMemo(()=>{
-    let currentDate = moment();
-    let endDate =  moment(event.eventsiteSettings.registration_end_date);
-    let diff = event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? currentDate.diff(endDate) < 0 : true;
-    return diff;
-  },[event]);
-
   const regisrationUrl = useMemo(()=>{
     let url = '';
     if(parseFloat(event.registration_form_id) === 1){
@@ -67,7 +60,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={registerDateEnd} countdown={event.eventsiteSettings.registration_end_date !== "0000-00-00 00:00:00" ? moment(event.eventsiteSettings.registration_end_date):null} /> : null}
+      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} countdown={null} /> : null}
     </Suspense>
   );
 };

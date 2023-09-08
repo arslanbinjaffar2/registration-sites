@@ -36,7 +36,7 @@ const InfoPagesListing = (props) => {
         main_menu_id={props.main_menu_id} 
         moduleName={props.moduleName} 
         eventUrl={event.url} 
-        eventSiteModuleName={event.header_data.info_pages_menu.find((data)=>(data.id == props.main_menu_id)) !== (undefined || null) ? 
+        eventSiteModuleName={event.header_data.info_pages_menu.find((data)=>(data.id == props.main_menu_id)) != (undefined || null) ? 
           event.header_data.info_pages_menu.find((data)=>(data.id == props.main_menu_id)).info.name 
           : "Information Pages"}
         breadCrumbData={event.header_data.info_pages_menu}

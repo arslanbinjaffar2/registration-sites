@@ -100,16 +100,17 @@ const NormalVideo = ({photo}) => {
 };
 
 
-const Variation4 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
+const Variation4 = ({ settings, videos, loadMore, eventUrl, home, siteLabels }) => {
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
     700: 2,
     500: 1,
   };
+  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
-    <div className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding">
       {home && <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={'center'} />
       </div>}
