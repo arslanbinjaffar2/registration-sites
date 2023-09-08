@@ -324,7 +324,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     <TextArea
                       label={labels?.about}
                       name="about"
-                      readOnly={settings?.is_editable === 1 ? false : true}
+                      readOnly={setting?.is_editable === 1 ? false : true}
                       onChange={(e) => {
                         updateAttendeeInfoFeild(e);
                       }}
