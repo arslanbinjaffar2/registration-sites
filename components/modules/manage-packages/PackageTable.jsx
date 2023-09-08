@@ -54,7 +54,7 @@ const PackageTable = ({eventUrl, item, labels, package_currency}) => {
 
   return (
     <div className={`ebs-package-table-wrapp ${!registerDateEnd && 'ebs-no-table-footer'}`}>
-      {item.show_tickets_left === 1 ? <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left:"} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : 0}</h5> : null}
+      {item.show_tickets_left === 1 ? <h5>{(labels.EVENTSITE_TICKETS_LEFT !== undefined && labels.EVENTSITE_TICKETS_LEFT !== "") ? labels.EVENTSITE_TICKETS_LEFT : "Tickets left"} {':'} {(item.total_tickets - item.sold_tickets) > 0 ? (item.total_tickets - item.sold_tickets) : "Unlimited"}</h5> : null}
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p> 
       {item.enable_price === 1 ? <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div> : null}
