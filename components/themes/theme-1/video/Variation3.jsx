@@ -97,7 +97,7 @@ const NormalVideo = ({photo}) => {
 };
 
 
-const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
+const Variation3 = ({ settings,videos, loadMore, eventUrl, home, siteLabels }) => {
   const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
