@@ -447,7 +447,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   {setting?.name === 'date_of_expiry_passport'&& (
                     <DateTime
                       label={labels?.date_of_expiry_passport}
-                      readOnly={settings?.is_editable === 1 ? false : true}
+                      readOnly={setting?.is_editable === 1 ? false : true}
                       required={true}
                       onChange={(item) => {
                         updateInfoDate({ item, name: "date_of_expiry_passport" });
