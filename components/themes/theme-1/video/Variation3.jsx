@@ -97,7 +97,7 @@ const NormalVideo = ({photo}) => {
 };
 
 
-const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
+const Variation3 = ({ settings,videos, loadMore, eventUrl, home, siteLabels }) => {
   const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
@@ -156,7 +156,7 @@ const Variation3 = ({ videos, loadMore, eventUrl, home, siteLabels }) => {
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
-                Load More
+                {siteLabels.GENERAL_LOAD_MORE}
               </button>
             </ActiveLink>
           </div>}
