@@ -3,11 +3,13 @@ import PackageTable from './PackageTable';
 import {fetchPackages, formPackageSelector} from 'store/Slices/FormPackageSlice';
 import { eventSelector } from 'store/Slices/EventSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import {
   incrementFetchLoadCount, incrementLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from 'components/ui-components/PageLoader';
 const PageContent = () => {
+  const router = useRouter();
   const { event } = useSelector(eventSelector);
   const { packages, loading, package_currency } = useSelector(formPackageSelector);
   const dispatch = useDispatch();
@@ -16,9 +18,12 @@ const PageContent = () => {
       dispatch(fetchPackages(event.url));
       dispatch(incrementLoadCount());
     }
-    
   }, [])
-  
+  React.useEffect(() => {
+    if (packages != null && packages == 0) {
+      router.push(`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee`); 
+    }
+  }, [packages])
   return (
     <React.Fragment>
       {packages ? (packages.length > 0 ? <main className="ebs-manage-packages" role="main">

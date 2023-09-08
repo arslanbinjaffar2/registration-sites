@@ -33,7 +33,7 @@ const MyProfile = () => {
                 <div className="col-lg-3">
                   <div className="ebs-my-profile-left">
                     <div className="ebs-my-profile-image">
-                      {settings?.profile_picture?.status === 1 && attendee.image && attendee.image !== "" ? (
+                      {settings?.find((setting) => (setting.name === 'profile_picture')) !== undefined && attendee.image && attendee.image !== "" ? (
                         <div className="ebs-image-wrapper-profile">
                           <img className="ebs-image-solid" src={
                             process.env.NEXT_APP_EVENTCENTER_URL +
