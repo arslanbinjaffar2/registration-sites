@@ -384,7 +384,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateDate({ item, name: "BIRTHDAY_YEAR" });
                       }}
-                      value={moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD')}
+                      value={attendeeData.BIRTHDAY_YEAR !== '' ? moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
@@ -440,7 +440,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateInfoDate({ item, name: "date_of_issue_passport" });
                       }}
-                      value={moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD')}
+                      value={attendeeData.info.date_of_issue_passport !== '' ? moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
@@ -453,7 +453,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         updateInfoDate({ item, name: "date_of_expiry_passport" });
                       }}
                       value={
-                        moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD')
+                        attendeeData.info.date_of_expiry_passport !== '' ? moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD') : ''
                       }
                       showdate={"YYYY-MM-DD"}
                     />
@@ -591,7 +591,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateDate({ item, name: "EMPLOYMENT_DATE" });
                       }}
-                      value={moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD')}
+                      value={attendeeData.EMPLOYMENT_DATE !== '' ? moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
