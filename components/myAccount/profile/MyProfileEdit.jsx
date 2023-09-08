@@ -384,7 +384,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateDate({ item, name: "BIRTHDAY_YEAR" });
                       }}
-                      value={attendeeData.BIRTHDAY_YEAR !== '' ? moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD') : ''}
+                      value={attendeeData.BIRTHDAY_YEAR !== '' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' ? moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
@@ -440,7 +440,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateInfoDate({ item, name: "date_of_issue_passport" });
                       }}
-                      value={attendeeData.info.date_of_issue_passport !== '' ? moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD') : ''}
+                      value={attendeeData.info.date_of_issue_passport !== '' && attendeeData.info.date_of_issue_passport !== '0000-00-00' && attendeeData.info.date_of_issue_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
@@ -453,7 +453,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         updateInfoDate({ item, name: "date_of_expiry_passport" });
                       }}
                       value={
-                        attendeeData.info.date_of_expiry_passport !== '' ? moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD') : ''
+                        attendeeData.info.date_of_expiry_passport !== '' && attendeeData.info.date_of_expiry_passport !== '0000-00-00' && attendeeData.info.date_of_expiry_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD') : ''
                       }
                       showdate={"YYYY-MM-DD"}
                     />
@@ -591,7 +591,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       onChange={(item) => {
                         updateDate({ item, name: "EMPLOYMENT_DATE" });
                       }}
-                      value={attendeeData.EMPLOYMENT_DATE !== '' ? moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD') : ''}
+                      value={attendeeData.EMPLOYMENT_DATE !== '' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00 00:00:00' ? moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
                     />
                   )}
