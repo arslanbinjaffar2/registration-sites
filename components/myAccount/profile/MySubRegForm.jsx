@@ -277,8 +277,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="radio-check-field">
                           <h5>{question.info[0].value}</h5>
                           {question.answer.map((answer) => (
+                            <div className="check-field-wrapp"  key={answer.id}>
                             <label
-                              key={answer.id}
                               onClick={() => {
                                 if((answer.tickets !== undefined && (answer.tickets <= 0))){
                                   return;
@@ -305,6 +305,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             >
                               <span>{answer.info[0].value}</span>
                             </label>
+                            </div>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
@@ -334,7 +335,10 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
 
                   {question.question_type === "number" && (
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (<React.Fragment>
-                      <div className="generic-form">
+                      <div 
+                        className="generic-form"
+                        style={{ width: "46%",zIndex: 9 }}
+                      >
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
@@ -431,8 +435,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="generic-form">
                           <h5>{question.info[0].value}</h5>
                           <div
-                            className="custom-label-select"
-                            style={{ width: "46%" }}
+                            className="custom-label-select position-relative"
+                            style={{ width: "46%",zIndex: 9 }}
                           >
                             <Select
                               placeholder="Select value from dropdown"
@@ -581,8 +585,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="radio-check-field style-radio">
                           <h5>{question.info[0].value}</h5>
                           {question.answer.map((answer) => (
+                            <div className="check-field-wrapp" key={answer.id}>
                             <label
-                              key={answer.id}
                               onClick={() => {
                                 if((answer.tickets !== undefined && (answer.tickets <= 0))){
                                   return;
@@ -609,6 +613,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             >
                               <span>{answer.info[0].value}</span>
                             </label>
+                            </div>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
