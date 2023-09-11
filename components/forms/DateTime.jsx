@@ -26,14 +26,15 @@ class MyDTPicker extends React.Component {
       </div>
     );
   };
-    return <Datetime ref={this.textInput} renderView={(mode, renderDefault) => renderView(mode, renderDefault, this.props.showtime,this.props.showdate)} initialViewMode={this.props.showdate ? 'days' : 'time'} closeOnSelect={this.props.showtime ? false : true} onChange={this.props.onChange} value={this.props.value} timeFormat={this.props.showtime} dateFormat={this.props.showdate} inputProps={{ placeholder: this.props.placeholder, required: this.props.required, disabled: this.props.readOnly }} renderInput={this.renderInput} />;
+    return <Datetime ref={this.textInput} renderView={(mode, renderDefault) => renderView(mode, renderDefault, this.props.showtime,this.props.showdate)} initialViewMode={this.props.showdate ? 'days' : 'time'} closeOnSelect={this.props.showtime ? false : true} onChange={this.props.onChange} value={this.props.value} timeFormat={this.props.showtime} dateFormat={this.props.showdate} inputProps={{ placeholder: this.props.placeholder, required: this.props.required, disabled: this.props.readOnly, clear:this.props.clear }} renderInput={this.renderInput} />;
   }
   renderInput(props) {
     return (
       <div className="DayPickerInput">
       <label className="label-input">
-      <input {...props} placeholder=' ' />
+      <input readOnly {...props} placeholder=' ' />
       <span>{props.placeholder}{props.required && <em className="req">*</em>}</span>
+      {props.clear === 1 && props.value !== '' && <div className='clear-date-btn' onClick={() => {props.onChange('')}}>Clear</div>}
     </label>
     </div>
     );
@@ -42,9 +43,9 @@ class MyDTPicker extends React.Component {
 
 
 
-const DateTime = ({label,value,showtime,showdate,onChange,required,toDate,fromDate, readOnly}) => {
+const DateTime = ({label,value,showtime,showdate,onChange,required,toDate,fromDate, readOnly, clear}) => {
   return (
-    <MyDTPicker onChange={onChange} value={value} readOnly={readOnly} showtime={showtime !== undefined ? showtime : false} showdate={showdate !== undefined ? showdate : true} placeholder={label} />
+    <MyDTPicker onChange={onChange} value={value} readOnly={readOnly} clear={clear} showtime={showtime !== undefined ? showtime : false} showdate={showdate !== undefined ? showdate : true} placeholder={label} />
   )
 };
 

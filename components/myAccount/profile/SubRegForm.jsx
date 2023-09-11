@@ -496,7 +496,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             updateResult(
                               `answer_date${question.id}`,
                               "date",
-                              item.format("YYYY-MM-DD"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD") : item,
                               question.id
                             );
                             
@@ -507,6 +507,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           }
                           label={`Select date`}
                           showdate={"YYYY-MM-DD"}
+                          clear={1}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -540,7 +541,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             updateResult(
                               `answer_date_time${question.id}`,
                               "date_time",
-                              item.format("YYYY-MM-DD HH:mm:ss"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD HH:mm:ss") : item,
                               question.id
                             );
                           }}
@@ -551,6 +552,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           label={`Select date time`}
                           showdate={"YYYY-MM-DD"}
                           showtime={"HH:mm:ss"}
+                          clear={1}
                         />
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
