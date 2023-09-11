@@ -160,7 +160,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: [answerId],
+          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
@@ -182,17 +182,21 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     }
    else if (type === "matrix") {
       if (Object.keys(subRegResult).length > 0) {
+        let matrixAnswer = ((subRegResult[`answer_matrix${questionId}_${answerId}`] !== undefined) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`].length > 0) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`][0].indexOf(matrixId) !== -1 )) ? [] :[
+          `${answerId}-${matrixId}`,
+        ];
+        console.log(matrixAnswer, 'matrix');
         setSubRegResult({
           ...subRegResult,
           [feild]:
             subRegResult[feild] !== undefined
               ? subRegResult[feild].indexOf(answerId) !== -1  
-                ? subRegResult[feild]
+                ? matrixAnswer.length <= 0 ? subRegResult[feild].filter((item) => (item !== answerId)) : subRegResult[feild] 
                 : [...subRegResult[feild], answerId]
               : [answerId],
-          [`answer_matrix${questionId}_${answerId}`]: [
-            `${answerId}-${matrixId}`,
-          ],
+          [`answer_matrix${questionId}_${answerId}`]: matrixAnswer,
         });
       } else {
         setSubRegResult({
@@ -660,7 +664,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                             checked={
                                               subRegResult[
                                                 `answer_matrix${question.id}_${answer.id}`
-                                              ] !== undefined &&
+                                              ] !== undefined && 
+                                              subRegResult[
+                                                `answer_matrix${question.id}_${answer.id}`
+                                              ].length > 0
+                                              &&
                                               subRegResult[
                                                 `answer_matrix${question.id}_${answer.id}`
                                               ][0].indexOf(matrix.id) !== -1
@@ -668,7 +676,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                                 : false
                                             }
                                             disabled={subRegSettings.answer === 1 ? false : true}
-                                            type="radio"
+                                            type="checkbox"
                                             onChange={() => {
                                               updateResult(
                                                 `answer${question.id}`,
