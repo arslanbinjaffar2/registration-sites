@@ -386,6 +386,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.BIRTHDAY_YEAR !== '' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' ? moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={1}
                     />
                   )}
                   {setting?.name === 'first_name_passport' && (
@@ -442,6 +443,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.date_of_issue_passport !== '' && attendeeData.info.date_of_issue_passport !== '0000-00-00' && attendeeData.info.date_of_issue_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={1}
                     />
                   )}
                   {setting?.name === 'date_of_expiry_passport'&& (
@@ -456,6 +458,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         attendeeData.info.date_of_expiry_passport !== '' && attendeeData.info.date_of_expiry_passport !== '0000-00-00' && attendeeData.info.date_of_expiry_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD') : ''
                       }
                       showdate={"YYYY-MM-DD"}
+                      clear={1}
                     />
                   )}
   
@@ -593,6 +596,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.EMPLOYMENT_DATE !== '' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00 00:00:00' ? moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={1}
                     />
                   )}
                   {setting?.name === 'department' && (

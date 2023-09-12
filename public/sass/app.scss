@@ -1774,6 +1774,11 @@
 }
 
 .radio-check-field {
+  .check-field-wrapp {
+    label {
+      display: inline-block;
+    }
+  }
   &.inline {
     padding: 6px 20px 6px;
     border-radius: 5px;
@@ -3396,4 +3401,49 @@
       border-color: $color-danger;
     }
   }
+}
+.rdtPicker .rdtTimeToggle {
+  display: none;
+}
+.ebs-date-wrapper {
+  .ebs-top-caption {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    display: flex;
+
+    label {
+      width: 50%;
+      height: 40px;
+      margin-bottom: 0;
+
+      input[type="radio"] {
+        display: none;
+        &:checked ~ span {
+          border-bottom-color: #169ACF;
+          color: #169ACF;
+        }
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-bottom: 1px solid $border;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.clear-date-btn{
+  max-width: fit-content;
+  position: absolute;
+  top: 12px;
+  right: 40px;
+  background: #d8d8d8;
+  padding: 3px 6px;
+  color: #fff;
+  border-radius: 8px;
 }

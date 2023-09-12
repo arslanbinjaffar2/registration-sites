@@ -160,7 +160,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: [answerId],
+          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
@@ -182,17 +182,21 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     }
    else if (type === "matrix") {
       if (Object.keys(subRegResult).length > 0) {
+        let matrixAnswer = ((subRegResult[`answer_matrix${questionId}_${answerId}`] !== undefined) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`].length > 0) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`][0].indexOf(matrixId) !== -1 )) ? [] :[
+          `${answerId}-${matrixId}`,
+        ];
+        console.log(matrixAnswer, 'matrix');
         setSubRegResult({
           ...subRegResult,
           [feild]:
             subRegResult[feild] !== undefined
               ? subRegResult[feild].indexOf(answerId) !== -1  
-                ? subRegResult[feild]
+                ? matrixAnswer.length <= 0 ? subRegResult[feild].filter((item) => (item !== answerId)) : subRegResult[feild] 
                 : [...subRegResult[feild], answerId]
               : [answerId],
-          [`answer_matrix${questionId}_${answerId}`]: [
-            `${answerId}-${matrixId}`,
-          ],
+          [`answer_matrix${questionId}_${answerId}`]: matrixAnswer,
         });
       } else {
         setSubRegResult({
@@ -273,8 +277,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="radio-check-field">
                           <h5>{question.info[0].value}</h5>
                           {question.answer.map((answer) => (
+                            <div className="check-field-wrapp"  key={answer.id}>
                             <label
-                              key={answer.id}
                               onClick={() => {
                                 if((answer.tickets !== undefined && (answer.tickets <= 0))){
                                   return;
@@ -301,6 +305,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             >
                               <span>{answer.info[0].value}</span>
                             </label>
+                            </div>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
@@ -330,7 +335,10 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
 
                   {question.question_type === "number" && (
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (<React.Fragment>
-                      <div className="generic-form">
+                      <div 
+                        className="generic-form"
+                        style={{ width: "46%",zIndex: 9 }}
+                      >
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
@@ -427,8 +435,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="generic-form">
                           <h5>{question.info[0].value}</h5>
                           <div
-                            className="custom-label-select"
-                            style={{ width: "46%" }}
+                            className="custom-label-select position-relative"
+                            style={{ width: "46%",zIndex: 9 }}
                           >
                             <Select
                               placeholder="Select value from dropdown"
@@ -498,6 +506,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           }
                           label={`Select date`}
                           showdate={"YYYY-MM-DD"}
+                          clear={1}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -545,6 +554,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           label={`Select date time`}
                           showdate={"YYYY-MM-DD"}
                           showtime={"HH:mm:ss"}
+                          clear={1}
                         />
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -577,8 +587,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <div className="radio-check-field style-radio">
                           <h5>{question.info[0].value}</h5>
                           {question.answer.map((answer) => (
+                            <div className="check-field-wrapp" key={answer.id}>
                             <label
-                              key={answer.id}
                               onClick={() => {
                                 if((answer.tickets !== undefined && (answer.tickets <= 0))){
                                   return;
@@ -605,6 +615,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             >
                               <span>{answer.info[0].value}</span>
                             </label>
+                            </div>
                           ))}
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
@@ -660,7 +671,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                             checked={
                                               subRegResult[
                                                 `answer_matrix${question.id}_${answer.id}`
-                                              ] !== undefined &&
+                                              ] !== undefined && 
+                                              subRegResult[
+                                                `answer_matrix${question.id}_${answer.id}`
+                                              ].length > 0
+                                              &&
                                               subRegResult[
                                                 `answer_matrix${question.id}_${answer.id}`
                                               ][0].indexOf(matrix.id) !== -1
@@ -668,7 +683,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                                 : false
                                             }
                                             disabled={subRegSettings.answer === 1 ? false : true}
-                                            type="radio"
+                                            type="checkbox"
                                             onChange={() => {
                                               updateResult(
                                                 `answer${question.id}`,
