@@ -231,7 +231,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
     infoObj[`custom_field_id${event.id}`] = custom_field_id;
 
-    console.log(infoObj)
+   
 
     let settings = {
       gdpr: attendeeData.gdpr
@@ -243,8 +243,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if (attendeeData.last_name) attendeeObj.last_name = attendeeData.last_name;
     if (attendeeData.FIRST_NAME_PASSPORT) attendeeObj.FIRST_NAME_PASSPORT = attendeeData.FIRST_NAME_PASSPORT;
     if (attendeeData.LAST_NAME_PASSPORT) attendeeObj.LAST_NAME_PASSPORT = attendeeData.LAST_NAME_PASSPORT;
-    if (attendeeData.BIRTHDAY_YEAR) attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
-    if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
     if (attendeeData.image) attendeeObj.image = attendeeData.image;
     if (attendeeData.file) attendeeObj.file = attendeeData.file;
     if (attendeeData.attendee_cv) attendeeObj.att_cv = attendeeData.attendee_cv;
@@ -254,6 +252,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       }
       return ack += `${item.label}`
     }, "");
+
+    attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
+    attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
+
 
     const data = {
       attendeeObj,
