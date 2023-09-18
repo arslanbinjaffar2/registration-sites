@@ -3393,3 +3393,24 @@
     }
   }
 }
+.ebs-attendees-list {
+  .social-icons {
+    a {
+      color: $default-heading-color;
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+  &.ebs-attendees-list-dark {
+    color: $white;
+    .edgtf-team-name,
+    .ebs-email-phone a,
+    .social-icons a {
+      color: $white;
+    }
+        .social-icons a:hover {
+          color: var(--primary);
+        }
+  }
+}
