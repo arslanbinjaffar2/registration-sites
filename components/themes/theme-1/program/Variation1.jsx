@@ -134,7 +134,7 @@ const settings = {
         </div>
         </div>
         <div className="container">
-          <div className="ebs-programs-date">
+          <div className="ebs-programs-date px-0">
             <Slider {...settings}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
