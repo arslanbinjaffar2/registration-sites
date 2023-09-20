@@ -10,7 +10,7 @@ const CustomSection = ({ data }) => {
   const router = useRouter();
   const [iframeHeight, setIframeHeight] = React.useState(window.innerHeight);
   const _iframe_embded = data?.includes('data-embed="_self"');
-  const matches = data?.match(/\bhttps?:\/\/\S+/gi);
+  const matches = data?.match(/https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
     React.useEffect(() => {
       if (_iframe_embded) {
         const listener = (event) =>{
