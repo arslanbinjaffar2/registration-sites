@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
+const Variation4 = ({ eventSiteSettings, registrationFormInfo, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
   const WrapperLayout = (props) => {
 
@@ -105,6 +105,8 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 </div>
               </div>
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
+
               <div className="text-center">
                 <a style={{ border: '2px solid #fff', color: '#fff' }} href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
               </div>

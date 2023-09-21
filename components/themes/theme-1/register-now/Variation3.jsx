@@ -45,7 +45,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl} ) => {
+const Variation3 = ({ eventSiteSettings, registrationFormInfo, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl} ) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
 
@@ -70,6 +70,8 @@ const Variation3 = ( {eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 </div>
               </div>
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
+
               <div className="text-center">
                 <a href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid"><span className="edgtf-btn-text">{labels.EVENTSITE_REGISTER_NOW2}</span></a>
               </div>
