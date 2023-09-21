@@ -44,7 +44,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 };
 
 
-const Variation2 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
+const Variation2 = ({ eventSiteSettings,registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
   const WrapperLayout = (props) => {
 
@@ -94,6 +94,7 @@ const Variation2 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
                 <div style={{ color: "#ffffff" }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
               </div>} */}
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">

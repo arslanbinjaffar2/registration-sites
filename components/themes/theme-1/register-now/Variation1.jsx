@@ -44,7 +44,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
   }
 };
 
-const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
+const Variation1 = ({ eventSiteSettings, registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
 
@@ -60,6 +60,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
               </div>} */}
 
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">
