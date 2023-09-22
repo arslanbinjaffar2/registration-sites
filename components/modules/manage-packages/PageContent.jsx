@@ -8,7 +8,7 @@ import {
   incrementFetchLoadCount, incrementLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from 'components/ui-components/PageLoader';
-const PageContent = () => {
+const PageContent = ({ isHome }) => {
   const router = useRouter();
   const { event } = useSelector(eventSelector);
   const { packages, loading, package_currency } = useSelector(formPackageSelector);
@@ -20,7 +20,7 @@ const PageContent = () => {
     }
   }, [])
   React.useEffect(() => {
-    if (packages != null && packages == 0) {
+    if (isHome == false && packages != null && packages == 0) {
       router.push(`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee`); 
     }
   }, [packages])
