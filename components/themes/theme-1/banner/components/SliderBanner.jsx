@@ -4,8 +4,7 @@ import Countdown, { zeroPad } from "react-countdown";
 const Completionist = ({ labels }) =>
   <div className="col-12">
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
-  </div>
-  ;
+  </div>;
 
 
 
@@ -32,7 +31,7 @@ const SliderBanner = (props) => {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a complete state
-      return <Completionist labels={this.props.labels}/>;
+      return <Completionist labels={props.event.labels}/>;
     } else {
       // Render a countdown
       return (
