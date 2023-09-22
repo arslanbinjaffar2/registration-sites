@@ -1,29 +1,31 @@
 import moment from 'moment';
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
-const Completionist = () =>  
+const Completionist = ({ labels }) =>  
   <div className="col-12">
-    <h2>This event is going on.</h2>
-  </div>
-;
+    <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
+  </div>;
 
-// Renderer callback with condition
-const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
-  if (completed) {
-    // Render a complete state
-    return <Completionist />;
-  } else {
-    // Render a countdown
-    return (
-      <React.Fragment>
+
+const PackageTable = ({eventUrl, item, labels, package_currency}) => {
+
+  // Renderer callback with condition
+  const renderer = ({ months, days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a complete state
+      return <Completionist labels={labels}/>;
+    } else {
+      // Render a countdown
+      return (
+        <React.Fragment>
           <div className="ebs-countdown-wrapp d-flex">
-            {Math.floor(days/30) > 0 &&<span className="edgtf-countdown is-countdown">
+            {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
               <span className="ebs-countdown-period">Month</span>
-              <span className="ebs-countdown-amount">{zeroPad(Math.floor(days/30))}</span>
+              <span className="ebs-countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
             </span>}
             <span className="edgtf-countdown is-countdown">
               <span className="ebs-countdown-period">Days</span>
-              <span className="ebs-countdown-amount">{zeroPad(Math.floor(days%30))}</span>
+              <span className="ebs-countdown-amount">{zeroPad(Math.floor(days % 30))}</span>
             </span>
             <span className="edgtf-countdown is-countdown">
               <span className="ebs-countdown-period">Hours</span>
@@ -38,12 +40,10 @@ const renderer = ({ months,days,hours, minutes, seconds, completed }) => {
               <span className="ebs-countdown-amount">{zeroPad(seconds)}</span>
             </span>
           </div>
-      </React.Fragment>
-    );
-  }
-};
-
-const PackageTable = ({eventUrl, item, labels, package_currency}) => {
+        </React.Fragment>
+      );
+    }
+  };
 
   const registerDateEnd = React.useMemo(()=>{
     let currentDate = moment();
