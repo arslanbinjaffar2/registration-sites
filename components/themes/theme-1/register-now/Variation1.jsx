@@ -1,6 +1,7 @@
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
+import { setRegistrationEndtime } from '../../../../helpers/helper'
 import HeadingElement from 'components/ui-components/HeadingElement'
 const Completionist = ({ labels }) =>  
   <div className="col-12">
@@ -10,7 +11,7 @@ const Completionist = ({ labels }) =>
 
 
 
-const Variation1 = ({ eventSiteSettings, registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
+const Variation1 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
   // Renderer callback with condition
@@ -60,7 +61,7 @@ const Variation1 = ({ eventSiteSettings, registrationFormInfo ,labels, registerD
               </div>} */}
 
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
-            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
+            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={setRegistrationEndtime(eventTimeZone, registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">

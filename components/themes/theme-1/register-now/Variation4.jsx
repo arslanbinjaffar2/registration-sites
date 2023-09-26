@@ -2,6 +2,7 @@ import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
 import HeadingElement from "components/ui-components/HeadingElement";
+import { setRegistrationEndtime } from '../../../../helpers/helper'
 const Completionist = ({ labels }) =>
   <div className="col-12">
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
@@ -11,7 +12,7 @@ const Completionist = ({ labels }) =>
 // Renderer callback with condition
 
 
-const Variation4 = ({ eventSiteSettings, registrationFormInfo, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
+const Variation4 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a complete state
@@ -105,7 +106,7 @@ const Variation4 = ({ eventSiteSettings, registrationFormInfo, labels, registerD
                 </div>
               </div>
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
-              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={moment(registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
+              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={setRegistrationEndtime(eventTimeZone,registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
 
               <div className="text-center">
                 <a style={{ border: '2px solid #fff', color: '#fff' }} href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>

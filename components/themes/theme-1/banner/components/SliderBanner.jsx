@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Slider from "react-slick";
 import Countdown, { zeroPad } from "react-countdown";
+import { setRegistrationEndtime } from '../../../../../helpers/helper'
+
 const Completionist = ({ labels }) =>
   <div className="col-12">
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
@@ -31,7 +33,7 @@ const SliderBanner = (props) => {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a complete state
-      return <Completionist labels={props.event.labels}/>;
+      return <Completionist labels={props.event.labels} />;
     } else {
       // Render a countdown
       return (
@@ -65,6 +67,7 @@ const SliderBanner = (props) => {
       );
     }
   };
+
   // useEffect(() => {
   //   window.addEventListener("scroll", function (e) {
   //       var scrolled = window.pageYOffset;
@@ -76,6 +79,7 @@ const SliderBanner = (props) => {
   //       }
   //     });
   // }, [])
+
   return (
     <div className={`banner-wrapper ${props.countdown !== null && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
       <Slider {...settings}>
@@ -85,7 +89,7 @@ const SliderBanner = (props) => {
         <div className="timer-wrapper">
           <div className="container">
             <div className="row d-flex align-items-center">
-              <Countdown date={props.countdown.form_registration_end_date} renderer={renderer} />
+              <Countdown date={setRegistrationEndtime(props.event.timezone.timezone, props.countdown.form_registration_end_date)} renderer={renderer} />
             </div>
           </div>
         </div>
