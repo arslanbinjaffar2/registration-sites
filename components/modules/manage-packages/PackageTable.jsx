@@ -2,13 +2,14 @@ import moment from 'moment';
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import { setRegistrationEndtime } from '../../../helpers/helper'
+import * as moment_timezone from 'moment-timezone';
 const Completionist = ({ labels }) =>
   <div className="col-12">
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
   </div>;
 
 
-const PackageTable = ({ eventUrl, eventTimeZone, eventTimeZone, item, labels, package_currency }) => {
+const PackageTable = ({ eventUrl, eventTimeZone, item, labels, package_currency }) => {
 
   // Renderer callback with condition
   const renderer = ({ months, days, hours, minutes, seconds, completed }) => {
@@ -47,7 +48,7 @@ const PackageTable = ({ eventUrl, eventTimeZone, eventTimeZone, item, labels, pa
   };
 
   const registerDateEnd = React.useMemo(() => {
-    let currentDate = moment().tz(eventTimeZone);
+    let currentDate = moment_timezone().tz(eventTimeZone);
     let endDate = moment(setRegistrationEndtime(eventTimeZone, moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)));
     let diff = item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" ? (currentDate.diff(endDate) < 0) : true;
     return diff;
