@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
+  console.log(variation);
   const Component = React.lazy(() =>
     import(`components/themes/${theme}/register-now/${variation}`)
   );
@@ -67,7 +68,7 @@ const RegisterNow = () => {
 
   return (
     <Suspense fallback={''}>
-      <Component eventSiteSettings={event.eventsiteSettings} registrationFormInfo={event.registration_form_info} registrationUrl={regisrationUrl} labels={event.labels} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} checkTickets={checkTickets}  waitingList={waitingList} moduleVariation={moduleVariation[0]} /> 
+      <Component eventSiteSettings={event.eventsiteSettings} eventTimeZone={event.timezone.timezone} registrationFormInfo={event.registration_form_info} registrationUrl={regisrationUrl} labels={event.labels} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} checkTickets={checkTickets}  waitingList={waitingList} moduleVariation={moduleVariation[0]} /> 
     </Suspense>
   );
 };
