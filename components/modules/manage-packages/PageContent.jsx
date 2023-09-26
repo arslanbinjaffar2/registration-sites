@@ -40,7 +40,7 @@ const PageContent = ({ isHome }) => {
             <div className="row">
               {packages && packages.length > 0 && packages.map((item)=>(
                 <div key={item.id} className="col-md-6 col-lg-4 mb-4">
-                  <PackageTable item={item} eventUrl={event.url} labels={event.labels} package_currency={package_currency}/>
+                  <PackageTable item={item} eventTimeZone={event.timezone.timezone} eventUrl={event.url} labels={event.labels} package_currency={package_currency}/>
                 </div>
               ))}
             </div>

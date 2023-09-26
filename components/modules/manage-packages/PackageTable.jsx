@@ -1,13 +1,14 @@
 import moment from 'moment';
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
+import { setRegistrationEndtime } from '../../../helpers/helper'
 const Completionist = ({ labels }) =>  
   <div className="col-12">
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
   </div>;
 
 
-const PackageTable = ({eventUrl, item, labels, package_currency}) => {
+const PackageTable = ({ eventUrl, eventTimeZone, item, labels, package_currency}) => {
 
   // Renderer callback with condition
   const renderer = ({ months, days, hours, minutes, seconds, completed }) => {
@@ -63,7 +64,7 @@ const PackageTable = ({eventUrl, item, labels, package_currency}) => {
       {registerDateEnd && item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" &&
         <div className="ebs-table-timer">
           <h4>{(labels.EVENTSITE_TIME_LEFT !== undefined && labels.EVENTSITE_TIME_LEFT !== "") ?  labels.EVENTSITE_TIME_LEFT : "Time left:"}</h4>
-          <Countdown date={moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`)} renderer={renderer} />
+          <Countdown date={setRegistrationEndtime(eventTimeZone,moment(`${moment(item.eventsite_setting.registration_end_date).format('YYYY-MM-DD')} ${item.eventsite_setting.registration_end_time}`))} renderer={renderer} />
         </div>
       }
     {registerDateEnd && <div className="ebs-footer-table">
