@@ -1,29 +1,35 @@
 import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
+import { setRegistrationEndtime } from '../../../../helpers/helper'
 import HeadingElement from 'components/ui-components/HeadingElement'
-const Completionist = () =>  
+const Completionist = ({ labels }) =>  
   <div className="col-12">
-    <h2>This event is going on.</h2>
+    <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
   </div>
 ;
 
-// Renderer callback with condition
-const renderer = ({ days,hours, minutes, seconds, completed }) => {
-  if (completed) {
-    // Render a complete state
-    return <Completionist />;
-  } else {
-    // Render a countdown
-    return (
-      <React.Fragment>
-          <div  className="ebs-countdown-wrapp countdown-wrapp">
-            {Math.floor(days/30) > 0 &&<span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(Math.floor(days/30))}</span>
+
+
+const Variation1 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
+  const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+  // Renderer callback with condition
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a complete state
+      return <Completionist labels={labels}/>;
+    } else {
+      // Render a countdown
+      return (
+        <React.Fragment>
+          <div className="ebs-countdown-wrapp countdown-wrapp">
+            {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
               <span className="countdown-period">Months</span>
             </span>}
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(Math.floor(days%30))}</span>
+              <span className="countdown-amount">{zeroPad(Math.floor(days % 30))}</span>
               <span className="countdown-period">Days</span>
             </span>
             <span className="edgtf-countdown is-countdown">
@@ -39,15 +45,10 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
               <span className="countdown-period">Seconds</span>
             </span>
           </div>
-      </React.Fragment>
-    );
-  }
-};
-
-const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl}) => {
-  const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
-  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
-
+        </React.Fragment>
+      );
+    }
+  };
   return (
     <div style={bgStyle} className="module-section ebs-default-padding">
         {registerDateEnd &&  (
@@ -60,6 +61,7 @@ const Variation1 = ({eventSiteSettings, labels, registerDateEnd, checkTickets, w
               </div>} */}
 
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={setRegistrationEndtime(eventTimeZone, registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
               <div className="row d-flex">
                 <div className="col-md-10 offset-md-1">
                   <div className="ebs-caption-box">

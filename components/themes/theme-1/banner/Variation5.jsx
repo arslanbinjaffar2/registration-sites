@@ -42,7 +42,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
     <div className="main-slider-wrapper">
       {banner && (
         <SliderBanner 
-        countdown={countdown}
+        countdown={null}
         registerDateEnd={registerDateEnd}
         eventsiteSettings={event.eventsiteSettings}
          >
