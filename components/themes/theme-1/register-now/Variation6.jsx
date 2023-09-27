@@ -112,12 +112,12 @@ const Variation6 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo,lab
           </div>
           <div className="ebs-register-now-sec">
             <div className="row d-flex align-items-center">
-            {/* {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="col-lg-4 ">
+            {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_remaining_tickets != '') && <div className="col-lg-4 ">
                 <div className="ebs-ticket-remaning d-flex align-items-center">
                   <div style={{color: '#ffffff', paddingRight: 20 }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
-                  <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
+                  <div className="ebs-ticket-counter">{registrationFormInfo.form_registration_remaining_tickets}</div>
                 </div>
-              </div>} */}
+              </div>}
               {/* <div className={`d-flex d-block-responsive align-items-center ${ticket_settings ? 'col-lg-8' : 'col-lg-12'}`}> */}
               <div className={`d-flex d-block-responsive align-items-center ${'col-lg-12'}`}>
                 {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}

@@ -92,12 +92,12 @@ const Variation4 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo, la
             <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'left'} />
             <div className="ebs-register-now-sec ebs-register-v2 ebs-register-v3">
               <div className="row d-flex align-items-center flex-row-reverse">
-                {/* {(checkTickets.ticketsSet && ticket_settings  && checkTickets.remainingTickets > 0) && <div className="col-md-3">
+                {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_remaining_tickets != '') && <div className="col-md-3">
                    <div className="ebs-ticket-remaning">
-                    <div style={{ color: '#fff' }} className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
+                    <div style={{ color: '#fff' }} className="ebs-ticket-counter">{registrationFormInfo.form_registration_remaining_tickets}</div>
                     <div style={{ color: '#fff' }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   </div>
-                </div>} */}
+                </div>}
                 {/* <div className={ticket_settings ? 'col-md-9' : 'col-md-12'}> */}
                 <div className={'col-md-12'}>
                   <div className="ebs-caption-box" style={{marginBottom: 20}}>
