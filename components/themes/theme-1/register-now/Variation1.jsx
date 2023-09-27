@@ -55,10 +55,10 @@ const Variation1 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo ,la
           <div className="container">
             <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'center'} />
             <div className="ebs-register-now-sec">
-              {/* {(checkTickets.ticketsSet && ticket_settings && checkTickets.remainingTickets > 0) && <div className="ebs-ticket-remaning">
-                <div className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
+              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_remaining_tickets != '') && <div className="ebs-ticket-remaning">
+                <div className="ebs-ticket-counter">{registrationFormInfo.form_registration_remaining_tickets}</div>
                 <div className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
-              </div>} */}
+              </div>}
 
               {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
             {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={setRegistrationEndtime(eventTimeZone, registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
