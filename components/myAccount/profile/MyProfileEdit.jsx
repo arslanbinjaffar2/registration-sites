@@ -55,7 +55,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
-  const { attendee_edit, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
+  const { attendee_edit, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields, attendee_module_labels } =
     useSelector(profileSelector);
 
   return (
@@ -73,6 +73,7 @@ const MyProfileEdit = () => {
         labels={labels}
         redirect={redirect}
         customFields={customFields}
+        attendeeLabels={attendee_module_labels}
       />) : <PageLoader />
 
   );
@@ -80,7 +81,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields, attendeeLabels }) => {
 
   const dispatch = useDispatch();
 
@@ -497,7 +498,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         )}
                         {setting?.is_editable === 1 && (
                           <>
-                            <span>Uplaod Photo</span>
+                            <span>{attendeeLabels.ATTENDEE_PROFILE_PICTURE}</span>
                           </>
                         )}
                       </label>
@@ -534,7 +535,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             <span onClick={() => {
                               inputresumeFileRef.current.click();
                             }}>
-                              Uplaod Resume
+                              {attendeeLabels.ATTENDEE_RESUME}
                             </span>
                           </>
                         )}
