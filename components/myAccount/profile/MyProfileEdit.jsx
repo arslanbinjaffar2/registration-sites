@@ -55,7 +55,7 @@ const MyProfileEdit = () => {
     dispatch(fetchProfileData(event.id, event.url, 1));
   }, []);
 
-  const { attendee_edit, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields } =
+  const { attendee_edit, languages, callingCodes, countries, loading, alert, error, settings, labels, redirect, customFields, attendee_module_labels } =
     useSelector(profileSelector);
 
   return (
@@ -73,6 +73,7 @@ const MyProfileEdit = () => {
         labels={labels}
         redirect={redirect}
         customFields={customFields}
+        attendeeLabels={attendee_module_labels}
       />) : <PageLoader />
 
   );
@@ -80,7 +81,7 @@ const MyProfileEdit = () => {
 
 export default MyProfileEdit;
 
-const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields }) => {
+const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, loading, alert, error, settings, labels, redirect, customFields, attendeeLabels }) => {
 
   const dispatch = useDispatch();
 
@@ -492,7 +493,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         )}
                         {setting?.is_editable === 1 && (
                           <>
-                            <span>Uplaod Photo</span>
+                            <span>{attendeeLabels?.ATTENDEE_PROFILE_PICTURE}</span>
                           </>
                         )}
                       </label>
@@ -514,7 +515,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       <label>
                         {((attendeeData && attendeeData?.attendee_cv && attendeeData?.attendee_cv !== "")) ? (
                           <>
-                            {(typeof attendeeData.attendee_cv === 'string')  ? <a class="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
+                            {(typeof attendeeData.attendee_cv === 'string')  ? <a className="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
                               <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
                                 '/_admin_assets/images/pdf512.png'}`} alt="" />
                             </a> : <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
@@ -529,7 +530,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             <span onClick={() => {
                               inputresumeFileRef.current.click();
                             }}>
-                              Uplaod Resume
+                              {attendeeLabels?.ATTENDEE_RESUME}
                             </span>
                           </>
                         )}
@@ -759,7 +760,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   )}
                   {setting?.name === 'show_custom_field' && (
                       customFields.map((question, i)=>(
-                        <>
+                        <React.Fragment key={question.id}>
                         <Select
                           styles={Selectstyles2}
                           isDisabled={setting?.is_editable === 1 ? false : true}
@@ -779,7 +780,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                             updateCustomFieldSelect({ item, name: `custom_field_id_q${i}` });
                           }}
                         />
-                        </>
+                        </React.Fragment>
                       ))
                     )}
 
