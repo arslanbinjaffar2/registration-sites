@@ -16,7 +16,7 @@ const Variation3 = (props) =>  {
         {props.settings && <div className="module-section">
           <div style={bgStyle} className="ebs-default-padding">
           <div className="container-fluid">
-            <HeadingElement dark={false} label={"Subscribe to our newsletter "}  align={'left'} />
+            <HeadingElement dark={false} label={props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING ? props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING : "Subscribe to our newsletter "}  align={'left'} />
             <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
           </div>
             <div className="ebs-sub-newsletter-sec ebs-dark-variation">

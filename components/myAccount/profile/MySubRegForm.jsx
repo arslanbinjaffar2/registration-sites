@@ -8,8 +8,11 @@ import {
   updateSubRegistrationData,
 } from "store/Slices/myAccount/mysubRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const dispatch = useDispatch();
+  const [programs, setPrograms] = useState(subRegistration.all_programs);
+  const [settings, setSettings] = useState(subRegistration.settings);
   const [subRegResult, setSubRegResult] = useState(subRegistration.questions.question
     .reduce(
       (ack, item) => {
@@ -30,7 +33,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       else if(item.question_type === "single" && item.result.length > 0){
         let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id], [`comments${item.id}`]:item.result[0].comments }
         if(item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to > 0){
-          newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer[item.result[0].answer_id].link_to};
+          newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to};
         }
         return Object.assign(ack, {...newObj} );
       }
@@ -76,11 +79,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   const simpleValidator = useRef(new SimpleReactValidator({
     element: (message) => <p className="error-message">{message}</p>,
     messages: {
-      required: "This field is required!"
+      required: event.labels.REGISTRATION_FORM_FIELD_REQUIRED
     },
     autoForceUpdate: { forceUpdate: () => forceUpdate(1) }
   }))
-  const updateResult = (
+  const updateResult = async (
     feild,
     type,
     answerId = 0,
@@ -90,6 +93,36 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
   ) => {
     setValidationErrors({})
     if (type === "multiple") {
+      if(settings.favorite_session_registration_same_time != 1 && agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
+        let selectedProgram = programs.find((item)=>(item.id == agendaId))
+        let start_time1 = selectedProgram.start_time;
+        let end_time1 = selectedProgram.end_time;
+        let exit = false;
+        await subRegResult[feild].forEach(answer => {
+          let pId = subRegResult['answer_agenda_'+answer];
+          let thisPrograms = programs.find((item)=>(item.id == pId));
+          let start_time2 = thisPrograms.start_time;
+          let end_time2 = thisPrograms.end_time;
+          start_time1 = moment(start_time1,'HH:mm');
+          end_time1 = moment(end_time1, 'HH:mm');
+          start_time2 = moment(start_time2, 'HH:mm');
+          end_time2 = moment(end_time2, 'HH:mm');
+          console.log(start_time1);
+          console.log(start_time2);
+          console.log(pId != agendaId && (moment(thisPrograms.start_date, 'DD-MM-YYYY').isSame(moment(selectedProgram.start_date, 'DD-MM-YYYY'))) == true)
+          console.log((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1))
+          if(pId != agendaId && (moment(thisPrograms.date, 'DD-MM-YYYY').isSame(moment(selectedProgram.date, 'DD-MM-YYYY'))) == true ){
+              if ((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1)) {
+                      window.alert('Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
+                      exit = true;
+
+              }
+          }
+        });
+        if(exit){
+          return;
+        }
+      }
       if (Object.keys(subRegResult).length > 0) {
         let newObj = subRegResult;
         let question = questions.find((question)=>(question.id === questionId));
@@ -243,6 +276,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             <label
                               key={answer.id}
                               onClick={() => {
+                                if((answer.tickets !== undefined && (answer.tickets <= 0))){
+                                  return;
+                                }
                                 if(subRegSettings.answer === 1){
                                     updateResult(
                                       `answer${question.id}`,
@@ -260,7 +296,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -270,9 +306,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 defaultValue={subRegResult[`comments${question.id}`]}
@@ -298,7 +334,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         <h5>{question.info[0].value}</h5>
                         <Input
                           type="number"
-                          placeholder={"Answer"}
+                          label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
@@ -316,9 +352,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_number${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               defaultValue={subRegResult[`comments${question.id}`]}
@@ -363,9 +399,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_open${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               defaultValue={subRegResult[`comments${question.id}`]}
@@ -402,6 +438,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 value: answer.id,
                                 linkTo: answer.link_to,
                                 key: i,
+                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : false
                               }))}
                               disabled={subRegSettings.answer === 1 ? false : true}
                               value={subRegResult[`answer_dropdown${question.id}`] !== undefined && { label:  question.answer.find((answer) => ( answer.id == subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] )).info[0].value , value: subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] }}
@@ -418,9 +455,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_dropdown${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 defaultValue={subRegResult[`comments${question.id}`]}
@@ -465,9 +502,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               defaultValue={subRegResult[`comments${question.id}`]}
@@ -512,9 +549,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
                           <div className="generic-form">
-                            <p>Your comment:</p>
+                            <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                             <textarea
-                              placeholder="Your comment"
+                              placeholder={event.labels.GENERAL_YOUR_COMMENT}
                               cols={30}
                               rows={5}
                               defaultValue={subRegResult[`comments${question.id}`]}
@@ -543,6 +580,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             <label
                               key={answer.id}
                               onClick={() => {
+                                if((answer.tickets !== undefined && (answer.tickets <= 0))){
+                                  return;
+                                }
                                 if(subRegSettings.answer === 1){
                                     updateResult(
                                       `answer${question.id}`,
@@ -560,7 +600,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -569,9 +609,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 defaultValue={subRegResult[`comments${question.id}`]}
@@ -596,6 +636,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
                           <h5>{question.info[0].value}</h5>
+                          <div className="matrix-wrapper">
                           <div className="matrix-table">
                             <div className="martix-row matrix-header">
                               <div className="matrix-box matrix-heading"></div>
@@ -648,12 +689,13 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               </React.Fragment>
                             ))}
                           </div>
+                          </div>
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined && subRegResult[`answer${question.id}`].length === question.answer.length ? true : null, 'required')}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
-                              <p>Your comment:</p>
+                              <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
                               <textarea
-                                placeholder="Your comment"
+                                placeholder={event.labels.GENERAL_YOUR_COMMENT}
                                 cols={30}
                                 rows={5}
                                 defaultValue={subRegResult[`comments${question.id}`]}
@@ -680,8 +722,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       </div>
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
-      {subRegSettings.answer === 1 && <div className="bottom-button">
-        <button className="btn btn-save-next btn-loader" disabled={(updating ? true : false)} onClick={(e)=>{handleSave(e)}}> {updating ?  "Saving..." : 'Save'} </button>
+      {subRegSettings.answer === 1 && subRegistration.show_save === 1 && <div className="bottom-button">
+        <button className="btn btn-save-next btn-loader" disabled={(updating ? true : false)} onClick={(e)=>{handleSave(e)}}> {event.labels.GENERAL_SEND} </button>
       </div>}
       {console.log(updating, 'updating')}
     </React.Fragment>

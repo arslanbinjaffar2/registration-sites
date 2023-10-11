@@ -9,7 +9,7 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
         <div className="ebs-program-child">
             <div className="row d-flex">
                 <div className="col-lg-2">
-                    {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0  && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
+                    {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
                 </div>
                 <div className="col-lg-10">
                     <div className="ebs-program-content">
@@ -43,13 +43,24 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                                             ) : (
                                                 <Image objectFit='contain' layout="fill"
                                                     onLoad={(e) => e.target.style.opacity = 1}
-																										style={{maxWidth: '90%'}}
+                                                    style={{ maxWidth: '90%' }}
                                                     src={
                                                         require("public/img/user-placeholder.jpg")
                                                     } alt="" />
                                             )}
                                         </span>
                                         <h4>{speakers.first_name} {speakers.last_name}</h4>
+                                        {speakers.info &&
+                                            (speakers.info.company_name || speakers.info.title) && (
+                                                <div className="edge-info-row">
+                                                    <p className="info">
+                                                        {speakers.info.title &&
+                                                            `${speakers.info.title},`}{" "}
+                                                        {speakers.info.company_name &&
+                                                            speakers.info.company_name}
+                                                    </p>
+                                                </div>
+                                            )}
                                     </ActiveLink>
                                 </div>
                             )}

@@ -24,12 +24,11 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
     }
 
   }
-
   return (
     <div className="main-slider-wrapper ebs-classic-banner">
       {banner && (
         <SliderBanner 
-        countdown={countdown}
+        countdown={null}
         registerDateEnd={registerDateEnd}
         eventsiteSettings={event.eventsiteSettings}
          >
@@ -48,18 +47,18 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                     <img src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                   </figure>
                 )}
-                {(settings.register_button === 1 || settings.title === 1 ||  settings.caption === 1) && <div className="classic-caption-wrapp">
+                {((settings.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
                   <div className="text-center classic-inner-caption-wrapp">
                     <div style={{ position: "relative" }}
                       className="parallax-text"
                     >
                       {slides.info.title && settings.title === 1 && (
-                        <div className="ebs-banner-title">
+                        <div style={{color:  slides?.title_color ? slides?.title_color : "#fff"}} className="ebs-banner-title">
                           {slides.info.title}
                         </div>
                       )}
                       {slides.info.message && settings.caption === 1 && (
-                        <div className="ebs-banner-subtitle">
+                        <div style={{color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff"}} className="ebs-banner-subtitle">
                           {slides.info.message}
                         </div>
                       )}

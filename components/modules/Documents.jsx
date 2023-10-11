@@ -22,7 +22,7 @@ const Documents = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchDocuments(eventUrl));
+    dispatch(fetchDocuments(eventUrl, event.id));
   }, []);
   
   const { documents } = useSelector(documentsSelector);

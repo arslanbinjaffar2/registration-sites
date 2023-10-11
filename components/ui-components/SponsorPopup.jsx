@@ -2,7 +2,7 @@ import * as React from 'react';
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
-const SponsorPopup = ({ width, onClick, data, eventUrl }) => {
+const SponsorPopup = ({ width, onClick, data, eventUrl, labels }) => {
 
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -46,7 +46,7 @@ const SponsorPopup = ({ width, onClick, data, eventUrl }) => {
                                     {data.twitter && <a href={data.twitter}><i className="fa fa-twitter" /></a>}
                                     {data.linkedin && <a href={data.linkedin}><i className="fa fa-linkedin" /></a>}
                                 </div>
-                                <p><ActiveLink href={`/${eventUrl}/sponsors/${data.id}`}>Read More</ActiveLink></p>
+                                <p><ActiveLink href={`/${eventUrl}/sponsors/${data.id}`}>{labels.EVENTSITE_READMORE ? labels.EVENTSITE_READMORE : 'Read more'}</ActiveLink></p>
                             </div>
                         </div>
                     </div>

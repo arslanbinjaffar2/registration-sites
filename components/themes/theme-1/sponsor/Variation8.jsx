@@ -81,7 +81,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 
 	return (
 		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
-			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} />}
+			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 			</div>

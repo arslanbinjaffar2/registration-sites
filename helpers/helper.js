@@ -1,4 +1,5 @@
 import moment from "moment";
+import * as moment_timezone from 'moment-timezone';
 require("moment/min/locales.min");
 function ltrim(str, chr) {
     var rgxtrim = (!chr) ? new RegExp('^\\s+') : new RegExp('^' + chr + '+');
@@ -30,11 +31,21 @@ const objectToArray = (obj) => {
     }
     return { arr, arrkeys };
 }
-
+const setRegistrationEndtime = (timezone, form_registration_end_date) => {
+    const moment_now = moment_timezone(new Date());
+    const servertime = new Date();
+    const options = { timeZone: timezone };
+    const EventTimezoneDateTime = moment_timezone(new Date(servertime.toLocaleString('en-US', options)));
+    const difference = moment_timezone.duration(moment_now.diff(EventTimezoneDateTime));
+    const final_date_time = moment_timezone(form_registration_end_date);
+    const finalDateTimeWithDifference = final_date_time.clone().add(difference);
+    return finalDateTimeWithDifference;
+}
 export {
     formatString,
     ltrim,
     objectToArray,
+    setRegistrationEndtime,
 };
 
 export const getMeta = (url, type) => {

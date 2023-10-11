@@ -14,15 +14,15 @@ const Variation9 = ({
   siteLabels
 }) => {
 
-   
-    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
-    const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`,backgroundPosition: 'center top'} : {backgroundPosition: 'center top'}
-    return (
-      <div 
-          style={bgStyle}        
-          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
-          >
-          <div className="container">
+
+  const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+  const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`, backgroundPosition: 'center top' } : { backgroundPosition: 'center top' }
+  return (
+    <div
+      style={bgStyle}
+      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+    >
+      <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
       {searchBar()}
@@ -69,6 +69,13 @@ const Variation9 = ({
                           {(attendee.first_name || attendee.last_name) && (
                             <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                               <h3 className="edgtf-team-name">
+                                {attendee.info &&
+                                  attendee.info.initial && (
+                                    <>
+                                      {attendee.info.initial &&
+                                        attendee.info.initial}&nbsp;
+                                    </>
+                                  )}
                                 {attendee.first_name && attendee.first_name}{" "}
                                 {attendee.last_name && attendee.last_name}
                               </h3>
@@ -175,9 +182,9 @@ const Variation9 = ({
         {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {attendees.length > 0 && loadMore()}
       </div>
-        </div>
-      );
-    
+    </div>
+  );
+
 
 };
 

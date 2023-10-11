@@ -31,7 +31,7 @@ const News = (props) => {
     return in_array(module.alias, ["news"]);
   });
 
-  const limit = props.homePage ? 6 : 10;
+  const limit = props.homePage ? "default_setting" : 10;
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
@@ -67,9 +67,7 @@ const News = (props) => {
     <Suspense fallback={<PageLoader />}>
       {news ? (
         <React.Fragment>
-          <Head>
-            <title>{event.eventsiteModules.news}</title>
-        </Head>
+        {!props.homePage && <Head><title>{event.eventsiteModules.news}</title></Head>}
         {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
         {news.length > 0 ? <Component
           news={news}
@@ -86,7 +84,7 @@ const News = (props) => {
           }}
         /> : null}
         </React.Fragment>
-      ) : <PageLoader />}
+      ) : !props.homePage ? <PageLoader /> : null}
     </Suspense>
   );
 };

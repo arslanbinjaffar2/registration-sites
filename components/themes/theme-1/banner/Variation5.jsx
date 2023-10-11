@@ -4,16 +4,16 @@ import React from "react";
 const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
 
   const WrapperLayout = (props) => {
-
+  const _bgLayer = (props.slides.info?.title.length > 0 && settings.title === 1) || (props.slides.info?.message.length > 0 && settings.caption === 1) || (settings.register_button === 1);
     if (props.slides && Number(props.slides.video_type) === 1) {
       return (
         <div
           style={{
             backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image
               })`,
-            backgroundPosition: "50% 0",
+            backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' 
           }}
-          className={`background parallax-backgroud ${!props.slides.info.message && settings.caption !== 1 && 'ebs-no-opacity'}`}
+          className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}
         >
           {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
               {props.children}
@@ -25,8 +25,9 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
         <div
           style={{
             backgroundPosition: "50% 0",
+            backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' 
           }}
-          className={`background parallax-backgroud ${!props.slides.info.message && settings.caption !== 1 && 'ebs-no-opacity'}`}
+          className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}
         >
           {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
               {props.children}
@@ -41,7 +42,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
     <div className="main-slider-wrapper">
       {banner && (
         <SliderBanner 
-        countdown={countdown}
+        countdown={null}
         registerDateEnd={registerDateEnd}
         eventsiteSettings={event.eventsiteSettings}
          >
@@ -74,7 +75,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                             color: "#ec008c",
                           }}
                         >
-                          <span style={{ color: "#fff" }}>
+                          <span style={{ color:  slides?.title_color ? slides?.title_color : "#fff" }}>
                             {" "}
                             {slides.info.title}{" "}
                           </span>
@@ -90,7 +91,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                             fontWeight: "400",
                             letterSpacing: "0px",
                             textAlign: "left",
-                            color: "#ffffff",
+                            color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff",
                             maxWidth: 850,
                           }}
                         >

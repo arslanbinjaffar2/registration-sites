@@ -7,38 +7,36 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
 
   const _parallax = useRef(null);
   useEffect(() => {
-    if(!listing)
-    {
+    if (!listing) {
       window.addEventListener("scroll", scollEffect);
       return () => {
         window.removeEventListener("scroll", scollEffect);
       }
     }
-    }, [])
-    
-    if(!listing)
-    {
+  }, [])
+
+  if (!listing) {
     function scollEffect() {
       const scrolled = window.pageYOffset;
       const itemOffset = _parallax.current.offsetTop;
       const itemHeight = _parallax.current.getBoundingClientRect();
       if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
       const _scroll = (scrolled - itemOffset) + itemHeight.height;
-        _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
+      _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
     };
   }
-  
 
-    const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
-    const bgStyle =  (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})`  } : {}
-   
-      return (
-        <div style={bgStyle}
-          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
-          ref={_parallax}
-          >
-          <div className="container">
+  const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
+
+  const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
+
+  return (
+    <div style={bgStyle}
+      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+      ref={_parallax}
+    >
+      <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
       </div>
       {listing && searchBar()}
@@ -90,6 +88,13 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                             {(speaker.first_name || speaker.last_name) && (
                               <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
                                 <h3 className="edgtf-team-name">
+                                  {speaker.info &&
+                                    speaker.info.initial && (
+                                      <>
+                                        {speaker.info.initial &&
+                                          speaker.info.initial}&nbsp;
+                                      </>
+                                    )}
                                   {speaker.first_name && speaker.first_name}{" "}
                                   {speaker.last_name && speaker.last_name}
                                 </h3>
@@ -194,8 +199,8 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
         {listing && speakers.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
         {listing && speakers.length > 0 && loadMore()}
       </div>
-        </div>
-      );
+    </div>
+  );
 };
 
 export default Variation1;
