@@ -169,17 +169,17 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {sponsor?.sponsors_attendee.map((attendee, o) =>
+            {sponsor?.sponsors_attendee?.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
-                  {attendee.image && attendee.image !== "" ? (
+                  {attendee?.image && attendee?.image !== "" ? (
                     <img
                       onLoad={(e) => e.target.style.opacity = 1}
                       style={{ width: '90%' }}
                       src={
                         process.env.NEXT_APP_EVENTCENTER_URL +
                         "/assets/attendees/" +
-                        attendee.image
+                        attendee?.image
                       } alt="" />
                   ) : (
                     <Image objectFit='contain' layout="fill"
@@ -190,8 +190,8 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                       } alt="" />
                   )}
                 </span>
-                <h4>{attendee.first_name} {attendee.last_name}</h4>
-                <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
+                <h4>{attendee?.first_name} {attendee?.last_name}</h4>
+                <p>{attendee?.info?.title && (attendee?.info?.title)} {attendee?.info?.company_name && (attendee?.info?.company_name)}</p>
               </div>
             )}
           </div>
