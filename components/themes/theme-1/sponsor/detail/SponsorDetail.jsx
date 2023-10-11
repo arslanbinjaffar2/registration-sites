@@ -32,11 +32,11 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
               <div className="edge-grid-row">
                 <div className="edge-grid-col-12 edgtf-team-list-single-image">
                   <span style={{ border: '1px solid #ccc' }} className="gallery-img-wrapper-square">
-                    {sponsor.logo && sponsor.logo !== '' ? (
+                    {sponsor?.logo && sponsor?.logo !== '' ? (
                       <img
                         style={{ maxWidth: '90%', width: 'auto' }}
                         onLoad={(e) => e.target.style.opacity = 1}
-                        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
+                        src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor?.logo}
                         alt=""
                       />
                     ) : (
@@ -51,21 +51,21 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                 </div>
                 <div className="edge-grid-col-12 edgtf-team-list-single-info">
                   <h2 className="edge-name">
-                    {sponsor.name && sponsor.name}
+                    {sponsor?.name && sponsor?.name}
                   </h2>
                   <div className="edge-grid-row edge-info">
                     <div className="edge-grid-col-12">
-                      {sponsor.description && sponsor.description && (
+                      {sponsor?.description && sponsor?.description && (
                         <div
                           style={{ paddingBottom: 10 }}
                           className="edge-team-single-content"
                         >
                           <h4 className="info">{labels.EVENTSITE_ABOUT_LABEL !== undefined ? labels.EVENTSITE_ABOUT_LABEL :"ABOUT"} </h4>
-                          <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: sponsor.description }} ></div>
+                          <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: sponsor?.description }} ></div>
                         </div>
                       )}
-                      {/* {sponsor.booth} */}
-                      {sponsor.email && (
+                      {/* {sponsor?.booth} */}
+                      {sponsor?.email && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -82,14 +82,14 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           <p>
                             <a
                               style={{ color: "#000" }}
-                              href={`mailto:${sponsor.email}`}
+                              href={`mailto:${sponsor?.email}`}
                             >
-                              {sponsor.email}
+                              {sponsor?.email}
                             </a>
                           </p>
                         </div>
                       )}
-                      {sponsor.phone_number.split("-")[1] !== undefined && sponsor.phone_number.split("-")[1] > 4 && (
+                      {sponsor?.phone_number.split("-")[1] !== undefined && sponsor?.phone_number.split("-")[1] > 4 && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -106,14 +106,14 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           <p>
                             <a
                               style={{ color: "#000" }}
-                              href={`tel:${sponsor.phone_number}`}
+                              href={`tel:${sponsor?.phone_number}`}
                             >
-                              {sponsor.phone_number}
+                              {sponsor?.phone_number}
                             </a>
                           </p>
                         </div>
                       )}
-                      {sponsor.booth && (
+                      {sponsor?.booth && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -128,7 +128,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                             booth{" "}
                           </h4>
                           <p>
-                            {sponsor.booth}
+                            {sponsor?.booth}
                           </p>
                         </div>
                       )}
@@ -137,38 +137,38 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         className="edge-info-row"
                       >
                         <div className="social-icons">
-                          {sponsor.facebook !== "http://" && sponsor.facebook !== "https://" && sponsor.facebook.length > 8 && (
+                          {sponsor?.facebook !== "http://" && sponsor?.facebook !== "https://" && sponsor?.facebook.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
-                              href={`${sponsor.facebook}`}
+                              href={`${sponsor?.facebook}`}
                             >
                               <span data-icon="&#xe0aa;"></span>
                             </a>
                           )}
-                          {sponsor.twitter > "http://" && sponsor.twitter !== "https://" && sponsor.twitter.length > 8 && (
+                          {sponsor?.twitter > "http://" && sponsor?.twitter !== "https://" && sponsor?.twitter.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
-                              href={`${sponsor.twitter}`}
+                              href={`${sponsor?.twitter}`}
                             >
                               <span data-icon="&#xe0ab;"></span>
                             </a>
                           )}
-                          {sponsor.linkedin > "http://" &&  sponsor.linkedin !== "https://" && sponsor.linkedin.length > 8 && (
+                          {sponsor?.linkedin > "http://" &&  sponsor?.linkedin !== "https://" && sponsor?.linkedin.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
-                              href={`${sponsor.linkedin}`}
+                              href={`${sponsor?.linkedin}`}
                             >
                               <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
-                          {sponsor.website > "http://" && sponsor.website !== "https://" && sponsor.website.length > 8 && (
+                          {sponsor?.website > "http://" && sponsor?.website !== "https://" && sponsor?.website.length > 8 && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
-                              href={`${sponsor.website}`}
+                              href={`${sponsor?.website}`}
                             >
                               <span data-icon="&#xe0e3;"></span>
                             </a>
@@ -189,7 +189,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {sponsor.sponsors_attendee.map((attendee, o) =>
+            {sponsor?.sponsors_attendee.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {attendee.image && attendee.image !== "" ? (

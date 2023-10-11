@@ -33,7 +33,12 @@ const SponsorDetail = (props) => {
     [event]
   );
 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+
   useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchSponsor(eventUrl, id));
     return () => {
       dispatch(clearState());
