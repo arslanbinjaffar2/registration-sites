@@ -37,6 +37,9 @@ const ExhibitorDetail = (props) => {
     [event]
   );
 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+
+
   const [breadCrumbs, setbreadCrumbs] = useState([
     {name:event.labels.HOME_PAGE_EXHIBIOR, url:`/${eventUrl}`, type:"link"},
     {name:event.labels.EVENTSITE_EXHIBITORS, url:`/${eventUrl}/exhibitors`, type:"link"},
@@ -44,6 +47,9 @@ const ExhibitorDetail = (props) => {
   ]);
   useEffect(() => {
     //dispatch(incrementLoadCount());
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());

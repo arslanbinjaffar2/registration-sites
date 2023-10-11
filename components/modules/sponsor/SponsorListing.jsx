@@ -6,6 +6,7 @@ import {
 } from "store/Slices/GlobalSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import PageHeader from "../PageHeader";
+import { useRouter } from "next/router";
 
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
@@ -21,6 +22,7 @@ const loadModule = (theme) => {
 const SponsorListing = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
+  const router = useRouter();
   const eventUrl = event.url;
 
   const Component = useMemo(
@@ -28,9 +30,14 @@ const SponsorListing = (props) => {
     [event]
   );
 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+
   const { sponsors, labels, sponsorCategories, loading, error} = useSelector(sponsorListingSelector);
 
     useEffect(() => {
+      if(checkModuleStatus < 0){
+        router.push(`/${eventUrl}`);
+      }
       if(sponsors === null || sponsorCategories === null) {
         dispatch(fetchSponsors(eventUrl));
       }else{
