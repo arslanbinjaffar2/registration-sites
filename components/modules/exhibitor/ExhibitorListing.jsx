@@ -9,6 +9,7 @@ import PageHeader from "../PageHeader";
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
 const in_array = require("in_array");
+import { useRouter } from "next/router";
 
 const loadModule = (theme) => {
   const Component = React.lazy(() =>
@@ -20,15 +21,22 @@ const loadModule = (theme) => {
 const ExhibitorListing = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
+  const router = useRouter();
   const eventUrl = event.url;
 
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]
   );
+
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+
   const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
 
     useEffect(() => {
+      if(checkModuleStatus < 0){
+        router.push(`/${eventUrl}`);
+      }
       if(exhibitors === null){
         dispatch(fetchExhibitors(eventUrl));
       }else{
