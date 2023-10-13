@@ -18,7 +18,7 @@ const Index = (props) => {
         <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutRoute event={event}>
-                    <PageContent  />
+                    <PageContent isHome={false} />
                 </MasterLayoutRoute>
             ) : (
                 <PageLoader />
