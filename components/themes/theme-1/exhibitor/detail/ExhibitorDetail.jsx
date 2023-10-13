@@ -196,18 +196,18 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {exhibitor.exhibitors_attendee.map((attendee, o) =>
+            {exhibitor.exhibitors_attendee?.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {
-                    attendee.image && attendee.image !== "" ? (
+                    attendee?.image && attendee?.image !== "" ? (
                       <img
                         onLoad={(e) => e.target.style.opacity = 1}
                         style={{ width: '90%' }}
                         src={
                           process.env.NEXT_APP_EVENTCENTER_URL +
                           "/assets/attendees/" +
-                          attendee.image
+                          attendee?.image
                         }
                         alt="Client 11"
                       />
@@ -220,47 +220,47 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                     )
                   }
                 </span>
-                <h4>{attendee.first_name} {attendee.last_name}</h4>
-                <p>{attendee.info?.title && (attendee.info?.title)} {attendee.info?.company_name && (attendee.info?.company_name)}</p>
-                <p>{attendee.info?.email && (attendee.info?.email)}</p>
-                <p>{attendee.info?.phone && (attendee.info?.phone)}</p>
+                <h4>{attendee?.first_name} {attendee?.last_name}</h4>
+                <p>{attendee?.info?.title && (attendee?.info?.title)} {attendee?.info?.company_name && (attendee?.info?.company_name)}</p>
+                <p>{attendee?.email && (attendee?.email)}</p>
+                <p>{attendee?.info?.phone && (attendee?.info?.phone)}</p>
                 <div
                   style={{ marginBottom: 20 }}
                   className="edge-info-row"
                 >
                   <div className="social-icons">
-                    {attendee.info.facebook && (
+                    {attendee?.info?.facebook && (
                       <a
                         style={{ fontSize: "30px" }}
                         target="_blank" rel="noreferrer"
-                        href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
+                        href={`${attendee?.info?.facebook_protocol}${attendee?.info?.facebook}`}
                       >
                         <span data-icon="&#xe0aa;"></span>
                       </a>
                     )}
-                    {attendee.info.twitter && (
+                    {attendee?.info?.twitter && (
                       <a
                         style={{ fontSize: "30px" }}
                         target="_blank" rel="noreferrer"
-                        href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
+                        href={`${attendee?.info?.twitter_protocol}${attendee?.info?.twitter}`}
                       >
                         <span data-icon="&#xe0ab;"></span>
                       </a>
                     )}
-                    {attendee.info.linkedin && (
+                    {attendee?.info?.linkedin && (
                       <a
                         style={{ fontSize: "30px" }}
                         target="_blank" rel="noreferrer"
-                        href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
+                        href={`${attendee?.info?.linkedin_protocol}${attendee?.info?.linkedin}`}
                       >
                         <span data-icon="&#xe0b4;"></span>
                       </a>
                     )}
-                    {attendee.info.website && (
+                    {attendee?.info?.website && (
                       <a
                         style={{ fontSize: "30px" }}
                         target="_blank" rel="noreferrer"
-                        href={'https://'+`${attendee.info.website}`}
+                        href={'https://'+`${attendee?.info?.website}`}
                       >
                         <span data-icon="&#xe0e3;"></span>
                       </a>
