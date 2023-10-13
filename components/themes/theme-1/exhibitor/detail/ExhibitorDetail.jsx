@@ -222,7 +222,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                 </span>
                 <h4>{attendee?.first_name} {attendee?.last_name}</h4>
                 <p>{attendee?.info?.title && (attendee?.info?.title)} {attendee?.info?.company_name && (attendee?.info?.company_name)}</p>
-                <p>{attendee?.info?.email && (attendee?.info?.email)}</p>
+                <p>{attendee?.email && (attendee?.email)}</p>
                 <p>{attendee?.info?.phone && (attendee?.info?.phone)}</p>
                 <div
                   style={{ marginBottom: 20 }}
