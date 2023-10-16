@@ -188,7 +188,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {sponsor?.sponsors_attendee?.map((attendee, o) =>
+            {sponsor.sponsors_attendee?.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {attendee?.image && attendee?.image !== "" ? (
@@ -211,6 +211,51 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                 </span>
                 <h4>{attendee?.first_name} {attendee?.last_name}</h4>
                 <p>{attendee?.info?.title && (attendee?.info?.title)} {attendee?.info?.company_name && (attendee?.info?.company_name)}</p>
+                <p>{attendee?.info?.phone && (attendee?.info?.phone)}</p>
+                <p>{attendee?.email && (attendee?.email)}</p>
+                <div
+                  style={{ marginBottom: 20 }}
+                  className="edge-info-row"
+                >
+                  <div className="social-icons">
+                    {attendee?.info?.facebook && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee?.info?.facebook_protocol}${attendee?.info?.facebook}`}
+                      >
+                        <span data-icon="&#xe0aa;"></span>
+                      </a>
+                    )}
+                    {attendee?.info?.twitter && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee?.info?.twitter_protocol}${attendee?.info?.twitter}`}
+                      >
+                        <span data-icon="&#xe0ab;"></span>
+                      </a>
+                    )}
+                    {attendee?.info?.linkedin && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={`${attendee?.info?.linkedin_protocol}${attendee?.info?.linkedin}`}
+                      >
+                        <span data-icon="&#xe0b4;"></span>
+                      </a>
+                    )}
+                    {attendee?.info?.website && (
+                      <a
+                        style={{ fontSize: "30px" }}
+                        target="_blank" rel="noreferrer"
+                        href={'https://' + `${attendee?.info?.website}`}
+                      >
+                        <span data-icon="&#xe0e3;"></span>
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
             )}
           </div>
