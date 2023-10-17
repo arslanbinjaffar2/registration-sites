@@ -6,6 +6,18 @@ const CustomSection = ({ data }) => {
   const iframe = React.useRef();
   const [height, setHeight] = React.useState(0);
   const [Loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [])
+  const handleResize = () => {
+        window.resizedFinished = setTimeout(() => {
+          const obj = iframe.current;
+          setHeight(obj.contentWindow.document.body.scrollHeight);
+        }, 100);
+  }
   return (
     <React.Fragment>
       {/* dangerouslySetInnerHTML={{__html:data}} */}
@@ -26,10 +38,10 @@ const CustomSection = ({ data }) => {
               }, 1000);
             }}
             width="100%"
-            height={height}
+            height={height+20}
             title="test"
             itemProp="description"
-            srcDoc={data}
+            srcDoc={`<style>*{padding: 0; margin: 0;}</style>`+data}
           />
       </div>}
     </React.Fragment>
