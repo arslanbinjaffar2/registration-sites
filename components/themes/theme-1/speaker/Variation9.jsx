@@ -48,7 +48,7 @@ const Variation9 = ({
       </div>
       {listing && searchBar()}
       <div className="container">
-        <div className="row d-flex edgtf-team-list-holder edgtf-team-info-on-hover">
+        <div className={`row d-flex edgtf-team-list-holder edgtf-team-info-on-hover ${!listing ? 'justify-content-center' : ''}`}>
           {/* Grid */}
           {speakers &&
             speakers.map((speaker, i) => (
