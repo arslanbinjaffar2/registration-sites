@@ -173,6 +173,24 @@
   .inner-caption-wrapp {
 		padding: 5% 50px;
 		min-height: 700px;
+    &.ebs-fluid-banner {
+      min-height: 1px;
+      height: 0;
+      padding: 0 50px 42.7%;
+      > .parallax-text {
+        padding: 0 50px;
+        max-width: 1400px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+      @include phone-landscape {
+          padding: 5% 0;
+          height: auto;
+          min-height: 250px;
+      }
+    }
     @include phone-landscape {
       min-height: 250px;
     }
