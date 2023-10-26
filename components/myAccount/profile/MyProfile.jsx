@@ -202,6 +202,10 @@ const MyProfile = () => {
                                 <span>{attendee.info.private_country_name}</span>
                               </div></div>}
                               {setting?.name === 'show_custom_field' && customFields && customFields.length > 0 ? customFields.map((question) => (
+                                <>
+                                {attendee.info && attendee.info[`custom_field_id${question.event_id}`].split(',').filter((ack, answer, i) => {
+                                    return question.children_recursive.find((child) => (child.id == ack))?.name ? true : false
+                                    }, '').length > 0 && (
                                   <div className="ebs-info-row">
                                     <strong>{question.name}:</strong>
                                     <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i) => {
@@ -213,6 +217,8 @@ const MyProfile = () => {
                                       return ack;
                                     }, '')}</span>
                                   </div>
+                                )}
+                                </>
                                 )) : ''
                               }
 
