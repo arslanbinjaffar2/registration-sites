@@ -619,7 +619,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           key: index,
                         };
                       })}
-                      value={attendeeData.country}
+                      value={attendeeData.country != null || attendeeData.country != '' ? attendeeData.country : ''}
                       onChange={(item) => {
                         updateSelect({ item, name: "country" });
                       }}
@@ -739,9 +739,12 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   )}
                   {setting?.name === 'pa_country' && (
+                    
                     <Select
                       styles={Selectstyles2}
+                      className={"pa_country"}
                       isDisabled={setting?.is_editable === 1 ? false : true}
+                      
                       placeholder={labels?.private_country}
                       components={{ IndicatorSeparator: null }}
                       options={countries.map((item, index) => {
@@ -751,7 +754,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           key: index,
                         };
                       })}
-                      value={attendeeData?.info?.private_country}
+                      //value={attendeeData?.info?.private_country != null || attendeeData?.info?.private_country != '' ? attendeeData?.info?.private_country : ''}
+                      defaultValue={attendeeData?.info?.private_country}
                       onChange={(item) => {
                         updateInfoSelect({ item, name: "private_country" });
                       }}
