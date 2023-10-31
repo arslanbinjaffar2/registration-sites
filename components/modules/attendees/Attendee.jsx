@@ -7,6 +7,7 @@ import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from "components/ui-components/LoadMoreButton";
 import SearchBar from "components/ui-components/SearchBar";
 import Head from "next/head";
+import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -18,6 +19,8 @@ const loadModule = (theme, variation) => {
 
 const Attendee = (props) => {
   const initialMount = useRef(true);
+    const router = useRouter();
+
   const { event } = useSelector(eventSelector);
   const { attendees, labels, loading, totalPages } =
     useSelector(attendeeSelector);
@@ -36,7 +39,12 @@ const Attendee = (props) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'attendees'))),[event]);
+
   useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(
       fetchAttendees(eventUrl, page, limit, search, initialMount.current)
     );

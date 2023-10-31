@@ -3,6 +3,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
+import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -20,6 +21,8 @@ const CmsListing = (props) => {
 
   const eventUrl = event.url;
 
+  const router = useRouter();
+
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]
@@ -30,6 +33,20 @@ const CmsListing = (props) => {
     general_information: "general_info_menu",
     practicalinformation: "practical_info_menu",
   };
+
+  const informationModulesAliases = {
+    additional_information: "additional_information",
+    general_information: "general_information",
+    practicalinformation: "practicalinformation",
+  };
+
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === informationModulesAliases[props.moduleName]))),[event]);
+  
+  useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
+  }, []);
 
 
   return (

@@ -6,6 +6,8 @@ import {
 } from "store/Slices/GlobalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { programSelector, fetchPrograms } from "store/Slices/ProgramSlice";
+import { useRouter } from 'next/router';
+
 
 const in_array = require("in_array");
 
@@ -21,6 +23,8 @@ const Program = (props) => {
   const { event } = useSelector(eventSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+  const router = useRouter();
+
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["agenda"]);
   });
@@ -29,9 +33,13 @@ const Program = (props) => {
     [event]
   );
   const { programs, tracks, labels } = useSelector(programSelector);
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
 
 
   useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     if (programs === null) {
       dispatch(fetchPrograms(eventUrl));
       dispatch(incrementLoadCount());

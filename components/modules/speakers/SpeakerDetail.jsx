@@ -39,7 +39,13 @@ const SpeakerDetail = (props) => {
     {name:event.labels.OVERVIEW_OF_SPEAKER, url:"", type:"name"},
   ]);
 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'speakers'))),[event]);
+
+
   useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchSpeakerDetail(eventUrl, id));
     return () => {
       dispatch(clearState());
