@@ -57,9 +57,8 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                   </div>
                 )}
                 <div className="caption-wrapp">
-                  <div className="col-12 align-items-center d-flex inner-caption-wrapp">
+                  <div className="col-12 align-items-center d-flex inner-caption-wrapp ebs-fluid-banner">
                     <div
-                      style={{ position: "relative" }}
                       className="parallax-text"
                     >
                       {slides.info.title && settings.title === 1 && (
