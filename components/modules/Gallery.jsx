@@ -49,10 +49,13 @@ const Gallery = (props) => {
     : 50;
   
   const [page, setPage] = useState(1);
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'photos'))),[event]);
+
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.gallery_sub_menu.findIndex((item)=>(item.alias === 'photos'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'gallery'))),[event]);
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
+    if(checkModuleStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     dispatch(fetchPhotos(eventUrl, page, limit, home ));

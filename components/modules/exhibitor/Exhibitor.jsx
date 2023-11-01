@@ -32,12 +32,14 @@ const Exhibitor = (props) => {
   );
   const { exhibitorsByCategories, labels, loading, error} = useSelector(exhibitorSelector);
 
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'exhibitor'))),[event]);
 
 
   useEffect(() => {
 
-    if(checkModuleStatus < 0){
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     if(exhibitorsByCategories === null){

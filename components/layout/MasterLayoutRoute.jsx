@@ -43,7 +43,7 @@ const MasterLayoutRoute = ({ children, event }) => {
                     {showLogin && <LoginScreen />}
                     {children}
                     <Footer />
-                    {/* <CookiePolicy/> */}
+                    <CookiePolicy/>
                 </>
             ) : (
                 <PageLoader />

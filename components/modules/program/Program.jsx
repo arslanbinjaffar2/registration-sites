@@ -33,11 +33,13 @@ const Program = (props) => {
     [event]
   );
   const { programs, tracks, labels } = useSelector(programSelector);
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
+
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda'))),[event]);
 
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     if (programs === null) {

@@ -42,10 +42,14 @@ const News = (props) => {
   );
 
   const [page, setPage] = useState(1);
+
   const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'news'))),[event]);
+  
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'news'))),[event]);
+
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
+    if(checkModuleStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     dispatch(fetchNews(eventUrl, page, limit, initialMount.current));

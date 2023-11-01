@@ -3,6 +3,8 @@ import { eventSelector } from "store/Slices/EventSlice";
 import PageLoader from "components/ui-components/PageLoader";
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
+import { useRouter } from 'next/router';
+
 const in_array = require("in_array");
 
 const loadModule = (theme) => {
@@ -20,10 +22,21 @@ const InfoPagesListing = (props) => {
 
   const eventUrl = event.url;
 
+  const router = useRouter();
+
   const Component = useMemo(
     () => loadModule(event.theme.slug),
     [event]
   );
+
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages'))),[event]);
+
+  useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
+  }, []);
+
   return (
     <Suspense fallback={<PageLoader />}>
       <React.Fragment>

@@ -34,7 +34,7 @@ const CmsDetail = (props) => {
   const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages'))),[event]);
 
   useEffect(() => {
-     if(checkModuleStatus < 0){
+    if(checkModuleStatus < 0){
       router.push(`/${eventUrl}`);
     }
     dispatch(fetchCmsPage(eventUrl, 'info_pages', id));

@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { programListingSelector, fetchPrograms } from "store/Slices/ProgramListingSlice";
 import Head from "next/head";
 import PageHeader from "../PageHeader";
+import { useRouter } from 'next/router';
+
 const in_array = require("in_array");
 
 const loadModule = (theme, programView) => {
@@ -22,6 +24,8 @@ const ProgramListing = (props) => {
 
   const dispatch = useDispatch();
 
+  const router = useRouter();
+
   const eventUrl = event.url;
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
@@ -29,6 +33,9 @@ const ProgramListing = (props) => {
   });
 
   const home = props.homePage ? props.homePage : false;
+
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda'))),[event]);
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
@@ -38,6 +45,10 @@ const ProgramListing = (props) => {
   const { programs, tracks, totalPages, labels } = useSelector(programListingSelector);
 
   useEffect(() => {
+
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     if (programs === null) {
       dispatch(fetchPrograms(eventUrl));
     }

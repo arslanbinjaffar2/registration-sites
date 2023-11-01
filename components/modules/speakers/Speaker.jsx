@@ -48,11 +48,12 @@ const Speaker = (props) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'speakers'))),[event]);
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'speakers'))),[event]);
 
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'speaker'))),[event]);
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     dispatch(fetchSpeakers(eventUrl, page, limit, search, initialMount.current, home));

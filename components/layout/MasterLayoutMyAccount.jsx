@@ -35,7 +35,7 @@ const MasterLayoutMyAccount = (props) => {
       <Header />
       {(skip || sub_reg_skip) ? props.children : <AfterLoginSubRegistration {...props} />}
       <Footer /> 
-      {/* <CookiePolicy/> */}
+      <CookiePolicy/>
     </>
   )
 }

@@ -30,12 +30,14 @@ const SponsorListing = (props) => {
     [event]
   );
 
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor'))),[event]);
 
   const { sponsors, labels, sponsorCategories, loading, error} = useSelector(sponsorListingSelector);
 
     useEffect(() => {
-      if(checkModuleStatus < 0){
+      if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
         router.push(`/${eventUrl}`);
       }
       if(sponsors === null || sponsorCategories === null) {

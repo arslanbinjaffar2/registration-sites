@@ -39,10 +39,12 @@ const Attendee = (props) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'attendees'))),[event]);
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'attendees'))),[event]);
+  
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'attendee'))),[event]);
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
       router.push(`/${eventUrl}`);
     }
     dispatch(
