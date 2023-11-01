@@ -40,7 +40,14 @@ const AttendeeDetail = (props) => {
     {name:event.labels.OVERVIEW_OF_ATTENDEES, url:"", type:"name"},
   ]);
 
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'attendees'))),[event]);
+  
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'attendee'))),[event]);
+ 
   useEffect(() => {
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchAttendeeDetail(eventUrl, id));
     return () => {
       dispatch(clearState());

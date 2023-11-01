@@ -10,6 +10,8 @@ import SearchBar from "components/ui-components/SearchBar";
 
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
+import { useRouter } from 'next/router';
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -25,6 +27,8 @@ const Speaker = (props) => {
   const { speakers, totalPages, labels, loading } = useSelector(speakerSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+  const router = useRouter();
+
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["speaker"]);
@@ -44,7 +48,14 @@ const Speaker = (props) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState("");
 
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'speakers'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'speaker'))),[event]);
+
   useEffect(() => {
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchSpeakers(eventUrl, page, limit, search, initialMount.current, home));
   }, [page, limit, search])
 
