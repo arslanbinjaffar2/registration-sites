@@ -177,6 +177,15 @@
       min-height: 1px;
       height: 0;
       padding: 0 50px 42.7%;
+      .ebs-parallax-text-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        >.parallax-text {
+          max-width: 1400px;
+          padding: 0 50px;
+          }
+      }
       > .parallax-text {
         padding: 0 50px;
         max-width: 1400px;
