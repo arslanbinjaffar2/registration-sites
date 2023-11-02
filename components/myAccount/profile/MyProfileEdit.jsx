@@ -829,6 +829,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       )}
                       <div style={{ width: "75%" }}>
                         <Input
+                          type="number"
+                          onKeyDown={formatInputCheck}
                           label={labels?.phone}
                           name="phone"
                           readOnly={setting?.is_editable === 1 ? false : true}
