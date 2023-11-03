@@ -45,7 +45,7 @@ const News = (props) => {
 
   const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'news'))),[event]);
   
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'news'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'news' && item.status == 1))),[event]);
 
 
   useEffect(() => {

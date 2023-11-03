@@ -31,7 +31,7 @@ const ExhibitorListing = (props) => {
 
 const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
 
-const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'exhibitor'))),[event]);
+const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'exhibitor' && item.status == 1))),[event]);
 
   const { exhibitors, labels, exhibitorCategories, loading, error} = useSelector(exhibitorListingSelector);
 

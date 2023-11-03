@@ -32,7 +32,7 @@ const SponsorListing = (props) => {
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor' && item.status == 1))),[event]);
 
   const { sponsors, labels, sponsorCategories, loading, error} = useSelector(sponsorListingSelector);
 

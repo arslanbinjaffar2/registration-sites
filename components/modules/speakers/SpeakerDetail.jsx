@@ -41,7 +41,7 @@ const SpeakerDetail = (props) => {
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'speakers'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'speaker'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'speaker' && item.status == 1))),[event]);
 
 
   useEffect(() => {

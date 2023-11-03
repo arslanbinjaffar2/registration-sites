@@ -35,7 +35,7 @@ const SponsorDetail = (props) => {
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor' && item.status == 1))),[event]);
 
   useEffect(() => {
     if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0 ){

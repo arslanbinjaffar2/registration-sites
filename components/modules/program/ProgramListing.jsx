@@ -35,7 +35,7 @@ const ProgramListing = (props) => {
   const home = props.homePage ? props.homePage : false;
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda' && item.status == 1))),[event]);
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),
