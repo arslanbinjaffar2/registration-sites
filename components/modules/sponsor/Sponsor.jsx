@@ -24,7 +24,7 @@ const Sponsor = (props) => {
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor' && item.status == 1))),[event]);
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["sponsor"]);

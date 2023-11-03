@@ -51,8 +51,8 @@ const Video = (props) => {
   const [page, setPage] = useState(1);
   const checkModuleStatus = useMemo(()=>(event?.header_data?.gallery_sub_menu.findIndex((item)=>(item.alias === 'videos'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'video'))),[event]);
-
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'video' && item.status == 1))),[event]);
+console.log(checkModuleHomeStatus)
 
   useEffect(() => {
     if(checkModuleStatus < 0 && checkModuleHomeStatus < 0){

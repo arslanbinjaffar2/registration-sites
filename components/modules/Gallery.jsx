@@ -52,7 +52,7 @@ const Gallery = (props) => {
 
   const checkModuleStatus = useMemo(()=>(event?.header_data?.gallery_sub_menu.findIndex((item)=>(item.alias === 'photos'))),[event]);
 
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'gallery'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'gallery' && item.status == 1))),[event]);
 
   useEffect(() => {
     if(checkModuleStatus < 0 && checkModuleHomeStatus < 0){

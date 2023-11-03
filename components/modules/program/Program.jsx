@@ -35,7 +35,7 @@ const Program = (props) => {
   const { programs, tracks, labels } = useSelector(programSelector);
 
   const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'program'))),[event]);
-  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'agenda' && item.status == 1))),[event]);
 
 
   useEffect(() => {
