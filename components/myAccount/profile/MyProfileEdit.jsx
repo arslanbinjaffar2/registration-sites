@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import PageLoader from "components/ui-components/PageLoader";
 import { useRouter } from 'next/router';
+import {formatInputCheck} from 'helpers'
 
 const Selectstyles = {
   control: base => ({
