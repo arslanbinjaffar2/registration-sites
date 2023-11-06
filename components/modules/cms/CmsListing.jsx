@@ -14,6 +14,8 @@ const loadModule = (theme) => {
 };
 
 const CmsListing = (props) => {
+  
+  console.log(props);
 
   const { event } = useSelector(eventSelector);
 
@@ -51,12 +53,12 @@ const CmsListing = (props) => {
 
   return (
     <Suspense fallback={<PageLoader />}>
-      <React.Fragment>
+      {checkModuleStatus > -1 ? <React.Fragment>
         <Head>
           <title>{event.eventsiteModules[props.moduleName]}</title>
         </Head>
         <Component listing={event.header_data[informationModules[props.moduleName]]} menu_id={props.menu_id} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.header_data.top_menu.find((data)=>(data.alias === props.moduleName)) !== (undefined || null) ? event.header_data.top_menu.find((data)=>(data.alias === props.moduleName)).module : props.moduleName} breadCrumbData={event.header_data[informationModules[props.moduleName]]} eventsiteSettings={event.eventsiteSettings} />
-      </React.Fragment>
+     </React.Fragment> : <PageLoader />}
     </Suspense>
   );
 };
