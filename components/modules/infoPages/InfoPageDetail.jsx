@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { eventSelector } from "store/Slices/EventSlice";
 import { cmsDetailSelector, fetchCmsPage, clearState } from "store/Slices/CmsDetailSlice";
 import PageLoader from "components/ui-components/PageLoader";
@@ -31,12 +31,9 @@ const CmsDetail = (props) => {
     () => loadModule(event.theme.slug),
     [event]
   );
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages'))),[event]);
 
   useEffect(() => {
-    if(checkModuleStatus < 0){
-      router.push(`/${eventUrl}`);
-    }
+    
     dispatch(fetchCmsPage(eventUrl, 'info_pages', id));
     return () => {
       dispatch(clearState());
@@ -44,12 +41,28 @@ const CmsDetail = (props) => {
   }, [props.moduleName, id]);
 
   const { cmsPage, labels, loading, error } = useSelector(cmsDetailSelector);
+  
+  const [checkModuleStatus, setCheckModuleStatus] = useState(-1)
 
+  useEffect(() => {
+   
+    if(cmsPage !== null){
+      const checkModuleStatus1 = event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages' && item.page_id == cmsPage.section_id));
+     
+     if(checkModuleStatus1 < 0){
+       router.push(`/${eventUrl}`);
+     }
+     else{
+      setCheckModuleStatus(checkModuleStatus1)
+     }
 
+   }
+  }, [cmsPage])
+  
 
   return (
     <Suspense fallback={<PageLoader />}>
-      {cmsPage ? (
+      {cmsPage && checkModuleStatus > -1 ? (
         <React.Fragment>
           <Component detail={cmsPage} labels={labels} moduleName={'info_pages'} eventUrl={event.url} eventsiteSettings={event.eventsiteSettings} eventSiteModuleName={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)).info.name : cmsPage.name} breadCrumbData={event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) !== (null||undefined) ? event.header_data['info_pages_menu'].find((data)=>(data.id  == cmsPage.section_id)) : []} />
         </React.Fragment>

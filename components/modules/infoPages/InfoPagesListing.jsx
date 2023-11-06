@@ -29,7 +29,7 @@ const InfoPagesListing = (props) => {
     [event]
   );
 
-  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages'))),[event]);
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'info_pages' && item.page_id == props.main_menu_id))),[event]);
 
   useEffect(() => {
     if(checkModuleStatus < 0){
@@ -39,7 +39,7 @@ const InfoPagesListing = (props) => {
 
   return (
     <Suspense fallback={<PageLoader />}>
-      <React.Fragment>
+      {checkModuleStatus > -1 ? <React.Fragment>
         <Head>
           <title>{event.header_data['info_pages_menu'].find((item)=>(item.id == props.main_menu_id)) !== undefined ? event.header_data['info_pages_menu'].find((item)=>(item.id == props.main_menu_id)).info.name : "Information Pages"}</title>
         </Head>
@@ -55,7 +55,7 @@ const InfoPagesListing = (props) => {
         breadCrumbData={event.header_data.info_pages_menu}
         eventsiteSettings={event.eventsiteSettings}
         />
-      </React.Fragment>
+      </React.Fragment> : <PageLoader/>}
     </Suspense>
   );
 };

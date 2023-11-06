@@ -32,7 +32,19 @@ const CmsDetail = (props) => {
     [event]
   );
 
+  const informationModulesAliases = {
+    additional_information: "additional_information",
+    general_information: "general_information",
+    practicalinformation: "practicalinformation",
+  };
+
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === informationModulesAliases[props.moduleName]))),[event]);
+  
   useEffect(() => {
+    if(checkModuleStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
+
     dispatch(fetchCmsPage(eventUrl, props.moduleName, id));
     return () => {
       dispatch(clearState());
@@ -55,7 +67,7 @@ const CmsDetail = (props) => {
 
   return (
     <Suspense fallback={<PageLoader />}>
-      {cmsPage ? (
+      {cmsPage && checkModuleStatus > -1 ? (
         <React.Fragment>
           <Component detail={cmsPage} labels={labels} moduleName={props.moduleName} eventUrl={event.url} eventSiteModuleName={event.eventsiteModules[props.moduleName]} breadCrumbData={event.header_data[informationModules[props.moduleName]]} eventsiteSettings={event.eventsiteSettings} />
         </React.Fragment>
