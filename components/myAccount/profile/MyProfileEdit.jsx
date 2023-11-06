@@ -227,7 +227,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       ...attendeeData.info,
       country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
       private_country: attendeeData?.info?.private_country?.value,
-      
+      phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
     }
 
     infoObj[`custom_field_id${event.id}`] = custom_field_id;
