@@ -9,6 +9,8 @@ import PageLoader from "components/ui-components/PageLoader";
 import LoadMoreButton from 'components/ui-components/LoadMoreButton';
 import Head from "next/head";
 import PageHeader from "./PageHeader";
+import { useRouter } from 'next/router';
+
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -24,6 +26,8 @@ const Video = (props) => {
   const { videos, totalPages, loading, labels } = useSelector(videoSelector);
   const dispatch = useDispatch();
   const eventUrl = event.url;
+  const router = useRouter();
+
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["video"]);
@@ -45,8 +49,15 @@ const Video = (props) => {
     : 50;
   
   const [page, setPage] = useState(1);
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.gallery_sub_menu.findIndex((item)=>(item.alias === 'videos'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'video' && item.status == 1))),[event]);
+console.log(checkModuleHomeStatus)
 
   useEffect(() => {
+    if(checkModuleStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchVideos(eventUrl, page, limit, home ));
     if(home){
       dispatch(incrementLoadCount());

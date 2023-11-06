@@ -22,6 +22,10 @@ const Sponsor = (props) => {
   const dispatch = useDispatch();
   const eventUrl = event.url;
 
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor' && item.status == 1))),[event]);
+
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
     return in_array(module.alias, ["sponsor"]);
   });
@@ -34,6 +38,9 @@ const Sponsor = (props) => {
   const { sponsorsByCategories, labels,  loading, error} = useSelector(sponsorSelector);
   
     useEffect(() => {
+      if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+        router.push(`/${eventUrl}`);
+      }
       if(sponsorsByCategories === null) {
         dispatch(incrementLoadCount());
         dispatch(fetchSponsors(eventUrl));

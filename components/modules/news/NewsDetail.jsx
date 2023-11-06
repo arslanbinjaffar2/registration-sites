@@ -31,9 +31,16 @@ const NewsDetail = (props) => {
     () => loadModule(event.theme.slug, "Variation1"),
     [event]
   ); 
+  const checkModuleStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'news'))),[event]);
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'news' && item.status == 1))),[event]);
+
 
   const [sidebar, setSidebar] = useState(false);
   useEffect(() => {
+
+    if(checkModuleStatus < 0 && checkModuleHomeStatus< 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchNewsDetail(eventUrl, id));
     return () => {
       dispatch(clearState());
