@@ -45,7 +45,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
-				countdown={countdown} //{dateTime}
+				countdown={null} //{dateTime}
 				registerDateEnd={registerDateEnd} //{dateTime}
 				fullscreen
 				eventsiteSettings={event.eventsiteSettings}

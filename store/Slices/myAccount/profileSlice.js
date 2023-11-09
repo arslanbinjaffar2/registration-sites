@@ -22,6 +22,7 @@ const initialState = {
   invoice: null,
   order_id: null,
   is_invoice_update: null,
+  attendee_module_labels:null,
 }
 
 export const eventSlice = createSlice({
@@ -46,6 +47,9 @@ export const eventSlice = createSlice({
     },
     setAttendeeEdit: (state, { payload }) => {
       state.attendee_edit = payload.attendee
+    },
+    setAttendeeModuleLabel: (state, { payload }) => {
+      state.attendee_module_labels = payload
     },
     clearAttendeeEdit: (state, { payload }) => {
       state.attendee_edit = null
@@ -77,7 +81,7 @@ export const eventSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect, setAttendeeEdit, clearAttendeeEdit } = eventSlice.actions
+export const { getProfileData, setProfileData, setError, clearError, setAlert, clearAlert, setLoading, setInvoice, setRedirect, setAttendeeEdit, clearAttendeeEdit, setAttendeeModuleLabel } = eventSlice.actions
 
 export const profileSelector = state => state.profile
 
@@ -97,6 +101,7 @@ export const fetchProfileData = (id, url, is_edit) => {
       dispatch(setProfileData(res.data))
       if(is_edit === 1){
           dispatch(setAttendeeEdit(res.data));
+          dispatch(setAttendeeModuleLabel(res.labels));
       }
       localStorage.setItem(`EI${url}EC`, res.data.enable_cancel == true ? true : false);
       localStorage.setItem(`EI${url}EC_COUNT`, res.data.order_attendee_count);

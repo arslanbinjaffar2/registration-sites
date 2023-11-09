@@ -3,11 +3,13 @@ import PackageTable from './PackageTable';
 import {fetchPackages, formPackageSelector} from 'store/Slices/FormPackageSlice';
 import { eventSelector } from 'store/Slices/EventSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import {
   incrementFetchLoadCount, incrementLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from 'components/ui-components/PageLoader';
-const PageContent = () => {
+const PageContent = ({ isHome }) => {
+  const router = useRouter();
   const { event } = useSelector(eventSelector);
   const { packages, loading, package_currency } = useSelector(formPackageSelector);
   const dispatch = useDispatch();
@@ -16,9 +18,12 @@ const PageContent = () => {
       dispatch(fetchPackages(event.url));
       dispatch(incrementLoadCount());
     }
-    
   }, [])
-  
+  React.useEffect(() => {
+    if (isHome == false && packages != null && packages == 0) {
+      router.push(`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee`); 
+    }
+  }, [packages])
   return (
     <React.Fragment>
       {packages ? (packages.length > 0 ? <main className="ebs-manage-packages" role="main">
@@ -35,7 +40,7 @@ const PageContent = () => {
             <div className="row">
               {packages && packages.length > 0 && packages.map((item)=>(
                 <div key={item.id} className="col-md-6 col-lg-4 mb-4">
-                  <PackageTable item={item} eventUrl={event.url} labels={event.labels} package_currency={package_currency}/>
+                  <PackageTable item={item} eventTimeZone={event.timezone.timezone} eventUrl={event.url} labels={event.labels} package_currency={package_currency}/>
                 </div>
               ))}
             </div>

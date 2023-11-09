@@ -37,6 +37,10 @@ const ExhibitorDetail = (props) => {
     [event]
   );
 
+const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'exhibitor' && item.status == 1))),[event]);
+
   const [breadCrumbs, setbreadCrumbs] = useState([
     {name:event.labels.HOME_PAGE_EXHIBIOR, url:`/${eventUrl}`, type:"link"},
     {name:event.labels.EVENTSITE_EXHIBITORS, url:`/${eventUrl}/exhibitors`, type:"link"},
@@ -44,6 +48,9 @@ const ExhibitorDetail = (props) => {
   ]);
   useEffect(() => {
     //dispatch(incrementLoadCount());
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());

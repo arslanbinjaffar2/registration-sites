@@ -14,7 +14,7 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
       </div>
       {listing && searchBar()}
       <div className="container">
-        <div className="row">
+        <div className={`row ${!listing ? 'justify-content-center' : ''}`}>
           {speakers &&
             speakers.map((speaker, i) => (
               <div key={i} className="col-12 col-sm-6 col-md-4">

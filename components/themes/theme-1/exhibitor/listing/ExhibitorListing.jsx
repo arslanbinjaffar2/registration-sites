@@ -10,6 +10,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
   const element = useRef();
 
   const search = (text) => {
+    setSelectedCategory('all')
     setFilterAlphabet('all');
     setSearchText(text);
   }
@@ -114,7 +115,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                 {locExhibitors.map((exhibitor) => (<div className="ebs-sponsor-item" key={exhibitor.id}>
                   <div className="d-flex align-items-center ebs-break-block">
                     <div className="ebs-img-listing">
-                      <ActiveLink href={`/${eventUrl}/exhibitors/${exhibitor.id}`} >
+                      <ActiveLink href={exhibitor.url.replace(/^https?:\/\//, "") != "" ? exhibitor.url : `/${eventUrl}/exhibitors/${exhibitor.id}`} >
                         <figure>
                           {exhibitor.logo && exhibitor.logo ? (
                             <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
@@ -125,7 +126,7 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                       </ActiveLink>
                     </div>
                     <div className="ebs-detail-listing">
-                      {exhibitor.name && <ActiveLink href={`/${eventUrl}/exhibitors/${exhibitor.id}`}>
+                      {exhibitor.name && <ActiveLink href={exhibitor.url.replace(/^https?:\/\//, "") != "" ? exhibitor.url : `/${eventUrl}/exhibitors/${exhibitor.id}`}>
                         <h2>{exhibitor.name}</h2>
                       </ActiveLink>
                       }
