@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
     const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
+    const _ref = React.useRef()
     return (
         <div className="ebs-program-child">
             <div className="row d-flex">
@@ -12,7 +13,7 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(new Date(`${program.date} ${program.start_time}`)).format('HH:mm')} - {moment(new Date(`${program.date} ${program.end_time}`)).format('HH:mm')}</div>}
                 </div>
                 <div className="col-lg-10">
-                    <div className="ebs-program-content">
+                    <div ref={_ref} className="ebs-program-content">
                         {program.topic && <h3>{program.topic}</h3>}
                         {program.location && <div className="ebs-program-location">
                             <i className="fa fa-map-marker" /> {program.location}
@@ -24,7 +25,9 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                         </div>}
                         {program.description && <div className="ebs-description">
                             <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program.description }} />
-                            {program.description.length > 450 && <span className='ebs-more' onClick={() => { setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
+                            {program.description.length > 450 && <span className='ebs-more' onClick={() => {if(showText) {setTimeout(() => {
+                                _ref.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+                            }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
                         </div>}
 
                         {program.program_speakers.length > 0 && <div className="row d-flex ebs-program-speakers">
