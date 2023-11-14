@@ -36,17 +36,17 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
 
   return (
     <React.Fragment>
-    <PageHeader label={detail.name}  align={'left'} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
-      return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
+    <PageHeader label={detail.name}  align={'left'} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type,headcolor)=>{
+      return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`} >
        <ul className="breadcrumb">
          {breadCrumbs.map((crumb, i) => (
-           <li className="breadcrumb-item" key={i}>
+           <li className="breadcrumb-item" key={i} style={{ color: headcolor }}>
              {
              crumb.id === detail.id ? 
              crumb.name :
              crumb.parent_id != (0 || "") ? 
-             <ActiveLink href={`/${eventUrl}/${moduleName}?main_menu_id=${crumb.section_id}&menu_id=${crumb.id}`} >{crumb.name}</ActiveLink>:
-             <ActiveLink href={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} >{crumb.name}</ActiveLink>
+             <ActiveLink href={`/${eventUrl}/${moduleName}?main_menu_id=${crumb.section_id}&menu_id=${crumb.id}`} ><span style={{ color: headcolor }}>{crumb.name}</span></ActiveLink>:
+             <ActiveLink href={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} ><span style={{ color: headcolor }}>{crumb.name}</span></ActiveLink>
              }
            </li>
          ))}
