@@ -60,12 +60,12 @@ const AttendeeDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.attendees}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type, headcolor)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
                 <li className="breadcrumb-item" key={i}>
-                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} > <span style={{ color:headcolor }}>{crumb.name}</span></ActiveLink>}
                 </li>
               ))}
             </ul>
