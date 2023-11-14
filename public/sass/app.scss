@@ -2169,6 +2169,7 @@
 }
 .module-section.ebs-program-listing-wrapper {
   overflow: hidden;
+  background-color: white;
 }
 .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -2726,6 +2727,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  height: calc(1em * 1.7 * 3);
 }
 .ebs-corporate-login {
   width: 100%;

@@ -32,7 +32,7 @@ const Variation5 = ({ event, settings, socialMediaShare, labels }) => {
           >
             <LinkedinIcon size={120} borderRadius="6px" title="Linked In" />
           </LinkedinShareButton>}
-          {socialMediaShare.Twitter && <TwitterShareButton
+          {socialMediaShare.Twitter == 1 && <TwitterShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
             <TwitterIcon size={120} borderRadius="6px" title="Twitter" />
@@ -50,7 +50,7 @@ const Variation5 = ({ event, settings, socialMediaShare, labels }) => {
           {socialMediaShare.Email == 1 && <EmailShareButton
             url={`${window.location.origin.toString()}/${event.url}`}
           >
-            <EmailIcon size={120} borderRadius="6px" title="Facebook" />
+            <EmailIcon size={120} borderRadius="6px" title="Email" />
           </EmailShareButton>}
         </div>
       </div>
