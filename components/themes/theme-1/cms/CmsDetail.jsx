@@ -37,7 +37,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
       return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
        <ul className="breadcrumb">
          {breadCrumbs.map((crumb, i) => (
-           <li className="breadcrumb-item" key={i}>
+           <li className="breadcrumb-item" key={i} style={{ color: headcolor}}>
              {crumb.id === detail.id ? crumb.name : <ActiveLink href={`/${eventUrl}/${moduleName}?menu_id=${crumb.id}`} ><span style={{ color: headcolor}}>{crumb.name}</span></ActiveLink>}
            </li>
          ))}
