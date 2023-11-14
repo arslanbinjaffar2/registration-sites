@@ -92,12 +92,12 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
 
     return (
         <>
-            {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} showBreadcrumb={1} breadCrumbs={(type) => {
-                return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark" : ""}`}>
+            {documentPage && <PageHeader label={labels.GENERAL_DOCUMENT !== undefined ? labels.GENERAL_DOCUMENT : 'My Documents'} showBreadcrumb={1} breadCrumbs={(type,headcolor) => {
+                return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark" : ""}`} >
                     <ul className="breadcrumb">
                         {
                             breadCrumbs.map((crumb, i) => (
-                                <li className="breadcrumb-item" key={i} ><span style={{ cursor: 'pointer' }} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
+                                <li className="breadcrumb-item" key={i} ><span style={{ cursor: 'pointer', color: headcolor}} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
                             ))
                         }
                     </ul>
@@ -108,7 +108,7 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                     <ul className="breadcrumb">
                         {
                             breadCrumbs.map((crumb, i) => (
-                                <li className="breadcrumb-item" key={i}><span style={{ cursor: 'pointer' }} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
+                                <li className="breadcrumb-item" key={i}><span style={{ cursor: 'pointer',color: headcolor }} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
                             ))
                         }
                     </ul>
