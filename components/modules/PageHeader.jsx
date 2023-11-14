@@ -14,21 +14,21 @@ const PageHeader = ({children, label, desc, breadCrumbs, showBreadcrumb}) => {
   });
   if(moduleVariation[0]['variation_slug'] === 'Variation1'){
     return <WithBackground moduleVariation={moduleVariation[0]} >
-        <HeadingElement breakheading dark={true} label={label} page_header={true} align={"left"} desc={desc} />
+        <HeadingElement breakheading dark={true} label={label} page_header={true} align={"left"} desc={desc} headcolor={moduleVariation[0]['background_color']} />
         {breadCrumbs && showBreadcrumb === 1 && breadCrumbs('background')}
     </WithBackground>
   }
   
   if(moduleVariation[0]['variation_slug'] === 'Variation2'){
     return <WithSolidColor>
-      <HeadingElement breakheading dark={false} label={label} page_header={true}  align={"left"} desc={desc} />
+      <HeadingElement breakheading dark={false} label={label} page_header={true}  align={"left"} desc={desc}  headcolor={moduleVariation[0]['background_color']} />
       {breadCrumbs && showBreadcrumb === 1 && breadCrumbs('color')}
 
     </WithSolidColor>
   }
 
   return <SimpleHeader>
-    <HeadingElement dark={false} label={label} page_header={true} align={"center"} desc={desc} />
+    <HeadingElement dark={false} label={label} page_header={true} align={"center"} desc={desc} headcolor={moduleVariation[0]['background_color']} />
      {breadCrumbs && showBreadcrumb === 1 && breadCrumbs(moduleVariation)}
     </SimpleHeader>
 }
