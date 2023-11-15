@@ -70,7 +70,7 @@ const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
+                <li className="breadcrumb-item" key={i} style={{ color:headcolor }}>
                   {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} ><span style={{ color:headcolor }}>{crumb.name}</span></ActiveLink>}
                 </li>
               ))}
