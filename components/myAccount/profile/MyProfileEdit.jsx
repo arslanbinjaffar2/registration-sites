@@ -212,8 +212,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const updateAttendee = (e) => {
     e.preventDefault();
 
+    let phone = attendeeData?.phone !== '' ? `${attendeeData?.calling_code?.value}-${attendeeData?.phone}` : '';
     let attendeeObj = {
-      phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
+      phone: phone,
     };
 
     let custom_field_id = customFields.reduce((ack, question, i)=>{
@@ -228,7 +229,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       ...attendeeData.info,
       country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
       private_country: attendeeData?.info?.private_country?.value,
-      
+      phone: phone,
     }
 
     infoObj[`custom_field_id${event.id}`] = custom_field_id;
