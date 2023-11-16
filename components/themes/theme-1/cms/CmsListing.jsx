@@ -32,12 +32,12 @@ const CmsListing = ({ listing, moduleName, breadCrumbData, eventSiteModuleName, 
 
   return (
    <React.Fragment>
-       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type) => {
+       <PageHeader label={eventSiteModuleName} showBreadcrumb={eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type,headcolor) => {
             return (<nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? "ebs-dark": ""}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {(crumb.id === currentMenu) ? crumb.name : <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, crumb) }}>{crumb.name}</a>}
+                <li className="breadcrumb-item" key={i} style={{ color: headcolor}}>
+                  {(crumb.id === currentMenu) ? crumb.name : <a href="javascript:void(0)" onClick={(e) => { onCrumbClick(e, crumb) }}><span style={{ color: headcolor}}>{crumb.name}</span></a>}
                 </li>
               ))}
             </ul>

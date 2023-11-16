@@ -66,7 +66,7 @@ const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type,headcolor)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
