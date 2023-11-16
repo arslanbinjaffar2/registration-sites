@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import PageLoader from "components/ui-components/PageLoader";
 import { useRouter } from 'next/router';
+import {formatInputCheck} from 'helpers'
 
 const Selectstyles = {
   control: base => ({
@@ -211,8 +212,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
   const updateAttendee = (e) => {
     e.preventDefault();
 
+    let phone = attendeeData?.phone !== '' ? `${attendeeData?.calling_code?.value}-${attendeeData?.phone}` : '';
     let attendeeObj = {
-      phone: `${attendeeData?.calling_code?.value}-${attendeeData?.phone}`,
+      phone: phone,
     };
 
     let custom_field_id = customFields.reduce((ack, question, i)=>{
@@ -227,7 +229,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       ...attendeeData.info,
       country: attendeeData?.country ? attendeeData?.country?.value : attendeeData?.info?.country,
       private_country: attendeeData?.info?.private_country?.value,
-      
+      phone: phone,
     }
 
     infoObj[`custom_field_id${event.id}`] = custom_field_id;
@@ -819,6 +821,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       )}
                       <div style={{ width: "75%" }}>
                         <Input
+                          type="number"
+                          onKeyDown={formatInputCheck}
                           label={labels?.phone}
                           name="phone"
                           readOnly={setting?.is_editable === 1 ? false : true}
