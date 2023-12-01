@@ -2,6 +2,7 @@ import ActiveLink from "components/atoms/ActiveLink";
 import React, { useState, useRef } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
+import HeadingElement from 'components/ui-components/HeadingElement';
 
 const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings ,siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
@@ -12,7 +13,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings 
     <div style={{ padding: '80px 0', ...bgStyle}} className='edgtf-container'>
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
-
+        {homePage && <HeadingElement dark={false} label={siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}  align={'center'} />}
           <div className="edgtf-column1 edgtf-content-left-from-sidebar">
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-split-column ">
