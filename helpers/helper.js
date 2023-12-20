@@ -59,42 +59,42 @@ export const getMeta = (url, type) => {
 };
 
 export const localeProgramMoment = (language_id, date = null) => {
-    let locale = 'en';
+    let locale = 'en_US';
     let format = 'D MMMM, YYYY';
     if (language_id == 2) {
-        locale = 'da';
+        locale = 'da_DK';
         format = 'dddd D. MMMM YYYY';
     }
     else if (language_id == 3) {
-        locale = 'no';
+        locale = 'no_NO';
         format = 'D. MMMM YYYY';
     }
     else if (language_id == 4) {
-        locale = 'de';
+        locale = 'de_DE';
         format = 'D. MMMM YYYY';
     }
     else if (language_id == 5) {
-        locale = 'lt';
+        locale = 'lt_LT';
         format = 'YYYY MMMM D dddd';
 
     }
     else if (language_id == 6) {
-        locale = 'fi';
+        locale = 'fi_FI';
         format = 'D. MMMM YYYY';
 
     }
     else if (language_id == 7) {
-        locale = 'se';
+        locale = 'sv_SE';
         format = 'D MMMM YYYY';
 
     }
     else if (language_id == 8) {
-        locale = 'nl';
+        locale = 'nl_NL';
         format = 'D MMMM YYYY';
 
     }
     else if (language_id == 9) {
-        locale = 'be';
+        locale = 'nl_BE';
         format = 'D MMMM YYYY';
     }
 
@@ -108,43 +108,43 @@ export const localeProgramMoment = (language_id, date = null) => {
 }
 
 export const localeProgramMomentHome = (language_id, date = null) => {
-    let locale = 'en';
+    let locale = 'en_US';
     let format = 'Do MMMM';
 
     if (language_id == 2) {
-        locale = 'da';
+        locale = 'da_DK';
         format = 'Do MMMM';
     }
     else if (language_id == 3) {
-        locale = 'no';
+        locale = 'no_NO';
         format = 'Do MMMM';
     }
     else if (language_id == 4) {
-        locale = 'de';
+        locale = 'de_DE';
         format = 'Do MMMM';
     }
     else if (language_id == 5) {
-        locale = 'lt';
+        locale = 'lt_LT';
         format = 'Do MMMM';
 
     }
     else if (language_id == 6) {
-        locale = 'fi';
+        locale = 'fi_FI';
         format = 'Do MMMM';
 
     }
     else if (language_id == 7) {
-        locale = 'se';
+        locale = 'sv_SE';
         format = 'Do MMMM';
 
     }
     else if (language_id == 8) {
-        locale = 'nl';
+        locale = 'nl_NL';
         format = 'Do MMMM';
 
     }
     else if (language_id == 9) {
-        locale = 'be';
+        locale = 'nl_BE';
         format = 'Do MMMM';
     }
 
@@ -172,79 +172,79 @@ export const metaInfo = async (url, screen) => {
     return data.event;
 }
 export const locales = [
-    'en',
-    'da',
-    'no',
-    'de',
-    'lt',
-    'fi',
-    'se',
-    'nl',
-    'be'
+    'en_US',
+    'da_DK',
+    'no_NO',
+    'de_DE',
+    'lt_LT',
+    'fi_FI',
+    'sv_SE',
+    'nl_NL',
+    'nl_BE'
 ];
 
 export const localeMomentEventDates = (date, language_id) => { 
-     let locale = 'en';
+     let locale = 'en_US';
       let format = 'dddd, D. MMMM YYYY';
        if (language_id == 2) {
-         locale = 'da';
+         locale = 'da_DK';
          format = 'dddd, D. MMMM YYYY';
        } else if (language_id == 3) {
-         locale = 'no';
+         locale = 'no_NO';
           format = 'dddd, D. MMMM YYYY'; 
         } else if (language_id == 4) {    
-            locale = 'de';    format = 'dddd, D. MMMM YYYY';
+            locale = 'de_DE';    format = 'dddd, D. MMMM YYYY';
         } else if (language_id == 5) {   
-            locale = 'lt';    format = 'dddd, D. MMMM YYYY';
+            locale = 'lt_LT';    format = 'dddd, D. MMMM YYYY';
         } else if (language_id == 6) {   
-            locale = 'fi';    format = 'dddd, D. MMMM YYYY';
+            locale = 'fi_FI';    format = 'dddd, D. MMMM YYYY';
         } else if (language_id == 7) { 
-            locale = 'se';    format = 'dddd, D. MMMM YYYY';  
+            locale = 'sv_SE';    format = 'dddd, D. MMMM YYYY';  
         } else if (language_id == 8) {
-            locale = 'nl';    format = 'dddd, D. MMMM YYYY';  
+            locale = 'nl_NL';    format = 'dddd, D. MMMM YYYY';  
         } else if (language_id == 9) {
-            locale = 'be';    format = 'dddd, D. MMMM YYYY';  
+            locale = 'nl_BE';    format = 'dddd, D. MMMM YYYY';  
         }  
         return moment(date).locale(locale).format(format).charAt(0).toUpperCase() + moment(date).locale(locale).format(format).slice(1);
     }
 
 export const localeMomentOpeningHours = (date, language_id) => {
-    let locale = 'en';
+    let locale = 'en_US';
     let format = 'dddd:';
     if (language_id == 2) {
-        locale = 'da';
+        locale = 'da_DK';
         format = 'dddd:';
     }
     else if (language_id == 3) {
-        locale = 'no';
+        locale = 'no_NO';
         format = 'dddd:';
     }
     else if (language_id == 4) {
-        locale = 'de';
+        locale = 'de_DE';
         format = 'dddd:';
     }
     else if (language_id == 5) {
-        locale = 'lt';
+        locale = 'lt_LT';
         format = 'dddd:';
 
     }
     else if (language_id == 6) {
-        locale = 'fi';
+        locale = 'fi_FI';
         format = 'dddd:';
 
     }
     else if (language_id == 7) {
-        locale = 'se';
+        locale = 'sv_SE';
         format = 'dddd:';
 
     }
     else if (language_id == 8) {
-        locale = 'nl';
+        locale = 'nl_NL';
         format = 'dddd:';
 
     }
     else if (language_id == 9) {
-        locale = 'be';
+        locale = 'nl_BE';
         format = 'dddd:';
     }
     let localeBasedMoment = moment(date).locale(locale);
