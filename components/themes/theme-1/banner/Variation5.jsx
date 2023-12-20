@@ -44,16 +44,16 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
         <SliderBanner 
         countdown={null}
         registerDateEnd={registerDateEnd}
-        eventsiteSettings={event.eventsiteSettings}
+        eventsiteSettings={event?.eventsiteSettings}
          >
-          {banner.map((slides, i) => (
+          {banner?.map((slides, i) => (
             <div key={i} className="slide-wrapper">
               <WrapperLayout
                 slides={slides}
               >
                 {Number(slides.video_type) === 2 && (
                   <div className="video-fullscreen">
-                    <video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                    <video autoPlay playsInline muted loop src={`${process?.env?.NEXT_APP_EVENTCENTER_URL}/${slides?.image}`} type="video/mp4"></video>
                   </div>
                 )}
                 <div className="caption-wrapp">
@@ -62,7 +62,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                       <div
                         className="parallax-text"
                       >
-                        {slides.info.title && settings.title === 1 && (
+                        {slides?.info?.title && settings?.title === 1 && (
                           <div
                             className="edgtf-custom-font-holder ebs-banner-title"
                             style={{
@@ -77,11 +77,11 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                           >
                             <span style={{ color:  slides?.title_color ? slides?.title_color : "#fff" }}>
                               {" "}
-                              {slides.info.title}{" "}
+                              {slides?.info?.title}{" "}
                             </span>
                           </div>
                         )}
-                        {slides.info.message && settings.caption === 1 && (
+                        {slides?.info?.message && settings?.caption === 1 && (
                           <div
                             className="edgtf-custom-font-holder ebs-banner-subtitle"
                             style={{
@@ -95,10 +95,10 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
                               maxWidth: 850,
                             }}
                           >
-                            {slides.info.message}
+                            {slides?.info?.message}
                           </div>
                         )}
-                        {settings.register_button === 1 && registerDateEnd  && <div
+                        {settings?.register_button === 1 && registerDateEnd  && <div
                           className="edgtf-custom-font-holder ebs-custom-button-holder"
                           style={{
                             marginTop: "40px",
