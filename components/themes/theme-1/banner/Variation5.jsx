@@ -13,7 +13,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
               })`,
             backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' 
           }}
-          className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}
+          className={`background ${!_bgLayer && 'ebs-no-opacity'}`}
         >
           {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
               {props.children}
@@ -27,7 +27,7 @@ const Variation5 = ({ banner, event, countdown, regisrationUrl, settings, regist
             backgroundPosition: "50% 0",
             backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' 
           }}
-          className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}
+          className={`background ${!_bgLayer && 'ebs-no-opacity'}`}
         >
           {props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
               {props.children}
