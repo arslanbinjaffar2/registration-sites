@@ -17,7 +17,7 @@ const MyProfile = () => {
     dispatch(fetchProfileData(event.id, event.url, 0));
   }, [])
 
-  const { attendee, labels, settings, customFields } = useSelector(profileSelector);
+  const { attendee, labels, settings, customFields, attendee_permission } = useSelector(profileSelector);
 
   return (
     attendee ? (
@@ -25,7 +25,10 @@ const MyProfile = () => {
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
             <h2>{event.labels.EVENTSITE_MY_PROFILE}</h2>
+            {attendee_permission.create_profile == '1' && (
+
             <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>{event.labels.GENERAL_EDIT_PROFILE}</ActiveLink>
+            )}
           </div>
           <div className="ebs-my-account-container">
             <div className="ebs-my-profile-section">
