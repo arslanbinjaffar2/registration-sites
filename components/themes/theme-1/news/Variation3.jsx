@@ -45,10 +45,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
                               {item.created_at}
                             </div>
                           </div>
-
-                          <TruncateMarkup lines={3}>
-                            <p className="edgtf-post-excerpt">{item.body.replace(/<(.|\n)*?>/g, '')}</p>
-                          </TruncateMarkup>
+                          <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp" dangerouslySetInnerHTML={{__html:item.body}}></p>
                         </div>
                       </div>
                     </div>
