@@ -80,7 +80,7 @@ const Variation3 = ({ photos, settings, eventUrl, loadMore, home, sitelabels, to
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
-                {sitelabels.labels.GENERAL_LOAD_MORE}
+                {sitelabels.GENERAL_LOAD_MORE}
               </button>
             </ActiveLink>
           </div>}

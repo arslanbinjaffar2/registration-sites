@@ -157,7 +157,7 @@ const Variation7 = ({ settings, videos, home, eventUrl, loadMore, siteLabels }) 
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
-                {siteLabels.labels.GENERAL_LOAD_MORE}
+                {siteLabels.GENERAL_LOAD_MORE}
               </button>
             </ActiveLink>
           </div>}
