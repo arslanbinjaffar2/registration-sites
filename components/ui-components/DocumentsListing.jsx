@@ -108,7 +108,7 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                     <ul className="breadcrumb">
                         {
                             breadCrumbs.map((crumb, i) => (
-                                <li className="breadcrumb-item" key={i}><span style={{ cursor: 'pointer',color: headcolor }} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
+                                <li className="breadcrumb-item" key={i}><span style={{ cursor: 'pointer' }} onClick={() => { onBreadCrumbClick(crumb, i); }}>{crumb.pname}</span></li>
                             ))
                         }
                     </ul>
