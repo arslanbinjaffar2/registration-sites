@@ -37,6 +37,10 @@ const ExhibitorDetail = (props) => {
     [event]
   );
 
+const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'exhibitors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'exhibitor' && item.status == 1))),[event]);
+
   const [breadCrumbs, setbreadCrumbs] = useState([
     {name:event.labels.HOME_PAGE_EXHIBIOR, url:`/${eventUrl}`, type:"link"},
     {name:event.labels.EVENTSITE_EXHIBITORS, url:`/${eventUrl}/exhibitors`, type:"link"},
@@ -44,6 +48,9 @@ const ExhibitorDetail = (props) => {
   ]);
   useEffect(() => {
     //dispatch(incrementLoadCount());
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchExhibitor(eventUrl, id));
     return () => {
       dispatch(clearState());
@@ -59,12 +66,12 @@ const ExhibitorDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.exhibitors}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_EXHIBITORS} desc={event.labels.EVENTSITE_EXHIBITORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type,headcolor)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                <li className="breadcrumb-item" key={i} style={{ color:headcolor }}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} ><span style={{ color:headcolor }}>{crumb.name}</span></ActiveLink>}
                 </li>
               ))}
             </ul>

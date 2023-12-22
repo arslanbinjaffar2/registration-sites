@@ -40,7 +40,13 @@ const AttendeeDetail = (props) => {
     {name:event.labels.OVERVIEW_OF_ATTENDEES, url:"", type:"name"},
   ]);
 
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'attendees'))),[event]);
+  
+ 
   useEffect(() => {
+    if(checkModuleTopStatus < 0){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchAttendeeDetail(eventUrl, id));
     return () => {
       dispatch(clearState());
@@ -54,12 +60,12 @@ const AttendeeDetail = (props) => {
           <Head>
             <title>{event.eventsiteModules.attendees}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENTSITE_ATTENDEES_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type, headcolor)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                <li className="breadcrumb-item" key={i} style={{ color:headcolor }}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} > <span style={{ color:headcolor }}>{crumb.name}</span></ActiveLink>}
                 </li>
               ))}
             </ul>

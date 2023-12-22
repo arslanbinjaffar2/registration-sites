@@ -33,7 +33,14 @@ const SponsorDetail = (props) => {
     [event]
   );
 
+  const checkModuleTopStatus = useMemo(()=>(event?.header_data?.top_menu.findIndex((item)=>(item.alias === 'sponsors'))),[event]);
+
+  const checkModuleHomeStatus = useMemo(()=>(event?.layoutSections?.findIndex((item)=>(item.module_alias === 'sponsor' && item.status == 1))),[event]);
+
   useEffect(() => {
+    if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0 ){
+      router.push(`/${eventUrl}`);
+    }
     dispatch(fetchSponsor(eventUrl, id));
     return () => {
       dispatch(clearState());
@@ -55,12 +62,12 @@ const SponsorDetail = (props) => {
           <Head>
           <title>{event.eventsiteModules.sponsors}</title>
           </Head>
-          <PageHeader label={event.labels.EVENTSITE_SPONSORS} desc={event.labels.EVENTSITE_SPONSORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type)=>{
+          <PageHeader label={event.labels.EVENTSITE_SPONSORS} desc={event.labels.EVENTSITE_SPONSORS_SUB} showBreadcrumb={event.eventsiteSettings.show_eventsite_breadcrumbs} breadCrumbs={(type,headcolor)=>{
             return ( <nav aria-label="breadcrumb" className={`ebs-breadcrumbs ${type !== "background" ? 'ebs-dark': ''}`}>
             <ul className="breadcrumb">
               {breadCrumbs.map((crumb, i) => (
-                <li className="breadcrumb-item" key={i}>
-                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} >{crumb.name}</ActiveLink>}
+                <li className="breadcrumb-item" key={i} style={{ color:headcolor }}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} ><span style={{ color:headcolor }}>{crumb.name}</span></ActiveLink>}
                 </li>
               ))}
             </ul>

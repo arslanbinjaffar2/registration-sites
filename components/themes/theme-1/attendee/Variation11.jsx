@@ -3,7 +3,7 @@ import ActiveLink from "components/atoms/ActiveLink";
 import HeadingElement from "components/ui-components/HeadingElement";
 import Image from 'next/image'
 
-const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, siteLabels }) => {
+const Variation11 = ({ attendees, searchBar, loadMore, event, settings, siteLabels }) => {
   const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : {}
 
   return (
@@ -12,37 +12,39 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
       className="edgtf-parallax-section-holder ebs-default-padding"
     >
       <div className="container">
-        <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
+        <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
       </div>
-      {listing && searchBar()}
+      {searchBar()}
       <div className="container">
-        <div className={`row d-flex edgtf-team-list-holder edgtf-team-info-below-image ${!listing ? 'justify-content-center' : ''}`}>
+        <div className="edgtf-team-list-holder">
           {/* Grid */}
-          {speakers &&
-            speakers.map((speaker, i) => (
+          {attendees &&
+            attendees.map((attendee, i) => (
               <div
                 key={i}
-                className="col-12 col-sm-6 col-md-4 col-lg-3 pl-0 pr-0 ebs-attendee-v1 ebs-attendee-v3 ebs-dark-attendee"
+                className="ebs-attendees-list"
               >
                 <div style={{ animationDelay: 50 * i + 'ms' }} className="edgtf-team-list-holder-inner info_box ebs-animation-layer">
-                  <div className="edgtf-team w-100 mb-3">
-                    <div className="edgtf-team-inner">
-                      <div className="edgtf-team-image">
-                        <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
+                  <div className="edgtf-team w-100 p-0 mb-4 border lh-base">
+                    <div className="edgtf-team-inner m-0 row d-flex align-items-center">
+                      <div className="edgtf-team-image p-0 col-lg-3 col-xl-2 col-md-4 col-sm-4 col-12">
+                        <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
                           <span className="gallery-img-wrapper-square">
-                            {speaker.image && speaker.image !== "" ? (
+                            {attendee.image && attendee.image !== "" ? (
                               <img
+                                className="rounded-0"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={
                                   process.env.NEXT_APP_EVENTCENTER_URL +
                                   "/assets/attendees/" +
-                                  speaker.image
+                                  attendee.image
                                 }
                                 alt="g"
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
+                                className="rounded-0"
                                 src={
                                   require("public/img/user-placeholder.jpg")
                                 }
@@ -53,100 +55,100 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                         </ActiveLink>
                       </div>
                       {/* Description */}
-                      <div className="edgtf-team-info">
-                        <div className="edgtf-team-title-holder">
-                          {(speaker.first_name || speaker.last_name) && (
-                            <ActiveLink href={`/${event.url}/speakers/${speaker.id}`}>
-                              <h3 className="edgtf-team-name">
-                                {speaker.info &&
-                                  speaker.info.initial && (
+                      <div className="edgtf-team-info text-start text-xs-center m-0 ps-md-3 ps-lg-5 p-3 col-md-8 col-lg-9 col-xl-10 col-sm-8 col-12">
+                        <div className="edgtf-team-title-holder m-0">
+                          {(attendee.first_name || attendee.last_name) && (
+                            <ActiveLink href={`/${event.url}/attendees/${attendee.id}`}>
+                              <h3 className="edgtf-team-name mt-0 mb-1">
+                                {attendee.info &&
+                                  attendee.info.initial && (
                                     <>
-                                      {speaker.info.initial &&
-                                        speaker.info.initial}&nbsp;
+                                      {attendee.info.initial &&
+                                        attendee.info.initial}&nbsp;
                                     </>
                                   )}
-                                {speaker.first_name && speaker.first_name}{" "}
-                                {speaker.last_name && speaker.last_name}
+                                {attendee.first_name && attendee.first_name}{" "}
+                                {attendee.last_name && attendee.last_name}
                               </h3>
                             </ActiveLink>
                           )}
-                          {speaker.info &&
-                            (speaker.info.company_name ||
-                              speaker.info.title) && (
-                              <div style={{ color: '#666666' }} className="ebs-attendee-designation">
-                                {speaker.info.title && speaker.info.title}
-                                {speaker.info.title &&
-                                  speaker.info.company_name &&
+                          {attendee.info &&
+                            (attendee.info.company_name ||
+                              attendee.info.title) && (
+                              <div  className="ebs-attendee-designation mb-1">
+                                {attendee.info.title && attendee.info.title}
+                                {attendee.info.title &&
+                                  attendee.info.company_name &&
                                   ", "}
-                                {speaker.info.company_name &&
-                                  speaker.info.company_name}
+                                {attendee.info.company_name &&
+                                  attendee.info.company_name}
                               </div>
                             )}
-                          {listing && <div className="ebs-border-wrapp">
-                            {listing && speaker.email && (
-                              <div style={{ color: '#666666' }} className="ebs-email-phone">
+                          <div className="ebs-border-wrapp">
+                            {attendee.email && (
+                              <div  className="ebs-email-phone mb-1">
                                 <a
-                                  href={`mailto:${speaker.email}`}
+                                  href={`mailto:${attendee.email}`}
                                   className="edgtf-team-position"
-                                  style={{ color: '#666666' }}
+                                  
                                 >
-                                  {speaker.email}
+                                  {attendee.email}
                                 </a>
                               </div>
                             )}
 
-                            {listing && speaker.phone && (
-                              <div style={{ color: '#666666' }} className="ebs-email-phone">
+                            {attendee.phone && (
+                              <div  className="ebs-email-phone mb-1">
                                 <a
-                                  href={`tel: ${speaker.phone}`}
+                                  href={`tel: ${attendee.phone}`}
                                   className="edgtf-team-position"
-                                  style={{ color: '#666666' }}
+                                  
                                 >
-                                  {speaker.phone}
+                                  {attendee.phone}
                                 </a>
                               </div>
                             )}
-                          </div>}
+                          </div>
                         </div>
-                        {listing &&
-                          speaker.info &&
-                          (speaker.info.facebook ||
-                            speaker.info.twitter ||
-                            speaker.info.linkedin ||
-                            speaker.info.website) && (
+                        {
+                          attendee.info &&
+                          (attendee.info.facebook ||
+                            attendee.info.twitter ||
+                            attendee.info.linkedin ||
+                            attendee.info.website) && (
                             <div className="edgtf-team-social-holder-between">
                               <div className="edgtf-team-social">
                                 <div className="edgtf-team-social-inner">
                                   <div className="edgtf-team-social-wrapp">
-                                    <div className="social-icons">
-                                      {speaker.info.facebook && (
+                                    <div className="social-icons pt-1 text-start">
+                                      {attendee.info.facebook && (
                                         <a
                                           target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                                          href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}
                                         >
                                           <span data-icon="&#xe0aa;"></span>
                                         </a>
                                       )}
-                                      {speaker.info.twitter && (
+                                      {attendee.info.twitter && (
                                         <a
                                           target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                                          href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
                                         >
                                           <span data-icon="&#xe0ab;"></span>
                                         </a>
                                       )}
-                                      {speaker.info.linkedin && (
+                                      {attendee.info.linkedin && (
                                         <a
                                           target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                                          href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}
                                         >
                                           <span data-icon="&#xe0b4;"></span>
                                         </a>
                                       )}
-                                      {speaker.info.website && (
+                                      {attendee.info.website && (
                                         <a
                                           target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                                          href={`${attendee.info.website_protocol}${attendee.info.website}`}
                                         >
                                           <span data-icon="&#xe0e3;"></span>
                                         </a>
@@ -166,11 +168,11 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
             ))}
           {/* Grid */}
         </div>
-        {listing && speakers.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-        {listing && speakers.length > 0 && loadMore()}
+        {attendees.length === 0 && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
+        {attendees.length > 0 && loadMore()}
       </div>
     </div>
   );
 };
 
-export default Variation7;
+export default Variation11;

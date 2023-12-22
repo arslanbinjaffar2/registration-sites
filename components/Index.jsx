@@ -72,7 +72,7 @@ const Index = () => {
               else if (section.module_alias === "waiting_list" && section.status === 1)
                 return <div key={i}></div>;
               else if (section.module_alias === "registration_packages" && section.status === 1)
-                return <PageContent key={i} />;
+                return <PageContent isHome={true} key={i} />;
               else if (section.module_alias === "news" && section.status === 1)
                 return <News key={i} homePage={true} />;
             })();

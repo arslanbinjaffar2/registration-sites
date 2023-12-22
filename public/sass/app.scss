@@ -173,6 +173,33 @@
   .inner-caption-wrapp {
 		padding: 5% 50px;
 		min-height: 700px;
+    &.ebs-fluid-banner {
+      min-height: 1px;
+      height: 0;
+      padding: 0 50px 42.7%;
+      .ebs-parallax-text-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        >.parallax-text {
+          max-width: 1400px;
+          padding: 0 50px;
+          }
+      }
+      > .parallax-text {
+        padding: 0 50px;
+        max-width: 1400px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+      @include phone-landscape {
+          padding: 5% 0;
+          height: auto;
+          min-height: 250px;
+      }
+    }
     @include phone-landscape {
       min-height: 250px;
     }
@@ -2133,6 +2160,7 @@
 }
 .module-section.ebs-program-listing-wrapper {
   overflow: hidden;
+  background-color: white;
 }
 .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -2522,8 +2550,20 @@
 }
 .ebs-programs-date {
   padding: 0 30px;
-  border-bottom: 2px solid $border;
   margin-bottom: 30px;
+  position: relative;
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    z-index: -1;
+    background: $border;
+  }
+
   .ebs-date-box {
     text-align: center;
     padding-top: 10px;
@@ -2671,13 +2711,19 @@
 }
 
 
-.truncate 
+.truncate,.ebs-edgtf-post-line-clamp
 {
   text-overflow:ellipsis;
   overflow:hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  height: calc(1em * 1.7 * 3);
+}
+.ebs-edgtf-post-line-clamp {
+  * {
+    font-weight: normal;
+  }
 }
 .ebs-corporate-login {
   width: 100%;
@@ -3391,5 +3437,26 @@
       background-color: transparent;
       border-color: $color-danger;
     }
+  }
+}
+.ebs-attendees-list {
+  .social-icons {
+    a {
+      color: $default-heading-color;
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+  &.ebs-attendees-list-dark {
+    color: $white;
+    .edgtf-team-name,
+    .ebs-email-phone a,
+    .social-icons a {
+      color: $white;
+    }
+        .social-icons a:hover {
+          color: var(--primary);
+        }
   }
 }

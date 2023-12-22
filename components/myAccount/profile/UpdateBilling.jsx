@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { profileSelector, fetchInvoiceData } from 'store/Slices/myAccount/profileSlice';
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import ActiveLink from "components/atoms/ActiveLink";
+import { useRouter } from 'next/router';
 
 const UpdateBilling = (props) => {
 
@@ -11,6 +12,21 @@ const UpdateBilling = (props) => {
     const [height, setHeight] = useState(0);
 
     const iframe = useRef();
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const listener = (events) =>{
+            console.log(events);
+            if(events.data.order_id !== undefined) {
+                router.push(`/${event.url}/profile/my-billing`);
+            } 
+        }
+        window.addEventListener("message", listener);
+        return () => {
+          window.removeEventListener('message', listener);
+        }
+      }, []);
 
     return (
         <div className="edgtf-container ebs-my-profile-area pb-5">

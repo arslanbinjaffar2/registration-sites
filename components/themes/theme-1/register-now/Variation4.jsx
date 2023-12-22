@@ -2,50 +2,51 @@ import React from 'react';
 import Countdown, { zeroPad } from "react-countdown";
 import moment from 'moment';
 import HeadingElement from "components/ui-components/HeadingElement";
-const Completionist = () =>
+import { setRegistrationEndtime } from '../../../../helpers/helper'
+const Completionist = ({ labels }) =>
   <div className="col-12">
-    <h2>This event is going on.</h2>
+    <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
   </div>
   ;
 
 // Renderer callback with condition
-const renderer = ({ days, hours, minutes, seconds, completed }) => {
-  if (completed) {
-    // Render a complete state
-    return <Completionist />;
-  } else {
-    // Render a countdown
-    return (
-      <React.Fragment>
-        <div className="ebs-countdown-wrapp countdown-wrapp">
-          {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
-            <span className="countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
-            <span className="countdown-period">Months</span>
-          </span>}
-          <span className="edgtf-countdown is-countdown">
-            <span className="countdown-amount">{zeroPad(Math.floor(days % 30))}</span>
-            <span className="countdown-period">Days</span>
-          </span>
-          <span className="edgtf-countdown is-countdown">
-            <span className="countdown-amount">{zeroPad(hours)}</span>
-            <span className="countdown-period">Hours</span>
-          </span>
-          <span className="edgtf-countdown is-countdown">
-            <span className="countdown-amount">{zeroPad(minutes)}</span>
-            <span className="countdown-period">Minutes</span>
-          </span>
-          <span className="edgtf-countdown is-countdown">
-            <span className="countdown-amount">{zeroPad(seconds)}</span>
-            <span className="countdown-period">Seconds</span>
-          </span>
-        </div>
-      </React.Fragment>
-    );
-  }
-};
 
-const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
+const Variation4 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo, labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a complete state
+      return <Completionist labels={labels}/>;
+    } else {
+      // Render a countdown
+      return (
+        <React.Fragment>
+          <div className="ebs-countdown-wrapp countdown-wrapp">
+            {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(Math.floor(days / 30))}</span>
+              <span className="countdown-period">Months</span>
+            </span>}
+            <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(Math.floor(days % 30))}</span>
+              <span className="countdown-period">Days</span>
+            </span>
+            <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(hours)}</span>
+              <span className="countdown-period">Hours</span>
+            </span>
+            <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(minutes)}</span>
+              <span className="countdown-period">Minutes</span>
+            </span>
+            <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount">{zeroPad(seconds)}</span>
+              <span className="countdown-period">Seconds</span>
+            </span>
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
   const WrapperLayout = (props) => {
 
     const _parallax = React.useRef(null);
@@ -91,19 +92,22 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
             <HeadingElement dark={true} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'left'} />
             <div className="ebs-register-now-sec ebs-register-v2 ebs-register-v3">
               <div className="row d-flex align-items-center flex-row-reverse">
-                {(checkTickets.ticketsSet && ticket_settings  && checkTickets.remainingTickets > 0) && <div className="col-md-3">
+                {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_remaining_tickets != '') && <div className="col-md-3">
                    <div className="ebs-ticket-remaning">
-                    <div style={{ color: '#fff' }} className="ebs-ticket-counter">{checkTickets.remainingTickets}</div>
+                    <div style={{ color: '#fff' }} className="ebs-ticket-counter">{registrationFormInfo.form_registration_remaining_tickets}</div>
                     <div style={{ color: '#fff' }} className="ebs-ticket-status">{labels.EVENTSITE_TICKETS_LEFT}</div>
                   </div>
                 </div>}
-                <div className={ticket_settings ? 'col-md-9' : 'col-md-12'}>
+                {/* <div className={ticket_settings ? 'col-md-9' : 'col-md-12'}> */}
+                <div className={'col-md-12'}>
                   <div className="ebs-caption-box" style={{marginBottom: 20}}>
                     <div style={{ color: '#fff' }} className="ebs-description-area">{labels.EVENTSITE_HOME_REGISTRATION_TEXT}</div>
                   </div>
                 </div>
               </div>
-              {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />}
+              {/* {(eventSiteSettings.eventsite_time_left === 1 && eventSiteSettings.registration_end_date !== "0000-00-00 00:00:00") && <Countdown date={moment(eventSiteSettings.registration_end_date)} renderer={renderer} />} */}
+              {(registrationFormInfo.has_multiple_form != true && registrationFormInfo.form_registration_end_date != '') && <Countdown date={setRegistrationEndtime(eventTimeZone,registrationFormInfo.form_registration_end_date)} renderer={renderer} />}
+
               <div className="text-center">
                 <a style={{ border: '2px solid #fff', color: '#fff' }} href={registrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
               </div>
@@ -111,19 +115,19 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
           </div>
         )}
 
-        {(!registerDateEnd && (!checkTickets.ticketsSet || checkTickets.remainingTickets > 0) && !waitingList) && (
+        {!registerDateEnd && (
           <div className="container">
             <div className="alert alert-danger alert-dismissable">{labels.REGISTER_DATE_END}</div>
           </div>
         )}
 
-        {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList) && (
+        {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && !waitingList) && (
           <div className="container">
             <div className="alert alert-danger alert-dismissable">{labels.REGISTER_TICKET_END}</div>
           </div>
-        )}
+        )} */}
 
-        {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList) && (
+        {/* {(registerDateEnd && (checkTickets.ticketsSet && checkTickets.remainingTickets <= 0) && waitingList) && (
           <div className="container">
             <HeadingElement dark={true} label={labels.REGISTER_FOR_WAITING_LIST} desc={labels.NO_TICKETS_LEFT_REGISTER_WAITING_LIST} align={moduleVariation.text_align} />
             <div className="ebs-register-now-sec">
@@ -137,7 +141,7 @@ const Variation4 = ({ eventSiteSettings, labels, registerDateEnd, checkTickets, 
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </WrapperLayout>
     </div>
   );

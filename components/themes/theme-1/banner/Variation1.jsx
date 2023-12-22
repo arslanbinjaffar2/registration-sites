@@ -9,7 +9,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 
 		if (props.slides && Number(props.slides.video_type) === 1) {
 			return (
-				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' }} className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}>
+				<div style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image})`, backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' }} className={`background  ${!_bgLayer && 'ebs-no-opacity'}`}>
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
 					</a >: props.children}
@@ -17,7 +17,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 			);
 		} else {
 			return (
-				<div style={{ backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' }} className={`background parallax-backgroud ${!_bgLayer && 'ebs-no-opacity'}`}
+				<div style={{ backgroundPosition: '50% 0', backgroundBlendMode: _bgLayer ? 'overlay' : 'normal' }} className={`background  ${!_bgLayer && 'ebs-no-opacity'}`}
 					>
 					{props.slides.url ? <a href={props.slides.url} target="_blank" rel="noreferrer">
 						{props.children}
@@ -45,7 +45,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 	return (
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
-				countdown={countdown} //{dateTime}
+				countdown={null} //{dateTime}
 				registerDateEnd={registerDateEnd} //{dateTime}
 				fullscreen
 				eventsiteSettings={event.eventsiteSettings}
