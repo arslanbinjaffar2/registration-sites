@@ -9,9 +9,9 @@ const Variation6 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
   return (
     <div>
       <div style={bgStyle} className="module-section ebs-default-padding">
-        <div className="container">
+        {/* <div className="container">
           <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
-        </div>
+        </div> */}
         {searchBar()}
         <div className="container">
           <div className="row d-flex algin-items-center">

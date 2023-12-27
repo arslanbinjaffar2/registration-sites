@@ -11,9 +11,9 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
       style={bgStyle}
       className="edgtf-parallax-section-holder ebs-default-padding"
     >
-      <div className="container">
+      {!listing && <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
-      </div>
+      </div>}
       {listing && searchBar()}
       <div className="container">
         <div className={`row d-flex edgtf-team-list-holder edgtf-team-info-below-image ${!listing ? 'justify-content-center' : ''}`}>
