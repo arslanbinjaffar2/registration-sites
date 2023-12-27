@@ -9,9 +9,9 @@ const Variation10 = ({ speakers, listing, searchBar, loadMore, event, settings, 
   const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
   return (
     <div style={bgStyle} className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-      <div className="container">
+      {!listing && <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
-      </div>
+      </div>}
       {listing && searchBar()}
       <div className="container">
         <div className={`row ${!listing ? 'justify-content-center' : ''}`}>
