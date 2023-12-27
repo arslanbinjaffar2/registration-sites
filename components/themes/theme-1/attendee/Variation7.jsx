@@ -11,9 +11,9 @@ const Variation7 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
       style={bgStyle}
       className="edgtf-parallax-section-holder ebs-default-padding"
     >
-      <div className="container">
+      {/* <div className="container">
         <HeadingElement dark={false} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
-      </div>
+      </div> */}
       {searchBar()}
       <div className="container">
         <div className="row d-flex edgtf-team-list-holder edgtf-team-info-below-image">
