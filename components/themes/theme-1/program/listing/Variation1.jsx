@@ -4,6 +4,7 @@ import ProgramItem from "components/themes/theme-1/program/components/ProgramIte
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
+import moment from 'moment';
 const customStyles = {
   control: base => ({
     ...base,
@@ -79,7 +80,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                     placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                     components={{ IndicatorSeparator: null }}
                     onChange={(date) => { onDateChange(date) }}
-                    options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: key }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
+                    options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY') }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                   />
                 </div>
                   {tracks.length > 0 &&
