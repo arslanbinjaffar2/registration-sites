@@ -25,7 +25,7 @@ const EventDescription = ({event}) => {
   return  event.description?.info.description && 
     <div className="ebs-default-padding module-section" >
       <div className="container">
-        {event.description !== undefined && event.description.info !== undefined && event.description.info.ed_title !== undefined && event.description.info.ed_title !== "" && <HeadingElement dark={false} label={event.description.info.ed_title}  align={'left'} />}
+        {event.description !== undefined && event.description.info !== undefined && event.description.info.ed_title !== undefined && event.description.info.ed_title !== "" && <HeadingElement dark={false} label={event.description.info.ed_title}  align={'center'} />}
         <div dangerouslySetInnerHTML={{__html: event.description.info.description}} />
         {(event.description && event.description.info.ed_show_register_now == 1) && event.registration_end_date_passed === 0 &&  <a style={{border: '2px solid #363636', color: '#363636', marginTop:"20px"}} href={regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
       </div>
