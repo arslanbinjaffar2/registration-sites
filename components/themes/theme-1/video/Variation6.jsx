@@ -109,7 +109,7 @@ const Variation6 = ({settings, videos, loadMore, eventUrl, home, siteLabels }) =
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer edgtf-ptf-gallery-with-space edgtf-dark">
           <div className="edgtf-portfolio-list-holder">
-            <div className="d-flex row">
+            <div className="d-flex row justify-content-center">
               {videos &&
                 videos.map((photo, i) => (
                   <div key={i} className="col-md-4 col-lg-3 col-sm-6">

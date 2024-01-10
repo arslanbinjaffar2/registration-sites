@@ -120,7 +120,7 @@ const Variation8 = ({ settings, videos, loadMore, eventUrl, home, siteLabels }) 
           {videos && (
             <Masonry
               breakpointCols={breakpointColumnsObj}
-              className="my-masonry-grid"
+              className="my-masonry-grid justify-content-center"
               columnClassName="my-masonry-grid_column"
             >
               {videos &&
