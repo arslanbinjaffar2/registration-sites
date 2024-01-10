@@ -100,7 +100,7 @@ const NormalVideo = ({photo}) => {
 };
 
 
-const Variation4 = ({ settings, videos, loadMore, eventUrl, home, siteLabels }) => {
+const Variation4 = ({ settings, videos, loadMore, eventUrl, home, siteLabels, totalPages }) => {
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -170,7 +170,7 @@ const Variation4 = ({ settings, videos, loadMore, eventUrl, home, siteLabels }) 
           )}
         </div>
         {!home && loadMore()}
-        {home && <div className="container p-0 pt-5 text-center">
+        {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
           <ActiveLink href={`/${eventUrl}/videos`}>
             <button
               className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
