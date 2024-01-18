@@ -74,7 +74,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             </div>}
             <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
               <div className="row flex-row justify-content-end">
-                <div className="col-md-5 col-6">
+                {programs.length > 0 && <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
                     placeholder={siteLabels.EVENTSITE_SELECT_DAY}
@@ -82,7 +82,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                     onChange={(date) => { onDateChange(date) }}
                     options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY') }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                   />
-                </div>
+                </div>}
                   {tracks.length > 0 &&
                       <div className="col-md-5 col-6">
                         <ReactSelect
