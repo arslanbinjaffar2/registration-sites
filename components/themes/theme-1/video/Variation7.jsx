@@ -98,7 +98,7 @@ const NormalVideo = ({photo}) => {
 };
 
 
-const Variation7 = ({ settings, videos, home, eventUrl, loadMore, siteLabels }) => {
+const Variation7 = ({ settings, videos, home, eventUrl, loadMore, siteLabels, totalPages }) => {
   const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
 
   return (
@@ -109,7 +109,7 @@ const Variation7 = ({ settings, videos, home, eventUrl, loadMore, siteLabels }) 
       <div className="container">
         <div className="edgtf-portfolio-list-holder-outer">
           <div className="edgtf-portfolio-list-holder">
-            <div className="d-flex row">
+            <div className="d-flex row justify-content-center">
               {videos &&
                 videos.map((photo, i) => (
                   <div key={i} className="col-md-4 col-lg-3 col-sm-6">
@@ -152,12 +152,12 @@ const Variation7 = ({ settings, videos, home, eventUrl, loadMore, siteLabels }) 
             </div>
           </div>
           {!home && loadMore()}
-          {home && <div className="container p-0 pt-5 text-center">
+          {home && totalPages > 1 && <div className="container p-0 pt-5 text-center">
             <ActiveLink href={`/${eventUrl}/videos`}>
               <button
                 className="edgtf-btn edgtf-btn-medium edgtf-btn-outline edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color"
               >
-                Load More
+                {siteLabels.GENERAL_LOAD_MORE}
               </button>
             </ActiveLink>
           </div>}

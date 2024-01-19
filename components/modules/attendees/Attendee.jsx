@@ -8,6 +8,7 @@ import LoadMoreButton from "components/ui-components/LoadMoreButton";
 import SearchBar from "components/ui-components/SearchBar";
 import Head from "next/head";
 import { useRouter } from 'next/router';
+import PageHeader from "components/modules/PageHeader";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
@@ -83,6 +84,7 @@ const Attendee = (props) => {
           <Head>
             <title>{event.eventsiteModules.attendees}</title>
           </Head>
+          <PageHeader label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} />
           <CustomComponent
           labels={labels}
           siteLabels={event.labels}

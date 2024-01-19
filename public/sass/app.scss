@@ -2711,7 +2711,7 @@
 }
 
 
-.truncate 
+.truncate,.ebs-edgtf-post-line-clamp
 {
   text-overflow:ellipsis;
   overflow:hidden;
@@ -2719,6 +2719,11 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   height: calc(1em * 1.7 * 3);
+}
+.ebs-edgtf-post-line-clamp {
+  * {
+    font-weight: normal;
+  }
 }
 .ebs-corporate-login {
   width: 100%;

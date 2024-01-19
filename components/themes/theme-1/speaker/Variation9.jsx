@@ -43,9 +43,9 @@ const Variation9 = ({
     <div style={{ backgroundImage: `url(${_bgimage})` }}
       className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
       ref={_parallax}>
-      <div className="container">
+      {!listing && <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
-      </div>
+      </div>}
       {listing && searchBar()}
       <div className="container">
         <div className={`row d-flex edgtf-team-list-holder edgtf-team-info-on-hover ${!listing ? 'justify-content-center' : ''}`}>

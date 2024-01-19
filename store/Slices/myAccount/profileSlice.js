@@ -23,6 +23,7 @@ const initialState = {
   order_id: null,
   is_invoice_update: null,
   attendee_module_labels:null,
+  edit_profile_setting:null
 }
 
 export const eventSlice = createSlice({
@@ -43,6 +44,7 @@ export const eventSlice = createSlice({
         state.settings = payload.settings,
         state.labels = payload.labels,
         state.languages = payload.languages,
+        state.edit_profile_setting = payload.edit_profile_setting,
         state.loading = false
     },
     setAttendeeEdit: (state, { payload }) => {
