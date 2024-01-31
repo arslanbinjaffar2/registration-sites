@@ -11,6 +11,7 @@ import SearchBar from "components/ui-components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
 import { useRouter } from 'next/router';
+import PageHeader from "components/modules/PageHeader";
 
 const in_array = require("in_array");
 
@@ -92,6 +93,7 @@ const Speaker = (props) => {
           {!home && <Head>
             <title>{event.eventsiteModules.speakers}</title>
           </Head>}
+          {!home && <PageHeader label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} />}
           <Component speakers={speakers} siteLabels={event.labels} labels={labels} settings={moduleVariation[0]} listing={!home} history={props.history} event={event} searchBar={()=>{
            return <SearchBar searchLabel={event.labels.EVENTSITE_GENERAL_SEARCH !== undefined ? event.labels.EVENTSITE_GENERAL_SEARCH : "Search..."} loading={loading} setText={(text)=>setValue(text)}  />;
           }}

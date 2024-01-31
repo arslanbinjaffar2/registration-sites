@@ -9,9 +9,9 @@ const Variation10 = ({ attendees, searchBar, loadMore, event, settings, siteLabe
   const bgStyle = (settings && settings.background_image !== "") ? { backgroundImage: `url(${_bgimage})` } : {}
   return (
     <div style={bgStyle} className="module-section edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-      <div className="container">
+      {/* <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
-      </div>
+      </div> */}
       {searchBar()}
       <div className="container">
         <div className="row">

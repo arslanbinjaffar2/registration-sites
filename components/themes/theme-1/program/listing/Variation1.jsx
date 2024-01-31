@@ -4,6 +4,7 @@ import ProgramItem from "components/themes/theme-1/program/components/ProgramIte
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
+import moment from 'moment';
 const customStyles = {
   control: base => ({
     ...base,
@@ -73,15 +74,15 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             </div>}
             <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
               <div className="row flex-row justify-content-end">
-                <div className="col-md-5 col-6">
+                {Object.keys(programs).length > 0 && <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
                     placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                     components={{ IndicatorSeparator: null }}
                     onChange={(date) => { onDateChange(date) }}
-                    options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: key }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
+                    options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY') }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                   />
-                </div>
+                </div>}
                   {tracks.length > 0 &&
                       <div className="col-md-5 col-6">
                         <ReactSelect

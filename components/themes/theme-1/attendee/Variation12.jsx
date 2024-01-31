@@ -12,9 +12,9 @@ const Variation12 = ({ attendees, searchBar, loadMore, event, settings, siteLabe
       style={bgStyle}
       className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
     >
-      <div className="container">
+      {/* <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_ATTENDEES} desc={event.labels.EVENT_ATTENDEES_LOWER_HEAD} align={settings.text_align} />
-      </div>
+      </div> */}
       {searchBar()}
       <div className="container">
         <div className="edgtf-team-list-holder">
