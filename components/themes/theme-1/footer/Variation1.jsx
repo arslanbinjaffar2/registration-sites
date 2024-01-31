@@ -83,10 +83,12 @@ const Variation1 = ({event, siteLabels}) => {
                                     <p>{event?.organizer_name}</p>
                                     {event?.organization_url.length > 0 && (
                                         <div>
-                                        <h5 className='link'>{event?.labels?.REGISTRATION_SITE_ORGANIZATION_WEBSITE_URL}</h5>
-                                        <a href={event?.organization_url} target="_blank">{event?.labels?.REGISTRATION_SITE_VISIT_OUR_ORGANIZATION_WEBSITE}</a>
+                                            <h5 className='link'>{event?.labels?.REGISTRATION_SITE_ORGANIZATION_WEBSITE_URL}</h5>
+                                            <a href={event?.organization_url} target="_blank" rel="noopener noreferrer">
+                                                {event?.labels?.REGISTRATION_SITE_VISIT_OUR_ORGANIZATION_WEBSITE}
+                                            </a>
                                         </div>
-                                     )}
+                                    )}
                                 </div>
                             </div>
                         </div>
