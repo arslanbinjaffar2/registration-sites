@@ -81,7 +81,7 @@ const Variation1 = ({event, siteLabels}) => {
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_FOUR}</h5>
                                     <p>{event?.organizer_name}</p>
-                                    {event?.organization_url.length > 0 && (
+                                    {event?.organization_url.length > 0  && (event?.organization_url != 'https://' || event?.organization_url != 'http://')  &&  (
                                         <div>
                                             <h5 className='link'>{event?.labels?.REGISTRATION_SITE_ORGANIZATION_WEBSITE_URL}</h5>
                                             <label>Website: </label>
