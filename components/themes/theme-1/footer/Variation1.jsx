@@ -84,8 +84,9 @@ const Variation1 = ({event, siteLabels}) => {
                                     {event?.organization_url.length > 0 && (
                                         <div>
                                             <h5 className='link'>{event?.labels?.REGISTRATION_SITE_ORGANIZATION_WEBSITE_URL}</h5>
-                                            <a href={event?.organization_url} target="_blank" rel="noopener noreferrer">
-                                                {event?.labels?.REGISTRATION_SITE_VISIT_OUR_ORGANIZATION_WEBSITE}
+                                            <label>Website: </label>
+                                            <a href={event?.organization_url} style={{paddingLeft: 5,}} target="_blank" rel="noopener noreferrer">
+                                                {event?.organization_url}
                                             </a>
                                         </div>
                                     )}
