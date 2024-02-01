@@ -1,6 +1,9 @@
 import React from 'react'
 
  const HeadingElement = ({dark,align,label,desc, page_header, breakheading,headcolor}) => {
+  if(label == ''){
+    return null;
+  }
   return (
   <div className={`row d-flex ${!page_header ? 'mb-4':''} `}>
             {align === 'center' && <div className="col-md-8 offset-md-2 text-center">
@@ -37,7 +40,7 @@ import React from 'react'
                 </div> }
               </React.Fragment>
             }
-          </div>
+  </div>
   )
 };
 export default HeadingElement;

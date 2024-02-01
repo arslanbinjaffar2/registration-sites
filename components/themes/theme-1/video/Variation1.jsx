@@ -105,7 +105,7 @@ const Variation1 = ({ settings, videos, loadMore, eventUrl, home, siteLabels, to
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_VIDEOS} align={settings.text_align} />
       </div>}
       <div className="edgtf-image-gallery clearfix">
-        <div className="edgtf-image-gallery-grid edgtf-gallery-columns-4 ">
+        <div className="edgtf-image-gallery-grid text-center edgtf-gallery-columns-4 ">
           {videos &&
             videos.map((photo, i) => {
               return (
