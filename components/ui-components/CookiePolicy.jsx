@@ -24,7 +24,7 @@ const CookiePolicy = () => {
 
   return (
     <React.Fragment>
-      {showAction && <div className='site-blocker'></div>}
+      {!showAction && <div className='site-blocker'></div>}
       <div className="ebs-cookie-policy-container">
         {!show && <div onClick={() => setShow(true)} className="ebs-btn-cookie">
           <svg width="30.937" height="30.937" viewBox="0 0 30.937 30.937">
@@ -40,7 +40,7 @@ const CookiePolicy = () => {
             </g>
           </svg>
         </div>}
-        {!show &&
+        {show &&
           <>
             <div className="ebs-cookie-container">
               {showAction && <span onClick={() => setShow(false)} className="btn-close">
