@@ -78,8 +78,7 @@ const Floorplan = (props) => {
     <Suspense fallback={<PageLoader />}>
       
         <React.Fragment>
-        {!props.homePage && <Head><title>{event.eventsiteModules.news}</title></Head>}
-        {!props.homePage ? <PageHeader label={event.eventsiteModules.news}/> : null}
+        {!props.homePage && <Head><title>Floorplan</title></Head>}
         <Component />
         </React.Fragment>
       

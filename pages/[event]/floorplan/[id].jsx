@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
-import NewsDetail from 'components/modules/news/NewsDetail';
+import FloorplanDetail from 'components/modules/floorplan/FloorplanDetail';
 import { metaInfo } from 'helpers/helper';
 import PageLoader from "components/ui-components/PageLoader";
 import { getCookie, setCookie } from 'cookies-next';
@@ -64,7 +64,7 @@ const ExhibitorDetail = (props) => {
           </Head>
             {event ? (
                 <MasterLayoutRoute event={event}>
-                    <NewsDetail />
+                    <FloorplanDetail />
                 </MasterLayoutRoute>
             ) : (
                 <PageLoader />
