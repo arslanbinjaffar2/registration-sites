@@ -473,7 +473,6 @@
 .mapplic-tooltip {
 	background-color: var(--neutral-000);
 	border-radius: 8px;
-	display: flex;
 	cursor: auto;
 	position: absolute;
 	transform: translate(-50%, -100%) !important;
@@ -1204,6 +1203,7 @@
 .mapplic-element mark {
 	background-color: #1476FF40;
 	color: var(--neutral-900);
+	padding: 0;
 }
 
 /* filters */

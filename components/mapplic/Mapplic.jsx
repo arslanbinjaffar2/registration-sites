@@ -3,7 +3,6 @@ import MapplicElement from './MapplicElement'
 import { MapplicStore } from './MapplicStore'
 
 
-
 const Mapplic = ({json = '/data.json', id, ...props}) => {
 	return (
 		<MapplicStore>

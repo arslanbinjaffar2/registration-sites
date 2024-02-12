@@ -7,6 +7,7 @@ import { useDataLoader } from './dataLoader'
 import { Deeplinking } from './Deeplinking'
 import { useRoutes } from './Routes'
 import useMapplicStore from './MapplicStore'
+import SidebarMapplic from './SidebarMapplic'
 import classNames from 'classnames'
 
 const MapplicElement = ({json, ...props}) => {
@@ -51,6 +52,8 @@ const MapplicElement = ({json, ...props}) => {
 		setBreakpoint(closestBreakpoint);
 	}, [size, breakpoints, setBreakpoint]);
 
+
+	
 	const getMaxHeight = () => {
 		if (settings?.kiosk) return '100vh';
 		else if (breakpoint?.element) return breakpoint.element + 'px';
@@ -60,30 +63,32 @@ const MapplicElement = ({json, ...props}) => {
 	if (loading) return <div ref={element} className="mapplic-placeholder"><div className="mapplic-loader"></div></div>;
 	if (error) return <div ref={element} className="mapplic-placeholder"><i>{error}</i></div>;
 	return (
-		
-		<div
-			{...props}
-			ref={element}
-			style={{maxHeight: getMaxHeight()}}
-			className={classNames('mapplic-element', breakpoint?.name, {
-				'mapplic-portrait': breakpoint?.portrait,
-				'mapplic-sidebar-right': settings.rightSidebar,
-				'mapplic-sidebar-closed': sidebarClosed && settings.toggleSidebar,
-				'mapplic-sidebar-toggle': settings.toggleSidebar
-			})}
-			onClick={() => {
-				if (!clicked) {
-					window.dataLayer = window.dataLayer || [];
-					window.dataLayer.push({'event': 'mapplicUsed'});
-					setClicked(true);
-				}
-			}}
-		>
-			<Deeplinking enabled={deeplinking}>
-				<Styles element={element} />
-				<Container element={element}/>
-				{ settings.sidebar && <Directory element={element} /> }
-			</Deeplinking>
+		<div className="position-relative border">
+			<SidebarMapplic json={json} />
+				<div
+				{...props}
+				ref={element}
+				style={{maxHeight: getMaxHeight()}}
+				className={classNames('mapplic-element', breakpoint?.name, {
+					'mapplic-portrait': breakpoint?.portrait,
+					'mapplic-sidebar-right': settings.rightSidebar,
+					'mapplic-sidebar-closed': sidebarClosed && settings.toggleSidebar,
+					'mapplic-sidebar-toggle': settings.toggleSidebar
+				})}
+				onClick={() => {
+					if (!clicked) {
+						window.dataLayer = window.dataLayer || [];
+						window.dataLayer.push({'event': 'mapplicUsed'});
+						setClicked(true);
+					}
+				}}
+			>
+				<Deeplinking enabled={deeplinking}>
+					<Styles element={element} />
+					<Container element={element}/>
+					{ settings.sidebar && <Directory element={element} /> }
+				</Deeplinking>
+			</div>
 		</div>
 	)
 }

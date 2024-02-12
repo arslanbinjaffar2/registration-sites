@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import useMapplicStore from './MapplicStore'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowUpRight , Phone, Clock } from 'react-feather'
+import { X, ArrowRightCircle , Phone, Clock } from 'react-feather'
 import { RouteButton } from './Routes'
 import { replaceVars } from './utils'
 import classNames from 'classnames'
@@ -32,16 +32,16 @@ export const Popup = ({location, type}) => {
 
 				{ (location?.link || location?.hours || location?.phone || settings.wayfinding) && (
 					<div className="mapplic-popup-footer">
-						<div className="mapplic-popup-actions">
+						{/* <div className="mapplic-popup-actions">
 							{ settings.wayfinding && <RouteButton id={location.id} /> }
 							<DetailButton location={location} field="phone" details={details} setDetails={setDetails}><Phone size={16} /></DetailButton>
 							<DetailButton location={location} field="hours" details={details} setDetails={setDetails}><Clock size={16} /></DetailButton>
-						</div>
+						</div> */}
 
 						{ location.link &&
 							<a href={location.link} style={{backgroundColor: location.color}} target="_blank" className="mapplic-button mapplic-button-primary" rel="noreferrer">
-								{ settings.moreText || 'More' }
-								<ArrowUpRight size={16}/>
+								Detail
+								<ArrowRightCircle size={16}/>
 							</a>
 						}
 					</div>

@@ -3535,3 +3535,45 @@
   }
 }
 
+.mapplic-element mark {
+  padding: 0;
+}
+
+.ebs-mapplic-sidebar {
+  z-index: 99;
+
+  padding: 15px;
+  background: $white;
+  right: 0;
+  top: 0;
+  max-width: 310px;
+  box-shadow: -20px 0 26px rgba($black, 0.08);
+  .ebs-mapplic-accordion {
+    .ebs-category-label {
+      background: $default-elements-background-color;
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: $black;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .ebs-location-wrapper {
+      .ebs-location-label {
+        cursor: pointer;
+        padding: 6px 8px;
+        font-size: 12px;
+        margin-bottom: 5px;
+        color: $black;
+        border-radius: 4px;
+        &:hover {
+          background:rgba($black, 0.04);
+        }
+      }
+    }
+  }
+  &.active {
+      height: 100%;
+  }
+}

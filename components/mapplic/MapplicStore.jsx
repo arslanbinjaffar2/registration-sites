@@ -281,8 +281,8 @@ const createMapplicStore = () => createStore((set, get) => ({
 			return;
 		}
 		
-		const sampled = get().getSampledLocation(l);	
-		
+		const sampled = get().getSampledLocation(l);
+			
 		set(state => ({
 			location: sampled.id,
 			newLocation: false,
