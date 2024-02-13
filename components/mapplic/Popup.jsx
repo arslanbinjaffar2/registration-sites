@@ -14,13 +14,14 @@ export const Popup = ({location, type}) => {
 
 	return (
 		<>
+			<button className="mapplic-popup-close" onClick={closeLocation}><X size={12}/></button>
 			{ location.image && (
 				<div className="mapplic-popup-image">
 					<img src={location.image} alt={location?.title} />
 				</div>
 			)}
 			<div className="mapplic-popup-content">
-				<button className="mapplic-popup-close" onClick={closeLocation}><X size={12}/></button>
+				
 				<div className="mapplic-popup-title">
 					{ location.title && <h4>{location.title}</h4> }
 					{ location.about && <h5 dangerouslySetInnerHTML={{__html: replaceVars(location, 'about')}}></h5> }
@@ -31,7 +32,7 @@ export const Popup = ({location, type}) => {
 				<Details location={location} field={details} />
 
 				{ (location?.link || location?.hours || location?.phone || settings.wayfinding) && (
-					<div className="mapplic-popup-footer">
+					<div className="mapplic-popup-footer pt-3 border-top">
 						{/* <div className="mapplic-popup-actions">
 							{ settings.wayfinding && <RouteButton id={location.id} /> }
 							<DetailButton location={location} field="phone" details={details} setDetails={setDetails}><Phone size={16} /></DetailButton>

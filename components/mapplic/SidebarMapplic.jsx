@@ -49,7 +49,7 @@ const SidebarMapplic = (json) => {
 				{data && data.groups.filter(item => item.type === active).map(item => 
 				<div key={item.id}>
 					<div className="ebs-category-label">
-						{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})
+						<em style={{background: item.color ? item.color: '#fff'}} className="category-color"></em>	{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})
 					</div>
 					<div className="ebs-location-wrapper">
 						{data && data.locations.filter(list => list.group.includes(item.id) &&  list.cat_type === active).map(list => 

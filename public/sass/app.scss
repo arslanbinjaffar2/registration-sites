@@ -3558,6 +3558,14 @@
       font-weight: 500;
       margin-bottom: 5px;
       cursor: pointer;
+      .category-color {
+        width: 12px;
+        height:  12px;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
     }
     .ebs-location-wrapper {
       .ebs-location-label {
@@ -3575,5 +3583,15 @@
   }
   &.active {
       height: 100%;
+  }
+}
+.ebs-category-json {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  em {
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
   }
 }
