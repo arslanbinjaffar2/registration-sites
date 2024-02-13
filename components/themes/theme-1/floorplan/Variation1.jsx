@@ -1,11 +1,71 @@
 import ActiveLink from "components/atoms/ActiveLink";
-import React, {useRef, useState} from "react";
+import React, { Suspense, useEffect,useState, useMemo, useRef } from "react";
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 import HeadingElement from 'components/ui-components/HeadingElement';
+import { floorPlanListingSelector, fetchFloorPlans, clearState } from "store/Slices/FloorPlanListingSlice";
+import {
+  incrementFetchLoadCount
+} from "store/Slices/GlobalSlice";
+import { eventSelector } from "store/Slices/EventSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 
 const Variation1 = () => {
-  const [toggle, settoggle] = useState(false)
+  const [toggle, settoggle] = useState(false);
+  const { event } = useSelector(eventSelector);
+  const eventUrl = event.url;
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedfilter, setSelectedfilter] = useState('sponsors');
+  const [filteredFloorPlans, setFilteredFloorPlans] = useState([]);
+  const dispatch = useDispatch();
+  const { floorPlans,categories,sponsorCount,exhibitorCount, labels, loading, error} = useSelector(floorPlanListingSelector);
+
+  useEffect(() => {
+  //   if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
+  //   router.push(`/${eventUrl}`);
+  // }
+    if(floorPlans === null){
+      dispatch(fetchFloorPlans(eventUrl));
+    }else{
+      dispatch(incrementFetchLoadCount());
+    }
+
+    return () => {
+      dispatch(clearState());
+    }
+
+  }, []);
+
+  useEffect(() => {
+    floorPlans === null ? setFilteredFloorPlans([]) : setFilteredFloorPlans(floorPlans);
+  },floorPlans);
+
+  function generateDetailUrl(id) {
+    return `/${eventUrl}/floorplan/${id}`;
+  }
+
+  function selectCategory(category) {
+    console.log('select: ',category);
+    if (isSelected(category.id)) {
+      setSelectedCategories(selectedCategories.filter(id => id !== category.id));
+    } else {
+      setSelectedCategories([...selectedCategories, category.id]);
+    }
+    console.log('selected: ',selectedCategories);
+  }
+
+  function isSelected(id) {
+    return selectedCategories.some(selectedId => selectedId === id);
+  }
+
+  useEffect(() => {
+    setFilteredCategories(categories);
+    const filtered= categories.filter(category => category.cat_type === selectedfilter);
+    setFilteredCategories(filtered);
+  },[selectedfilter,categories]);
+
   return (
     <div  className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -38,27 +98,25 @@ const Variation1 = () => {
             <div className="ebs-floorplan-top-filter border-bottom py-3 px-4">
               <h4 className="m-0 mb-2">Advance filters</h4>
                 <ul className="list-inline m-0">
-                  <li className="list-inline-item active">
-                    <div className="d-flex">
-                      <em className="material-icons">radio_button_checked</em>
-                      <span className="ms-2">Sponsors (30)</span>
+                  <li className={`list-inline-item ${selectedfilter === 'sponsors' ? 'active':''}`}>
+                    <div className="d-flex" onClick={() => setSelectedfilter('sponsors')}>
+                      <em className="material-icons">{selectedfilter === 'sponsors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
+                      <span className="ms-2">Sponsors ({sponsorCount})</span>
                     </div>
                   </li>
-                  <li className="list-inline-item ms-4">
-                    <div className="d-flex">
-                      <em className="material-icons">radio_button_unchecked</em>
-                      <span className="ms-2">Exhibitors (24)</span>
+                  <li className={`list-inline-item ms-4 ${selectedfilter === 'exhibitors' ? 'active':''}`}>
+                    <div className="d-flex" onClick={() => setSelectedfilter('exhibitors')}>
+                      <em className="material-icons">{selectedfilter === 'exhibitors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
+                      <span className="ms-2">Exhibitors ({exhibitorCount})</span>
                     </div>
                   </li>
                 </ul>
             </div>
             <div className="ebs-floorplan-bottom-filter py-3 px-4 pb-2">
               <ul className="list-inline m-0">
-                <li className="list-inline-item mb-2"><span className="d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative"><i className="material-icons position-absolute">done</i> Gold  (53)</span></li>
-                <li className="list-inline-item mb-2"><span className="d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative"><i className="material-icons position-absolute">done</i> Gold  (53)</span></li>
-                <li className="list-inline-item mb-2"><span className="d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative"><i className="material-icons position-absolute">done</i> Gold  (53)</span></li>
-                <li className="list-inline-item mb-2"><span className="d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative"><i className="material-icons position-absolute">done</i> Gold  (53)</span></li>
-                <li className="list-inline-item mb-2"><span className=" active d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative"><i className="material-icons position-absolute">done</i> Gold  (53)</span></li>
+                {filteredCategories.map(category =>
+                  <li className="list-inline-item mb-2" onClick={()=>selectCategory(category)}><span className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${isSelected === true && 'active'}`}>{isSelected === true && <i className="material-icons position-absolute">done</i>}  {category.info[0].value} ({ category.pins_count })</span></li>
+                )}
               </ul>
             </div>
           </div>
@@ -68,7 +126,7 @@ const Variation1 = () => {
               <ul className="list-inline m-0">
                 <li className="list-inline-item my-1">
                   <div className="d-flex align-items-center">
-                    <span className="btn-category d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative">Category Unassigned (4)</span> <span className="btn-remove lh-1 ms-2"><em className="material-icons">highlight_off</em></span>
+                    <span className="btn-category d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative" >Category Unassigned (4)</span> <span className="btn-remove lh-1 ms-2"><em className="material-icons">highlight_off</em></span>
                   </div>
                 </li>
               </ul>
@@ -76,7 +134,18 @@ const Variation1 = () => {
           </div>
         </div>}
         <div className="ebs-floorplan-filtered-list">
-          {[...Array(20)].map(item =>
+        {filteredFloorPlans.map(floorPlan =>
+            <div key={floorPlan.id} className="mb-3 ebs-list-item">
+              <a href={generateDetailUrl(floorPlan.id)} className="d-flex align-items-center border p-3 rounded-2">
+                <div className="me-auto">
+                  <h4 className="m-0">{floorPlan.floor_plan_name} {floorPlan.version_number}</h4>
+                  <p className="m-0">Category Unassigned (2)</p>
+                </div>
+                <i className="material-icons">chevron_right</i>
+              </a>
+            </div>  
+          )}
+          {/* {[...Array(20)].map(item =>
             <div key={item} className="mb-3 ebs-list-item">
               <a href="" className="d-flex align-items-center border p-3 rounded-2">
                 <div className="me-auto">
@@ -86,7 +155,7 @@ const Variation1 = () => {
                 <i className="material-icons">chevron_right</i>
               </a>
             </div>  
-          )}
+          )} */}
         </div>
       </div>
     </div>

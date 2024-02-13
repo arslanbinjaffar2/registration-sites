@@ -32,6 +32,7 @@ import programListingReducer from "./Slices/ProgramListingSlice";
 import programReducer from "./Slices/ProgramSlice";
 import formPackageReducer from "./Slices/FormPackageSlice";
 import myProgramListingReducer from "./Slices/myAccount/MyProgramListingSlice";
+import floorPlanListingReducer from "./Slices/FloorPlanListingSlice";
 export const store = configureStore({
   reducer: {
     event: eventReducer,
@@ -66,6 +67,7 @@ export const store = configureStore({
     myProgramListing: myProgramListingReducer,
     pageBuilderPage: pageBuilderPageReducer,
     formPackages: formPackageReducer,
+    floorPlanListing: floorPlanListingReducer,
   },
   devTools: true,
 });
