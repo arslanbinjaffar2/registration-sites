@@ -1,15 +1,11 @@
 import React from "react";
-
+import HeadingElement from "components/ui-components/HeadingElement";
 const Variation1 = ({map, siteLabels}) => {
   return (
     <div style={{ paddingTop: "80px" }} className="edgtf-container">
       <div className="edgtf-container-inner container">
         <div className="edgtf-title-section-holder text-center pb-3">
-          <h2 className="edgtf-title-with-dots edgtf-appeared">{siteLabels.EVENTSITE_MAP}</h2>
-          <span className="edge-title-separator edge-enable-separator" />
-          <h6 style={{ marginBottom: 0 }} className="edgtf-section-subtitle">
-            {siteLabels.EVENTSITE_MAP_DETAIL}
-          </h6>
+          <HeadingElement dark={false} label={siteLabels.EVENTSITE_MAP} desc={siteLabels.EVENTSITE_MAP_DETAIL} align={'center'} />
           <p
             style={{ marginTop: 0, fontSize: 14, color: "#555" }}
             className="edgtf-section-subtitle"

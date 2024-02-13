@@ -855,7 +855,11 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 )}
                 </React.Fragment>
               ))}
+
               <div className="ebs-contact-info">
+                {settings.map((setting, index)=>(
+                    <React.Fragment key={index}>
+                 {setting?.name === 'facebook' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
                   <Input
@@ -868,6 +872,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     value={attendeeData.info.website}
                   />
                 </div>
+                  )}
+                {setting?.name === 'facebook' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-facebook.svg")} alt="" /></div>
                   <Input
@@ -880,6 +886,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     value={attendeeData.info.facebook}
                   />
                 </div>
+                )}
+                {setting?.name === 'twitter' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
                   <Input
@@ -892,6 +900,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     value={attendeeData.info.twitter}
                   />
                 </div>
+                )}
+                {setting?.name === 'linkedin' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-linkedin.svg")} alt="" /></div>
                   <Input
@@ -904,6 +914,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     value={attendeeData.info.linkedin}
                   />
                 </div>
+                )}
+                    </React.Fragment>
+                ))}
               </div>
               {attendee.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">
