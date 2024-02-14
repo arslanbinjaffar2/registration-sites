@@ -853,19 +853,15 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   </div>
                 )}
-                </React.Fragment>
-              ))}
 
-              <div className="ebs-contact-info">
-                {settings.map((setting, index)=>(
-                    <React.Fragment key={index}>
-                 {setting?.name === 'facebook' && (
+                {setting?.name === 'facebook' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
                   <Input
                     label="Website"
                     required
                     name="website"
+                    readOnly={setting?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -880,6 +876,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     label="Facebook"
                     required
                     name="facebook"
+                    readOnly={setting?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -894,6 +891,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     label="Twitter"
                     required
                     name="twitter"
+                    readOnly={setting?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -908,6 +906,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     label="Linkedin"
                     required
                     name="linkedin"
+                    readOnly={setting?.is_editable === 1 ? false : true}
                     onChange={(e) => {
                       updateAttendeeInfoFeild(e);
                     }}
@@ -915,9 +914,9 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   />
                 </div>
                 )}
-                    </React.Fragment>
-                ))}
-              </div>
+                </React.Fragment>
+              ))}
+
               {attendee.gdpr !== undefined && (
                 <div className="radio-check-field ebs-radio-lg field-terms-services">
                   <label>
