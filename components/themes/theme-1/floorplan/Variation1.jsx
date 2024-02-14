@@ -18,53 +18,75 @@ const Variation1 = () => {
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedfilter, setSelectedfilter] = useState('sponsors');
+  const [search, setSearch] = useState('');
   const [filteredFloorPlans, setFilteredFloorPlans] = useState([]);
   const dispatch = useDispatch();
   const { floorPlans,categories,sponsorCount,exhibitorCount, labels, loading, error} = useSelector(floorPlanListingSelector);
 
   useEffect(() => {
-  //   if(checkModuleTopStatus < 0 && checkModuleHomeStatus < 0){
-  //   router.push(`/${eventUrl}`);
-  // }
-    if(floorPlans === null){
-      dispatch(fetchFloorPlans(eventUrl));
-    }else{
-      dispatch(incrementFetchLoadCount());
-    }
-
+    dispatch(fetchFloorPlans(eventUrl));
     return () => {
       dispatch(clearState());
     }
-
   }, []);
 
   useEffect(() => {
-    floorPlans === null ? setFilteredFloorPlans([]) : setFilteredFloorPlans(floorPlans);
-  },floorPlans);
+    filterFloorPlans();
+  },[floorPlans]);
+
+  function filterFloorPlans(){
+    const searchFiltered = search ? floorPlans.filter(floorPlan => floorPlan.floor_plan_name.toLowerCase().includes(search.toLowerCase())) : floorPlans;
+    console.log('selectedCategories: ', selectedCategories);
+    if(selectedCategories.length < 1){
+      console.log('Skipping Filtering....');
+      setFilteredFloorPlans(searchFiltered);
+      return;
+    }
+    // filter and keep all the floor plans which have any of the selected categories.id in floorPlan.categories.id
+    const filtered = searchFiltered.filter(floorPlan => {
+      return floorPlan.categories.some(category => selectedCategories.some(sCategory => sCategory.id === category.id));
+    });
+    console.log('Filtering....');
+    setFilteredFloorPlans(filtered);
+  }
 
   function generateDetailUrl(id) {
     return `/${eventUrl}/floorplan/${id}`;
   }
 
   function selectCategory(category) {
-    console.log('select: ',category);
     if (isSelected(category.id)) {
-      setSelectedCategories(selectedCategories.filter(id => id !== category.id));
+      setSelectedCategories(selectedCategories.filter(sCategory => sCategory.id !== category.id));
     } else {
-      setSelectedCategories([...selectedCategories, category.id]);
+      setSelectedCategories([...selectedCategories, category]);
     }
-    console.log('selected: ',selectedCategories);
   }
 
   function isSelected(id) {
-    return selectedCategories.some(selectedId => selectedId === id);
+    return selectedCategories.some(category => category.id === id);
+  }
+
+  function filterCategories() {
+    const filtered= categories.filter(category => category.cat_type === selectedfilter);
+    setFilteredCategories(filtered);
   }
 
   useEffect(() => {
-    setFilteredCategories(categories);
-    const filtered= categories.filter(category => category.cat_type === selectedfilter);
-    setFilteredCategories(filtered);
-  },[selectedfilter,categories]);
+    filterCategories();
+  },[categories]);
+
+  useEffect(() => {
+    setSelectedCategories([]);
+    filterCategories();
+  },[selectedfilter]);
+
+  useEffect(() => {
+    filterFloorPlans();
+  },[selectedCategories]);
+
+  useEffect(() => {
+    filterFloorPlans();
+  },[search]);
 
   return (
     <div  className="edgtf-container ebs-default-padding">
@@ -84,7 +106,7 @@ const Variation1 = () => {
             </div>
             <div className="col-md-7 d-flex justify-content-end align-items-center">
               <div className="ebs-form-control-search">
-                <input style={{height: '50px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder="Search" className="form-control w-100"  />
+                <input style={{height: '50px',paddingLeft: '60px',paddingRight: '15px'}} onChange={(e)=> setSearch(e.target.value)} type="text" placeholder="Search" className="form-control w-100"  />
                 <em className="fa fa-search" style={{top: '15px', left: '18px',right: 'auto'}}></em>
               </div>
               <button onClick={() => settoggle(!toggle)} className="edgtf-btn edgtf-btn-medium edgtf-btn-solid px-3 ms-3 lh-1 py-2">
@@ -115,9 +137,10 @@ const Variation1 = () => {
             <div className="ebs-floorplan-bottom-filter py-3 px-4 pb-2">
               <ul className="list-inline m-0">
                 {filteredCategories.map(category =>
-                  <li className="list-inline-item mb-2" onClick={()=>selectCategory(category)}><span className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${isSelected === true && 'active'}`}>{isSelected === true && <i className="material-icons position-absolute">done</i>}  {category.info[0].value} ({ category.pins_count })</span></li>
+                  <li key={category.id + category.cat_type} className="list-inline-item mb-2" onClick={()=>selectCategory(category)}><span className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${isSelected(category.id) && 'active'}`}>{isSelected(category.id) && <i className="material-icons position-absolute">done</i>} {category.id}  {category.info[0].value} ({ category.pins_count })</span></li>
                 )}
               </ul>
+              {filteredCategories.length < 1 && <p className="m-0">No categories found</p>}
             </div>
           </div>
           <div className="mb-4 d-flex align-items-center ebs-floorplan-selected-filter">
@@ -125,8 +148,12 @@ const Variation1 = () => {
             <div className="ps-3">
               <ul className="list-inline m-0">
                 <li className="list-inline-item my-1">
-                  <div className="d-flex align-items-center">
-                    <span className="btn-category d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative" >Category Unassigned (4)</span> <span className="btn-remove lh-1 ms-2"><em className="material-icons">highlight_off</em></span>
+                  <div className="d-flex align-items-center flex-wrap">
+                    {selectedCategories.map(category =>
+                    <React.Fragment key={category.id}>
+                      <span className="btn-category d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative" >{category.info[0].value} ({category.pins_count})</span> <span onClick={()=>selectCategory(category)} className="btn-remove lh-1 mx-2"><em className="material-icons">highlight_off</em></span>
+                    </React.Fragment>
+                    )}
                   </div>
                 </li>
               </ul>
@@ -145,17 +172,7 @@ const Variation1 = () => {
               </a>
             </div>  
           )}
-          {/* {[...Array(20)].map(item =>
-            <div key={item} className="mb-3 ebs-list-item">
-              <a href="" className="d-flex align-items-center border p-3 rounded-2">
-                <div className="me-auto">
-                  <h4 className="m-0">Floor Plan New wXh QR-12343</h4>
-                  <p className="m-0">Category Unassigned (2)</p>
-                </div>
-                <i className="material-icons">chevron_right</i>
-              </a>
-            </div>  
-          )} */}
+          {(filteredFloorPlans.length < 1 && loading !== true) && <p>No floor plans found</p>}
         </div>
       </div>
     </div>

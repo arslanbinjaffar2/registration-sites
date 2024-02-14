@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
-  floorPlans: null,
+  floorPlans: [],
   categories: [],
   sponsorCount: 0,
   exhibitorCount: 0, 
@@ -29,7 +29,7 @@ export const floorPlanListingSlice = createSlice({
       state.error = payload;
     },
     clearAll:(state, {payload})=>{
-      state.floorPlans = null;
+      state.floorPlans = [];
       state.categories = [];
       state.sponsorCount = 0;
       state.exhibitorCount = 0;
