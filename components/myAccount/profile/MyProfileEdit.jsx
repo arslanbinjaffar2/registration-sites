@@ -854,7 +854,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                   </div>
                 )}
 
-                {setting?.name === 'facebook' && (
+                {setting?.name === 'website' && (
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-web.svg")} alt="" /></div>
                   <Input
