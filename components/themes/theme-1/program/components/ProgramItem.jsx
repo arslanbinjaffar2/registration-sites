@@ -4,8 +4,9 @@ import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 
 const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
-    const [showText, setShowText] = useState(program.description.length > 450 ? false : true);
-    const _ref = React.useRef()
+    const [showText, setShowText] = useState(program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
+    const _ref = React.useRef();
+    console.log(program.description.replace(/<\/?[^>]+(>|$)/g, "").length,'length string')
     return (
         <div className="ebs-program-child">
             <div className="row d-flex">
@@ -25,7 +26,7 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                         </div>}
                         {program.description && <div className="ebs-description">
                             <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program.description }} />
-                            {program.description.length > 450 && <span className='ebs-more' onClick={() => {if(showText) {setTimeout(() => {
+                            {program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more' onClick={() => {if(showText) {setTimeout(() => {
                                 _ref.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
                             }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
                         </div>}

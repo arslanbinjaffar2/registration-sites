@@ -74,7 +74,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             </div>}
             <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
               <div className="row flex-row justify-content-end">
-                {programs.length > 0 && <div className="col-md-5 col-6">
+                {Object.keys(programs).length > 0 && <div className="col-md-5 col-6">
                   <ReactSelect
                     styles={customStyles}
                     placeholder={siteLabels.EVENTSITE_SELECT_DAY}
