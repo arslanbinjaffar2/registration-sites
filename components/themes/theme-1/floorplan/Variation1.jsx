@@ -1,12 +1,5 @@
-import ActiveLink from "components/atoms/ActiveLink";
-import React, { Suspense, useEffect,useState, useMemo, useRef } from "react";
-import TruncateMarkup from 'react-truncate-markup';
-import Image from 'next/image'
-import HeadingElement from 'components/ui-components/HeadingElement';
+import React, { useEffect,useState } from "react";
 import { floorPlanListingSelector, fetchFloorPlans, clearState } from "store/Slices/FloorPlanListingSlice";
-import {
-  incrementFetchLoadCount
-} from "store/Slices/GlobalSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 

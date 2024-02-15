@@ -8,11 +8,31 @@ const SidebarMapplic = (json) => {
 	const [active, setactive] = React.useState('sponsor');
 	const [toggle, settoggle] = React.useState(false);
 	const [data, setdata] = React.useState(null);
+	const [filteredGroups, setFilteredGroups] = React.useState([]);
+	const [search, setSearch] = React.useState('');
+
 	React.useEffect(() => {
+		if (typeof json === 'object' && json !== null) {
+			setdata(json.json);
+			return;
+		}
 	     fetch(json.json)
         .then(response => response.json())
         .then(data => setdata(data));
 	}, [json])
+
+	React.useEffect(() => {
+		if (!data) {
+			setFilteredGroups([]);
+			return;
+		}
+	
+		const filteredGroups = search ?
+			data.groups.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) :
+			data.groups;
+	
+		setFilteredGroups(filteredGroups);
+	}, [data, search]);
 	
   return (
 	<div className={`position-absolute ebs-mapplic-sidebar overflow-auto ${toggle ? 'active' : ''}`}>
@@ -24,7 +44,9 @@ const SidebarMapplic = (json) => {
 		</span>}
 		{toggle && <div className="pt-3">
 			<div className="ebs-form-control-search mb-3">
-				<input style={{height: '42px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder="Search" className="form-control w-100"  />
+				<input style={{height: '42px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder="Search" className="form-control w-100"  
+					onChange={(e) => setSearch(e.target.value)}
+				/>
 				<em className="fa fa-search" style={{top: '10px', left: '18px',right: 'auto'}}></em>
 			</div>
 			<h5 className='mb-3'>Advance filters</h5>
@@ -46,7 +68,7 @@ const SidebarMapplic = (json) => {
 			</div>
 			<div className="ebs-mapplic-accordion">
 				<h5 className='mb-3'>Categories</h5>
-				{data && data.groups.filter(item => item.type === active).map(item => 
+				{filteredGroups.filter(item => item.type === active).map(item => 
 				<div key={item.id}>
 					<div className="ebs-category-label">
 						<em style={{background: item.color ? item.color: '#fff'}} className="category-color"></em>	{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})

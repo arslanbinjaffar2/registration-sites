@@ -50,8 +50,6 @@
     "wayfindingFixedFrom": "",
     "iconfile": "https://stage.eventbuizz.com/_admin_assets/js/mapplic/images/icons.svg"
   },
-  "mapwidth": "2000",
-  "mapheight": "2000",
   "layers": [
     {
       "id": "first",
