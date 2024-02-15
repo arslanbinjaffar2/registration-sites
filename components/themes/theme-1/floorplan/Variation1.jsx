@@ -29,9 +29,7 @@ const Variation1 = () => {
 
   function filterFloorPlans(){
     const searchFiltered = search ? floorPlans.filter(floorPlan => floorPlan.floor_plan_name.toLowerCase().includes(search.toLowerCase())) : floorPlans;
-    console.log('selectedCategories: ', selectedCategories);
     if(selectedCategories.length < 1){
-      console.log('Skipping Filtering....');
       setFilteredFloorPlans(searchFiltered);
       return;
     }
@@ -39,7 +37,6 @@ const Variation1 = () => {
     const filtered = searchFiltered.filter(floorPlan => {
       return floorPlan.categories.some(category => selectedCategories.some(sCategory => sCategory.id === category.id));
     });
-    console.log('Filtering....');
     setFilteredFloorPlans(filtered);
   }
 
@@ -88,7 +85,6 @@ const Variation1 = () => {
         <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a style={{color: '#888'}} href="#">Home</a></li>
-            <li className="breadcrumb-item"><a style={{color: '#888'}} href="#">Program</a></li>
             <li className="breadcrumb-item active" aria-current="page">Floor plan</li>
           </ol>
         </nav>
@@ -99,7 +95,7 @@ const Variation1 = () => {
             </div>
             <div className="col-md-7 d-flex justify-content-end align-items-center">
               <div className="ebs-form-control-search">
-                <input style={{height: '50px',paddingLeft: '60px',paddingRight: '15px'}} onChange={(e)=> setSearch(e.target.value)} type="text" placeholder="Search" className="form-control w-100"  />
+                <input style={{height: '50px',paddingLeft: '60px',paddingRight: '15px'}} onChange={(e)=> setSearch(e.target.value)} type="text" placeholder={labels?.FLOOR_PLAN_SEARCH_TEXT} className="form-control w-100"  />
                 <em className="fa fa-search" style={{top: '15px', left: '18px',right: 'auto'}}></em>
               </div>
               <button onClick={() => settoggle(!toggle)} className="edgtf-btn edgtf-btn-medium edgtf-btn-solid px-3 ms-3 lh-1 py-2">
@@ -111,18 +107,18 @@ const Variation1 = () => {
         {toggle && <div>
           <div className="ebs-floorplan-filter border rounded-2 mb-4">
             <div className="ebs-floorplan-top-filter border-bottom py-3 px-4">
-              <h4 className="m-0 mb-2">Advance filters</h4>
+              <h4 className="m-0 mb-2">{labels?.FLOOR_PLAN_ADVANCED_FILTERS}</h4>
                 <ul className="list-inline m-0">
                   <li className={`list-inline-item ${selectedfilter === 'sponsors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('sponsors')}>
                       <em className="material-icons">{selectedfilter === 'sponsors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
-                      <span className="ms-2">Sponsors ({sponsorCount})</span>
+                      <span className="ms-2">{labels?.FLOOR_PLAN_SPONSOR_LABEL} ({sponsorCount})</span>
                     </div>
                   </li>
                   <li className={`list-inline-item ms-4 ${selectedfilter === 'exhibitors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('exhibitors')}>
                       <em className="material-icons">{selectedfilter === 'exhibitors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
-                      <span className="ms-2">Exhibitors ({exhibitorCount})</span>
+                      <span className="ms-2">{labels?.FLOOR_PLAN_EXHIBITOR_LABEL} ({exhibitorCount})</span>
                     </div>
                   </li>
                 </ul>
@@ -130,14 +126,14 @@ const Variation1 = () => {
             <div className="ebs-floorplan-bottom-filter py-3 px-4 pb-2">
               <ul className="list-inline m-0">
                 {filteredCategories.map(category =>
-                  <li key={category.id + category.cat_type} className="list-inline-item mb-2" onClick={()=>selectCategory(category)}><span className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${isSelected(category.id) && 'active'}`}>{isSelected(category.id) && <i className="material-icons position-absolute">done</i>} {category.id}  {category.info[0].value} ({ category.pins_count })</span></li>
+                  <li key={category.id + category.cat_type} className="list-inline-item mb-2" onClick={()=>selectCategory(category)}><span className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${isSelected(category.id) && 'active'}`}>{isSelected(category.id) && <i className="material-icons position-absolute">done</i>}  {category.info[0].value} ({ category.pins_count })</span></li>
                 )}
               </ul>
-              {filteredCategories.length < 1 && <p className="m-0">No categories found</p>}
+              {filteredCategories.length < 1 && <p className="m-0">{labels?.FLOOR_PLAN_NO_DATA_FOUND_TEXT}</p>}
             </div>
           </div>
           <div className="mb-4 d-flex align-items-center ebs-floorplan-selected-filter">
-            <h5 className="m-0 text-nowrap">Selected filters:</h5>
+            <h5 className="m-0 text-nowrap">{labels?.FLOOR_PLAN_SELECTED_FILTERS}:</h5>
             <div className="ps-3">
               <ul className="list-inline m-0">
                 <li className="list-inline-item my-1">
@@ -165,7 +161,7 @@ const Variation1 = () => {
               </a>
             </div>  
           )}
-          {(filteredFloorPlans.length < 1 && loading !== true) && <p>No floor plans found</p>}
+          {(filteredFloorPlans.length < 1 && loading !== true) && <p>{labels?.FLOOR_PLAN_NO_RECORD_FOUND}</p>}
         </div>
       </div>
     </div>

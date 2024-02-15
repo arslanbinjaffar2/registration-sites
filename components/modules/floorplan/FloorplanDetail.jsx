@@ -22,6 +22,7 @@ const FloorplanDetail = (props) => {
   ); 
   return (
     <Suspense fallback={<PageLoader/>}>
+      {!props.homePage && <Head><title>Floorplan Detail</title></Head>}
         <React.Fragment>
           <Component  />
         </React.Fragment>

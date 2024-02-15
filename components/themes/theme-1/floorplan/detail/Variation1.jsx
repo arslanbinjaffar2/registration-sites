@@ -25,7 +25,7 @@ const Variation1 = (props) => {
   useEffect(() => {
     if (!floorPlanDetails?.floorPlanPins) return;
 
-    const jsonFromFile = require('../../../../../public/data.json');
+    const jsonFromFile = require('public/mapplic_settings.json');
     const { floorPlan, floorPlanPins } = floorPlanDetails;
 
     const newJson = {
@@ -40,7 +40,8 @@ const Variation1 = (props) => {
       settings: {
         ...jsonFromFile.settings,
         mapWidth: floorPlan.image_width,
-        mapHeight: floorPlan.image_height
+        mapHeight: floorPlan.image_height,
+        title: floorPlan.floor_plan_name
       },
       locations: [],
       groups: []
@@ -49,6 +50,7 @@ const Variation1 = (props) => {
     floorPlanPins.forEach(pin => {
       const { id, type, exhibitor, sponsor, coordinateX, coordinateY } = pin;
       const categoryImage = getCategoryImage(pin);
+      const detailLink= type === "exhibitor" ? `/${eventUrl}/exhibitors/${exhibitor.id}` : `/${eventUrl}/sponsors/${sponsor.id}`;
       const associatedGroups = getAssociatedGroups(pin);
       const subCategories = getSubCategories(pin);
 
@@ -58,13 +60,13 @@ const Variation1 = (props) => {
         id,
         cat_type: type,
         title: type === "exhibitor" ? exhibitor.name : sponsor.name,
-        color: "#002F65",
+        color: type === "exhibitor" ? "#000000" : "#002F65",
         zoom: "7.5113",
         layer: "first",
         desc: subCategories,
         coord: [coordinateX, coordinateY],
-        about: "44",
-        link: categoryImage,
+        about: type === "exhibitor" ? exhibitor.booth : sponsor.booth,
+        link: detailLink,
         style: "marker",
         type: "pin2"
       });
@@ -86,7 +88,6 @@ const Variation1 = (props) => {
       }
     });
 
-    console.log('newJson:', newJson);
     setJson(newJson);
   }, [floorPlanDetails]);
 
@@ -100,11 +101,10 @@ const Variation1 = (props) => {
   function getCategoryImage(pin) {
     const baseUrl = process.env.NEXT_APP_EVENTCENTER_URL;
     if (pin.exhibitor) {
-      return `${baseUrl}/assets/exhibitors/${pin.exhibitor.logo}`;
+      return pin.exhibitor?.logo ? `${baseUrl}/assets/exhibitors/${pin.exhibitor.logo}` : process.env.NEXT_APP_BASE_URL+'/img/exhibitors-default.png';
     } else if (pin.sponsor) {
-      return `${baseUrl}/assets/sponsors/${pin.sponsor.logo}`;
+      return  pin.sponsor?.logo ? `${baseUrl}/assets/sponsors/${pin.sponsor.logo}` : process.env.NEXT_APP_BASE_URL+'/img/exhibitors-default.png';
     }
-    return "https://stage.eventbuizz.com/_admin_assets/images/sponsor-placeholder.png";
   }
 
   function getAssociatedGroups(pin) {
@@ -126,11 +126,13 @@ const Variation1 = (props) => {
         <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a style={{ color: '#888' }} href="#">Home</a></li>
-            <li className="breadcrumb-item"><a style={{ color: '#888' }} href="#">Program</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Floor plan</li>
+            <li className="breadcrumb-item"><a style={{ color: '#888' }} href={`/${eventUrl}/floorplan/`}>Floor Plan</a></li>
+            <li className="breadcrumb-item active" aria-current="page">{floorPlanDetails?.floorPlan?.floor_plan_name}</li>
           </ol>
         </nav>
-        {json.locations && json.locations.length > 0 && <Mapplic json={json} />}
+        {json.settings ?
+          <Mapplic json={json} />
+          : <div>Loading...</div>}
       </div>
     </div>
   );

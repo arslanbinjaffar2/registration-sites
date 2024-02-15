@@ -1,6 +1,11 @@
 // import ReactDOM from 'react-dom/client'
 import React from 'react';
-import useMapplicStore from './MapplicStore'
+import useMapplicStore from './MapplicStore';
+import { floorPlanDetailSelector, fetchFloorPlanDetails, clearState } from "store/Slices/FloorPlanDetailSlice";
+import { useSelector, useDispatch } from "react-redux";
+
+
+
 
 const SidebarMapplic = (json) => {
 	const openLocation = useMapplicStore(state => state.openLocation);
@@ -10,6 +15,8 @@ const SidebarMapplic = (json) => {
 	const [data, setdata] = React.useState(null);
 	const [filteredGroups, setFilteredGroups] = React.useState([]);
 	const [search, setSearch] = React.useState('');
+	const { labels } = useSelector(floorPlanDetailSelector);
+
 
 	React.useEffect(() => {
 		if (typeof json === 'object' && json !== null) {
@@ -44,30 +51,30 @@ const SidebarMapplic = (json) => {
 		</span>}
 		{toggle && <div className="pt-3">
 			<div className="ebs-form-control-search mb-3">
-				<input style={{height: '42px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder="Search" className="form-control w-100"  
+				<input style={{height: '42px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder={labels?.FLOOR_PLAN_SEARCH_TEXT} className="form-control w-100"  
 					onChange={(e) => setSearch(e.target.value)}
 				/>
 				<em className="fa fa-search" style={{top: '10px', left: '18px',right: 'auto'}}></em>
 			</div>
-			<h5 className='mb-3'>Advance filters</h5>
+			<h5 className='mb-3'>{labels?.FLOOR_PLAN_ADVANCED_FILTERS}</h5>
 			<div className="ebs-floorplan-bottom-filter pb-3 mb-3 border-bottom">
 				<ul className="list-inline m-0">
 					<li className="list-inline-item mb-2">
 						<span onClick={() => {setactive('sponsor'); closeLocation()}} className={`d-flex  border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${active === 'sponsor' ? 'active' :''}`}>
 							<i className="material-icons position-absolute">done</i>
-							Sponsor
+							{labels?.FLOOR_PLAN_SPONSOR_LABEL}
 						</span>
 					</li>
 					<li className="list-inline-item mb-2">
 						<span onClick={() => {setactive('exhibitor');closeLocation()}} className={`d-flex border rounded-pill px-3 py-2 align-items-center rounded-half position-relative ${active === 'exhibitor' ? 'active' :''}`}>
 							<i className="material-icons position-absolute">done</i>
-							Exhibitor
+							{labels?.FLOOR_PLAN_EXHIBITOR_LABEL}
 						</span>
 					</li>
 				</ul>
 			</div>
 			<div className="ebs-mapplic-accordion">
-				<h5 className='mb-3'>Categories</h5>
+				<h5 className='mb-3'>{labels?.FLOOR_PLAN_CATEGORIES_LABEL}</h5>
 				{filteredGroups.filter(item => item.type === active).map(item => 
 				<div key={item.id}>
 					<div className="ebs-category-label">
@@ -80,6 +87,7 @@ const SidebarMapplic = (json) => {
 					</div>
 				</div>	
 				)}
+				{filteredGroups.length < 1 && <p className="m-0">{labels?.GENERAL_NO_RECORD}</p>}
 			</div>
 		</div>}
 

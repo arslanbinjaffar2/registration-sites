@@ -22,8 +22,6 @@ const Floorplan = (props) => {
 
   const { event } = useSelector(eventSelector);
 
-  const { news, totalPages, labels, loading } = useSelector(newsSelector);
-
   const dispatch = useDispatch();
 
   const eventUrl = event.url;
@@ -55,20 +53,12 @@ const Floorplan = (props) => {
   //   dispatch(fetchNews(eventUrl, page, limit, initialMount.current));
   // }, [page, limit]);
 
-  useEffect(() => {
-    if (initialMount.current) {
-      initialMount.current = false;
-      return;
-    }
-  }, []);
-
-  const onPageChange = (page) => {
-    if (page > 0) {
-      if (page <= totalPages) {
-        setPage(page);
-      }
-    }
-  };
+  // useEffect(() => {
+  //   if (initialMount.current) {
+  //     initialMount.current = false;
+  //     return;
+  //   }
+  // }, []);
 
   const makeNewDetailURL = (event_url, id) => {
     return "/" + event_url + "/floorplan/" + id;
