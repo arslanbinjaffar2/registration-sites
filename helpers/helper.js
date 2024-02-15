@@ -135,7 +135,7 @@ export const localeProgramMomentHome = (language_id, date = null) => {
     }
     else if (language_id == 7) {
         locale = 'sv_SE';
-        format = 'Do MMMM';
+        format = 'D MMMM';
 
     }
     else if (language_id == 8) {
