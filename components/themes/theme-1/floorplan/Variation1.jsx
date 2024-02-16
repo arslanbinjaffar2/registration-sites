@@ -155,7 +155,7 @@ const Variation1 = (props) => {
               <a href={generateDetailUrl(floorPlan.id)} className="d-flex align-items-center border p-3 rounded-2">
                 <div className="me-auto">
                   <h4 className="m-0">{floorPlan.floor_plan_name} {floorPlan.version_number}</h4>
-                  <p className="m-0">Category Unassigned (2)</p>
+                  {/* <p className="m-0">Category Unassigned (2)</p> */}
                 </div>
                 <i className="material-icons">chevron_right</i>
               </a>
