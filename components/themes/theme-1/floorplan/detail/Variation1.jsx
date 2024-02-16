@@ -126,7 +126,7 @@ const Variation1 = (props) => {
         <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a style={{ color: '#888' }} href="#">Home</a></li>
-            <li className="breadcrumb-item"><a style={{ color: '#888' }} href={`/${eventUrl}/floorplan/`}>Floor Plan</a></li>
+            <li className="breadcrumb-item"><a style={{ color: '#888' }} href={`/${eventUrl}/floorplan/`}>{props.moduleName}</a></li>
             <li className="breadcrumb-item active" aria-current="page">{floorPlanDetails?.floorPlan?.floor_plan_name}</li>
           </ol>
         </nav>

@@ -4,7 +4,7 @@ import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 
-const Variation1 = () => {
+const Variation1 = (props) => {
   const [toggle, settoggle] = useState(false);
   const { event } = useSelector(eventSelector);
   const eventUrl = event.url;
@@ -85,7 +85,7 @@ const Variation1 = () => {
         <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a style={{color: '#888'}} href="#">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Floor plan</li>
+            <li className="breadcrumb-item active" aria-current="page">{props.moduleName}</li>
           </ol>
         </nav>
         <div className="mb-4">

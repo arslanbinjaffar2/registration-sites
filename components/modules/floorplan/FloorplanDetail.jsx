@@ -15,6 +15,7 @@ const loadModule = (theme, variation) => {
 const FloorplanDetail = (props) => {
 
   const { event } = useSelector(eventSelector);
+  const floorplanModule = event?.header_data?.top_menu.find((item)=>(item.alias === 'floorplan'));
 
   const Component = useMemo(
     () => loadModule(event.theme.slug, "Variation1"),
@@ -24,7 +25,7 @@ const FloorplanDetail = (props) => {
     <Suspense fallback={<PageLoader/>}>
       {!props.homePage && <Head><title>Floorplan Detail</title></Head>}
         <React.Fragment>
-          <Component  />
+          <Component moduleName={floorplanModule?.module}  />
         </React.Fragment>
     </Suspense>
   );
