@@ -9,7 +9,7 @@ import React from 'react'
             {align === 'center' && <div className="col-md-8 offset-md-2 text-center">
               <div className="edgtf-title-section-holder">
                 <h2
-                  style={{ color: headcolor ? headcolor : (dark ? '#fff' :'#888') }}
+                  style={{ color: headcolor ? headcolor : (dark ? '#fff' :'##313131') }}
                   className="edgtf-title-with-dots edgtf-appeared"
                 >
                   {label}
@@ -17,7 +17,7 @@ import React from 'react'
                 <span className="edge-title-separator edge-enable-separator"></span>
               </div>
               {desc && <div className="edgtf-title-section-holder">
-                <h6 style={{ color: headcolor ? headcolor : (dark ? '#fff' :'#888') }} className="edgtf-section-subtitle">{desc}</h6>
+                <h6 style={{ color: headcolor ? headcolor : (dark ? '#fff' :'##313131') }} className="edgtf-section-subtitle">{desc}</h6>
               </div>}
             </div>}
             {align === 'left' && 
@@ -25,7 +25,7 @@ import React from 'react'
                 <div className={desc && !breakheading ? "col-md-4" : "col-md-12"}>
                   <div className="edgtf-title-section-holder">
                     <h2
-                      style={{ color: headcolor ? headcolor : (dark ? '#fff' :'#888') }}
+                      style={{ color: headcolor ? headcolor : (dark ? '#fff' :'##313131') }}
                       className="edgtf-title-with-dots edgtf-appeared"
                     >
                       {label}
@@ -35,7 +35,7 @@ import React from 'react'
                 </div>
                 {desc && <div className={breakheading ? 'col-md-12' : 'col-md-8'}>
                  <div className="edgtf-title-section-holder">
-                    <h6 style={{ color: headcolor ? headcolor : (dark ? '#fff' :'#888'),marginTop: breakheading ? 0 : 15 }} className="edgtf-section-subtitle">{desc}</h6>
+                    <h6 style={{ color: headcolor ? headcolor : (dark ? '#fff' :'##313131'),marginTop: breakheading ? 0 : 15 }} className="edgtf-section-subtitle">{desc}</h6>
                   </div>
                 </div> }
               </React.Fragment>
