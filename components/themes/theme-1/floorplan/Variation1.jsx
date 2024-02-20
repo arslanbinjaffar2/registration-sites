@@ -2,6 +2,8 @@ import React, { useEffect,useState } from "react";
 import { floorPlanListingSelector, fetchFloorPlans, clearState } from "store/Slices/FloorPlanListingSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
+import ActiveLink from "components/atoms/ActiveLink";
+
 
 
 const Variation1 = (props) => {
@@ -15,6 +17,10 @@ const Variation1 = (props) => {
   const [filteredFloorPlans, setFilteredFloorPlans] = useState([]);
   const dispatch = useDispatch();
   const { floorPlans,categories,sponsorCount,exhibitorCount, labels, loading, error} = useSelector(floorPlanListingSelector);
+  const [breadCrumbs, setbreadCrumbs] = useState([
+    {name:event.labels?.FLOOR_PLAN_HOMEPAGE, url:`/${eventUrl}`, type:"link"},
+    {name:props?.moduleName, type:"name"},
+  ]);
 
   useEffect(() => {
     dispatch(fetchFloorPlans(eventUrl));
@@ -82,12 +88,18 @@ const Variation1 = (props) => {
     <div  className="edgtf-container ebs-default-padding">
       <div className="container">
         {/* Breadcrumb */}
-        <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a style={{color: '#888'}} href="#">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">{props.moduleName}</li>
-          </ol>
-        </nav>
+        {event.eventsiteSettings.show_eventsite_breadcrumbs ? (
+          <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} ><span style={{color: '#888'}}>{crumb.name}</span></ActiveLink>}
+                </li>
+              ))}
+              </ol>
+          </nav>
+        ):''}
+        
         <div className="mb-4">
           <div className="row align-items-center">
             <div className="col-md-5">

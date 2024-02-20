@@ -34,12 +34,14 @@ const SidebarMapplic = (json) => {
 			return;
 		}
 	
-		const filteredGroups = search ?
-			data.groups.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) :
-			data.groups;
-	
+		const filteredGroups = data.groups.map(group => {
+			const children = data.locations.filter(list => list.group.includes(group.id) && list.cat_type === active);
+			const filteredChildren = children.filter(child => child.title.toLowerCase().includes(search.toLowerCase()) || child.about.toLowerCase().includes(search.toLowerCase()));
+			return { ...group, children: filteredChildren };
+		}).filter(group => group.children.length > 0);
 		setFilteredGroups(filteredGroups);
-	}, [data, search]);
+		
+	}, [data, search, active]);
 	
   return (
 	<div className={`position-absolute ebs-mapplic-sidebar overflow-auto ${toggle ? 'active' : ''}`}>
@@ -75,13 +77,13 @@ const SidebarMapplic = (json) => {
 			</div>
 			<div className="ebs-mapplic-accordion">
 				<h5 className='mb-3'>{labels?.FLOOR_PLAN_CATEGORIES_LABEL}</h5>
-				{filteredGroups.filter(item => item.type === active).map(item => 
-				<div key={item.id}>
+				{filteredGroups.filter(item => item.type === active).map(group => 
+				<div key={group.id}>
 					<div className="ebs-category-label">
-						<em style={{background: item.color ? item.color: '#fff'}} className="category-color"></em>	{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})
+						<em style={{background: group.color ? group.color: '#fff'}} className="category-color"></em>	{group.name} ({group.children.length})
 					</div>
 					<div className="ebs-location-wrapper">
-						{data && data.locations.filter(list => list.group.includes(item.id) &&  list.cat_type === active).map(list => 
+						{group.children.map(list => 
 							<div key={list.id} onClick={() => openLocation(list.id)} className="ebs-location-label d-flex align-items-center"><div className="me-auto pe-2">{list.title}</div> <span>{list.about ? list.about : ''}</span></div>
 						)}
 					</div>
