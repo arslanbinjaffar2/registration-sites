@@ -749,7 +749,7 @@
 }
 
 .mapplic-button.mapplic-button-primary:not(:disabled) {
-	background-color: rgb(var(--primaryrgb));
+	background-color: rgb(var(--secondaryrgb));
 	border: none;
 	padding: 8px 12px;
 	color: #fff;

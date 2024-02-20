@@ -80,7 +80,7 @@ const SidebarMapplic = (json) => {
 				<h5 className='mb-3'>{labels?.FLOOR_PLAN_CATEGORIES_LABEL}</h5>
 				{filteredGroups.filter(item => item.type === active).map((group, k) => 
 				<div key={group.id}>
-					<div onClick={() => setactiveIndex(k)} className="ebs-category-label d-flex align-items-center">
+					<div onClick={() => setactiveIndex(activeIndex === k ? null : k)} className="ebs-category-label d-flex align-items-center">
 						<div className="me-auto"><em style={{background: group.color ? group.color: '#fff'}} className="category-color"></em>	{group.name} ({group.children.length})</div>
 						<i style={{color: '#888'}} className="material-icons">{activeIndex === k ? 'expand_less' : 'expand_more'}</i>
 					</div>
