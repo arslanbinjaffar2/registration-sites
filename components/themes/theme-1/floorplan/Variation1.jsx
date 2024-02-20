@@ -2,6 +2,8 @@ import React, { useEffect,useState } from "react";
 import { floorPlanListingSelector, fetchFloorPlans, clearState } from "store/Slices/FloorPlanListingSlice";
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
+import ActiveLink from "components/atoms/ActiveLink";
+
 
 
 const Variation1 = (props) => {
@@ -15,6 +17,10 @@ const Variation1 = (props) => {
   const [filteredFloorPlans, setFilteredFloorPlans] = useState([]);
   const dispatch = useDispatch();
   const { floorPlans,categories,sponsorCount,exhibitorCount, labels, loading, error} = useSelector(floorPlanListingSelector);
+  const [breadCrumbs, setbreadCrumbs] = useState([
+    {name:event.labels?.FLOOR_PLAN_HOMEPAGE, url:`/${eventUrl}`, type:"link"},
+    {name:props?.moduleName, type:"name"},
+  ]);
 
   useEffect(() => {
     dispatch(fetchFloorPlans(eventUrl));
@@ -82,12 +88,18 @@ const Variation1 = (props) => {
     <div  className="edgtf-container ebs-default-padding">
       <div className="container">
         {/* Breadcrumb */}
-        <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a style={{color: '#888'}} href="#">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">{props.moduleName}</li>
-          </ol>
-        </nav>
+        {event.eventsiteSettings.show_eventsite_breadcrumbs ? (
+          <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              {breadCrumbs.map((crumb, i) => (
+                <li className="breadcrumb-item" key={i}>
+                  {crumb.type === "name" ? crumb.name : <ActiveLink href={crumb.url} ><span style={{color: '#888'}}>{crumb.name}</span></ActiveLink>}
+                </li>
+              ))}
+              </ol>
+          </nav>
+        ):''}
+        
         <div className="mb-4">
           <div className="row align-items-center">
             <div className="col-md-5">
@@ -109,13 +121,13 @@ const Variation1 = (props) => {
             <div className="ebs-floorplan-top-filter border-bottom py-3 px-4">
               <h4 className="m-0 mb-2">{labels?.FLOOR_PLAN_ADVANCED_FILTERS}</h4>
                 <ul className="list-inline m-0">
-                  <li className={`list-inline-item ${selectedfilter === 'sponsors' ? 'active':''}`}>
+                  <li className={`list-inline-item me-4 ${selectedfilter === 'sponsors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('sponsors')}>
                       <em className="material-icons">{selectedfilter === 'sponsors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
                       <span className="ms-2">{labels?.FLOOR_PLAN_SPONSOR_LABEL} ({sponsorCount})</span>
                     </div>
                   </li>
-                  <li className={`list-inline-item ms-4 ${selectedfilter === 'exhibitors' ? 'active':''}`}>
+                  <li className={`list-inline-item  ${selectedfilter === 'exhibitors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('exhibitors')}>
                       <em className="material-icons">{selectedfilter === 'exhibitors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
                       <span className="ms-2">{labels?.FLOOR_PLAN_EXHIBITOR_LABEL} ({exhibitorCount})</span>
@@ -132,9 +144,9 @@ const Variation1 = (props) => {
               {filteredCategories.length < 1 && <p className="m-0">{labels?.FLOOR_PLAN_NO_DATA_FOUND_TEXT}</p>}
             </div>
           </div>
-          <div className="mb-4 d-flex align-items-center ebs-floorplan-selected-filter">
+          <div className="mb-4 d-md-flex align-items-center ebs-floorplan-selected-filter">
             <h5 className="m-0 text-nowrap">{labels?.FLOOR_PLAN_SELECTED_FILTERS}:</h5>
-            <div className="ps-3">
+            <div className="ps-md-3">
               <ul className="list-inline m-0">
                 <li className="list-inline-item my-1">
                   <div className="d-flex align-items-center flex-wrap">

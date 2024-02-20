@@ -40,7 +40,7 @@ export const Popup = ({location, type}) => {
 						</div> */}
 
 						{ location.link &&
-							<a href={location.link} style={{backgroundColor: location.color}} target="_blank" className="mapplic-button mapplic-button-primary" rel="noreferrer">
+							<a href={location.link} target="_blank" className="mapplic-button mapplic-button-primary" rel="noreferrer">
 								Detail
 								<ArrowRightCircle size={16}/>
 							</a>
