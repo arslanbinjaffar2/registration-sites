@@ -3504,6 +3504,7 @@
     cursor: pointer;
     color: $default-heading-color;
     font-weight: 500;
+    margin: 3px 0;
   }
   .btn-remove {
     cursor: pointer;
@@ -3594,4 +3595,7 @@
     height: 10px;
     margin-right: 8px;
   }
+}
+.mapplic-tooltip.mapplic-popup {
+  max-height: none !important;
 }

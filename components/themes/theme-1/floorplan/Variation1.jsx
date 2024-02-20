@@ -109,13 +109,13 @@ const Variation1 = (props) => {
             <div className="ebs-floorplan-top-filter border-bottom py-3 px-4">
               <h4 className="m-0 mb-2">{labels?.FLOOR_PLAN_ADVANCED_FILTERS}</h4>
                 <ul className="list-inline m-0">
-                  <li className={`list-inline-item ${selectedfilter === 'sponsors' ? 'active':''}`}>
+                  <li className={`list-inline-item me-4 ${selectedfilter === 'sponsors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('sponsors')}>
                       <em className="material-icons">{selectedfilter === 'sponsors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
                       <span className="ms-2">{labels?.FLOOR_PLAN_SPONSOR_LABEL} ({sponsorCount})</span>
                     </div>
                   </li>
-                  <li className={`list-inline-item ms-4 ${selectedfilter === 'exhibitors' ? 'active':''}`}>
+                  <li className={`list-inline-item  ${selectedfilter === 'exhibitors' ? 'active':''}`}>
                     <div className="d-flex" onClick={() => setSelectedfilter('exhibitors')}>
                       <em className="material-icons">{selectedfilter === 'exhibitors' ? 'radio_button_checked':'radio_button_unchecked'} </em>
                       <span className="ms-2">{labels?.FLOOR_PLAN_EXHIBITOR_LABEL} ({exhibitorCount})</span>
@@ -132,9 +132,9 @@ const Variation1 = (props) => {
               {filteredCategories.length < 1 && <p className="m-0">{labels?.FLOOR_PLAN_NO_DATA_FOUND_TEXT}</p>}
             </div>
           </div>
-          <div className="mb-4 d-flex align-items-center ebs-floorplan-selected-filter">
+          <div className="mb-4 d-md-flex align-items-center ebs-floorplan-selected-filter">
             <h5 className="m-0 text-nowrap">{labels?.FLOOR_PLAN_SELECTED_FILTERS}:</h5>
-            <div className="ps-3">
+            <div className="ps-md-3">
               <ul className="list-inline m-0">
                 <li className="list-inline-item my-1">
                   <div className="d-flex align-items-center flex-wrap">

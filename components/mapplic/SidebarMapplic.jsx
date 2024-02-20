@@ -16,6 +16,7 @@ const SidebarMapplic = (json) => {
 	const [filteredGroups, setFilteredGroups] = React.useState([]);
 	const [search, setSearch] = React.useState('');
 	const { labels } = useSelector(floorPlanDetailSelector);
+	const [activeIndex, setactiveIndex] = React.useState(0)
 
 
 	React.useEffect(() => {
@@ -43,12 +44,12 @@ const SidebarMapplic = (json) => {
 	
   return (
 	<div className={`position-absolute ebs-mapplic-sidebar overflow-auto ${toggle ? 'active' : ''}`}>
-		{!toggle && <span onClick={() => settoggle(true)} className='edgtf-btn edgtf-btn-medium edgtf-btn-solid px-3 py-2 lh-1'>
+		{!toggle && <span onClick={() => settoggle(true)} style={{lineHeight: 0, cursor: 'pointer'}} className='edgtf-btn edgtf-btn-medium edgtf-btn-solid px-2 py-2'>
 			<span className="material-icons lh-1">menu</span>
 		</span>}
-		{toggle && <span onClick={() => settoggle(false)} className=''>
-			<span className="material-icons">close_fullscreen</span>
-		</span>}
+		{toggle && <div className="text-end"> <span style={{lineHeight: 0, cursor: 'pointer', border: '1px solid #000'}} onClick={() => settoggle(false)} className='p-1 d-inline-block rounded-circle  text-black'>
+			<span className="material-icons lh-1">close_fullscreen</span>
+		</span></div>}
 		{toggle && <div className="pt-3">
 			<div className="ebs-form-control-search mb-3">
 				<input style={{height: '42px',paddingLeft: '60px',paddingRight: '15px'}} type="text" placeholder={labels?.FLOOR_PLAN_SEARCH_TEXT} className="form-control w-100"  
@@ -75,16 +76,17 @@ const SidebarMapplic = (json) => {
 			</div>
 			<div className="ebs-mapplic-accordion">
 				<h5 className='mb-3'>{labels?.FLOOR_PLAN_CATEGORIES_LABEL}</h5>
-				{filteredGroups.filter(item => item.type === active).map(item => 
+				{filteredGroups.filter(item => item.type === active).map((item,k) => 
 				<div key={item.id}>
-					<div className="ebs-category-label">
-						<em style={{background: item.color ? item.color: '#fff'}} className="category-color"></em>	{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})
+					<div onClick={() => setactiveIndex(k)} className="ebs-category-label d-flex align-items-center">
+						<div className="me-auto"><em style={{background: item.color ? item.color: '#fff'}} className="category-color"></em>	{item.name} ({data && data.locations.filter(list => list.group.includes(item.id) && list.cat_type === active).length})</div>
+						<i style={{color: '#888'}} className="material-icons">{activeIndex === k ? 'expand_less' : 'expand_more'}</i>
 					</div>
-					<div className="ebs-location-wrapper">
+					{activeIndex === k && <div className="ebs-location-wrapper">
 						{data && data.locations.filter(list => list.group.includes(item.id) &&  list.cat_type === active).map(list => 
 							<div key={list.id} onClick={() => openLocation(list.id)} className="ebs-location-label d-flex align-items-center"><div className="me-auto pe-2">{list.title}</div> <span>{list.about ? list.about : ''}</span></div>
 						)}
-					</div>
+					</div>}
 				</div>	
 				)}
 				{filteredGroups.length < 1 && <p className="m-0">{labels?.GENERAL_NO_RECORD}</p>}

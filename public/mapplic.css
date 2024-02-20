@@ -21,7 +21,7 @@
 
 	--select: #1476FF10;
 
-	--primary: #1476FF;
+	--primary: #000;
 	--error: #EF6F6C;
 	--success: #7ECA63;
 }
@@ -749,7 +749,7 @@
 }
 
 .mapplic-button.mapplic-button-primary:not(:disabled) {
-	background-color: var(--primary);
+	background-color: rgb(var(--primaryrgb));
 	border: none;
 	padding: 8px 12px;
 	color: #fff;
