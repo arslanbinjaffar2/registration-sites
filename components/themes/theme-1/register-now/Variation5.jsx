@@ -64,7 +64,7 @@ const Variation5 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo, lab
                 </h2>
                 <span className="edge-title-separator edge-enable-separator"></span>
                 <div className="edgtf-title-section-holder">
-                  <h6 style={{ color: '#888', marginTop: 0 }} className="edgtf-section-subtitle">{labels.EVENTSITE_TICKETS_ARE_FLYING}</h6>
+                  <h6 style={{ color: '#313131', marginTop: 0 }} className="edgtf-section-subtitle">{labels.EVENTSITE_TICKETS_ARE_FLYING}</h6>
                 </div>
               </div>
             </div>
