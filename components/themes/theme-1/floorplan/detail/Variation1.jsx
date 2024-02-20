@@ -4,6 +4,7 @@ import { floorPlanDetailSelector, fetchFloorPlanDetails, clearState } from "stor
 import { eventSelector } from "store/Slices/EventSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
+import { NULL } from "node-sass";
 
 const Variation1 = (props) => {
   const { event } = useSelector(eventSelector);
@@ -134,7 +135,7 @@ const Variation1 = (props) => {
         ) : null}
         {json.settings ?
           <Mapplic json={json} />
-          : <div>Loading...</div>}
+          : null}
       </div>
     </div>
   );
