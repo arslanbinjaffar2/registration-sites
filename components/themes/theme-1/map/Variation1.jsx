@@ -7,7 +7,7 @@ const Variation1 = ({map, siteLabels}) => {
         <div className="edgtf-title-section-holder text-center pb-3">
           <HeadingElement dark={false} label={siteLabels.EVENTSITE_MAP} desc={siteLabels.EVENTSITE_MAP_DETAIL} align={'center'} />
           <p
-            style={{ marginTop: 0, fontSize: 14, color: "#555" }}
+            style={{ marginTop: 0, fontSize: 14, color: "#313131" }}
             className="edgtf-section-subtitle"
             >
             {siteLabels.EVENTSITE_MAP_ADDRESS}
