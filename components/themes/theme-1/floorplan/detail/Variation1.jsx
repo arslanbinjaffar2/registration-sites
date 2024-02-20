@@ -53,6 +53,8 @@ const Variation1 = (props) => {
       const detailLink= type === "exhibitor" ? `/${eventUrl}/exhibitors/${exhibitor.id}` : `/${eventUrl}/sponsors/${sponsor.id}`;
       const associatedGroups = getAssociatedGroups(pin);
       const subCategories = getSubCategories(pin);
+      const categories = type === "exhibitor" ? exhibitor?.categories : sponsor?.categories;
+      const firstCategory = categories ? categories[0] : null;
 
       newJson.locations.push({
         image: categoryImage,
@@ -60,7 +62,7 @@ const Variation1 = (props) => {
         id,
         cat_type: type,
         title: type === "exhibitor" ? exhibitor.name : sponsor.name,
-        color: type === "exhibitor" ? "#000000" : "#002F65",
+        color: firstCategory ? firstCategory.color: "#000000",
         zoom: "7.5113",
         layer: "first",
         desc: subCategories,
@@ -70,8 +72,6 @@ const Variation1 = (props) => {
         style: "marker",
         type: "pin2"
       });
-
-      const categories = type === "exhibitor" ? exhibitor?.categories : sponsor?.categories;
 
       if (categories) {
         categories.forEach(category => {
@@ -123,13 +123,15 @@ const Variation1 = (props) => {
     <div className="edgtf-container ebs-default-padding">
       <div className="container">
         {/* Breadcrumb */}
+        {event.eventsiteSettings.show_eventsite_breadcrumbs ? (
         <nav className="ebs-breadcrumbs mb-5" aria-label="breadcrumb">
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a style={{ color: '#888' }} href="#">Home</a></li>
+            <li className="breadcrumb-item"><a style={{ color: '#888' }} href={`/${eventUrl}`}>{event.labels?.FLOOR_PLAN_HOMEPAGE}</a></li>
             <li className="breadcrumb-item"><a style={{ color: '#888' }} href={`/${eventUrl}/floorplan/`}>{props.moduleName}</a></li>
             <li className="breadcrumb-item active" aria-current="page">{floorPlanDetails?.floorPlan?.floor_plan_name}</li>
           </ol>
         </nav>
+        ) : null}
         {json.settings ?
           <Mapplic json={json} />
           : <div>Loading...</div>}
