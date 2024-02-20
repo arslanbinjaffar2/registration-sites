@@ -43,7 +43,7 @@ const CookiePolicy = () => {
         {show &&
           <>
             <div className="ebs-cookie-container">
-              {showAction && <span onClick={() => setShow(false)} className="btn-close">
+              {!showAction && <span onClick={() => setShow(false)} className="btn-close">
                 <i className="material-icons">close</i>
               </span>}
               <h4>Cookies Policy</h4>
