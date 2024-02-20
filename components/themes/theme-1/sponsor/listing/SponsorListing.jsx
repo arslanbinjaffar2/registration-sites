@@ -114,6 +114,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
               </div>
               <div className="ebs-sponsor-listing">
                 {locSponsors.map((sponsor) => (<div className="ebs-sponsor-item" key={sponsor.id}>
+                  {console.log(sponsor)}
                   <div className="d-flex align-items-center ebs-break-block">
                     <div className="ebs-img-listing">
                       <ActiveLink href={sponsor.url.replace(/^https?:\/\//, "") != "" ? sponsor.url : `/${eventUrl}/sponsors/${sponsor.id}`}>

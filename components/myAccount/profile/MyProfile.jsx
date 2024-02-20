@@ -106,7 +106,7 @@ const MyProfile = () => {
                                 <strong>{labels?.FIRST_NAME_PASSPORT}:</strong>
                                 <span>{attendee.FIRST_NAME_PASSPORT}</span>
                               </div></div>}
-                              {setting?.name === 'date_of_issue_passport' && (attendee.info && attendee.info.date_of_issue_passport) && <div className="col-sm-6"><div className="ebs-info-row">
+                              {setting?.name === 'date_of_issue_passport' && (attendee.info && attendee.info.date_of_issue_passport) && attendee.info.date_of_issue_passport !== '0000-00-00 00:00:00' && <div className="col-sm-6"><div className="ebs-info-row">
                                 <strong>{labels?.date_of_issue_passport}:</strong>
                                 <span>{moment(attendee.info.date_of_issue_passport).format('D MMMM YYYY')}</span>
                               </div></div>}
@@ -152,7 +152,7 @@ const MyProfile = () => {
                               </div></div>}
 
 
-                              {setting?.name === 'birth_date' && attendee.BIRTHDAY_YEAR && attendee.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' && <div className="col-sm-6"><div className="ebs-info-row">
+                              {setting?.name === 'birth_date' && attendee.BIRTHDAY_YEAR && attendee.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' && attendee.BIRTHDAY_YEAR !== '0000-00-00' && <div className="col-sm-6"><div className="ebs-info-row">
                                 <strong>{labels?.BIRTHDAY_YEAR}:</strong>
                                 <span>{moment(attendee.BIRTHDAY_YEAR).format('D MMMM YYYY')}</span>
                               </div></div>}
@@ -164,7 +164,7 @@ const MyProfile = () => {
                                 <strong>{labels?.LAST_NAME_PASSPORT}:</strong>
                                 <span>{attendee.LAST_NAME_PASSPORT}</span>
                               </div></div>}
-                              {setting?.name === 'date_of_expiry_passport' && (attendee.info && attendee.info.date_of_expiry_passport) && <div className="col-sm-6"><div className="ebs-info-row">
+                              {setting?.name === 'date_of_expiry_passport' && (attendee.info && attendee.info.date_of_expiry_passport) && attendee.info.date_of_expiry_passport !== '0000-00-00 00:00:00' &&  <div className="col-sm-6"><div className="ebs-info-row">
                                 <strong>{labels?.date_of_expiry_passport}:</strong>
                                 <span>{moment(attendee.info.date_of_expiry_passport).format('D MMMM YYYY')}</span>
                               </div></div>}
@@ -205,6 +205,10 @@ const MyProfile = () => {
                                 <span>{attendee.info.private_country_name}</span>
                               </div></div>}
                               {setting?.name === 'show_custom_field' && customFields && customFields.length > 0 ? customFields.map((question) => (
+                                <>
+                                {attendee.info && attendee.info[`custom_field_id${question.event_id}`].split(',').filter((ack, answer, i) => {
+                                    return question.children_recursive.find((child) => (child.id == ack))?.name ? true : false
+                                    }, '').length > 0 && (
                                   <div className="ebs-info-row">
                                     <strong>{question.name}:</strong>
                                     <span>{attendee.info && attendee.info[`custom_field_id${question.event_id}`] && attendee.info[`custom_field_id${question.event_id}`].split(',').reduce((ack, answer, i) => {
@@ -216,6 +220,8 @@ const MyProfile = () => {
                                       return ack;
                                     }, '')}</span>
                                   </div>
+                                )}
+                                </>
                                 )) : ''
                               }
 

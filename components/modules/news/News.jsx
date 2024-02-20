@@ -85,6 +85,7 @@ const News = (props) => {
           event_url={eventUrl}
           siteLabels={event.labels}
           newsSettings={event.news_settings}
+          // newsSubscriberSetting={event.news_subscriber_setting}
           makeNewDetailURL={makeNewDetailURL}
           homePage={props.homePage ? true : false}
           moduleVariation={moduleVariation[0]}

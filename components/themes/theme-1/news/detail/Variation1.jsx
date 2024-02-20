@@ -125,7 +125,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
               </div>
             </div>
           </div>
-          {newsSettings.subscriber_id !== null && typeof window !== 'undefined' && (
+          {newsSettings.subscriber_id != null && newsSettings.status != 0 && typeof window !== 'undefined' && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe

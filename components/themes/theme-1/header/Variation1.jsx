@@ -569,7 +569,7 @@ class Variation1 extends React.Component {
                             )}
                           </ul>
                         )}
-                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p)=>p.id == menu.page_id) !== undefined && (  menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length > 1 ||  (menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'].length == 1 && menus["info_pages_menu"].find((p)=>p.id == menu.page_id)['submenu'][0].page_type === "menu"))) && (
+                        {(menu.alias === "info_pages" && menus["info_pages_menu"].find((p) => p.id == menu.page_id) !== undefined && (menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length > 1 ||  menus["info_pages_menu"].find((p) => p.id == menu.page_id)['submenu'].length == 1) ) && (
                           <ul className="dropdown-menu">
                             {menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)) !== undefined && menus["info_pages_menu"].find((item)=>(item.id == menu.page_id)).submenu.map((gItem, k) =>
                               (gItem.page_type && gItem.page_type === 1  &&  gItem.submenu && gItem.submenu.length > 0) ? (
@@ -580,36 +580,38 @@ class Variation1 extends React.Component {
                                   {gItem.submenu && gItem.submenu.length > 0 && (
                                     <ul className="dropdown-menu">
                                       {gItem.submenu.map((subitem, k) => (
-                                        <li className="nav-item" key={k}>
-                                          {subitem.page_type &&
-                                            subitem.page_type === 3 ? (
-                                            <a
-                                              className="nav-link"
-                                              aria-current="page"
-                                              target="_blank"
-                                              rel="noreferrer"
-                                              href={`${subitem.website_protocol}${subitem.url}`}
-                                            >
-                                              {subitem.info.name}
-                                            </a>
-                                          ) : (
-                                            <ActiveLink
-                                              aria-current="page"
-                                              className="nav-link" activeClassName="nav-link active"
-                                              href={
-                                                "/" +
-                                                this.props.event.url +
-                                                "/" +
-                                                menu.alias +
-                                                "/" +
-                                                subitem.id
-                                              }
-                                              key={subitem.id}
-                                            >
+                                        subitem.status == 1 && (
+                                          <li className="nav-item" key={k}>
+                                            {subitem.page_type && subitem.page_type === 3 ? (
+                                              <a
+                                                className="nav-link"
+                                                aria-current="page"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                href={`${subitem.website_protocol}${subitem.url}`}
+                                              >
                                                 {subitem.info.name}
-                                            </ActiveLink>
-                                          )}
-                                        </li>
+                                              </a>
+                                            ) : (
+                                              <ActiveLink
+                                                aria-current="page"
+                                                className="nav-link"
+                                                activeClassName="nav-link active"
+                                                href={
+                                                  "/" +
+                                                  this.props.event.url +
+                                                  "/" +
+                                                  menu.alias +
+                                                  "/" +
+                                                  subitem.id
+                                                }
+                                                key={subitem.id}
+                                              >
+                                                {subitem.info.name}
+                                              </ActiveLink>
+                                            )}
+                                          </li>
+                                        )
                                       ))}
                                     </ul>
                                   )}

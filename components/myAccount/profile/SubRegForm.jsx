@@ -114,7 +114,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
             console.log((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1))
             if(pId != agendaId && (moment(thisPrograms.date, 'DD-MM-YYYY').isSame(moment(selectedProgram.date, 'DD-MM-YYYY'))) == true ){
                 if ((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1)) {
-                        window.alert('Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
+                        window.alert(event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT ? event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT : 'Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
                         exit = true;
 
                 }
@@ -162,7 +162,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: [answerId],
+          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
@@ -184,17 +184,20 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     }
    else if (type === "matrix") {
       if (Object.keys(subRegResult).length > 0) {
+        let matrixAnswer = ((subRegResult[`answer_matrix${questionId}_${answerId}`] !== undefined) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`].length > 0) && 
+        (subRegResult[`answer_matrix${questionId}_${answerId}`][0].indexOf(matrixId) !== -1 )) ? [] :[
+          `${answerId}-${matrixId}`,
+        ];
         setSubRegResult({
           ...subRegResult,
           [feild]:
             subRegResult[feild] !== undefined
               ? subRegResult[feild].indexOf(answerId) !== -1  
-                ? subRegResult[feild]
+                ?  matrixAnswer.length <= 0 ? subRegResult[feild].filter((item) => (item !== answerId)) : subRegResult[feild] 
                 : [...subRegResult[feild], answerId]
               : [answerId],
-          [`answer_matrix${questionId}_${answerId}`]: [
-            `${answerId}-${matrixId}`,
-          ],
+          [`answer_matrix${questionId}_${answerId}`]: matrixAnswer,
         });
       } else {
         setSubRegResult({
@@ -307,13 +310,14 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                 );
                               }}
                               className={
-                                subRegResult[`answer${question.id}`] !==
+                                `${subRegResult[`answer${question.id}`] !==
                                   undefined &&
                                 subRegResult[`answer${question.id}`].indexOf(
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""}
+                                ${answer.disabled ? 'disabled' : ''} `
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -447,7 +451,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                 value: answer.id,
                                 linkTo: answer.link_to,
                                 key: i,
-                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : false
+                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : (answer.disabled !== undefined && answer.disabled === true) ? true : false
                               }))}
                               
                               value={subRegResult[`answer_dropdown${question.id}`] !== undefined && { label:  question.answer.find((answer) => ( answer.id == subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] )).info[0].value , value: subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] }}
@@ -493,7 +497,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             updateResult(
                               `answer_date${question.id}`,
                               "date",
-                              item.format("YYYY-MM-DD"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD") : item,
                               question.id
                             );
                             
@@ -504,6 +508,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           }
                           label={`Select date`}
                           showdate={"YYYY-MM-DD"}
+                          clear={1}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -537,7 +542,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                             updateResult(
                               `answer_date_time${question.id}`,
                               "date_time",
-                              item.format("YYYY-MM-DD HH:mm:ss"),
+                              item._isAMomentObject !== undefined && item._isAMomentObject === true ? item.format("YYYY-MM-DD HH:mm:ss") : item,
                               question.id
                             );
                           }}
@@ -548,6 +553,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                           label={`Select date time`}
                           showdate={"YYYY-MM-DD"}
                           showtime={"HH:mm:ss"}
+                          clear={1}
                         />
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -593,13 +599,15 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                 );
                               }}
                               className={
-                                subRegResult[`answer${question.id}`] !==
+                                `
+                                ${subRegResult[`answer${question.id}`] !==
                                   undefined &&
                                 subRegResult[`answer${question.id}`].indexOf(
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""}
+                                  ${answer.disabled ? 'disabled' : ''} `
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -653,11 +661,15 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                                                 ] !== undefined &&
                                                 subRegResult[
                                                   `answer_matrix${question.id}_${answer.id}`
+                                                ].length > 0
+                                                &&
+                                                subRegResult[
+                                                  `answer_matrix${question.id}_${answer.id}`
                                                 ][0].indexOf(matrix.id) !== -1
                                                   ? true
                                                   : false
                                               }
-                                              type="radio"
+                                              type="checkbox"
                                               onChange={() => {
                                                 updateResult(
                                                   `answer${question.id}`,

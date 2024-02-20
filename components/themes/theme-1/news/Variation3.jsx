@@ -4,7 +4,7 @@ import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 import HeadingElement from 'components/ui-components/HeadingElement';
 
-const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation }) => {
+const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings ,siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
@@ -56,7 +56,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
             {(news.length > 0 && !homePage) && loadMore()}
           </div>
           {(news.length === 0 && !homePage) && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-          {newsSettings.subscriber_id !== null && newsSettings.subscriber_id !== '' && !homePage && (
+          {newsSettings.subscriber_id != null && newsSettings.status != 0 &&!homePage && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe

@@ -119,7 +119,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                           </p>
                         </div>
                       )}
-                      {exhibitor.booth && (
+                      {exhibitor?.booth && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -134,7 +134,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                             booth{" "}
                           </h4>
                           <p>
-                            {exhibitor.booth}
+                            {exhibitor?.booth}
                           </p>
                         </div>
                       )}
@@ -143,7 +143,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                         className="edge-info-row"
                       >
                         <div className="social-icons">
-                          {exhibitor.facebook.replace(/^https?:\/\//, "") && (
+                          {exhibitor?.facebook.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -152,7 +152,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0aa;"></span>
                             </a>
                           )}
-                          {exhibitor.twitter.replace(/^https?:\/\//, "") && (
+                          {exhibitor?.twitter.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -161,7 +161,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0ab;"></span>
                             </a>
                           )}
-                          {exhibitor.linkedin.replace(/^https?:\/\//, "")  && (
+                          {exhibitor?.linkedin.replace(/^https?:\/\//, "")  && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -170,7 +170,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                               <span data-icon="&#xe0b4;"></span>
                             </a>
                           )}
-                          {exhibitor.website.replace(/^https?:\/\//, "") && (
+                          {exhibitor?.website.replace(/^https?:\/\//, "") && (
                             <a
                               style={{ fontSize: "30px" }}
                               target="_blank" rel="noreferrer"
@@ -196,7 +196,7 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {exhibitor.exhibitors_attendee?.map((attendee, o) =>
+            {exhibitor?.exhibitors_attendee?.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {

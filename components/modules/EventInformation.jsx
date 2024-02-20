@@ -60,6 +60,7 @@ const EventInformation = () => {
   },[event]);
   
 
+  
   return (
     <Suspense fallback={''}>
       <Component event={event} moduleVariation={moduleVariation[0]} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} labels={event.labels} regisrationUrl={regisrationUrl} openingHours={event.eventOpeningHours} />

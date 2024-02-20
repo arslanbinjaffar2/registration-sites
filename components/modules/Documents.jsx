@@ -32,7 +32,7 @@ const Documents = () => {
     dispatch(fetchDocuments(eventUrl, event.id));
   }, []);
   
-  const { documents } = useSelector(documentsSelector);
+  const { documents, module_headings } = useSelector(documentsSelector);
   
 
   return (
@@ -40,7 +40,7 @@ const Documents = () => {
         <Head>
         <title>{event.eventsiteModules.documents}</title>
         </Head>
-       {documents ? <CustomComponent documents={documents} documentPage={true} labels={event.labels} eventTimezone={event.timezone.timezone} /> : <PageLoader/>}
+       {documents ? <CustomComponent documents={documents} moduleHeadings={module_headings} documentPage={true} labels={event.labels} eventTimezone={event.timezone.timezone} /> : <PageLoader/>}
     </Suspense>
   );
 };

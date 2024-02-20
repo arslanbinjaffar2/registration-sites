@@ -102,7 +102,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, regist
                             {slides.info.message}
                           </div>
                         )}
-                        {settings.register_button && registerDateEnd && <div
+                        {settings.register_button && registerDateEnd  && <div
                           className="edgtf-custom-font-holder text-center ebs-custom-button-holder"
                           style={{
                             marginTop: "40px",

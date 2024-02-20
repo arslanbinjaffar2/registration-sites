@@ -432,6 +432,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                           }
                           label={`Select date`}
                           showdate={"YYYY-MM-DD"}
+                          clear={1}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer_date${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (
@@ -479,6 +480,7 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                           label={`Select date time`}
                           showdate={"YYYY-MM-DD"}
                           showtime={"HH:mm:ss"}
+                          clear={1}
                         />
                           {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer_date_time${question.id}`] !== undefined ? true : null, 'required')}
                         {Number(question.enable_comments) === 1 && (

@@ -68,7 +68,6 @@ const MyProfileSidebar = (props) => {
 
   const onLogout = () => {
     dispatch(logOut(event.id, event.url, ()=>{
-      // router.push(`/${event.url}`);
       router.reload();
     }));
   }

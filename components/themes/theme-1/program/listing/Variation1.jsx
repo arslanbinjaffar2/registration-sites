@@ -56,9 +56,6 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       clearTimeout(handler);
     };
   }, [value]);
-
-
-
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding">
       {/* <div className="container">
@@ -164,19 +161,24 @@ const searchThroughProgram = (programs, searchText) => {
   const newObject = {};
   Object.keys(programs).forEach((date) => {
     const items = programs[date].reduce((ack, program) => {
-      if (program.workshop_id > 0) {
-        const search = searchThroughworshopPrograms(program.workshop_programs, searchText);
-        if (search.length > 0) {
-          ack.push({ ...program, 'workshop_programs': search });
-        }
-      }
-      else {
+      
+      // if (program.workshop_id > 0) {
+      //   const search = searchThroughworshopPrograms(program.workshop_program, searchText);
+      //   if (search.length > 0) {
+      //     ack.push({ ...program, 'workshop_programs': search });
+      //   }
+      // }
+      // else {
         let add = false;
 
         if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
           program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
           program.location && program.location.toLowerCase().indexOf(searchText) !== -1
         ) {
+          add = true;
+        }
+        if(program.workshop_id > 0 && program.program_workshop && program.program_workshop.toLowerCase().indexOf(searchText) !== -1)
+        {
           add = true;
         }
 
@@ -201,7 +203,7 @@ const searchThroughProgram = (programs, searchText) => {
           ack.push(program);
         }
 
-      }
+      // }
       return ack;
 
     }, []);
@@ -212,37 +214,37 @@ const searchThroughProgram = (programs, searchText) => {
   return newObject;
 }
 
-const searchThroughworshopPrograms = (programs, searchText) => {
-  const items = programs.reduce((ack, program) => {
-    let add = false;
-    if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-      program.description.toLowerCase().indexOf(searchText) !== -1 ||
-      program.location.toLowerCase().indexOf(searchText) !== -1
-    ) {
-      add = true;
-    }
+// const searchThroughworshopPrograms = (programs, searchText) => {
+//   const items = programs.reduce((ack, program) => {
+//     let add = false;
+//     if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
+//       program.description.toLowerCase().indexOf(searchText) !== -1 ||
+//       program.location.toLowerCase().indexOf(searchText) !== -1
+//     ) {
+//       add = true;
+//     }
 
-    if (program.program_tracks.length > 0) {
-      const trackSearch = program.program_tracks.filter((track) => (track.name.toLowerCase().indexOf(searchText) !== -1));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+//     if (program.program_tracks.length > 0) {
+//       const trackSearch = program.program_tracks.filter((track) => (track.name.toLowerCase().indexOf(searchText) !== -1));
+//       if (trackSearch.length > 0) {
+//         add = true;
+//       }
+//     }
 
-    if (program.program_speakers.length > 0) {
-      const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-        speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-        (speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-        (speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+//     if (program.program_speakers.length > 0) {
+//       const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
+//         speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
+//         (speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
+//         (speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
+//       if (trackSearch.length > 0) {
+//         add = true;
+//       }
+//     }
 
-    if (add) {
-      ack.push(program);
-    }
-    return ack;
-  }, []);
-  return items
-}
+//     if (add) {
+//       ack.push(program);
+//     }
+//     return ack;
+//   }, []);
+//   return items
+// }

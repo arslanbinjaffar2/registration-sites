@@ -64,6 +64,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           <div className="ebs-detail-single-content" dangerouslySetInnerHTML={{ __html: sponsor?.description }} ></div>
                         </div>
                       )}
+                      {/* {sponsor?.booth} */}
                       {sponsor?.email && (
                         <div
                           style={{ marginBottom: 20 }}
@@ -112,7 +113,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                           </p>
                         </div>
                       )}
-                      {sponsor.booth && (
+                      {sponsor?.booth && (
                         <div
                           style={{ marginBottom: 20 }}
                           className="edge-info-row"
@@ -127,7 +128,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                             booth{" "}
                           </h4>
                           <p>
-                            {sponsor.booth}
+                            {sponsor?.booth}
                           </p>
                         </div>
                       )}
@@ -188,7 +189,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
             <h3 className="edgtf-title-with-dots edgtf-appeared pb-2">{labels.EVENTSITE_CONTACT_PERSON_LABEL !== undefined ? labels.EVENTSITE_CONTACT_PERSON_LABEL :"Contacts"}</h3>
           </div>
           <div className="row d-flex ebs-program-speakers">
-            {sponsor.sponsors_attendee?.map((attendee, o) =>
+            {sponsor?.sponsors_attendee?.map((attendee, o) =>
               <div key={o} style={{ animationDelay: 50 * o + 'ms' }} className="col-md-3 col-sm-4 col-lg-2 col-6 ebs-speakers-box ebs-detail-image-sponsors ebs-animation-layer">
                 <span style={{ marginBottom: 20 }} className="gallery-img-wrapper-square">
                   {attendee?.image && attendee?.image !== "" ? (

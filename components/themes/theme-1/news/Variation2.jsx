@@ -5,7 +5,7 @@ import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 import HeadingElement from 'components/ui-components/HeadingElement';
 
-const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation }) => {
+const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, newsSubscriberSetting, siteLabels, homePage, moduleVariation }) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const breakpointColumnsObj = {
@@ -102,7 +102,7 @@ const Variation2 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
             {(news.length > 0 && !homePage) && loadMore()}
           </div>
           {(news.length === 0 && !homePage) && <div>{siteLabels.GENERAL_NO_RECORD}</div>}
-          {newsSettings.subscriber_id !== null && newsSettings.subscriber_id !== '' && !homePage && (
+          {newsSettings.subscriber_id != null && newsSettings.status != 0 && !homePage && (
             <div className="edgtf-column2">
               <div className="edgtf-sidebar">
                 <iframe

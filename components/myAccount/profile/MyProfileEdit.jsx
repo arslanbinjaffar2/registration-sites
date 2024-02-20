@@ -234,7 +234,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
 
     infoObj[`custom_field_id${event.id}`] = custom_field_id;
 
-    console.log(infoObj)
+   
 
     let settings = {
       gdpr: attendeeData.gdpr
@@ -246,8 +246,6 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     if (attendeeData.last_name) attendeeObj.last_name = attendeeData.last_name;
     if (attendeeData.FIRST_NAME_PASSPORT) attendeeObj.FIRST_NAME_PASSPORT = attendeeData.FIRST_NAME_PASSPORT;
     if (attendeeData.LAST_NAME_PASSPORT) attendeeObj.LAST_NAME_PASSPORT = attendeeData.LAST_NAME_PASSPORT;
-    if (attendeeData.BIRTHDAY_YEAR) attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
-    if (attendeeData.EMPLOYMENT_DATE) attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
     if (attendeeData.image) attendeeObj.image = attendeeData.image;
     if (attendeeData.file) attendeeObj.file = attendeeData.file;
     if (attendeeData.attendee_cv) attendeeObj.att_cv = attendeeData.attendee_cv;
@@ -257,6 +255,10 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
       }
       return ack += `${item.label}`
     }, "");
+
+    attendeeObj.BIRTHDAY_YEAR = attendeeData.BIRTHDAY_YEAR;
+    attendeeObj.EMPLOYMENT_DATE = attendeeData.EMPLOYMENT_DATE;
+
 
     const data = {
       attendeeObj,
@@ -389,6 +391,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.BIRTHDAY_YEAR !== '' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00' && attendeeData.BIRTHDAY_YEAR !== '0000-00-00 00:00:00' ? moment(attendeeData.BIRTHDAY_YEAR).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={setting?.is_editable === 1 ? 1 : 0}
                     />
                   )}
                   {setting?.name === 'first_name_passport' && (
@@ -445,6 +448,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.info.date_of_issue_passport !== '' && attendeeData.info.date_of_issue_passport !== '0000-00-00' && attendeeData.info.date_of_issue_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_issue_passport).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={setting?.is_editable === 1 ? 1 : 0}
                     />
                   )}
                   {setting?.name === 'date_of_expiry_passport'&& (
@@ -459,6 +463,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                         attendeeData.info.date_of_expiry_passport !== '' && attendeeData.info.date_of_expiry_passport !== '0000-00-00' && attendeeData.info.date_of_expiry_passport !== '0000-00-00 00:00:00' ? moment(attendeeData.info.date_of_expiry_passport).format('YYYY-MM-DD') : ''
                       }
                       showdate={"YYYY-MM-DD"}
+                      clear={setting?.is_editable === 1 ? 1 : 0}
                     />
                   )}
   
@@ -596,6 +601,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       }}
                       value={attendeeData.EMPLOYMENT_DATE !== '' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00' && attendeeData.EMPLOYMENT_DATE !== '0000-00-00 00:00:00' ? moment(attendeeData.EMPLOYMENT_DATE).format('YYYY-MM-DD') : ''}
                       showdate={"YYYY-MM-DD"}
+                      clear={setting?.is_editable === 1 ? 1 : 0}
                     />
                   )}
                   {setting?.name === 'department' && (
@@ -622,7 +628,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           key: index,
                         };
                       })}
-                      value={attendeeData.country}
+                      value={attendeeData.country != null || attendeeData.country != '' ? attendeeData.country : ''}
                       onChange={(item) => {
                         updateSelect({ item, name: "country" });
                       }}
@@ -742,9 +748,12 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                     />
                   )}
                   {setting?.name === 'pa_country' && (
+                    
                     <Select
                       styles={Selectstyles2}
+                      className={"pa_country"}
                       isDisabled={setting?.is_editable === 1 ? false : true}
+                      
                       placeholder={labels?.private_country}
                       components={{ IndicatorSeparator: null }}
                       options={countries.map((item, index) => {
@@ -754,7 +763,8 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           key: index,
                         };
                       })}
-                      value={attendeeData?.info?.private_country}
+                      //value={attendeeData?.info?.private_country != null || attendeeData?.info?.private_country != '' ? attendeeData?.info?.private_country : ''}
+                      defaultValue={attendeeData?.info?.private_country}
                       onChange={(item) => {
                         updateInfoSelect({ item, name: "private_country" });
                       }}
@@ -829,7 +839,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                           onChange={(e) => {
                             updateAttendeeFeild(e);
                           }}
-                          value={attendeeData.phone}
+                          value={attendeeData.phone} 
                         />
                       </div>
                     </div>

@@ -3,16 +3,21 @@ import moment from 'moment-timezone';
 import Image from 'next/image'
 import PageHeader from 'components/modules/PageHeader';
 import { GATrackEventDocumentDownloadEvent } from '../../helpers/helper';
-const getDirectoryName = (item) => {
-    if (item['name'] !== undefined) return item.name
-    else if (item['Program'] !== undefined) return item.Program
-    else if (item['Speakers'] !== undefined) return item.Speakers
-    else if (item['Sponsors'] !== undefined) return item.Sponsors
-    else if (item['Exhibitors'] !== undefined) return item.Exhibitors
+const getDirectoryName = (item, headings) => {
+    if(headings === undefined && (item['name'] !== undefined)) return item.name
+    else if (item['Program'] !== undefined) return headings.program
+    else if (item['Speakers'] !== undefined) return headings.speakers
+    else if (item['Sponsors'] !== undefined) return headings.sponsors
+    else if (item['Exhibitors'] !== undefined) return headings.exhibitors
     else if (item['Other'] !== undefined) return item.Other
+    else if ((item['name'] !== undefined) && ((item['name'] == 'Program') || (item['name'] == 'Programa') || (item['name'] == 'Programm') || (item['name'] == 'Ohjelma'))) return headings.program
+    else if ((item['name'] !== undefined) && ((item['name'] == 'Speakers') || (item['name'] == 'Talere') || (item['name'] == 'Pavadinimas') || (item['name'] == 'Sprecher') || (item['name'] == encodeURIComponent('H�yttalere')) || (item['name'] == 'Puhujat') || (item['name'] == encodeURIComponent('H�gtalare')))) return headings.speakers
+    else if ((item['name'] !== undefined) && ((item['name'] == 'Sponsors') || (item['name'] == encodeURIComponent('R?m?jai')) || (item['name'] == 'Sponsorer') || (item['name'] == 'Sponsoren') || (item['name'] == 'Sponsorit'))) return headings.sponsors
+    else if ((item['name'] !== undefined) && ((item['name'] == 'Exhibitors') || (item['name'] == 'Udstillere') || (item['name'] == 'Eksponentai') || (item['name'] == 'Utstillere') || (item['name'] == 'Aussteller') || (item['name'] == encodeURIComponent('Utst�llare')) || (item['name'] == encodeURIComponent('N�ytteilleasettajat')))) return headings.exhibitors
+    else if((item['name'] !== undefined)) return item.name
 }
 
-function DocumentsListing({ documents, documentPage, labels, page, eventTimezone }) {
+function DocumentsListing({ documents, documentPage, labels, page, eventTimezone, moduleHeadings }) {
     const [currentDirectory, setCurrentDirectory] = useState(documents);
     const [currentFolder, setCurrentFolder] = useState({});
     const [breadCrumbs, setBreadCrumbs] = useState([{ pid: 0, cid: 0, pname: labels.GENERAL_DOCUMENT }]);
@@ -128,7 +133,7 @@ function DocumentsListing({ documents, documentPage, labels, page, eventTimezone
                                         onClick={() => { onDirectoryClick(item.id) }}
                                     >
                                         <div className="col-6 col-sm-8 col-lg-9">
-                                            <div className="ebs-title" ><i className="material-icons">folder</i>{getDirectoryName(item)}</div>
+                                            <div className="ebs-title" ><i className="material-icons">folder</i>{getDirectoryName(item, moduleHeadings)}</div>
                                         </div>
 
                                         <div className="col-6 col-sm-4 col-lg-3">

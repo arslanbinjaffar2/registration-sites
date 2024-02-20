@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   documents: null,
+  module_headings:null,
   labels: null,
   loading: false,
   error: null,
@@ -16,6 +17,7 @@ export const documentsSlice = createSlice({
     },
     setDocuments: (state, { payload }) => {
       state.documents = payload.data.documents;
+      state.module_headings = payload.data.module_headings;
       state.labels = payload.labels;
       state.loading = false;
     },

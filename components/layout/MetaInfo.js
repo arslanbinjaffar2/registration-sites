@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 
 const pageview = (GA_MEASUREMENT_ID, url) => {
-    if (window !== undefined) {
+    if (typeof window !== undefined) {
         window.gtag("config", GA_MEASUREMENT_ID, {
             page_path: url,
         });
@@ -37,7 +37,7 @@ const MetaInfo = (props) => {
                         <title>{props.metaInfo.name}</title>
                         <meta property="og:title" content={props.metaInfo.name} />
                         <meta property="og:type" content="Event" />
-                        {props.metaInfo.eventsiteSettings && props.metaInfo.eventsiteSettings.search_engine_visibility == 0 &&
+                        {props.metaInfo.eventsite_setting && props.metaInfo.eventsite_setting.search_engine_visibility == 0 &&
                             <meta name="robots" content="noindex"></meta>
                         }
                         <meta
