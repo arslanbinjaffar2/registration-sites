@@ -3459,3 +3459,142 @@
         }
   }
 }
+
+.ebs-floorplan-top-filter {
+  color: $default-heading-color;
+  .list-inline-item {
+    cursor: pointer;
+    .material-icons {
+      color: $default-text-color;
+    }
+    &.active {
+      .material-icons {
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+.ebs-floorplan-bottom-filter {
+  span {
+    cursor: pointer;
+    color: $default-heading-color;
+    .material-icons {
+      display: none;
+    }
+    &.active {
+      padding-left: 40px !important;
+      font-weight: 500;
+      .material-icons {
+        display: block;
+        left: 10px;
+        top: 8px;
+      }
+      color: var(--primary);
+      border-color: var(--primary) !important;
+    }
+  }
+}
+.ebs-floorplan-selected-filter {
+  h5 {
+    color: $default-text-color;
+  }
+  .btn-category {
+    cursor: pointer;
+    color: $default-heading-color;
+    font-weight: 500;
+    margin: 3px 0;
+  }
+  .btn-remove {
+    cursor: pointer;
+    color: $default-heading-color;
+  }
+}
+.ebs-floorplan-filtered-list {
+  .ebs-list-item {
+    h4 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+      color: $default-text-color;
+    }
+    .material-icons {
+      color: $default-heading-color;
+    }
+    > a  {
+      transition: background 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      &:hover {
+        background: var(--primary);
+        color: $white;
+        h4,p,.material-icons {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.mapplic-element mark {
+  padding: 0;
+}
+
+.ebs-mapplic-sidebar {
+  z-index: 99;
+
+  padding: 15px;
+  background: $white;
+  right: 0;
+  top: 0;
+  max-width: 310px;
+  box-shadow: -20px 0 26px rgba($black, 0.08);
+  .ebs-mapplic-accordion {
+    .ebs-category-label {
+      background: $default-elements-background-color;
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: $black;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      cursor: pointer;
+      .category-color {
+        width: 12px;
+        height:  12px;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+    }
+    .ebs-location-wrapper {
+      .ebs-location-label {
+        cursor: pointer;
+        padding: 6px 8px;
+        font-size: 12px;
+        margin-bottom: 5px;
+        color: $black;
+        border-radius: 4px;
+        &:hover {
+          background:rgba($black, 0.04);
+        }
+      }
+    }
+  }
+  &.active {
+      height: 100%;
+  }
+}
+.ebs-category-json {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  em {
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+  }
+}
+.mapplic-tooltip.mapplic-popup {
+  max-height: none !important;
+}
