@@ -62,7 +62,7 @@ const Variation1 = (props) => {
         id,
         cat_type: type,
         title: type === "exhibitor" ? exhibitor.name : sponsor.name,
-        color: firstCategory ? firstCategory.color: "#000000",
+        color: firstCategory ? firstCategory.color == '#ffffff' ? "rgb(var(--primaryrgb))" :firstCategory.color : "rgb(var(--primaryrgb))",
         zoom: "7.5113",
         layer: "first",
         desc: subCategories,
