@@ -55,7 +55,6 @@ const Variation1 = (props) => {
       const subCategories = getSubCategories(pin);
       const categories = type === "exhibitor" ? exhibitor?.categories : sponsor?.categories;
       const firstCategory = categories ? categories[0] : null;
-      console.log(firstCategory)
 
       newJson.locations.push({
         image: categoryImage,
