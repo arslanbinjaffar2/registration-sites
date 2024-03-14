@@ -53,7 +53,7 @@ const CorporateLogin = () => {
             <input type="text" placeholder=' ' value={registrationCode} required onChange={(e)=>{setRegistrationCode(e.currentTarget.value)}} />
             <label className="title">Enter registration code</label>
           </div>
-          <button className="btn btn-default">Access Site</button>
+          <button className="btn btn-default">{event?.labels?.EVENTSITE_REGISTRATION_SUBMIT}</button>
           </form>
         </div>
       </div>
