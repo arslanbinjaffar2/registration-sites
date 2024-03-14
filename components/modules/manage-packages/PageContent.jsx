@@ -30,8 +30,8 @@ const PageContent = ({ isHome }) => {
         <div className="ebs-header-packages">
            <div className="container">
              <div className="ebs-header-content">
-              <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : "Get your tickets"}</h1>
-              <p>{(event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION : "All different packages to register against"}</p>
+              <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : ""}</h1>
+              <p>{(event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION : ""}</p>
              </div>
             </div> 
         </div>
