@@ -281,7 +281,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>Edit profile</h2>
+          <h2>{event.labels.GENERAL_EDIT_PROFILE}</h2>
         </div>
         <form onSubmit={(e) => updateAttendee(e)}>
           <div

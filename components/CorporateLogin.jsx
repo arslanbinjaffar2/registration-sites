@@ -7,6 +7,7 @@ import {
   eventSelector
 } from "store/Slices/EventSlice";
 import { useRouter } from 'next/router';
+import ActiveLink from "./atoms/ActiveLink";
 
 const CorporateLogin = () => {
     const dispatch = useDispatch();
@@ -25,10 +26,23 @@ const CorporateLogin = () => {
       <div className="ebs-corporate-login">
         <div className="ebs-corporate-fields">
           <div className="ebs-event-logo">
-            <img src="https://dev.eventbuizz.com/assets/event/branding/114603_image_1671841641642074350.png" alt="" />
+              <ActiveLink target={event.eventsiteSettings?.third_party_redirect === 0 ? `_self` : '_blank'} href={event.eventsiteSettings?.third_party_redirect === 0 ? `/${event.url}` : event.eventsiteSettings.third_party_redirect_url}>
+                  {event.settings.header_logo ? (
+                      <img
+                          src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
+                          alt=""
+                      />
+                  ) : (
+                      <img
+                          src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
+                          alt=""
+                      />
+                  )}
+
+              </ActiveLink>
           </div>
           <div className="ebs-event-description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              {event?.description?.info?.description}
           </div>
           <form onSubmit={(e)=>{ e.preventDefault(); handleSubmit();}}>
           <div className="ebs-input-field">
@@ -39,7 +53,7 @@ const CorporateLogin = () => {
             <input type="text" placeholder=' ' value={registrationCode} required onChange={(e)=>{setRegistrationCode(e.currentTarget.value)}} />
             <label className="title">Enter registration code</label>
           </div>
-          <button className="btn btn-default">Access Site</button>
+          <button className="btn btn-default">{event?.labels?.EVENTSITE_REGISTRATION_SUBMIT}</button>
           </form>
         </div>
       </div>
