@@ -41,9 +41,9 @@ const CorporateLogin = () => {
 
               </ActiveLink>
           </div>
-          <div className="ebs-event-description">
-              {event?.description?.info?.description}
-          </div>
+          {/*<div className="ebs-event-description">*/}
+          {/*    {event?.description?.info?.description}*/}
+          {/*</div>*/}
           <form onSubmit={(e)=>{ e.preventDefault(); handleSubmit();}}>
           <div className="ebs-input-field">
             <input type="email" placeholder=' ' value={email} required onChange={(e)=>{setEmail(e.currentTarget.value)}} />
