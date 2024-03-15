@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started 
 
 First, run the development server:
-
+`Use npm version  14.15.5`
 ```bash
 npm run dev
 # or
