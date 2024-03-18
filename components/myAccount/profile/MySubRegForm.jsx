@@ -294,13 +294,14 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 }
                               }}
                               className={
-                                subRegResult[`answer${question.id}`] !==
+                                `${subRegResult[`answer${question.id}`] !==
                                   undefined &&
                                 subRegResult[`answer${question.id}`].indexOf(
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""}
+                                  ${answer.disabled ? 'disabled' : ''}`
                               }
                             >
                               <span>{answer.info[0].value}</span>
@@ -446,7 +447,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 value: answer.id,
                                 linkTo: answer.link_to,
                                 key: i,
-                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : false
+                                isDisabled: (answer.tickets !== undefined && answer.tickets <= 0) ? true : (answer.disabled !== undefined && answer.disabled === true) ? true : false
                               }))}
                               disabled={subRegSettings.answer === 1 ? false : true}
                               value={subRegResult[`answer_dropdown${question.id}`] !== undefined && { label:  question.answer.find((answer) => ( answer.id == subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] )).info[0].value , value: subRegResult[`answer_dropdown${question.id}`][0].split('-')[0] }}
@@ -604,13 +605,14 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                                 }
                               }}
                               className={
-                                subRegResult[`answer${question.id}`] !==
+                                `${subRegResult[`answer${question.id}`] !==
                                   undefined &&
                                 subRegResult[`answer${question.id}`].indexOf(
                                   answer.id
                                 ) !== -1
                                   ? "checked"
-                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""
+                                  : (answer.tickets !== undefined &&  (answer.tickets <= 0)) ? 'check-disabled' : ""}
+                                  ${answer.disabled ? 'disabled' : ''} `
                               }
                             >
                               <span>{answer.info[0].value}</span>
