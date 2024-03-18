@@ -17,6 +17,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     .reduce(
       (ack, item) => {
       if(item.question_type === "multiple" && item.result.length > 0){
+        console.log('multiple: ',item.id);
         let newObj ={ [`answer${item.id}`]: item.result.map(item=>(item.answer_id)), [`comments${item.id}`]:item.result[0].comments }
         let agendas = item.answer.filter((filterItem)=>(filterItem.link_to > 0)).reduce((ack, ritem) => {
           if(item.result.map(item=>(item.answer_id)).indexOf(ritem) !== -1){
@@ -31,6 +32,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
         return Object.assign(ack, {...newObj} );
       }
       else if(item.question_type === "single" && item.result.length > 0){
+        console.log('single: ',item.id);
         let newObj ={ [`answer${item.id}`]: [item.result[0].answer_id], [`comments${item.id}`]:item.result[0].comments }
         if(item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to > 0){
           newObj ={...newObj,[`answer_agenda_${item.answer_id}`] : item.answer.find((answer)=>(item.result[0].answer_id === answer.id)).link_to};
@@ -51,8 +53,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       }
       else{
         if(item.result !== undefined && item.result.length > 0){
+          // console.log('else question_type : ',item.id,item.question_type);
           return Object.assign(ack, { [`answer_${item.question_type}${item.id}`]: [item.result[0].answer], [`comments${item.id}`]:item.result[0].comments} );
         }else{
+          console.log('no result : ',item.id,item.question_type);
+          console.log('returning : ',ack);
           return ack;
         }
       }
@@ -91,6 +96,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     agendaId = 0,
     matrixId = 0
   ) => {
+    console.log( 'subRegResult',subRegResult);
+    console.log('feild',feild);
+    console.log('answerId',answerId);
     setValidationErrors({})
     if (type === "multiple") {
       if(settings.favorite_session_registration_same_time != 1 && agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
@@ -158,9 +166,11 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
           });
     }
     else if (type === "single") {
+      console.log('object keys: ',Object.keys(subRegResult));
+      // console.log(subRegResult, 'subRegResult');
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
+          [feild]: subRegResult[feild] ? (subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId]) : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
