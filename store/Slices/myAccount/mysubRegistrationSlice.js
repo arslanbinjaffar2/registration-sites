@@ -7,6 +7,7 @@ const initialState = {
   updating:false,
   error:null,
   alert:null,
+  limitErrors:[],
 }
 
 export const eventSlice = createSlice({
@@ -33,11 +34,19 @@ export const eventSlice = createSlice({
     setLoading: (state, { payload }) => {
       state.loading = payload
     },
+    setLimitErrors: (state, { payload }) => {
+      if(payload == undefined || payload == null){
+        state.limitErrors = []
+      }else{
+        state.limitErrors = payload
+      }
+      console.log('limitErrors: ',state.limitErrors);
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setUpdating, setLoading } = eventSlice.actions
+export const { getSubRegistrationData, setSubRegistrationData, setError, setAlert, setUpdating, setLoading,setLimitErrors } = eventSlice.actions
 
 export const mySubRegistrationSelector = state => state.mySubRegistration
 
@@ -64,13 +73,19 @@ export const updateSubRegistrationData = (id, url, data) => {
       dispatch(setUpdating(true));
       dispatch(setAlert(null));
       dispatch(setError(null));
+      dispatch(setLimitErrors(null));
       try {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${url}/save-sub-registration`, data,{ headers:header("POST", id)})
         console.log(response);
         if(response.data.data.status){
           dispatch(setAlert(response.data.data.message))
         }else{
-          dispatch(setError(response.data.data.message));
+          if(response.data.data.limit_errors){
+            dispatch(setLimitErrors(response.data.data.limit_errors));
+            dispatch(setError("Couldn't Update Subregistration"));
+          }else{
+            dispatch(setError(response.data.data.message));
+          }
         }
         dispatch(setUpdating(false));
       } catch (error) {
