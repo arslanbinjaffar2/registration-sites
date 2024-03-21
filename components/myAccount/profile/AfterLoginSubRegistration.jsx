@@ -16,7 +16,7 @@ const AfterLoginSubRegistration = (props) => {
 
   const dispatch = useDispatch();
 
-  const { subRegistration, skip, loading, updating, alert, error } = useSelector(subRegistrationSelector);
+  const { subRegistration, skip, loading, updating, alert, error,limitErrors } = useSelector(subRegistrationSelector);
 
   const router = useRouter();
 
@@ -35,7 +35,7 @@ const AfterLoginSubRegistration = (props) => {
             <h2>{event.labels.EVENTSITE_QUESTIONAIRS_MAIN}</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-            <SubRegForm subRegistration={subRegistration} event={event} afterLogin={true} updating={updating} alert={alert} error={error} />
+            <SubRegForm subRegistration={subRegistration} event={event} afterLogin={true} updating={updating} alert={alert} error={error} limitErrors={limitErrors} />
           </div>
         </div>
       </div>) : <PageLoader />
