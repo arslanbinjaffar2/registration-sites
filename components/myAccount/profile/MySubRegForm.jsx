@@ -6,10 +6,11 @@ import Select from "react-select";
 import SimpleReactValidator from "simple-react-validator";
 import {
   updateSubRegistrationData,
+  setLimitErrors,
 } from "store/Slices/myAccount/mysubRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
+const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitErrors }) => {
   const dispatch = useDispatch();
   const [programs, setPrograms] = useState(subRegistration.all_programs);
   const [settings, setSettings] = useState(subRegistration.settings);
@@ -58,7 +59,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       }
     },{}));
   const [subRegId] = useState(subRegistration.questions.id);
-  const [questions] = useState(
+  const [questions,setQuestions] = useState(
     subRegistration.questions.question
   );
   const [optionals] = useState(
@@ -92,6 +93,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     matrixId = 0
   ) => {
     setValidationErrors({})
+    clearLimitErrorForQuestion(questionId);
     if (type === "multiple") {
       if(settings.favorite_session_registration_same_time != 1 && agendaId !== 0 && subRegResult[feild] !== undefined && subRegResult[feild].length > 0){
         let selectedProgram = programs.find((item)=>(item.id == agendaId))
@@ -160,7 +162,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
+          [feild]: subRegResult[feild] ? (subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId]) : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
@@ -261,6 +263,62 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
       }
   }
 
+  function isAllAnswersDisabled(questionId){
+    // Check if all answers are disabled for the question
+    const question = questions.find((item) => item.id === questionId);
+    if(question === undefined) return false;
+    const allAnswers = question.answer;
+    const disabledAnswers = allAnswers.filter((answer) => answer.disabled);
+    return allAnswers.length === disabledAnswers.length;
+  }
+
+  function showLimitError(questionId){
+    // limitErrors is an array of objects with question_id and message
+    if(limitErrors == undefined || limitErrors.length === 0) return;
+    let error = limitErrors.find((item)=>(item.question_id == questionId));
+    if(error !== undefined){
+      return <p className="error-message">{error.message}</p>
+    }
+  }
+
+  function clearLimitErrorForQuestion(questionId){
+    if(!limitErrors || limitErrors.length === 0) return;
+    // Clear the limit error for the question
+    dispatch(setLimitErrors(limitErrors.filter((item)=>(item.question_id !== questionId))));
+  } 
+
+  React.useEffect(() => {
+    // Return early if limitErrors is undefined or empty
+    if (!limitErrors || limitErrors.length === 0) return;
+
+    const newSubRegResult = { ...subRegResult };
+    limitErrors.forEach(({ question_id, answer_id }) => {
+      // Remove keys from the new subRegResult object based on limitErrors
+      delete newSubRegResult[`answer${question_id}`];
+    });
+
+    // Update questions only if necessary, to reduce unnecessary operations
+    const newQuestions = questions.map((question) => {
+      const errorForQuestion = limitErrors.find(error => error.question_id === question.id);
+      // Proceed only if there's an error for the current question
+      if (errorForQuestion) {
+        // Update the answers for the question based on the error
+        const newAnswers = question.answer.map((answer) => {
+          if (answer.id === errorForQuestion.answer_id) {
+            return { ...answer, disabled: true };
+          }
+          return answer;
+        });
+        return { ...question, answer: newAnswers };
+      }
+      return question;
+    });
+
+    // Update state with the modified results
+    setSubRegResult(newSubRegResult);
+    setQuestions(newQuestions);
+  }, [limitErrors]); 
+
   return (
     <React.Fragment>
       <div
@@ -308,8 +366,9 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             </label>
                             </div>
                           ))}
-                          {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
+                          {Number(question.required_question) === 1 && !isAllAnswersDisabled(question.id) && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
                           {validationErros[question.id] !== undefined &&  <p className="error-message">{validationErros[question.id]}</p>}
+                          {showLimitError(question.id)}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
                               <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
@@ -461,7 +520,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                               }}
                             />
                           </div>
-                          {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_dropdown${question.id}`] !== undefined ? true : null, 'required')}
+                          {Number(question.required_question) === 1 && !isAllAnswersDisabled(question.id) && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_dropdown${question.id}`] !== undefined ? true : null, 'required')}
+                          {showLimitError(question.id)}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
                               <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
@@ -619,7 +679,8 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error }) => {
                             </label>
                             </div>
                           ))}
-                          {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
+                          {Number(question.required_question) === 1 && !isAllAnswersDisabled(question.id) && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer${question.id}`] !== undefined ? true : null, 'required')}
+                          {showLimitError(question.id)}
                           {Number(question.enable_comments) === 1 && (
                             <div className="generic-form">
                               <p>{event.labels.GENERAL_YOUR_COMMENT}</p>
