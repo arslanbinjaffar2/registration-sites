@@ -313,6 +313,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     limitErrors.forEach(({ question_id, answer_id }) => {
       // Remove keys from the new subRegResult object based on limitErrors
       delete newSubRegResult[`answer${question_id}`];
+      delete newSubRegResult[`answer_dropdown${question_id}`];
     });
 
     // Update questions only if necessary, to reduce unnecessary operations
@@ -322,7 +323,9 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
       if (errorForQuestion) {
         // Update the answers for the question based on the error
         const newAnswers = question.answer.map((answer) => {
-          if (answer.id === errorForQuestion.answer_id) {
+          // because dropdown answer format is like 1234-0
+          let errorAnswerId = parseInt(errorForQuestion.answer_id.split('-')[0]);
+          if (answer.id === errorAnswerId) {
             return { ...answer, disabled: true };
           }
           return answer;
