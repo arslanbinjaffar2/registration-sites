@@ -14,7 +14,7 @@ const MySubRegistration = () => {
     useEffect(() => {
       dispatch(fetchSubRegistrationData(event.id, event.url));
     }, []);
-    const { subRegistration, loading, updating, alert, error, } = useSelector(mySubRegistrationSelector);
+    const { subRegistration, loading, updating, alert, error,limitErrors } = useSelector(mySubRegistrationSelector);
 
     if(loading){
       return <PageLoader/>;
@@ -26,7 +26,7 @@ const MySubRegistration = () => {
             <h2>{event.labels.EVENTSITE_QUESTIONAIRS_MAIN}</h2>
           </div>
           <div className="wrapper-inner-content network-category-sec">
-            {subRegistration !== null ? <MySubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error}  /> : 
+            {subRegistration !== null ? <MySubRegForm subRegistration={subRegistration} event={event} updating={updating} alert={alert} error={error} limitErrors={limitErrors}  /> : 
               <div>
                {event.labels.GENERAL_NO_RECORD ? event.labels.GENERAL_NO_RECORD : " You have no answers yet..."}
               </div>
