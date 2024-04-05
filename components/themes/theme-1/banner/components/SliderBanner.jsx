@@ -25,7 +25,7 @@ const SliderBanner = (props) => {
     onInit: () => {
       if (divRef.current) {
       const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${0}"] video`);
-      if (hasVideo) {
+      if (hasVideo[0] && hasVideo !== undefined) {
         // Slide contains a video, handle it accordingly
         hasVideo[0].play();
         videoRef.current.slickPause();
@@ -41,7 +41,7 @@ const SliderBanner = (props) => {
     afterChange: (index) => {
     // Check if the slide contains a video element
     const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${index}"] video`);
-    if (hasVideo) {
+      if (hasVideo[0] && hasVideo !== undefined) {
       // Slide contains a video, handle it accordingly
       hasVideo[0].play();
       videoRef.current.slickPause();
