@@ -96,7 +96,7 @@ export const updateSubRegistrationData = (id, url, data) => {
         dispatch(setSkip());
       }
       if(response.data.data.status){
-        dispatch(setAlert(response.data.data.message))
+      dispatch(setAlert(response.data.data.message))
       }else{
         if(response.data.data.limit_errors){
           dispatch(setLimitErrors(response.data.data.limit_errors));
