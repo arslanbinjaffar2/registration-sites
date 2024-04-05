@@ -324,7 +324,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
         // Update the answers for the question based on the error
         const newAnswers = question.answer.map((answer) => {
           // because dropdown answer format is like 1234-0
-          let errorAnswerId = parseInt(String(errorForQuestion.answer_id).split('-')[0]);
+          let errorAnswerId = parseInt(String (errorForQuestion.answer_id.split('-')[0]));
           if (answer.id === errorAnswerId) {
             return { ...answer, disabled: true };
           }
