@@ -13,6 +13,28 @@ const Completionist = ({ labels }) =>
 const SliderBanner = (props) => {
   const videoRef = React.useRef()
   const divRef = React.useRef()
+   useEffect(() => {
+    if (videoRef.current) {
+      // Get the slick-initialized event element
+      const slickInitialized = divRef.current.querySelector('.slick-initialized');
+      if (slickInitialized) {
+        // Callback function when React Slick finishes initializing
+      if (divRef.current) {
+      const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${0}"] video`);
+      if (hasVideo[0] && hasVideo !== undefined) {
+        // Slide contains a video, handle it accordingly
+        hasVideo[0].play();
+        videoRef.current.slickPause();
+          hasVideo[0].addEventListener('ended', () => {
+          // Video has finished playing, do something
+        videoRef.current.slickPlay();
+        })
+        
+        } 
+      }
+      }
+    }
+  }, []);
   var settings = {
     dots: true,
     fade: true,
@@ -22,22 +44,6 @@ const SliderBanner = (props) => {
     slidesToScroll: 1,
     draggable: false,
     adaptiveHeight: true,
-    onInit: () => {
-      if (divRef.current) {
-      const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${0}"] video`);
-      if (hasVideo[0] && hasVideo !== undefined) {
-        // Slide contains a video, handle it accordingly
-        hasVideo[0].play();
-        videoRef.current.slickPause();
-          hasVideo[0].addEventListener('ended', () => {
-          // Video has finished playing, do something
-        videoRef.current.slickNext();
-        videoRef.current.slickPlay();
-        })
-        
-        } 
-      }
-    },
     afterChange: (index) => {
     // Check if the slide contains a video element
     const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${index}"] video`);
@@ -47,7 +53,6 @@ const SliderBanner = (props) => {
       videoRef.current.slickPause();
         hasVideo[0].addEventListener('ended', () => {
         // Video has finished playing, do something
-       videoRef.current.slickNext();
        videoRef.current.slickPlay();
       })
       
