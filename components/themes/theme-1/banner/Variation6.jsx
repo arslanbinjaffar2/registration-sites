@@ -44,7 +44,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                 )}
                 {Number(slides.video_type) === 1 && (
                   <figure className="ebs-classic-figure">
-                    <img src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
+                    <img alt={settings.title === 1 && slides.info.title.length > 0 ? slides.info.title : ''} src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                   </figure>
                 )}
                 {((settings.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
