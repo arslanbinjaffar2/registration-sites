@@ -11,6 +11,8 @@ const Completionist = ({ labels }) =>
 
 
 const SliderBanner = (props) => {
+  const videoRef = React.useRef()
+  const divRef = React.useRef()
   var settings = {
     dots: true,
     fade: true,
@@ -20,6 +22,20 @@ const SliderBanner = (props) => {
     slidesToScroll: 1,
     draggable: false,
     adaptiveHeight: true,
+    afterChange: (index) => {
+    // Check if the slide contains a video element
+    const hasVideo = divRef.current.querySelectorAll(`.slick-slide[data-index="${index}"] video`);
+      if (hasVideo[0] && hasVideo !== undefined) {
+      // Slide contains a video, handle it accordingly
+      hasVideo[0].play();
+      videoRef.current.slickPause();
+        hasVideo[0].addEventListener('ended', () => {
+        // Video has finished playing, do something
+       videoRef.current.slickPlay();
+      })
+      
+      } 
+    },
     responsive: [
       {
         breakpoint: 1200,
@@ -67,22 +83,9 @@ const SliderBanner = (props) => {
       );
     }
   };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", function (e) {
-  //       var scrolled = window.pageYOffset;
-  //       const background = document.querySelectorAll(".parallax-backgroud");
-  //       for (let i = 0; i < background.length; i++) {
-  //         const element = background[i];
-  //         element.style.backgroundPosition = `50%  ${(scrolled * 0.2)}px`;
-
-  //       }
-  //     });
-  // }, [])
-
   return (
-    <div className={`banner-wrapper ${props.countdown !== null && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
-      <Slider {...settings}>
+    <div ref={divRef} className={`banner-wrapper ${props.countdown !== null && 'countdown'} ${props.fullscreen && 'slider-fullscreen'}`}>
+      <Slider ref={videoRef} {...settings}>
         {props.children}
       </Slider>
       {props.countdown !== null && props.countdown.has_multiple_form != true && props.countdown.form_registration_end_date != '' && (
