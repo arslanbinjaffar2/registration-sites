@@ -94,12 +94,12 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 															"/assets/exhibitors/" +
 															exhibitor.logo
 														}
-														alt="Client 11"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												) : (
 													<Image objectFit='contain' layout="fill"
 														src={require('public/img/exhibitors-default.png')}
-														alt="x"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												)
 											}
