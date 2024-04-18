@@ -142,44 +142,52 @@ const Variation1 = ({ exhibitor, labels, documents, moduleName, eventTimezone })
                         style={{ marginBottom: 20 }}
                         className="edge-info-row"
                       >
-                        <div className="social-icons">
+                        <ul className="social-icons list-inline">
                           {exhibitor.facebook.replace(/^https?:\/\//, "") && (
-                            <a
-                              style={{ fontSize: "30px" }}
-                              target="_blank" rel="noreferrer"
-                              href={`${exhibitor?.facebook}`}
-                            >
-                              <span data-icon="&#xe0aa;"></span>
-                            </a>
+                            <li className="list-inline-item">
+                              <a
+                                style={{ fontSize: "30px" }}
+                                target="_blank" rel="noreferrer"
+                                href={`${exhibitor?.facebook}`}
+                              >
+                                <span data-icon="&#xe0aa;"><span className="d-none">Facebook</span></span>
+                              </a>
+                            </li>
                           )}
                           {exhibitor.twitter.replace(/^https?:\/\//, "") && (
-                            <a
-                              style={{ fontSize: "30px" }}
-                              target="_blank" rel="noreferrer"
-                              href={`${exhibitor?.twitter}`}
-                            >
-                              <span data-icon="&#xe0ab;"></span>
-                            </a>
+                             <li className="list-inline-item">
+                              <a
+                                style={{ fontSize: "30px" }}
+                                target="_blank" rel="noreferrer"
+                                href={`${exhibitor?.twitter}`}
+                              >
+                                <span data-icon="&#xe0ab;"><span className="d-none">Twitter</span></span>
+                              </a>
+                            </li>
                           )}
                           {exhibitor.linkedin.replace(/^https?:\/\//, "")  && (
-                            <a
-                              style={{ fontSize: "30px" }}
-                              target="_blank" rel="noreferrer"
-                              href={`${exhibitor?.linkedin}`}
-                            >
-                              <span data-icon="&#xe0b4;"></span>
-                            </a>
+                             <li className="list-inline-item">
+                              <a
+                                style={{ fontSize: "30px" }}
+                                target="_blank" rel="noreferrer"
+                                href={`${exhibitor?.linkedin}`}
+                              >
+                                <span data-icon="&#xe0b4;"><span className="d-none">linkedin</span></span>
+                              </a>
+                            </li>
                           )}
                           {exhibitor.website.replace(/^https?:\/\//, "") && (
-                            <a
-                              style={{ fontSize: "30px" }}
-                              target="_blank" rel="noreferrer"
-                              href={`${exhibitor?.website}`}
-                            >
-                              <span data-icon="&#xe0e3;"></span>
-                            </a>
+                            <li className="list-inline-item">
+                             <a
+                               style={{ fontSize: "30px" }}
+                               target="_blank" rel="noreferrer"
+                               href={`${exhibitor?.website}`}
+                             >
+                               <span data-icon="&#xe0e3;"><span className="d-none">Website</span></span>
+                             </a>
+                           </li>
                           )}
-                        </div>
+                        </ul>
                       </div>
                     </div>
                   </div>

@@ -106,14 +106,14 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 														"/assets/sponsors/" +
 														sponsor.logo
 													}
-													alt="Client 11"
+													alt={sponsor.name || 'sponsors'}
 												/>
 											) : (
 												<Image objectFit='contain' layout="fill"
 													onMouseDown={e => handleOnMouseDown(e)}
 													onClick={e => handleOnClick(e, sponsor)}
 													src={require('public/img/exhibitors-default.png')}
-													alt="Client 11"
+													alt={sponsor.name || 'sponsors'}
 												/>
 											)}
 										</span>
