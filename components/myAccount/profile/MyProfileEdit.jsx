@@ -279,7 +279,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
     <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>{event.labels.GENERAL_EDIT_PROFILE}</h2>
+          <h1>{event.labels.GENERAL_EDIT_PROFILE}</h1>
         </div>
         <form onSubmit={(e) => updateAttendee(e)}>
           <div
@@ -517,15 +517,16 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                       <label>
                         {((attendeeData && attendeeData?.attendee_cv && attendeeData?.attendee_cv !== "")) ? (
                           <>
-                            {(typeof attendeeData.attendee_cv === 'string')  ? <a className="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
+                            {(typeof attendeeData.attendee_cv === 'string')  ? <a target="_blank" rel="noreferrer" className="attendee_cv_link" href={process.env.NEXT_APP_EVENTCENTER_URL + '/event/' + event.url +'/settings/downloadResume/' + attendeeData?.attendee_cv}>
+                              <span className="d-none">{attendeeLabels?.ATTENDEE_RESUME}</span>
                               <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
-                                '/_admin_assets/images/pdf512.png'}`} alt="" />
+                                '/_admin_assets/images/pdf512.png'}`} alt="PDF" />
                             </a> : <img style={{borderRadius:0}} src={`${process.env.NEXT_APP_EVENTCENTER_URL +
-                                '/_admin_assets/images/pdf512.png'}`} alt="" />
+                                '/_admin_assets/images/pdf512.png'}`} alt="PDF" />
                             }
                           </>
                         ) : (
-                          <img src="https://via.placeholder.com/155.png" alt="" />
+                          <img src="https://via.placeholder.com/155.png" alt="PDF" />
                         )}
                         {setting?.is_editable === 1 && (
                           <>

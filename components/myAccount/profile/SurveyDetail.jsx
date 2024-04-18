@@ -30,7 +30,7 @@ const SurveyDetail = ({ match }) => {
     surveyDetail ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>{survey ? survey?.info?.name : 'Surveys'}</h2>
+          <h1>{survey ? survey?.info?.name : 'Surveys'}</h1>
         </div>
         <div className="wrapper-inner-content network-category-sec">
           <SurveyForm surveyDetail={surveyDetail} event={event} surveyResults={surveyResult} survey_id={id} updating={updating} />

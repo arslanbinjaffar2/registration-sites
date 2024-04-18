@@ -54,7 +54,7 @@ const MyBilling = () => {
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header text-center">
-            <h2>{event.labels.MY_REGISTRATION_INVOICE}</h2>
+            <h1>{event.labels.MY_REGISTRATION_INVOICE}</h1>
           </div>
           {invoice && (
             <>
