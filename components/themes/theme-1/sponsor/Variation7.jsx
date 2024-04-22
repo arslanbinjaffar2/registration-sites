@@ -91,7 +91,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 														"/assets/sponsors/" +
 														sponsor.logo
 													}
-													alt="Client 11"
+													alt={sponsor.name || 'sponsors'}
 												/>
 											) : (
 												<Image objectFit='contain' layout="fill"
@@ -100,7 +100,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 													src={
 														require('public/img/exhibitors-default.png')
 													}
-													alt="Client 11"
+													alt={sponsor.name || 'sponsors'}
 												/>
 											)}
 										</span>

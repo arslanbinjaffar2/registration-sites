@@ -118,9 +118,9 @@ const ExhibitorListing = ({ exhibitors, exhibitorCategories, labels, eventUrl, s
                       <ActiveLink href={exhibitor.url.replace(/^https?:\/\//, "") != "" ? exhibitor.url : `/${eventUrl}/exhibitors/${exhibitor.id}`} >
                         <figure>
                           {exhibitor.logo && exhibitor.logo ? (
-                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt="" />
+                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo} alt={exhibitor.name || 'exhibitor'} />
                           ) : (
-                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt="" />
+                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt={exhibitor.name || 'exhibitor'} />
                           )}
                         </figure>
                       </ActiveLink>

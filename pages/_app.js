@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <React.Fragment>
       {_eventObj.loading && <FullPageLoader className="fixed" />}
-      <div style={{ transform: 'none' }} id="App">
+      <main style={{ transform: 'none' }} id="App">
         <Provider store={store}>
           {_eventObj.event && (
             <>
@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }) {
               <Component {...pageProps} />
            </ErrorBoundary>
         </Provider>
-      </div>
+      </main>
     </React.Fragment>
   );
 }

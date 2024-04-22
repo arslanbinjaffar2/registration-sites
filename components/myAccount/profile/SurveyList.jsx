@@ -19,7 +19,7 @@ const SurveyList = () => {
     surveyList ? <div className="edgtf-container ebs-my-profile-area pb-5">
       <div className="edgtf-container-inner container">
         <div className="ebs-header">
-          <h2>{event.labels.EVENTSITE_TAB_SURVEY}</h2>
+          <h1>{event.labels.EVENTSITE_TAB_SURVEY}</h1>
         </div>
         <div className="wrapper-inner-content network-category-sec">
           <div className="ebs-survey-heading d-flex">
