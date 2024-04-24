@@ -78,6 +78,7 @@ const Variation2 = ({event, siteLabels}) => {
                                         ))}
                                     </div>
                                 }
+                                {(event?.show_organizer_detail && event?.show_organizer_detail == 1) ? (
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_FOUR}</h5>
                                     <p>{event?.organizer_name}</p>
@@ -89,6 +90,7 @@ const Variation2 = ({event, siteLabels}) => {
                                         </div>
                                     )}
                                 </div>
+                                 ) :null}
                             </div>
                         </div>
                     </div>
