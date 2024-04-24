@@ -103,7 +103,7 @@ const Variation1 = (props) => {
         <div className="mb-4">
           <div className="row align-items-center">
             <div className="col-md-5">
-              <h3>Floor plan</h3>
+              <h1 className="h3">Floor plan</h1>
             </div>
             <div className="col-md-7 d-flex justify-content-end align-items-center">
               <div className="ebs-form-control-search">

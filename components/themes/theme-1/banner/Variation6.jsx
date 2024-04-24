@@ -44,7 +44,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                 )}
                 {Number(slides.video_type) === 1 && (
                   <figure className="ebs-classic-figure">
-                    <img src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
+                    <img alt={settings.title === 1 && slides.info.title.length > 0 ? slides.info.title : ''} src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                   </figure>
                 )}
                 {((settings.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
@@ -53,14 +53,14 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                       className="parallax-text"
                     >
                       {slides.info.title && settings.title === 1 && (
-                        <div style={{color:  slides?.title_color ? slides?.title_color : "#fff"}} className="ebs-banner-title">
+                        <h2 style={{color:  slides?.title_color ? slides?.title_color : "#fff"}} className="ebs-banner-title m-0">
                           {slides.info.title}
-                        </div>
+                        </h2>
                       )}
                       {slides.info.message && settings.caption === 1 && (
-                        <div style={{color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff"}} className="ebs-banner-subtitle">
+                        <h3 style={{color:  slides?.sub_title_color ? slides?.sub_title_color : "#fff"}} className="ebs-banner-subtitle m-0">
                           {slides.info.message}
-                        </div>
+                        </h3>
                       )}
                       {settings.register_button === 1 && registerDateEnd  && <div className="ebs-custom-button-holder">
                         <a href={regisrationUrl} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}</a>

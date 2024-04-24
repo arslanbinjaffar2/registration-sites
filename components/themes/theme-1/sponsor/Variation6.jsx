@@ -27,13 +27,13 @@ const Variation6 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
                                         <img
                                             src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
                                             className="vc_single_image-img attachment-full"
-                                            alt="x"
+                                            alt={sponsor.name || 'sponsors'}
                                         />
                                     ) : (
                                         <Image objectFit='contain' layout="fill"
                                             src={require('public/img/exhibitors-default.png')}
                                             className="vc_single_image-img attachment-full"
-                                            alt="x"
+                                            alt={sponsor.name || 'sponsors'}
                                         />
                                     )}
                                 </figure>

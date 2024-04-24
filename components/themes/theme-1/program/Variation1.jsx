@@ -34,10 +34,10 @@ function SamplePrevArrow(props) {
 const customStyles = {
   control: base => ({
     ...base,
-    height: 38,
-    minHeight: 38,
+    height: 45,
+    minHeight: 45,
     backgroundColor: '#FBFDFF',
-    borderColor: '#E9EDF0',
+    borderColor: '#444',
     width: '100%',
     maxWidth: '100%',
   })

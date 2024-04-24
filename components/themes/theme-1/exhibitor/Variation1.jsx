@@ -28,13 +28,13 @@ const Variation1 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 											<img
 												src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/exhibitors/" + exhibitor.logo}
 												className="vc_single_image-img attachment-full"
-												alt="x"
+												alt={exhibitor.name || "Exhibitor"}
 											/>
 										) : (
 											<Image objectFit='contain' layout="fill"
 												src={require('public/img/exhibitors-default.png')}
 												className="vc_single_image-img attachment-full"
-												alt="x"
+												alt={exhibitor.name || "Exhibitor"}
 											/>
 										)
 									}

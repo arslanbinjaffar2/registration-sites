@@ -149,12 +149,12 @@ class Variation3 extends React.Component {
                   {event.settings.header_logo ? (
                     <img
                       src={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`}
-                      alt=""
+                      alt={event.name}
                     />
                   ) : (
                     <img
                       src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`}
-                      alt=""
+                      alt={event.name}
                     />
                   )}
                 </ActiveLink>
