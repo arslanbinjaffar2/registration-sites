@@ -43,6 +43,7 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 	}, [])
 	
 	return (
+		<>
 		<div data-fixed="true" className="main-slider-wrapper ebs-transparent-box">
 			{banner && <SliderBanner
 				countdown={null} //{dateTime}
@@ -83,6 +84,13 @@ const Variation1 = ({ event, banner, countdown, regisrationUrl, settings, regist
 				)}
 			</SliderBanner>}
 		</div>
+		{settings.register_button === 1 && registerDateEnd  && <div  className='ebs-mobile-register-button py-4 d-flex align-items-center justify-content-center'>
+			<div className="edgtf-custom-font-holder ebs-custom-button-holder"
+				style={{ marginTop: '0', fontSize: '26px', lineHeight: '37px', fontWeight: '400', letterSpacing: '0px', textAlign: 'left', color: '#444' }}>
+				<a href={regisrationUrl} style={{ fontFamily: 'Rubik', marginRight: '0', fontSize: '15px', fontWeight: '500', background: 'transparent', border: '2px solid #444', color: '#444', padding: '17px 48px 15px' }} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}</a>
+			</div>
+		</div>}
+		</>
 	)
 }
 

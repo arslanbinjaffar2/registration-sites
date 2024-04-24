@@ -333,6 +333,12 @@
     }
   }
 }
+.ebs-mobile-register-button {
+  display: none !important;
+  @include phone-landscape {
+    display: flex !important;
+  }
+}
 .timer-wrapper {
   position: absolute;
   left: 0;
