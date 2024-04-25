@@ -77,13 +77,13 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 className="attachment-full size-full wp-post-image"
                                 width="1500"
                                 height="500"
-                                alt="g"
+                                alt="Post Image"
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src=""
-                                alt="g"
+                                alt="Post Image"
                               />
                             )}
                           </a>
@@ -136,14 +136,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                   width="40"
                                   style={{ border: "none !important" }}
                                 />
-                              </a>
-                              <a
-                                href={`${process.env.NEXT_APP_EVENTCENTER_URL}/assets/${informationModules[moduleName]}/${detail.pdf}`}
-                                className="link_infobooth"
-                                target="_blank" rel="noreferrer"
-                                download
-                              >
-                                <span>View Document</span>
+                                <span className="ps-2">View Document</span>
                               </a>
                             </div>
                           )}
@@ -163,13 +156,13 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 className="attachment-full size-full wp-post-image"
                                 width="1500"
                                 height="500"
-                                alt="g"
+                                alt="Post Image"
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src=""
-                                alt="g"
+                                alt="Post Image"
                               />
                             )}
                           </a>

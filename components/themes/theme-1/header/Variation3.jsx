@@ -234,6 +234,8 @@ class Variation3 extends React.Component {
                                       <a
                                         className="nav-link"
                                         aria-current="page"
+                                        target="_blank"
+                                        rel="noreferrer" 
                                         href={menu.url}
                                       >
                                          <span className="ebs-nav-item">

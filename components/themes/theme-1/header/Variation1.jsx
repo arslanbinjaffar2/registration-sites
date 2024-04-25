@@ -239,6 +239,8 @@ class Variation1 extends React.Component {
                             <a
                               className="nav-link"
                               aria-current="page"
+                              target="_blank"
+                              rel="noreferrer" 
                               href={menu.url}
                             >
                               {menu.module}
