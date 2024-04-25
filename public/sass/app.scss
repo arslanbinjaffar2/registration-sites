@@ -333,6 +333,12 @@
     }
   }
 }
+.ebs-mobile-register-button {
+  display: none !important;
+  @include phone-landscape {
+    display: flex !important;
+  }
+}
 .timer-wrapper {
   position: absolute;
   left: 0;
@@ -2687,7 +2693,7 @@
 }
 .gallery-img-wrapper-rectangle {
   padding-bottom: 67%;
-  background-color: rgba($lightbackground,0.8);
+  background-color: var(--secondary);
   box-shadow: 0 0 3px rgba($black, 0.08) inset;
   cursor: pointer;
 
