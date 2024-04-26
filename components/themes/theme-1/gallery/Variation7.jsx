@@ -52,7 +52,7 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                                     onLoad={(e) => e.target.style.opacity = 1}
                                     style={{ width: "100%" }}
                                     src={require("public/img/gallery-not-found.png")}
-                                    alt="g"
+                                    alt={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                                   />
                                 )}
                               </div>
@@ -61,9 +61,11 @@ const Variation7 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                               <div className="edgtf-iwt-text-table">
                                 <div className="edgtf-iwt-text-cell">
                                   {photo.info && (
-                                    <h3 className="edgtf-iwt-title">
-                                      {photo.info.title !== undefined && photo.info.title}
-                                    </h3>
+                                    <>
+                                     {photo.info.title && <h3 className="edgtf-iwt-title">
+                                        {photo.info.title !== undefined && photo.info.title}
+                                      </h3>}
+                                    </>
                                   )}
                                 </div>
                               </div>

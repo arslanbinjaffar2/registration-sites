@@ -39,7 +39,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                     >
                       {({ ref, open }) => (
                         <div style={{ animationDelay: 50 * i + 'ms' }} ref={ref} onClick={open} className="edgtf-gallery-image ebs-animation-layer" >
-                          <span title="home-2-gallery-img-1" className="gallery-img-wrapper-rectangle">
+                          <span title={`${photo.info && photo.info.title !== undefined && photo.info.title}`} className="gallery-img-wrapper-rectangle">
                             {photo.image && photo.image !== "" ? (
                               <img
                                 onLoad={(e) => e.target.style.opacity = 1}
@@ -50,7 +50,7 @@ const Variation5 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                               <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={require("public/img/gallery-not-found.png")}
-                                alt="g"
+                                alt={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                               />
                             )}
                           </span>

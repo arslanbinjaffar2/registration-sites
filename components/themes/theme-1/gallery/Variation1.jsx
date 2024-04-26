@@ -52,7 +52,7 @@ const Variation1 = ({ photos, settings, loadMore, home, eventUrl, sitelabels, to
                               <Image objectFit='contain' layout="fill"
                                 onLoad={(e) => e.target.style.opacity = 1}
                                 src={require("public/img/gallery-not-found.png")}
-                                alt="g"
+                                alt={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                               />
                             )}
                           </span>
