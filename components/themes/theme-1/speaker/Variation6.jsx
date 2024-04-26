@@ -115,7 +115,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <li className="list-inline-item">
                                 <a
                                   target="_blank" rel="noreferrer"
-                                  aria-label="Facebook"
+                                  aria-label="Facebook (opens in new window)"
                                   href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
                                 >
                                   <span data-icon="&#xe0aa;"></span>
@@ -126,7 +126,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <li className="list-inline-item">
                                 <a
                                   target="_blank" rel="noreferrer"
-                                  aria-label="X"
+                                  aria-label="X (opens in new window)"
                                   href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
                                 >
                                   <span data-icon="&#xe0ab;"></span>
@@ -137,7 +137,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <li className="list-inline-item">
                                 <a
                                   target="_blank" rel="noreferrer"
-                                  aria-label="Linkedin"
+                                  aria-label="Linkedin (opens in new window)"
                                   href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
                                 >
                                   <span data-icon="&#xe0b4;"></span>
@@ -148,7 +148,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <li className="list-inline-item">
                                 <a
                                   target="_blank" rel="noreferrer"
-                                  aria-label="Website"
+                                  aria-label="Website (opens in new window)"
                                   href={`${speaker.info.website_protocol}${speaker.info.website}`}
                                 >
                                   <span data-icon="&#xe0e3;"></span>
