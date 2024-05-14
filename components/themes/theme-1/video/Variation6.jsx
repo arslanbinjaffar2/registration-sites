@@ -85,15 +85,6 @@ const NormalVideo = ({photo}) => {
        alt={`${photo.info && photo.info.title !== undefined && photo.info.title}`}
      />
    );
- } else {
-  return (
-   <Image objectFit='contain' layout="fill"
-     onLoad={(e) => e.target.style.opacity = 1}
-     style={{ width: "100%", height: '100%', objectFit: 'cover' }}
-     src={require("public/img/gallery-not-found.png")}
-     alt="g"
-   />
-  )
  }
 };
 
@@ -128,7 +119,7 @@ const Variation6 = ({settings, videos, loadMore, eventUrl, home, siteLabels, tot
                               {Number(photo.type) === 1 && <DailyMotion photo={photo} />}
                               {Number(photo.type) === 2 && <Vimeo photo={photo} />}
                               {Number(photo.type) === 3 && <YouTubeVideo photo={photo} />}
-                              {Number(photo.type) === 4 || Number(photo.type) === 5  && <NormalVideo photo={photo} />}
+                              {(Number(photo.type) === 4 || Number(photo.type) === 5)  && <NormalVideo photo={photo} />}
                             </div>
                             <div className="edgtf-item-text-overlay">
                               <div className="edgtf-item-text-overlay-inner">

@@ -24,12 +24,14 @@ const Videopopup = ({ onClose, photo }) => {
       }
     }
   }, [])
-
   return (
     <div onClick={onClose} className="wrapper-popup">
       <div onClick={(e) => e.stopPropagation()} className="container-popup">
-        {Number(photo.type) === 4 || Number(photo.type) === 5 && <div className="ebs-video-wrapper">
+        {Number(photo.type) === 5 && <div className="ebs-video-wrapper">
           <video controls playsInline  autoPlay src={photo.video_path && process.env.NEXT_APP_EVENTCENTER_URL + "/assets/videos/" + photo.video_path} width='100%' height="540px"></video>
+        </div>}
+        {Number(photo.type) === 4 && <div className="ebs-video-wrapper">
+          <video controls playsInline  autoPlay src={photo.URL} width='100%' height="540px"></video>
         </div>}
         {Number(photo.type) === 3 && <div className="ebs-video-wrapper">
         <iframe width="560" height="315" src={`https://www.youtube.com/embed/${Youtube(photo.URL)}?controls=1&autoplay=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen autoPlay></iframe>

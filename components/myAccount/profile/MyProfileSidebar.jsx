@@ -122,11 +122,11 @@ const MyProfileSidebar = (props) => {
                   process.env.NEXT_APP_EVENTCENTER_URL +
                   "/assets/attendees/" +
                   attendee?.image
-                } alt="" />
+                } alt="Image" />
               ) : (
                 <Image objectFit='contain' width="26" layout="fill" className="ebs-image-solid" src={
                   require("public/img/square.jpg")
-                } alt="" />
+                } alt="Image" />
               )}
             </span>
             {!toggleMenu && <i style={{fontSize: 16}} className="material-icons ml-2">expand_more</i>}

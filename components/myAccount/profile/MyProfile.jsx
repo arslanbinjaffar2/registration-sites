@@ -24,7 +24,7 @@ const MyProfile = () => {
       <div className="edgtf-container ebs-my-profile-area pb-5">
         <div className="edgtf-container-inner container">
           <div className="ebs-header">
-            <h2>{event.labels.EVENTSITE_MY_PROFILE}</h2>
+            <h1>{event.labels.EVENTSITE_MY_PROFILE}</h1>
             {edit_profile_setting.create_profile == '1' && (
 
             <ActiveLink className='btn-link' href={`/${event.url}/profile/edit`}>{event.labels.GENERAL_EDIT_PROFILE}</ActiveLink>
@@ -42,13 +42,13 @@ const MyProfile = () => {
                             process.env.NEXT_APP_EVENTCENTER_URL +
                             "/assets/attendees/" +
                             attendee.image
-                          } alt="" />
+                          } alt="Profile Image" />
                         </div>
                       ) : (
                         <div className="ebs-image-wrapper-profile">
                           <Image objectFit='contain' layout="fill" className="ebs-image-solid" src={
                             require("public/img/square.jpg")
-                          } alt="" />
+                          } alt="Profile Image" />
                         </div>
                       )}
                       <div className="ebs-my-profile-detail">
@@ -64,11 +64,11 @@ const MyProfile = () => {
                       </div>
                     </div>
                     <div className="ebs-profile-social-media">
-                      <div className="ebs-profile-media-icons">
-                        {(attendee.info && attendee.info.facebook) && <a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><Image src={require('public/img/ico-facebook.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.twitter) && <a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><Image src={require('public/img/ico-twitter.svg')} alt="" /></a>}
-                        {(attendee.info && attendee.info.linkedin) && <a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image src={require('public/img/ico-linkedin.svg')} alt="" /></a>}
-                      </div>
+                      <ul className="ebs-profile-media-icons">
+                        {(attendee.info && attendee.info.facebook) && <li className="list-inline-item m-0"><a href={`${attendee.info.facebook_protocol}${attendee.info.facebook}`}><Image src={require('public/img/ico-facebook.svg')} alt="Facebook" /></a></li>}
+                        {(attendee.info && attendee.info.twitter) && <li className="list-inline-item m-0"><a href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}><Image src={require('public/img/ico-twitter.svg')} alt="Twitter" /></a></li>}
+                        {(attendee.info && attendee.info.linkedin) && <li className="list-inline-item m-0"><a href={`${attendee.info.linkedin_protocol}${attendee.info.linkedin}`}><Image src={require('public/img/ico-linkedin.svg')} alt="linkedin" /></a></li>}
+                      </ul>
                       <div className="ebs-profile-social-links">
                         {attendee.phone && <div className="ebs-profile-social-links-row align-items-center pb-2">
                           <em class="material-icons fs-5">phone_iphone</em><span>{attendee.phone}</span>

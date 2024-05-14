@@ -130,7 +130,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 }}
                               >
                                 <img
-                                  alt=""
+                                  alt="Pdf"
                                   className="infoBoothImage"
                                   src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/pdf.png`}
                                   width="40"

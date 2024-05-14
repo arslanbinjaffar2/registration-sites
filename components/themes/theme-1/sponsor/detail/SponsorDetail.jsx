@@ -37,14 +37,14 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         style={{ maxWidth: '90%', width: 'auto' }}
                         onLoad={(e) => e.target.style.opacity = 1}
                         src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor?.logo}
-                        alt=""
+                        alt={sponsor?.name || "Sponsor"}
                       />
                     ) : (
                       <Image objectFit='contain' layout="fill"
                         style={{ maxWidth: '90%', width: 'auto' }}
                         onLoad={(e) => e.target.style.opacity = 1}
                         src={require('public/img/exhibitors-default.png')}
-                        alt=""
+                        alt={sponsor?.name || "Sponsor"}
                       />
                     )}
                   </span>

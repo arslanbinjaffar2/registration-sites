@@ -187,6 +187,16 @@ const MetaInfo = (props) => {
                         />
                     </React.Fragment>
                 )}
+
+                {props.metaInfo.settings?.third_party_header_script !== undefined && props.metaInfo.settings?.third_party_header_script && props.cookie !== null && props.cookie == "all" && (
+                    <React.Fragment>
+                        <script id='third_party_header_script' dangerouslySetInnerHTML={{
+                            __html: props.metaInfo.settings?.third_party_header_script
+                            }}
+
+                        />
+                    </React.Fragment>
+                )}
             </Head>
         </>
     )
