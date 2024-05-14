@@ -2174,7 +2174,6 @@
 }
 .module-section.ebs-program-listing-wrapper {
   overflow: hidden;
-  background-color: white;
 }
 .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -3045,6 +3044,7 @@
 
 .footer {
   padding: 2rem 0;
+  background: $white;
   &#ebs-footer {
     color: $black;
     font-size: 14px;
