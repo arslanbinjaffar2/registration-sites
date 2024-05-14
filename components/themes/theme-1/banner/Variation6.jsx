@@ -66,14 +66,14 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                         <a href={regisrationUrl} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}</a>
                       </div>}
                     </div>
-                  </div>
-                </div>}
-              </WrapperLayout>
-            </div>
-          ))}
-        </SliderBanner>
-      )}
-    </div>
+                    </div>
+                  </div>}
+                </WrapperLayout>
+              </div>
+            ))}
+          </SliderBanner>
+        )}
+      </div>
   );
 };
 

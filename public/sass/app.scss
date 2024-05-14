@@ -333,6 +333,12 @@
     }
   }
 }
+.ebs-mobile-register-button {
+  display: none !important;
+  @include phone-landscape {
+    display: flex !important;
+  }
+}
 .timer-wrapper {
   position: absolute;
   left: 0;
@@ -2168,7 +2174,6 @@
 }
 .module-section.ebs-program-listing-wrapper {
   overflow: hidden;
-  background-color: white;
 }
 .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -3039,6 +3044,7 @@
 
 .footer {
   padding: 2rem 0;
+  background: $white;
   &#ebs-footer {
     color: $black;
     font-size: 14px;
