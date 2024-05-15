@@ -17,9 +17,9 @@ const Index = (props) => {
     const { id, event_id, email, confirm, already_done } = router.query;
 
     const onConfirm = async () => {
-        const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${event.url}/attendee-not-attending`, { id, event_id, email, confirm: 1 });
+        const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee`, { id, event_id, email, confirm: 1 });
         if (response.data.success) {
-            if (response.data.data.already_done == 1) {
+            if (response.data?.data?.already_done == 1) {
                 router.push(`/${event.url}/attendee_not_attending?id=${id}&event_id=${event_id}&email=${email}&confirm=1&already_done=1`);
             } else {
                 router.push(`/${event.url}/attendee_not_attending?id=${id}&event_id=${event_id}&email=${email}&confirm=1`);
