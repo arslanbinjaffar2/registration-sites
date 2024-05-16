@@ -133,28 +133,24 @@
 .full-height-banners {
   height: 100vh;
   background-size: cover !important;
-  background-color: rgba($black, 0.2);
   background-blend-mode: overlay;
 }
 .ebs-header-height-1 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp,
 .ebs-header-height-1 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp {
   height: calc(100vh - 72px);
   min-height: 550px;
-  background-color: rgba($black, 0.2);
   background-blend-mode: overlay;
 }
 .ebs-header-height-2 + .ebs-banner-full-height.main-slider-wrapper .banner-wrapper.countdown .inner-caption-wrapp,
 .ebs-header-height-2 + .main-slider-wrapper .banner-wrapper.slider-fullscreen .inner-caption-wrapp  {
   height: calc(100vh - 146px);
   min-height: 550px;
-  background-color: rgba($black, 0.2);
   background-blend-mode: overlay;
 }
 .banner-wrapper {
   position: relative;
   .background {
     background-size: cover;
-    background-color: rgba($black, 0.2);
     background-blend-mode: overlay;
     &.ebs-no-opacity {
       background-blend-mode: normal;
@@ -335,6 +331,12 @@
     @include phone-landscape {
       display: none !important;
     }
+  }
+}
+.ebs-mobile-register-button {
+  display: none !important;
+  @include phone-landscape {
+    display: flex !important;
   }
 }
 .timer-wrapper {
@@ -2691,7 +2693,7 @@
 }
 .gallery-img-wrapper-rectangle {
   padding-bottom: 67%;
-  background-color: rgba($lightbackground,0.8);
+  background-color: var(--secondary);
   box-shadow: 0 0 3px rgba($black, 0.08) inset;
   cursor: pointer;
 
