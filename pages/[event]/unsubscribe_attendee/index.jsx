@@ -37,19 +37,19 @@ const Index = (props) => {
         }
     }
 
-    // useEffect(async () => {
-    //     if(event) {
-    //         const response = await axios.get(
-    //             `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
-    //         );
-    //         if (response.data.success) {
-    //             router.push(`/${event.url}`);
-    //         } else {
-    //             setError(response.data.message)
-    //         }
-    //     }
+    useEffect(async () => {
+        if(event) {
+            const response = await axios.get(
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
+            );
+            if (response.data.success) {
+                router.push(`/${event.url}`);
+            } else {
+                setError(response.data.message)
+            }
+        }
         
-    // }, [event]);
+    }, [event]);
 
     const onCancel = () => {
         if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
