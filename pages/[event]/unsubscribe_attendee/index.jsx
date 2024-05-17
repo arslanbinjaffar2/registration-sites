@@ -37,19 +37,28 @@ const Index = (props) => {
         }
     }
 
-    useEffect(async () => {
+    useEffect(() => {
+        getData();
+    }, [event]);
+
+    async function getData() {
         if(event) {
             const response = await axios.get(
                 `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
             );
+            console.log('response:', response);
             if (response.data.success) {
-                router.push(`/${event.url}`);
+                if(response.data?.data?.attendee_found) {
+
+                }else{
+                    router.push(`/${event.url}`);
+                    // setError('Attendee not found');
+                }
             } else {
                 setError(response.data.message)
             }
         }
-        
-    }, [event]);
+    }
 
     const onCancel = () => {
         if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
