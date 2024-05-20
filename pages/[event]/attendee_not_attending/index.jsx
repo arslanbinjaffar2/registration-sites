@@ -17,6 +17,7 @@ const Index = (props) => {
     const { id, event_id, email, confirm, already_done } = router.query;
 
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onConfirm = async () => {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee`, { id, event_id, email, confirm: 1 });
@@ -43,10 +44,11 @@ const Index = (props) => {
 
     async function getData() {
         if(event) {
+            setLoading(true);
             const response = await axios.get(
                 `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
             );
-            console.log('response:', response);
+            setLoading(false);
             if (response.data.success) {
                 if(response.data?.attendee_found) {
 
@@ -68,39 +70,43 @@ const Index = (props) => {
             {event ? (
                 <MasterLayoutRoute event={event}>
                     <div style={{ height: "90vh" }}>
-                        <div className="not-attending-popup">
-                            {error && (
-                                <>
-                                {error}
-                                </>
-                            )}
-                            {!error && (confirm === undefined) && <div className="ebs-not-attending-fields">
-                                <div className="ebs-not-attending-heading">
-                                    {event.labels.EVENTSITE_BILLING_CONFIRMATION !== undefined ? event.labels.EVENTSITE_BILLING_CONFIRMATION : "Confirmation"}
-                                </div>
-                                <div className="ebs-event-description">
-                                    {event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG !== undefined ? event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG : "Are you sure you want cancel coming to the event."}
-                                </div>
-                                <div className='btn-container' >
-                                    <button className="btn btn-default" onClick={(e) => { onConfirm(); }}>
-                                        {event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN !== undefined ? event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN : "Confirm"}
-                                    </button>
-                                    <button className="btn btn-default" onClick={(e) => { onCancel(); }}>
-                                        {event.labels.GENERAL_CANCEL !== undefined ? event.labels.GENERAL_CANCEL : "Cancel"}
-                                    </button>
-                                </div>
-                            </div>}
-                            {
-                                !error && (confirm !== undefined && confirm == 1) && <div className="alert alert-success text-center" style={{ minWidth: "500px" }}>
-                                    {(already_done !== undefined && already_done == 1) ? <div className=" success-message">
-                                        {event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN : "You have already given you feedback"}
-                                    </div> : <div className=" success-message">
-                                        {event.labels.EVENTSITE_UNSUBSCRIBE_THANK !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK : "Are you sure you want cancel coming to the event."}
+                        {loading ? (
+                            <PageLoader />
+                        ):(
+                            <div className="not-attending-popup">
+                                {error && (
+                                    <>
+                                    {error}
+                                    </>
+                                )}
+                                {!error && (confirm === undefined) && <div className="ebs-not-attending-fields">
+                                    <div className="ebs-not-attending-heading">
+                                        {event.labels.EVENTSITE_BILLING_CONFIRMATION !== undefined ? event.labels.EVENTSITE_BILLING_CONFIRMATION : "Confirmation"}
                                     </div>
-                                    }
-                                </div>
-                            }
-                        </div>
+                                    <div className="ebs-event-description">
+                                        {event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG !== undefined ? event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG : "Are you sure you want cancel coming to the event."}
+                                    </div>
+                                    <div className='btn-container' >
+                                        <button className="btn btn-default" onClick={(e) => { onConfirm(); }}>
+                                            {event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN !== undefined ? event.labels.EVENTSITE_NOT_ATTENDING_CONFIRM_BTN : "Confirm"}
+                                        </button>
+                                        <button className="btn btn-default" onClick={(e) => { onCancel(); }}>
+                                            {event.labels.GENERAL_CANCEL !== undefined ? event.labels.GENERAL_CANCEL : "Cancel"}
+                                        </button>
+                                    </div>
+                                </div>}
+                                {
+                                    !error && (confirm !== undefined && confirm == 1) && <div className="alert alert-success text-center" style={{ minWidth: "500px" }}>
+                                        {(already_done !== undefined && already_done == 1) ? <div className=" success-message">
+                                            {event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN : "You have already given you feedback"}
+                                        </div> : <div className=" success-message">
+                                            {event.labels.EVENTSITE_UNSUBSCRIBE_THANK !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK : "Are you sure you want cancel coming to the event."}
+                                        </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        )}
                     </div>
                 </MasterLayoutRoute>
             ) : (
