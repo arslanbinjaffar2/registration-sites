@@ -19,6 +19,7 @@ const Index = (props) => {
     const { id, event_id, email } = router.query;
 
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onConfirm = async () => {
         const response = await axios.post(
@@ -43,9 +44,11 @@ const Index = (props) => {
 
     async function getData() {
         if(event) {
+            setLoading(true);
             const response = await axios.get(
                 `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
             );
+            setLoading(false);
             if (response.data.success) {
                 if(response.data?.attendee_found) {
 
@@ -77,7 +80,10 @@ const Index = (props) => {
                 <MasterLayoutRoute event={event}>
                     <div style={{ height: "90vh" }}>
                         <div className="not-attending-popup">
-                            <div className="ebs-not-attending-fields">
+                            {loading ? (
+                                <PageLoader />
+                            ):(
+                                <div className="ebs-not-attending-fields">
                                 <div className="ebs-not-attending-heading">
                                     {error ? (
                                         <>{event.labels.REGISTRATION_SITE_HEADER_ALERT !== undefined ? event.labels.REGISTRATION_SITE_HEADER_ALERT : "Error"}</>
@@ -102,7 +108,8 @@ const Index = (props) => {
                                         </button>
                                     </div>
                                 )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </MasterLayoutRoute>
