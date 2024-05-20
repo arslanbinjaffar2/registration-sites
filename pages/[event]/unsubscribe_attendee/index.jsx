@@ -37,19 +37,27 @@ const Index = (props) => {
         }
     }
 
-    // useEffect(async () => {
-    //     if(event) {
-    //         const response = await axios.get(
-    //             `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
-    //         );
-    //         if (response.data.success) {
-    //             router.push(`/${event.url}`);
-    //         } else {
-    //             setError(response.data.message)
-    //         }
-    //     }
-        
-    // }, [event]);
+    useEffect(() => {
+        getData();
+    }, [event]);
+
+    async function getData() {
+        if(event) {
+            const response = await axios.get(
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
+            );
+            if (response.data.success) {
+                if(response.data?.attendee_found) {
+
+                }else{
+                    // router.push(`/${event.url}`);
+                    setError(response.data?.message);
+                }
+            } else {
+                setError(response.data?.message)
+            }
+        }
+    }
 
     const onCancel = () => {
         if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {

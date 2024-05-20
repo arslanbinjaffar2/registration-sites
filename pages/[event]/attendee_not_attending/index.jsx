@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { eventSelector } from "store/Slices/EventSlice";
 import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
@@ -15,6 +15,8 @@ const Index = (props) => {
     const { event } = useSelector(eventSelector);
     const router = useRouter();
     const { id, event_id, email, confirm, already_done } = router.query;
+
+    const [error, setError] = useState('');
 
     const onConfirm = async () => {
         const response = await axios.post(`${process.env.NEXT_APP_URL}/event/${event.url}/unsubscribe-attendee`, { id, event_id, email, confirm: 1 });
@@ -35,6 +37,29 @@ const Index = (props) => {
         router.push(`/${event.url}`);
     }
 
+    useEffect(() => {
+        getData();
+    }, [event]);
+
+    async function getData() {
+        if(event) {
+            const response = await axios.get(
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
+            );
+            console.log('response:', response);
+            if (response.data.success) {
+                if(response.data?.attendee_found) {
+
+                }else{
+                    // router.push(`/${event.url}`);
+                    setError(response.data?.message);
+                }
+            } else {
+                setError(response.data?.message)
+            }
+        }
+    }
+
     return (
         <>
 
@@ -44,7 +69,12 @@ const Index = (props) => {
                 <MasterLayoutRoute event={event}>
                     <div style={{ height: "90vh" }}>
                         <div className="not-attending-popup">
-                            {(confirm === undefined) && <div className="ebs-not-attending-fields">
+                            {error && (
+                                <>
+                                {error}
+                                </>
+                            )}
+                            {!error && (confirm === undefined) && <div className="ebs-not-attending-fields">
                                 <div className="ebs-not-attending-heading">
                                     {event.labels.EVENTSITE_BILLING_CONFIRMATION !== undefined ? event.labels.EVENTSITE_BILLING_CONFIRMATION : "Confirmation"}
                                 </div>
@@ -61,7 +91,7 @@ const Index = (props) => {
                                 </div>
                             </div>}
                             {
-                                (confirm !== undefined && confirm == 1) && <div className="alert alert-success text-center" style={{ minWidth: "500px" }}>
+                                !error && (confirm !== undefined && confirm == 1) && <div className="alert alert-success text-center" style={{ minWidth: "500px" }}>
                                     {(already_done !== undefined && already_done == 1) ? <div className=" success-message">
                                         {event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN !== undefined ? event.labels.EVENTSITE_UNSUBSCRIBE_THANK_AGAIN : "You have already given you feedback"}
                                     </div> : <div className=" success-message">
