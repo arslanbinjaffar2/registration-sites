@@ -46,16 +46,15 @@ const Index = (props) => {
             const response = await axios.get(
                 `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
             );
-            console.log('response:', response);
             if (response.data.success) {
-                if(response.data?.data?.attendee_found) {
+                if(response.data?.attendee_found) {
 
                 }else{
-                    router.push(`/${event.url}`);
-                    // setError('Attendee not found');
+                    // router.push(`/${event.url}`);
+                    setError(response.data?.message);
                 }
             } else {
-                setError(response.data.message)
+                setError(response.data?.message)
             }
         }
     }
