@@ -1,35 +1,16 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from "react";
+import SliderBanner_2 from "./components/SliderBanner_2";
 
-const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
-
-  let data = banner ? banner[0] : [];
-
-  const _parallax = useRef(null);
-
+const TypeWriter = ({slides,handlepauseSlide, handlechangeSlide, innerRef}) => {
+  const _typewrtiterdiv = React.useRef();
   useEffect(() => {
-    if(typeof window !== 'undefined'){
+    if (typeof window !== "undefined") {
       setTimeout(() => {
         typeWriter();
-      }, 5000);
-      window.addEventListener("scroll", scollEffect);
+      }, 2000);
     }
-    return () => {
-      window.removeEventListener("scroll", scollEffect);
-    }
-
-  }, [])
-
-  function scollEffect() {
-    const scrolled = window.pageYOffset;
-    const itemOffset = _parallax.current.offsetTop;
-    const itemHeight = _parallax.current.getBoundingClientRect();
-    if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-    const _scroll = (scrolled - itemOffset) + itemHeight.height;
-      _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
-  };
-
+  }, []);
   const typeWriter = () => {
-
     function write(obj, sentence, i, cb) {
       if (i !== sentence.length) {
         setTimeout(function () {
@@ -57,8 +38,6 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
       }
     }
 
-    var typeline = document.querySelector("#typewriter");
-
     function writeerase(obj, sentence, time, cb) {
       write(obj, sentence, 0, function () {
         setTimeout(function () {
@@ -68,156 +47,300 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
     }
 
     // var sentences = ["Parties", "Lectures"];
-    var sentences = (data && data.info) ? data.info.message.split(" ") : [];
+    var sentences =
+      slides && slides.info
+        ? slides.info.message.split(" ")
+        : [];
 
     var counter = 0;
 
     function loop() {
       var sentence = sentences[counter % sentences.length];
-      typeline && writeerase(typeline, sentence, 1500, loop);
+      _typewrtiterdiv.current && writeerase(_typewrtiterdiv.current, sentence, 1500, loop);
+        if ((counter % sentences.length) === 0) {
+          innerRef.current.slickPause();
+        }
+        if (((counter % sentences.length)+1) === sentences.length) {
+          console.log(sentence);
+          innerRef.current.slickPlay();
+        }
       counter++;
     }
 
     loop();
   };
-
-  const WrapperLayout = (props) => {
-    const _bgLayer = (props.data?.info?.title.length > 0 && settings.title === 1) || (props.data?.info?.message.length > 0 && settings.caption === 1);
-
-    if (props.data && Number(props.data.video_type) === 1) {
-      return (
-        <div
-          data-fixed="true"
-          ref={_parallax}
-          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`,
-          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
-          }}
-          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
-        >
-        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
-              {props.children}
-            </a >: props.children}
-        </div>
-      );
-    } else if (props.data && Number(props.data.video_type) === 2) {
-      return (
-        <div
-          data-fixed="true"
-          ref={_parallax}
-          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`, position: 'relative',
-          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
-          }}
-          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
-        >
-        <div className="video-fullscreen">
-          <video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${props.data.image}`} type="video/mp4"></video>
-        </div>  
-        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
-              {props.children}
-            </a >: props.children}
-        </div>
-      );
-    }
-     else {
-      return (
-          <div
-            data-fixed="true"
-            ref={_parallax}
-            className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
-          >
-            
-            {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
-              {props.children}
-            </a >: props.children}
-          </div>
-      );
-    }
-
-  }
-	useEffect(() => {
-		if (window.innerWidth >= 991) {
-			const elem = document.getElementById("ebs-header-master");
-			if (elem && elem.nextSibling.dataset) {
-				elem.classList.remove("ebs-light-header");
-				var _nextSibling = elem.nextSibling.dataset.fixed;
-				if (_nextSibling === 'true') {
-					elem.classList.add('ebs-fixed-header');
-				} else {
-					elem.classList.add('ebs-light-header');
-				}
-			}
-		}
-	}, [])
   return (
-    <React.Fragment>
-      <WrapperLayout
-        data={data}
+    <div
+      className="edgtf-custom-font-holder ebs-banner-title"
+      style={{
+        fontFamily: "Rubik",
+        fontSize: "127px",
+        lineHeight: "127px",
+        fontWeight: "500",
+        letterSpacing: "1.3px",
+        textTransform: "uppercase",
+        textAlign: "left",
+        color: "#fff",
+        minHeight: 151,
+      }}
+    >
+      <div
+        ref={_typewrtiterdiv}
+        style={{
+          color: slides?.sub_title_color
+            ? slides?.sub_title_color
+            : "#fff",
+        }}
+      ></div>
+      <span
+        style={{
+          animation: "blink .7s infinite",
+          color: slides?.sub_title_color
+            ? slides?.sub_title_color
+            : "#fff",
+        }}
+        className="typed-cursor"
       >
-        <div className="container">
-          <div className="row d-flex">
-            <div
-              style={{ height: "100vh", padding: "5% 15px" }}
-              className="col-12 align-items-center d-flex"
-            >
-              <div style={{ position: "relative", width: '100%' }} className="parallax-text">
-                <div
-                  className="edgtf-custom-font-holder ebs-banner-title"
-                  style={{
-                    fontFamily: "Rubik",
-                    fontSize: "127px",
-                    lineHeight: "127px",
-                    fontWeight: "500",
-                    letterSpacing: "1.3px",
-                    textTransform: "uppercase",
-                    textAlign: "left",
-                    color: "#ec008c",
-                  }}
-                >
-                  <span style={{ color:  data?.title_color ? data?.title_color : "#fff" }}>
-                    {" "}
-                    {data && data.info && settings.title === 1
-                      && data.info.title}
-                  </span>
-                </div>
-                {data.info.message && settings.caption === 1 && <div
-                  className="edgtf-custom-font-holder ebs-banner-title"
-                  style={{
-                    fontFamily: "Rubik",
-                    fontSize: "127px",
-                    lineHeight: "127px",
-                    fontWeight: "500",
-                    letterSpacing: "1.3px",
-                    textTransform: "uppercase",
-                    textAlign: "left",
-                    color: "#fff",
-                    minHeight: 151
-                  }}
-                >
-                  <div style={{ color:  data?.sub_title_color ? data?.sub_title_color : "#fff" }}  id="typewriter"></div>
-                  <span  style={{ animation: 'blink .7s infinite', color:  data?.sub_title_color ? data?.sub_title_color : "#fff" }} className="typed-cursor">_</span>
-                </div>}
-                {/* <div
-                    className="edgtf-custom-font-holder ebs-banner-subtitle"
-                    style={{
-                      marginTop: "15px",
-                      fontSize: "26px",
-                      lineHeight: "37px",
-                      fontWeight: "400",
-                      letterSpacing: "0px",
-                      textAlign: "left",
-                      color: "#ffffff",
-                    }}
-                  >
-                    {data && data.info ? data.info.message : ""}
-                  </div> */}
+        _
+      </span>
+    </div>
+  );
+};
 
+
+const Variation2 = ({
+  event,
+  banner,
+  countdown,
+  regisrationUrl,
+  settings,
+  registerDateEnd,
+}) => {
+  const  [change, setChange] = React.useState(0);
+  const [slideIndex, setslideIndex] = React.useState(0);
+  const [sldiePause, setsldiePause] = React.useState(null);
+  const childRef = React.useRef();
+  const WrapperLayout = (props) => {
+    const _bgLayer =
+      (props.slides.info?.title.length > 0 && settings.title === 1) ||
+      (props.slides.info?.message.length > 0 && settings.caption === 1) ||
+      settings.register_button === 1;
+
+    if (props.slides && Number(props.slides.video_type) === 1) {
+      return (
+        <div
+          style={{
+            backgroundImage: `url(${
+              process.env.NEXT_APP_EVENTCENTER_URL + props.slides.image
+            })`,
+            backgroundPosition: "50% 0",
+            backgroundBlendMode: _bgLayer ? "overlay" : "normal",
+          }}
+          className={`background  ${!_bgLayer && "ebs-no-opacity"}`}
+        >
+          {props.slides.url ? (
+            <a href={props.slides.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a>
+          ) : (
+            props.children
+          )}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          style={{
+            backgroundPosition: "50% 0",
+            backgroundBlendMode: _bgLayer ? "overlay" : "normal",
+          }}
+          className={`background  ${!_bgLayer && "ebs-no-opacity"}`}
+        >
+          {props.slides.url ? (
+            <a href={props.slides.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a>
+          ) : (
+            props.children
+          )}
+        </div>
+      );
+    }
+  };
+  
+  useEffect(() => {
+    if (window.innerWidth >= 991) {
+      const elem = document.getElementById("ebs-header-master");
+      if (elem && elem.nextSibling.dataset) {
+        elem.classList.remove("ebs-light-header");
+        var _nextSibling = elem.nextSibling.dataset.fixed;
+        if (_nextSibling === "true") {
+          elem.classList.add("ebs-fixed-header");
+        } else {
+          elem.classList.add("ebs-light-header");
+        }
+      }
+    }
+  }, []);
+  const handleIndex = (ind) => {
+    setslideIndex(ind)
+  } 
+  const handlepauseSlide = (ind) => {
+    setsldiePause(ind);
+  }; 
+  const handlechangeSlide = (ind) => {
+    setChange(ind);
+  }; 
+
+  return (
+    <>
+      <div
+        data-fixed="true"
+        className="main-slider-wrapper ebs-transparent-box"
+      >
+        {banner && (
+          <SliderBanner_2
+            countdown={null} //{dateTime}
+            registerDateEnd={registerDateEnd} //{dateTime}
+            changeSlide={change}
+            pauseSlide={sldiePause}
+            slideIndex={handleIndex}
+            innerRef={childRef}
+            fullscreen
+            eventsiteSettings={event.eventsiteSettings}
+          >
+            {banner.map((slides, i) => (
+              <div key={i} className="slide-wrapper">
+                <WrapperLayout slides={slides}>
+                  {Number(slides.video_type) === 2 && (
+                    <div className="video-fullscreen">
+                      <video
+                        muted
+                        src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`}
+                        type="video/mp4"
+                      ></video>
+                    </div>
+                  )}
+                  <div className="caption-wrapp">
+                    <div className="col-12 align-items-center d-flex inner-caption-wrapp">
+                      <div
+                        style={{ position: "relative" }}
+                        className="parallax-text"
+                      >
+                        {slides.info.title && settings.title === 1 && (
+                          <div
+                            className="edgtf-custom-font-holder ebs-banner-title"
+                            style={{
+                              fontFamily: "Rubik",
+                              fontSize: "127px",
+                              lineHeight: "127px",
+                              fontWeight: "500",
+                              letterSpacing: "1.3px",
+                              textTransform: "uppercase",
+                              color: "#ec008c",
+                            }}
+                          >
+                            <span
+                              style={{
+                                color: slides?.title_color
+                                  ? slides?.title_color
+                                  : "#fff",
+                              }}
+                            >
+                              {" "}
+                              {slides.info.title}{" "}
+                            </span>
+                          </div>
+                        )}
+                        {slides.info.message &&
+                          settings.caption === 1 &&
+                          slideIndex === i && (
+                            <TypeWriter
+                              innerRef={childRef}
+                              handlepauseSlide={handlepauseSlide}
+                              handlechangeSlide={handlechangeSlide}
+                              slides={slides}
+                            />
+                          )}
+                        {settings.register_button === 1 && registerDateEnd && (
+                          <div
+                            className="edgtf-custom-font-holder ebs-custom-button-holder"
+                            style={{
+                              marginTop: "40px",
+                              fontSize: "26px",
+                              lineHeight: "37px",
+                              fontWeight: "400",
+                              letterSpacing: "0px",
+                              textAlign: "left",
+                              color: "#ffffff",
+                            }}
+                          >
+                            <a
+                              href={regisrationUrl}
+                              style={{
+                                fontFamily: "Rubik",
+                                marginRight: "0",
+                                fontSize: "15px",
+                                fontWeight: "500",
+                                background: "transparent",
+                                border: "2px solid #fff",
+                                color: "#fff",
+                                padding: "17px 48px 15px",
+                              }}
+                              className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"
+                            >
+                              {event.labels.EVENTSITE_REGISTER_NOW2
+                                ? event.labels.EVENTSITE_REGISTER_NOW2
+                                : "Register Now"}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </WrapperLayout>
               </div>
-            </div>
+            ))}
+          </SliderBanner_2>
+        )}
+      </div>
+      {settings.register_button === 1 && registerDateEnd && (
+        <div className="ebs-mobile-register-button py-4 d-flex align-items-center justify-content-center">
+          <div
+            className="edgtf-custom-font-holder ebs-custom-button-holder"
+            style={{
+              marginTop: "0",
+              fontSize: "26px",
+              lineHeight: "37px",
+              fontWeight: "400",
+              letterSpacing: "0px",
+              textAlign: "left",
+              color: "#444",
+            }}
+          >
+            <a
+              href={regisrationUrl}
+              style={{
+                fontFamily: "Rubik",
+                marginRight: "0",
+                fontSize: "15px",
+                fontWeight: "500",
+                background: "transparent",
+                border: "2px solid #444",
+                color: "#444",
+                padding: "17px 48px 15px",
+              }}
+              className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color"
+            >
+              {event.labels.EVENTSITE_REGISTER_NOW2
+                ? event.labels.EVENTSITE_REGISTER_NOW2
+                : "Register Now"}
+            </a>
           </div>
         </div>
-      </WrapperLayout>
-    </React.Fragment>
-  )
-}
+      )}
+    </>
+  );
+};
 
-export default Variation2
+export default Variation2;
