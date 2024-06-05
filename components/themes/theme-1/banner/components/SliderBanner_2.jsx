@@ -23,6 +23,8 @@ const SliderBanner_2 = (props) => {
     autoplaySpeed: 5000,
     draggable: false,
     adaptiveHeight: true,
+    pauseOnHover: false,
+    pauseOnFocus: false,
     beforeChange: (index, newindex) => {
       props.slideIndex(newindex);
     },

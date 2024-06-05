@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SliderBanner_2 from "./components/SliderBanner_2";
 
-const TypeWriter = ({slides,handlepauseSlide, handlechangeSlide, innerRef}) => {
+const TypeWriter = ({slides, innerRef}) => {
   const _typewrtiterdiv = React.useRef();
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -12,7 +12,7 @@ const TypeWriter = ({slides,handlepauseSlide, handlechangeSlide, innerRef}) => {
   }, []);
   const typeWriter = () => {
     function write(obj, sentence, i, cb) {
-      if (i !== sentence.length) {
+      if (sentence && i !== sentence.length) {
         setTimeout(function () {
           i++;
           obj.innerHTML =
@@ -47,8 +47,8 @@ const TypeWriter = ({slides,handlepauseSlide, handlechangeSlide, innerRef}) => {
     }
 
     // var sentences = ["Parties", "Lectures"];
-    var sentences =
-      slides && slides.info
+    var sentences = "";
+     sentences =  slides && slides.info.message
         ? slides.info.message.split(" ")
         : [];
 
@@ -57,12 +57,13 @@ const TypeWriter = ({slides,handlepauseSlide, handlechangeSlide, innerRef}) => {
     function loop() {
       var sentence = sentences[counter % sentences.length];
       _typewrtiterdiv.current && writeerase(_typewrtiterdiv.current, sentence, 1500, loop);
-        if ((counter % sentences.length) === 0) {
+     
+        if (sentence && (counter % sentences.length) === 0) {
           innerRef.current.slickPause();
         }
         if (((counter % sentences.length)+1) === sentences.length) {
-          console.log(sentence);
           innerRef.current.slickPlay();
+          sentences = []
         }
       counter++;
     }
@@ -116,9 +117,7 @@ const Variation2 = ({
   settings,
   registerDateEnd,
 }) => {
-  const  [change, setChange] = React.useState(0);
   const [slideIndex, setslideIndex] = React.useState(0);
-  const [sldiePause, setsldiePause] = React.useState(null);
   const childRef = React.useRef();
   const WrapperLayout = (props) => {
     const _bgLayer =
@@ -185,12 +184,6 @@ const Variation2 = ({
   const handleIndex = (ind) => {
     setslideIndex(ind)
   } 
-  const handlepauseSlide = (ind) => {
-    setsldiePause(ind);
-  }; 
-  const handlechangeSlide = (ind) => {
-    setChange(ind);
-  }; 
 
   return (
     <>
@@ -202,8 +195,6 @@ const Variation2 = ({
           <SliderBanner_2
             countdown={null} //{dateTime}
             registerDateEnd={registerDateEnd} //{dateTime}
-            changeSlide={change}
-            pauseSlide={sldiePause}
             slideIndex={handleIndex}
             innerRef={childRef}
             fullscreen
@@ -252,16 +243,13 @@ const Variation2 = ({
                             </span>
                           </div>
                         )}
-                        {slides.info.message &&
-                          settings.caption === 1 &&
-                          slideIndex === i && (
-                            <TypeWriter
-                              innerRef={childRef}
-                              handlepauseSlide={handlepauseSlide}
-                              handlechangeSlide={handlechangeSlide}
-                              slides={slides}
-                            />
-                          )}
+                        {slides.info.message && settings.caption === 1 && (
+                          <>
+                            {slideIndex === i && (
+                              <TypeWriter innerRef={childRef} slides={slides} />
+                            )}
+                          </>
+                        )}
                         {settings.register_button === 1 && registerDateEnd && (
                           <div
                             className="edgtf-custom-font-holder ebs-custom-button-holder"
