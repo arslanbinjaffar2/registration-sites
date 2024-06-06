@@ -503,7 +503,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                         >
                           <h5>{question.info[0].value}</h5>
                           <div
-                            className="custom-label-select position-relative"
+                            className="custom-label-select"
                             style={{ width: "46%"}}
                           >
                             <Select
