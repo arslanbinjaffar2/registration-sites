@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
-import { removeScriptTags } from 'utils/utils';
+import { removeScriptTags } from 'utils';
 
 const pageview = (GA_MEASUREMENT_ID, url) => {
     if (window !== undefined) {
