@@ -19,7 +19,7 @@ const Variation2 = ({event, siteLabels}) => {
         }
         {event.eventsiteSettings.use_reg_form_footer === 1 && 
             <>
-            <footer id="ebs-footer" className="footer ebs-variation-dark">
+            <footer id="ebs-footer" className="footer ebs-variation-dark text-break">
                 <style dangerouslySetInnerHTML={{ __html: height }}></style>
                 <div style={{paddingLeft: 0, paddingRight:0, borderRadius: 0,margin: 0}} className="wrapper-box order-summry">
                     <div className="container">
