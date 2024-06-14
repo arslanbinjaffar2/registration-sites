@@ -31,7 +31,7 @@ const PageContent = ({ isHome }) => {
            <div className="container">
              <div className="ebs-header-content mw-100">
               <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : ""}</h1>
-              <p className='text-start'>{(event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_DESCRIPTION : ""}</p>
+               <div className='text-start' dangerouslySetInnerHTML={{ __html: event?.eventsiteSettings?.package_description }} />
              </div>
             </div> 
         </div>
