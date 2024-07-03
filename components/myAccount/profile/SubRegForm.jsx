@@ -164,7 +164,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
+          [feild]: subRegResult[feild] ? (subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId]) : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
