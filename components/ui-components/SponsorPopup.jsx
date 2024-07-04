@@ -43,9 +43,9 @@ const SponsorPopup = ({ width, onClick, data, eventUrl, labels }) => {
                                 {data.description && <p dangerouslySetInnerHTML={{ __html: data.description }}></p>}
                                 <div className="ebs-social-icons">
                                     {data.website.replace(/^https?:\/\//, "") && <a href={data.website}><span style={{ fontSize: "24px", marginLeft: "-2px", verticalAlign: 'middle' }}data-icon="&#xe0e3;"></span></a>}
-                                    {data.facebook.replace(/^https?:\/\//, "") && <a href={data.facebook}><i className="fa fa-facebook" /></a>}
-                                    {data.twitter.replace(/^https?:\/\//, "") && <a href={data.twitter}><i className="fa fa-twitter" /></a>}
-                                    {data.linkedin.replace(/^https?:\/\//, "") && <a href={data.linkedin}><i className="fa fa-linkedin" /></a>}
+                                    {data.facebook.replace(/^https?:\/\//, "") && <a href={data.facebook}><i className="fa-brands fa-facebook-f" /></a>}
+                                    {data.twitter.replace(/^https?:\/\//, "") && <a href={data.twitter}><i className="fa-brands fa-x-twitter" /></a>}
+                                    {data.linkedin.replace(/^https?:\/\//, "") && <a href={data.linkedin}><i className="fa-brands fa-linkedin-in" /></a>}
                                 </div>
                                 <p><ActiveLink href={data.url.replace(/^https?:\/\//, "") != "" ? data.url : `/${eventUrl}/sponsors/${data.id}`}>{labels.EVENTSITE_READMORE ? labels.EVENTSITE_READMORE : 'Read more'}</ActiveLink></p>
                             </div>
