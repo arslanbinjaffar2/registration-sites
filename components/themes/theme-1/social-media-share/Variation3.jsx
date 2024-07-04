@@ -14,111 +14,141 @@ import {
 } from "react-share";
 
 const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
-
   const _parallax = useRef(null);
 
   useEffect(() => {
     window.addEventListener("scroll", scollEffect);
     return () => {
       window.removeEventListener("scroll", scollEffect);
-    }
-  }, [])
+    };
+  }, []);
 
   function scollEffect() {
     const scrolled = window.pageYOffset;
     const itemOffset = _parallax.current.offsetTop;
     const itemHeight = _parallax.current.getBoundingClientRect();
-    if (scrolled < (itemOffset - window.innerHeight) || scrolled > (itemOffset + itemHeight.height)) return false;
-    const _scroll = (scrolled - itemOffset) + itemHeight.height;
-    _parallax.current.style.backgroundPosition = `50%  -${(_scroll * 0.1)}px`;
-  };
+    if (
+      scrolled < itemOffset - window.innerHeight ||
+      scrolled > itemOffset + itemHeight.height
+    )
+      return false;
+    const _scroll = scrolled - itemOffset + itemHeight.height;
+    _parallax.current.style.backgroundPosition = `50%  -${_scroll * 0.1}px`;
+  }
 
   const WrapperLayout = ({ children }) => {
-
     const _bgimage = `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/variation_background/${settings.background_image}`;
 
     if (settings && settings.background_image !== "") {
       return (
-        <div style={{ backgroundImage: `url(${_bgimage})`}}
+        <div
+          style={{ backgroundImage: `url(${_bgimage})` }}
           className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
-          ref={_parallax}>
+          ref={_parallax}
+        >
           {children}
         </div>
       );
     } else {
       return (
-        <div className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
-          ref={_parallax}>
+        <div
+          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+          ref={_parallax}
+        >
           {children}
         </div>
       );
     }
-
-  }
+  };
 
   return (
     <WrapperLayout>
       <div className="container">
-        <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE} align={'center'} />
+        <HeadingElement
+          dark={true}
+          label={labels.SECTION_SOCIAL_FRONT_TITLE}
+          align={"center"}
+        />
         <div className="ebs-social-share text-center pb-3">
           {Object.entries(socialMediaShare).map(([alias, status]) => {
             if (status === 1) {
               switch (alias) {
-                case 'Facebook':
+                case "Facebook":
                   return (
-                      <FacebookShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <FacebookIcon size={120} round={true} title="Facebook" />
-                      </FacebookShareButton>
+                    <FacebookShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <FacebookIcon
+                        size={120}
+                        bgStyle={{ fill: "transparent" }}
+                        round={true}
+                        title="Facebook"
+                      />
+                    </FacebookShareButton>
                   );
-                case 'Linkedin':
+                case "Linkedin":
                   return (
-                      <LinkedinShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <LinkedinIcon size={120} round={true} title="Linked In" />
-                      </LinkedinShareButton>
+                    <LinkedinShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <LinkedinIcon
+                        size={120}
+                        bgStyle={{ fill: "transparent" }}
+                        round={true}
+                        title="Linked In"
+                      />
+                    </LinkedinShareButton>
                   );
-                case 'Twitter':
+                case "Twitter":
                   return (
-                      <TwitterShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <TwitterIcon size={120} round={true} title="Twitter" />
-                      </TwitterShareButton>
+                    <TwitterShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <TwitterIcon
+                        size={120}
+                        bgStyle={{ fill: "transparent" }}
+                        round={true}
+                        title="Twitter"
+                      />
+                    </TwitterShareButton>
                   );
-                case 'Pinterest':
+                case "Pinterest":
                   return (
-                      <PinterestShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}/`}
-                          media={
-                            event.settings.header_logo
-                                ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
-                                : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
-                          }
-                      >
-                        <PinterestIcon size={120} round={true} title="Pinterest" />
-                      </PinterestShareButton>
+                    <PinterestShareButton
+                      url={`${window.location.origin.toString()}/${event.url}/`}
+                      media={
+                        event.settings.header_logo
+                          ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
+                          : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
+                      }
+                    >
+                      <PinterestIcon
+                        size={120}
+                        bgStyle={{ fill: "transparent" }}
+                        round={true}
+                        title="Pinterest"
+                      />
+                    </PinterestShareButton>
                   );
-                case 'Email':
+                case "Email":
                   return (
-                      <EmailShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <EmailIcon size={120} round={true} title="Email" />
-                      </EmailShareButton>
+                    <EmailShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <EmailIcon
+                        size={120}
+                        bgStyle={{ fill: "transparent" }}
+                        round={true}
+                        title="Email Share"
+                      />
+                    </EmailShareButton>
                   );
                 default:
                   return null;
               }
             }
           })}
+          
         </div>
       </div>
     </WrapperLayout>
