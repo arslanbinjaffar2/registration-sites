@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "main";
-
+.fa-twitter:before{content:””}
+.fa-twitter-square:before{content:””}
 .tt_navigation_wrapper {
   width: 100%;
 }
@@ -2260,6 +2261,7 @@
           line-height: 36px;
           border-radius: 100%;
           margin-right: 5px;
+          vertical-align: text-top;
           &:hover {
             background-color: $second-main-color;
           }
