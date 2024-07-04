@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
+import { removeScriptTags } from 'utils';
 
 const pageview = (GA_MEASUREMENT_ID, url) => {
     if (typeof window !== undefined) {
@@ -191,7 +192,7 @@ const MetaInfo = (props) => {
                 {props.metaInfo.settings?.third_party_header_script !== undefined && props.metaInfo.settings?.third_party_header_script && props.cookie !== null && props.cookie == "all" && (
                     <React.Fragment>
                         <script id='third_party_header_script' dangerouslySetInnerHTML={{
-                            __html: props.metaInfo.settings?.third_party_header_script
+                            __html: removeScriptTags(props.metaInfo.settings?.third_party_header_script)
                             }}
 
                         />

@@ -19,6 +19,7 @@ const Index = (props) => {
     const { id, event_id, email } = router.query;
 
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onConfirm = async () => {
         const response = await axios.post(
@@ -37,19 +38,29 @@ const Index = (props) => {
         }
     }
 
-    // useEffect(async () => {
-    //     if(event) {
-    //         const response = await axios.get(
-    //             `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
-    //         );
-    //         if (response.data.success) {
-    //             router.push(`/${event.url}`);
-    //         } else {
-    //             setError(response.data.message)
-    //         }
-    //     }
-        
-    // }, [event]);
+    useEffect(() => {
+        getData();
+    }, [event]);
+
+    async function getData() {
+        if(event) {
+            setLoading(true);
+            const response = await axios.get(
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}`
+            );
+            setLoading(false);
+            if (response.data.success) {
+                if(response.data?.attendee_found) {
+
+                }else{
+                    // router.push(`/${event.url}`);
+                    setError(response.data?.message);
+                }
+            } else {
+                setError(response.data?.message)
+            }
+        }
+    }
 
     const onCancel = () => {
         if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
@@ -69,7 +80,10 @@ const Index = (props) => {
                 <MasterLayoutRoute event={event}>
                     <div style={{ height: "90vh" }}>
                         <div className="not-attending-popup">
-                            <div className="ebs-not-attending-fields">
+                            {loading ? (
+                                <PageLoader />
+                            ):(
+                                <div className="ebs-not-attending-fields">
                                 <div className="ebs-not-attending-heading">
                                     {error ? (
                                         <>{event.labels.REGISTRATION_SITE_HEADER_ALERT !== undefined ? event.labels.REGISTRATION_SITE_HEADER_ALERT : "Error"}</>
@@ -94,7 +108,8 @@ const Index = (props) => {
                                         </button>
                                     </div>
                                 )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </MasterLayoutRoute>

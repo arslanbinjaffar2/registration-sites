@@ -13,69 +13,75 @@ import {
   EmailShareButton,
 } from "react-share";
 
-
-const Variation6 = ({ event, socialMediaShare, labels, settings}) => {
-  const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : {}
+const Variation6 = ({ event, socialMediaShare, labels, settings }) => {
+  const bgStyle =
+    settings && settings.background_color !== ""
+      ? { backgroundColor: settings.background_color }
+      : {};
 
   return (
     <div
       style={bgStyle}
-      className="edgtf-parallax-section-holder ebs-default-padding">
+      className="edgtf-parallax-section-holder ebs-default-padding"
+    >
       <div className="container">
-        <HeadingElement dark={false} label={labels.SECTION_SOCIAL_FRONT_TITLE} align={'center'} />
-        <div className="ebs-social-share text-center pb-3">
+        <HeadingElement
+          dark={false}
+          label={labels.SECTION_SOCIAL_FRONT_TITLE}
+          align={"center"}
+        />
+        <div className="ebs-social-share text-center pb-3 ebs-social-share-v5">
           {Object.entries(socialMediaShare).map(([alias, status]) => {
             if (status === 1) {
               switch (alias) {
-                case 'Facebook':
+                case "Facebook":
                   return (
-                      <FacebookShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <FacebookIcon size={120} round={true} title="Facebook" />
-                      </FacebookShareButton>
+                    <FacebookShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <FacebookIcon size={60} title="Facebook" />{" "}
+                      <span>Facebook</span>
+                    </FacebookShareButton>
                   );
-                case 'Linkedin':
+                case "Linkedin":
                   return (
-                      <LinkedinShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <LinkedinIcon size={120} round={true} title="Linked In" />
-                      </LinkedinShareButton>
+                    <LinkedinShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <LinkedinIcon size={60} title="Linked In" />{" "}
+                      <span>Linked In</span>
+                    </LinkedinShareButton>
                   );
-                case 'Twitter':
+                case "Twitter":
                   return (
-                      <TwitterShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <TwitterIcon size={120} round={true} title="Twitter" />
-                      </TwitterShareButton>
+                    <TwitterShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <TwitterIcon size={60} title="Twitter" />{" "}
+                      <span>Twitter</span>
+                    </TwitterShareButton>
                   );
-                case 'Pinterest':
+                case "Pinterest":
                   return (
-                      <PinterestShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}/`}
-                          media={
-                            event.settings.header_logo
-                                ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
-                                : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
-                          }
-                      >
-                        <PinterestIcon size={120} round={true} title="Pinterest" />
-                      </PinterestShareButton>
+                    <PinterestShareButton
+                      url={`${window.location.origin.toString()}/${event.url}/`}
+                      media={
+                        event.settings.header_logo
+                          ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event/branding/${event.settings.header_logo}`
+                          : `${process.env.NEXT_APP_EVENTCENTER_URL}/_mobile_assets/images/logo-header@2x.png`
+                      }
+                    >
+                      <PinterestIcon size={60} title="Pinterest" />{" "}
+                      <span>Pinterest</span>
+                    </PinterestShareButton>
                   );
-                case 'Email':
+                case "Email":
                   return (
-                      <EmailShareButton
-                          key={alias}
-                          url={`${window.location.origin.toString()}/${event.url}`}
-                      >
-                        <EmailIcon size={120} round={true} title="Email" />
-                      </EmailShareButton>
+                    <EmailShareButton
+                      url={`${window.location.origin.toString()}/${event.url}`}
+                    >
+                      <EmailIcon size={60} title="Email" /> <span>Email</span>
+                    </EmailShareButton>
                   );
                 default:
                   return null;
