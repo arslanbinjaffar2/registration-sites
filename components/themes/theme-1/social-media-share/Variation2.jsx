@@ -11,6 +11,7 @@ import {
   LinkedinShareButton,
   PinterestShareButton,
   EmailShareButton,
+  XIcon,
 } from "react-share";
 
 const Variation2 = ({ event, socialMediaShare, labels, settings }) => {
@@ -73,11 +74,11 @@ const Variation2 = ({ event, socialMediaShare, labels, settings }) => {
                           event.url
                         }`}
                       >
-                        <TwitterIcon
+                        <XIcon
                           size={120}
                           onMouseOver={(e) => {
                             if (e.target.tagName.toLowerCase() === "circle")
-                              e.target.style.fill = "#3FA9F5";
+                              e.target.style.fill = "#000";
                           }}
                           onMouseLeave={(e) => {
                             if (e.target.tagName.toLowerCase() === "circle")

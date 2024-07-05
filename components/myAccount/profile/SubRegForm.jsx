@@ -10,10 +10,13 @@ import {
 } from "store/Slices/myAccount/subRegistrationSlice";
 import { useSelector, useDispatch } from "react-redux";
 import moment from 'moment';
+import { useRouter } from "next/router";
 const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, error,limitErrors }) => {
   const dispatch = useDispatch();
   const [programs, setPrograms] = useState(subRegistration.all_programs);
   const [settings, setSettings] = useState(subRegistration.settings);
+  const [enableSkip, setenableSkip] = useState(true);
+  const router = useRouter();
   const [subRegResult, setSubRegResult] = useState(afterLogin ? {} : subRegistration.questions.question
     .reduce(
       (ack, item) => {
@@ -91,7 +94,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     agendaId = 0,
     matrixId = 0,
   ) => {
-    console.log();
     setValidationErrors({})
     clearLimitErrorForQuestion(questionId);
     if (type === "multiple") {
@@ -110,10 +112,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
             end_time1 = moment(end_time1, 'HH:mm');
             start_time2 = moment(start_time2, 'HH:mm');
             end_time2 = moment(end_time2, 'HH:mm');
-            console.log(start_time1);
-            console.log(start_time2);
-            console.log(pId != agendaId && (moment(thisPrograms.start_date, 'DD-MM-YYYY').isSame(moment(selectedProgram.start_date, 'DD-MM-YYYY'))) == true)
-            console.log((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1))
+
             if(pId != agendaId && (moment(thisPrograms.date, 'DD-MM-YYYY').isSame(moment(selectedProgram.date, 'DD-MM-YYYY'))) == true ){
                 if ((start_time1 >= start_time2 && start_time1 < end_time2) || (start_time2 >= start_time1 && start_time2 < end_time1)) {
                         window.alert(event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT ? event.labels.SUB_REG_SAME_TIME_PROGRAM_ALERT : 'Do not allow double booking of program sessions that start at the same time. (session registration) You cannot select several program sessions that start simultaneously.');
@@ -164,7 +163,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     else if (type === "single") {
       if (Object.keys(subRegResult).length > 0) {
         let newObj = {
-          [feild]: subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId],
+          [feild]: subRegResult[feild] ? (subRegResult[feild].indexOf(answerId) !== -1 ? [] : [answerId]) : [answerId],
         };
         if (agendaId !== 0) {
           if (subRegResult[`answer_agenda_${answerId}`] === undefined) {
@@ -230,7 +229,6 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     }else{
 
      let validator = await validateFromDatabeforesubmit(questions, subRegResult);
-      console.log(validator);
       if(!validator.valid){
         setValidationErrors(validator.errors);
         return
@@ -339,7 +337,19 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
     setSubRegResult(newSubRegResult);
     setQuestions(newQuestions);
   }, [limitErrors]); 
-
+  React.useEffect(() => {
+    questions.forEach((question) => {
+      if (question.required_question === "1") {
+        setenableSkip(false);
+        return
+      }
+    });
+  }, [questions])
+  const handleClickProfile = () => {
+    localStorage.setItem(`${event.url}_sub_reg_skip`, 'true');
+    router.push(`/${event.url}/profile`);
+    
+  };
   return (
     <React.Fragment>
       <div
@@ -354,7 +364,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                     (afterLogin ? question.display_question === "yes" : true) && (
                       <React.Fragment>
                         <div className="radio-check-field">
-                          <h5>{question.info[0].value}</h5>
+                          <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           {question.answer.map((answer) => (
                             <label
                               key={answer.id}
@@ -408,11 +418,10 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         </div>
                       </React.Fragment>
                     )}
-
                   {question.question_type === "number" && (
                     <React.Fragment>
                       <div className="generic-form">
-                        <h5>{question.info[0].value}</h5>
+                        <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                         <Input
                           type="number"
                           label={"Answer"}
@@ -455,7 +464,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                   {question.question_type === "open" && (
                     <React.Fragment>
                       <div className="generic-form">
-                        <h5>{question.info[0].value}</h5>
+                        <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                         <textarea
                           placeholder="Answer"
                           value={
@@ -500,7 +509,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                     (afterLogin ? question.display_question === "yes" : true) && (
                       <React.Fragment>
                         <div className="generic-form">
-                          <h5>{question.info[0].value}</h5>
+                          <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           <div
                             className="custom-label-select"
                             style={{ width: "46%" }}
@@ -554,7 +563,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                   {question.question_type === "date" && (
                     <React.Fragment>
                       <div className="generic-form" style={{ width: "46%" }}>
-                        <h5>{question.info[0].value}</h5>
+                        <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                         <DateTime
                           onChange={(item) => {
                             updateResult(
@@ -599,7 +608,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                   {question.question_type === "date_time" && (
                     <React.Fragment>
                       <div className="generic-form" style={{ width: "46%" }}>
-                        <h5>{question.info[0].value}</h5>
+                        <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                         <DateTime
                           onChange={(item) => {
                             updateResult(
@@ -645,7 +654,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                     (afterLogin ? question.display_question === "yes" : true) && (
                       <React.Fragment>
                         <div className="radio-check-field style-radio">
-                          <h5>{question.info[0].value}</h5>
+                          <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           {question.answer.map((answer) => (
                             <label
                               key={answer.id}
@@ -697,7 +706,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                     (afterLogin ? question.display_question === "yes" : true) && (
                       <React.Fragment>
                         <div className={`matrix-question-wrapper`}>
-                          <h5>{question.info[0].value}</h5>
+                          <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           <div className="matrix-wrapper">
                             <div className="matrix-table">
                               <div className="martix-row matrix-header">
@@ -787,6 +796,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
       <div className="bottom-button">
+        {enableSkip && <button style={{border: '2px solid #363636', color: '#363636', backgroundColor: 'transparent',padding: '12px 45px'}} className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color" disabled={updating ? true : false} onClick={handleClickProfile}> {event.labels.GENERAL_SKIP} </button>}
         <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {event.labels.GENERAL_SEND} </button>
       </div>
     </React.Fragment>

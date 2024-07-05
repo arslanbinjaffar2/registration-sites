@@ -51,7 +51,6 @@ export const eventSlice = createSlice({
       }else{
         state.limitErrors = payload
       }
-      console.log('limitErrors: ',state.limitErrors);
     },
   },
 
@@ -71,7 +70,6 @@ export const fetchSubRegistrationData = (id, url) => {
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}/sub-registration-after-login`, { headers: header("GET", id) })
       const res = await response.json()
-      console.log(res);
       if (res.data.questions == undefined || res.data.questions.question.length <= 0 || res.data.settings['show_sub_registration_on_web_app'] === 0) {
         localStorage.setItem(`${url}_sub_reg_skip`, 'true');
         dispatch(setSkip());

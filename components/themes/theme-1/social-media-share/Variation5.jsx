@@ -11,6 +11,7 @@ import {
   LinkedinShareButton,
   PinterestShareButton,
   EmailShareButton,
+  XIcon,
 } from "react-share";
 
 const Variation5 = ({ event, settings, socialMediaShare, labels }) => {
@@ -63,11 +64,7 @@ const Variation5 = ({ event, settings, socialMediaShare, labels }) => {
                     <TwitterShareButton
                       url={`${window.location.origin.toString()}/${event.url}`}
                     >
-                      <TwitterIcon
-                        size={120}
-                        borderRadius="6px"
-                        title="Twitter"
-                      />
+                      <XIcon size={120} borderRadius="6px" title="Twitter" />
                     </TwitterShareButton>
                   );
                 case "Pinterest":
