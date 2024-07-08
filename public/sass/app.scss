@@ -2260,12 +2260,13 @@
           line-height: 36px;
           border-radius: 100%;
           margin-right: 5px;
+          vertical-align: middle;
           &:hover {
             background-color: $second-main-color;
           }
           i {
             font-size: 22px;
-            line-height: 38px;
+            line-height: 36px;
           }
         }
       }

@@ -101,7 +101,7 @@ const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               target="_blank" rel="noreferrer"
                               href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
                             >
-                              <span data-icon="&#xe0aa;"></span>
+                              <span className="fa-brands fa-facebook"></span>
                             </a>
                           )}
                           {speaker.info.twitter && (
@@ -109,7 +109,7 @@ const Variation5 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               target="_blank" rel="noreferrer"
                               href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
                             >
-                              <span data-icon="&#xe0ab;"></span>
+                              <span className="fa-brands fa-x-twitter"></span>
                             </a>
                           )}
                           {speaker.info.linkedin && (
