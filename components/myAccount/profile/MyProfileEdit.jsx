@@ -899,7 +899,7 @@ const ProfileEditForm = ({ attendee, languages, callingCodes, countries, event, 
                 <div className="ebs-contact-row d-flex">
                   <div style={{ width: 55, height: 55, position: 'relative', marginRight: 5 }}><Image objectFit='contain' layout="fill" src={require("public/img/ico-twitter.svg")} alt="" /></div>
                   <Input
-                    label="Twitter"
+                    label="X"
                     required
                     name="twitter"
                     readOnly={setting?.is_editable === 1 ? false : true}
