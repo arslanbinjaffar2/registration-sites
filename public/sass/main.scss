@@ -1897,6 +1897,7 @@ $z-index:$back-to-top-size / 2;
 					background-size: 14px;
 				}
 			}
+			
 		}
 	}
 	.ebs-accept-text {
@@ -1921,6 +1922,10 @@ $z-index:$back-to-top-size / 2;
 			left: 0;
 			top: 0;
 		}
+	}
+	input[type="radio"] ~ .ebs-accept-text::before {
+		border-radius: 50%;
+		
 	}
 
 }
