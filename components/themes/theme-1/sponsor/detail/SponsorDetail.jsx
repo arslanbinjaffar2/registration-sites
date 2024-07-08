@@ -152,7 +152,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                               target="_blank" rel="noreferrer"
                               href={`${sponsor?.twitter}`}
                             >
-                              <span data-icon="&#xe0ab;"></span>
+                              <span className="fa-brands fa-x-twitter"></span>
                             </a>
                           )}
                           {sponsor?.linkedin > "http://" &&  sponsor?.linkedin !== "https://" && sponsor?.linkedin.length > 8 && (
@@ -234,7 +234,7 @@ const SponsorDetail = ({ sponsor, documents, labels, sponsorSettings, moduleName
                         target="_blank" rel="noreferrer"
                         href={`${attendee?.info?.twitter_protocol}${attendee?.info?.twitter}`}
                       >
-                        <span data-icon="&#xe0ab;"></span>
+                        <span className="fa-brands fa-x-twitter"></span>
                       </a>
                     )}
                     {attendee?.info?.linkedin && (

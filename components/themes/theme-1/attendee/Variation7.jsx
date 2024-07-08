@@ -132,7 +132,7 @@ const Variation7 = ({ attendees, searchBar, loadMore, event, settings, siteLabel
                                           target="_blank" rel="noreferrer"
                                           href={`${attendee.info.twitter_protocol}${attendee.info.twitter}`}
                                         >
-                                          <span data-icon="&#xe0ab;"></span>
+                                          <span className="fa-brands fa-x-twitter"></span>
                                         </a>
                                       )}
                                       {attendee.info.linkedin && (

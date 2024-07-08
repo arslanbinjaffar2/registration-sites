@@ -7,7 +7,7 @@
 @import './base/mixins';
 
 // Fonts
-@import './font-awesome/css/font-awesome.min.css';
+@import './fontawesome/css/all.min.css'; // Font Awesome Latest Library
 @import './elegant-icons/style.min.css';
 
 // React Slick
@@ -1500,8 +1500,8 @@ $z-index:$back-to-top-size / 2;
 			left: auto;
 			right: 100%;
 			padding: 15px 0;
-			max-height: 350px;
-			// overflow-y: auto;
+			max-height: 380px;
+			overflow-y: auto;
 			.nav-item {
 				padding: 0;
 				.nav-link {
