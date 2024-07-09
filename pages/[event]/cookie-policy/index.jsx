@@ -139,6 +139,13 @@ const CookiePolicy = (props)=> {
                                 <td>{event?.interface_labels?.cookie.COOKIES_CLOUDFLARE}</td>
                             </tr>
                             <tr>
+                                <td>IDE</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_THIRD_PARTY}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_1_YEAR}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_GOOGLE_ANALYTICS_IDE}</td>
+                            </tr>
+                            <tr>
                                 <td>_ga</td>
                                 <td>.eventbuizz.com</td>
                                 <td>{event?.interface_labels?.cookie.COOKIES_THIRD_PARTY}</td>
@@ -151,6 +158,48 @@ const CookiePolicy = (props)=> {
                                 <td>{event?.interface_labels?.cookie.COOKIES_THIRD_PARTY}</td>
                                 <td>{event?.interface_labels?.cookie.COOKIES_24_hours}</td>
                                 <td>{event?.interface_labels?.cookie.COOKIES_UNIQUE_ID}</td>
+                            </tr>
+                            <tr>
+                                <td>_gat</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_THIRD_PARTY}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_1_MINUTE}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_GOOGLE_ANALYTICS_GAT}</td>
+                            </tr>
+                            <tr>
+                                <td>_ga_#</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_THIRD_PARTY}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_2_YEAR}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_GOOGLE_ANALYTICS_GA_}</td>
+                            </tr>
+                            <tr>
+                                <td>bcookie</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_2_YEAR}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN_DESCRIPTION_BCOOKIE}</td>
+                            </tr>
+                            <tr>
+                                <td>li_sugr</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN_DESCRIPTION_LISUGR}</td>
+                            </tr>
+                            <tr>
+                                <td>lidc</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_90_DAYS}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_LINKEDIN_DESCRIPTION_LIDC}</td>
+                            </tr>
+                            <tr>
+                                <td>_fbp</td>
+                                <td>.eventbuizz.com</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_META_PLATFORMS}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_90_DAYS}</td>
+                                <td>{event?.interface_labels?.cookie.COOKIES_META_PLATFORMS_DESCRIPTION}</td>
                             </tr>
                         </tbody>
                     </table>
