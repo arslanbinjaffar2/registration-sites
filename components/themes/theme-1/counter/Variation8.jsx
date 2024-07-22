@@ -1,23 +1,20 @@
 import React from "react";
-import HeadingElement from "components/ui-components/HeadingElement";
 import Countdown, {zeroPad} from "react-countdown";
 
 
 const Completionist = ({ labels }) => (
   <div className="col-12">
-    <h2>
+    <p className="text-center fs-4 text-danger pt-2">
       {labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
         ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
-        : "This event is going on."}
-    </h2>
+        : <div>Counter session ended. please <a className="text-danger fw-bold  text-decoration-underline" href='#!'>contact</a> eventsite managment</div>}
+    </p>
   </div>
 );
 const Variation8 = ({ event, labels, settings }) => {
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <Completionist labels={labels}/>;
-    } else {
+  
       return (
         <React.Fragment>
           <div className="ebs-counter-v7 ebs-countdown-wrapp countdown-wrapp d-flex align-items-center text-center w-100">
@@ -54,9 +51,10 @@ const Variation8 = ({ event, labels, settings }) => {
               <span className="countdown-period">Seconds</span>
             </span>
           </div>
+          {completed && <Completionist labels={labels} />}
         </React.Fragment>
       );
-    }
+    
   };
   const bgStyle =
     settings && settings.background_color !== ""
@@ -65,16 +63,21 @@ const Variation8 = ({ event, labels, settings }) => {
 
   return (
     <div style={bgStyle} className="edgtf-container ebs-default-padding ebs-gray-color">
-      <div style={{maxWidth: 1900,padding: '200px 0'}} className="container-fluid px-5">
-        <div className="row py-5 d-flex align-items-center justify-content-center">
+      <div style={{maxWidth: 1900}} className="container-fluid px-5">
+        <div className="row py-5 d-flex align-items-center text-center text-sm-center text-md-start justify-content-center">
           <div className="col-sm-4">
-            <h2>{labels.SECTION_SOCIAL_FRONT_TITLE}</h2>
-            <p className="fs-4 mb-4">Join thousands experiencing expo 2024 right now!</p>
-            <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
+            <div className="edgtf-title-section-holder">
+              <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.SECTION_SOCIAL_FRONT_TITLE}</h2>
+              <span className="edge-title-separator edge-enable-separator"></span>
+               <div className="edgtf-title-section-holder">
+               <h6 className="edgtf-section-subtitle mb-4 mt-0 ">Join thousands experiencing expo 2024 right now!</h6>
+              </div>
+            </div>
+            <a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
           </div>
           <div className="col-sm-8">
-            <div  className=" mb-2 d-flex align-items-center justify-content-end">
-              <Countdown date={new Date().getTime() + 240 * 3600 * 1000 + 50000} renderer={renderer} />
+            <div  className=" mb-2">
+              <Countdown date={new Date().getTime() + 5000} renderer={renderer} />
             </div>
           </div>
         </div>

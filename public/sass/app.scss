@@ -3723,7 +3723,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    background: rgba($black, 0.5);
+    background: rgba($black, 0.8);
     z-index: 2;
   }
   .flip-clock,.flip-clock-2 {
@@ -3768,6 +3768,12 @@
       }
     }
   }
+  @include laptop-landscape {
+    padding: 50px 20px;
+    .countdown-amount {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 .ebs-counter-v7 {
   padding: 50px 100px;
@@ -3792,6 +3798,9 @@
 
       }
     }
+  }
+  @include laptop-landscape {
+    padding: 50px 20px;
   }
 }
 .ebs-gray-color {
@@ -3829,6 +3838,14 @@
     }
     .countdown-period {
       color: $white;
+    }
+  }
+  @include phone-landscape {
+    gap: 10px;
+    .countdown-amount {
+      .lh-base {
+        line-height: 1 !important;
+      }
     }
   }
 }

@@ -5,22 +5,20 @@ import Countdown, {zeroPad} from "react-countdown";
 
 const Completionist = ({ labels }) => (
   <div className="col-12">
-    <h2>
+    <p className="text-center fs-4 text-danger pt-5">
       {labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
         ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
-        : "This event is going on."}
-    </h2>
+        : <div>Counter session ended. please <a className="text-danger fw-bold  text-decoration-underline" href='#!'>contact</a> eventsite managment</div>}
+    </p>
   </div>
 );
-const Variation3 = ({ event, labels, settings }) => {
+const Variation6 = ({ event, labels, settings }) => {
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <Completionist labels={labels} />;
-    } else {
+   
       return (
         <React.Fragment>
-          <div className="d-flex">
+          <div className="border rounded-3 ebs-counter-v5 ebs-counter-dark mb-2 d-flex">
             {Math.floor(days / 30) > 0 && (
               <>
                 <span className="edgtf-countdown is-countdown d-flex align-items-center justify-content-center">
@@ -54,9 +52,9 @@ const Variation3 = ({ event, labels, settings }) => {
               <span className="countdown-amount">s</span>
             </span>
           </div>
+          {completed && <Completionist labels={labels} />}
         </React.Fragment>
       );
-    }
   };
   const bgStyle =
     settings && settings.background_color !== ""
@@ -68,13 +66,13 @@ const Variation3 = ({ event, labels, settings }) => {
       <div className="position-relative" style={{zIndex: 5}}>
       <div className="edgtf-container-inner container">
         <HeadingElement
-          dark={false}
+          dark={true}
           label={labels.SECTION_SOCIAL_FRONT_TITLE}
           align={"center"}
         />
         <div className="row py-5 d-flex align-items-center justify-content-center">
-          <div  className="border rounded-3 ebs-counter-v5 ebs-counter-dark mb-2">
-            <Countdown date={new Date().getTime() + 240 * 3600 * 1000 + 50000} renderer={renderer} />
+          <div  className="">
+            <Countdown date={new Date().getTime() + 5000} renderer={renderer} />
           </div>
           <div className="text-center pt-5">
           <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn  edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
@@ -88,4 +86,4 @@ const Variation3 = ({ event, labels, settings }) => {
   );
 };
 
-export default Variation3;
+export default Variation6;
