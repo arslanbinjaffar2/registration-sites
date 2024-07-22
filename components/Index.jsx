@@ -12,6 +12,7 @@ const Sponsor = lazy(() => import("components/modules/sponsor/Sponsor"));
 const Program = lazy(() => import("components/modules/program/Program"));
 const Exhibitor = lazy(() => import("components/modules/exhibitor/Exhibitor"));
 const SocialShare = lazy(() => import("components/modules/SocialShare"));
+const Counter = lazy(() => import("components/modules/Counter"));
 const RegisterNow = lazy(() => import("components/modules/RegisterNow"));
 const Banner = lazy(() => import("components/modules/Banner"));
 const Map = lazy(() => import("components/modules/Map"));
@@ -32,6 +33,7 @@ const Index = () => {
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
+        <Counter />
         {loadedSections !== loadCount && <PageLoader className="fixed" />}    
         {event &&
           layoutSections &&
