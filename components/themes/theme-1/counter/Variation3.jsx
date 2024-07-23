@@ -6,14 +6,15 @@ import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 
 const Completionist = ({ labels }) => (
   <div className="col-12">
-    <h2>
+    <p className="text-center fs-4 text-danger pt-5">
       {labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
         ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
-        : "This event is going on."}
-    </h2>
+        : <div>Counter session ended. please <a className="text-danger fw-bold  text-decoration-underline" href='#!'>contact</a> eventsite managment</div>}
+    </p>
   </div>
 );
 const Variation3 = ({ event, labels, settings }) => {
+  const [completed, setCompleted] = React.useState(false);
   const bgStyle =
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
@@ -30,9 +31,9 @@ const Variation3 = ({ event, labels, settings }) => {
       </div>
 
       <div className="row py-5 d-flex align-items-center justify-content-center ebs-digital-clock">
-        <FlipClockCountdown  className='flip-clock-2' to={new Date().getTime() + 240 * 3600 * 1000 + 50000}>
-          <p>Completed</p>
+       <FlipClockCountdown onComplete={() => setCompleted(true)} hideOnComplete={false} className='flip-clock-2' to={new Date().getTime() + 5000}>
         </FlipClockCountdown>
+        {completed && <Completionist labels={labels}/>}
         
       </div>
     </div>
