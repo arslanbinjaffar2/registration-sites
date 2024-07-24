@@ -12,6 +12,7 @@ const Sponsor = lazy(() => import("components/modules/sponsor/Sponsor"));
 const Program = lazy(() => import("components/modules/program/Program"));
 const Exhibitor = lazy(() => import("components/modules/exhibitor/Exhibitor"));
 const SocialShare = lazy(() => import("components/modules/SocialShare"));
+const Counter = lazy(() => import("components/modules/Counter"));
 const RegisterNow = lazy(() => import("components/modules/RegisterNow"));
 const Banner = lazy(() => import("components/modules/Banner"));
 const Map = lazy(() => import("components/modules/Map"));
@@ -75,6 +76,8 @@ const Index = () => {
                 return <PageContent isHome={true} key={i} />;
               else if (section.module_alias === "news" && section.status === 1)
                 return <News key={i} homePage={true} />;
+              else if (section.module_alias === "count_down" && section.status === 1)
+                  return <Counter key={i} homePage={true} />;
             })();
           })}
           

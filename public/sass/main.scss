@@ -8,6 +8,7 @@
 
 // Fonts
 @import './fontawesome/css/all.min.css'; // Font Awesome Latest Library
+@import './digital/digital.css'; // Font Awesome Latest Library
 @import './elegant-icons/style.min.css';
 
 // React Slick
@@ -333,6 +334,10 @@ a:hover {
 		position: absolute;
 		right: 10px;
 	}
+}
+.bg-primary {
+	background: var(--primary) !important;
+	border-color: var(--primary) !important;
 }
 .edgtf-has-background, .parallax-backgroud {
 	background-image: url("/img/h1-parallax1.jpg");
