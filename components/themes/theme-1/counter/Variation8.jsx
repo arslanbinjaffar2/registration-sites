@@ -2,14 +2,12 @@ import React from "react";
 import Countdown, {zeroPad} from "react-countdown";
 
 
-const Completionist = ({ labels }) => (
-  <div className="col-12">
-    <p className="text-center fs-4 text-danger pt-2">
-      {labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
-        ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON
-        : <div>Counter session ended. please <a className="text-danger fw-bold  text-decoration-underline" href='#!'>contact</a> eventsite managment</div>}
-    </p>
-  </div>
+const Completionist = ({ event, completed }) => (
+    <div className="col-12">
+        <p className="text-center fs-4 text-danger pt-5">
+            {completed && event.count_down_section.expiry_message }
+        </p>
+    </div>
 );
 const Variation8 = ({ event, labels, settings }) => {
   // Renderer callback with condition
@@ -51,7 +49,7 @@ const Variation8 = ({ event, labels, settings }) => {
               <span className="countdown-period">Seconds</span>
             </span>
           </div>
-          {completed && <Completionist labels={labels} />}
+            {<Completionist completed={completed} event={event} />}
         </React.Fragment>
       );
     
@@ -60,24 +58,24 @@ const Variation8 = ({ event, labels, settings }) => {
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
-
+    const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
   return (
     <div style={bgStyle} className="edgtf-container ebs-default-padding ebs-gray-color">
       <div style={{maxWidth: 1900}} className="container-fluid px-5">
         <div className="row py-5 d-flex align-items-center text-center text-sm-center text-md-start justify-content-center">
           <div className="col-sm-4">
             <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">{labels.SECTION_SOCIAL_FRONT_TITLE}</h2>
+              <h2 className="edgtf-title-with-dots edgtf-appeared">{event.count_down_section.title}</h2>
               <span className="edge-title-separator edge-enable-separator"></span>
                <div className="edgtf-title-section-holder">
-               <h6 className="edgtf-section-subtitle mb-4 mt-0 ">Join thousands experiencing expo 2024 right now!</h6>
+               <h6 className="edgtf-section-subtitle mb-4 mt-0 ">{event.count_down_section.description}</h6>
               </div>
             </div>
-            <a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
+            {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
           </div>
           <div className="col-sm-8">
             <div  className=" mb-2">
-              <Countdown date={new Date().getTime() + 5000} renderer={renderer} />
+                <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
             </div>
           </div>
         </div>

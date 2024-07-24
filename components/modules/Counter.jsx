@@ -6,7 +6,7 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/counter/Variation1`)
+    import(`components/themes/${theme}/counter/${variation}`)
   );
   return Component;
 };
@@ -14,7 +14,7 @@ const loadModule = (theme, variation) => {
 const SocialShare = () => {
   const { event } = useSelector(eventSelector);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return in_array(module.alias, ["social_media_share"]);
+    return in_array(module.alias, ["count_down"]);
   });
   const Component = useMemo(
     () => loadModule(event.theme.slug, moduleVariation[0]["variation_slug"]),

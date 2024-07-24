@@ -33,7 +33,6 @@ const Index = () => {
   return (
     <Suspense fallback={<PageLoader/>}>
       <React.Fragment>
-        <Counter />
         {loadedSections !== loadCount && <PageLoader className="fixed" />}    
         {event &&
           layoutSections &&
@@ -77,6 +76,8 @@ const Index = () => {
                 return <PageContent isHome={true} key={i} />;
               else if (section.module_alias === "news" && section.status === 1)
                 return <News key={i} homePage={true} />;
+              else if (section.module_alias === "count_down" && section.status === 1)
+                  return <Counter key={i} homePage={true} />;
             })();
           })}
           
