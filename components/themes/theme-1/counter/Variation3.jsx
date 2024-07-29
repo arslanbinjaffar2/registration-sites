@@ -6,9 +6,11 @@ import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 
 const Completionist = ({ event, completed }) => (
     <div className="col-12">
-        <p className="text-center fs-4 text-danger pt-5">
-            {completed && event.count_down_section.expiry_message }
-        </p>
+        <div className="text-center fs-4 text-danger pt-5">
+            {completed && (
+                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+            )}
+        </div>
     </div>
 );
 const Variation3 = ({ event, labels, settings }) => {
@@ -24,9 +26,9 @@ const Variation3 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           label={event.count_down_section.title}
-          desc={event.count_down_section.description}
-          align={"center"}
+           align={settings.text_align}
         />
+          <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
       </div>
 
         <div className="row py-5 d-flex align-items-center justify-content-center">

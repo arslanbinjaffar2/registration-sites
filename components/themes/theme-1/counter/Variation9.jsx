@@ -1,52 +1,43 @@
 import React from "react";
-import Countdown, {zeroPad} from "react-countdown";
+import HeadingElement from "components/ui-components/HeadingElement";
 
+import Countdown, { zeroPad } from "react-countdown";
 
 const Completionist = ({ event, completed }) => (
     <div className="col-12">
-        <p className="text-center fs-4 text-danger pt-5">
-            {completed && event.count_down_section.expiry_message }
-        </p>
+        <div className="text-center fs-4 text-danger pt-5">
+            {completed && (
+                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+            )}
+        </div>
     </div>
 );
 const Variation9 = ({ event, labels, settings }) => {
-  // Renderer callback with condition
+    // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
- 
+   
       return (
         <React.Fragment>
-          <div className="ebs-counter-v7 ebs-counter-dark ebs-countdown-wrapp countdown-wrapp d-flex align-items-center text-center w-100">
-            {Math.floor(days / 30) > 0 && (
-              <>
-                <span className="edgtf-countdown is-countdown d-flex align-items-center justify-content-center">
-                  <span className="countdown-amount">
-                    {zeroPad(Math.floor(days / 30))}
-                  </span>
-                  <span className="countdown-amount">m</span>
-                </span>
-                <div className="vr"></div>
-              </>
-            )}
+          <div className="ebs-countdown-wrapp d-flex w-100 countdown-wrapp ebs-counter-v10">
+            {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
+              <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(Math.floor(days / 30))}</div></span>
+              <span className="countdown-period">Months</span>
+            </span>}
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">
-                {zeroPad(Math.floor(days % 30))}
-              </span>
-              <span className="countdown-period text-white">Days</span>
+              <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(Math.floor(days % 30))}</div></span>
+              <span className="countdown-period">DAYS</span>
             </span>
-            <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(hours)}</span>
-              <span className="countdown-period text-white">Hours</span>
+              <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(hours)}</div></span>
+              <span className="countdown-period">HOURS</span>
             </span>
-            <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(minutes)}</span>
-              <span className="countdown-period text-white">Minutes</span>
+              <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(minutes)}</div></span>
+              <span className="countdown-period">MINUTES</span>
             </span>
-            <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount">{zeroPad(seconds)}</span>
-              <span className="countdown-period text-white">Seconds</span>
+              <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(seconds)}</div></span>
+              <span className="countdown-period">SECONDS</span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}
@@ -58,32 +49,39 @@ const Variation9 = ({ event, labels, settings }) => {
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
+      if (props.moduleVariation.background_image !== '') {
+      return (
+        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+          {props.children}
+        </div>
+      );
+    } else {
+      return (
+        <div ref={_parallax} style={{ backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+          {props.children}
+        </div>
+      );
+    }
+
     const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
   return (
-    <div style={bgStyle} className="edgtf-parallax-section-holder  ebs-bg-holder ebs-default-padding ebs-counter-holder">
+    <div style={bgStyle} className="edgtf-container ebs-default-padding">
       <div className="position-relative" style={{zIndex: 5}}>
-      <div style={{maxWidth: 1900}} className="container-fluid px-5">
-        <div className="row py-5 d-flex align-items-center text-center text-sm-center text-md-start justify-content-center">
-          <div className="col-md-4">
-            <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared text-white">{event.count_down_section.title}</h2>
-              <span className="edge-title-separator edge-enable-separator"></span>
-              <div className="edgtf-title-section-holder">
-               <h6 className="edgtf-section-subtitle mb-4 mt-0 text-white">{event.count_down_section.description}</h6>
-              </div>
-            </div>
-            {/*<a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn  edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
-          </div>
-          <div className="col-md-8">
-            <div  className=" mb-2">
-                <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="edgtf-container-inner container">
+        <HeadingElement
+          dark={false}
+          label={event.count_down_section.title}
+          align={"center"}
+        />
+          <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+      <div className="row py-5 d-flex align-items-center justify-content-center">
+          <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
+        
       </div>
       </div>
 
+      </div>
+    </div>
   );
 };
 

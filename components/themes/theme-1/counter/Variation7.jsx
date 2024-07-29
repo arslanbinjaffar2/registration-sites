@@ -5,15 +5,17 @@ import Countdown, {zeroPad} from "react-countdown";
 
 const Completionist = ({ event, completed }) => (
     <div className="col-12">
-        <p className="text-center fs-4 text-danger pt-5">
-            {completed && event.count_down_section.expiry_message }
-        </p>
+        <div className="text-center fs-4 text-danger pt-5">
+            {completed && (
+                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+            )}
+        </div>
     </div>
 );
 const Variation7 = ({ event, labels, settings }) => {
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-   
+
       return (
         <React.Fragment>
           <div className="ebs-counter-v7 ebs-countdown-wrapp countdown-wrapp d-flex align-items-center text-center w-100">
@@ -32,22 +34,22 @@ const Variation7 = ({ event, labels, settings }) => {
               <span className="countdown-amount">
                 {zeroPad(Math.floor(days % 30))}
               </span>
-              <span className="countdown-period">Days</span>
+              <span className="countdown-period">DAYS</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(hours)}</span>
-              <span className="countdown-period">Hours</span>
+              <span className="countdown-period">HOURS</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(minutes)}</span>
-              <span className="countdown-period">Minutes</span>
+              <span className="countdown-period">MINUTES</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(seconds)}</span>
-              <span className="countdown-period">Seconds</span>
+              <span className="countdown-period">SECONDS</span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}
@@ -65,10 +67,12 @@ const Variation7 = ({ event, labels, settings }) => {
         <div className="row py-5 d-flex align-items-center justify-content-center">
            <div className="col-sm-4">
             <div className="edgtf-title-section-holder">
-              <h2 className="edgtf-title-with-dots edgtf-appeared">{event.count_down_section.title}</h2>
+           <div align={settings.text_align}>
+               <h2 className="edgtf-title-with-dots edgtf-appeared"  >{event.count_down_section.title}</h2>
+           </div>
               <span className="edge-title-separator edge-enable-separator"></span>
                <div className="edgtf-title-section-holder">
-               <h6 className="edgtf-section-subtitle mb-4 mt-0 ">{event.count_down_section.description}</h6>
+                <div  dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
               </div>
             </div>
             {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
