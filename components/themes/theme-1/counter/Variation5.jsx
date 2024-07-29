@@ -5,9 +5,11 @@ import Countdown, {zeroPad} from "react-countdown";
 
 const Completionist = ({ event, completed }) => (
     <div className="col-12">
-      <p className="text-center fs-4 text-danger pt-5">
-        {completed && event.count_down_section.expiry_message }
-      </p>
+        <div className="text-center fs-4 text-danger pt-5">
+            {completed && (
+                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+            )}
+        </div>
     </div>
 );
 const Variation5 = ({ event, labels, settings }) => {
@@ -66,9 +68,9 @@ const Variation5 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           label={event.count_down_section.title}
-          desc={event.count_down_section.description}
-          align={"center"}
+          align={settings.text_align}
         />
+          <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
         <div className="row py-5 d-flex align-items-center justify-content-center">
           <div>
             <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
