@@ -46,10 +46,7 @@ const Variation12 = ({ event, labels, settings }) => {
       );
     
   };
-  const bgStyle =
-    settings && settings.background_color !== ""
-      ? { backgroundColor: settings.background_color }
-      : {};
+ const bgStyle ={backgroundImage:settings.background_image? `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + settings.background_image}`:"", backgroundPosition: "center top", backgroundSize: 'cover', }
     const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
   return (
     <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">

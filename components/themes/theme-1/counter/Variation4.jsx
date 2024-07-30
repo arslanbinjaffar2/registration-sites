@@ -14,12 +14,11 @@ const Completionist = ({ event, completed }) => (
     </div>
 );
 const Variation4 = ({ event, labels, settings }) => {
+  console.log(settings.background_image,'kkk');
   const [completed, setCompleted] = React.useState(false)
-  const bgStyle =
-    settings && settings.background_color !== ""
-      ? { backgroundColor: settings.background_color }
-      : {};
-    const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
+  const bgStyle ={backgroundImage:settings.background_image? `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + settings.background_image}`:"", backgroundPosition: "center top", backgroundSize: 'cover', }
+  const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
+    
   return (
     <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
       <div className="position-relative" style={{zIndex: 5}}>
