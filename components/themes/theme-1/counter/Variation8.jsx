@@ -63,14 +63,14 @@ const Variation8 = ({ event, labels, settings }) => {
       <div style={{maxWidth: 1900}} className="container-fluid px-5">
         <div className="row py-5 d-flex align-items-center text-center text-sm-center text-md-start justify-content-center">
           <div className="col-sm-4">
-            <div className="edgtf-title-section-holder" >
-              <div align={settings.text_align}>
+            <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} className="edgtf-title-section-holder" >
+              <div>
               <h2 className="edgtf-title-with-dots edgtf-appeared">{event.count_down_section.title}</h2>
               </div>
               <span className="edge-title-separator edge-enable-separator"></span>
-               <div className="edgtf-title-section-holder">
-                 <div  dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
-              </div>
+                {event.count_down_section.description && <div className="edgtf-title-section-holder">
+                <div className="edgtf-section-subtitle">{event.count_down_section.description}</div>
+              </div>}
             </div>
             {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
           </div>

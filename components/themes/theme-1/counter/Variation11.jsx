@@ -55,9 +55,9 @@ const Variation11 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           label={event.count_down_section.title}
+          desc={event.count_down_section.description}
           align={settings.text_align}
         />
-          <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
       <div className="row py-5 d-flex align-items-center justify-content-center">
           <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
         

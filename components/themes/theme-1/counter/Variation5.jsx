@@ -68,17 +68,17 @@ const Variation5 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           label={event.count_down_section.title}
+          desc={event.count_down_section.description}
           align={settings.text_align}
         />
-          <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
         <div className="row py-5 d-flex align-items-center justify-content-center">
           <div>
             <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
           </div>
-          <div className="text-center pt-5">
-          {/*<a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
+          {/* <div className="text-center pt-5">
+          <a style={{ border: '2px solid #fff', color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>
 
-          </div>
+          </div> */}
         </div>
       </div>
       </div>

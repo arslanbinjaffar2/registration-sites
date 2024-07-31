@@ -24,9 +24,9 @@ const Variation2 = ({ event, labels, settings }) => {
                     <HeadingElement
                         dark={true}
                         label={event.count_down_section.title}
-                         align={settings.text_align}
+                        desc={event.count_down_section.description}
+                        align={settings.text_align}
                     />
-                    <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
                 </div>
 
                 <div className="row py-5 d-flex align-items-center justify-content-center">
