@@ -49,19 +49,6 @@ const Variation9 = ({ event, labels, settings }) => {
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
-      if (props.moduleVariation.background_image !== '') {
-      return (
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-          {props.children}
-        </div>
-      );
-    } else {
-      return (
-        <div ref={_parallax} style={{ backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-          {props.children}
-        </div>
-      );
-    }
 
     const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
   return (
@@ -71,7 +58,7 @@ const Variation9 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           label={event.count_down_section.title}
-          align={"center"}
+           align={settings.text_align}
         />
           <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
       <div className="row py-5 d-flex align-items-center justify-content-center">
