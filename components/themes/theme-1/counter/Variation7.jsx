@@ -79,11 +79,12 @@ const Variation7 = ({ event, labels, settings }) => {
           </div>
           <div className="col-sm-8">
             <div  className=" mb-2">
-                <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
+                <Countdown date={expiryDate.getTime() + 50000 } renderer={renderer} />
             </div>
           </div>
         </div>
       </div>
+      <div className="pb-4"></div>
       </div>
 
   );

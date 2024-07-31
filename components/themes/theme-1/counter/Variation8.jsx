@@ -80,6 +80,7 @@ const Variation8 = ({ event, labels, settings }) => {
             </div>
           </div>
         </div>
+        <div className="pb-4"></div>
       </div>
       </div>
 

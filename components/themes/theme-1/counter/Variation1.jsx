@@ -28,7 +28,7 @@ const Variation1 = ({ event, labels, settings }) => {
     }
     return (
         <div style={bgStyle} className="edgtf-container ebs-default-padding">
-            <div className="edgtf-container-inner container">
+            <div  className="edgtf-container-inner pt-4 container">
                 <HeadingElement
                     dark={false}
                     label={event.count_down_section.title}

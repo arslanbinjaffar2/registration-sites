@@ -21,7 +21,7 @@ const Variation4 = ({ event, labels, settings }) => {
     
   return (
     <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
-      <div className="position-relative" style={{zIndex: 5}}>
+      <div className="position-relative pt-4" style={{zIndex: 5}}>
       <div className="edgtf-container-inner container">
         <HeadingElement
           dark={true}

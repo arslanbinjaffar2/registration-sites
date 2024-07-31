@@ -19,7 +19,7 @@ const Variation2 = ({ event, labels, settings }) => {
     const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
     return (
         <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
-            <div className="position-relative" style={{ zIndex: 5 }}>
+            <div className="position-relative pt-4" style={{ zIndex: 5 }}>
                 <div className="edgtf-container-inner container">
                     <HeadingElement
                         dark={true}
