@@ -48,19 +48,6 @@ const Variation9 = ({ event, labels, settings }) => {
   const bgStyle = settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
-      if (props.moduleVariation.background_image !== '') {
-      return (
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-          {props.children}
-        </div>
-      );
-    } else {
-      return (
-        <div ref={_parallax} style={{ backgroundPosition: "center top", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
-          {props.children}
-        </div>
-      );
-    }
 
     const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
   return (
