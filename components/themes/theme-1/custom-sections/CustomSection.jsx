@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Image from 'next/image'
+import { useRouter } from "next/router";
 
 const CustomSection = ({ data }) => {
   const iframe = React.useRef();
@@ -18,6 +19,27 @@ const CustomSection = ({ data }) => {
           setHeight(obj.contentWindow.document.body.scrollHeight);
         }, 100);
   }
+  const router = useRouter();
+  const [iframeHeight, setIframeHeight] = React.useState(window.innerHeight);
+  const _iframe_embded = data?.includes('data-embed="_self"');
+  const matches = data?.match(/https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
+    React.useEffect(() => {
+      if (_iframe_embded) {
+        const listener = (event) =>{
+            if(event.data.order_id !== undefined) {
+                router.push(matches[0].replace('"',''));
+            } 
+            if(event.data.contentHeight !== undefined){
+              setIframeHeight(event.data.contentHeight);
+              setLoading(false)
+          }
+        }
+        window.addEventListener("message", listener);
+        return () => {
+          window.removeEventListener('message', listener);
+        }
+      }
+  }, []);
   return (
     <React.Fragment>
       {/* dangerouslySetInnerHTML={{__html:data}} */}
@@ -26,7 +48,18 @@ const CustomSection = ({ data }) => {
         <div className="d-flex justify-content-center"> 
           <div style={{width: '6rem', height: '6rem'}} className="spinner-border"> <span className="sr-only">Loading...</span></div>
         </div>}
-        <iframe
+
+        {_iframe_embded && <iframe
+            ref={iframe}
+            width="100%"
+            height={iframeHeight}
+            title="test"
+            loading="lazy"
+            itemProp="description"
+            style={{minHeight: '450px'}}
+            src={matches[0].replace('"','')}
+          />}
+        {!_iframe_embded && <iframe
             ref={iframe}
             onLoad={() => {
               const obj = iframe.current;
@@ -40,50 +73,13 @@ const CustomSection = ({ data }) => {
             width="100%"
             height={height+20}
             title="test"
+            loading="lazy"
             itemProp="description"
             srcDoc={`<style>*{padding: 0; margin: 0;}</style>`+data}
-          />
+          />}
       </div>}
     </React.Fragment>
   )
-  // return (
-  //   <div style={{ paddingTop: "80px" }} className="edgtf-container pb-5">
-  //     <div className="edgtf-container-inner container">
-  //       <div className="ebs-custom-section-html">
-  //         <section>
-  //           <figure className="image" style={{ float: "left" }}>
-  //             <img
-  //               alt=""
-  //               src="https://via.placeholder.com/350.png"
-  //               width="350"
-  //               height="350"
-  //             />
-  //             <figcaption>Caption</figcaption>
-  //           </figure>
-  //           1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-  //           vitae facere debitis pariatur eos nisi inventore quis modi, atque
-  //           earum magnam dolor provident possimus cumque. Tenetur mollitia
-  //           maiores natus eveniet fugit dolore quae culpa, commodi itaque? Ullam
-  //           ad nemo quae quis a, voluptatibus neque sed quod? Cumque incidunt
-  //           dolores velit? Lorem ipsum dolor sit amet consectetur adipisicing
-  //           elit. Ipsa vitae facere debitis pariatur eos nisi inventore quis
-  //           modi, atque earum magnam dolor provident possimus cumque. Tenetur
-  //           mollitia maiores natus eveniet fugit dolore quae culpa, commodi
-  //           itaque?
-  //           <br />
-  //           <br />
-  //           Ullam ad nemo quae quis a, voluptatibus neque sed quod? Cumque
-  //           incidunt dolores velit? Lorem ipsum dolor sit amet consectetur
-  //           adipisicing elit. Ipsa vitae facere debitis pariatur eos nisi
-  //           inventore quis modi, atque earum magnam dolor provident possimus
-  //           cumque. Tenetur mollitia maiores natus eveniet fugit dolore quae
-  //           culpa, commodi itaque? Ullam ad nemo quae quis a, voluptatibus neque
-  //           sed quod? Cumque incidunt dolores velit?
-  //         </section>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
 function mapStateToProps(state) {
