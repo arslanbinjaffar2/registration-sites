@@ -19,7 +19,7 @@ const arrayTraverse = (array, menu_id, currentPage, eventSiteModuleName) => {
   return returnArray;
 }
 
-const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, eventUrl, eventsiteSettings }) => {
+const CmsDetail = ({ detail, labels ,moduleName, breadCrumbData, eventSiteModuleName, eventUrl, eventsiteSettings }) => {
   const [breadCrumbs, setBreadCrumbs] = useState(arrayTraverse(breadCrumbData, detail.menu_id, detail, eventSiteModuleName));
   const [height, setHeight] = useState(0);
   const [Loading, setLoading] = useState(true);
@@ -134,7 +134,7 @@ const CmsDetail = ({ detail, moduleName, breadCrumbData, eventSiteModuleName, ev
                                 target="_blank" rel="noreferrer"
                                 download
                               >
-                                <span>View Document</span>
+                                <span>{detail.pdf_title ? detail.pdf_title : labels?.PRACTICAL_INFORMATION_VIEW_DOCUMENT ?? "View Document"}</span>
                               </a>
                             </div>
                           )}

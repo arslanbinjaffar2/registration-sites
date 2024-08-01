@@ -130,7 +130,7 @@ const Variation2 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                             target="_blank" rel="noreferrer"
                                             href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
                                           >
-                                            <span data-icon="&#xe0ab;"></span>
+                                            <span className="fa-brands fa-x-twitter"></span>
                                           </a>
                                         )}
                                         {speaker.info.linkedin && (
