@@ -61,13 +61,13 @@ const Variation6 = ({ event, labels, settings }) => {
     return (
         <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
             <div className="position-relative" style={{ zIndex: 5 }}>
-                <div className="edgtf-container-inner container">
+                <div className="edgtf-container-inner pt-4 container">
                     <HeadingElement
                         dark={true}
                         label={event.count_down_section.title}
+                        desc={event.count_down_section.description}
                         align={settings.text_align}
                     />
-                    <div align={"center"} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
                     <div className="row py-5 d-flex align-items-center justify-content-center">
                         <div className="">
                             <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
