@@ -4,13 +4,13 @@ import Countdown, {zeroPad} from "react-countdown";
 
 
 const Completionist = ({ event, completed }) => (
-    <div className="col-12">
-        <div className="text-center fs-4 text-danger pt-5">
-            {completed && (
-                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
-            )}
-        </div>
+  <div className="col-12">
+    <div className="text-center fs-4 text-danger pt-5">
+      {completed && event.count_down_section && event.count_down_section.expiry_message && (
+        <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+      )}
     </div>
+  </div>
 );
 const Variation7 = ({ event, labels, settings }) => {
   // Renderer callback with condition
@@ -60,7 +60,9 @@ const Variation7 = ({ event, labels, settings }) => {
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
-    const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
+  const expiryDate = event.count_down_section && event.count_down_section.expiry_date
+  ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
+  : new Date();
   return (
     <div style={bgStyle} className="edgtf-container ebs-default-padding">
       <div style={{maxWidth: 1900}} className="container-fluid px-5">
@@ -68,12 +70,12 @@ const Variation7 = ({ event, labels, settings }) => {
            <div className="col-sm-4">
             <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} className="edgtf-title-section-holder">
            <div align={settings.text_align}>
-               <h2 className="edgtf-title-with-dots edgtf-appeared"  >{event.count_down_section.title}</h2>
+               <h2 className="edgtf-title-with-dots edgtf-appeared"  >{event.count_down_section && event.count_down_section.title}</h2>
            </div>
               <span className="edge-title-separator edge-enable-separator"></span>
-               {event.count_down_section.description && <div className="edgtf-title-section-holder">
-                <div className="edgtf-section-subtitle">{event.count_down_section.description}</div>
-              </div>}
+               {event.count_down_section && <div className="edgtf-title-section-holder text-white">
+            <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+        </div> }
             </div>
             {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
           </div>
