@@ -4,13 +4,16 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 
+
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
-     {completed && event.count_down_section && event.count_down_section.expiry_message && (
+  <div className="container">
+   {completed && event.count_down_section && event.count_down_section.expiry_message && (
       <div className="text-center fs-4 text-danger pt-5">
-          <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+          <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
       )}
+  </div>
   </div>
 );
 const Variation3 = ({ event, labels, settings }) => {
@@ -30,11 +33,12 @@ const Variation3 = ({ event, labels, settings }) => {
       <div className="edgtf-container-inner pt-4 container">
         <HeadingElement
           dark={false}
+          page_header={true}
           label={event.count_down_section && event.count_down_section.title}
           align={settings.text_align}
         />
            {event.count_down_section && <div className="edgtf-title-section-holder">
-            <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+            <div className="ebs-no-margin-wrapp ebs-all-tags-white" style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
         </div> }
       </div>
 
