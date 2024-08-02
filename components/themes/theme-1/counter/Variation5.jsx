@@ -4,13 +4,13 @@ import Countdown, {zeroPad} from "react-countdown";
 
 
 const Completionist = ({ event, completed }) => (
-    <div className="col-12">
-        <div className="text-center fs-4 text-danger pt-5">
-            {completed && (
-                <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
-            )}
-        </div>
+  <div className="col-12">
+    <div className="text-center fs-4 text-danger pt-5">
+      {completed && event.count_down_section && event.count_down_section.expiry_message && (
+        <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+      )}
     </div>
+  </div>
 );
 const Variation5 = ({ event, labels, settings }) => {
   // Renderer callback with condition
@@ -61,16 +61,20 @@ const Variation5 = ({ event, labels, settings }) => {
     settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
-    const expiryDate = new Date(event.count_down_section.expiry_date.replace(' ', 'T'));
+    const expiryDate = event.count_down_section && event.count_down_section.expiry_date
+  ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
+  : new Date();
   return (
     <div style={bgStyle} className="edgtf-container ebs-default-padding">
       <div className="edgtf-container-inner pt-4 container">
         <HeadingElement
           dark={false}
-          label={event.count_down_section.title}
-          desc={event.count_down_section.description}
+         label={event.count_down_section && event.count_down_section.title}
           align={settings.text_align}
         />
+        {event.count_down_section && <div className="edgtf-title-section-holder text-white">
+            <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+        </div> }
         <div className="row py-5 d-flex align-items-center justify-content-center">
           <div>
             <Countdown date={expiryDate.getTime() + 5000 } renderer={renderer} />
