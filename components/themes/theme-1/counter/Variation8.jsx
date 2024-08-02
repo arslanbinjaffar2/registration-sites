@@ -2,13 +2,16 @@ import React from "react";
 import Countdown, {zeroPad} from "react-countdown";
 
 
+
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
-      {completed && event.count_down_section && event.count_down_section.expiry_message && (
-      <div className="text-center fs-4 text-danger pt-5">
-          <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+  <div className="container">
+   {completed && event.count_down_section && event.count_down_section.expiry_message && (
+      <div className="text-center fs-4 text-danger">
+          <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
       )}
+  </div>
   </div>
 );
 const Variation8 = ({ event, labels, settings }) => {
@@ -26,7 +29,7 @@ const Variation8 = ({ event, labels, settings }) => {
                   </span>
                   <span className="countdown-amount text-white">m</span>
                 </span>
-                <div className="vr"></div>
+                <div className="vr bg-white"></div>
               </>
             )}
             <span className="edgtf-countdown is-countdown">
@@ -35,17 +38,17 @@ const Variation8 = ({ event, labels, settings }) => {
               </span>
               <span className="countdown-period text-white">DAYS</span>
             </span>
-            <div className="vr"></div>
+            <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(hours)}</span>
               <span className="countdown-period text-white">HOURS</span>
             </span>
-            <div className="vr"></div>
+            <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(minutes)}</span>
               <span className="countdown-period text-white">MUNUTES</span>
             </span>
-            <div className="vr"></div>
+            <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(seconds)}</span>
               <span className="countdown-period text-white">SECONDS</span>
@@ -75,7 +78,7 @@ const Variation8 = ({ event, labels, settings }) => {
               </div>
               <span className="edge-title-separator edge-enable-separator"></span>
                  {event.count_down_section && <div className="edgtf-title-section-holder text-white">
-                  <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+                  <div className="ebs-no-margin-wrapp ebs-all-tags-white" style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
               </div> }
             </div>
             {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}

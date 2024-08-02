@@ -3908,3 +3908,19 @@
     }
   }
 }
+.ebs-text-danger {
+  color: $color-danger;
+  * {
+    color: $color-danger;
+  }
+}
+.ebs-no-margin-wrapp {
+  * {
+    margin-top: 0;
+  }
+}
+.ebs-all-tags-white {
+  * {
+    color: inherit;
+  }
+}

@@ -3,15 +3,18 @@ import HeadingElement from "components/ui-components/HeadingElement";
 import Countdown, {zeroPad} from "react-countdown";
 
 
+
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
-    {completed && event.count_down_section && event.count_down_section.expiry_message && (
-      <div className="text-center fs-4 text-danger pt-5">
-          <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+  <div className="container">
+   {completed && event.count_down_section && event.count_down_section.expiry_message && (
+      <div className="text-center fs-4 text-danger">
+          <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
       )}
   </div>
-);
+  </div>
+);;
 const Variation7 = ({ event, labels, settings }) => {
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -77,7 +80,7 @@ const Variation7 = ({ event, labels, settings }) => {
            </div>
               <span className="edge-title-separator edge-enable-separator"></span>
                {event.count_down_section && <div className="edgtf-title-section-holder">
-            <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
+            <div className="ebs-no-margin-wrapp ebs-all-tags-white" style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
         </div> }
             </div>
             {/*<a style={{  color: '#fff' }} href="#!" rel="noopener" className="edgtf-btn bg-primary edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{labels.EVENTSITE_REGISTER_NOW2}</a>*/}
