@@ -4,11 +4,11 @@ import Countdown, {zeroPad} from "react-countdown";
 
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
-    <div className="text-center fs-4 text-danger pt-5">
       {completed && event.count_down_section && event.count_down_section.expiry_message && (
-        <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+      <div className="text-center fs-4 text-danger pt-5">
+          <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+      </div>
       )}
-    </div>
   </div>
 );
 const Variation8 = ({ event, labels, settings }) => {
