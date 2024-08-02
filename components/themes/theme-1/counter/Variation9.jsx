@@ -50,10 +50,13 @@ const Variation9 = ({ event, labels, settings }) => {
       ? { backgroundColor: settings.background_color }
       : {};
 
-  const expiryDate = event.count_down_section && event.count_down_section.expiry_date
-  ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
-  : new Date();
-  return (
+ const expiryDate = event.count_down_section && event.count_down_section.expiry_date
+    ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
+    : null;
+  const isValidDate = expiryDate && !isNaN(expiryDate.getTime());
+    return (
+        <div>
+      {isValidDate && (
     <div style={bgStyle} className="edgtf-container ebs-default-padding">
       <div className="position-relative pt-4" style={{zIndex: 5}}>
       <div className="edgtf-container-inner container">
@@ -62,7 +65,7 @@ const Variation9 = ({ event, labels, settings }) => {
          label={event.count_down_section && event.count_down_section.title}
           align={settings.text_align}
         />
-        {event.count_down_section && <div className="edgtf-title-section-holder text-white">
+        {event.count_down_section && <div className="edgtf-title-section-holder">
             <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
         </div> }
       <div className="row py-5 d-flex align-items-center justify-content-center">
@@ -72,6 +75,8 @@ const Variation9 = ({ event, labels, settings }) => {
       </div>
 
       </div>
+    </div>
+      )}
     </div>
   );
 };
