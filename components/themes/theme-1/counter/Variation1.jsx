@@ -20,13 +20,12 @@ const Variation1 = ({ event, labels, settings }) => {
             ? { backgroundColor: settings.background_color }
             : {};
   const expiryDate = event.count_down_section && event.count_down_section.expiry_date
-  ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
-  : new Date();
-    if (expiryDate && isNaN(expiryDate.getTime())) {
-        console.error("Invalid date format provided for expiry_date:", event.count_down_section.expiry_date);
-        return null;
-    }
+    ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
+    : null;
+  const isValidDate = expiryDate && !isNaN(expiryDate.getTime());
     return (
+        <div>
+      {isValidDate && (
         <div style={bgStyle} className="edgtf-container ebs-default-padding">
             <div  className="edgtf-container-inner pt-4 container">
                 <HeadingElement
@@ -34,7 +33,7 @@ const Variation1 = ({ event, labels, settings }) => {
                     label={event.count_down_section && event.count_down_section.title}
                     align={settings.text_align}
                 />
-                  {event.count_down_section && <div className="edgtf-title-section-holder text-white">
+                  {event.count_down_section && <div className="edgtf-title-section-holder">
                     <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} dangerouslySetInnerHTML={{__html: event.count_down_section.description}} />
                 </div> }
             </div>
@@ -56,6 +55,8 @@ const Variation1 = ({ event, labels, settings }) => {
                 {expiryDate && <Completionist completed={completed} event={event} />}
             </div>
         </div>
+        )}
+          </div>
     );
 };
 

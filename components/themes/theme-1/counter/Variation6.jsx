@@ -57,10 +57,13 @@ const Variation6 = ({ event, labels, settings }) => {
   };
   const bgStyle ={backgroundImage:settings.background_image? `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + settings.background_image}`:"", backgroundPosition: "center top", backgroundSize: 'cover', }
 
-    const expiryDate = event.count_down_section && event.count_down_section.expiry_date
-  ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
-  : new Date();
+ const expiryDate = event.count_down_section && event.count_down_section.expiry_date
+    ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
+    : null;
+  const isValidDate = expiryDate && !isNaN(expiryDate.getTime());
     return (
+        <div>
+      {isValidDate && (
         <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
             <div className="position-relative" style={{ zIndex: 5 }}>
                 <div className="edgtf-container-inner pt-4 container">
@@ -83,6 +86,8 @@ const Variation6 = ({ event, labels, settings }) => {
                 </div>
             </div>
         </div>
+          )}
+    </div>
     );
 };
 
