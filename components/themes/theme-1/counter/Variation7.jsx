@@ -8,7 +8,7 @@ const Completionist = ({ event, completed }) => (
   <div className="col-12">
   <div className="container">
    {completed && event.count_down_section && event.count_down_section.expiry_message && (
-      <div className="text-center fs-4 text-danger">
+      <div className="text-center fs-4 text-danger pt-2">
           <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
       )}
@@ -76,7 +76,7 @@ const Variation7 = ({ event, labels, settings }) => {
            {(event.count_down_section.title || event.count_down_section.description) && <div className="col-sm-4">
             <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} className="edgtf-title-section-holder">
            <div align={settings.text_align}>
-               <h2 className="edgtf-title-with-dots edgtf-appeared"  >{event.count_down_section && event.count_down_section.title}</h2>
+               <h2 className="edgtf-title-with-dots edgtf-appeared mt-2" >{event.count_down_section && event.count_down_section.title}</h2>
            </div>
               {event.count_down_section.title && <span className="edge-title-separator edge-enable-separator"></span>}
                {event.count_down_section && <div className="edgtf-title-section-holder">
@@ -85,13 +85,12 @@ const Variation7 = ({ event, labels, settings }) => {
             </div>
           </div>}
           <div className="col">
-            <div  className=" mb-2">
+            <div  className=" mb-0">
                 <Countdown date={expiryDate.getTime() + 50000 } renderer={renderer} />
             </div>
           </div>
         </div>
       </div>
-      <div className="pb-4"></div>
       </div>
   )}
     </div>
