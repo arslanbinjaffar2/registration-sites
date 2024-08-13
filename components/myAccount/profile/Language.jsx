@@ -71,7 +71,7 @@ const Language = () => {
                   src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/language_switcher/${language?.name.toLowerCase()}.jpg`} 
                   alt={language?.name} 
                 />
-                  {language.name}
+                  {language?.name}
                 </a>
               </li>
             ))}
