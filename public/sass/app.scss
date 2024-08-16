@@ -2174,7 +2174,7 @@
 }
 .module-section.ebs-program-listing-wrapper {
   overflow: hidden;
-  background-color: white;
+  background-color: #fcfcfcc9;
 }
 .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -2280,7 +2280,7 @@
   .ebs-main-program-listing {
     margin-bottom: 30px;
     .ebs-program-parent {
-      margin-bottom: 40px;
+      margin-bottom: 16px;
       &.ebs-program-workshop {
         background-color: $lightf4;
         margin-bottom: 0;
@@ -2329,6 +2329,14 @@
         margin-bottom: 25px;
         font-weight: 500;
         font-size: 18px;
+      }
+      .ebs-date-background{
+        color: $first-main-color;
+        margin-bottom: 16px;
+        font-weight: 500;
+        font-size: 18px;
+        background-color: $bgheading;
+        padding: 20px;
       }
       .ebs-program-child {
         padding-bottom: 15px;
@@ -2386,6 +2394,7 @@
           }
         }
       }
+    
     }
   }
 }
@@ -3923,4 +3932,84 @@
   * {
     color: inherit;
   }
+}
+.m-0{
+  margin: 0 !important;
+}
+.mt-30{
+  margin-top: 30px;
+}
+.my-30{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.h-0{
+  height: 0px;
+}
+.h-90{
+  height: 90px;
+}
+.cusor-pointer{
+  cursor: pointer;
+}
+.fs-medium{
+  font-size: 16px;
+}
+.fs-2x1{
+  font-size: 24px;
+}
+.fs-large{
+  font-size: 18px;
+}
+.fs-small{
+  font-size: 14px;
+}
+.fs-xsmall{
+  font-size: 12px;
+}
+.rounded-4px{
+ border-radius: 4px;
+}
+.gap-12{
+  gap:12px;
+}
+.pt-40{
+  padding-top: 40px;
+}
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-left: 50px; // Center the timeline horizontally
+
+  .timeline-item {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 50px 0; // Spacing between the circles
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 50px; // Adjust this value for spacing between circles
+      background-color: #333;
+      z-index: -1;
+    }
+
+    &:first-child:before {
+      display: none; // Remove the line above the first item
+    }
+  }
+}
+
+
+.shadow-gray{
+  box-shadow: 4px 0px 20px #0000000F;
 }
