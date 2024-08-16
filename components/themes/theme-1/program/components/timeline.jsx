@@ -1,13 +1,10 @@
 import React from 'react'
 
-const Timeline = ({workshopLength}) => {
+const Timeline = () => {
   return (
-<div className="timeline">
-  {new Array(1).fill().map(()=>(
+    <div className="timeline ms-lg-3 ms-0 me-3">
     <div className="timeline-item"></div>
-  ))}
-
-</div>
+    </div>  
 
   )
 }

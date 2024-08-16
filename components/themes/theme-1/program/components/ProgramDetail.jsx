@@ -32,11 +32,11 @@ import moment from 'moment'
       };
     }, []);
     return(
-        <div className={`w-100 bg-white ${showDetail?"my-30":"mt-30"} `}>
+        <div className={`w-100 bg-white `}>
             <div  
             id={program?.id}
             // className={`mt-30 ${showDetail?"d-block":"d-none"}`} 
-            className={`position-fixed bg-white w-100 overflow-auto p-5`}
+            className={`position-fixed bg-white w-100 overflow-auto py-30 shadow-black`}
              style={{
                 display:`${showHide?"block":"none"}`,
                 // transform: showDetail ? "translateY(0px)" : "translateY(-200px)",
@@ -46,7 +46,7 @@ import moment from 'moment'
                 transition: "transform 0.5s ease-in-out, opacity 0.5s ease-in-out",
                 zIndex:999,
                 maxHeight:"451px",
-                top:"50%"
+                bottom: "0%"
               }}
            >
             <div className="container">
@@ -54,19 +54,19 @@ import moment from 'moment'
                 <div className="border-bottom pb-3 w-100">
                 <div className='d-flex justify-content-between align-items-center'>
                 {program?.topic &&  <h5 className='m-0 fs-2x1 fw-semibold'>{program.topic}</h5>}
-                <i className="fas fa-times cusor-pointer" style={{fontSize:" 30px" }} onClick={()=>setShowDetail(false)}></i>
+                <span class="material-symbols-outlined cusor-pointer"  style={{ fontSize: "30px" }} onClick={() => setShowDetail(false)}>close</span>
                     </div>
                <div className='d-flex gap-4 align-items-center justify-content-start mt-3'>
                <div className='d-flex gap-1 align-items-center'>
-               <i className="fa fa-calendar"></i>
+               <span class="material-symbols-outlined fs-small">calendar_month</span>
                <span>{moment(program?.date).format('dddd')} , {moment(program?.date).format('MMMM D, YYYY')}</span>
                </div>
                {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program?.hide_time) === 0 &&   <div className='d-flex gap-1 align-items-center'>
-               <i className="fa fa-clock"></i>
+               <span class="material-symbols-outlined fs-small">schedule</span>
                <span>   {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</span>
                </div>}
               {program?.location && <div className='d-flex gap-1 align-items-center'>
-               <i className="fa fa-map-marker"></i>
+                <span class="material-symbols-outlined fs-small">location_on</span>
                <span>{program.location}</span>
                </div>}
                </div>
@@ -84,10 +84,10 @@ import moment from 'moment'
                  <span>   Welcome Address: Kick off the workshop with a warm welcome and an overview of what to expect.</span>
                 </div>
                </div> */}
-               {program?.program_tracks.length > 0 && <div className={`pt-40 row d-flex w-100 gap-2 ${program.program_tracks.length ==5 ?"align-items-center":"align-items-start"}`}>                    
-                <h5 className='m-0 col-lg-1 col-12'>Tracks :</h5>
+               {program?.program_tracks.length > 0 && <div className={`pt-32 row d-flex flex-lg-row flex-column w-100 gap-2 ${program.program_tracks.length ==8 ?"align-items-center":"align-items-start"}`}>                    
+                <h5 className='m-0 col-lg-1'>Tracks :</h5>
                 {/* track container */}
-                <div className="ebs-tracks-program d-flex gap-12 flex-wrap col-lg-10">
+                <div className="ebs-tracks-program d-flex gap-12 flex-wrap">
                             {program.program_tracks.map((track, i) => (
                                 <div key={i} className='border rounded-5 d-flex align-items-center gap-1 p-3' style={{ minWidth:"100px",height:"31px" }}>
                                    <span  className="d-inline-block"
@@ -103,12 +103,12 @@ import moment from 'moment'
                </div>}
                {/* workshop */}
                {program?.workshop_id >0 &&
-               <div className='pt-40 d-flex align-items-center gap-3 border-bottom pb-3 flex-lg-row flex-column'>                    
+               <div className='pt-12 d-flex align-items-center gap-3 border-bottom pb-3 flex-lg-row flex-column'>                    
                 <h5 className='m-0'>Workshop :</h5>
                 {/* track container */}
                 <div className="d-flex gap-12">
                             {/* {program.program_tracks.map((track, i) => ( */}
-                                <div  className='border rounded-5 d-flex align-items-center gap-1 p-3' >
+                                <div  className='border rounded-5 d-flex align-items-center gap-1 px-3 py-1' >
                                    <span className='fs-medium fw-light'>{program.program_workshop}</span>
                                     </div>
                             {/* ))} */}
@@ -119,7 +119,7 @@ import moment from 'moment'
                </div>
                }
                {program?.program_speakers?.length>0 &&
-                 <div className='py-3 d-flex align-items-lg-center gap-3 flex-column justify-content-start flex-lg-row'>                    
+                 <div className='pt-3  d-flex align-items-lg-center gap-3 flex-column justify-content-start flex-lg-row'>                    
                 <h5 className='m-0'>Speakers :</h5>
                 {/* track container */}
                 <div className="d-flex gap-3 align-items-center justify-content-start flex-wrap">

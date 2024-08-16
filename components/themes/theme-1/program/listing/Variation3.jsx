@@ -6,6 +6,7 @@ import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
 import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
+import WorkShopTitle from '../components/workshopTitle';
 const customStyles = {
   control: base => ({
     ...base,
@@ -25,6 +26,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   const [search, setSearch] = useState('')
   const [showDetail,setShowDetail]=useState(false)
   const detailRef = useRef(null);
+  const [showFilter,setShowFilter]=useState(false)
   const [programsState,setProgramsState]=useState({
     id:0,
     programArray:[]
@@ -65,33 +67,46 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     };
   }, [value]);
 
-
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ">
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
-      {filters && <div className="ebs-program-top">
+      {filters && <div className="ebs-program-top-new bg-white shadow-black">
         <div className="container">
-          <div className="row d-flex">
-            {eventsiteSettings.agenda_search_filter === 1 && <div className="col-md-5">
-              <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
-                <em className="fa fa-search"></em>
+          <div className="d-flex justify-content-between align-items ">
+       
+              {Object.keys(programs).length > 0 && <div className="">
+                <ReactSelect
+                  styles={customStyles}
+                  placeholder={siteLabels.EVENTSITE_SELECT_DAY}
+                  components={{ IndicatorSeparator: null }}
+                  onChange={(date) => { onDateChange(date) }}
+                  className='border-black-color'
+                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('D MMMM')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
+                />
+              </div>}
+              <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cusor-pointer border-black-color'>
+          <span class="material-symbols-outlined">tune</span>
+          </div>
+            
+        
+          </div>
+          {/* filters */}
+         {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
+               {eventsiteSettings.agenda_search_filter === 1 && <div>
+              <div style={{ maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+              <span class="material-symbols-outlined fa">search</span>
               </div>
-            </div>}
-            <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
-              <div className="row flex-row justify-content-end">
-                {Object.keys(programs).length > 0 && <div className="col-md-5 col-6">
-                  <ReactSelect
-                    styles={customStyles}
-                    placeholder={siteLabels.EVENTSITE_SELECT_DAY}
-                    components={{ IndicatorSeparator: null }}
-                    onChange={(date) => { onDateChange(date) }}
-                    options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY') }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
-                  />
-                </div>}
+              </div>}
                   {tracks.length > 0 &&
-                      <div className="col-md-5 col-6">
+                      <div className="">
                         <ReactSelect
                           styles={customStyles}
                           placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
@@ -100,20 +115,23 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                           options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
                         />
                   </div>}
+              <div className='d-flex gap-1 align-items-center justify-content-end ms-auto'>
+              <span class="material-symbols-outlined">restart_alt</span>
+              <span className='fs-xsmall fw-normal'>Reset filters</span>
               </div>
-            </div>
-          </div>
+          </div>}
         </div>
       </div>}
-      <div className="container">
+      <div className="container mt-30">
         <div className="ebs-main-program-listing">
           {programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
-                <div  key={item.id}  
+                <div className='mt-3'  key={item.id}  
                 onClick={() => handleItemClick(item, programsLoc[key])}>
-                  <ProgramItem2 setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>
+                  {item.workshop_id > 0? <WorkShopTitle program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail} setProgramsState={setProgramsState} programs={programsState}/>:
+                  <ProgramItem2 setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
                 </div>
               ))}
             </div>

@@ -5,7 +5,6 @@ import ProgramDetail from './ProgramDetail'
 import WorkShopTitle from './workshopTitle'
 
 const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorkshop,setShowDetail ,showDetail,ref}) => {
-    const [showWorkShopTitle,setShowWorkShopTitle]=useState(false)
     const [height, setHeight] = useState(window.innerWidth <= 1200 ? '100%' : '90px');
 
   useEffect(() => {
@@ -25,19 +24,18 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorksho
 
     return (
         <>
-        <div className="ebs-program-child-new" style={{ height }} ref={ref} >
-            <div className="d-flex border rounded-4px h-100" >
+        <div className="ebs-program-child-new bg-white"  ref={ref} >
+            <div className="d-flex border rounded-4px h-100 border-black-color" >
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && 
-                    <div className='p-2 px-3  ebs-program-date d-flex flex-column align-items-center'>
+                    <div className='p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center'>
                         <span className='fs-medium fw-semibold'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')}</span>
-                        <span > - </span>
                         <span className='fs-medium fw-semibold'>
                         {moment(`${program.date} ${program.end_time}`).format('HH:mm')}
                         </span>
                         </div>}
-                        <div className='border-start w-100 d-flex justify-content-center  align-items-center flex-wrap'>
+                        <div className='border-start border-black-color w-100 d-flex justify-content-center  align-items-center flex-wrap'>
                         <div className="d-flex justify-content-between items-center align-items-center w-100 p-3 flex-wrap">
-                         <div className='d-flex flex-column  align-items-start gap-2 cusor-pointer' onClick={()=>{
+                         <div className={`d-flex flex-column  align-items-start  cusor-pointer ${program.program_speakers.length>0?"gap-2":"gap-0"}`} onClick={()=>{
                                 setShowDetail(true)
                                 setShowWorkShopTitle(false)
                          }}>
@@ -51,8 +49,8 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorksho
                          </div>
                          <div className='d-flex gap-3 align-items-center'>
                          {program.location && 
-                         <div className="me-2 ebs-program-location" >
-                            <i className="fa fa-map-marker" /> <span className='fs-small fw-normal'>{program.location}   </span>
+                         <div className="me-2 ebs-program-location d-flex" >
+                           <span class="material-symbols-outlined fs-small" >location_on</span> <span className='fs-small fw-normal'>{program.location}   </span>
                         </div>
                          } 
                         {program.program_tracks.length > 0 && 
@@ -64,17 +62,17 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorksho
                               {program.program_tracks.length>2?"....":""}
                         </div>
                         } 
-                       <div onClick={()=>setShowDetail(true)} className='border p-2 rounded-4px d-flex justify-content-center align-items-center cusor-pointer' style={{ height:"35px",width:"35px" }}>
-                         <i class="fas fa-ellipsis-h"></i>
+                       <div onClick={()=>setShowDetail(true)} className='border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cusor-pointer' style={{ height:"35px",width:"35px" }}>
+                         <span class="material-symbols-outlined">more_horiz</span>
                             </div>
-                         {program.workshop_id>0 &&
+                         {/* {program.workshop_id>0 &&
                          <div onClick={()=>{
                             if( program.program_workshop_end_time && program.program_workshop){
                                 setShowWorkShopTitle(!showWorkShopTitle)
                             }
-                         }} className='border p-2 rounded-4px d-flex justify-content-center align-items-center cusor-pointer' style={{ height:"35px",width:"35px" }}>
+                         }} className='border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cusor-pointer' style={{ height:"35px",width:"35px" }}>
                             <i className={`${showWorkShopTitle?"fa fa-minus":"fa fa-plus"}`} /> </div>
-                         } 
+                         }  */}
                         </div>
                         </div>
 
@@ -82,7 +80,6 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorksho
             </div>
            
         </div>
-          <WorkShopTitle program={program} showWorkShopTitle={showWorkShopTitle}/>
          {window.innerWidth<=570 &&  <ProgramDetailModal program={program} labels={labels} eventUrl={eventUrl} agendaSettings={agendaSettings} showDetail={showDetail} setShowDetail={setShowDetail}/>}
         </>
 
