@@ -109,7 +109,7 @@ import moment from 'moment'
                 <div className="d-flex gap-12">
                             {/* {program.program_tracks.map((track, i) => ( */}
                                 <div  className='border rounded-5 d-flex align-items-center gap-1 p-3' >
-                                   <span className='fs-medium fw-light'>Cybertruslen mod dansk forskning</span>
+                                   <span className='fs-medium fw-light'>{program.program_workshop}</span>
                                     </div>
                             {/* ))} */}
                         </div>      

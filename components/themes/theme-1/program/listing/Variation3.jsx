@@ -111,7 +111,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
-                <div className='mb-3 position-relative' key={item.id}  
+                <div  key={item.id}  
                 onClick={() => handleItemClick(item, programsLoc[key])}>
                   <ProgramItem2 setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>
                 </div>

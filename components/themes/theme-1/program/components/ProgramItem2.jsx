@@ -71,7 +71,6 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings,key,showWorksho
                          <div onClick={()=>{
                             if( program.program_workshop_end_time && program.program_workshop){
                                 setShowWorkShopTitle(!showWorkShopTitle)
-                                setShowDetail(false)
                             }
                          }} className='border p-2 rounded-4px d-flex justify-content-center align-items-center cusor-pointer' style={{ height:"35px",width:"35px" }}>
                             <i className={`${showWorkShopTitle?"fa fa-minus":"fa fa-plus"}`} /> </div>
