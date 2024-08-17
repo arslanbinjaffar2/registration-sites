@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 import moment from 'moment'
- const ProgramDetail = ({programs,showDetail,agendaSettings,eventUrl,labels,setShowDetail}) => {
-     const program=programs.programArray.find((item)=>item.id==programs.id);
-     if(program==0){
+ const ProgramDetail = ({programs,showDetail,agendaSettings,eventUrl,labels,setShowDetail,workShopPrograms}) => {
+  const program = programs.programArray.find((item) => item.id === programs.id); 
+    if (!program) {
         return;
-     }
+    }
+
     const [showText, setShowText] = useState(program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
     const _ref = React.useRef();
     const width=window.innerWidth;
@@ -54,7 +55,7 @@ import moment from 'moment'
                 <div className="border-bottom pb-3 w-100">
                 <div className='d-flex justify-content-between align-items-center'>
                 {program?.topic &&  <h5 className='m-0 fs-2x1 fw-semibold'>{program.topic}</h5>}
-                <span class="material-symbols-outlined cusor-pointer"  style={{ fontSize: "30px" }} onClick={() => setShowDetail(false)}>close</span>
+                <span class="material-symbols-outlined cursor-pointer"  style={{ fontSize: "30px" }} onClick={() => setShowDetail(false)}>close</span>
                     </div>
                <div className='d-flex gap-4 align-items-center justify-content-start mt-3'>
                <div className='d-flex gap-1 align-items-center'>
@@ -73,7 +74,7 @@ import moment from 'moment'
                </div>
                <div className='pt-3 m-0'>
                <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program?.description }} />
-               {program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more cusor-pointer fw-semibold fs-xsmall' onClick={() => {if(showText) {setTimeout(() => {
+               {program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more cursor-pointer fw-semibold fs-xsmall' onClick={() => {if(showText) {setTimeout(() => {
                                 _ref?.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
                  }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE} {showText ? <i class="fas fa-chevron-up"></i>:<i class="fas fa-chevron-down"></i>}</span>}
                 </div>
@@ -103,7 +104,7 @@ import moment from 'moment'
                </div>}
                {/* workshop */}
                {program?.workshop_id >0 &&
-               <div className='pt-12 d-flex align-items-center gap-3 border-bottom pb-3 flex-lg-row flex-column'>                    
+               <div className='pt-12 d-flex align-items-center gap-3   flex-lg-row flex-column'>                    
                 <h5 className='m-0'>Workshop :</h5>
                 {/* track container */}
                 <div className="d-flex gap-12">
@@ -119,7 +120,7 @@ import moment from 'moment'
                </div>
                }
                {program?.program_speakers?.length>0 &&
-                 <div className='pt-3  d-flex align-items-lg-center gap-3 flex-column justify-content-start flex-lg-row'>                    
+                 <div className='mt-3 pt-3  d-flex align-items-lg-center gap-3 flex-column justify-content-start flex-lg-row border-top '>                    
                 <h5 className='m-0'>Speakers :</h5>
                 {/* track container */}
                 <div className="d-flex gap-3 align-items-center justify-content-start flex-wrap">
@@ -148,7 +149,7 @@ import moment from 'moment'
                                             )}
                                 </figure>
 
-                                            <h6 className='fs-small fw-normal'>{speakers.first_name} {speakers.last_name}</h6>
+                                            <h6 className='fs-small fw-normal m-0'>{speakers.first_name} {speakers.last_name}</h6>
                             </ActiveLink>
                         ))}
                         </div>

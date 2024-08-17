@@ -1269,7 +1269,7 @@
           content: '';
           position: absolute;
           top: 0%;
-          background-color: $light;
+          background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
@@ -1281,7 +1281,7 @@
           content: '';
           position: absolute;
           bottom: 0%;
-          background-color: $light;
+          background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
@@ -3988,7 +3988,7 @@
 .h-90{
   height: 90px;
 }
-.cusor-pointer{
+.cursor-pointer{
   cursor: pointer;
 }
 .fs-medium{
@@ -4062,7 +4062,7 @@
         content: '';
         position: absolute;
         top: 0%;
-        background-color: $light;
+        background-color: $light2;
         width: 2px;
         height: 50%; 
         left: 25px;
@@ -4074,7 +4074,7 @@
         content: '';
         position: absolute;
         bottom: 0%;
-        background-color: $light;
+        background-color: $light2;
         width: 2px;
         height: 50%; 
         left: 25px;
@@ -4104,12 +4104,52 @@
   border-color: $default-heading-color!important;
 }
 
-
-.css-rbic0r-control{
+.custom-date-select >div {
   border-color: $default-heading-color!important;
-  max-width: 280px !important;
-  height: 42px !important;
 }
+.custom-track-select  .css-rbic0r-control{
+  border-color: $default-heading-color!important;
+  min-width: 280px !important;
+  min-height: 42px !important;
+  height: 100% !important;
+  width: 100%;
+}
+.css-119kahd-control{
+  min-height: 42px !important;
+  height: 100% !important;
+}
+.custom-track-select>*{
+  min-width: 280px !important;
+  width: 100%;  
+  height: auto;
+}
+.css-rbic0r-control>
 .css-tj5bde-Svg{
   color: $default-heading-color!important;
+}
+
+
+.center-Btn{
+position: absolute;
+top: 50%;
+right: 0;
+transform: translate(-50%, -50%);
+z-index: 2;
+}
+
+.css-1nmdiq5-menu{
+  z-index: 99;
+}
+
+.ebs-more-track-shown{
+  &:hover,
+  &:active,
+  &:focus
+  {
+
+    background-color: $default-heading-color;
+    color: white;
+  }
+ 
+  
 }

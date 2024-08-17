@@ -6,6 +6,7 @@ import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
 import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
+
 import WorkShopTitle from '../components/workshopTitle';
 const customStyles = {
   control: base => ({
@@ -31,6 +32,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     id:0,
     programArray:[]
   })
+  console.log(programsState,"programState")
   const onDateChange = (date) => {
     setSelectedDate(date);
   }
@@ -41,7 +43,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
   };
-
+  
   useEffect(() => {
     let programsObj = programs;
     if (selectedDate !== null && selectedDate.value !== 0) {
@@ -74,7 +76,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     document.head.appendChild(link);
   }, []);
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
@@ -88,12 +90,12 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                   placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                   components={{ IndicatorSeparator: null }}
                   onChange={(date) => { onDateChange(date) }}
-                  className='border-black-color'
+                  className='custom-date-select'
                   options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('D MMMM')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                 />
               </div>}
-              <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cusor-pointer border-black-color'>
-          <span class="material-symbols-outlined">tune</span>
+              <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cursor-pointer border-black-color'>
+          <span className="material-symbols-outlined">tune</span>
           </div>
             
         
@@ -101,8 +103,8 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
           {/* filters */}
          {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
                {eventsiteSettings.agenda_search_filter === 1 && <div>
-              <div style={{ maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
-              <span class="material-symbols-outlined fa">search</span>
+              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+              <span className="material-symbols-outlined fa">search</span>
               </div>
               </div>}
                   {tracks.length > 0 &&
@@ -112,11 +114,12 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                           placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
                           components={{ IndicatorSeparator: null }}
                           onChange={(track) => { onTrackChange(track) }}
+                          className='custom-track-select'
                           options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
                         />
                   </div>}
               <div className='d-flex gap-1 align-items-center justify-content-end ms-auto'>
-              <span class="material-symbols-outlined">restart_alt</span>
+              <span className="material-symbols-outlined">restart_alt</span>
               <span className='fs-xsmall fw-normal'>Reset filters</span>
               </div>
           </div>}
@@ -128,10 +131,9 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
-                <div className='mt-3'  key={item.id}  
-                onClick={() => handleItemClick(item, programsLoc[key])}>
-                  {item.workshop_id > 0? <WorkShopTitle program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail} setProgramsState={setProgramsState} programs={programsState}/>:
-                  <ProgramItem2 setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
+                <div className='mt-3'  key={item.id}>
+                  {item.workshop_id > 0? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
+                  <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
                 </div>
               ))}
             </div>

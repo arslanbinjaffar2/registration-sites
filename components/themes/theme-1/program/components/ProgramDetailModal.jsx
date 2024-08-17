@@ -29,14 +29,13 @@ const ProgramDetailModal = ({program,labels,eventUrl,agendaSettings,showDetail,s
       return (
         <>
           
-          <Modal show={showDetail} fullscreen={fullscreen} onHide={() => setShowDetail(false)}>
+          <Modal show={showDetail} fullscreen={fullscreen} onHide={() => setShowDetail(false)} className='mt-5'>
             <Modal.Header closeButton>
               <Modal.Title>Program Detail</Modal.Title>
             </Modal.Header>
             <Modal.Body >
             <div 
                 // className={`mt-30 ${showDetail?"d-block":"d-none"}`} 
-                className={`${showDetail?"my-30":"mt-30"}`}
                  style={{
                     transform: showDetail ? "translateY(0px)" : "translateY(-200px)",
                     opacity: showDetail ? 1 : 0,
@@ -49,22 +48,22 @@ const ProgramDetailModal = ({program,labels,eventUrl,agendaSettings,showDetail,s
                     {program.topic &&  <h5 className='m-0 fs-2x1 fw-semibold'>{program.topic}</h5>}
                    <div className='d-flex gap-4 align-items-center justify-content-start mt-3'>
                    <div className='d-flex gap-1 align-items-center'>
-                   <i className="fa fa-calendar"></i>
+                   <span class="material-symbols-outlined fs-small">calendar_month</span>
                    <span>{moment(program.date).format('dddd')} , {moment(program.date).format('MMMM D, YYYY')}</span>
                    </div>
                    {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 &&   <div className='d-flex gap-1 align-items-center'>
-                   <i className="fa fa-clock"></i>
+                    <span class="material-symbols-outlined fs-small">schedule</span>
                    <span>   {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</span>
                    </div>}
-                  {program.location && <div className='d-flex gap-1 align-items-center'>
-                   <i className="fa fa-map-marker"></i>
+                   </div>
+                  {program.location && <div className='d-flex gap-1 align-items-center mt-2'>
+                    <span class="material-symbols-outlined fs-small">location_on</span>
                    <span>{program.location}</span>
                    </div>}
                    </div>
-                   </div>
-                   <div className='pt-3 m-0'>
+                   <div className='m-0'>
                    <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program.description }} />
-                   {program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more cusor-pointer fw-semibold fs-xsmall' onClick={() => {if(showText) {setTimeout(() => {
+                   {program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more cursor-pointer fw-semibold fs-xsmall' onClick={() => {if(showText) {setTimeout(() => {
                                     _ref?.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
                      }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE} {showText ? <i class="fas fa-chevron-up"></i>:<i class="fas fa-chevron-down"></i>}</span>}
                     </div>
@@ -75,7 +74,7 @@ const ProgramDetailModal = ({program,labels,eventUrl,agendaSettings,showDetail,s
                      <span>   Welcome Address: Kick off the workshop with a warm welcome and an overview of what to expect.</span>
                     </div>
                    </div> */}
-                   {program.program_tracks.length > 0 && <div className={`pt-40 row d-flex w-100  gap-2 ${program.program_tracks.length ==5 ?"align-items-center":"align-items-start"}`}>                    
+                   {program.program_tracks.length > 0 && <div className={`pt-4 row d-flex w-100  gap-2 ${program.program_tracks.length ==5 ?"align-items-center":"align-items-start"}`}>                    
                     <h5 className='m-0 col-lg-1'>Tracks :</h5>
                     {/* track container */}
                     <div className="ebs-tracks-program d-flex gap-12 flex-wrap col-lg-10">
