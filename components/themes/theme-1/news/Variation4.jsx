@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const Variation4 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
   const [ShowAllModules,setShowAllModules]=useState({
-    modules:2
+    modules:4
   })
   const [height, setHeight] = useState(0);
   const iframe = useRef();
@@ -21,13 +21,16 @@ const Variation4 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   
  function NewsModules(){
   return(
-   news.length>0? news.slice(0,ShowAllModules.modules).map((item)=>{
+   news.length>0? news.slice(0,ShowAllModules.modules).map((item,index)=>{
       return(
-        <SingleNewModule key={item.id} setShowAllModules={setShowAllModules}  makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item}/>
+        <SingleNewModule key={item.id}  index={index} setShowAllModules={setShowAllModules}  makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item}/>
       )
     }):""
   )
  }
+ const handleViewAll = () => {
+  setShowAllModules({ ...ShowAllModules, modules: news.length });
+};
   return (
     <div  className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -38,19 +41,19 @@ const Variation4 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            <p className="col-md-6 col-12 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
+            <p className="col-md-6 col-12 m-0 mt-md-0 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
           </div>
           {/* container */}
          <div className="d-flex flex-column mt-40">
          <div className="d-flex flex-column gap-3">
           {NewsModules()}
          </div>
-         <button onClick={()=>setShowAllModules({...ShowAllModules,modules:-1})} className="d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn">
+        {ShowAllModules.modules < news.length && <button onClick={handleViewAll} className="d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn">
           <span className="py-12 px-3">View All</span>
           <span class="Button-styles__ButtonIcon-sc-37ebb3b-1 jnfvHm button__icon"><span data-cy="icon-arrow-right" class="Icon-styles__IconDefinitions-sc-274238bf-1 hZWJIC">   
               <span className="material-symbols-outlined text-white d-flex justify-content-center align-items-center"> arrow_right_alt</span>
               </span></span>       
-         </button>
+         </button>}
          </div>
         </div>
         <div>
@@ -76,15 +79,15 @@ function SingleNewModule({event_url,created_at,body,title,id}){
   push(`/${event_url}/news/${id}`)
  }
   return(
-    <div className="border p-4 rounded-2 border-color-default">
+    <div className="border p-md-4 p-3  rounded-2 border-color-default">
     <div className="d-flex justify-content-between align-items-center row">
      <div className="col-lg-10">
     <span className="border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date"style={ebsDateStyle}>{created_at}</span>
      <h3 className="m-0 mt-2 fs-24 fw-semibold">{title}</h3>
      {/* <div className="m-0 mt-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: body }}></div> */}
-     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp" dangerouslySetInnerHTML={{__html:body}}></p>
+     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-2" dangerouslySetInnerHTML={{__html:body}}></p>
     </div>
-    <div className="col-lg-2 d-flex justify-content-lg-end justify-content-center ">
+    <div className="col-lg-2 d-flex justify-content-lg-end justify-content-start mt-md-0 mt-2">
     <button onClick={handleShowDetail}
     className="d-flex justify-content-center align-items-center  border ebs-read-more-btn rounded-1 py-12 px-3 bg-transparent border-color-default">
      <span className="">Read more</span>

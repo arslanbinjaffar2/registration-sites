@@ -3941,12 +3941,15 @@ font-size: 24px;
   font-size: 14px;
   font-weight: 400;
   color: $default-text-color;
-  top: 88%;
-  left: 2%;
+  // top: 88%;
+  left: 3%;
   width:fit-content;
 }
 .gap-40{
   gap: 40px;
+  @media (max-width: 570px) {
+    gap: 10px;
+ }
 }
 .py-6{
   padding-top: 6px;
@@ -3954,6 +3957,9 @@ font-size: 24px;
 }
 .p-40{
   padding: 40px;
+  @media (max-width: 570px) {
+     padding: 20px;
+  }
 }
 .ebs-heading-bottom-border{
   border-bottom: 8px solid $color-secondary-2;
@@ -3971,18 +3977,20 @@ font-size: 24px;
   color: $default-text-color;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
+  border: 2px solid #2B2B2B;
   &:hover{
     background-color:$default-text-color !important;
     color: white;
+    border: 2px solid transparent;
   }
   span:nth-child(2) {
     align-items: center;
-    background-color: $default-text-color !important;
-    border-radius: 100% 0px 0px 100%;
+    background-color: #313131 !important;
+    border-radius: 46% 4px 4px 46%;
     display: flex;
     height: 100%;
     justify-content: center;
-    width: 3.4rem;
+    width: 2.2rem;
   }
 }
 
@@ -3991,6 +3999,11 @@ font-size: 24px;
   font-weight: 500;
   height: 42px;
   color: $default-text-color;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: $default-text-color !important;
+    color: white;
+  }
   
 }
 .border-color-default{
@@ -4007,7 +4020,7 @@ font-size: 24px;
 
 
 .ebs-left-side-container{
-  background: transparent linear-gradient(118deg, #0E58FC 0%, #0EBCFC 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(118deg, var(--primary) 0%, var(--secondary) 100%) 0% 0% no-repeat padding-box;
   color: white;
 }
 .bg-light{
@@ -4015,4 +4028,13 @@ font-size: 24px;
 }
 .body-transition{
   transition: all 10s ease-in-out;
+}
+
+
+.ebs-edgtf-post-line-clamp-new{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }

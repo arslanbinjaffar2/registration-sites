@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import TruncateMarkup from 'react-truncate-markup';
 import Image from 'next/image'
 import HeadingElement from 'components/ui-components/HeadingElement';
+import { useRouter } from "next/router";
 
 const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
   const [height, setHeight] = useState(0);
@@ -14,7 +15,6 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     link.rel = 'stylesheet';
     document.head.appendChild(link);
   }, []);
- 
  function NewsModules(){
   return(
    news.length>0? news.slice(0,).map((item)=>{
@@ -30,13 +30,13 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
          {/* {homePage && <HeadingElement dark={false} label={siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}  align={'center'} />} */}
-         {/* <div className="row d-flex justify-content-between w-100 ">
+         <div className="row d-flex justify-content-between w-100 ">
             <h2 className="col-md-6 col-12 d-flex flex-column m-0">
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            <p className="col-md-6 col-12 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
-          </div> */}
+            <p className="col-md-6 col-12 m-0 mt-md-0 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
+          </div>
           {/* container */}
           <div className="d-flex flex-column gap-40  mt-40">
           <NewsModules />
@@ -53,6 +53,7 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
 export default Variation6;
 
 function SingleNewModule({id,created_at,body,title,image,makeNewDetailURL,event_url}){
+  const {push}=useRouter()
   const [width,setWidth]=useState(window.innerWidth) 
    useEffect(()=>{
     const handleRize=()=>{
@@ -64,19 +65,22 @@ function SingleNewModule({id,created_at,body,title,image,makeNewDetailURL,event_
       removeEventListener('resize',handleRize);
     }
    },[width])
+   const handleViewDetail=()=>{
+     push(`/${event_url}/news/${id}`)
+   }
   return(
-    <div className="row" style={{ gap:"0px" }}>
-    <div className="col-md-6 col-12 ebs-left-side-container p-40">
+    <div className="row p-md-0 p-3" style={{ gap:"0px" }}>
+    <div className="col-md-6 col-12 ebs-left-side-container p-40 rounded-start-md-1">
      <h3 className="m-0 fs-24 fw-semibold text-light">{title}</h3>
-     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp mt-3" dangerouslySetInnerHTML={{__html:body}}></p>
-     <button className="bg-light d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn">
-          <span className="py-12 px-3">View All</span>
+     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-3" dangerouslySetInnerHTML={{__html:body}}></p>
+     <button className="bg-light d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn" onClick={handleViewDetail}>
+          <span className="py-12 px-3">Read More</span>
           <span class="Button-styles__ButtonIcon-sc-37ebb3b-1 jnfvHm button__icon"><span data-cy="icon-arrow-right" class="Icon-styles__IconDefinitions-sc-274238bf-1 hZWJIC">   
               <span className="material-symbols-outlined text-white d-flex justify-content-center align-items-center"> arrow_right_alt</span>
               </span></span>       
     </button>
   </div>
-  <div className="bg-black col-md-6 col-12 p-0">
+  <div className="bg-transparent col-md-6 col-12 p-0 rounded-end-md-1">
   <ActiveLink itemProp="url" href={makeNewDetailURL(event_url, id)}>
   {image &&  <figure className="m-0 w-100  position-relative" style={{ height:width<=570?"408px":"100%" }}>
                             <Image

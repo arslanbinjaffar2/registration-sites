@@ -28,7 +28,7 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   return(
     firstTwoModule.length>0? firstTwoModule.map((item)=>{
       return(
-        <SingleNewModule key={item.id} height={"360px"} makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item} />
+        <SingleNewModule key={item.id} height={"360px"} top={"86%"} makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item} />
       )
     }):""
   )
@@ -37,11 +37,15 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   return(
     restModules.length>0? restModules.slice(0,ShowAllModules.modules).map((item)=>{
       return(
-        <SingleNewModule key={item.id} height={"293px"} makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item}/>
+        <SingleNewModule key={item.id} height={"293px"} top={"84%"} makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item}/>
       )
     }):""
   )
  }
+ const handleViewAll = () => {
+  setShowAllModules({ ...ShowAllModules, modules: news.length });
+};
+console.log(siteLabels,"sitelabels")
   return (
     <div style={bgStyle}  className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -52,7 +56,7 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            <p className="col-md-6 col-12 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
+            <p className="col-md-6 col-12 m-0 mt-md-0 m-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
           </div>
           {/* container */}
          <div className="d-flex flex-column">
@@ -62,12 +66,12 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
          <div className="grid-layout-container">
          <RestNewsModules/>
          </div>
-         <button onClick={()=>setShowAllModules({...ShowAllModules,modules:-1})} className="d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn">
+         {ShowAllModules.modules < news.length && <button onClick={handleViewAll} className="d-flex justify-content-center align-items-center align-self-center mt-32   p-0 rounded-2 ebs-view-btn">
           <span className="py-12 px-3">View All</span>
           <span class="Button-styles__ButtonIcon-sc-37ebb3b-1 jnfvHm button__icon"><span data-cy="icon-arrow-right" class="Icon-styles__IconDefinitions-sc-274238bf-1 hZWJIC">   
               <span className="material-symbols-outlined text-white d-flex justify-content-center align-items-center"> arrow_right_alt</span>
               </span></span>       
-         </button>
+         </button>}
          </div>
         </div>
         <div>
@@ -79,7 +83,7 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
 };
 
 export default Variation5;
-function SingleNewModule({makeNewDetailURL,event_url,id,created_at,body,title,image,height}){
+function SingleNewModule({makeNewDetailURL,event_url,id,created_at,body,title,image,height,top}){
   return(
   <div className="h-100">
   <ActiveLink itemProp="url" href={makeNewDetailURL(event_url, id)}>
@@ -94,14 +98,14 @@ function SingleNewModule({makeNewDetailURL,event_url,id,created_at,body,title,im
                     image
                   : require('public/img/exhibitors-default.png')
               }
-              className="attachment-full size-full wp-post-image h-100"
+              className="attachment-full size-full wp-post-image h-100 rounded-1"
               alt={title}
             />
-    <span className="position-absolute border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date bg-white">{created_at}</span>
+    <span style={{ top }} className="position-absolute border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date bg-white">{created_at}</span>
   </figure>}
   </ActiveLink>
      <h3 className="m-0 mt-4 fs-24 fw-semibold">{title}</h3>
-     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp" dangerouslySetInnerHTML={{__html:body}}></p>
+     <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-3" dangerouslySetInnerHTML={{__html:body}}></p>
   </div>
 
   )
