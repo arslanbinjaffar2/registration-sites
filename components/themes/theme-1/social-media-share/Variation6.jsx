@@ -58,7 +58,7 @@ const Variation6 = ({ event, socialMediaShare, labels, settings }) => {
                     <TwitterShareButton
                       url={`${window.location.origin.toString()}/${event.url}`}
                     >
-                      <XIcon size={60} title="Twitter" /> <span>Twitter</span>
+                      <XIcon size={60} title="Twitter" /> <span>X</span>
                     </TwitterShareButton>
                   );
                 case "Pinterest":

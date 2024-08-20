@@ -3660,3 +3660,267 @@
 .mapplic-tooltip.mapplic-popup {
   max-height: none !important;
 }
+
+.flip-clock {
+  justify-content: center;
+  text-transform: uppercase;
+  --fcc-flip-duration: 0s; /* transition duration when flip card */
+  --fcc-spacing: 40px; /* space between unit times and separators */
+  --fcc-digit-block-width: 134px; /* width of digit card */
+  --fcc-digit-block-height: 200px; /* height of digit card, highly recommend in even number */
+  --fcc-digit-block-radius: 24px; /* border radius of digit card */
+  --fcc-digit-block-spacing: 20px; /* space between blocks in each unit of time */
+  --fcc-digit-font-size: 110px; /* font size of digit */
+  --fcc-digit-color: $default-heading-color; /* color of digit */
+  --fcc-label-font-size: 32px; /* font size of label */
+  --fcc-label-color: $default-heading-color; /* color of label */
+  --fcc-background: #F2F2F2; /* background of digit card */
+  --fcc-divider-color: #F2F2F2; /* color of divider */
+  --fcc-divider-height: 0px; /* height of divider */
+  --fcc-separator-size: 14px; /* size of colon */
+  --fcc-separator-color: #000; /* color of colon */
+    @include laptop-wide-landscape {
+      --fcc-digit-font-size: 80px; /* font size of digit */
+      --fcc-label-font-size: 18px; /* font size of label */
+      --fcc-digit-block-width: 100px; /* width of digit card */
+      --fcc-digit-block-height: 120px; /* height of digit card, highly recommend in even number */
+        --fcc-spacing: 10px; /* space between unit times and separators */
+        --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+      
+    
+  }
+  @include ipad-landscape {
+      --fcc-digit-font-size: 60px; /* font size of digit */
+      --fcc-label-font-size: 18px; /* font size of label */
+      --fcc-digit-block-width: 60px; /* width of digit card */
+      --fcc-digit-block-height: 90px; /* height of digit card, highly recommend in even number */
+      --fcc-separator-size: 8px; /* size of colon */
+    
+  }
+  @include phone-landscape {
+      --fcc-digit-font-size: 30px; /* font size of digit */
+      --fcc-label-font-size: 14px; /* font size of label */
+      --fcc-digit-block-width: 30px; /* width of digit card */
+      --fcc-digit-block-height: 50px; /* height of digit card, highly recommend in even number */
+      --fcc-separator-size: 6px; /* size of colon */
+      --fcc-digit-block-radius: 10px; /* border radius of digit card */
+  }
+}
+
+.flip-clock-2 {
+  font-family: 'Digital-7', Courier, monospace !important;
+  justify-content: center;
+  text-transform: uppercase;
+  --fcc-flip-duration: 0.5s; /* transition duration when flip card */
+  --fcc-spacing: 40px; /* space between unit times and separators */
+  --fcc-digit-block-width: 134px; /* width of digit card */
+  --fcc-digit-block-height: 200px; /* height of digit card, highly recommend in even number */
+  --fcc-digit-block-radius: 24px; /* border radius of digit card */
+  --fcc-digit-block-spacing: 20px; /* space between blocks in each unit of time */
+  --fcc-digit-font-size: 110px; /* font size of digit */
+  --fcc-digit-color: $default-heading-color; /* color of digit */
+  --fcc-label-font-size: 32px; /* font size of label */
+  --fcc-label-color: $default-heading-color; /* color of label */
+  --fcc-background: #F2F2F2; /* background of digit card */
+  --fcc-divider-color: #F2F2F2; /* color of divider */
+  --fcc-divider-height: 0px; /* height of divider */
+  --fcc-separator-size: 14px; /* size of colon */
+  --fcc-separator-color: #000; /* color of colon */
+  @include laptop-wide-landscape {
+      --fcc-digit-font-size: 80px; /* font size of digit */
+      --fcc-label-font-size: 18px; /* font size of label */
+      --fcc-digit-block-width: 100px; /* width of digit card */
+      --fcc-digit-block-height: 120px; /* height of digit card, highly recommend in even number */
+        --fcc-spacing: 10px; /* space between unit times and separators */
+        --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+      
+    
+  }
+  @include ipad-landscape {
+      --fcc-digit-font-size: 60px; /* font size of digit */
+      --fcc-label-font-size: 18px; /* font size of label */
+      --fcc-digit-block-width: 60px; /* width of digit card */
+      --fcc-digit-block-height: 90px; /* height of digit card, highly recommend in even number */
+      --fcc-separator-size: 8px; /* size of colon */
+    
+  }
+  @include phone-landscape {
+      --fcc-digit-font-size: 30px; /* font size of digit */
+      --fcc-label-font-size: 14px; /* font size of label */
+      --fcc-digit-block-width: 30px; /* width of digit card */
+      --fcc-digit-block-height: 50px; /* height of digit card, highly recommend in even number */
+      --fcc-separator-size: 6px; /* size of colon */
+  }
+}
+.flip-clock * {
+  border-radius: 24px;
+  box-shadow: none !important;
+   @include phone-landscape {
+    border-radius: 4px;
+   }
+  
+}
+._2aOn7 {
+  font-weight: 500 !important;
+  padding-top: 15px !important;
+}
+.flip-clock-2 ._2aOn7 {
+  font-family: 'Rubik', sans-serif !important;
+}
+.ebs-bg-holder.ebs-counter-holder {
+  background: url('/img/banner-counter.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba($black, 0.8);
+    z-index: 2;
+  }
+  .flip-clock,.flip-clock-2 {
+  --fcc-separator-color: #fff; /* color of colon */
+  --fcc-label-color: #fff; /* color of colon */
+  --fcc-background: #fff; /* background of digit card */
+  --fcc-divider-color: #fff; /* color of divider */
+  }
+}
+
+.ebs-digital-clock {
+  ._3luxx {
+    opacity: 0;
+  }
+  ._106d2, ._SKh-V {
+    align-items: center;
+    border-radius: 24px;
+    height: 100%;
+      @include ipad-landscape {
+        border-radius: 12px;
+      }
+  }
+}
+
+.ebs-counter-v5 {
+  padding: 50px 100px;
+  .edgtf-countdown {
+    flex: 1;
+  }
+  .vr {
+    width: 3px;
+    background: $default-heading-color;
+    opacity: 1;
+    border-radius: 20px;
+  }
+  &.ebs-counter-dark {
+    color: $white;
+    .vr {
+      background: $white;
+    }
+    .edgtf-countdown {
+      .countdown-amount {
+        color: $white;
+
+      }
+    }
+  }
+  @include laptop-landscape {
+    padding: 50px 20px;
+    .countdown-amount {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+.ebs-counter-v7 {
+  padding: 50px 100px;
+  .edgtf-countdown {
+    flex: 1;
+  }
+  .vr {
+    width: 3px;
+    background: $default-heading-color;
+    opacity: 1;
+    border-radius: 20px;
+    height: 75px;
+  }
+  &.ebs-counter-dark {
+    color: $white;
+    .vr {
+      background: $white;
+    }
+    .edgtf-countdown {
+      .countdown-amount {
+        color: $white;
+
+      }
+    }
+  }
+  @include laptop-landscape {
+    padding: 50px 20px;
+  }
+}
+.ebs-gray-color {
+  background: #F2F2F2;
+  text-align: center;
+}
+.ebs-counter-v10 {
+  gap: 30px;
+
+  .edgtf-countdown {
+    flex: 1;
+  }
+  .countdown-amount {
+    background: #F2F2F2;
+    text-align: center;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+    padding-bottom: 100%;
+    margin-bottom: 20px;
+  }
+  .countdown-period {
+    color: $text666;
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+  &.ebs-counter-dark {
+    color: $white;
+    .countdown-amount {
+      color: $white;
+      border: 1px solid $white;
+      background: transparent;
+    }
+    .countdown-period {
+      color: $white;
+    }
+  }
+  @include phone-landscape {
+    gap: 10px;
+    .countdown-amount {
+      .lh-base {
+        line-height: 1 !important;
+      }
+    }
+  }
+}
+.ebs-text-danger {
+  color: $color-danger;
+  * {
+    color: $color-danger;
+  }
+}
+.ebs-no-margin-wrapp {
+  * {
+    margin-top: 0;
+  }
+}
+.ebs-all-tags-white {
+  * {
+    color: inherit;
+  }
+}

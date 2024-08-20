@@ -20,11 +20,13 @@ const Index = (props) => {
 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [cancelOption, setCancelOption] = useState("whole_order");
+    const [showCancellationOptions, setShowCancellationOptions] = useState(false);
 
     const onConfirm = async () => {
         const response = await axios.post(
             `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee`,
-            { id, event_id, email }
+            { id, event_id, email, cancelOption }
         );
         if (response.data.success) {
             if (event?.eventsiteSettings?.third_party_redirect_url && Number(event?.eventsiteSettings?.third_party_redirect) === 1) {
@@ -51,7 +53,9 @@ const Index = (props) => {
             setLoading(false);
             if (response.data.success) {
                 if(response.data?.attendee_found) {
-
+                    if(response.data?.show_cancel_options && Number(response.data?.show_cancel_options) === 1){
+                        setShowCancellationOptions(true);
+                    }
                 }else{
                     // router.push(`/${event.url}`);
                     setError(response.data?.message);
@@ -97,6 +101,40 @@ const Index = (props) => {
                                             {event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG !== undefined ? event.labels.EVENTSITE_ATTENDEE_NOT_ATTENDING_CONFIRMATION_MSG : "Are you sure you want cancel coming to the event."}
                                         </>
                                     )}
+                                    {showCancellationOptions && <div className='border mt-3 p-2 rounded'>
+                                        <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
+                                                {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
+                                        </div>
+                                        <div className='form-check mb-0 form-check-inline me-5'>
+                                        
+                                            <input
+                                            className='form-check-input mt-1'
+                                            type="radio"
+                                            name="canceloption" 
+                                            id="whole_order" 
+                                            value="whole_order"
+                                            checked={cancelOption === "whole_order" ? true : false }
+                                            onChange={(e)=>{setCancelOption(e.target.value)}}
+                                            />
+                                            <label for="whole_order" className="form-check-label text-dark">
+                                            {event.labels.GENERAL_YES !== undefined ? event.labels.GENERAL_YES : 'Yes'}
+                                            </label>
+                                        </div>
+                                        <div className='form-check-inline mb-0 form-check'>
+                                            <input
+                                            className='form-check-input mt-1'
+                                            type="radio"
+                                            name="canceloption" 
+                                            id="registration_only" 
+                                            value="registration_only"
+                                            checked={cancelOption === "registration_only" ? true : false }
+                                            onChange={(e)=>{setCancelOption(e.target.value)}}
+                                            />
+                                            <label for="registration_only" className="form-check-label text-dark">
+                                            {event.labels.GENERAL_NO !== undefined ? event.labels.GENERAL_NO : 'No'}
+                                            </label>
+                                        </div>
+                                    </div>}
                                 </div>
                                 {!error && (
                                     <div className='btn-container' >

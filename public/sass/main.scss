@@ -8,6 +8,7 @@
 
 // Fonts
 @import './fontawesome/css/all.min.css'; // Font Awesome Latest Library
+@import './digital/digital.css'; // Font Awesome Latest Library
 @import './elegant-icons/style.min.css';
 
 // React Slick
@@ -333,6 +334,10 @@ a:hover {
 		position: absolute;
 		right: 10px;
 	}
+}
+.bg-primary {
+	background: var(--primary) !important;
+	border-color: var(--primary) !important;
 }
 .edgtf-has-background, .parallax-backgroud {
 	background-image: url("/img/h1-parallax1.jpg");
@@ -1501,8 +1506,8 @@ $z-index:$back-to-top-size / 2;
 			left: auto;
 			right: 100%;
 			padding: 15px 0;
-			max-height: 350px;
-			// overflow-y: auto;
+			max-height: 380px;
+			overflow-y: auto;
 			.nav-item {
 				padding: 0;
 				.nav-link {
@@ -1898,6 +1903,7 @@ $z-index:$back-to-top-size / 2;
 					background-size: 14px;
 				}
 			}
+			
 		}
 	}
 	.ebs-accept-text {
@@ -1922,6 +1928,10 @@ $z-index:$back-to-top-size / 2;
 			left: 0;
 			top: 0;
 		}
+	}
+	input[type="radio"] ~ .ebs-accept-text::before {
+		border-radius: 50%;
+		
 	}
 
 }
