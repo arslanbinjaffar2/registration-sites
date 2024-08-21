@@ -66,7 +66,7 @@ export const localeProgramMoment = (language_id, date = null) => {
         format = 'dddd D. MMMM YYYY';
     }
     else if (language_id == 3) {
-        locale = 'no_NO';
+        locale = 'nb_NB';
         format = 'D. MMMM YYYY';
     }
     else if (language_id == 4) {
