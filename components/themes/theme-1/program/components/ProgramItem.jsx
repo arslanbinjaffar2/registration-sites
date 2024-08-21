@@ -9,7 +9,7 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
     console.log(`${program.date} ${program.start_time}`);
     console.log(program.description.replace(/<\/?[^>]+(>|$)/g, "").length,'length string')
     return (
-        <div className="ebs-program-child">
+        <div className="ebs-program-child-new">
             <div className="row d-flex">
                 <div className="col-lg-2">
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')} - {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</div>}
