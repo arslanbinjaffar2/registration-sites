@@ -657,6 +657,7 @@ class Variation1 extends React.Component {
                 </div>
               </nav>}
               {this.props.userExist && <MyProfileSidebar />}
+               {<Language />}
             </div>
           </div>
         </div>
