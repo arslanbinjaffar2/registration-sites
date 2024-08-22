@@ -30,7 +30,9 @@ const Language = () => {
   const handleLanguageClick = (language, url) => {
     setSelectedLanguage(language);
     if (url) {
-      router.push(url);
+      router.push(url).then(() => {
+      window.location.reload();
+    });
     }
   };
 
