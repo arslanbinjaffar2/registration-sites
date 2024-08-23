@@ -402,7 +402,6 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (<React.Fragment>
                       <div 
                         className="generic-form"
-                        style={{ width: "46%",zIndex: 9 }}
                       >
                         <h5>{question.info[0].value}</h5>
                         <Input
@@ -498,8 +497,6 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (
                       <React.Fragment>
                         <div className="generic-form"
-                        style={{  zIndex: 99,
-                          position: "relative" }}
                         >
                           <h5>{question.info[0].value}</h5>
                           <div
@@ -716,7 +713,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                   {question.question_type === "matrix" &&
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (
                       <React.Fragment>
-                        <div className={`matrix-question-wrapper`}>
+                        <div className="matrix-question-wrapper position-relative" style={{ zIndex:"unset" }}>
                           <h5>{question.info[0].value}</h5>
                           <div className="matrix-wrapper">
                           <div className="matrix-table">
