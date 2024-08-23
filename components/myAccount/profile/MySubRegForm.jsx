@@ -497,11 +497,14 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                   {question.question_type === "dropdown" &&
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (
                       <React.Fragment>
-                        <div className="generic-form">
+                        <div className="generic-form"
+                        style={{  zIndex: 99,
+                          position: "relative" }}
+                        >
                           <h5>{question.info[0].value}</h5>
                           <div
-                            className="custom-label-select position-relative"
-                            style={{ width: "46%",zIndex: 9 }}
+                            className="custom-label-select"
+                            style={{ width: "46%"}}
                           >
                             <Select
                               placeholder="Select value from dropdown"
