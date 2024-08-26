@@ -70,6 +70,74 @@ const TypeWriter = ({slides, innerRef}) => {
 
     loop();
   };
+
+  const WrapperLayout = (props) => {
+    const _bgLayer = (props.data?.info?.title.length > 0 && settings.title === 1) || (props.data?.info?.message.length > 0 && settings.caption === 1);
+
+    if (props.data && Number(props.data.video_type) === 1) {
+      return (
+        <div
+          data-fixed="true"
+          ref={_parallax}
+          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`,
+          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
+          }}
+          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+        >
+        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
+        </div>
+      );
+    } else if (props.data && Number(props.data.video_type) === 2) {
+      return (
+        <div
+          data-fixed="true"
+          ref={_parallax}
+          style={{backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + props.data.image})`, position: 'relative',
+          backgroundBlendMode: _bgLayer ? 'overlay' : 'normal'
+          }}
+          className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+        >
+        <div className="video-fullscreen">
+          <video preload="auto" autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${props.data.image}`} type="video/mp4"></video>
+        </div>  
+        {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
+        </div>
+      );
+    }
+     else {
+      return (
+          <div
+            data-fixed="true"
+            ref={_parallax}
+            className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
+          >
+            
+            {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
+              {props.children}
+            </a >: props.children}
+          </div>
+      );
+    }
+
+  }
+	useEffect(() => {
+		if (window.innerWidth >= 991) {
+			const elem = document.getElementById("ebs-header-master");
+			if (elem && elem.nextSibling.dataset) {
+				elem.classList.remove("ebs-light-header");
+				var _nextSibling = elem.nextSibling.dataset.fixed;
+				if (_nextSibling === 'true') {
+					elem.classList.add('ebs-fixed-header');
+				} else {
+					elem.classList.add('ebs-light-header');
+				}
+			}
+		}
+	}, [])
   return (
     <div
       className="edgtf-custom-font-holder ebs-banner-title"

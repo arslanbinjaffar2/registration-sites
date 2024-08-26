@@ -58,7 +58,7 @@ const Variation4 = ({ banner, event, countdown, regisrationUrl, settings, regist
                 >
                   {Number(slides.video_type) === 2 && (
                     <div className="video-fullscreen">
-                      <video muted src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                      <video preload="auto" autoPlay playsInline muted src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
                     </div>
                   )}
                   <div className="caption-wrapp">
