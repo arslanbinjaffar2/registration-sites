@@ -7,7 +7,7 @@ import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
   <div className="container">
-   {completed && event.count_down_section && event.count_down_section.expiry_message && (
+   {(event.count_down_section.show_count_down_text == 0 || (completed && event.count_down_section && event.count_down_section.expiry_message)) && (
       <div className="text-center fs-4 text-danger pt-5">
           <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
