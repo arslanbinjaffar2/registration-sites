@@ -110,7 +110,7 @@ const Variation2 = ({ banner, regisrationUrl, settings, registerDateEnd }) => {
           className="edgtf-parallax-section-holder edgtf-parallax-section-banner full-height-banners parallax-backgroud ebs-transparent-box ebs-bg-holder"
         >
         <div className="video-fullscreen">
-          <video autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${props.data.image}`} type="video/mp4"></video>
+          <video preload="auto" autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${props.data.image}`} type="video/mp4"></video>
         </div>  
         {props.data.url ? <a href={props.data.url} target="_blank" rel="noreferrer">
               {props.children}

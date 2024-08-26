@@ -26,25 +26,25 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
   }
   return (
     <>
-    <div className="main-slider-wrapper ebs-classic-banner">
-      {banner && (
-        <SliderBanner 
-        countdown={null}
-        registerDateEnd={registerDateEnd}
-        eventsiteSettings={event.eventsiteSettings}
-         >
-          {banner.map((slides, i) => (
-            <div key={i} className="slide-wrapper">
-              <WrapperLayout
-                slides={slides}
-              >
-                {Number(slides.video_type) === 2 && (
-                  <div className="ebs-video-fullscreen">
-                    <video muted src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
-                  </div>
-                )}
-                {Number(slides.video_type) === 1 && (
-                  <figure className="ebs-classic-figure">
+      <div className="main-slider-wrapper ebs-classic-banner">
+        {banner && (
+          <SliderBanner 
+          countdown={null}
+          registerDateEnd={registerDateEnd}
+          eventsiteSettings={event.eventsiteSettings}
+           >
+            {banner.map((slides, i) => (
+              <div key={i} className="slide-wrapper">
+                <WrapperLayout
+                  slides={slides}
+                >
+                  {Number(slides.video_type) === 2 && (
+                    <div className="ebs-video-fullscreen">
+                      <video preload="auto" autoPlay playsInline muted src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                    </div>
+                  )}
+                  {Number(slides.video_type) === 1 && (
+                    <figure className="ebs-classic-figure">
                       <img src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                     </figure>
                   )}
