@@ -6,9 +6,9 @@ import Countdown, {zeroPad} from "react-countdown";
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
   <div className="container">
-   {completed && event.count_down_section && event.count_down_section.expiry_message && (
-      <div className="text-center fs-4 text-danger pt-2">
-          <div className="ebs-text-danger" dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
+   {(event.eventsiteSettings.show_count_down_text == 0 || (completed && event.count_down_section && event.count_down_section.expiry_message)) && (
+      <div className="text-center fs-4 pt-2">
+          <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
       )}
   </div>
