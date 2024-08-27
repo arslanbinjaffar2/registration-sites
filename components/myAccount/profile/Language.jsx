@@ -39,7 +39,7 @@ const Language = () => {
 
   return (
     <React.Fragment>
-      {languages.length > 0 && (
+      {languages.length > 1 && (
       <div className="ebs-profile-top-area">
         <div onClick={handleClick} className="ebs-sideber-icond">
           <div style={{ cursor: 'pointer' }} className="d-flex align-items-center border rounded-1 py-1 px-2">
