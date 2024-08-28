@@ -3,7 +3,7 @@ import ActiveLink from "components/atoms/ActiveLink";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
 import Image from 'next/image'
-
+import Language from "components/myAccount/profile/Language";
 class Variation5 extends React.Component {
   _isMounted = false;
 
@@ -709,6 +709,7 @@ class Variation5 extends React.Component {
                 </div>
               </nav>}
               {this.props.userExist && <MyProfileSidebar />}
+                { <Language />}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import * as React from "react";
 import ActiveLink from "components/atoms/ActiveLink";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
 import Image from 'next/image'
-
+import Language from "components/myAccount/profile/Language";
 class Variation7 extends React.Component {
   _isMounted = false;
 
@@ -682,6 +682,7 @@ class Variation7 extends React.Component {
                 </div>
               </nav>}
               {this.props.userExist && <MyProfileSidebar />}
+                { <Language />}
             </div>
           </div>
         </div>
