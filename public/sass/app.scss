@@ -3924,8 +3924,12 @@
     color: inherit;
   }
 }
-
-.ebs-drop-down-generic-form{
+.ebs-drop-down-generic-form {
   position: relative;
   z-index: 9;
+}
+.ebs-main-header-v2 {
+  .ebs-sideber-icond {
+    color: $white;
+  }
 }
