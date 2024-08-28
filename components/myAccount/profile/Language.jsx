@@ -25,9 +25,10 @@ const Language = () => {
 
   const languages = event.switcher.map(switcherItem => switcherItem.language);
   const eventDetails = event.switcher.map(switcherItem => switcherItem.to_event_details);
-  const fromeventDetails = event.switcher.map(switcherItem => switcherItem.from_event_details);
   const selectedLanguageIndex = event.switcher.findIndex(switcherItem => event.id === switcherItem.to_event);
   const currentSelectedLanguage = selectedLanguage || languages[selectedLanguageIndex];
+
+  const filteredLanguages = languages.filter(language => language.id !== currentSelectedLanguage?.id);
   const handleLanguageClick = (language, url) => {
     setSelectedLanguage(language);
     if (url) {
@@ -62,7 +63,7 @@ const Language = () => {
 
         {toggleMenu && (
           <ul style={{ minWidth: 180 }} className={`dropdown-menu mt-2 end-0 start-auto ${toggleMenu ? "show" : ""}`} aria-labelledby="languageDropdown">
-            {languages.map((language, index) => (
+            {filteredLanguages.map((language, index) => (
               <li key={language.id}>
                 <a
                   className={`dropdown-item py-1 lh-base px-3 ${currentSelectedLanguage?.id === language.id ? "selected" : ""}`}
