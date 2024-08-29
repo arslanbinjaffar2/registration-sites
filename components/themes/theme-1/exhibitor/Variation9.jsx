@@ -13,7 +13,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		setPopup(!popup);
 		setData('');
 	}
-	var settingsslider = {
+    var settingsslider = {
 		dots: false,
 		infinite: true,
 		arrows: false,
@@ -22,8 +22,8 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		autoplay: true,
 		autoplaySpeed: 2000,
 		slidesToShow: 6,
-		slidesToScroll: 1,
-		swipeToSlide: true,
+		slidesToScroll: 1,  
+        swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -69,7 +69,11 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
     const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
 
 	return (
-		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
+		<div style={bgStyle} className="module-section ebs-default-padding">
+            {
+    console.log(exhibitors,"exh")
+
+            }
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
@@ -95,18 +99,17 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 															"/assets/exhibitors/" +
 															exhibitor.logo
 														}
-														alt="Client 11"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												) : (
 													<Image objectFit='contain' layout="fill"
 														src={require('public/img/exhibitors-default.png')}
-														alt="x"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												)
 											}
 										</span>
 									</div>
-									
 								);
 							})}
 						</Slider>
