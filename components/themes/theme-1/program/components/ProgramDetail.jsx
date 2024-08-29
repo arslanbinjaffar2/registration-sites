@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react'
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 import moment from 'moment'
- const ProgramDetail = ({programs,showDetail,agendaSettings,eventUrl,labels,setShowDetail,workShopPrograms}) => {
-  const program = programs.programArray.find((item) => item.id === programs.id); 
-    if (!program) {
-        return;
-    }
-
+ const ProgramDetail = ({programs,showDetail,agendaSettings,eventUrl,labels,setShowDetail}) => {
+    const [programsList,setProgramsList]=useState(programs)
     const [showText, setShowText] = useState(program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
     const _ref = React.useRef();
     const width=window.innerWidth;
     const [showHide, setShowHide] = useState(true);
     useEffect(() => {
       const handleResize = () => {
-        if (window.innerWidth < 570) {
+        if (width < 570) {
           setShowHide(false);
         } else {
           setShowHide(true);
@@ -32,8 +28,12 @@ import moment from 'moment'
         window.removeEventListener('resize', handleResize);
       };
     }, []);
+    const program = programsList.programArray.find((item) => item.id === programs.id); 
+    if (!program) {
+        return;
+    }
     return(
-        <div className={`w-100 bg-white `}>
+        <div className="w-100 bg-white">
             <div  
             id={program?.id}
             // className={`mt-30 ${showDetail?"d-block":"d-none"}`} 
@@ -78,13 +78,6 @@ import moment from 'moment'
                                 _ref?.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
                  }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE} {showText ? <i class="fas fa-chevron-up"></i>:<i class="fas fa-chevron-down"></i>}</span>}
                 </div>
-               {/* <h6 className='m-0'>Agenda :</h6>
-               <div className='pt-3 d-flex gap-2 align-items-start'>
-                <div>
-               <i class="fas fa-chevron-right"> </i>
-                 <span>   Welcome Address: Kick off the workshop with a warm welcome and an overview of what to expect.</span>
-                </div>
-               </div> */}
                {program?.program_tracks.length > 0 && <div className={`pt-32 row d-flex flex-lg-row flex-column w-100 gap-2 ${program.program_tracks.length ==8 ?"align-items-center":"align-items-start"}`}>                    
                 <h5 className='m-0 col-lg-1'>Tracks :</h5>
                 {/* track container */}

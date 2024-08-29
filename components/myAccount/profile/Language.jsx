@@ -25,17 +25,21 @@ const Language = () => {
 
   const languages = event.switcher.map(switcherItem => switcherItem.language);
   const eventDetails = event.switcher.map(switcherItem => switcherItem.to_event_details);
+  const fromeventDetails = event.switcher.map(switcherItem => switcherItem.from_event_details);
   const selectedLanguageIndex = event.switcher.findIndex(switcherItem => event.id === switcherItem.to_event);
   const currentSelectedLanguage = selectedLanguage || languages[selectedLanguageIndex];
   const handleLanguageClick = (language, url) => {
     setSelectedLanguage(language);
     if (url) {
-      router.push(url);
+      router.push(url).then(() => {
+      window.location.reload();
+    });
     }
   };
 
   return (
     <React.Fragment>
+      {languages.length > 1 && (
       <div className="ebs-profile-top-area">
         <div onClick={handleClick} className="ebs-sideber-icond">
           <div style={{ cursor: 'pointer' }} className="d-flex align-items-center border rounded-1 py-1 px-2">
@@ -78,6 +82,7 @@ const Language = () => {
           </ul>
         )}
       </div>
+         )}
     </React.Fragment>
   );
 };
