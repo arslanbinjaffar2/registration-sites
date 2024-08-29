@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
-import SponsorPopup from 'components/ui-components/SponsorPopup';
+import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Image from 'next/image'
 
-const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
+const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
 	const [clientYonMouseDown, setClientYonMouseDown] = useState(null);
+
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
 	}
-	var settingsslider = {
+    var settingsslider = {
 		dots: false,
 		infinite: true,
 		arrows: false,
@@ -45,66 +46,71 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 
 		]
 	};
-
-	const [sponsors,] = useState(sponsorsByCategories.reduce((ack, item) => {
-		return [...ack, ...item.sponsors];
+	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item) => {
+		const newExhibitors = item.exhibitors.filter(exhibitor => !ack.some(existing => existing.id === exhibitor.id));
+		return [...ack, ...newExhibitors];
 	}, []));
+	useEffect(()=>{
+		console.log(exhibitors)
+	},[])
+
 	const handleOnMouseDown = (e) => {
 		setClientXonMouseDown(e.clientX)
 		setClientYonMouseDown(e.clientY)
 		e.preventDefault() // stops weird link dragging effect
 	}
 
-	const handleOnClick = (e, sponsor) => {
+	const handleOnClick = (e, exhibitor) => {
 		e.stopPropagation()
 		if (clientXonMouseDown !== e.clientX ||
 			clientYonMouseDown !== e.clientY) {
 			// prevent link click if the element was dragged
 			e.preventDefault()
 		} else {
-			setData(sponsor);
+			setData(exhibitor);
 			setPopup(true)
 		}
 	}
-    const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
+	const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : { backgroundColor: '#f2f2f2' }
 
 	return (
-		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
-			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
+		<div style={bgStyle} className="module-section  ebs-default-padding">
+			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
-				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
+				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
 			</div>
-			<div className="container-fluid">
+			<div className="container">
 				<div className="edgtf-carousel-holder">
 					<div
 						className="edgtf-carousel edgtf-slick-slider-navigation-style"
 					>
 						<Slider {...settingsslider}>
-							{sponsors.map((sponsor, i) => {
+							{exhibitors.map((exhibitor, i) => {
 								return (
 									<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
 										<span
 											className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
 										>
-											{sponsor.logo !== "" ? (
-												<img
-													onMouseDown={e => handleOnMouseDown(e)}
-													onClick={e => handleOnClick(e, sponsor)}
-													src={
-														process.env.NEXT_APP_EVENTCENTER_URL +
-														"/assets/sponsors/" +
-														sponsor.logo
-													}
-													alt={sponsor.name || 'sponsors'}
-												/>
-											) : (
-												<Image objectFit='contain' layout="fill"
-													onMouseDown={e => handleOnMouseDown(e)}
-													onClick={e => handleOnClick(e, sponsor)}
-													src={require('public/img/exhibitors-default.png')}
-													alt={sponsor.name || 'sponsors'}
-												/>
-											)}
+											{
+												exhibitor.logo && exhibitor.logo !== "" ? (
+													<img
+														onMouseDown={e => handleOnMouseDown(e)}
+														onClick={e => handleOnClick(e, exhibitor)}
+														src={
+
+															process.env.NEXT_APP_EVENTCENTER_URL +
+															"/assets/exhibitors/" +
+															exhibitor.logo
+														}
+														alt={exhibitor.name || "Exhibitor"}
+													/>
+												) : (
+													<Image objectFit='contain' layout="fill"
+														src={require('public/img/exhibitors-default.png')}
+														alt={exhibitor.name || "Exhibitor"}
+													/>
+												)
+											}
 										</span>
 									</div>
 								);

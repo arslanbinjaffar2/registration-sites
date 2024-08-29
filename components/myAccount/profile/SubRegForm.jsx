@@ -511,7 +511,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         <div className="generic-form">
                           <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           <div
-                            className="custom-label-select"
+                            className="custom-label-select ebs-drop-down-generic-form"
                             style={{ width: "46%" }}
                           >
                             <Select

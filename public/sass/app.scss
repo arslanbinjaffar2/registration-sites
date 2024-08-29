@@ -4151,6 +4151,10 @@ z-index: 2;
     background-color: $default-heading-color;
     color: white;
   }
- 
+} 
   
+
+.ebs-drop-down-generic-form{
+  position: relative;
+  z-index: 9;
 }

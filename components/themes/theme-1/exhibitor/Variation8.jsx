@@ -16,42 +16,31 @@ const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: exhibitors?.length >= 5 ? true : false,
+		infinite:true,
 		arrows: false,
 		speed: 5000,
 		margin: 0,
-		slidesToShow: 5,
 		autoplay: true,
-		autoplaySpeed: 0,
+		autoplaySpeed: 2000,
+		slidesToShow: 6,
 		slidesToScroll: 1,
-		swipeToSlide: false,
-		cssEase: 'linear',
-		pauseOnHover: false,
-		pauseOnFocus: false,
+		swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToScroll: 1,
 					infinite: true,
-					speed: 500,
-					swipeToSlide: true,
-					autoplaySpeed: 5000,
-					dots: false,
-
+					dots: false
 				}
 			},
 			{
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2,
-					infinite: true,
-					speed: 500,
-					swipeToSlide: true,
-					autoplaySpeed: 5000,
-					initialSlide: 2
+					slidesToScroll: 1,
+					initialSlide: 1
 				}
 			},
 

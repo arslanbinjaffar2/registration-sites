@@ -4,7 +4,7 @@ import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Image from 'next/image'
 
-const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
+const Variation9 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
@@ -23,7 +23,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		autoplaySpeed: 2000,
 		slidesToShow: 6,
 		slidesToScroll: 1,
-		swipeToSlide: true,
+        swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -68,7 +68,7 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
     const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
 
 	return (
-		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
+		<div style={bgStyle} className="module-section  ebs-default-padding">
 			{popup && <SponsorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
@@ -116,4 +116,4 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 	)
 }
 
-export default Variation7
+export default Variation9
