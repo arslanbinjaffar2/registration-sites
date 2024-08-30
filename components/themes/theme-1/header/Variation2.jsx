@@ -1,6 +1,7 @@
 import * as React from "react";
 import ActiveLink from "components/atoms/ActiveLink";
 import MyProfileSidebar from "components/myAccount/profile/MyProfileSidebar";
+import Language from "components/myAccount/profile/Language";
 import Image from 'next/image'
 
 class Variation2 extends React.Component {
@@ -108,7 +109,7 @@ class Variation2 extends React.Component {
       _item.classList.add('nav-item-more');
       _item.appendChild(_itemancor);
       _list.forEach(element => {
-        if (_total < (_container.offsetWidth - 295)) {
+        if (_total < (_container.offsetWidth - 395)) {
           _total = _total + element.offsetWidth + 10;
         } else {
           _element = true;
@@ -637,12 +638,13 @@ class Variation2 extends React.Component {
                             )}
                           </ul>
                         )}
-                      </li>
-                    ))}
-                  </ul>
+                                        </li>
+                                      ))}
+                                    </ul>
                 </div>
               </nav>}
               {this.props.userExist && <MyProfileSidebar />}
+              {<Language />}
             </div>
           </div>
         </div>
