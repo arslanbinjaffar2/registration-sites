@@ -16,7 +16,7 @@ const SliderBanner = (props) => {
   var settings = {
     dots: true,
     fade: true,
-    autoplay: true,
+    autoplay: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
