@@ -66,7 +66,7 @@ export const localeProgramMoment = (language_id, date = null) => {
         format = 'dddd D. MMMM YYYY';
     }
     else if (language_id == 3) {
-        locale = 'no_NO';
+        locale = 'nb_NB';
         format = 'D. MMMM YYYY';
     }
     else if (language_id == 4) {
@@ -116,7 +116,7 @@ export const localeProgramMomentHome = (language_id, date = null) => {
         format = 'Do MMMM';
     }
     else if (language_id == 3) {
-        locale = 'no_NO';
+        locale = 'nb_NB';
         format = 'Do MMMM';
     }
     else if (language_id == 4) {
@@ -174,7 +174,7 @@ export const metaInfo = async (url, screen) => {
 export const locales = [
     'en_US',
     'da_DK',
-    'no_NO',
+    'nb_NB',
     'de_DE',
     'lt_LT',
     'fi_FI',
@@ -190,7 +190,7 @@ export const localeMomentEventDates = (date, language_id) => {
          locale = 'da_DK';
          format = 'dddd, D. MMMM YYYY';
        } else if (language_id == 3) {
-         locale = 'no_NO';
+         locale = 'nb_NB';
           format = 'dddd, D. MMMM YYYY'; 
         } else if (language_id == 4) {    
             locale = 'de_DE';    format = 'dddd, D. MMMM YYYY';
@@ -216,7 +216,7 @@ export const localeMomentOpeningHours = (date, language_id) => {
         format = 'dddd:';
     }
     else if (language_id == 3) {
-        locale = 'no_NO';
+        locale = 'nb_NB';
         format = 'dddd:';
     }
     else if (language_id == 4) {

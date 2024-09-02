@@ -402,7 +402,6 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (<React.Fragment>
                       <div 
                         className="generic-form"
-                        style={{ width: "46%",zIndex: 9 }}
                       >
                         <h5>{question.info[0].value}</h5>
                         <Input
@@ -497,11 +496,12 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                   {question.question_type === "dropdown" &&
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (
                       <React.Fragment>
-                        <div className="generic-form">
+                        <div className="generic-form ebs-drop-down-generic-form"
+                        >
                           <h5>{question.info[0].value}</h5>
                           <div
-                            className="custom-label-select position-relative"
-                            style={{ width: "46%",zIndex: 9 }}
+                            className="custom-label-select"
+                            style={{ width: "46%"}}
                           >
                             <Select
                               placeholder="Select value from dropdown"
@@ -713,7 +713,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                   {question.question_type === "matrix" &&
                     (subRegSettings.answer === 1 ? true : (question.result !== undefined && question.result.length > 0)) && (
                       <React.Fragment>
-                        <div className={`matrix-question-wrapper`}>
+                        <div className={`matrix-question-wrapper position-relative`} style={{ zIndex:"1" }}>
                           <h5>{question.info[0].value}</h5>
                           <div className="matrix-wrapper">
                           <div className="matrix-table">

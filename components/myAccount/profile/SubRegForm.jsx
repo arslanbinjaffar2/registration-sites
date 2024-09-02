@@ -511,7 +511,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                         <div className="generic-form">
                           <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                           <div
-                            className="custom-label-select"
+                            className="custom-label-select ebs-drop-down-generic-form"
                             style={{ width: "46%" }}
                           >
                             <Select
@@ -796,7 +796,7 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
       <p style={{color:"green", textAlign:"center"}}>{alert !== null  &&  alert}</p>
       <p  className='error-message' style={{textAlign:"center"}}>{error !== null  &&  error}</p>
       <div className="bottom-button">
-        {enableSkip && <button style={{border: '2px solid #363636', color: '#363636', backgroundColor: 'transparent',padding: '12px 45px'}} className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color" disabled={updating ? true : false} onClick={handleClickProfile}> skip </button>}
+        {enableSkip && <button style={{border: '2px solid #363636', color: '#363636', backgroundColor: 'transparent',padding: '12px 45px'}} className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color" disabled={updating ? true : false} onClick={handleClickProfile}> {event.labels.GENERAL_SKIP} </button>}
         <button className="btn btn-save-next btn-loader" disabled={updating ? true : false} onClick={(e)=>{handleSave(e)}}> {event.labels.GENERAL_SEND} </button>
       </div>
     </React.Fragment>
