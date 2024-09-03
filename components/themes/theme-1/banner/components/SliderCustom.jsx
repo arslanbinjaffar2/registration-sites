@@ -16,7 +16,7 @@ const SliderCustom = (props) => {
   console.clear();
   console.log(props.sliderSettings,'props.sliderSettings.dots');
   var settings = {
-    dots: props.sliderSettings.dots === 'true' ? true :  false,
+    dots: true,
     arrows: props.sliderSettings.arrows === 'true' ? true :  false,
     speed: 500,
     fade: true,
