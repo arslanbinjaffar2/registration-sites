@@ -36,22 +36,22 @@ const Variation8 = ({ event, labels, settings }) => {
               <span className="countdown-amount text-white">
                 {zeroPad(Math.floor(days % 30))}
               </span>
-              <span className="countdown-period text-white">DAYS</span>
+              <span className="countdown-period text-white">{event?.labels?.COUNTDOWN_LABEL_DAYS}</span>
             </span>
             <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(hours)}</span>
-              <span className="countdown-period text-white">HOURS</span>
+              <span className="countdown-period text-white">{event?.labels?.COUNTDOWN_LABEL_HOURS}</span>
             </span>
             <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(minutes)}</span>
-              <span className="countdown-period text-white">MUNUTES</span>
+              <span className="countdown-period text-white">{event?.labels?.COUNTDOWN_LABEL_MINUTES}</span>
             </span>
             <div className="vr bg-white"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount text-white">{zeroPad(seconds)}</span>
-              <span className="countdown-period text-white">SECONDS</span>
+              <span className="countdown-period text-white">{event?.labels?.COUNTDOWN_LABEL_SECONDS}</span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}

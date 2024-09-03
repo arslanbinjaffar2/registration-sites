@@ -50,7 +50,7 @@ const Language = () => {
                 src={`${process.env.NEXT_APP_EVENTCENTER_URL}/_eventsite_assets/language_switcher/${currentSelectedLanguage?.name.toLowerCase()}.jpg`}
                 alt={currentSelectedLanguage?.name}
               />
-              <span className="ms-2" style={{ fontSize: 12 }}>
+              <span className="ms-2 me-3" style={{ fontSize: 12 }}>
                 {currentSelectedLanguage?.name}
               </span>
             </span>
