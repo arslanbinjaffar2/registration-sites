@@ -10,13 +10,17 @@ const Completionist = ({ labels }) =>
 
 
 
-const SliderBanner = (props) => {
+const SliderCustom = (props) => {
   const videoRef = React.useRef()
   const divRef = React.useRef()
+  console.clear();
+  console.log(props.sliderSettings,'props.sliderSettings.dots');
   var settings = {
-    dots: true,
+    dots: props.sliderSettings.dots === 'true' ? true :  false,
+    arrows: props.sliderSettings.arrows === 'true' ? true :  false,
+    speed: 500,
     fade: true,
-    autoplay: true,
+    autoplay: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -101,4 +105,4 @@ const SliderBanner = (props) => {
   )
 }
 
-export default SliderBanner
+export default SliderCustom

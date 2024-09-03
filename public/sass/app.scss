@@ -3934,25 +3934,43 @@
   color: #fff;
   padding: 20px 35px;
   line-height: 20px;
+  
 }
 .ebs-master-super-banner {
   position: relative;
    .draggable {
     position: absolute;
     white-space: nowrap;
+    .material-icons {
+      vertical-align: middle;
+    }
   }
 }
 * {
   word-break: break-all;
 }
 
-@media screen and (max-width: 600px) {
-  .mobile-is-v-centered {
-    left: 50% !important;
-    transform: translateX(-50%);
+
+.mobile-hidden {
+  display: none;
+}
+@media screen and (min-width: 601px) {
+  .mobile-hidden {
+    display: block;
   }
-  .mobile-is-h-centered {
-    top: 50% !important;
-    transform: translateY(-50%);
+  .tablet-hidden {
+    display: none;
+  }
+}
+@media screen and (min-width: 901px) {
+  .mobile-hidden {
+    display: block;
+  }
+  .tablet-hidden {
+    display: block;
+  }
+  .desktop-hidden {
+    display: none;
+
   }
 }
