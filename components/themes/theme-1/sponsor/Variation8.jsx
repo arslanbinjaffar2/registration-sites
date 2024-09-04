@@ -15,42 +15,31 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: sponsors?.length >= 5 ? true : false,
+		infinite: true,
 		arrows: false,
-		speed: 5000,
-		margin: 0,
-		slidesToShow: 5,
+		speed: 500,
+		margin: 30,
 		autoplay: true,
-		autoplaySpeed: 0,
+		autoplaySpeed: 2000,
+		slidesToShow: 6,
 		slidesToScroll: 1,
-		swipeToSlide: false,
-		cssEase: 'linear',
-		pauseOnHover:false,
-		pauseOnFocus:false,
+        swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToScroll: 1,
 					infinite: true,
-					speed: 500,
-					swipeToSlide: true,
-					autoplaySpeed: 5000,
-					dots: false,
-					
+					dots: false
 				}
 			},
 			{
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2,
-					infinite: true,
-					speed: 500,
-					swipeToSlide: true,
-					autoplaySpeed: 5000,
-					initialSlide: 2
+					slidesToScroll: 1,
+					initialSlide: 1
 				}
 			},
 
@@ -85,7 +74,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 			</div>
-			<div className="container-fluid">
+			<div className="container">
 				<div className="edgtf-carousel-holder">
 					<div
 						className="edgtf-carousel edgtf-slick-slider-navigation-style"
