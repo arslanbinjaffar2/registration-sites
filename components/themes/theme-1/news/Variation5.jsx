@@ -1,15 +1,15 @@
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import Image from 'next/image'
-// import HeadingElement from 'components/ui-components/HeadingElement';
-// import TruncateMarkup from 'react-truncate-markup';
 import ActiveLink from "components/atoms/ActiveLink";
 
 const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
-  // const [height, setHeight] = useState(0);
-  // const iframe = useRef();
+
   const [ShowAllModules,setShowAllModules]=useState({
     modules:3
   })
+  const [firstModule=[],secondModule=[],...rest]=news || []
+  const firstTwoModule = useMemo(() => [firstModule, secondModule], [news]);
+  const restModules = useMemo(() => rest, [news]);
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}  
   useEffect(() => {
     const link = document.createElement('link');
@@ -20,9 +20,6 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   if (!news || news.length === 0) {
     return <p>No news available.</p>;
   }
-  const [firstModule=[],secondModule=[],...rest]=news || []
-  const firstTwoModule = useMemo(() => [firstModule, secondModule], [news]);
-  const restModules = useMemo(() => rest, [news]);
 
  function FirstTwoNewsModules(){
   return(
