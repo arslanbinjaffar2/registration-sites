@@ -245,12 +245,15 @@ return showWorkshop;
 }
 
 const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
-
+    console.log("Formatted Locations:", tracks);
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
     const [selectedDate, setSelectedDate] = useState({value:schedule[0], label:schedule[0]});
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [location, setLocation] = useState([]);
+
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -258,10 +261,10 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
         ack.push(program);
         return ack;
     }  ,[]));
-    console.clear();
-    console.log(programs, "programs");
+
     const onDateChange = (date)=>{
         setSelectedDate(date);
+        setSelectedLocation(null);
     }
   
     const onTrackChange = (track) =>{
@@ -269,21 +272,55 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     }
 
     useEffect(() => {
-         let programsObj = programs[selectedDate.value].reduce((ack, program)=>{
-            if(program.workshop_id > 0){
-                return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
-            }
-            ack.push(program);
-            return ack;
-        }  ,[]);
-
-
-        if(selectedTrack !== null && selectedTrack.value !== 0){
-          programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
+      // Generate the initial programs array based on the selected date
+      let programsObj = programs[selectedDate.value].reduce((ack, program) => {
+        // If the program has workshop programs, merge them into the list
+        if (program.workshop_id > 0) {
+          return [
+            ...ack,
+            ...program.workshop_programs.map((item) => ({
+              ...item,
+              'program_workshop': program.program_workshop,
+              'workshop_id': program.workshop_id
+            }))
+          ];
         }
-        
-        setProgramsLoc(programsObj);
-      }, [selectedDate, selectedTrack]);
+    // Otherwise, just add the program
+    ack.push(program);
+    return ack;
+  }, []);
+  const uniqueLocations = programsObj.reduce((acc, program) => {
+    if (program.location && !acc.includes(program.location)) {
+      acc.push(program.location);
+    }
+    return acc;
+  }, []);
+
+  // Create an array of locations formatted like the 'location' array
+  const formattedLocations = [
+    { value: "", label: "Select Location" }, // Default "Select Location"
+    ...uniqueLocations.map((loc) => ({ value: loc.toLowerCase(), label: loc })),
+  ];
+
+  // Log the formatted location array
+
+  setLocation(formattedLocations);
+
+  // If either a track or location is selected, apply the filtering
+  if ((selectedTrack !== null && selectedTrack.value !== 0) || (selectedLocation !== null && selectedLocation.value !== 0)) {
+    programsObj = getProgramsByTrack(
+      programsObj,
+      selectedTrack ? selectedTrack.value : undefined,  // Use track if selected
+      selectedLocation ? selectedLocation.value : undefined  // Use location if selected
+    );
+  }
+
+  // Update the programsLoc state with the filtered programs
+  setProgramsLoc(programsObj);
+  console.log(programsObj, 'selectedDate');
+
+
+}, [selectedDate, selectedTrack, selectedLocation]);  // Add selectedLocation to dependencies
 
 	useEffect(() => {
     // itemhack = true;
@@ -309,12 +346,12 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     
   };
     return (
-       <div style={{padding: '80px 0 0'}} className="module-section">
+       <div style={{padding: '80px  0'}} className="module-section border-bottom px-0">
            <div className="container">
                 <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
 										<div className="row d-flex">
-											<div className="col-md-6 d-flex align-items-center">
+											<div className="col-md-12 d-flex align-items-center">
 												<div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
@@ -335,6 +372,16 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                           />
 												</div>}
+												<div className="ebs-select-box">
+                          <ReactSelect
+                            styles={customStyles}
+                            placeholder={'Select Location'}
+                            components={{ IndicatorSeparator: null }}
+                            onChange={(location)=>{setSelectedLocation(location)}}
+                            value={selectedLocation}
+                            options={location}
+                          />
+												</div>
 											</div>
 											{/* <div className="col-md-6">
 												<div className="right-panel-area">
@@ -361,6 +408,7 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 					<TimelineContent  data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
+                        "location": programsLoc,
                         "program_setting": agendaSettings,
                         "schedules": schedule,
                         "current_date": currentDate,
@@ -376,16 +424,39 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 
 export default Variation4
 
+const getProgramsByTrack = (programs, track, location) => {
+  console.log(track, "track");
+  console.log(location, "location");
 
-const getProgramsByTrack = (programs, track) =>{
-      const items = programs.reduce((ack, program)=>{
-                          if(program.program_tracks.length > 0){
-                            const find = program.program_tracks.find((item)=>(item.name === track));
-                            if(find !== null && find !== undefined){
-                                ack.push(program);
-                            }
-                          }  
-                          return ack;         
-            }, []);
-     return items;
-  }
+  const items = programs.reduce((ack, program) => {
+    // Initialize matching variables
+    let trackMatch = true;  // Default to true if no track filter
+    let locationMatch = true;  // Default to true if no location filter
+
+    // Check if track filter is applied
+    if (track && track !== 0) {
+      // Track filter is applied, check if program tracks match
+      trackMatch = program.program_tracks.some((item) => item.name === track);
+      console.log(trackMatch, "trackMatch");
+    }
+
+    // Check if location filter is applied
+    if (location && location !== 0) {
+      // Location filter is applied, check if program location matches
+      locationMatch = program.location && program.location.toLowerCase() === location.toLowerCase();
+    }
+
+    // Include program only if both track and location match (if they are applied)
+    if (trackMatch && locationMatch) {
+      ack.push(program);
+    }
+
+    return ack;
+  }, []);
+
+  return items;
+};
+
+
+
+
