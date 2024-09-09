@@ -20,6 +20,7 @@ const customStyles = {
   })
 };
 const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings }) => {
+  const [width,setWidth]=useState(window.innerWidth)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -43,7 +44,6 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
   };
-  
   useEffect(() => {
     let programsObj = programs;
     if (selectedDate !== null && selectedDate.value !== 0) {
@@ -74,6 +74,18 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
@@ -125,14 +137,15 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
           </div>}
         </div>
       </div>}
+      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>no program Found</div>}
       <div className="container mt-30">
         <div className="ebs-main-program-listing">
-          {programsLoc && Object.keys(programsLoc).map((key, k) => (
+          {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 <div className='mt-3'  key={item.id}>
-                  {item.workshop_id > 0? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
+                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
                   <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
                 </div>
               ))}
@@ -140,7 +153,8 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
           ))}
                    </div>
       </div>
-           {window.innerWidth>570 &&<ProgramDetail setShowDetail={setShowDetail} ref={detailRef} programs={programsState}  showDetail={showDetail} agendaSettings={agendaSettings} eventUrl={eventUrl} labels={siteLabels}/> }
+           {width>570 &&<ProgramDetail setShowDetail={setShowDetail} ref={detailRef} programs={programsState}  showDetail={showDetail} agendaSettings={agendaSettings} eventUrl={eventUrl} labels={siteLabels}/> }
+           
     </div>
   )
 }

@@ -3,7 +3,6 @@ import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 import moment from 'moment'
  const ProgramDetail = ({programs,showDetail,agendaSettings,eventUrl,labels,setShowDetail}) => {
-    const [programsList,setProgramsList]=useState(programs)
     const [showText, setShowText] = useState(program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
     const _ref = React.useRef();
     const width=window.innerWidth;
@@ -28,10 +27,18 @@ import moment from 'moment'
         window.removeEventListener('resize', handleResize);
       };
     }, []);
-    const program = programsList.programArray.find((item) => item.id === programs.id); 
+    const program = programs.programArray.find(
+      (item) => item.id == programs.id
+    );
+  
+  
+    // Checking if the program was found
     if (!program) {
-        return;
+      console.log("Program not found");
+      return;
     }
+  
+    console.log("Program found:", program);
     return(
         <div className="w-100 bg-white">
             <div  

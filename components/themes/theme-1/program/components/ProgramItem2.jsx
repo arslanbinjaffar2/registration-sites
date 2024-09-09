@@ -39,8 +39,8 @@ const ProgramItem = ({ programList, program, eventUrl, labels, agendaSettings,se
             <div className="d-flex border rounded-4px h-100 border-black-color" >
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && 
                     <div className='p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center'>
-                        <span className='fs-medium fw-semibold'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')}</span>
-                        <span className='fs-medium fw-semibold'>
+                        <span className='fs-medium fw-medium'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')}</span>
+                        <span className='fs-medium fw-medium'>
                         {moment(`${program.date} ${program.end_time}`).format('HH:mm')}
                         </span>
                         </div>}
@@ -50,11 +50,11 @@ const ProgramItem = ({ programList, program, eventUrl, labels, agendaSettings,se
                                 setShowDetail(true)
                          }}>
                          {program.topic && 
-                         <h4 className='m-0 fs-large fw-semibold'>{program.topic.substring(0,70)}{program.topic.length>70?".....":""}</h4>}
+                         <h4 className='m-0 fs-large fw-medium'>{program.topic.substring(0,70)}{program.topic.length>70?".....":""}</h4>}
                         <div className='d-flex align-items-center flex-wrap'>
                         {program.program_speakers.slice(0,3)?.map((speakers, o) =>
                         <h6 className='m-0 fs-medium fw-normal'>{speakers.first_name} {speakers.last_name}, </h6>)}
-                          {program.program_speakers.length>2?"....":""}
+                          {program.program_speakers.length>5?"....":""}
                         </div>
                          </div>
                          <div className='d-flex gap-3 align-items-center justify-content-between mt-lg-0 mt-3' style={{width:`${window.innerWidth<=570 && program.location ? "100%":"auto"} ` }}>
@@ -67,9 +67,10 @@ const ProgramItem = ({ programList, program, eventUrl, labels, agendaSettings,se
                         <div className="ebs-tracks-program gap-1 align-items-center d-sm-flex d-none">
                             {/* <span key={i} style={{ backgroundColor: `${track.color ? track.color : '#000'}` }}>{track.name}</span> */}
                             {program.program_tracks.slice(0,3).map((track, i) => (
-                                  <span key={i} className="d-inline-block" 
-                              style={{ backgroundColor: `${track.color ? track.color : '#000'}`,width: '16px', height: '16px', borderRadius: '50%',}}></span> ))}  
-                             <span onClick={handleIsShowTrackPopup} className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"  style={{ width: '20px', height: '20px', borderRadius: '50%' }}>+{program.program_tracks.length-4}</span>
+                              <span key={i} className="d-inline-block" data-title={track.name}
+                              style={{ backgroundColor: `${track.color ? track.color : '#000'}`,width: '16px', height: '16px', borderRadius: '50%'}}></span> ))}  
+                              {program.program_tracks.length>3?<span onClick={handleIsShowTrackPopup} className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"  style={{ width: '20px', height: '20px', borderRadius: '50%' }}>+{program.program_tracks.length-3}</span>
+                              :null}
                         </div>
                         } 
                        <div onClick={()=>setShowDetail(true)} className={`ms-auto border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cursor-pointer ${width<=570?"center-Btn":""}`} style={{ height:"35px",width:"35px" }}>
@@ -90,8 +91,10 @@ const ProgramItem = ({ programList, program, eventUrl, labels, agendaSettings,se
                             {/* <span key={i} style={{ backgroundColor: `${track.color ? track.color : '#000'}` }}>{track.name}</span> */}
                             {program.program_tracks.slice(0,3).map((track, i) => (
                                   <span key={i} className="d-inline-block" 
-                              style={{ backgroundColor: `${track.color ? track.color : '#000'}`,width: '20px', height: '20px', borderRadius: '50%',}}></span> ))}  
-                              <span onClick={handleIsShowTrackPopup} className="ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"  style={{ width: '20px', height: '20px', borderRadius: '50%' }}>+{program.program_tracks.length-4}</span>
+                              style={{ backgroundColor: `${track.color ? track.color : '#000'}`,width: '20px', height: '20px', borderRadius: '50%',}}></span> ))}     
+                              {program.program_tracks.length>3?<span onClick={handleIsShowTrackPopup} className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"  style={{ width: '20px', height: '20px', borderRadius: '50%' }}>+{program.program_tracks.length-3}</span>
+                              :null}
+                              {/* <span onClick={handleIsShowTrackPopup} className="ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"  style={{ width: '20px', height: '20px', borderRadius: '50%' }}>+{program.program_tracks.length-4}</span> */}
                         </div>
 
                         } 
@@ -100,7 +103,7 @@ const ProgramItem = ({ programList, program, eventUrl, labels, agendaSettings,se
            
         </div>
          {window.innerWidth<=570 &&  <ProgramDetailModal program={program} labels={labels} eventUrl={eventUrl} agendaSettings={agendaSettings} showDetail={showDetail} setShowDetail={setShowDetail}/>}
-         <TracksPopup TrackPopupRef={TrackPopupRef} show={show} target={target} program={program}/>
+         <TracksPopup TrackPopupRef={TrackPopupRef} show={show} target={target} program={program} setShow={setShow}/>
         </>
 
     )
@@ -112,14 +115,31 @@ export default ProgramItem
 
 
 
-function TracksPopup({show,target,TrackPopupRef,program}) {
-  console.log(program,"program inside trackpopup")
+function TracksPopup({show,setShow,target,TrackPopupRef,program}) {
+
+  useEffect(() => {
+    // Function to handle click outside the popup
+    const handleClickOutside = (event) => {
+      // Check if the click is outside the popup
+      if (TrackPopupRef.current && !TrackPopupRef.current.contains(event.target)) {
+        setShow(false) // Hide the popup
+      }
+    };
+
+    // Add event listener when the component mounts
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up event listener when the component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (
-    <div ref={TrackPopupRef}>
+    <div ref={TrackPopupRef} >
       <Overlay
         show={show}
         target={target}
-        placement="bottom"
+        placement="bottom-end"
         container={TrackPopupRef}
         containerPadding={20}
       >

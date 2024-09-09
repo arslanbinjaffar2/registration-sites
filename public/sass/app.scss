@@ -4153,3 +4153,57 @@ z-index: 2;
  
   
 }
+
+
+
+// tooltip
+[data-title]:hover::after {
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+[data-title]::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 125%; /* Adjust based on your needs */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #333; /* Darker background for better contrast */
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  border: none;
+}
+
+[data-title] {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Optional: Add an arrow pointing to the element */
+[data-title]::before {
+  content: '';
+  position: absolute;
+  bottom: 115%; /* Adjust based on your needs */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent; /* Color should match tooltip background */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+[data-title]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}

@@ -12,8 +12,8 @@ const [showWorkShopDetail,setShowWorkShopDetail]=useState(false)
             <div className="d-flex border rounded-4px h-100 border-black-color" >
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && 
                     <div className='p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center'>
-                        <span className='fs-medium fw-semibold'>{Starttime.format('HH:mm')}</span>
-                        <span className='fs-medium fw-semibold'>
+                        <span className='fs-medium fw-medium'>{Starttime.format('HH:mm')}</span>
+                        <span className='fs-medium fw-medium'>
                         {endTime.format('HH:mm')}
                         </span>
                         </div>}
@@ -21,7 +21,7 @@ const [showWorkShopDetail,setShowWorkShopDetail]=useState(false)
                         <div className="d-flex justify-content-between items-center align-items-center w-100 p-3 flex-wrap">
                          <div className={`d-flex flex-column  align-items-start  cursor-pointer ${program.program_speakers.length>0?"gap-2":"gap-0"}`}>
                          {program.topic && 
-                         <h4 className='m-0 fs-large fw-semibold'>{program.program_workshop.substring(0,70)}{program.topic.length>70?".....":""}</h4>}
+                         <h4 className='m-0 fs-large fw-medium'>{program.program_workshop.substring(0,70)}{program.topic.length>70?".....":""}</h4>}
                         
                          </div>
                          <div className='d-flex gap-3 align-items-center'>
