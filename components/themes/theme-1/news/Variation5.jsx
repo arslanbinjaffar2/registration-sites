@@ -53,7 +53,7 @@ console.log(siteLabels,"sitelabels")
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            <p className="col-md-6 col-12 m-0 mt-md-0 m-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
+            {/* <p className="col-md-6 col-12 m-0 mt-md-0 m-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p> */}
           </div>
           {/* container */}
          <div className="d-flex flex-column">

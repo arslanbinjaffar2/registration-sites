@@ -11,7 +11,7 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/news/${variation}`)
+    import(`components/themes/${theme}/news/Variation4`)
   );
   return Component;
 };
