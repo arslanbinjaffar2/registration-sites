@@ -3934,3 +3934,24 @@
     color: $white;
   }
 }
+
+.ebs-time-line-location {
+  width: 120px;
+  left: -120px;
+  background: $lightbackground;
+  font-size: 16px;
+  font-weight: 500; 
+  text-transform: capitalize;
+  text-align: center;
+}
+.responive-padding-style {
+  @include ipad-landscape {
+    padding-right: 0 !important;
+  }
+}
+.mobile-width-100 {
+  @include ipad-landscape{
+    width: 100% !important;
+    margin-bottom: 12px;
+  }
+}

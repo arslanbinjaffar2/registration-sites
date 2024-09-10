@@ -23,37 +23,67 @@ const _multiplyer = window.innerWidth > 600 ? 300 : 150;
 var clearTime;
 var itemhack = false;
 
- function itemSorting(data) {
+
+function itemSorting(data) {
   if (itemhack) return data;
-  var itemArray = [];
-  var i = 0;
-  var _lastTime = '00:00';
-  data.program_array.forEach((items, k) => {
-    const _end = moment(items.start_time, 'HH:mm');
-    const _last = moment(_lastTime, 'HH:mm');
-    const eventduration = moment.duration(_last.diff(_end));
-    _lastTime = items.end_time;
-    if (eventduration.asMinutes() <= 0) {
-      if (k === 0) {
-        const obj = [items];
-        itemArray.push(obj);
-      } else {
-        itemArray[i].push(items);
-      }
-    } else {
-      const obj = [items];
-      itemArray.push(obj);
-      i = i + 1;
+
+  // Initialize the result object with locations from data.location (case-insensitive)
+  const locationResult = {};
+  data.location.forEach(location => {
+      if (location.value === "") return;
+    // Convert location to lower case for case-insensitive matching
+    const lowerCaseLocation = location.value.toLowerCase();
+    locationResult[lowerCaseLocation] = [];
+  });
+
+  // Group items by location (case-insensitive)
+  data.program_array.forEach(item => {
+    // Convert item location to lower case for case-insensitive matching
+    const itemLocation = item.location.toLowerCase();
+    
+    // Ensure the location exists in the result object
+    if (locationResult[itemLocation]) {
+      locationResult[itemLocation].push(item);
     }
   });
-  data.program_array = itemArray;
+
+  // Convert result object to the desired format
+  const resultArray = Object.keys(locationResult).map(location => ({
+    location: location,
+    items: locationResult[location]
+  }));
+
+  resultArray.forEach((location, a) => {
+   var itemArray = [];
+   var i = 0;
+   var _lastTime = '00:00';
+   location.items.forEach((items, k) => {
+     const _end = moment(items.start_time, "HH:mm");
+     const _last = moment(_lastTime, "HH:mm");
+     const eventduration = moment.duration(_last.diff(_end));
+     _lastTime = items.end_time;
+      if (eventduration.asMinutes() <= 0) {
+        if (k === 0) {
+          const obj = [items];
+          itemArray.push(obj);
+        } else {
+          itemArray[i].push(items);
+        }
+      } else {
+        const obj = [items];
+        itemArray.push(obj);
+        i = i + 1;
+      }
+    });
+    location.items = itemArray;
+  });
+  data.program_array = resultArray;
   return data;
 }
-const options = [
-  { id: 1, name: 'Chocolate' },
-  { id: 2, name: 'Strawberry' },
-  { id: 3, name: 'Vanilla' }
-];
+
+
+
+
 
 const TimelineHeader = () => {
   var Numbers = Array.from({ length: 48 }, (v, k) => k + 1);
@@ -216,36 +246,52 @@ return showWorkshop;
   return (
     <React.Fragment>
       {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
-      <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
+      <div  className="w-100 h-100 position-relative">
+        <div style={{marginTop: 43}} className="position-absolute overflow-hidden ebs-time-line-location border-end border-start h-100">
+          {data && data.program_array.map((location, i) =>
+              <React.Fragment key={i}>
+                {location && location.items.length > 0 && <div   className='border-top d-flex align-items-center justify-content-center' style={{height: location.items.length*160 }}>
+                  <div>
+                     <i className="material-icons fs-2">place</i>
+                     <br />
+                  {location.location}
+                  </div>
+                 </div>}
+                </React.Fragment>
+          )}
+        </div>
+        <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
         <div style={{ width: _width }}  id="timelinewrapp">
           <div id="currentTimeline" />
           <TimelineHeader />
           <div id="timelinecontent">
-            {data && data.program_array.map((items, k) =>(
-            <React.Fragment key={k}>
-                <div className={`datarow ${getWorkShop(items) ? 'ebs-workshop-wrapp' : ''} ${items[0].workshop_id > 0 ? 'ebs-wrapper-theme-'+themecounter : ''}`}>
-                  {items.map((item, key) => {
-                    var showWorkshop = false;
-                    if(item.workshop_id > 0) {
-                      if(!workshopShowns.includes(item.workshop_id)){
-                        workshopShowns.push(item.workshop_id);
-                        showWorkshop = true;
+            {data && data.program_array.map((location, i) =>(
+            <div className='border-top' style={{marginTop: -1}} key={i}>
+                {location && location.items.length > 0 && location.items.map((items, k) =><React.Fragment>
+                  <div style={{borderTop: '1px solid transparent'}} className={`datarow   ${getWorkShop(items) ? 'ebs-workshop-wrapp' : ''} ${items[0].workshop_id > 0 ? 'ebs-wrapper-theme-'+themecounter : ''}`}>
+                    {items.map((item, key) => {
+                      var showWorkshop = false;
+                      if(item.workshop_id > 0) {
+                        if(!workshopShowns.includes(item.workshop_id)){
+                          workshopShowns.push(item.workshop_id);
+                          showWorkshop = true;
+                        }
                       }
-                    }
-                  return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
-                  })}
-                </div>
-              </React.Fragment>)
+                    return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
+                    })}
+                  </div>
+                </React.Fragment>)}
+              </div>)
             )}
           </div>
         </div>
+      </div>
       </div>
     </React.Fragment>
   )
 }
 
 const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
-    console.log("Formatted Locations:", tracks);
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
@@ -264,6 +310,7 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 
     const onDateChange = (date)=>{
         setSelectedDate(date);
+        setSelectedTrack(null);
         setSelectedLocation(null);
     }
   
@@ -317,7 +364,6 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 
   // Update the programsLoc state with the filtered programs
   setProgramsLoc(programsObj);
-  console.log(programsObj, 'selectedDate');
 
 
 }, [selectedDate, selectedTrack, selectedLocation]);  // Add selectedLocation to dependencies
@@ -346,13 +392,13 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     
   };
     return (
-       <div style={{padding: '80px  0'}} className="module-section border-bottom px-0">
-           <div className="container">
+       <div style={{padding: '80px 120px 0 120px'}} className="module-section border-bottom overflow-hidden responive-padding-style">
+           <div className="container-fluid">
                 <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
 										<div className="row d-flex">
-											<div className="col-md-12 d-flex align-items-center">
-												<div className="ebs-select-box">
+											<div className="col-md-12 d-md-flex align-items-center d-sm-block">
+												<div className="ebs-select-box mobile-width-100">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={siteLabels.EVENTSITE_SELECT_DAY}
@@ -362,7 +408,7 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[])}
                           />
 												</div>
-												{tracks.length > 0 && <div className="ebs-select-box">
+												{tracks.length > 0 && <div className="ebs-select-box mobile-width-100">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
@@ -372,7 +418,7 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                           />
 												</div>}
-												<div className="ebs-select-box">
+												<div className="ebs-select-box mobile-width-100">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={'Select Location'}
@@ -408,7 +454,7 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 					<TimelineContent  data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
-                        "location": programsLoc,
+                        "location": location,
                         "program_setting": agendaSettings,
                         "schedules": schedule,
                         "current_date": currentDate,
@@ -425,8 +471,6 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 export default Variation4
 
 const getProgramsByTrack = (programs, track, location) => {
-  console.log(track, "track");
-  console.log(location, "location");
 
   const items = programs.reduce((ack, program) => {
     // Initialize matching variables
@@ -437,7 +481,7 @@ const getProgramsByTrack = (programs, track, location) => {
     if (track && track !== 0) {
       // Track filter is applied, check if program tracks match
       trackMatch = program.program_tracks.some((item) => item.name === track);
-      console.log(trackMatch, "trackMatch");
+
     }
 
     // Check if location filter is applied
@@ -453,7 +497,6 @@ const getProgramsByTrack = (programs, track, location) => {
 
     return ack;
   }, []);
-
   return items;
 };
 
