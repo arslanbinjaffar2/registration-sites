@@ -53,7 +53,7 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                                 <Image objectFit='contain' layout="fill"
                                   onLoad={(e) => e.target.style.opacity = 1}
                                   src={require("public/img/gallery-not-found.png")}
-                                  alt="g"
+                                  alt={photo.info && photo.info.title !== undefined ? photo.info.title : 'Photo'}
                                 />
                               )}
                             </div>
@@ -61,9 +61,11 @@ const Variation4 = ({ photos, settings, loadMore, eventUrl, home, sitelabels, to
                               <div className="edgtf-item-text-overlay-inner">
                                 <div className="edgtf-item-text-holder">
                                   {photo.info && (
-                                    <h4 className="edgtf-item-title">
-                                      {photo.info.title !== undefined && photo.info.title}
-                                    </h4>
+                                    <>
+                                      {photo.info.title && <h4 className="edgtf-item-title">
+                                        {photo.info.title !== undefined && photo.info.title}
+                                      </h4>}
+                                    </>
                                   )}
                                 </div>
                               </div>

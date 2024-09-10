@@ -44,14 +44,14 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                                                         process.env.NEXT_APP_EVENTCENTER_URL +
                                                         "/assets/attendees/" +
                                                         speakers.image
-                                                    } alt="" />
+                                                    } alt={speakers.first_name || "Speaker"} />
                                             ) : (
                                                 <Image objectFit='contain' layout="fill"
                                                     onLoad={(e) => e.target.style.opacity = 1}
                                                     style={{ maxWidth: '90%' }}
                                                     src={
                                                         require("public/img/user-placeholder.jpg")
-                                                    } alt="" />
+                                                    } alt={speakers.first_name || "Speaker"} />
                                             )}
                                         </span>
                                         <h4>{speakers.first_name} {speakers.last_name}</h4>

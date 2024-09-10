@@ -38,7 +38,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                   "/assets/attendees/" +
                                   speaker.image
                                 }
-                                alt="g"
+                                alt={speaker.first_name || 'Speaker'}
                               />
                             ) : (
                               <Image objectFit='contain' layout="fill"
@@ -46,7 +46,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                 src={
                                   require("public/img/user-placeholder.jpg")
                                 }
-                                alt="g"
+                                alt={speaker.first_name || 'Speaker'}
                               />
                             )}
                           </span>
@@ -87,6 +87,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <div style={{ color: '#666666' }} className="ebs-email-phone">
                                 <a
                                   href={`mailto:${speaker.email}`}
+                                  aria-label="Email"
                                   className="edgtf-team-position"
                                   style={{ color: '#666666' }}
                                 >
@@ -99,6 +100,7 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <div style={{ color: '#666666' }} className="ebs-email-phone">
                                 <a
                                   href={`tel: ${speaker.phone}`}
+                                  aria-label="Phone"
                                   className="edgtf-team-position"
                                   style={{ color: '#666666' }}
                                 >
@@ -118,40 +120,52 @@ const Variation7 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               <div className="edgtf-team-social">
                                 <div className="edgtf-team-social-inner">
                                   <div className="edgtf-team-social-wrapp">
-                                    <div className="social-icons">
+                                    <ul className="social-icons list-inline  m-0">
                                       {speaker.info.facebook && (
-                                        <a
-                                          target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
-                                        >
-                                          <span data-icon="&#xe0aa;"></span>
-                                        </a>
+                                        <li className="list-inline-item">
+                                          <a
+                                            target="_blank" rel="noreferrer"
+                                            aria-label="Facebook (opens in new window)"
+                                            href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                                          >
+                                            <span data-icon="&#xe0aa;"></span>
+                                          </a>
+                                        </li>
                                       )}
                                       {speaker.info.twitter && (
-                                        <a
-                                          target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
-                                        >
-                                          <span className="fa-brands fa-x-twitter"></span>
-                                        </a>
+                                        <li className="list-inline-item">
+                                          <a
+                                            target="_blank" rel="noreferrer"
+                                            aria-label="X (opens in new window)"
+                                            href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                                          >
+                                            <span className="fa-brands fa-x-twitter"></span>
+                                          </a>
+                                        </li>
                                       )}
                                       {speaker.info.linkedin && (
-                                        <a
-                                          target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
-                                        >
-                                          <span data-icon="&#xe0b4;"></span>
-                                        </a>
+                                        <li className="list-inline-item">
+                                          <a
+                                            target="_blank" rel="noreferrer"
+                                            aria-label="Linkedin (opens in new window)"
+                                            href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                                          >
+                                            <span data-icon="&#xe0b4;"></span>
+                                          </a>
+                                        </li>
                                       )}
                                       {speaker.info.website && (
-                                        <a
-                                          target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.website_protocol}${speaker.info.website}`}
-                                        >
-                                          <span data-icon="&#xe0e3;"></span>
-                                        </a>
+                                        <li className="list-inline-item">
+                                          <a
+                                            target="_blank" rel="noreferrer"
+                                            aria-label="Website (opens in new window)"
+                                            href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                                          >
+                                            <span data-icon="&#xe0e3;"></span>
+                                          </a>
+                                        </li>
                                       )}
-                                    </div>
+                                    </ul>
                                   </div>
                                 </div>
                               </div>

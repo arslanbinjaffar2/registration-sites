@@ -106,7 +106,7 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
               <div className="ebs-top-filter-container pb-3">
                 <ul>
                   <li><a className={filterAlphabet === 'all' ? "active" : ''} onClick={() => { filterbyAlphabet('all'); }} href="javascript:void(0)">{siteLabels.EVENTSITE_LIST_ALL_LABEL ? siteLabels.EVENTSITE_LIST_ALL_LABEL : "All"}</a> </li>
-                  <li><a href="javascript:void(0)">#</a> </li>
+                  {/* <li><a href="javascript:void(0)">#</a> </li> */}
                   {_alphabet.split('').map((item, k) =>
                     <li className="alpha" key={k}><a href="javascript:void(0)" className={filterAlphabet === item ? "active" : ''} onClick={() => { filterbyAlphabet(item.toLowerCase()); }}>{item}</a></li>
                   )}
@@ -120,9 +120,9 @@ const SponsorListing = ({ sponsors, sponsorCategories, labels, eventUrl, siteLab
                       <ActiveLink href={sponsor.url.replace(/^https?:\/\//, "") != "" ? sponsor.url : `/${eventUrl}/sponsors/${sponsor.id}`}>
                         <figure>
                           {sponsor.logo && sponsor.logo !== '' ? (
-                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt="" />
+                            <img src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo} alt={sponsor.name || 'Sponsor'} />
                           ) : (
-                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt="" />
+                            <Image objectFit='contain' layout="fill" src={require('public/img/exhibitors-default.png')} alt={sponsor.name || 'Sponsor'} />
                           )}
                         </figure>
                       </ActiveLink>

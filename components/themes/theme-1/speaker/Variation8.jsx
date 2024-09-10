@@ -37,7 +37,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                 "/assets/attendees/" +
                                 speaker.image
                               }
-                              alt="g"
+                              alt={speaker.first_name || 'Speaker'}
                             />
                           ) : (
                             <Image objectFit='contain' layout="fill"
@@ -45,7 +45,7 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                               src={
                                 require("public/img/user-placeholder.jpg")
                               }
-                              alt="g"
+                              alt={speaker.first_name || 'Speaker'}
                             />
                           )}
                         </span>
@@ -81,13 +81,13 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                       )}
                     {listing && speaker.email && (
                       <div className="email">
-                        <a href={`mailto:${speaker.email}`}>{speaker.email}</a>
+                        <a aria-label="Email" href={`mailto:${speaker.email}`}>{speaker.email}</a>
                       </div>
                     )}
 
                     {listing && speaker.phone && (
                       <div className="speakerv7-phone">
-                        <a href={`tel:${speaker.phone}`}>{speaker.phone}</a>
+                        <a aria-label="Phone" href={`tel:${speaker.phone}`}>{speaker.phone}</a>
                       </div>
                     )}
                     {listing &&
@@ -97,40 +97,52 @@ const Variation8 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                         speaker.info.linkedin ||
                         speaker.info.website) && (
                         <div className="d-flex">
-                          <div className="social-icons">
+                          <ul className="social-icons list-inline m-0">
                             {speaker.info.facebook && (
-                              <a
-                                target="_blank" rel="noreferrer"
-                                href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
-                              >
-                                <span data-icon="&#xe0aa;"></span>
-                              </a>
+                              <li className="list-inline-item">
+                                <a
+                                  target="_blank" rel="noreferrer"
+                                   aria-label="Facebook (opens in new window)"
+                                  href={`${speaker.info.facebook_protocol}${speaker.info.facebook}`}
+                                >
+                                  <span data-icon="&#xe0aa;"></span>
+                                </a>
+                              </li>
                             )}
                             {speaker.info.twitter && (
-                              <a
-                                target="_blank" rel="noreferrer"
-                                href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
-                              >
-                                <span className="fa-brands fa-x-twitter"></span>
-                              </a>
+                              <li className="list-inline-item">
+                                <a
+                                  target="_blank" rel="noreferrer"
+                                   aria-label="X (opens in new window)"
+                                  href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
+                                >
+                                  <span className="fa-brands fa-x-twitter"></span>
+                                </a>
+                              </li>
                             )}
                             {speaker.info.linkedin && (
-                              <a
-                                target="_blank" rel="noreferrer"
-                                href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
-                              >
-                                <span data-icon="&#xe0b4;"></span>
-                              </a>
+                              <li className="list-inline-item">
+                                <a
+                                  target="_blank" rel="noreferrer"
+                                   aria-label="Linkedin (opens in new window)"
+                                  href={`${speaker.info.linkedin_protocol}${speaker.info.linkedin}`}
+                                >
+                                  <span data-icon="&#xe0b4;"></span>
+                                </a>
+                              </li>
                             )}
                             {speaker.info.website && (
-                              <a
-                                target="_blank" rel="noreferrer"
-                                href={`${speaker.info.website_protocol}${speaker.info.website}`}
-                              >
-                                <span data-icon="&#xe0e3;"></span>
-                              </a>
+                              <li className="list-inline-item">
+                                <a
+                                  target="_blank" rel="noreferrer"
+                                   aria-label="Website (opens in new window)"
+                                  href={`${speaker.info.website_protocol}${speaker.info.website}`}
+                                >
+                                  <span data-icon="&#xe0e3;"></span>
+                                </a>
+                              </li>
                             )}
-                          </div>
+                          </ul>
                         </div>
                       )}
                   </div>
