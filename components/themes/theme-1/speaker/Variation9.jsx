@@ -160,14 +160,6 @@ const Variation9 = ({
                                         </li>
                                       )}
                                       {speaker.info.twitter && (
-<<<<<<< HEAD
-                                        <a
-                                          target="_blank" rel="noreferrer"
-                                          href={`${speaker.info.twitter_protocol}${speaker.info.twitter}`}
-                                        >
-                                          <span className="fa-brands fa-x-twitter"></span>
-                                        </a>
-=======
                                         <li className="list-inline-item">
                                           <a
                                             target="_blank" rel="noreferrer"
@@ -177,7 +169,6 @@ const Variation9 = ({
                                             <span className="fa-brands fa-x-twitter"></span>
                                           </a>
                                         </li>
->>>>>>> origin/feature/RS20-1457
                                       )}
                                       {speaker.info.linkedin && (
                                         <li className="list-inline-item">
