@@ -1429,6 +1429,7 @@
     .ebs-select-box  {
       padding-right: 20px;
       width: 230px;
+      white-space: nowrap;
     }
   }
   .right-panel-area {
@@ -4162,6 +4163,7 @@ z-index: 2;
   .ebs-sideber-icond {
     color: $white;
   }
+}
 .py-12{
   padding-top: 12px;
   padding-bottom: 12px;
@@ -4276,7 +4278,6 @@ font-size: 24px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-}
 
 .list-inline {
   .list-inline-item {
@@ -4336,4 +4337,47 @@ font-size: 24px;
 [data-title]:hover::before {
   opacity: 1;
   visibility: visible;
+}
+.ebs-time-line-location {
+  width: 120px;
+  left: -120px;
+  background: $lightbackground;
+  font-size: 16px;
+  font-weight: 500; 
+  text-transform: capitalize;
+  text-align: center;
+}
+.responive-padding-style {
+  @include ipad-landscape {
+    padding-right: 0 !important;
+  }
+}
+.mobile-width-100 {
+  @include ipad-landscape{
+    width: 100% !important;
+    margin-bottom: 12px;
+  }
+}
+
+#ebs-timeline-variation {
+  .object-row  {
+    .ebs-content {
+      width: calc(100% - 100px);
+      padding-left: 20px;
+      .title {
+        font-size: 16px;
+        font-weight: 500;
+        .material-icons {
+          vertical-align: middle;
+          font-size: 16px;
+        }
+      }
+    }
+    .time {
+      font-size: 14px;
+      min-width: 100px;
+      max-width: 100px;
+      width: 100px;
+    }
+  }
 }
