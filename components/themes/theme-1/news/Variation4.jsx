@@ -85,7 +85,7 @@ function SingleNewModule({event_url,created_at,body,title,id}){
     <div className="d-flex justify-content-between align-items-center row">
      <div className="col-lg-10">
     <span className="border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date"style={ebsDateStyle}>{created_at_with_comma}</span>
-     <h3 className="m-0 mt-2 fs-24 fw-semibold">{title}</h3>
+     <h3 className="m-0 mt-2 fs-24  fw-semibold">{title}</h3>
      {/* <div className="m-0 mt-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: body }}></div> */}
      <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-2" dangerouslySetInnerHTML={{__html:body}}></p>
     </div>
