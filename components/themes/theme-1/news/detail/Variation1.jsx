@@ -10,6 +10,7 @@ import {
   LinkedinShareButton,
   PinterestShareButton,
   EmailShareButton,
+  XIcon
 } from "react-share";
 import Image from 'next/image'
 
@@ -38,7 +39,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                     <TwitterShareButton
                       url={`${window.location}`}
                     >
-                      <TwitterIcon size={32} round={true} title="Twitter" />
+                      <XIcon size={32} round={true} title="Twitter" />
                     </TwitterShareButton>
                     <PinterestShareButton
                       url={`${window.location}`}
