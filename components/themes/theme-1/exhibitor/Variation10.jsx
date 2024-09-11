@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import ExhibitorPopup from 'components/ui-components/ExhibitorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Image from 'next/image'
 
-const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, settings }) => {
+const Variation8 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
 	const [clientYonMouseDown, setClientYonMouseDown] = useState(null);
+
 	const handleClick = () => {
 		setPopup(!popup);
 		setData('');
 	}
-	var settingsslider = {
+    var settingsslider = {
 		dots: false,
 		infinite: true,
 		arrows: false,
@@ -23,7 +24,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		autoplaySpeed: 2000,
 		slidesToShow: 6,
 		slidesToScroll: 1,
-		swipeToSlide: true,
+        swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -46,8 +47,12 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 		]
 	};
 	const [exhibitors,] = useState(exhibitorsByCategories.reduce((ack, item) => {
-		return [...ack, ...item.exhibitors];
+		const newExhibitors = item.exhibitors.filter(exhibitor => !ack.some(existing => existing.id === exhibitor.id));
+		return [...ack, ...newExhibitors];
 	}, []));
+	useEffect(()=>{
+		console.log(exhibitors)
+	},[])
 
 	const handleOnMouseDown = (e) => {
 		setClientXonMouseDown(e.clientX)
@@ -66,15 +71,15 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 			setPopup(true)
 		}
 	}
-    const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
+	const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color } : { backgroundColor: '#f2f2f2' }
 
 	return (
-		<div style={bgStyle} className="module-section ebs-colored-logo-grid ebs-default-padding">
+		<div style={bgStyle} className="module-section  ebs-default-padding">
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
 			</div>
-			<div className="container-fluid">
+			<div className="container">
 				<div className="edgtf-carousel-holder">
 					<div
 						className="edgtf-carousel edgtf-slick-slider-navigation-style"
@@ -82,8 +87,10 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 						<Slider {...settingsslider}>
 							{exhibitors.map((exhibitor, i) => {
 								return (
-									<div className="edgtf-carousel-item-holder" key={i}>
-										<span className="edgtf-carousel-first-image-holder ebs-carousel-image-box">
+									<div className="edgtf-carousel-item-holder ebs-carousel-image-holder" key={i}>
+										<span
+											className="edgtf-carousel-first-image-holder ebs-carousel-image-box"
+										>
 											{
 												exhibitor.logo && exhibitor.logo !== "" ? (
 													<img
@@ -95,18 +102,17 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 															"/assets/exhibitors/" +
 															exhibitor.logo
 														}
-														alt="Client 11"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												) : (
 													<Image objectFit='contain' layout="fill"
 														src={require('public/img/exhibitors-default.png')}
-														alt="x"
+														alt={exhibitor.name || "Exhibitor"}
 													/>
 												)
 											}
 										</span>
 									</div>
-									
 								);
 							})}
 						</Slider>
@@ -117,4 +123,4 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 	)
 }
 
-export default Variation7
+export default Variation8

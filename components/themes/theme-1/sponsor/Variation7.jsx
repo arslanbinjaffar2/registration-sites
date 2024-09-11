@@ -15,20 +15,21 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 	}
 	var settingsslider = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		arrows: false,
 		speed: 500,
 		margin: 30,
 		autoplay: true,
 		autoplaySpeed: 2000,
 		slidesToShow: 6,
-		slidesToScroll: 3,
+		slidesToScroll: 1,
+		swipeToSlide: true,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToScroll: 1,
 					infinite: true,
 					dots: false
 				}
@@ -37,8 +38,8 @@ const Variation7 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2,
-					initialSlide: 2
+					slidesToScroll: 1,
+					initialSlide: 1
 				}
 			},
 
