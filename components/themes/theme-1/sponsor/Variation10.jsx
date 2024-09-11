@@ -74,7 +74,7 @@ const Variation8 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 			</div>
-			<div className="container-fluid">
+			<div className="container">
 				<div className="edgtf-carousel-holder">
 					<div
 						className="edgtf-carousel edgtf-slick-slider-navigation-style"
