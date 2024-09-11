@@ -13,8 +13,6 @@ const Completionist = ({ labels }) =>
 const SliderCustom = (props) => {
   const videoRef = React.useRef()
   const divRef = React.useRef()
-  console.clear();
-  console.log(props.sliderSettings,'props.sliderSettings.dots');
   var settings = {
     dots: true,
     arrows: props.sliderSettings.arrows === 'true' ? true :  false,
