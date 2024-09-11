@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "main";
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(201, 179, 179); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bdadad; 
+}
 .tt_navigation_wrapper {
   width: 100%;
 }
@@ -4207,3 +4227,37 @@ z-index: 2;
   opacity: 1;
   visibility: visible;
 }
+
+
+.ebs-reset-btn {
+  cursor: pointer;
+
+//   &:active,
+//   &:focus,
+//   &:enabled
+//   {
+//     span:first-of-type { // Targets only the first span inside the button
+//       animation: RotateAnimation 1s normal 0.3s; // Adjust the duration and timing function as needed
+//     }
+//   }
+// }
+
+// // Define the keyframes for the rotation animation
+// @keyframes RotateAnimation {
+//   0% {
+//     transform: rotate(0deg); // Start rotation
+//     color: rgba(4, 113, 236, 0.623);
+//   }
+//   30%{
+//     transform: rotate(40deg);
+//     color: rgba(4, 113, 236, 0.623);
+//   }
+
+//   100% {
+//     transform: rotate(360deg); // Complete rotation
+//     // Start rotation
+//     color: rgba(4, 113, 236, 0.623);
+
+//   }
+}
+
