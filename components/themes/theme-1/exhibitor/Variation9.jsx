@@ -70,10 +70,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
 
 	return (
 		<div style={bgStyle} className="module-section ebs-default-padding">
-            {
-    console.log(exhibitors,"exh")
-
-            }
+         
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_EXHIBITORS} desc={siteLabels.EVENTSITE_EXHIBITORS_SUB} align={settings.text_align} />
