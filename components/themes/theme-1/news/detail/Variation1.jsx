@@ -24,7 +24,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
             <div className="edgtf-column-inner">
               <div className="edgtf-blog-holder edgtf-blog-type-standard">
                 <article>
-                  {/* <div className="blog-post-social">
+                  <div className="blog-post-social">
                     <FacebookShareButton
                       url={`${window.location}`}
                     >
@@ -55,7 +55,7 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                     >
                       <EmailIcon size={32} round={true} title="Facebook" />
                     </EmailShareButton>
-                  </div> */}
+                  </div>
                   <div className="edgtf-post-content">
                     {news.image && <div className="edgtf-post-image">
                       <span className="gallery-img-wrapper-rectangle-2">
