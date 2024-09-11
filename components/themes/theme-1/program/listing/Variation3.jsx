@@ -20,6 +20,7 @@ const customStyles = {
   })
 };
 const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings }) => {
+  const [width,setWidth]=useState(window.innerWidth)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -42,6 +43,10 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   }
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
+  };
+   const handleResetFilters = () => {
+    setValue('');
+    setSelectedTrack({ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }); 
   };
   
   useEffect(() => {
@@ -75,6 +80,18 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     link.rel = 'stylesheet';
     document.head.appendChild(link);
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       {/* <div className="container">
@@ -91,11 +108,12 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                   components={{ IndicatorSeparator: null }}
                   onChange={(date) => { onDateChange(date) }}
                   className='custom-date-select'
-                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('D MMMM')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
+                  value={selectedTrack}
+                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                 />
               </div>}
               <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cursor-pointer border-black-color'>
-          <span className="material-symbols-outlined">tune</span>
+              <span className="material-symbols-outlined">tune</span>
           </div>
             
         
@@ -103,7 +121,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
           {/* filters */}
          {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
                {eventsiteSettings.agenda_search_filter === 1 && <div>
-              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
+              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  value={value} onChange={(e) => setValue(e.target.value)} />
               <span className="material-symbols-outlined fa">search</span>
               </div>
               </div>}
@@ -115,24 +133,26 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                           components={{ IndicatorSeparator: null }}
                           onChange={(track) => { onTrackChange(track) }}
                           className='custom-track-select'
+                          value={selectedTrack}
                           options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
                         />
                   </div>}
-              <div className='d-flex gap-1 align-items-center justify-content-end ms-auto'>
+             <div className='d-flex gap-1 align-items-center justify-content-end ms-auto' onClick={handleResetFilters}>
               <span className="material-symbols-outlined">restart_alt</span>
               <span className='fs-xsmall fw-normal'>Reset filters</span>
-              </div>
+            </div>
           </div>}
         </div>
       </div>}
+      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>no program Found</div>}
       <div className="container mt-30">
         <div className="ebs-main-program-listing">
-          {programsLoc && Object.keys(programsLoc).map((key, k) => (
+          {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 <div className='mt-3'  key={item.id}>
-                  {item.workshop_id > 0? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
+                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
                   <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
                 </div>
               ))}
@@ -140,7 +160,8 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
           ))}
                    </div>
       </div>
-           {window.innerWidth>570 &&<ProgramDetail setShowDetail={setShowDetail} ref={detailRef} programs={programsState}  showDetail={showDetail} agendaSettings={agendaSettings} eventUrl={eventUrl} labels={siteLabels}/> }
+           {width>570 &&<ProgramDetail setShowDetail={setShowDetail} ref={detailRef} programs={programsState}  showDetail={showDetail} agendaSettings={agendaSettings} eventUrl={eventUrl} labels={siteLabels}/> }
+           
     </div>
   )
 }
