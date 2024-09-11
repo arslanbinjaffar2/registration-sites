@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "main";
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(201, 179, 179); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bdadad; 
+}
 .tt_navigation_wrapper {
   width: 100%;
 }
@@ -4338,46 +4358,37 @@ font-size: 24px;
   opacity: 1;
   visibility: visible;
 }
-.ebs-time-line-location {
-  width: 120px;
-  left: -120px;
-  background: $lightbackground;
-  font-size: 16px;
-  font-weight: 500; 
-  text-transform: capitalize;
-  text-align: center;
-}
-.responive-padding-style {
-  @include ipad-landscape {
-    padding-right: 0 !important;
-  }
-}
-.mobile-width-100 {
-  @include ipad-landscape{
-    width: 100% !important;
-    margin-bottom: 12px;
-  }
+
+
+.ebs-reset-btn {
+  cursor: pointer;
+
+//   &:active,
+//   &:focus,
+//   &:enabled
+//   {
+//     span:first-of-type { // Targets only the first span inside the button
+//       animation: RotateAnimation 1s normal 0.3s; // Adjust the duration and timing function as needed
+//     }
+//   }
+// }
+
+// // Define the keyframes for the rotation animation
+// @keyframes RotateAnimation {
+//   0% {
+//     transform: rotate(0deg); // Start rotation
+//     color: rgba(4, 113, 236, 0.623);
+//   }
+//   30%{
+//     transform: rotate(40deg);
+//     color: rgba(4, 113, 236, 0.623);
+//   }
+
+//   100% {
+//     transform: rotate(360deg); // Complete rotation
+//     // Start rotation
+//     color: rgba(4, 113, 236, 0.623);
+
+//   }
 }
 
-#ebs-timeline-variation {
-  .object-row  {
-    .ebs-content {
-      width: calc(100% - 100px);
-      padding-left: 20px;
-      .title {
-        font-size: 16px;
-        font-weight: 500;
-        .material-icons {
-          vertical-align: middle;
-          font-size: 16px;
-        }
-      }
-    }
-    .time {
-      font-size: 14px;
-      min-width: 100px;
-      max-width: 100px;
-      width: 100px;
-    }
-  }
-}

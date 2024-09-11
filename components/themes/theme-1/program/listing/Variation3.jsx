@@ -131,13 +131,36 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                           styles={customStyles}
                           placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
                           components={{ IndicatorSeparator: null }}
-                          onChange={(track) => { onTrackChange(track) }}
+                          onChange={(track) => { onTrackChange(track)}}
                           className='custom-track-select'
                           value={selectedTrack}
-                          options={tracks.reduce((ack, item) => ([...ack, { value: item.name, label: item.name }]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }])}
+                          options={tracks.reduce((ack, item,index, array) =>{
+                            // Add the current track to the accumulator
+                            ack = [...ack, { value: item.name, label: item.name }];                          
+                             // If the track has sub-tracks, recursively process them
+                            if (item.sub_tracks && item.sub_tracks.length > 0) {
+                              ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
+                                // Extract the name and color from the sub-track object
+                                const { info } = subItem;
+                                const nameInfo = info.find((infoItem) => infoItem.name === 'name');
+                                // const colorInfo = info.find((infoItem) => infoItem.name === 'color');
+
+                                // Add the sub-track to the accumulator
+                                subAck = [...subAck, {
+                                  value: nameInfo.value,
+                                  label: `${nameInfo.value}`
+                                }];
+
+                                return subAck;
+                              }, []));
+                            }
+                            return ack;
+                            
+                          },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
+                          
                         />
                   </div>}
-             <div className='d-flex gap-1 align-items-center justify-content-end ms-auto' onClick={handleResetFilters}>
+             <div className='d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn' onClick={handleResetFilters}>
               <span className="material-symbols-outlined">restart_alt</span>
               <span className='fs-xsmall fw-normal'>Reset filters</span>
             </div>
@@ -220,12 +243,15 @@ const searchThroughProgram = (programs, searchText) => {
           ack.push({ ...program, 'workshop_programs': search });
         }
       }
+      if( program.program_workshop && program.program_workshop.toLowerCase().indexOf(searchText) !== -1){
+        ack.push({ ...program});
+      }
       else {
         let add = false;
 
         if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
           program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
-          program.location && program.location.toLowerCase().indexOf(searchText) !== -1
+          program.location && program.location.toLowerCase().indexOf(searchText) !== -1 
         ) {
           add = true;
         }
@@ -250,7 +276,6 @@ const searchThroughProgram = (programs, searchText) => {
         if (add) {
           ack.push(program);
         }
-
       }
       return ack;
 
@@ -267,8 +292,7 @@ const searchThroughworshopPrograms = (programs, searchText) => {
     let add = false;
     if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
       program.description.toLowerCase().indexOf(searchText) !== -1 ||
-      program.location.toLowerCase().indexOf(searchText) !== -1
-    ) {
+      program.location.toLowerCase().indexOf(searchText) !== -1    ) {
       add = true;
     }
 
