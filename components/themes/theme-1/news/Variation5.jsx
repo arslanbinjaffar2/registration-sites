@@ -42,7 +42,6 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
  const handleViewAll = () => {
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
-console.log(siteLabels,"sitelabels")
   return (
     <div style={bgStyle}  className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -53,7 +52,6 @@ console.log(siteLabels,"sitelabels")
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            {/* <p className="col-md-6 col-12 m-0 mt-md-0 m-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p> */}
           </div>
           {/* container */}
          <div className="d-flex flex-column">
@@ -84,24 +82,35 @@ function SingleNewModule({makeNewDetailURL,event_url,id,created_at,body,title,im
   return(
   <div className="h-100">
   <ActiveLink itemProp="url" href={makeNewDetailURL(event_url, id)}>
-  {image &&  <figure className="m-0 w-100  position-relative" style={{height }}>
-            <Image
-              layout="fill"
-              onLoad={(e) => e.target.style.opacity = 1}
-              src={
-                image && image !== ""
-                  ? process.env.NEXT_APP_EVENTCENTER_URL +
-                    "/assets/eventsite_news/" +
-                    image
-                  : require('public/img/exhibitors-default.png')
-              }
-              className="attachment-full size-full wp-post-image h-100 rounded-1"
-              alt={title}
-            />
+<figure className="m-0 w-100  position-relative" style={{height}}>
+                              {image ? 
+                               <img
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                src={
+                                  image && image !== ""
+                                     ? process.env.NEXT_APP_EVENTCENTER_URL +
+                                       "/assets/eventsite_news/" +
+                                       image
+                                     : require('public/img/exhibitors-default.png')
+                                 }
+                                 className="w-100 h-100"
+                                alt="g"
+                              />
+                              :
+                              <Image objectFit='contain' layout="fill"
+                                onLoad={(e) => e.target.style.opacity = 1}
+                                src={
+                                  require("public/img/user-placeholder.jpg")
+                                }
+                                alt="g"
+                              />}
+                        
+                      
+
     <span style={{ top }} className="position-absolute border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date bg-white">{created_at}</span>
-  </figure>}
-  </ActiveLink>
+  </figure>
      <h3 className="m-0 mt-4 fs-24 fw-semibold">{title}</h3>
+  </ActiveLink>
      <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-3" dangerouslySetInnerHTML={{__html:body}}></p>
   </div>
 
