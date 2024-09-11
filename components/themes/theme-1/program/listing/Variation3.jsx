@@ -135,15 +135,11 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
                           className='custom-track-select'
                           value={selectedTrack}
                           options={tracks.reduce((ack, item,index, array) =>{
-                            console.log(`Ack at index ${index}:`, ack);
-                            console.log(`Current item at index ${index}:`, item);
                             // Add the current track to the accumulator
                             ack = [...ack, { value: item.name, label: item.name }];                          
                              // If the track has sub-tracks, recursively process them
                             if (item.sub_tracks && item.sub_tracks.length > 0) {
                               ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
-                                console.log(`Sub-ack at index ${index}:`, subAck);
-                                console.log(`Current sub-item at index ${index}:`, subItem);
                                 // Extract the name and color from the sub-track object
                                 const { info } = subItem;
                                 const nameInfo = info.find((infoItem) => infoItem.name === 'name');
@@ -247,12 +243,15 @@ const searchThroughProgram = (programs, searchText) => {
           ack.push({ ...program, 'workshop_programs': search });
         }
       }
+      if( program.program_workshop && program.program_workshop.toLowerCase().indexOf(searchText) !== -1){
+        ack.push({ ...program});
+      }
       else {
         let add = false;
 
         if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
           program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
-          program.location && program.location.toLowerCase().indexOf(searchText) !== -1
+          program.location && program.location.toLowerCase().indexOf(searchText) !== -1 
         ) {
           add = true;
         }
@@ -277,7 +276,6 @@ const searchThroughProgram = (programs, searchText) => {
         if (add) {
           ack.push(program);
         }
-
       }
       return ack;
 
@@ -294,8 +292,7 @@ const searchThroughworshopPrograms = (programs, searchText) => {
     let add = false;
     if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
       program.description.toLowerCase().indexOf(searchText) !== -1 ||
-      program.location.toLowerCase().indexOf(searchText) !== -1
-    ) {
+      program.location.toLowerCase().indexOf(searchText) !== -1    ) {
       add = true;
     }
 
