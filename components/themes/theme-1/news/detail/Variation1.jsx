@@ -69,8 +69,8 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                             }
                             className="attachment-full size-full wp-post-image"
                             alt="a"
-                            width="1500"
-                            height="500"
+                           
+                            style={{ height:"500px",width:"1500px",objectFit:"cover" }}
                           />
                         ) : (
                           <Image objectFit='contain' layout="fill"
@@ -80,8 +80,8 @@ const Variation1 = ({ event, news, sidebar, newsSettings }) => {
                             }
                             className="attachment-full size-full wp-post-image"
                             alt="a"
-                            width="1500"
-                            height="500"
+                            width="1500px"
+                            height="500px"
                           />
                         )}
                       </span>

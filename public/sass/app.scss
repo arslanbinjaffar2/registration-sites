@@ -4234,10 +4234,11 @@ font-size: 24px;
   font-size: 16px;
   font-weight: 500;
   height: 42px;
-  color: $default-text-color;
-  background-color: transparent;
+  color: $text2b;
+  background-color: $header-light-color;
   transition: all 0.3s ease-in-out;
-  border: 2px solid #2B2B2B;
+  border: 2px solid $text2b;
+  border-radius: 4px;
   &:hover{
     background-color:$default-text-color !important;
     color: white;
@@ -4255,7 +4256,8 @@ font-size: 24px;
 }
 
 .ebs-read-more-btn{
-  font-size: 16px;
+  box-sizing: border-box;
+  font-size: 14px;
   font-weight: 500;
   height: 42px;
   color: $default-text-color;
@@ -4263,6 +4265,7 @@ font-size: 24px;
   &:hover{
     background-color: $default-text-color !important;
     color: white;
+    
   }
   
 }
@@ -4282,6 +4285,10 @@ font-size: 24px;
 .ebs-left-side-container{
   background: transparent linear-gradient(118deg, var(--primary) 0%, var(--secondary) 100%) 0% 0% no-repeat padding-box;
   color: white;
+  :is(h3,p){
+    padding-right: 30px;
+  }
+  
 }
 .bg-light{
   background-color: white;
@@ -4442,3 +4449,26 @@ font-size: 24px;
 
   }
 }
+
+.ebs-news-single-new-module-item{
+  border-color: $bordercc;
+  .ebs-news-date{
+  border-color: $bordercc;
+
+  }
+  
+}
+
+.ebs-scrollTop-btn{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px; 
+  border-width: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0%;
+  right:10%;
+}
+

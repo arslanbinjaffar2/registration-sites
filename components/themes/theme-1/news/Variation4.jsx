@@ -25,14 +25,14 @@ const Variation4 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
       return(
         <SingleNewModule key={item.id}  index={index} setShowAllModules={setShowAllModules}  makeNewDetailURL={makeNewDetailURL} event_url={event_url} {...item}/>
       )
-    }):""
+    }):null
   )
  }
  const handleViewAll = () => {
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
   return (
-    <div  className="edgtf-container ebs-default-padding">
+    <div style={bgStyle}  className="edgtf-container ebs-default-padding">
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
          {/* {homePage && <HeadingElement dark={false} label={siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}  align={'center'} />} */}
@@ -41,7 +41,6 @@ const Variation4 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
               <span >{siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}</span>
               <span className="ebs-heading-bottom-border d-inline-block  mt-4"></span>
             </h2>
-            <p className="col-md-6 col-12 m-0 mt-md-0 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac felis et leo efficitur consequat.</p>
           </div>
           {/* container */}
          <div className="d-flex flex-column mt-40">
@@ -78,20 +77,23 @@ function SingleNewModule({event_url,created_at,body,title,id}){
  const handleShowDetail=()=>{
   push(`/${event_url}/news/${id}`)
  }
+ const regex = /(\d{1,2})\s([a-zA-Z]{3})[a-zA-Z]*\s(\d{4})/i; 
+ const created_at_with_comma = created_at.replace(regex, "$1 $2, $3");
   return(
-    <div className="border p-md-4 p-3  rounded-2 border-color-default">
+    <div className="border  p-md-4 p-3  rounded-2  ebs-news-single-new-module-item">
     <div className="d-flex justify-content-between align-items-center row">
      <div className="col-lg-10">
-    <span className="border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date"style={ebsDateStyle}>{created_at}</span>
-     <h3 className="m-0 mt-2 fs-24 fw-semibold">{title}</h3>
+    <span className="border d-flex justify-content-center align-items-center px-3 py-6 rounded-5 h-29 ebs-news-date"style={ebsDateStyle}>{created_at_with_comma}</span>
+     <h3 className="m-0 mt-2 fs-24  fw-medium" style={{ textTransform:"unset" }}>{title}</h3>
      {/* <div className="m-0 mt-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: body }}></div> */}
      <p className="edgtf-post-excerpt ebs-edgtf-post-line-clamp-new m-0 mt-2" dangerouslySetInnerHTML={{__html:body}}></p>
     </div>
     <div className="col-lg-2 d-flex justify-content-lg-end justify-content-start mt-md-0 mt-2">
     <button onClick={handleShowDetail}
-    className="d-flex justify-content-center align-items-center  border ebs-read-more-btn rounded-1 py-12 px-3 bg-transparent border-color-default">
-     <span className="">Read more</span>
-     <span class="material-symbols-outlined">chevron_right</span>
+    className="d-flex justify-content-center align-items-center  border ebs-read-more-btn rounded-1 py-12 px-3 bg-transparent gap-1">
+     <span >Read more</span>
+     {/* <span className="material-symbols-outlined " style={{ fontSize:"18px" }}>chevron_right</span> */}
+     <Image objectFit='contain' layout="fixed" width={'7px'} height={'12px'} src={require('public/img/arrow-right.svg')} alt="" className=""/>
     </button>
     </div>
      </div>
