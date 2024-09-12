@@ -22,7 +22,7 @@ const Variation9 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 		autoplay: true,
 		autoplaySpeed: 2000,
 		slidesToShow: 6,
-		slidesToScroll: 1,
+		slidesToScroll: 1,  
         swipeToSlide: true,
 		responsive: [
 			{

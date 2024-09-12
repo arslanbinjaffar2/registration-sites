@@ -18,7 +18,7 @@ const Completionist = ({ event, completed }) => (
 const Variation7 = ({ event, labels, settings }) => {
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-
+console.log(event?.label?.COUNTDOWN_LABEL_HOURS);
       return (
         <React.Fragment>
           <div className="ebs-counter-v7 ebs-countdown-wrapp countdown-wrapp d-flex align-items-center text-center w-100">
@@ -37,22 +37,22 @@ const Variation7 = ({ event, labels, settings }) => {
               <span className="countdown-amount">
                 {zeroPad(Math.floor(days % 30))}
               </span>
-              <span className="countdown-period">DAYS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_DAYS}</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(hours)}</span>
-              <span className="countdown-period">HOURS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_HOURS}</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(minutes)}</span>
-              <span className="countdown-period">MINUTES</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_MINUTES}</span>
             </span>
             <div className="vr"></div>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount">{zeroPad(seconds)}</span>
-              <span className="countdown-period">SECONDS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_SECONDS}</span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}
