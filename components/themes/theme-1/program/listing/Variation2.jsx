@@ -314,7 +314,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                 <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
 										<div className="row d-flex">
-                      {eventsiteSettings.agenda_search_filter === 1 && <div className="col-md-5">
+                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-5">
                         <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
                           <em className="fa fa-search"></em>
                         </div>
