@@ -67,12 +67,12 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       {filters && <div className="ebs-program-top">
         <div className="container">
           <div className="row d-flex">
-            {eventsiteSettings.agenda_search_filter === 1 && <div className="col-md-5">
+            {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-5">
               <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
                 <em className="fa fa-search"></em>
               </div>
             </div>}
-            <div className={eventsiteSettings.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
+            <div className={eventsiteSettings?.agenda_search_filter === 1 ? "col-md-7" : "col-md-12"}>
               <div className="row flex-row justify-content-end">
                 {Object.keys(programs).length > 0 && <div className="col-md-5 col-6">
                   <ReactSelect
