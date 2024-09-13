@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images:{
+    
+    domains:["localhost",process.env.NEXT_APP_EVENTCENTER_URL.match(/(http(?:s)?:\/\/)(.*)/)[2]],
+    
+  },
   env: {
     NEXT_APP_BASE_URL: process.env.NEXT_APP_BASE_URL,
     NEXT_APP_API_URL: process.env.NEXT_APP_API_URL,
