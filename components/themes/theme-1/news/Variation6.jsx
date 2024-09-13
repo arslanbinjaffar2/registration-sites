@@ -10,7 +10,7 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
 
   const [height, setHeight] = useState(0);
   const [ShowAllModules,setShowAllModules]=useState({
-    modules:3
+    modules:4
   })
   const iframe = useRef();
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}  
@@ -54,7 +54,7 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
   return (
-    <div  className="edgtf-container ebs-default-padding" >
+    <div style={bgStyle} className="edgtf-container ebs-default-padding" >
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
          {/* {homePage && <HeadingElement dark={false} label={siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}  align={'center'} />} */}
@@ -73,7 +73,7 @@ const Variation6 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
               <span className="material-symbols-outlined text-white d-flex justify-content-center align-items-center"> arrow_right_alt</span>
               </span></span>       
          </button>}
-        {isVisible && <button className="ebs-scrollTop-btn" onClick={scrollToTop}>
+        {!homePage && isVisible && <button className="ebs-scrollTop-btn" onClick={scrollToTop}>
          <span class="material-symbols-outlined">
           arrow_upward
           </span>
