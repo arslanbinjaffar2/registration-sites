@@ -6,7 +6,7 @@ import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
 import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
-
+import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
 const customStyles = {
   control: base => ({
@@ -19,11 +19,12 @@ const customStyles = {
     maxWidth: '100%',
   })
 };
-const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings }) => {
+const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings,moduleVariation }) => {
   const [width,setWidth]=useState(window.innerWidth)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
+  const [selectedLocation,setSelectedLocation]=useState(null)
   const [value, setValue] = useState('');
   const [search, setSearch] = useState('')
   const [showDetail,setShowDetail]=useState(false)
@@ -37,7 +38,9 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   const onDateChange = (date) => {
     setSelectedDate(date);
   }
-
+  const onLocationChange=(location)=>{
+    setSelectedLocation(location)
+  }
   const onTrackChange = (track) => {
     setSelectedTrack(track);
   }
@@ -47,7 +50,10 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
    const handleResetFilters = () => {
     setValue('');
     setSelectedTrack({ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }); 
+    setSelectedDate({ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY })
+    setSelectedLocation({ value: 0, label: "Select Location" })
   };
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
   
   useEffect(() => {
     let programsObj = programs;
@@ -57,11 +63,14 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     if (selectedTrack !== null && selectedTrack.value !== 0) {
       programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
     }
+    if(selectedLocation !==null && selectedLocation.value!==0){
+      programsObj=getProgramsByLocation(programsObj, selectedLocation.value)
+    }
     if (search !== '') {
       programsObj = searchThroughProgram(programsObj, search.toLowerCase());
     }
     setProgramsLoc(programsObj);
-  }, [selectedDate, selectedTrack, search]);
+  }, [selectedDate, selectedTrack, search,selectedLocation]);
 
 
   useEffect(() => {
@@ -92,83 +101,34 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  console.log(moduleVariation,"module")
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
-      {filters && <div className="ebs-program-top-new bg-white shadow-black">
-        <div className="container">
-          <div className="d-flex justify-content-between align-items ">
-       
-              {Object.keys(programs).length > 0 && <div className="">
-                <ReactSelect
-                  styles={customStyles}
-                  placeholder={siteLabels.EVENTSITE_SELECT_DAY}
-                  components={{ IndicatorSeparator: null }}
-                  onChange={(date) => { onDateChange(date) }}
-                  className='custom-date-select'
-                  value={selectedTrack}
-                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
-                />
-              </div>}
-              <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cursor-pointer border-black-color'>
-              <span className="material-symbols-outlined">tune</span>
-          </div>
-            
-        
-          </div>
-          {/* filters */}
-         {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
-               {eventsiteSettings?.agenda_search_filter === 1 && <div>
-              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  value={value} onChange={(e) => setValue(e.target.value)} />
-              <span className="material-symbols-outlined fa">search</span>
-              </div>
-              </div>}
-                  {tracks.length > 0 &&
-                      <div className="">
-                        <ReactSelect
-                          styles={customStyles}
-                          placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
-                          components={{ IndicatorSeparator: null }}
-                          onChange={(track) => { onTrackChange(track)}}
-                          className='custom-track-select'
-                          value={selectedTrack}
-                          options={tracks.reduce((ack, item,index, array) =>{
-                            // Add the current track to the accumulator
-                            ack = [...ack, { value: item.name, label: item.name }];                          
-                             // If the track has sub-tracks, recursively process them
-                            if (item.sub_tracks && item.sub_tracks.length > 0) {
-                              ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
-                                // Extract the name and color from the sub-track object
-                                const { info } = subItem;
-                                const nameInfo = info.find((infoItem) => infoItem.name === 'name');
-                                // const colorInfo = info.find((infoItem) => infoItem.name === 'color');
-
-                                // Add the sub-track to the accumulator
-                                subAck = [...subAck, {
-                                  value: nameInfo.value,
-                                  label: `${nameInfo.value}`
-                                }];
-
-                                return subAck;
-                              }, []));
-                            }
-                            return ack;
-                            
-                          },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
-                          
-                        />
-                  </div>}
-             <div className='d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn' onClick={handleResetFilters}>
-              <span className="material-symbols-outlined">restart_alt</span>
-              <span className='fs-xsmall fw-normal'>Reset filters</span>
-            </div>
-          </div>}
-        </div>
-      </div>}
-      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>no program Found</div>}
-      <div className="container mt-30">
+    <CustomFilter
+    filters={filters}
+    customStyles={customStyles}
+    siteLabels={siteLabels}
+    programs={programs}
+    showFilter={showFilter}
+    eventsiteSettings={eventsiteSettings}
+    setShowFilter={setShowFilter}
+    handleResetFilters={handleResetFilters}
+    setValue={setValue}
+    value={value}
+    selectedTrack={selectedTrack}   
+    tracks={tracks} 
+    selectedLocation={selectedLocation}
+    setSelectedLocation={setSelectedLocation}
+    onTrackChange={onTrackChange}
+    onDateChange={onDateChange}
+    selectedDate={selectedDate}
+    onLocationChange={onLocationChange}
+    />
+      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
+      <div className="container mt-30" style={bgStyle}>
         <div className="ebs-main-program-listing">
           {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
@@ -217,7 +177,29 @@ const getProgramsByTrack = (programs, track) => {
   return newObject;
 
 }
+const getProgramsByLocation = (programs, location) => {
+  const newObject = {};
+  Object.keys(programs).forEach((date) => {
+    const items = programs[date].reduce((ack, program) => {
+        if(program.location==location){
+          console.log(location,"location")
+          ack.push({...program})
+        }
+      //  else if(program.workshop_id > 0){
+      //   const find = worshopProgramsByLocation(program, location);
+      //   if (find.length > 0) {
+      //     ack.push({ ...program, 'workshop_programs': find });
+      //   }
+      //  }
+      return ack;
+    }, []);
+    if (items.length > 0) {
+      newObject[date] = items;
+    }
+  });
+  return newObject;
 
+}
 const worshopProgramsByTracks = (programs, track) => {
   const items = programs.reduce((ack, program) => {
     if (program.program_tracks.length > 0) {
@@ -230,7 +212,16 @@ const worshopProgramsByTracks = (programs, track) => {
   }, []);
   return items
 }
-
+const worshopProgramsByLocation = (programs, location) => {
+  const items = programs.reduce((ack, program) => {
+      const find = program.workshop_programs.find((item) => (item.name === location));
+      if (find !== null && find !== undefined) {
+        ack.push(program);
+      }
+    return ack;
+  }, []);
+  return items
+}
 
 
 const searchThroughProgram = (programs, searchText) => {
