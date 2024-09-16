@@ -1,15 +1,12 @@
 import SliderCustom from "./components/SliderCustom";
 import React from "react";
-import { eventSelector } from "store/Slices/EventSlice";
-import { useSelector, useDispatch } from "react-redux";
 
 
 
 
-const Variation7 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
-
+const Variation7 =  ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
   const [newSliderHeight, setNewSliderHeight] = React.useState(720);
-  const [data, setData] = React.useState(JSON.parse(event.event_site_banner_management.data));
+  const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
 
@@ -31,7 +28,9 @@ const Variation7 = ({ banner, event, countdown, regisrationUrl, settings, regist
       
   }, [])
     React.useEffect(() => {
-      setData(JSON.parse(event.event_site_banner_management.data));
+      if (event.event_site_banner_management) {
+        setData(JSON.parse(event.event_site_banner_management.data));
+      }
     }, [event]);
     React.useEffect(() => {
             if (data) {
@@ -141,6 +140,9 @@ function getMediaQueryForDevice(device) {
             selectorRules += `${property}: ${cssProperties.desktop[selector][property]}; `;
           } else if (property === 'line-height') {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
+          } else if (property == 'width' || property == 'height') {
+            selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
+
           } else {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
           }
@@ -192,7 +194,7 @@ function getMediaQueryForDevice(device) {
 function replaceDivWithATag(html) {
   // Create a temporary DOM element
   const tempElement = document.createElement('div');
-  tempElement.innerHTML = html;
+  tempElement.innerHTML = html.replace(/style="cursor: grab;"/g, "");
 
   // Select all divs with the class 'ebs-layer-has-link'
   const divsToReplace = tempElement.querySelectorAll('div.ebs-layer-has-link');
@@ -204,23 +206,28 @@ function replaceDivWithATag(html) {
     // Copy all attributes from the div to the a element
     for (const attr of div.attributes) {
       if (attr.name === 'data-href') {
-        a.setAttribute('href', attr.value); // Replace data-href with href
+        if (attr.value === 'REGISTER_NOW') {
+          a.setAttribute("href", regisrationUrl); // Replace data-href with href
+
+        } else {
+          a.setAttribute("href", attr.value); // Replace data-href with href
+        }
       } else {
         a.setAttribute(attr.name, attr.value);
       }
     }
-
     // Copy the inner HTML content
     a.innerHTML = div.innerHTML;
-
+    var hasLink =  a.getAttribute('href');
     // Replace the div with the a element
-    div.parentNode.replaceChild(a, div);
+    if (hasLink) {
+      div.parentNode.replaceChild(a, div);
+    }
   });
 
   // Return the modified HTML
   return tempElement.innerHTML;
 }
-  console.log(data, "event");
   return (
     <>
       {data && <div data-fixed="true" style={{lineHeight: 0}} className="main-slider-wrapper ebs-master-super-banner ebs-full-width-banner">

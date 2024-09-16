@@ -3945,6 +3945,14 @@
       vertical-align: middle;
     }
   }
+  .resize-container {
+    width: 100% !important;
+    height: 100% !important;
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
 }
 * {
   word-break: break-all;
