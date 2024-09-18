@@ -1,6 +1,10 @@
 import React, { useState, useEffect, Fragment, useRef } from 'react';
+import HeadingElement from "components/ui-components/HeadingElement";
 import ProgramItem2 from "components/themes/theme-1/program/components/ProgramItem2";
+import WorkShop from "components/themes/theme-1/program/components/WorkShop";
+import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
+import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
 import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
@@ -99,7 +103,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   }, []);
   console.log(moduleVariation,"module")
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
@@ -117,6 +121,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     selectedTrack={selectedTrack}   
     tracks={tracks} 
     selectedLocation={selectedLocation}
+    setSelectedLocation={setSelectedLocation}
     onTrackChange={onTrackChange}
     onDateChange={onDateChange}
     selectedDate={selectedDate}
