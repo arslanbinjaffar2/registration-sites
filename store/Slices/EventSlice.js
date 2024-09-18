@@ -45,6 +45,7 @@ export const fetchEvent = (url, layout=null) => {
     dispatch(getEvent())
     try {
       const response = await fetch(`${process.env.NEXT_APP_URL}/event/${url}?layout=${layout}`)
+      console.log(response)
       const res = await response.json()
       dispatch(setEvent(res.data))
     } catch (error) {

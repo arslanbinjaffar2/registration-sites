@@ -5,19 +5,24 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
 import Home from "components/Index";
+import Home2 from "components/Index2";
 import { metaInfo } from 'helpers/helper';
 import { getCookie, setCookie } from 'cookies-next';
 
 const Index = (props) => {
 
     const { event, loading } = useSelector(eventSelector);
+    console.log(event?.theme?.slug,'event.theme.slug');
 
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
                 <MasterLayoutRoute event={event}>
-                    <Home />
+                    <>
+                    {event?.theme?.slug === 'theme-1' && <Home />}
+                    {event?.theme?.slug === 'theme-2' && <Home2 />}
+                    </>
                 </MasterLayoutRoute>
             ) : (
                 <PageLoader />
