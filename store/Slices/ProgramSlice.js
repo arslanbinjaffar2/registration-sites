@@ -4,6 +4,7 @@ const initialState = {
   programs: null,
   tracks: null,
   labels:null,
+  location:null,
   loading: false,
   error: null,
   total: null,
