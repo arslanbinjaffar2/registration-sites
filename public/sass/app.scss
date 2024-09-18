@@ -4162,11 +4162,13 @@ z-index: 2;
 }
 
 .ebs-more-track-shown{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
   &:hover,
   &:active,
   &:focus
   {
-
     background-color: $default-heading-color;
     color: white;
   }

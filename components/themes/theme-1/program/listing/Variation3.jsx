@@ -121,7 +121,6 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     selectedTrack={selectedTrack}   
     tracks={tracks} 
     selectedLocation={selectedLocation}
-    setSelectedLocation={setSelectedLocation}
     onTrackChange={onTrackChange}
     onDateChange={onDateChange}
     selectedDate={selectedDate}

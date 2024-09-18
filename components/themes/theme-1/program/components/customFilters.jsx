@@ -3,10 +3,11 @@ import ReactSelect from 'react-select';
 import moment from 'moment';
 const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
     eventsiteSettings,setShowFilter,handleResetFilters,setValue,value,selectedTrack,
-    tracks,onTrackChange,onDateChange,selectedDate,setSelectedLocation,selectedLocation,onLocationChange}) => {
+    tracks,onTrackChange,onDateChange,selectedDate,selectedLocation,onLocationChange}) => {
         const locationOptions = [...new Set(
             Object.values(programs).flat().filter((item) => item?.location).map((item) => item.location)
           )].map((location) => ({ value: location, label: location }));
+          const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
   return (
     <div>
 {filters && <div className="ebs-program-top-new bg-white shadow-black">
@@ -76,11 +77,11 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
                       <div className="">
                         <ReactSelect
                           styles={customStyles}
-                          placeholder={"Select Location"}
+                          placeholder="Select Location"
                           components={{ IndicatorSeparator: null }}
                           onChange={(location) => { onLocationChange(location)}}
                           className='custom-track-select'
-                          value={selectedLocation}
+                          value={trimmerselectedLocation}
                           options={locationOptions}
                           
                         />
