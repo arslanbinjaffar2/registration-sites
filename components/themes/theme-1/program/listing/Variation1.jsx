@@ -16,14 +16,14 @@ const customStyles = {
     maxWidth: '100%',
   })
 };
-const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings }) => {
+const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings,moduleVariation }) => {
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [value, setValue] = useState('');
   const [search, setSearch] = useState('')
 
-
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
   const onDateChange = (date) => {
     setSelectedDate(date);
   }
@@ -60,7 +60,7 @@ const Variation1 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
 
 
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding" style={bgStyle}>
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}

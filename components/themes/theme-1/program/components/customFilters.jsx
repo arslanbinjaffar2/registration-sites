@@ -34,7 +34,9 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
           {/* filters */}
          {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
                {eventsiteSettings?.agenda_search_filter === 1 && <div>
-              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  value={value} onChange={(e) => setValue(e.target.value)} />
+              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
+                <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
+                value={value} onChange={(e) => setValue(e.target.value)} />
               <span className="material-symbols-outlined fa">search</span>
               </div>
               </div>}
@@ -73,7 +75,6 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
                           
                         />
                   </div>}
-                  {/* {location.length > 0 && */}
                       <div className="">
                         <ReactSelect
                           styles={customStyles}
@@ -86,7 +87,6 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
                           
                         />
                   </div>
-                  {/* } */}
              <div className='d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn' onClick={handleResetFilters}>
               <span className="material-symbols-outlined">restart_alt</span>
               <span className='fs-xsmall fw-normal'>Reset filters</span>

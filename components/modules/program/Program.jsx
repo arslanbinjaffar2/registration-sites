@@ -26,7 +26,7 @@ const Program = (props) => {
   const router = useRouter();
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return module;
+    return in_array(module.alias, ["agenda"]);
   });
   const Component = useMemo(
     () => loadModule(event.theme.slug),
@@ -47,13 +47,11 @@ const Program = (props) => {
       dispatch(incrementLoadCount());
     }
   }, [])
-
   return (
     <Suspense fallback={''}>
       {programs ? (
-        <React.Fragment>
-          {console.log(moduleVariation,"modulevariation")}
-          <Component programs={programs}  agendaSettings={event.agenda_settings} tracks={tracks} siteLabels={event.labels} moduleVariation={moduleVariation} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
+        <React.Fragment>  
+          <Component programs={programs}  agendaSettings={event.agenda_settings} tracks={tracks} siteLabels={event.labels} moduleVariation={moduleVariation[0]} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : null
       }

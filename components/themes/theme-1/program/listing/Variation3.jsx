@@ -1,10 +1,6 @@
 import React, { useState, useEffect, Fragment, useRef } from 'react';
-import HeadingElement from "components/ui-components/HeadingElement";
 import ProgramItem2 from "components/themes/theme-1/program/components/ProgramItem2";
-import WorkShop from "components/themes/theme-1/program/components/WorkShop";
-import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
-import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
 import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
@@ -127,7 +123,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     onLocationChange={onLocationChange}
     />
       {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
-      <div className="container mt-30" style={bgStyle}>
+      <div className="container mt-30" >
         <div className="ebs-main-program-listing">
           {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>

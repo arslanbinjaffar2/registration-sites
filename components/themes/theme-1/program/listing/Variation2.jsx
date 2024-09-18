@@ -81,7 +81,7 @@ const  currentTimerBar = (data) => {
   const _timelindeschdle = document.getElementById('timelindeschdle');
   if (_difference >= 0) {
     _postion = (_multiplyer / 60) * _difference;
-    if (_postion <= _timelinewrapp.offsetWidth) {
+    if (_postion <= _timelinewrapp?.offsetWidth) {
       _currentTimeline.style.left = _postion+15 + 'px';
       _currentTimeline.style.display = 'block';
       _timelindeschdle.scrollLeft = _postion+15 - 150;
@@ -244,13 +244,15 @@ return showWorkshop;
   )
 }
 
-const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
+const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings}) => {
 
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
     const [selectedDate, setSelectedDate] = useState({value:schedule[0], label:schedule[0]});
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [selectedLocation,setSelectedLocation]=useState(null)
+    const [value, setValue] = useState('');
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -258,7 +260,10 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
         ack.push(program);
         return ack;
     }  ,[]));
-
+  
+  const onLocationChange=(location)=>{
+    setSelectedLocation(location)
+  }
     const onDateChange = (date)=>{
         setSelectedDate(date);
     }
@@ -276,7 +281,9 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
             return ack;
         }  ,[]);
 
-
+        // if(selectedLocation !==null && selectedLocation.value!==0){
+        //   programsObj=getProgramsByLocation(programsObj, selectedLocation.value)
+        // }
         if(selectedTrack !== null && selectedTrack.value !== 0){
           programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
         }
@@ -307,18 +314,31 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     }
     
   };
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
+  const locationOptions = [...new Set(
+    Object.values(programs).flat().filter((item) => item?.location).map((item) => item.location)
+  )].map((location) => ({ value: location, label: location }));
+  const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
+
     return (
        <div style={{padding: '80px 0 0'}} className="module-section">
            <div className="container">
-                <div className="ebs-timeline-area">
+             {programsLoc.length>0&&  <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
 										<div className="row d-flex">
-                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-5">
-                        <div style={{ maxWidth: 440 }} className="ebs-form-control-search pb-3"><input className="form-control" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text" onChange={(e) => setValue(e.target.value)} />
-                          <em className="fa fa-search"></em>
+                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-5 col-12 mb-md-0 mb-3">
+                        <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
+                          <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
+                          value={value} onChange={(e) => setValue(e.target.value)} />
+                        <span className="material-symbols-outlined fa">search</span>
                         </div>
                       </div>}
-											<div className="col-md-6 d-flex align-items-center">
+											<div className="col-md-7 col-12 d-flex align-items-center flex-lg-nowrap flex-wrap gap-md-0 gap-3">
 												<div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
@@ -326,6 +346,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             components={{ IndicatorSeparator: null }}
                             onChange={(date)=>{onDateChange(date)}}
                             value={selectedDate}
+                               className='custom-track-select'
                             options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[])}
                           />
 												</div>
@@ -336,9 +357,20 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             components={{ IndicatorSeparator: null }}
                             onChange={(track)=>{onTrackChange(track)}}
                             value={selectedTrack}
+                            className='custom-track-select'
                             options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                           />
 												</div>}
+                        <ReactSelect
+                          styles={customStyles}
+                          placeholder="Select Location"
+                          components={{ IndicatorSeparator: null }}
+                          onChange={(location) => { onLocationChange(location)}}
+                          className='custom-track-select'
+                          value={trimmerselectedLocation}
+                          options={locationOptions}
+                          
+                        />
 											</div>
 											{/* <div className="col-md-6">
 												<div className="right-panel-area">
@@ -372,7 +404,8 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                         "current_time": currentTime
 
                     })} program_setting={agendaSettings} />
-				</div>
+				</div>}
+        {programsLoc.length==0 && <div className='bg-white p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
            </div>
        </div>
     )
@@ -393,3 +426,4 @@ const getProgramsByTrack = (programs, track) =>{
             }, []);
      return items;
   }
+
