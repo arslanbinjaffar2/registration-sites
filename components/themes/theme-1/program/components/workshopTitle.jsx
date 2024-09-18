@@ -107,6 +107,7 @@ function SingleProgram({
   setShowWorkshopProgramDetail,
   target,
 }) {
+  const [width, setWidth] = useState(window.innerWidth);
   const [isShowTrackPopup, setIsShowTrackPopup] = useState(true);
   const [targetTrackPopup, setTargetTrackPopup] = useState();
   const TrackPopupRef = useRef(null);
@@ -114,6 +115,24 @@ function SingleProgram({
     setIsShowTrackPopup(!isShowTrackPopup);
     setTargetTrackPopup(event.target);
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(innerWidth);
+    
+    };
+
+    // Set the initial state based on the current window width
+    handleResize();
+
+    // Attach the event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [width]);
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">
@@ -130,12 +149,13 @@ function SingleProgram({
                 </span>
               </div>
             )}
-          <div className="border-start w-100 d-flex justify-content-center  align-items-center border-black-color">
-            <div className="d-flex justify-content-between items-center align-items-center w-100 p-3">
-              <div className="d-flex flex-column  align-items-start gap-2 cursor-pointer">
+          <div className="border-start w-100 d-flex justify-content-lg-center  align-items-center border-black-color">
+            <div className="d-flex justify-content-between  align-items-md-center  p-3 flex-md-row flex-column align-items-start"
+             style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
+            >
+              <div className="d-flex   align-items-start gap-2 cursor-pointer">
                 <h4 className="m-0 fs-large fw-semibold">{item.topic}</h4>
               </div>
-
               <div className="d-flex gap-3 align-items-center">
                 {item.location && (
                   <div className="me-2 ebs-program-location d-flex">
@@ -165,7 +185,8 @@ function SingleProgram({
                     {item.program_tracks.length > 3 ? (
                       <span
                         onClick={handleIsShowTrackPopup}
-                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"
+                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall 
+                        d-flex justify-content-center align-items-center"
                       >
                         +{item.program_tracks.length - 3}
                       </span>
@@ -179,10 +200,20 @@ function SingleProgram({
                   item={item}
                   setShow={setIsShowTrackPopup}
                 />
-                <div
+                {/* <div
                   onClick={() => setShowWorkshopProgramDetail(true)}
                   className="border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cursor-pointer"
                   style={{ height: "35px", width: "35px" }}
+                >
+                  <span class="material-symbols-outlined">more_horiz</span>
+                </div> */}
+                <div
+                  onClick={() => setShowWorkshopProgramDetail(true)}
+                  className={`ms-auto border-black-color border p-2 rounded-4px 
+                    d-flex justify-content-center align-items-center cursor-pointer  ${
+                    width <= 570 ? "center-Btn" : ""
+                  }`}
+                  style={{ height: "35px",width:"35px"}}
                 >
                   <span class="material-symbols-outlined">more_horiz</span>
                 </div>

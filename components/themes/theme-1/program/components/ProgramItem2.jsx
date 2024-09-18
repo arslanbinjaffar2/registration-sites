@@ -67,7 +67,7 @@ const ProgramItem = ({
                 </span>
               </div>
             )}
-          <div className="border-start border-black-color  d-flex justify-content-lg-center justify-content-start  align-items-center flex-wrap position-relative w-100">
+          <div className="border-start border-black-color  d-flex justify-content-lg-center justify-content-start  align-items-center  position-relative w-100 flex-md-row flex-column">
             <div
               className="d-flex justify-content-between items-center align-items-center  p-3 flex-wrap"
               style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
