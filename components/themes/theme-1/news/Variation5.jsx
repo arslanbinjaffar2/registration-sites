@@ -60,8 +60,9 @@ useEffect(() => {
  const handleViewAll = () => {
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
+
 if (!news || news.length === 0) {
-  return <p>No news available.</p>;
+  return <p>{siteLabels?.EVENT_NORECORD_FOUND}</p>;
 }
   return (
     <div style={bgStyle}  className="edgtf-container ebs-default-padding">
