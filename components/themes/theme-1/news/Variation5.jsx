@@ -17,9 +17,7 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     link.rel = 'stylesheet';
     document.head.appendChild(link);
   }, []);
-  if (!news || news.length === 0) {
-    return <p>No news available.</p>;
-  }
+ 
 
  function FirstTwoNewsModules(){
   return(
@@ -62,7 +60,10 @@ useEffect(() => {
  const handleViewAll = () => {
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
-console.log(news.length,"news")
+
+if (!news || news.length === 0) {
+  return <p>{siteLabels?.EVENT_NORECORD_FOUND}</p>;
+}
   return (
     <div style={bgStyle}  className="edgtf-container ebs-default-padding">
       <div className="container">
