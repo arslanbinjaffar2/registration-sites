@@ -239,7 +239,28 @@ function replaceDivWithATag(html) {
 			  >
 				{data && data.banner.map((slides, i) =>
 					<div style={{fontSize: 16,height: newSliderHeight ? `${newSliderHeight}px`: '720px'}} key={i} className="slide-wrapper">
-            <div  dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}}  style={{height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.color}}>
+            {slides.background_image.video && (
+                <div className="ebs-video-fullscreen position-absolute">
+                  {slides.background_image.video.includes('youtube.com') || slides.background_image.video.includes('youtu.be') ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${slides.background_image.video
+                        .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2]
+                        .split(/[?&]/)[0]}?autoplay=1&mute=1&loop=1&playlist=${slides.background_image.video
+                        .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2]
+                        .split(/[?&]/)[0]}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video preload="auto" autoPlay playsInline muted src={slides.background_image.video} type="video/mp4"></video>
+                  )}
+                </div>
+              )}
+
+            <div  dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}}  style={{height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.video ? '' :slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.video ? '' : slides.background_image.color}}>
             </div>
 					</div>
 				)}
