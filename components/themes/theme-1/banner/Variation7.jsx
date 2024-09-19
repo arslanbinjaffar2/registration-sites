@@ -56,7 +56,6 @@ const Variation7 =  ({ banner, event, countdown, regisrationUrl, settings, regis
           });
     }
       if (data) {
-        console.log(data.cssProperties, 'data.cssProperties');
         // check if cssProperties is not empty
 
         if (data.cssProperties !== undefined && data.cssProperties !== null && Object.keys(data.cssProperties).length > 0) {
@@ -142,7 +141,7 @@ function getMediaQueryForDevice(device) {
     Object.keys(cssProperties.desktop).forEach((selector) => {
       let selectorRules = `${selector} { `;
       Object.keys(cssProperties.desktop[selector]).forEach((property) => {
-          if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
+          if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
             selectorRules += `${property}: ${cssProperties.desktop[selector][property]}; `;
           } else if (property === 'line-height') {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
