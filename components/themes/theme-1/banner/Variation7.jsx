@@ -33,9 +33,10 @@ const Variation7 =  ({ banner, event, countdown, regisrationUrl, settings, regis
       }
     }, [event]);
     React.useEffect(() => {
-            if (data) {
+          if (data) {
                       // Now you can add CSS rules to this stylesheet
-          const extendedCssProperties = extendCssProperties(data.cssProperties);
+         
+          const extendedCssProperties = data.cssProperties !== undefined ? extendCssProperties(data.cssProperties) : {};
 
           data.cssProperties = extendedCssProperties;
           // Step 1: Calculate the aspect ratio
@@ -55,18 +56,23 @@ const Variation7 =  ({ banner, event, countdown, regisrationUrl, settings, regis
           });
     }
       if (data) {
+        console.log(data.cssProperties, 'data.cssProperties');
+        // check if cssProperties is not empty
+
+        if (data.cssProperties !== undefined && data.cssProperties !== null && Object.keys(data.cssProperties).length > 0) {
           const style = document.createElement("style");
           style.id = "dynamic-styles";
            document.head.appendChild(style);
         // Call the generateCSS function and keep track of the cleanup function
-        const cleanup = generateCSS(data.cssProperties);
+        const cleanup = generateCSS(data.cssProperties) || (() => {});
         window.addEventListener('resize', () => {
-          const cleanup = generateCSS(data.cssProperties);
+          const cleanup = generateCSS(data.cssProperties) || (() => {});
         });
 
 
         // Cleanup the generated CSS when the component unmounts or data changes
         return cleanup;
+      }
       }
 
     }, [data]);
