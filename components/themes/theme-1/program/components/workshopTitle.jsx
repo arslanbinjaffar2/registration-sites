@@ -1,8 +1,7 @@
 import React, {useRef, useState, useEffect } from "react";
 import moment from "moment";
 import Timeline from "./timeline";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
+import TrackPopup from './TrackPopup'
 const WorkShopTitle = ({
   program,
   setShowProgramDetail,
@@ -108,6 +107,7 @@ function SingleProgram({
   setShowWorkshopProgramDetail,
   target,
 }) {
+  const [width, setWidth] = useState(window.innerWidth);
   const [isShowTrackPopup, setIsShowTrackPopup] = useState(true);
   const [targetTrackPopup, setTargetTrackPopup] = useState();
   const TrackPopupRef = useRef(null);
@@ -115,6 +115,24 @@ function SingleProgram({
     setIsShowTrackPopup(!isShowTrackPopup);
     setTargetTrackPopup(event.target);
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(innerWidth);
+    
+    };
+
+    // Set the initial state based on the current window width
+    handleResize();
+
+    // Attach the event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [width]);
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">
@@ -131,12 +149,13 @@ function SingleProgram({
                 </span>
               </div>
             )}
-          <div className="border-start w-100 d-flex justify-content-center  align-items-center border-black-color">
-            <div className="d-flex justify-content-between items-center align-items-center w-100 p-3">
-              <div className="d-flex flex-column  align-items-start gap-2 cursor-pointer">
+          <div className="border-start w-100 d-flex justify-content-lg-center  align-items-center border-black-color">
+            <div className="d-flex justify-content-between  align-items-md-center  p-3 flex-md-row flex-column align-items-start"
+             style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
+            >
+              <div className="d-flex   align-items-start gap-2 cursor-pointer">
                 <h4 className="m-0 fs-large fw-semibold">{item.topic}</h4>
               </div>
-
               <div className="d-flex gap-3 align-items-center">
                 {item.location && (
                   <div className="me-2 ebs-program-location d-flex">
@@ -166,29 +185,35 @@ function SingleProgram({
                     {item.program_tracks.length > 3 ? (
                       <span
                         onClick={handleIsShowTrackPopup}
-                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"
-                        style={{
-                          width: "20px",
-                          height: "20px",
-                          borderRadius: "50%",
-                        }}
+                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall 
+                        d-flex justify-content-center align-items-center"
                       >
                         +{item.program_tracks.length - 3}
                       </span>
                     ) : null}
                   </div>
                 )}
-                <TracksPopup
+                <TrackPopup
                   TrackPopupRef={TrackPopupRef}
                   show={isShowTrackPopup}
                   target={targetTrackPopup}
                   item={item}
                   setShow={setIsShowTrackPopup}
                 />
-                <div
+                {/* <div
                   onClick={() => setShowWorkshopProgramDetail(true)}
                   className="border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cursor-pointer"
                   style={{ height: "35px", width: "35px" }}
+                >
+                  <span class="material-symbols-outlined">more_horiz</span>
+                </div> */}
+                <div
+                  onClick={() => setShowWorkshopProgramDetail(true)}
+                  className={`ms-auto border-black-color border p-2 rounded-4px 
+                    d-flex justify-content-center align-items-center cursor-pointer  ${
+                    width <= 570 ? "center-Btn" : ""
+                  }`}
+                  style={{ height: "35px",width:"35px"}}
                 >
                   <span class="material-symbols-outlined">more_horiz</span>
                 </div>
@@ -198,83 +223,5 @@ function SingleProgram({
         </div>
       </div>
     </>
-  );
-}
-function TracksPopup({ show, setShow, target, TrackPopupRef, item }) {
-  useEffect(() => {
-    // Function to handle click outside the popup
-    const handleClickOutside = (event) => {
-      // Check if the click is outside the popup
-      if (
-        TrackPopupRef.current &&
-        !TrackPopupRef.current.contains(event.target)
-      ) {
-        setShow(false); // Hide the popup
-      }
-    };
-
-    // Add event listener when the component mounts
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Clean up event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  return (
-    <div ref={TrackPopupRef}>
-      <Overlay
-        show={show}
-        target={target}
-        placement="top-end"
-        container={TrackPopupRef}
-        containerPadding={20}
-      
-        className="border-0 z-3 "
-      >
-        <Popover id="popover-contained" className="border-0">
-          <Popover.Header as="h5" className="m-0 bg-white">
-            Tracks :
-          </Popover.Header>
-          <Popover.Body className="w-100 overflow-auto"   style={{ height:"200px" }}>
-            {item?.program_tracks.length > 0 && (
-              <div
-                className={`row d-flex   w-100 gap-2 ${
-                  item.program_tracks.length == 8
-                    ? "align-items-center"
-                    : "align-items-start"
-                } flex-wrap`}
-              >
-                {/* track container */}
-                <div className="ebs-tracks-program d-flex gap-12 flex-wrap">
-                  {item.program_tracks.map((track, i) => (
-                    <div
-                      key={i}
-                      className="border rounded-5 d-flex align-items-center gap-1 p-3"
-                      style={{ minWidth: "100px", height: "31px" }}
-                    >
-                      <span
-                        className="d-inline-block"
-                        style={{
-                          backgroundColor: `${
-                            track.color ? track.color : "#000"
-                          }`,
-                          width: "16px",
-                          height: "16px",
-                          borderRadius: "50%",
-                        }}
-                      ></span>
-                      <span className="fs-medium fw-light">{track.name}</span>
-                    </div>
-                  ))}
-                </div>
-                <div></div>
-              </div>
-            )}
-          </Popover.Body>
-        </Popover>
-      </Overlay>
-    </div>
   );
 }

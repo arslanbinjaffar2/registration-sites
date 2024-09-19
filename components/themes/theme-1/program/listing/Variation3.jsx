@@ -103,7 +103,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   }, []);
   console.log(moduleVariation,"module")
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
@@ -128,7 +128,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     onLocationChange={onLocationChange}
     />
       {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
-      <div className="container mt-30" style={bgStyle}>
+      <div className="container mt-30" >
         <div className="ebs-main-program-listing">
           {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>

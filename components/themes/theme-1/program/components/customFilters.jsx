@@ -3,10 +3,11 @@ import ReactSelect from 'react-select';
 import moment from 'moment';
 const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
     eventsiteSettings,setShowFilter,handleResetFilters,setValue,value,selectedTrack,
-    tracks,onTrackChange,onDateChange,selectedDate,setSelectedLocation,selectedLocation,onLocationChange}) => {
+    tracks,onTrackChange,onDateChange,selectedDate,selectedLocation,onLocationChange}) => {
         const locationOptions = [...new Set(
             Object.values(programs).flat().filter((item) => item?.location).map((item) => item.location)
           )].map((location) => ({ value: location, label: location }));
+          const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
   return (
     <div>
 {filters && <div className="ebs-program-top-new bg-white shadow-black">
@@ -33,7 +34,9 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
           {/* filters */}
          {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
                {eventsiteSettings?.agenda_search_filter === 1 && <div>
-              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  value={value} onChange={(e) => setValue(e.target.value)} />
+              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
+                <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
+                value={value} onChange={(e) => setValue(e.target.value)} />
               <span className="material-symbols-outlined fa">search</span>
               </div>
               </div>}
@@ -72,20 +75,18 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
                           
                         />
                   </div>}
-                  {/* {location.length > 0 && */}
                       <div className="">
                         <ReactSelect
                           styles={customStyles}
-                          placeholder={"Select Location"}
+                          placeholder="Select Location"
                           components={{ IndicatorSeparator: null }}
                           onChange={(location) => { onLocationChange(location)}}
                           className='custom-track-select'
-                          value={selectedLocation}
+                          value={trimmerselectedLocation}
                           options={locationOptions}
                           
                         />
                   </div>
-                  {/* } */}
              <div className='d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn' onClick={handleResetFilters}>
               <span className="material-symbols-outlined">restart_alt</span>
               <span className='fs-xsmall fw-normal'>Reset filters</span>

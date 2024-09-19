@@ -3,6 +3,7 @@ import moment from "moment";
 import ProgramDetailModal from "./ProgramDetailModal";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
+import TracksPopup from "./TrackPopup";
 const ProgramItem = ({
   programList,
   program,
@@ -16,6 +17,7 @@ const ProgramItem = ({
 }) => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
+  const trackRef=useRef("");
   const TrackPopupRef = useRef(null);
   function handleIsShowTrackPopup(event) {
     setShow(!show);
@@ -65,7 +67,7 @@ const ProgramItem = ({
                 </span>
               </div>
             )}
-          <div className="border-start border-black-color  d-flex justify-content-lg-center justify-content-start  align-items-center flex-wrap position-relative w-100">
+          <div className="border-start border-black-color  d-flex justify-content-lg-center justify-content-start  align-items-center  position-relative w-100 flex-md-row flex-column">
             <div
               className="d-flex justify-content-between items-center align-items-center  p-3 flex-wrap"
               style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
@@ -109,7 +111,7 @@ const ProgramItem = ({
                       location_on
                     </span>{" "}
                     <span className="fs-small fw-normal">
-                      {program.location}{" "}
+                      {program.location.length>20?`${program.location.substring(0,20)} ...`:program.location}{" "}
                     </span>
                   </div>
                 )}
@@ -133,6 +135,7 @@ const ProgramItem = ({
                     ))}
                     {program.program_tracks.length > 3 ? (
                       <span
+                        ref={trackRef}
                         onClick={handleIsShowTrackPopup}
                         className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"
                         style={{
@@ -175,14 +178,9 @@ const ProgramItem = ({
                 ))}
                 {program.program_tracks.length > 3 ? (
                   <span
+                    ref={trackRef}
                     onClick={handleIsShowTrackPopup}
-                    className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                    }}
-                  >
+                    className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center">
                     +{program.program_tracks.length - 3}
                   </span>
                 ) : null}
@@ -200,13 +198,14 @@ const ProgramItem = ({
           agendaSettings={agendaSettings}
           showDetail={showDetail}
           setShowDetail={setShowDetail}
+          trackRef={trackRef}
         />
       )}
       <TracksPopup
         TrackPopupRef={TrackPopupRef}
         show={show}
         target={target}
-        program={program}
+        item={program}
         setShow={setShow}
       />
     </>
@@ -215,79 +214,84 @@ const ProgramItem = ({
 
 export default ProgramItem;
 
-function TracksPopup({ show, setShow, target, TrackPopupRef, program }) {
-  useEffect(() => {
-    // Function to handle click outside the popup
-    const handleClickOutside = (event) => {
-      // Check if the click is outside the popup
-      if (
-        TrackPopupRef.current &&
-        !TrackPopupRef.current.contains(event.target)
-      ) {
-        setShow(false); // Hide the popup
-      }
-    };
+// function TracksPopup({ show, setShow, target, TrackPopupRef, program,trackRef }) {
+//   useEffect(() => {
+//     // Function to handle click outside the popup
+//     const handleClickOutside = (event) => {
+//       // Check if the click is outside the popup
+//       if (
+//         TrackPopupRef.current &&
+//         !TrackPopupRef.current.contains(event.target)
+//       ) {
+//         setShow(false); // Hide the popup
+//       }
+//     };
 
-    // Add event listener when the component mounts
-    document.addEventListener("mousedown", handleClickOutside);
+//     // Add event listener when the component mounts
+//     document.addEventListener("mousedown", handleClickOutside);
 
-    // Clean up event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-  return (
-    <div ref={TrackPopupRef}>
-      <Overlay
-        show={show}
-        target={target}
-        placement="bottom-end"
-        container={TrackPopupRef}
-        containerPadding={20}
-      >
-        <Popover id="popover-contained">
-          <Popover.Header as="h5" className="m-0 bg-white">
-            Tracks :
-          </Popover.Header>
-          <Popover.Body className="w-100">
-            {program?.program_tracks.length > 0 && (
-              <div
-                className={`row d-flex   w-100 gap-2 ${
-                  program.program_tracks.length == 8
-                    ? "align-items-center"
-                    : "align-items-start"
-                } flex-wrap`}
-              >
-                {/* track container */}
-                <div className="ebs-tracks-program d-flex gap-12 flex-wrap">
-                  {program.program_tracks.map((track, i) => (
-                    <div
-                      key={i}
-                      className="border rounded-5 d-flex align-items-center gap-1 p-3"
-                      style={{ minWidth: "100px", height: "31px" }}
-                    >
-                      <span
-                        className="d-inline-block"
-                        style={{
-                          backgroundColor: `${
-                            track.color ? track.color : "#000"
-                          }`,
-                          width: "16px",
-                          height: "16px",
-                          borderRadius: "50%",
-                        }}
-                      ></span>
-                      <span className="fs-medium fw-light">{track.name}</span>
-                    </div>
-                  ))}
-                </div>
+//     // Clean up event listener when the component unmounts
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, []);
+//   useEffect(()=>{
+//     if(trackRef?.current){
+//       trackRef.current.focus();
+//     }
+//   },[show])
+//   return (
+//     <div ref={TrackPopupRef}>
+//       <Overlay
+//         show={show}
+//         target={target}
+//         placement="bottom-end"
+//         container={TrackPopupRef}
+//         containerPadding={20}
+//       >
+//         <Popover id="popover-contained">
+//           <Popover.Header as="h5" className="m-0 bg-white">
+//             Tracks :
+//           </Popover.Header>
+//           <Popover.Body className="w-100">
+//             {program?.program_tracks.length > 0 && (
+//               <div
+//                 className={`row d-flex   w-100 gap-2 ${
+//                   program.program_tracks.length == 8
+//                     ? "align-items-center"
+//                     : "align-items-start"
+//                 } flex-wrap`}
+//               >
+//                 {/* track container */}
+//                 <div className="ebs-tracks-program d-flex gap-12 flex-wrap">
+//                   {program.program_tracks.map((track, i) => (
+//                     <div
+//                       key={i}
+//                       className="border rounded-5 d-flex align-items-center gap-1 p-3"
+//                       style={{ minWidth: "100px", height: "31px" }}
+//                     >
+//                       <span
+//                         className="d-inline-block"
+//                         style={{
+//                           backgroundColor: `${
+//                             track.color ? track.color : "#000"
+//                           }`,
+//                           width: "16px",
+//                           height: "16px",
+//                           borderRadius: "50%",
+//                         }}
+//                       ></span>
+//                       <span className="fs-medium fw-light">{track.name}</span>
+//                     </div>
+//                   ))}
+//                 </div>
 
-                <div></div>
-              </div>
-            )}
-          </Popover.Body>
-        </Popover>
-      </Overlay>
-    </div>
-  );
-}
+//                 <div></div>
+//               </div>
+//             )}
+//           </Popover.Body>
+//         </Popover>
+//       </Overlay>
+//     </div>
+//   );
+// }
