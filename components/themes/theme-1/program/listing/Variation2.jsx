@@ -273,10 +273,10 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     const onTrackChange = (track) =>{
       setSelectedTrack(track);
     }
-
+  
     useEffect(() => {
       // Generate the initial programs array based on the selected date
-      let programsObj = programs[selectedDate.value].reduce((ack, program) => {
+      let programsObj = programs[selectedDate.value]?.reduce((ack, program) => {
         // If the program has workshop programs, merge them into the list
         if (program.workshop_id > 0) {
           return [
@@ -292,7 +292,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     ack.push(program);
     return ack;
   }, []);
-  const uniqueLocations = programsObj.reduce((acc, program) => {
+  const uniqueLocations = programsObj?.reduce((acc, program) => {
     if (program.location && !acc.includes(program.location)) {
       acc.push(program.location);
     }
@@ -302,7 +302,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
   // Create an array of locations formatted like the 'location' array
   const formattedLocations = [
     { value: "", label: "Select Location" }, // Default "Select Location"
-    ...uniqueLocations.map((loc) => ({ value: loc.toLowerCase(), label: loc.substring(0,20) })),
+    ...uniqueLocations?.map((loc) => ({...loc,value: loc.toLowerCase(), label: loc.substring(0,20)  })),
   ];
 
   // Log the formatted location array
@@ -429,6 +429,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                           options={locationOptions}
                           
                         />
+                       
 											</div>
 											{/* <div className="col-md-6">
 												<div className="right-panel-area">
