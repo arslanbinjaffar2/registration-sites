@@ -33,7 +33,7 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
           </div>
           {/* filters */}
          {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
-               {/* {eventsiteSettings?.agenda_search_filter === 1 &&  */}
+               {eventsiteSettings?.agenda_search_filter === 1 && 
                <div>
               <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
                 <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
@@ -41,7 +41,7 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
               <span className="material-symbols-outlined fa">search</span>
               </div>
               </div>
-              {/* } */}
+               } 
                   {tracks.length > 0 &&
                       <div className="">
                         <ReactSelect
