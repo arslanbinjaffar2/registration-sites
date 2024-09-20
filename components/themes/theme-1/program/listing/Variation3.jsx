@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useRef } from 'react';
+import React, { useState, useEffect, Fragment, useRef, useCallback } from 'react';
 import HeadingElement from "components/ui-components/HeadingElement";
 import ProgramItem2 from "components/themes/theme-1/program/components/ProgramItem2";
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
@@ -59,23 +59,158 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   };
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
   
+  const getProgramsByTrack = useCallback((programs, track) => {
+    const items = programs.reduce((ack, program) => {
+      if (program.program_tracks.length > 0) {
+        const find = program.program_tracks.find((item) => (item.name === track));
+        if (find !== null && find !== undefined) {
+          ack.push(program);
+        }
+      }
+      return ack;
+    }, []);
+    return items;
+  }, [programs]);
+
+  const getProgramsByLocation = useCallback((programs, location) => {
+    const newObject = {};
+    Object.keys(programs).forEach((date) => {
+      const items = programs[date].reduce((ack, program) => {
+        if (program.location === location) {
+          ack.push({ ...program });
+        }
+        // else if (program.workshop_id > 0) {
+        //   const find = worshopProgramsByLocation(program, location);
+        //   if (find.length > 0) {
+        //     ack.push({ ...program, 'workshop_programs': find });
+        //   }
+        // }
+        return ack;
+      }, []);
+      if (items.length > 0) {
+        newObject[date] = items;
+      }
+    });
+    return newObject;
+  }, [programs]);
+
+  const worshopProgramsByTracks = useCallback((programs, track) => {
+    const items = programs.reduce((ack, program) => {
+      if (program.program_tracks.length > 0) {
+        const find = program.program_tracks.find((item) => (item.name === track));
+        if (find !== null && find !== undefined) {
+          ack.push(program);
+        }
+      }
+      return ack;
+    }, []);
+    return items;
+  }, [programs]);
+
+  const worshopProgramsByLocation = useCallback((programs, location) => {
+    const items = programs.reduce((ack, program) => {
+      const find = program.workshop_programs.find((item) => (item.name === location));
+      if (find !== null && find !== undefined) {
+        ack.push(program);
+      }
+      return ack;
+    }, []);
+    return items;
+  }, [programs]);
+
+  const searchThroughProgram = useCallback((programs, searchText) => {
+    const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
+    const newObject = {};
+    Object.keys(programs).forEach((date) => {
+      const items = programs[date].reduce((ack, program) => {
+        let add = false;
+
+        // Search in program_workshop
+        if (program.program_workshop && regex.test(program.program_workshop)) {
+          add = true;
+        }
+
+        // Search in topic
+        if (program.topic && regex.test(program.topic)) {
+          add = true;
+        }
+
+        // Search in description
+        if (program.description && regex.test(program.description)) {
+          add = true;
+        }
+
+        // Search in location
+        if (program.workshop_id > 0 && program.location && regex.test(program.location)) {
+          add = true;
+        }
+        if (program.program_workshop && regex.test(program.program_workshop)) {
+          add = true;
+        }
+
+        // Search in program_tracks
+        if (program.program_tracks && program.program_tracks.length > 0) {
+          const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
+          if (trackSearch.length > 0) {
+            add = true;
+          }
+        }
+
+        // Search in program_speakers
+        if (program.program_speakers && program.program_speakers.length > 0) {
+          const speakerSearch = program.program_speakers.filter((speaker) => {
+            return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
+              (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
+          });
+          if (speakerSearch.length > 0) {
+            add = true;
+          }
+        }
+
+        // Search in workshop programs
+        if (program.workshop_id > 0) {
+          const search = searchThroughworshopPrograms(program.workshop_programs, searchText);
+          if (search.length > 0) {
+            ack.push({ ...program, 'workshop_programs': search });
+          }
+        }
+
+        if (add) {
+          ack.push(program);
+        }
+        return ack;
+      }, []);
+      if (items.length > 0) {
+        newObject[date] = items;
+      }
+    });
+    return newObject;
+  }, [programs]);
+
+  const searchThroughworshopPrograms = useCallback((programs, searchText) => {
+    const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
+    const items = programs.filter((program) => {
+      return regex.test(program.topic);
+    });
+    return items;
+  }, [programs]);
+
   useEffect(() => {
-    let programsObj = programs;
+    const filteredPrograms = programs;
     if (selectedDate !== null && selectedDate.value !== 0) {
-      programsObj = { [selectedDate[value]]: programs[selectedDate.value] };
+      filteredPrograms = { [selectedDate.value]: programs[selectedDate.value] };
     }
     if (selectedTrack !== null && selectedTrack.value !== 0) {
-      programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
+      filteredPrograms = getProgramsByTrack(filteredPrograms, selectedTrack.value);
     }
-    if(selectedLocation !==null && selectedLocation.value!==0){
-      programsObj=getProgramsByLocation(programsObj, selectedLocation.value)
+    if (selectedLocation !== null && selectedLocation.value !== 0) {
+      filteredPrograms = getProgramsByLocation(filteredPrograms, selectedLocation.value);
     }
     if (search !== '') {
-      programsObj = searchThroughProgram(programsObj, search.toLowerCase());
+      filteredPrograms = searchThroughProgram(filteredPrograms, search.toLowerCase());
     }
-    setProgramsLoc(programsObj);
-  }, [selectedDate, selectedTrack, search,selectedLocation]);
-
+    setProgramsLoc(filteredPrograms);
+  }, [programs, selectedDate, selectedTrack, selectedLocation, search]);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -159,194 +294,29 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
 export default Variation3
 
 
-const getProgramsByTrack = (programs, track) => {
-  const newObject = {};
-  Object.keys(programs).forEach((date) => {
-    const items = programs[date].reduce((ack, program) => {
-      if (program.workshop_id > 0) {
-        const find = worshopProgramsByTracks(program.workshop_programs, track);
-        if (find.length > 0) {
-          ack.push({ ...program, 'workshop_programs': find });
-        }
-      }
-      else if (program.program_tracks.length > 0) {
-        const find = program.program_tracks.find((item) => (item.name === track));
-        if (find !== null && find !== undefined) {
-          ack.push(program);
-        }
-      }
-      return ack;
-    }, []);
-    if (items.length > 0) {
-      newObject[date] = items;
-    }
-  });
-  return newObject;
+// const getProgramsByTrack = useCallback( (programs, track) => {
+//   const newObject = {};
+//   Object.keys(programs).forEach((date) => {
+//     const items = programs[date].reduce((ack, program) => {
+//       if (program.workshop_id > 0) {
+//         const find = worshopProgramsByTracks(program.workshop_programs, track);
+//         if (find.length > 0) {
+//           ack.push({ ...program, 'workshop_programs': find });
+//         }
+//       }
+//       else if (program.program_tracks.length > 0) {
+//         const find = program.program_tracks.find((item) => (item.name === track));
+//         if (find !== null && find !== undefined) {
+//           ack.push(program);
+//         }
+//       }
+//       return ack;
+//     }, []);
+//     if (items.length > 0) {
+//       newObject[date] = items;
+//     }
+//   });
+//   return newObject;
 
-}
-const getProgramsByLocation = (programs, location) => {
-  const newObject = {};
-  Object.keys(programs).forEach((date) => {
-    const items = programs[date].reduce((ack, program) => {
-        if(program.location==location){
-          console.log(location,"location")
-          ack.push({...program})
-        }
-      //  else if(program.workshop_id > 0){
-      //   const find = worshopProgramsByLocation(program, location);
-      //   if (find.length > 0) {
-      //     ack.push({ ...program, 'workshop_programs': find });
-      //   }
-      //  }
-      return ack;
-    }, []);
-    if (items.length > 0) {
-      newObject[date] = items;
-    }
-  });
-  return newObject;
+// },[])
 
-}
-const worshopProgramsByTracks = (programs, track) => {
-  const items = programs.reduce((ack, program) => {
-    if (program.program_tracks.length > 0) {
-      const find = program.program_tracks.find((item) => (item.name === track));
-      if (find !== null && find !== undefined) {
-        ack.push(program);
-      }
-    }
-    return ack;
-  }, []);
-  return items
-}
-const worshopProgramsByLocation = (programs, location) => {
-  const items = programs.reduce((ack, program) => {
-      const find = program.workshop_programs.find((item) => (item.name === location));
-      if (find !== null && find !== undefined) {
-        ack.push(program);
-      }
-    return ack;
-  }, []);
-  return items
-}
-
-
-const searchThroughProgram = (programs, searchText) => {
-  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
-  const newObject = {};
-  Object.keys(programs).forEach((date) => {
-    const items = programs[date].reduce((ack, program) => {
-      let add = false;
-
-      // Search in program_workshop
-      if (program.program_workshop && regex.test(program.program_workshop)) {
-        add = true;
-      }
-
-      // Search in topic
-      if (program.topic && regex.test(program.topic)) {
-        add = true;
-      }
-
-      // Search in description
-      if (program.description && regex.test(program.description)) {
-        add = true;
-      }
-
-      // Search in location
-      if ( program.workshop_id > 0  && program.location && regex.test(program.location)) {
-        add = true;
-      }
-      if( program.program_workshop && regex.test(program.program_workshop)){
-        add=true
-      }
-      // Search in program_tracks
-      if (program.program_tracks && program.program_tracks.length > 0) {
-        const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
-        if (trackSearch.length > 0) {
-          add = true;
-        }
-      }
-      // Search in program_speakers
-      if (program.program_speakers && program.program_speakers.length > 0) {
-        const speakerSearch = program.program_speakers.filter((speaker) => {
-          return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
-            (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
-        });
-        if (speakerSearch.length > 0) {
-          add = true;
-        }
-      }
-
-      // Search in workshop programs
-      if (program.workshop_id > 0) {
-        const search = searchThroughworshopPrograms(program.workshop_programs, searchText);
-        if (search.length > 0) {
-          ack.push({ ...program, 'workshop_programs': search });
-        }
-      }
-    
-
-      if (add) {
-        ack.push(program);
-      }
-      return ack;
-    }, []);
-    if (items.length > 0) {
-      newObject[date] = items;
-    }
-  });
-  return newObject;
-}
-
-const searchThroughworshopPrograms = (programs, searchText) => {
-  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
-  // const items = programs.reduce((ack, program) => {
-  //   let add = false;
-  //   console.log(searchText,"searchtext")
-  //   // Search in topic
-  //   console.log(program.topic,"programaaaaaaaaaaaaaaa searchtext")
-  //   console.log(regex,"regex searchtext")
-  //   if (program.topic && regex.test(program.topic)) {
-  //     add = true;
-  //   }
-
-  //   // Search in description
-  //   // if (program.description && regex.test(program.description)) {
-  //   //   add = true;
-  //   // }
-
-  //   // // Search in location
-  //   // if (program.location && regex.test(program.location)) {
-  //   //   add = true;
-  //   // }
-
-  //   // Search in program_tracks
-  //   // if (program.program_tracks && program.program_tracks.length > 0) {
-  //   //   const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
-  //   //   if (trackSearch.length > 0) {
-  //   //     add = true;
-  //   //   }
-  //   // }
-
-  //   // Search in program_speakers
-  //   // if (program.program_speakers && program.program_speakers.length > 0) {
-  //   //   const speakerSearch = program.program_speakers.filter((speaker) => {
-  //   //     return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
-  //   //       (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
-  //   //   });
-  //   //   if (speakerSearch.length > 0) {
-  //   //     add = true;
-  //   //   }
-  //   // }
-
-  //   if (add) {
-  //     ack.push(program);
-  //   }
-  //   return ack;
-  // }, []);
-  const items=programs.filter((program)=>{
-   return regex.test(program.topic)
-  })
-  return items;
-}
