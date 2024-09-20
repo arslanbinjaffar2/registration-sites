@@ -274,7 +274,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 <div className='mt-3'  key={`${item.id}3 + ${i}`}>
-                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
+                  {item.workshop_id > 0 ? <WorkShopTitle bgstyle={bgStyle} handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
                   eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  showDetail={showDetail}/>:
                   <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} 
                   program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}
