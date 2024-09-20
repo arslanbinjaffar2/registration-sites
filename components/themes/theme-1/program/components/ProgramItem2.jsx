@@ -22,6 +22,7 @@ const ProgramItem = ({
   const [target, setTarget] = useState(null);
   const [trackHighlightClass,setTrackHightLightClass]=useState("ebs-more-track-shown-focus")
   const TrackPopupRef = useRef(null);
+  const trackRef=useRef(null)
   function handleIsShowTrackPopup(event) {
     setShow(!show);
     setTarget(event.target);
