@@ -1289,7 +1289,7 @@
           content: '';
           position: absolute;
           top: 0%;
-          background-color: var(----bg-first-last-child);
+        // background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
@@ -1301,7 +1301,7 @@
           content: '';
           position: absolute;
           bottom: 0%;
-          background-color: var(----bg-first-last-child);
+          // background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
