@@ -291,7 +291,7 @@ return showWorkshop;
   )
 }
 
-const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings}) => {
+const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,moduleVariation}) => {
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
@@ -299,7 +299,7 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     const [selectedTrack, setSelectedTrack] = useState(null);
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [location, setLocation] = useState([]);
-
+    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color,padding: '80px 120px 0 120px'} : {padding: '80px 120px 0 120px'}
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -346,7 +346,7 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
   // Create an array of locations formatted like the 'location' array
   const formattedLocations = [
     { value: "", label: "Select Location" }, // Default "Select Location"
-    ...uniqueLocations.map((loc) => ({ value: loc.toLowerCase(), label: loc })),
+    ...uniqueLocations.map((loc) => ({ value: loc.toLowerCase(), label: loc.substring(0,20) })),
   ];
 
   // Log the formatted location array
@@ -392,7 +392,7 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     
   };
     return (
-       <div style={{padding: '80px 120px 0 120px'}} className="module-section border-bottom overflow-hidden responive-padding-style">
+       <div style={bgStyle} className="module-section border-bottom overflow-hidden responive-padding-style">
            <div className="container-fluid">
                 <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
@@ -401,6 +401,7 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 												<div className="ebs-select-box mobile-width-100">
                           <ReactSelect
                             styles={customStyles}
+                            className='custom-track-select'
                             placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                             components={{ IndicatorSeparator: null }}
                             onChange={(date)=>{onDateChange(date)}}
@@ -408,18 +409,46 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[])}
                           />
 												</div>
-												{tracks.length > 0 && <div className="ebs-select-box mobile-width-100">
+                        {tracks.length > 0 && <div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
                             components={{ IndicatorSeparator: null }}
                             onChange={(track)=>{onTrackChange(track)}}
                             value={selectedTrack}
-                            options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
+                            className='custom-track-select'
+                                 // options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),
+                            // [{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
+                            options={tracks.reduce((ack, item,index, array) =>{
+                              // Add the current track to the accumulator
+                              console.log({ value: item.name, label: item.name }," value: item.name, label: item.name }")
+                              ack = [...ack, { value: item.name, label: item.name }];                          
+                               // If the track has sub-tracks, recursively process them
+                              if (item.sub_tracks && item.sub_tracks.length > 0) {
+                                ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
+                                  // Extract the name and color from the sub-track object
+                                  const { info } = subItem;
+                                  const nameInfo = info.find((infoItem) => infoItem.name === 'name');
+                                  // const colorInfo = info.find((infoItem) => infoItem.name === 'color');
+                                  
+                                  // Add the sub-track to the accumulator
+                                  subAck = [...subAck, {
+                                    value: nameInfo.value,
+                                    label: `${nameInfo.value}`
+                                  }];
+                                  console.log({ subAck }," subAck label: item.name }")
+                                  return subAck;
+                                }, []));
+                              }
+                              return ack;
+                              
+                            },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
+                            
                           />
 												</div>}
 												<div className="ebs-select-box mobile-width-100">
                           <ReactSelect
+                           className='custom-track-select'
                             styles={customStyles}
                             placeholder={'Select Location'}
                             components={{ IndicatorSeparator: null }}

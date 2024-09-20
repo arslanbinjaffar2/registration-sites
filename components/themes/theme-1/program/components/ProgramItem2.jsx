@@ -4,6 +4,8 @@ import ProgramDetailModal from "./ProgramDetailModal";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
 import TracksPopup from "./TrackPopup";
+import { useSelector } from "react-redux";
+import { programListingSelector } from "../../../../../store/Slices/ProgramListingSlice";
 const ProgramItem = ({
   programList,
   program,
@@ -15,9 +17,10 @@ const ProgramItem = ({
   ref,
   handleItemClick,
 }) => {
+  const {programId}=useSelector(programListingSelector)
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
-  const trackRef=useRef("");
+  const [trackHighlightClass,setTrackHightLightClass]=useState("ebs-more-track-shown-focus")
   const TrackPopupRef = useRef(null);
   function handleIsShowTrackPopup(event) {
     setShow(!show);
@@ -51,25 +54,25 @@ const ProgramItem = ({
         ref={ref}
         onClick={() => handleItemClick(program, programList)}
       >
-        <div className="d-flex border rounded-4px h-100 border-black-color">
+        <div className="d-flex border h-100 border-black-color rounded-1">
           {parseInt(agendaSettings.agenda_display_time) === 1 &&
             parseInt(program.hide_time) === 0 && (
               <div className="p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center">
-                <span className="fs-medium fw-medium">
-                  {moment(`${program.date} ${program.start_time}`).format(
+                   <span className="fs-medium fw-medium" style={{ width:"48px" }}>
+                   {moment(`${program.date} ${program.start_time}`).format(
                     "HH:mm"
                   )}
                 </span>
-                <span className="fs-medium fw-medium">
-                  {moment(`${program.date} ${program.end_time}`).format(
+                <span className="fs-medium fw-medium" style={{ width:"48px"}}>
+                {moment(`${program.date} ${program.end_time}`).format(
                     "HH:mm"
                   )}
                 </span>
               </div>
             )}
-          <div className="border-start border-black-color  d-flex justify-content-lg-center justify-content-start  align-items-center  position-relative w-100 flex-md-row flex-column">
+          <div className="border-start border-black-color   d-flex justify-content-lg-center justify-content-start  align-items-center  position-relative w-100 flex-md-row flex-column">
             <div
-              className="d-flex justify-content-between items-center align-items-center  p-3 flex-wrap"
+              className="d-flex justify-content-between  align-items-md-center align-items-start  p-3 flex-wrap align-self-start"
               style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
             >
               <div
@@ -88,7 +91,7 @@ const ProgramItem = ({
                 )}
                 <div className="d-flex align-items-center flex-wrap">
                   {program.program_speakers.slice(0, 3)?.map((speakers, o) => (
-                    <h6 className="m-0 fs-medium fw-normal">
+                    <h6 className="m-0 fs-medium fw-normal" key={speakers+o}>
                       {speakers.first_name} {speakers.last_name},{" "}
                     </h6>
                   ))}
@@ -107,7 +110,7 @@ const ProgramItem = ({
               >
                 {program.location && (
                   <div className="me-2 ebs-program-location d-flex">
-                    <span class="material-symbols-outlined fs-small">
+                    <span className="material-symbols-outlined fs-small">
                       location_on
                     </span>{" "}
                     <span className="fs-small fw-normal">
@@ -135,14 +138,10 @@ const ProgramItem = ({
                     ))}
                     {program.program_tracks.length > 3 ? (
                       <span
-                        ref={trackRef}
                         onClick={handleIsShowTrackPopup}
-                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center"
-                        style={{
-                          width: "20px",
-                          height: "20px",
-                          borderRadius: "50%",
-                        }}
+                        className={`cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center
+                          ${show? trackHighlightClass:""}`}
+                       
                       >
                         +{program.program_tracks.length - 3}
                       </span>
@@ -153,15 +152,15 @@ const ProgramItem = ({
                   onClick={() => setShowDetail(true)}
                   className={`ms-auto border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cursor-pointer ${
                     width <= 570 ? "center-Btn" : ""
-                  }`}
+                  } ${program.id==programId && showDetail ? "bg-black text-white":"bg-white text-black"}`}
                   style={{ height: "35px", width: "35px" }}
                 >
-                  <span class="material-symbols-outlined">more_horiz</span>
+                  <span className="material-symbols-outlined">more_horiz</span>
                 </div>
               </div>
             </div>
             {program.program_tracks.length > 0 && (
-              <div className="ebs-tracks-program gap-1 align-items-center d-sm-none d-flex mb-3 flex-wrap ps-3 align-items-center">
+              <div className="ebs-tracks-program gap-1 align-items-center d-sm-none d-flex mb-3 flex-wrap ps-3 align-items-center align-self-start">
                 {/* <span key={i} style={{ backgroundColor: `${track.color ? track.color : '#000'}` }}>{track.name}</span> */}
                 {program.program_tracks.slice(0, 3).map((track, i) => (
                   <span
@@ -178,9 +177,9 @@ const ProgramItem = ({
                 ))}
                 {program.program_tracks.length > 3 ? (
                   <span
-                    ref={trackRef}
                     onClick={handleIsShowTrackPopup}
-                    className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center">
+                    className={`cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center
+                      ${show? trackHighlightClass:""}`}>
                     +{program.program_tracks.length - 3}
                   </span>
                 ) : null}

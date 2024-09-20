@@ -8,6 +8,8 @@ import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
 import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
+import { useDispatch } from 'react-redux';
+import {setProgramDetail} from '../../../../../store/Slices/ProgramListingSlice'
 const customStyles = {
   control: base => ({
     ...base,
@@ -20,6 +22,7 @@ const customStyles = {
   })
 };
 const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings,moduleVariation }) => {
+  const dispatch=useDispatch()
   const [width,setWidth]=useState(window.innerWidth)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -46,6 +49,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   }
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
+    dispatch(setProgramDetail({id:item.id}))
   };
    const handleResetFilters = () => {
     setValue('');
@@ -101,7 +105,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  console.log(moduleVariation,"module")
+ 
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
       {/* <div className="container">
@@ -134,9 +138,12 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
-                <div className='mt-3'  key={item.id}>
-                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
-                  <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
+                <div className='mt-3'  key={`${item.id}3 + ${i}`}>
+                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
+                  eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  showDetail={showDetail}/>:
+                  <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} 
+                  program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}
+                  />}
                 </div>
               ))}
             </div>
@@ -225,51 +232,65 @@ const worshopProgramsByLocation = (programs, location) => {
 
 
 const searchThroughProgram = (programs, searchText) => {
+  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
   const newObject = {};
   Object.keys(programs).forEach((date) => {
     const items = programs[date].reduce((ack, program) => {
+      let add = false;
+
+      // Search in program_workshop
+      if (program.program_workshop && regex.test(program.program_workshop)) {
+        add = true;
+      }
+
+      // Search in topic
+      if (program.topic && regex.test(program.topic)) {
+        add = true;
+      }
+
+      // Search in description
+      if (program.description && regex.test(program.description)) {
+        add = true;
+      }
+
+      // Search in location
+      if ( program.workshop_id > 0  && program.location && regex.test(program.location)) {
+        add = true;
+      }
+      if( program.program_workshop && regex.test(program.program_workshop)){
+        add=true
+      }
+      // Search in program_tracks
+      if (program.program_tracks && program.program_tracks.length > 0) {
+        const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
+        if (trackSearch.length > 0) {
+          add = true;
+        }
+      }
+      // Search in program_speakers
+      if (program.program_speakers && program.program_speakers.length > 0) {
+        const speakerSearch = program.program_speakers.filter((speaker) => {
+          return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
+            (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
+        });
+        if (speakerSearch.length > 0) {
+          add = true;
+        }
+      }
+
+      // Search in workshop programs
       if (program.workshop_id > 0) {
         const search = searchThroughworshopPrograms(program.workshop_programs, searchText);
         if (search.length > 0) {
           ack.push({ ...program, 'workshop_programs': search });
         }
       }
-      if( program.program_workshop && program.program_workshop.toLowerCase().indexOf(searchText) !== -1){
-        ack.push({ ...program});
-      }
-      else {
-        let add = false;
+    
 
-        if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-          program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
-          program.location && program.location.toLowerCase().indexOf(searchText) !== -1 
-        ) {
-          add = true;
-        }
-
-        if (program.program_tracks && program.program_tracks.length > 0) {
-          const trackSearch = program.program_tracks.filter((track) => (track.name && track.name.toLowerCase().indexOf(searchText) !== -1));
-          if (trackSearch.length > 0) {
-            add = true;
-          }
-        }
-
-        if (program && program.program_speakers && program.program_speakers.length > 0) {
-          const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name && speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-          speaker.last_name && speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-            (speaker && speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-            (speaker && speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
-          if (trackSearch.length > 0) {
-            add = true;
-          }
-        }
-
-        if (add) {
-          ack.push(program);
-        }
+      if (add) {
+        ack.push(program);
       }
       return ack;
-
     }, []);
     if (items.length > 0) {
       newObject[date] = items;
@@ -279,35 +300,53 @@ const searchThroughProgram = (programs, searchText) => {
 }
 
 const searchThroughworshopPrograms = (programs, searchText) => {
-  const items = programs.reduce((ack, program) => {
-    let add = false;
-    if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-      program.description.toLowerCase().indexOf(searchText) !== -1 ||
-      program.location.toLowerCase().indexOf(searchText) !== -1    ) {
-      add = true;
-    }
+  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
+  // const items = programs.reduce((ack, program) => {
+  //   let add = false;
+  //   console.log(searchText,"searchtext")
+  //   // Search in topic
+  //   console.log(program.topic,"programaaaaaaaaaaaaaaa searchtext")
+  //   console.log(regex,"regex searchtext")
+  //   if (program.topic && regex.test(program.topic)) {
+  //     add = true;
+  //   }
 
-    if (program.program_tracks.length > 0) {
-      const trackSearch = program.program_tracks.filter((track) => (track.name.toLowerCase().indexOf(searchText) !== -1));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+  //   // Search in description
+  //   // if (program.description && regex.test(program.description)) {
+  //   //   add = true;
+  //   // }
 
-    if (program.program_speakers.length > 0) {
-      const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-        speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-        (speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-        (speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+  //   // // Search in location
+  //   // if (program.location && regex.test(program.location)) {
+  //   //   add = true;
+  //   // }
 
-    if (add) {
-      ack.push(program);
-    }
-    return ack;
-  }, []);
-  return items
+  //   // Search in program_tracks
+  //   // if (program.program_tracks && program.program_tracks.length > 0) {
+  //   //   const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
+  //   //   if (trackSearch.length > 0) {
+  //   //     add = true;
+  //   //   }
+  //   // }
+
+  //   // Search in program_speakers
+  //   // if (program.program_speakers && program.program_speakers.length > 0) {
+  //   //   const speakerSearch = program.program_speakers.filter((speaker) => {
+  //   //     return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
+  //   //       (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
+  //   //   });
+  //   //   if (speakerSearch.length > 0) {
+  //   //     add = true;
+  //   //   }
+  //   // }
+
+  //   if (add) {
+  //     ack.push(program);
+  //   }
+  //   return ack;
+  // }, []);
+  const items=programs.filter((program)=>{
+   return regex.test(program.topic)
+  })
+  return items;
 }

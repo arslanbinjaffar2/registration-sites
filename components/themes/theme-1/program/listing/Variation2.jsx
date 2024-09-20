@@ -244,15 +244,17 @@ return showWorkshop;
   )
 }
 
-const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings}) => {
+const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings,moduleVariation}) => {
 
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
     const [selectedDate, setSelectedDate] = useState({value:schedule[0], label:schedule[0]});
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [location, setLocation] = useState([]);
     const [selectedLocation,setSelectedLocation]=useState(null)
     const [value, setValue] = useState('');
+    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color,padding: '80px 0 0'} : {padding: '80px 0 0'}
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -273,23 +275,54 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     }
 
     useEffect(() => {
-         let programsObj = programs[selectedDate.value].reduce((ack, program)=>{
-            if(program.workshop_id > 0){
-                return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
-            }
-            ack.push(program);
-            return ack;
-        }  ,[]);
-
-        // if(selectedLocation !==null && selectedLocation.value!==0){
-        //   programsObj=getProgramsByLocation(programsObj, selectedLocation.value)
-        // }
-        if(selectedTrack !== null && selectedTrack.value !== 0){
-          programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
+      // Generate the initial programs array based on the selected date
+      let programsObj = programs[selectedDate.value].reduce((ack, program) => {
+        // If the program has workshop programs, merge them into the list
+        if (program.workshop_id > 0) {
+          return [
+            ...ack,
+            ...program.workshop_programs.map((item) => ({
+              ...item,
+              'program_workshop': program.program_workshop,
+              'workshop_id': program.workshop_id
+            }))
+          ];
         }
-        
-        setProgramsLoc(programsObj);
-      }, [selectedDate, selectedTrack]);
+    // Otherwise, just add the program
+    ack.push(program);
+    return ack;
+  }, []);
+  const uniqueLocations = programsObj.reduce((acc, program) => {
+    if (program.location && !acc.includes(program.location)) {
+      acc.push(program.location);
+    }
+    return acc;
+  }, []);
+
+  // Create an array of locations formatted like the 'location' array
+  const formattedLocations = [
+    { value: "", label: "Select Location" }, // Default "Select Location"
+    ...uniqueLocations.map((loc) => ({ value: loc.toLowerCase(), label: loc.substring(0,20) })),
+  ];
+
+  // Log the formatted location array
+
+  setLocation(formattedLocations);
+
+  // If either a track or location is selected, apply the filtering
+  if ((selectedTrack !== null && selectedTrack.value !== 0) || (selectedLocation !== null && selectedLocation.value !== 0)) {
+    programsObj = getProgramsByTrack(
+      programsObj,
+      selectedTrack ? selectedTrack.value : undefined,  // Use track if selected
+      selectedLocation ? selectedLocation.value : undefined  // Use location if selected
+    );
+  }
+
+  // Update the programsLoc state with the filtered programs
+  setProgramsLoc(programsObj);
+
+
+}, [selectedDate, selectedTrack, selectedLocation]);
 
 	useEffect(() => {
     // itemhack = true;
@@ -326,12 +359,12 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
   const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
 
     return (
-       <div style={{padding: '80px 0 0'}} className="module-section">
-           <div className="container">
-             {programsLoc.length>0&&  <div className="ebs-timeline-area">
+       <div style={bgStyle} className="module-section pb-5">
+           <div className="container ">
+              <div className="ebs-timeline-area ">
 									<div className="ebs-top-area">
-										<div className="row d-flex">
-                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-5 col-12 mb-md-0 mb-3">
+										<div className="row d-flex align-items-center">
+                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-4 col-12 mb-md-0 mb-3">
                         <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
                           <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
                           value={value} onChange={(e) => setValue(e.target.value)} />
@@ -358,7 +391,32 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             onChange={(track)=>{onTrackChange(track)}}
                             value={selectedTrack}
                             className='custom-track-select'
-                            options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
+                              // options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),
+                            // [{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
+                            options={tracks.reduce((ack, item,index, array) =>{
+                              // Add the current track to the accumulator
+                              console.log({ value: item.name, label: item.name }," value: item.name, label: item.name }")
+                              ack = [...ack, { value: item.name, label: item.name }];                          
+                               // If the track has sub-tracks, recursively process them
+                              if (item.sub_tracks && item.sub_tracks.length > 0) {
+                                ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
+                                  // Extract the name and color from the sub-track object
+                                  const { info } = subItem;
+                                  const nameInfo = info.find((infoItem) => infoItem.name === 'name');
+                                  // const colorInfo = info.find((infoItem) => infoItem.name === 'color');
+                                  
+                                  // Add the sub-track to the accumulator
+                                  subAck = [...subAck, {
+                                    value: nameInfo.value,
+                                    label: `${nameInfo.value}`
+                                  }];
+                                  console.log({ subAck }," subAck label: item.name }")
+                                  return subAck;
+                                }, []));
+                              }
+                              return ack;
+                              
+                            },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
                           />
 												</div>}
                         <ReactSelect
@@ -392,9 +450,9 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                   <div id="timeline-arrows">
                     <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
                     <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
-                  </div>
-                 
-					<TimelineContent data={itemSorting({
+                  </div> 
+			      {programsLoc.length>0&&
+            <TimelineContent data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
                         "program_setting": agendaSettings,
@@ -403,9 +461,9 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                         "selected_date": selectedDate,
                         "current_time": currentTime
 
-                    })} program_setting={agendaSettings} />
-				</div>}
-        {programsLoc.length==0 && <div className='bg-white p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
+                    })} program_setting={agendaSettings} />}
+				</div>
+        {programsLoc.length==0 && <div className='bg-white p-3 bg-body rounded-2 fw-medium text-capitalize text-center '>{siteLabels.EVENT_NORECORD_FOUND}</div>}
            </div>
        </div>
     )
@@ -413,17 +471,33 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 
 export default Variation2
 
+const getProgramsByTrack = (programs, track, location) => {
 
-const getProgramsByTrack = (programs, track) =>{
-      const items = programs.reduce((ack, program)=>{
-                          if(program.program_tracks.length > 0){
-                            const find = program.program_tracks.find((item)=>(item.name === track));
-                            if(find !== null && find !== undefined){
-                                ack.push(program);
-                            }
-                          }  
-                          return ack;         
-            }, []);
-     return items;
-  }
+  const items = programs.reduce((ack, program) => {
+    // Initialize matching variables
+    let trackMatch = true;  // Default to true if no track filter
+    let locationMatch = true;  // Default to true if no location filter
+
+    // Check if track filter is applied
+    if (track && track !== 0) {
+      // Track filter is applied, check if program tracks match
+      trackMatch = program.program_tracks.some((item) => item.name === track);
+
+    }
+
+    // Check if location filter is applied
+    if (location && location !== 0) {
+      // Location filter is applied, check if program location matches
+      locationMatch = program.location && program.location.toLowerCase() === location.toLowerCase();
+    }
+
+    // Include program only if both track and location match (if they are applied)
+    if (trackMatch && locationMatch) {
+      ack.push(program);
+    }
+
+    return ack;
+  }, []);
+  return items;
+};
 
