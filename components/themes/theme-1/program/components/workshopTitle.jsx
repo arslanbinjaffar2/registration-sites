@@ -2,6 +2,8 @@ import React, {useRef, useState, useEffect } from "react";
 import moment from "moment";
 import Timeline from "./timeline";
 import TrackPopup from './TrackPopup'
+import { useSelector } from "react-redux";
+import { programListingSelector } from "../../../../../store/Slices/ProgramListingSlice";
 const WorkShopTitle = ({
   program,
   setShowProgramDetail,
@@ -10,6 +12,8 @@ const WorkShopTitle = ({
   labels,
   handleItemClick,
   handleIsShowTrackPopup,
+  showProgramDetail,
+  programsState
 }) => {
   const [showWorkShopDetail, setShowWorkShopDetail] = useState(false);
   const Starttime = moment(program.program_workshop_start_time, "HH:mm:ss");
@@ -21,13 +25,17 @@ const WorkShopTitle = ({
           {parseInt(agendaSettings.agenda_display_time) === 1 &&
             parseInt(program.hide_time) === 0 && (
               <div className="p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center">
-                <span className="fs-medium fw-medium">
-                  {Starttime.format("HH:mm")}
-                </span>
-                <span className="fs-medium fw-medium">
-                  {endTime.format("HH:mm")}
-                </span>
-              </div>
+              <span className="fs-medium fw-medium" style={{ width:"48px" }}>
+              {moment(`${program.date} ${program.start_time}`).format(
+               "HH:mm"
+             )}
+           </span>
+           <span className="fs-medium fw-medium" style={{ width:"48px"}}>
+           {moment(`${program.date} ${program.end_time}`).format(
+               "HH:mm"
+             )}
+           </span>
+         </div>
             )}
           <div className="border-start border-black-color w-100 d-flex justify-content-center  align-items-center flex-wrap">
             <div className="d-flex justify-content-between items-center align-items-center w-100 p-3 flex-wrap">
@@ -88,8 +96,10 @@ const WorkShopTitle = ({
                 handleIsShowTrackPopup={handleIsShowTrackPopup}
                 item={item}
                 i={i}
+                showProgramDetail={showProgramDetail}
                 lastItem={program.workshop_programs.length - 1}
                 agendaSettings={agendaSettings}
+                programsState={programsState}
               />
             </div>
           ))}
@@ -106,7 +116,10 @@ function SingleProgram({
   agendaSettings,
   setShowWorkshopProgramDetail,
   target,
+  showProgramDetail,
+  programsState
 }) {
+  const {programId}=useSelector(programListingSelector)
   const [width, setWidth] = useState(window.innerWidth);
   const [isShowTrackPopup, setIsShowTrackPopup] = useState(true);
   const [targetTrackPopup, setTargetTrackPopup] = useState();
@@ -133,6 +146,7 @@ function SingleProgram({
       window.removeEventListener("resize", handleResize);
     };
   }, [width]);
+ 
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">
@@ -141,14 +155,15 @@ function SingleProgram({
           {parseInt(agendaSettings.agenda_display_time) === 1 &&
             parseInt(item.hide_time) === 0 && (
               <div className="p-2 px-3  ebs-program-date d-flex flex-column align-items-center justify-content-center">
-                <span className="fs-medium fw-semibold">
+                <span className="fs-medium fw-semibold" style={{ width:"48px" }}>
                   {moment(`${item.date} ${item.start_time}`).format("HH:mm")}
                 </span>
-                <span className="fs-medium fw-semibold">
+                <span className="fs-medium fw-semibold" style={{ width:"48px" }}>
                   {moment(`${item.date} ${item.end_time}`).format("HH:mm")}
                 </span>
               </div>
             )}
+         
           <div className="border-start w-100 d-flex justify-content-lg-center  align-items-center border-black-color">
             <div className="d-flex justify-content-between  align-items-md-center  p-3 flex-md-row flex-column align-items-start"
              style={{ width: `${width <= 570 ? "85%" : "100%"}` }}
@@ -162,7 +177,10 @@ function SingleProgram({
                     <span class="material-symbols-outlined fs-small">
                       location_on
                     </span>{" "}
-                    <span className="fs-small fw-normal">{item.location} </span>
+                    <span className="fs-small fw-normal"> 
+                    {item.location.length>20?`${item.location.substring(0,20)} ...`:item.location}{" "}
+
+                    </span>
                   </div>
                 )}
                 {item.program_tracks.length > 0 && (
@@ -211,8 +229,8 @@ function SingleProgram({
                   onClick={() => setShowWorkshopProgramDetail(true)}
                   className={`ms-auto border-black-color border p-2 rounded-4px 
                     d-flex justify-content-center align-items-center cursor-pointer  ${
-                    width <= 570 ? "center-Btn" : ""
-                  }`}
+                    width <= 570 ? "center-Btn" : ""}
+                 ${programsState.id == programId && showProgramDetail ? "bg-black text-white":"bg-white text-black"}`}
                   style={{ height: "35px",width:"35px"}}
                 >
                   <span class="material-symbols-outlined">more_horiz</span>

@@ -3,6 +3,7 @@ import { objectToArray } from "helpers/helper";
 import { incrementFetchLoadCount } from "./GlobalSlice";
 const initialState = {
   programs: null,
+  programId:null,
   tracks: null,
   labels:null,
   loading: false,
@@ -25,6 +26,9 @@ export const programListingSlice = createSlice({
       state.labels = state.labels;
       state.loading = false;
     },
+    setProgramDetail:(state, { payload })=>{
+     state.programId=payload.id
+    },
     setError: (state, { payload }) => {
       state.error = payload;
     },
@@ -32,7 +36,7 @@ export const programListingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getPrograms, setPrograms, setError } = programListingSlice.actions;
+export const { getPrograms, setPrograms, setError,setProgramDetail } = programListingSlice.actions;
 
 export const programListingSelector = (state) => state.programListing;
 

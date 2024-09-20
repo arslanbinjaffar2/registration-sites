@@ -23,37 +23,67 @@ const _multiplyer = window.innerWidth > 600 ? 300 : 150;
 var clearTime;
 var itemhack = false;
 
- function itemSorting(data) {
+
+function itemSorting(data) {
   if (itemhack) return data;
-  var itemArray = [];
-  var i = 0;
-  var _lastTime = '00:00';
-  data.program_array.forEach((items, k) => {
-    const _end = moment(items.start_time, 'HH:mm');
-    const _last = moment(_lastTime, 'HH:mm');
-    const eventduration = moment.duration(_last.diff(_end));
-    _lastTime = items.end_time;
-    if (eventduration.asMinutes() <= 0) {
-      if (k === 0) {
-        const obj = [items];
-        itemArray.push(obj);
-      } else {
-        itemArray[i].push(items);
-      }
-    } else {
-      const obj = [items];
-      itemArray.push(obj);
-      i = i + 1;
+
+  // Initialize the result object with locations from data.location (case-insensitive)
+  const locationResult = {};
+  data.location.forEach(location => {
+      if (location.value === "") return;
+    // Convert location to lower case for case-insensitive matching
+    const lowerCaseLocation = location.value.toLowerCase();
+    locationResult[lowerCaseLocation] = [];
+  });
+
+  // Group items by location (case-insensitive)
+  data.program_array.forEach(item => {
+    // Convert item location to lower case for case-insensitive matching
+    const itemLocation = item.location.toLowerCase();
+    
+    // Ensure the location exists in the result object
+    if (locationResult[itemLocation]) {
+      locationResult[itemLocation].push(item);
     }
   });
-  data.program_array = itemArray;
+
+  // Convert result object to the desired format
+  const resultArray = Object.keys(locationResult).map(location => ({
+    location: location,
+    items: locationResult[location]
+  }));
+
+  resultArray.forEach((location, a) => {
+   var itemArray = [];
+   var i = 0;
+   var _lastTime = '00:00';
+   location.items.forEach((items, k) => {
+     const _end = moment(items.start_time, "HH:mm");
+     const _last = moment(_lastTime, "HH:mm");
+     const eventduration = moment.duration(_last.diff(_end));
+     _lastTime = items.end_time;
+      if (eventduration.asMinutes() <= 0) {
+        if (k === 0) {
+          const obj = [items];
+          itemArray.push(obj);
+        } else {
+          itemArray[i].push(items);
+        }
+      } else {
+        const obj = [items];
+        itemArray.push(obj);
+        i = i + 1;
+      }
+    });
+    location.items = itemArray;
+  });
+  data.program_array = resultArray;
   return data;
 }
-const options = [
-  { id: 1, name: 'Chocolate' },
-  { id: 2, name: 'Strawberry' },
-  { id: 3, name: 'Vanilla' }
-];
+
+
+
+
 
 const TimelineHeader = () => {
   var Numbers = Array.from({ length: 48 }, (v, k) => k + 1);
@@ -81,7 +111,7 @@ const  currentTimerBar = (data) => {
   const _timelindeschdle = document.getElementById('timelindeschdle');
   if (_difference >= 0) {
     _postion = (_multiplyer / 60) * _difference;
-    if (_postion <= _timelinewrapp?.offsetWidth) {
+    if (_postion <= _timelinewrapp.offsetWidth) {
       _currentTimeline.style.left = _postion+15 + 'px';
       _currentTimeline.style.display = 'block';
       _timelindeschdle.scrollLeft = _postion+15 - 150;
@@ -216,45 +246,60 @@ return showWorkshop;
   return (
     <React.Fragment>
       {popup && <TimelinePopup onClick={() => handleClick('')} data={popupdata}   />}
-      <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
+      <div  className="w-100 h-100 position-relative">
+        <div style={{marginTop: 43}} className="position-absolute overflow-hidden ebs-time-line-location border-end border-start h-100">
+          {data && data.program_array.map((location, i) =>
+              <React.Fragment key={i}>
+                {location && location.items.length > 0 && <div   className='border-top d-flex align-items-center justify-content-center' style={{height: location.items.length*160 }}>
+                  <div>
+                     <i className="material-icons fs-2">place</i>
+                     <br />
+                  {location.location}
+                  </div>
+                 </div>}
+                </React.Fragment>
+          )}
+        </div>
+        <div  style={{cursor: 'move'}} id="timelindeschdle" className="ebs-timeline-wrapper">
         <div style={{ width: _width }}  id="timelinewrapp">
           <div id="currentTimeline" />
           <TimelineHeader />
           <div id="timelinecontent">
-            {data && data.program_array.map((items, k) =>(
-            <React.Fragment key={k}>
-                <div className={`datarow ${getWorkShop(items) ? 'ebs-workshop-wrapp' : ''} ${items[0].workshop_id > 0 ? 'ebs-wrapper-theme-'+themecounter : ''}`}>
-                  {items.map((item, key) => {
-                    var showWorkshop = false;
-                    if(item.workshop_id > 0) {
-                      if(!workshopShowns.includes(item.workshop_id)){
-                        workshopShowns.push(item.workshop_id);
-                        showWorkshop = true;
+            {data && data.program_array.map((location, i) =>(
+            <div className='border-top' style={{marginTop: -1}} key={i}>
+                {location && location.items.length > 0 && location.items.map((items, k) =><React.Fragment>
+                  <div style={{borderTop: '1px solid transparent'}} className={`datarow   ${getWorkShop(items) ? 'ebs-workshop-wrapp' : ''} ${items[0].workshop_id > 0 ? 'ebs-wrapper-theme-'+themecounter : ''}`}>
+                    {items.map((item, key) => {
+                      var showWorkshop = false;
+                      if(item.workshop_id > 0) {
+                        if(!workshopShowns.includes(item.workshop_id)){
+                          workshopShowns.push(item.workshop_id);
+                          showWorkshop = true;
+                        }
                       }
-                    }
-                  return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
-                  })}
-                </div>
-              </React.Fragment>)
+                    return <DataItem onClick={(data) => {handleClick(data)}} key={`${k}-${key}`} items={item} program_setting={program_setting} showWorkshop={showWorkshop} />
+                    })}
+                  </div>
+                </React.Fragment>)}
+              </div>)
             )}
           </div>
         </div>
+      </div>
       </div>
     </React.Fragment>
   )
 }
 
-const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings,moduleVariation}) => {
-
+const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,moduleVariation}) => {
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
     const [currentTime, setcurrentTime] = useState(moment().format('HH:mm:ss'));
     const [selectedDate, setSelectedDate] = useState({value:schedule[0], label:schedule[0]});
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState(null);
     const [location, setLocation] = useState([]);
-    const [selectedLocation,setSelectedLocation]=useState(null)
-    const [value, setValue] = useState('');
-    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color,padding: '80px 0 0'} : {padding: '80px 0 0'}
+    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color,padding: '80px 120px 0 120px'} : {padding: '80px 120px 0 120px'}
     const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]].reduce((ack, program)=>{
         if(program.workshop_id > 0){
             return [...ack, ...program.workshop_programs.map((item)=>({...item, 'program_workshop':program.program_workshop, 'workshop_id':program.workshop_id}))];
@@ -262,12 +307,11 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
         ack.push(program);
         return ack;
     }  ,[]));
-  
-  const onLocationChange=(location)=>{
-    setSelectedLocation(location)
-  }
+
     const onDateChange = (date)=>{
         setSelectedDate(date);
+        setSelectedTrack(null);
+        setSelectedLocation(null);
     }
   
     const onTrackChange = (track) =>{
@@ -322,7 +366,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
   setProgramsLoc(programsObj);
 
 
-}, [selectedDate, selectedTrack, selectedLocation]);
+}, [selectedDate, selectedTrack, selectedLocation]);  // Add selectedLocation to dependencies
 
 	useEffect(() => {
     // itemhack = true;
@@ -347,43 +391,25 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     }
     
   };
-  React.useEffect(() => {
-    const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-  }, []);
-  const locationOptions = [...new Set(
-    Object.values(programs).flat().filter((item) => item?.location).map((item) => item.location)
-  )].map((location) => ({ value: location, label: location }));
-  const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
-
     return (
-       <div style={bgStyle} className="module-section pb-5">
-           <div className="container ">
-              <div className="ebs-timeline-area ">
+       <div style={bgStyle} className="module-section border-bottom overflow-hidden responive-padding-style">
+           <div className="container-fluid">
+                <div className="ebs-timeline-area">
 									<div className="ebs-top-area">
-										<div className="row d-flex align-items-center">
-                      {eventsiteSettings?.agenda_search_filter === 1 && <div className="col-md-4 col-12 mb-md-0 mb-3">
-                        <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color">
-                          <input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  
-                          value={value} onChange={(e) => setValue(e.target.value)} />
-                        <span className="material-symbols-outlined fa">search</span>
-                        </div>
-                      </div>}
-											<div className="col-md-7 col-12 d-flex align-items-center flex-lg-nowrap flex-wrap gap-md-0 gap-3">
-												<div className="ebs-select-box">
+										<div className="row d-flex">
+											<div className="col-md-12 d-md-flex align-items-center d-sm-block">
+												<div className="ebs-select-box mobile-width-100">
                           <ReactSelect
                             styles={customStyles}
+                            className='custom-track-select'
                             placeholder={siteLabels.EVENTSITE_SELECT_DAY}
                             components={{ IndicatorSeparator: null }}
                             onChange={(date)=>{onDateChange(date)}}
                             value={selectedDate}
-                               className='custom-track-select'
                             options={Object.keys(programs).reduce((ack, key)=>([...ack, {value:key,label:key}]),[])}
                           />
 												</div>
-												{tracks.length > 0 && <div className="ebs-select-box">
+                        {tracks.length > 0 && <div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
                             placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
@@ -391,7 +417,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                             onChange={(track)=>{onTrackChange(track)}}
                             value={selectedTrack}
                             className='custom-track-select'
-                              // options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),
+                                 // options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),
                             // [{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
                             options={tracks.reduce((ack, item,index, array) =>{
                               // Add the current track to the accumulator
@@ -417,18 +443,20 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                               return ack;
                               
                             },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
+                            
                           />
 												</div>}
-                        <ReactSelect
-                          styles={customStyles}
-                          placeholder="Select Location"
-                          components={{ IndicatorSeparator: null }}
-                          onChange={(location) => { onLocationChange(location)}}
-                          className='custom-track-select'
-                          value={trimmerselectedLocation}
-                          options={locationOptions}
-                          
-                        />
+												<div className="ebs-select-box mobile-width-100">
+                          <ReactSelect
+                           className='custom-track-select'
+                            styles={customStyles}
+                            placeholder={'Select Location'}
+                            components={{ IndicatorSeparator: null }}
+                            onChange={(location)=>{setSelectedLocation(location)}}
+                            value={selectedLocation}
+                            options={location}
+                          />
+												</div>
 											</div>
 											{/* <div className="col-md-6">
 												<div className="right-panel-area">
@@ -450,26 +478,26 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
                   <div id="timeline-arrows">
                     <button onClick={(e) => handleClick(e,'left')} className='btn'><i className="fa fa-caret-left" /></button>
                     <button onClick={(e) => handleClick(e,'right')} className='btn btn-right'><i className="fa fa-caret-right" /></button>
-                  </div> 
-			      {programsLoc.length>0&&
-            <TimelineContent data={itemSorting({
+                  </div>
+                 
+					<TimelineContent  data={itemSorting({
                         "program_array": programsLoc,
                         "program_tracks": tracks,
+                        "location": location,
                         "program_setting": agendaSettings,
                         "schedules": schedule,
                         "current_date": currentDate,
                         "selected_date": selectedDate,
                         "current_time": currentTime
 
-                    })} program_setting={agendaSettings} />}
+                    })} program_setting={agendaSettings} />
 				</div>
-        {programsLoc.length==0 && <div className='bg-white p-3 bg-body rounded-2 fw-medium text-capitalize text-center '>{siteLabels.EVENT_NORECORD_FOUND}</div>}
            </div>
        </div>
     )
 }
 
-export default Variation2
+export default Variation5
 
 const getProgramsByTrack = (programs, track, location) => {
 
@@ -500,4 +528,7 @@ const getProgramsByTrack = (programs, track, location) => {
   }, []);
   return items;
 };
+
+
+
 

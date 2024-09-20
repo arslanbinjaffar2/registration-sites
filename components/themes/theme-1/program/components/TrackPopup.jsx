@@ -53,8 +53,8 @@ const TracksPopup = ({ show, setShow, target, TrackPopupRef, item }) => {
                   {item.program_tracks.map((track, i) => (
                     <div
                       key={i}
-                      className="border rounded-5 d-flex align-items-center gap-1 p-3"
-                      style={{ minWidth: "100px", height: "31px" }}
+                      className="border rounded-5 d-flex align-items-center gap-1 p-2"
+                      style={{ minWidth: "100px", height: "auto"}}
                     >
                       <span
                         className="d-inline-block"
@@ -62,12 +62,14 @@ const TracksPopup = ({ show, setShow, target, TrackPopupRef, item }) => {
                           backgroundColor: `${
                             track.color ? track.color : "#000"
                           }`,
-                          width: "16px",
+                          minWidth: "16px",
                           height: "16px",
                           borderRadius: "50%",
                         }}
                       ></span>
-                      <span className="fs-medium fw-light">{track.name}</span>
+                      <span className="fs-medium fw-light">
+                        {track.name}
+                      </span>
                     </div>
                   ))}
                 </div>
