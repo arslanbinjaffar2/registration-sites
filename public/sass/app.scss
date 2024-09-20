@@ -1289,7 +1289,7 @@
           content: '';
           position: absolute;
           top: 0%;
-          background-color: $light2;
+        // background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
@@ -1301,7 +1301,7 @@
           content: '';
           position: absolute;
           bottom: 0%;
-          background-color: $light2;
+          // background-color: $light2;
           width: 2px;
           height: 50%; 
           left: 9px !important;
@@ -4229,7 +4229,7 @@ font-size: 24px;
   }
 }
 .ebs-heading-bottom-border{
-  border-bottom: 8px solid $color-secondary-2;
+  border-bottom: 8px solid ;
   border-radius: 10px;
   width: 20%;
 

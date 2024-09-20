@@ -243,6 +243,9 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
  
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
+      <style dangerouslySetInnerHTML={{ __html: `.timeline-container .ebs-list-workshop:first-of-type::before {background:${bgStyle.backgroundColor}}
+        .timeline-container .ebs-list-workshop:last-of-type::after {background:${bgStyle.backgroundColor}}
+        ` }} />
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
@@ -267,14 +270,14 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     onLocationChange={onLocationChange}
     />
       {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
-      <div className="container mt-30" >
+      <div className="container mt-30"  >
         <div className="ebs-main-program-listing">
           {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
                 <div className='mt-3'  key={`${item.id}3 + ${i}`}>
-                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
+                  {item.workshop_id > 0 ? <WorkShopTitle bgstyle={bgStyle} handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
                   eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  showDetail={showDetail}/>:
                   <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} 
                   program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}

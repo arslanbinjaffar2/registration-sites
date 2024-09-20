@@ -13,11 +13,13 @@ const WorkShopTitle = ({
   handleItemClick,
   handleIsShowTrackPopup,
   showProgramDetail,
-  programsState
+  programsState,
+  bgstyle
 }) => {
   const [showWorkShopDetail, setShowWorkShopDetail] = useState(false);
   const Starttime = moment(program.program_workshop_start_time, "HH:mm:ss");
   const endTime = moment(program.program_workshop_end_time, "HH:mm:ss");
+  console.log(bgstyle.backgroundColor,"bgstyle")
   return (
     <>
       <div className="ebs-program-child-new bg-white">
@@ -82,6 +84,7 @@ const WorkShopTitle = ({
           className={`d-flex flex-column w-100 timeline-container  ${
             program.workshop_programs.length > 0 ? " gap-3" : ""
           }`}
+          style={{ '--bg-first-last-child': bgstyle.backgroundColor }}
         >
           {program.workshop_programs.map((item, i) => (
             <div
