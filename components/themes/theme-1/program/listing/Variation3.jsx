@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useRef } from 'react';
+import React, { useState, useEffect, Fragment, useRef, useCallback } from 'react';
 import HeadingElement from "components/ui-components/HeadingElement";
 import ProgramItem2 from "components/themes/theme-1/program/components/ProgramItem2";
 import WorkShop from "components/themes/theme-1/program/components/WorkShop";
@@ -6,8 +6,10 @@ import ReactSelect from 'react-select';
 import { localeProgramMoment } from 'helpers/helper';
 import moment from 'moment';
 import ProgramDetail from '../components/ProgramDetail';
-
+import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
+import { useDispatch } from 'react-redux';
+import {setProgramDetail} from '../../../../../store/Slices/ProgramListingSlice'
 const customStyles = {
   control: base => ({
     ...base,
@@ -19,11 +21,13 @@ const customStyles = {
     maxWidth: '100%',
   })
 };
-const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings }) => {
+const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings,moduleVariation }) => {
+  const dispatch=useDispatch()
   const [width,setWidth]=useState(window.innerWidth)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
+  const [selectedLocation,setSelectedLocation]=useState(null)
   const [value, setValue] = useState('');
   const [search, setSearch] = useState('')
   const [showDetail,setShowDetail]=useState(false)
@@ -37,18 +41,26 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
   const onDateChange = (date) => {
     setSelectedDate(date);
   }
-
+  const onLocationChange=(location)=>{
+    setSelectedLocation(location)
+  }
   const onTrackChange = (track) => {
     setSelectedTrack(track);
   }
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
+    dispatch(setProgramDetail({id:item.id}))
   };
    const handleResetFilters = () => {
     setValue('');
     setSelectedTrack({ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }); 
+    setSelectedDate({ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY })
+    setSelectedLocation({ value: 0, label: "Select Location" })
   };
+  const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
   
+ 
+
   useEffect(() => {
     let programsObj = programs;
     if (selectedDate !== null && selectedDate.value !== 0) {
@@ -57,11 +69,14 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     if (selectedTrack !== null && selectedTrack.value !== 0) {
       programsObj = getProgramsByTrack(programsObj, selectedTrack.value);
     }
+    if(selectedLocation !==null && selectedLocation.value!==0){
+      programsObj=getProgramsByLocation(programsObj, selectedLocation.value)
+    }
     if (search !== '') {
       programsObj = searchThroughProgram(programsObj, search.toLowerCase());
     }
     setProgramsLoc(programsObj);
-  }, [selectedDate, selectedTrack, search]);
+  }, [selectedDate, selectedTrack, search,selectedLocation]);
 
 
   useEffect(() => {
@@ -92,91 +107,48 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+ 
   return (
-    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box">
+    <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
+      <style dangerouslySetInnerHTML={{ __html: `.timeline-container .ebs-list-workshop:first-of-type::before {background:${bgStyle.backgroundColor}}
+        .timeline-container .ebs-list-workshop:last-of-type::after {background:${bgStyle.backgroundColor}}
+        ` }} />
       {/* <div className="container">
         <HeadingElement dark={false} label={'Schedule Programs'} desc={''} align={'center'} />
       </div> */}
-      {filters && <div className="ebs-program-top-new bg-white shadow-black">
-        <div className="container">
-          <div className="d-flex justify-content-between align-items ">
-       
-              {Object.keys(programs).length > 0 && <div className="">
-                <ReactSelect
-                  styles={customStyles}
-                  placeholder={siteLabels.EVENTSITE_SELECT_DAY}
-                  components={{ IndicatorSeparator: null }}
-                  onChange={(date) => { onDateChange(date) }}
-                  className='custom-date-select'
-                  value={selectedTrack}
-                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
-                />
-              </div>}
-              <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cursor-pointer border-black-color'>
-              <span className="material-symbols-outlined">tune</span>
-          </div>
-            
-        
-          </div>
-          {/* filters */}
-         {showFilter && <div className="d-flex justify-content-start mt-3 gap-4 flex-wrap">
-               {eventsiteSettings?.agenda_search_filter === 1 && <div>
-              <div style={{minWidth:"280px", maxWidth: 440 }} className="ebs-form-control-search-new border-black-color"><input className="form-control border-black-color" placeholder={siteLabels.EVENTSITE_PROGRAM_SEARCH} defaultValue={value} type="text"  value={value} onChange={(e) => setValue(e.target.value)} />
-              <span className="material-symbols-outlined fa">search</span>
-              </div>
-              </div>}
-                  {tracks.length > 0 &&
-                      <div className="">
-                        <ReactSelect
-                          styles={customStyles}
-                          placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
-                          components={{ IndicatorSeparator: null }}
-                          onChange={(track) => { onTrackChange(track)}}
-                          className='custom-track-select'
-                          value={selectedTrack}
-                          options={tracks.reduce((ack, item,index, array) =>{
-                            // Add the current track to the accumulator
-                            ack = [...ack, { value: item.name, label: item.name }];                          
-                             // If the track has sub-tracks, recursively process them
-                            if (item.sub_tracks && item.sub_tracks.length > 0) {
-                              ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
-                                // Extract the name and color from the sub-track object
-                                const { info } = subItem;
-                                const nameInfo = info.find((infoItem) => infoItem.name === 'name');
-                                // const colorInfo = info.find((infoItem) => infoItem.name === 'color');
-
-                                // Add the sub-track to the accumulator
-                                subAck = [...subAck, {
-                                  value: nameInfo.value,
-                                  label: `${nameInfo.value}`
-                                }];
-
-                                return subAck;
-                              }, []));
-                            }
-                            return ack;
-                            
-                          },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
-                          
-                        />
-                  </div>}
-             <div className='d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn' onClick={handleResetFilters}>
-              <span className="material-symbols-outlined">restart_alt</span>
-              <span className='fs-xsmall fw-normal'>Reset filters</span>
-            </div>
-          </div>}
-        </div>
-      </div>}
-      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>no program Found</div>}
-      <div className="container mt-30">
+    <CustomFilter
+    filters={filters}
+    customStyles={customStyles}
+    siteLabels={siteLabels}
+    programs={programs}
+    showFilter={showFilter}
+    eventsiteSettings={eventsiteSettings}
+    setShowFilter={setShowFilter}
+    handleResetFilters={handleResetFilters}
+    setValue={setValue}
+    value={value}
+    selectedTrack={selectedTrack}   
+    tracks={tracks} 
+    selectedLocation={selectedLocation}
+    setSelectedLocation={setSelectedLocation}
+    onTrackChange={onTrackChange}
+    onDateChange={onDateChange}
+    selectedDate={selectedDate}
+    onLocationChange={onLocationChange}
+    />
+      {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
+      <div className="container mt-30"  >
         <div className="ebs-main-program-listing">
           {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (
-                <div className='mt-3'  key={item.id}>
-                  {item.workshop_id > 0 ? <WorkShopTitle handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  />:
-                  <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}/>}
+                <div className='mt-3'  key={`${item.id}3 + ${i}`}>
+                  {item.workshop_id > 0 ? <WorkShopTitle bgstyle={bgStyle} handleItemClick={handleItemClick} programsState={programsState} setProgramsState={setProgramsState} 
+                  eventUrl={eventUrl} labels={siteLabels} program={item} agendaSettings={agendaSettings} setShowProgramDetail={setShowDetail}  showDetail={showDetail}/>:
+                  <ProgramItem2 programList={programsLoc[key]} handleItemClick={handleItemClick} setShowDetail={setShowDetail} showDetail={showDetail} 
+                  program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} showWorkshop={showWorkshop}
+                  />}
                 </div>
               ))}
             </div>
@@ -214,10 +186,32 @@ const getProgramsByTrack = (programs, track) => {
       newObject[date] = items;
     }
   });
+  return newObject;   
+
+}
+const getProgramsByLocation = (programs, location) => {
+  const newObject = {};
+  Object.keys(programs).forEach((date) => {
+    const items = programs[date].reduce((ack, program) => {
+        if(program.location==location){
+          console.log(location,"location")
+          ack.push({...program})
+        }
+      //  else if(program.workshop_id > 0){
+      //   const find = worshopProgramsByLocation(program, location);
+      //   if (find.length > 0) {
+      //     ack.push({ ...program, 'workshop_programs': find });
+      //   }
+      //  }
+      return ack;
+    }, []);
+    if (items.length > 0) {
+      newObject[date] = items;
+    }
+  });
   return newObject;
 
 }
-
 const worshopProgramsByTracks = (programs, track) => {
   const items = programs.reduce((ack, program) => {
     if (program.program_tracks.length > 0) {
@@ -230,55 +224,78 @@ const worshopProgramsByTracks = (programs, track) => {
   }, []);
   return items
 }
-
+const worshopProgramsByLocation = (programs, location) => {
+  const items = programs.reduce((ack, program) => {
+      const find = program.workshop_programs.find((item) => (item.name === location));
+      if (find !== null && find !== undefined) {
+        ack.push(program);
+      }
+    return ack;
+  }, []);
+  return items
+}
 
 
 const searchThroughProgram = (programs, searchText) => {
+  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
   const newObject = {};
   Object.keys(programs).forEach((date) => {
     const items = programs[date].reduce((ack, program) => {
+      let add = false;
+
+      // Search in program_workshop
+      if (program.program_workshop && regex.test(program.program_workshop)) {
+        add = true;
+      }
+
+      // Search in topic
+      if (program.topic && regex.test(program.topic)) {
+        add = true;
+      }
+
+      // Search in description
+      // if (program.description && regex.test(program.description)) {
+      //   add = true;
+      // }
+
+      // Search in location
+      // if ( program.workshop_id > 0  && program.location && regex.test(program.location)) {
+      //   add = true;
+      // }
+      // if( program.program_workshop && regex.test(program.program_workshop)){
+      //   add=true
+      // }
+      // Search in program_tracks
+      // if (program.program_tracks && program.program_tracks.length > 0) {
+      //   const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
+      //   if (trackSearch.length > 0) {
+      //     add = true;
+      //   }
+      // }
+      // Search in program_speakers
+      // if (program.program_speakers && program.program_speakers.length > 0) {
+      //   const speakerSearch = program.program_speakers.filter((speaker) => {
+      //     return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
+      //       (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
+      //   });
+      //   if (speakerSearch.length > 0) {
+      //     add = true;
+      //   }
+      // }
+
+      // Search in workshop programs
       if (program.workshop_id > 0) {
         const search = searchThroughworshopPrograms(program.workshop_programs, searchText);
         if (search.length > 0) {
           ack.push({ ...program, 'workshop_programs': search });
         }
       }
-      if( program.program_workshop && program.program_workshop.toLowerCase().indexOf(searchText) !== -1){
-        ack.push({ ...program});
-      }
-      else {
-        let add = false;
+    
 
-        if (program.topic && program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-          program.description && program.description.toLowerCase().indexOf(searchText) !== -1 ||
-          program.location && program.location.toLowerCase().indexOf(searchText) !== -1 
-        ) {
-          add = true;
-        }
-
-        if (program.program_tracks && program.program_tracks.length > 0) {
-          const trackSearch = program.program_tracks.filter((track) => (track.name && track.name.toLowerCase().indexOf(searchText) !== -1));
-          if (trackSearch.length > 0) {
-            add = true;
-          }
-        }
-
-        if (program && program.program_speakers && program.program_speakers.length > 0) {
-          const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name && speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-          speaker.last_name && speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-            (speaker && speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-            (speaker && speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
-          if (trackSearch.length > 0) {
-            add = true;
-          }
-        }
-
-        if (add) {
-          ack.push(program);
-        }
+      if (add) {
+        ack.push(program);
       }
       return ack;
-
     }, []);
     if (items.length > 0) {
       newObject[date] = items;
@@ -288,35 +305,53 @@ const searchThroughProgram = (programs, searchText) => {
 }
 
 const searchThroughworshopPrograms = (programs, searchText) => {
-  const items = programs.reduce((ack, program) => {
-    let add = false;
-    if (program.topic.toLowerCase().indexOf(searchText) !== -1 ||
-      program.description.toLowerCase().indexOf(searchText) !== -1 ||
-      program.location.toLowerCase().indexOf(searchText) !== -1    ) {
-      add = true;
-    }
+  const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
+  // const items = programs.reduce((ack, program) => {
+  //   let add = false;
+  //   console.log(searchText,"searchtext")
+  //   // Search in topic
+  //   console.log(program.topic,"programaaaaaaaaaaaaaaa searchtext")
+  //   console.log(regex,"regex searchtext")
+  //   if (program.topic && regex.test(program.topic)) {
+  //     add = true;
+  //   }
 
-    if (program.program_tracks.length > 0) {
-      const trackSearch = program.program_tracks.filter((track) => (track.name.toLowerCase().indexOf(searchText) !== -1));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+  //   // Search in description
+  //   // if (program.description && regex.test(program.description)) {
+  //   //   add = true;
+  //   // }
 
-    if (program.program_speakers.length > 0) {
-      const trackSearch = program.program_speakers.filter((speaker) => ((speaker.first_name.toLowerCase().indexOf(searchText) !== -1 ||
-        speaker.last_name.toLowerCase().indexOf(searchText) !== -1 ||
-        (speaker.info && speaker.info.company_name && speaker.info.company_name.toLowerCase().indexOf(searchText) !== -1) ||
-        (speaker.info && speaker.info.title && speaker.info.title.toLowerCase().indexOf(searchText) !== -1))));
-      if (trackSearch.length > 0) {
-        add = true;
-      }
-    }
+  //   // // Search in location
+  //   // if (program.location && regex.test(program.location)) {
+  //   //   add = true;
+  //   // }
 
-    if (add) {
-      ack.push(program);
-    }
-    return ack;
-  }, []);
-  return items
+  //   // Search in program_tracks
+  //   // if (program.program_tracks && program.program_tracks.length > 0) {
+  //   //   const trackSearch = program.program_tracks.filter((track) => regex.test(track.name));
+  //   //   if (trackSearch.length > 0) {
+  //   //     add = true;
+  //   //   }
+  //   // }
+
+  //   // Search in program_speakers
+  //   // if (program.program_speakers && program.program_speakers.length > 0) {
+  //   //   const speakerSearch = program.program_speakers.filter((speaker) => {
+  //   //     return regex.test(speaker.first_name) || regex.test(speaker.last_name) ||
+  //   //       (speaker.info && (regex.test(speaker.info.company_name) || regex.test(speaker.info.title)));
+  //   //   });
+  //   //   if (speakerSearch.length > 0) {
+  //   //     add = true;
+  //   //   }
+  //   // }
+
+  //   if (add) {
+  //     ack.push(program);
+  //   }
+  //   return ack;
+  // }, []);
+  const items=programs.filter((program)=>{
+   return regex.test(program.topic)
+  })
+  return items;
 }
