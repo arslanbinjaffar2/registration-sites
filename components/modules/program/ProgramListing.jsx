@@ -10,8 +10,9 @@ import { useRouter } from 'next/router';
 const in_array = require("in_array");
 
 const loadModule = (theme, programView) => {
+  console.log(programView,'program')
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/program/listing/${programView}`)
+  import(`components/themes/${theme}/program/listing/${programView}`)
   );
   return Component;
 };
@@ -29,7 +30,7 @@ const ProgramListing = (props) => {
   const eventUrl = event.url;
 
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return in_array(module.alias, ["time_table"]);
+    return in_array(module.alias, ["agenda"]);
   });
 
   const home = props.homePage ? props.homePage : false;
