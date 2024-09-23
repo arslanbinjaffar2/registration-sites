@@ -124,13 +124,7 @@ function SingleProgram({
 }) {
   const {programId}=useSelector(programListingSelector)
   const [width, setWidth] = useState(window.innerWidth);
-  const [isShowTrackPopup, setIsShowTrackPopup] = useState(true);
-  const [targetTrackPopup, setTargetTrackPopup] = useState();
-  const TrackPopupRef = useRef(null);
-  function handleIsShowTrackPopup(event) {
-    setIsShowTrackPopup(!isShowTrackPopup);
-    setTargetTrackPopup(event.target);
-  }
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -174,7 +168,7 @@ function SingleProgram({
               <div className="d-flex   align-items-start gap-2 cursor-pointer">
                 <h4 className="m-0 fs-large fw-semibold">{item.topic}</h4>
               </div>
-              <div className="d-flex gap-3 align-items-center">
+              <div className="d-flex gap-3 align-items-center flex-md-row flex-column">
                 {item.location && (
                   <div className="me-2 ebs-program-location d-flex">
                     <span class="material-symbols-outlined fs-small">
@@ -187,7 +181,7 @@ function SingleProgram({
                   </div>
                 )}
                 {item.program_tracks.length > 0 && (
-                  <div className="ebs-tracks-program gap-1 align-items-center d-sm-flex d-none">
+                  <div className="ebs-tracks-program gap-1 align-items-center d-flex ">
                     {item.program_tracks.slice(0, 3).map((track, i) => (
                       <span
                         key={i}
@@ -204,30 +198,14 @@ function SingleProgram({
                       ></span>
                     ))}
                     {item.program_tracks.length > 3 ? (
-                      <span
-                        onClick={handleIsShowTrackPopup}
-                        className="cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall 
-                        d-flex justify-content-center align-items-center"
-                      >
-                        +{item.program_tracks.length - 3}
-                      </span>
+                    <TrackPopup
+                    item={item}
+                  />
                     ) : null}
                   </div>
                 )}
-                <TrackPopup
-                  TrackPopupRef={TrackPopupRef}
-                  show={isShowTrackPopup}
-                  target={targetTrackPopup}
-                  item={item}
-                  setShow={setIsShowTrackPopup}
-                />
-                {/* <div
-                  onClick={() => setShowWorkshopProgramDetail(true)}
-                  className="border-black-color border p-2 rounded-4px d-flex justify-content-center align-items-center cursor-pointer"
-                  style={{ height: "35px", width: "35px" }}
-                >
-                  <span class="material-symbols-outlined">more_horiz</span>
-                </div> */}
+               
+               
                 <div
                   onClick={() => setShowWorkshopProgramDetail(true)}
                   className={`ms-auto border-black-color border p-2 rounded-4px 
