@@ -4,10 +4,16 @@ import moment from 'moment';
 const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
     eventsiteSettings,setShowFilter,handleResetFilters,setValue,value,selectedTrack,
     tracks,onTrackChange,onDateChange,selectedDate,selectedLocation,onLocationChange}) => {
-        const locationOptions = [...new Set(
+        const  uniqueLocations = [...new Set(
             Object.values(programs).flat().filter((item) => item?.location).map((item) => item.location)
-          )].map((location) => ({ value: location, label: location }));
-          const trimmerselectedLocation= selectedLocation ? {...selectedLocation,label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}....`:selectedLocation?.label}:{value:0,label:"select location"}
+          )].map((location) => ({value:0,label:"select location", value: location, label: location }));
+          const defaultOption = { value: 0, label: "select location" };
+          const locationOptions = [defaultOption, ...uniqueLocations];
+          const trimmerselectedLocation= selectedLocation ? 
+          {
+            ...selectedLocation,
+            label:selectedLocation?.label?.length>20?`${selectedLocation?.label?.substring(0,20)}
+            ....`:selectedLocation?.label}:""
   return (
     <div>
 {filters && <div className="ebs-program-top-new bg-white shadow-black">
@@ -22,7 +28,8 @@ const CustomFilters = ({filters,customStyles,siteLabels,programs,showFilter,
                   onChange={(date) => { onDateChange(date) }}
                   className='custom-date-select'
                   value={selectedDate}
-                  options={Object.keys(programs).reduce((ack, key) => ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
+                  options={Object.keys(programs).reduce((ack, key) =>
+                     ([...ack, { value: key, label: moment(key).format('DD-MM-YYYY')}]), [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }])}
                 />
               </div>}
               <div onClick={()=>setShowFilter(!showFilter)} style={{ background:`${showFilter?"#313131":""}`,color:`${showFilter?"white":""}`,width: "48px",height: "42px"}} className='border py-2 px-12 rounded-1 cursor-pointer border-black-color'>
