@@ -11,9 +11,9 @@ import { useRouter } from 'next/router';
 
 const in_array = require("in_array");
 
-const loadModule = (theme) => {
+const loadModule = (theme,programView) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/program/Variation1`)
+     import(`components/themes/${theme}/program/listing/${programView}`)
   );
   return Component;
 };
@@ -29,7 +29,7 @@ const Program = (props) => {
     return in_array(module.alias, ["agenda"]);
   });
   const Component = useMemo(
-    () => loadModule(event.theme.slug),
+    () => loadModule(event.theme.slug,moduleVariation[0]["variation_slug"]),
     [event]
   );
   const { programs, tracks, labels } = useSelector(programSelector);

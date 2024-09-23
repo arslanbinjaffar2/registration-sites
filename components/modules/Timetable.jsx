@@ -7,7 +7,7 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/timetable/${variation}`)
+    import(`components/themes/${theme}/program/listing/${variation}`)
   );
   return Component;
 };
@@ -15,7 +15,7 @@ const loadModule = (theme, variation) => {
 const Timetable = () => {
   const { event } = useSelector(eventSelector);
   let moduleVariation = event.moduleVariations.filter(function (module, i) {
-    return in_array(module.alias, ["time_table"]);
+    return in_array(module.alias, ["agenda"]);
   });
 
   const Component = useMemo(
