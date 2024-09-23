@@ -33,16 +33,16 @@ const MasterLayoutRoute = ({ children, event }) => {
     if (lastSegment == 'documents' && !isFound) {
         router.push(`/${event.url}`)
     }
-
+    console.log(event.theme.slug);
     return (
         <>
 
             {event ? (
                 <>
-                    <Header />
+                    {event.theme.slug === 'theme-1' && <Header />}
                     {showLogin && <LoginScreen />}
                     {children}
-                    <Footer />
+                    {event.theme.slug === 'theme-1' &&<Footer />}
                     <CookiePolicy/>
                 </>
             ) : (

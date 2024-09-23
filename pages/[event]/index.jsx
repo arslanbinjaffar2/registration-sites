@@ -12,18 +12,19 @@ import { getCookie, setCookie } from 'cookies-next';
 const Index = (props) => {
 
     const { event, loading } = useSelector(eventSelector);
-    console.log(event?.theme?.slug,'event.theme.slug');
+      console.clear();
+      console.log(event?.theme?.slug, "this is the event");
 
     return (
         <>
             <MetaInfo metaInfo={props.metaInfo} cookie={props.cookie} />
             {event ? (
+                <>
                 <MasterLayoutRoute event={event}>
-                    <>
                     {event?.theme?.slug === 'theme-1' && <Home />}
                     {event?.theme?.slug === 'theme-2' && <Home2 />}
-                    </>
                 </MasterLayoutRoute>
+                    </>
             ) : (
                 <PageLoader />
             )}

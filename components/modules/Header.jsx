@@ -9,8 +9,9 @@ import moment from "moment";
 const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
+  console.log(theme,'theme',variation);
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/header/${variation}`)
+    import(`components/themes/${theme}/header/Variation4`)
   );
   return Component;
 };
