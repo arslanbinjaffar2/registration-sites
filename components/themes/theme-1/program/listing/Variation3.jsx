@@ -174,11 +174,15 @@ const getProgramsByTrack = (programs, track) => {
           ack.push({ ...program, 'workshop_programs': find });
         }
       }
-      else if (program.program_tracks.length > 0) {
+      else if (program.program_tracks.length > 0 ) {
         const find = program.program_tracks.find((item) => (item.name === track));
         if (find !== null && find !== undefined) {
           ack.push(program);
         }
+      }
+      else if (program.program_tracks.length === 0) {
+        // Include programs with empty program_tracks
+        ack.push(program);
       }
       return ack;
     }, []);
