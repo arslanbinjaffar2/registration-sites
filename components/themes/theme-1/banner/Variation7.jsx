@@ -141,7 +141,7 @@ function getMediaQueryForDevice(device) {
     Object.keys(cssProperties.desktop).forEach((selector) => {
       let selectorRules = `${selector} { `;
       Object.keys(cssProperties.desktop[selector]).forEach((property) => {
-          if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
+          if (property === 'z-index' || property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
             selectorRules += `${property}: ${cssProperties.desktop[selector][property]}; `;
           } else if (property === 'line-height') {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
@@ -166,7 +166,7 @@ function getMediaQueryForDevice(device) {
       Object.keys(cssProperties[device]).forEach((selector) => {
         let selectorRules = `${selector} { `;
         Object.keys(cssProperties[device][selector]).forEach((property) => {
-            if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
+            if (property === 'z-index' || property === 'border-style' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
             selectorRules += `${property}: ${(cssProperties[device][selector][property])}; `;
           } else if (property === 'top') {
             if (device === 'tablet') {
@@ -246,6 +246,7 @@ function replaceDivWithATag(html) {
 					<div style={{fontSize: 16,height: newSliderHeight ? `${newSliderHeight}px`: '720px'}} key={i} className="slide-wrapper">
             {slides.background_image.video && (
                 <div className="ebs-video-fullscreen position-absolute">
+                  
                   {slides.background_image.video.includes('youtube.com') || slides.background_image.video.includes('youtu.be') ? (
                     <iframe
                       width="100%"
@@ -265,7 +266,9 @@ function replaceDivWithATag(html) {
                 </div>
               )}
 
-            <div  dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}}  style={{height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.video ? '' :slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.video ? '' : slides.background_image.color}}>
+            <div  style={{backgroundRepeat: 'no-repeat',height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.video ? '' :slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.video ? '' : slides.background_image.color}}>
+              {slides.background_image.link && <a style={{zIndex: 0}} href={slides.background_image.link} className="d-block w-100 h-100 position-absolute start-0 top-0" />}
+              <div style={{zIndex: 9}} dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}} />
             </div>
 					</div>
 				)}
