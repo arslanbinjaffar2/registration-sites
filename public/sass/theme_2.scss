@@ -1,0 +1,52 @@
+.ebs-master-theme-v2 {
+	.edge-title-separator {
+		display: none;
+	}
+		.edgtf-title-section-holder .edgtf-section-subtitle {
+			font-size: 16px;
+		}
+		.ebs-sponsor-v1 {
+			border-bottom-width: 3px !important;
+			border-bottom-color: var(--primary) !important;
+			border-radius: 4px;
+		}
+}
+.edgtf-team-list-holder.ebs-speaker-variation-v1 {
+	.edgtf-team-list-holder-inner {
+		.edgtf-team-image {
+			.edgtf-team-social-holder {
+				&::after {
+					background-color: rgba($white, 0.8);
+					border-radius: 4px;
+				}
+				.social-icons {
+					a {
+						font-size: 16px;
+						margin: 0 5px;
+						color: var(--primary);
+					}
+				}
+				.ebs-border-wrapp {
+					a {
+						font-size: 12px;
+						color: $default-text-color;
+					}
+				}
+			}
+		}
+	}
+		.edgtf-team {
+			.edgtf-team-info{
+				margin-top: 20px;
+				.edgtf-team-name {
+					text-transform: none;
+					font-size: 24px;
+					margin: 0;
+				}
+				.ebs-attendee-designation {
+					padding-top: 5px;
+					font-size: 16px;
+				}
+			}
+		}
+}

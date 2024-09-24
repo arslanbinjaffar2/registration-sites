@@ -39,7 +39,7 @@ const Variation1 = (props) => {
 
   }
     return (
-      <div className="module-section">
+      <div className="module-section h-100">
         <WrapperLayout moduleVariation={props.moduleVariation}>
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined && props.event.description.info.title !== "" && <HeadingElement dark={true} label={props.event.description.info.title}  align={'left'} />}

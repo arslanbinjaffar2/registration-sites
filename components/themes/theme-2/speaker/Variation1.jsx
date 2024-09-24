@@ -101,6 +101,30 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                      </div>
                                    </div>
                                  )}
+                                 <div className="text-center px-3">
+                                  {<div className="ebs-border-wrapp">
+                                      {speaker.email && (
+                                        <div className="ebs-email-phone">
+                                          <a
+                                            href={`mailto:${speaker.email}`}
+                                            className="edgtf-team-position"
+                                          >
+                                            {speaker.email}
+                                          </a>
+                                        </div>
+                                      )}
+                                      {speaker.phone && (
+                                        <div className="ebs-email-phone">
+                                          <a
+                                            href={`tel: ${speaker.phone}`}
+                                            className="edgtf-team-position"
+                                          >
+                                            {speaker.phone}
+                                          </a>
+                                        </div>
+                                      )}
+                                    </div>}
+                                 </div>
                                </div>
                             </div>
                           </ActiveLink>
@@ -136,28 +160,6 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
                                     speaker.info.company_name}
                                 </div>
                               )}
-                            {listing && <div className="ebs-border-wrapp">
-                              {speaker.email && listing && (
-                                <div className="ebs-email-phone">
-                                  <a
-                                    href={`mailto:${speaker.email}`}
-                                    className="edgtf-team-position"
-                                  >
-                                    {speaker.email}
-                                  </a>
-                                </div>
-                              )}
-                              {speaker.phone && listing && (
-                                <div className="ebs-email-phone">
-                                  <a
-                                    href={`tel: ${speaker.phone}`}
-                                    className="edgtf-team-position"
-                                  >
-                                    {speaker.phone}
-                                  </a>
-                                </div>
-                              )}
-                            </div>}
                           </div>
                          
                         </div>
