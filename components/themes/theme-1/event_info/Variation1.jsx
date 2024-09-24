@@ -77,7 +77,7 @@ const Variation1 = (props) => {
                 {(props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd  &&  <a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a>  }
               </div>
             </div>
-            {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined && <div className="col-lg-6 offset-lg-1">
+            {props.event.description.info.image && props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined && <div className="col-lg-6 offset-lg-1">
               <figure>
                 <img style={{width: '100%'}} src={props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined ? `${process.env.NEXT_APP_EVENTCENTER_URL}/assets/event_site/upload_images/${props.event.description.info.image}` : "https://via.placeholder.com/660x440.png"} alt="" />
               </figure>
