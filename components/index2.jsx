@@ -26,6 +26,10 @@ const CustomSection2 = lazy(() => import("components/modules/CustomSection2"));
 const CustomSection3 = lazy(() => import("components/modules/CustomSection3"));
 const SortableBanner = lazy(() => import("components/modules/SortableBanner"));
 const News = lazy(() => import("components/modules/news/News"));
+const pluginWrapper = () => {
+  
+  require(`public/fullpage.scrollOverflowReset.min`);
+};
 
 const Index2 = () => {
   const { event } = useSelector(eventSelector);
@@ -36,121 +40,53 @@ const Index2 = () => {
     return layoutSections.map((section, i) => {
       if (section.status !== 1) return null;
 
+      const wrapWithDiv = (Component, props = {}) => (
+        <div className="section" key={i}>
+          <div className="inner-section">
+            <Component {...props} />
+          </div>
+        </div>
+      );
+
       switch (section.module_alias) {
         case "social_media_share":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <SocialShare />
-            </div>
-          );
+          return wrapWithDiv(SocialShare);
         case "event_description":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <EventDescription event={event} />
-            </div>
-          );
+          return wrapWithDiv(EventDescription, { event });
         case "custom_html1":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <CustomSection1 />
-            </div>
-          );
+          return wrapWithDiv(CustomSection1);
         case "custom_html2":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <CustomSection2 />
-            </div>
-          );
+          return wrapWithDiv(CustomSection2);
         case "custom_html3":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <CustomSection3 />
-            </div>
-          );
+          return wrapWithDiv(CustomSection3);
         case "event_info":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <EventInformation />
-            </div>
-          );
+          return wrapWithDiv(EventInformation);
         case "newsletter_subscription":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <NewsLetterSubscription />
-            </div>
-          );
+          return wrapWithDiv(NewsLetterSubscription);
         case "agenda":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Program homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Program, { homePage: true });
         case "sponsor":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Sponsor homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Sponsor, { homePage: true });
         case "top_banner":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Banner />
-            </div>
-          );
+          return wrapWithDiv(Banner);
         case "banner_sort":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <SortableBanner />
-            </div>
-          );
+          return wrapWithDiv(SortableBanner);
         case "register_now":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <RegisterNow />
-            </div>
-          );
+          return wrapWithDiv(RegisterNow);
         case "exhibitor":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Exhibitor homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Exhibitor, { homePage: true });
         case "speaker":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Speaker homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Speaker, { homePage: true });
         case "map":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Map />
-            </div>
-          );
+          return wrapWithDiv(Map);
         case "video":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Video homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Video, { homePage: true });
         case "gallery":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Gallery homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Gallery, { homePage: true });
         case "news":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <News homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(News, { homePage: true });
         case "count_down":
-          return (
-            <div className="section overflow-hidden" key={i}>
-              <Counter homePage={true} />
-            </div>
-          );
+          return wrapWithDiv(Counter, { homePage: true });
         default:
           return null;
       }
@@ -163,11 +99,21 @@ const Index2 = () => {
         {loadedSections !== loadCount && <PageLoader className="fixed" />}
         {event && layoutSections && (
           <ReactFullpage
-            licenseKey={"YOUR_KEY_HERE"}
+            pluginWrapper={pluginWrapper}
+            licenseKey={"2M0Y7-J7Q98-3ZUK9-56J4J-JZJWP"}
+            scrollOverflowResetKey={"6D0952DB-42C940EC-9A06348B-76575F8A"}
             scrollingSpeed={1000}
+            scrollOverflowReset={true}
+            scrollOverflow={true}
+            autoScrolling={true}
+            scrollHorizontally={true}
+            navigation
+            navigationPosition={"right"}
             render={() => {
               return (
-                <ReactFullpage.Wrapper>{renderSections()}</ReactFullpage.Wrapper>
+                <ReactFullpage.Wrapper>
+                  {renderSections()}
+                </ReactFullpage.Wrapper>
               );
             }}
           />

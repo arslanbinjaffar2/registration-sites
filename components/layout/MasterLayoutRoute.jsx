@@ -39,10 +39,11 @@ const MasterLayoutRoute = ({ children, event }) => {
 
             {event ? (
                 <>
-                    {event.theme.slug === 'theme-1' && <Header />}
+                    <Header />
                     {showLogin && <LoginScreen />}
-                    {children}
-                    {event.theme.slug === 'theme-1' &&<Footer />}
+                    {event.theme.slug === 'theme-1' && {children}}
+                    {event.theme.slug === 'theme-2' && <div className='ebs-master-theme-v2'>{children}</div>}
+                    {event.theme.slug === 'theme-1' && <Footer />}
                     <CookiePolicy/>
                 </>
             ) : (
