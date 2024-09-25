@@ -10,6 +10,19 @@
 			border-bottom-color: var(--primary) !important;
 			border-radius: 4px;
 		}
+		.fp-overflow {
+			.inner-section {
+				.module-section {
+					.edgtf-parallax-section-holder {
+						min-height: 100vh;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+					}
+				}
+			}
+		}
 }
 .edgtf-team-list-holder.ebs-speaker-variation-v1 {
 	.edgtf-team-list-holder-inner {
