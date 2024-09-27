@@ -2,33 +2,14 @@ import React, {
   useState,
   useEffect,
   Fragment,
-  useRef,
-  useCallback,
 } from "react";
-import HeadingElement from "components/ui-components/HeadingElement";
-import ProgramItem2 from "components/themes/theme-1/program/components/ProgramItem2";
-import WorkShop from "components/themes/theme-1/program/components/WorkShop";
 import ReactSelect from "react-select";
-import { localeProgramMoment } from "helpers/helper";
 import moment from "moment";
-import ProgramDetail from "../components/ProgramDetail";
-import CustomFilter from "../components/customFilters";
-import WorkShopTitle from "../components/workshopTitle";
-import { useDispatch } from "react-redux";
-import { setProgramDetail } from "../../../../../store/Slices/ProgramListingSlice";
+import StyleVariableForTimeline from '../components/StyleVariableForTimeline'
 import Timeline from "../components/timeline";
-export const customStyles = {
-  control: (base) => ({
-    ...base,
-    height: 38,
-    minHeight: 38,
-    backgroundColor: "#FBFDFF",
-    borderColor: "#E9EDF0",
-    width: "100%",
-    maxWidth: "100%",
-  }),
-};
-const Variation3 = ({
+import {BgStyles,customStyles, getProgramsByLocation, getProgramsByTrack, searchThroughProgram} from '../utils/programs'
+import {useDimention,useDebounce} from '../utils/customHooks'
+const Variation7 = ({
   programs,
   eventUrl,
   tracks,
@@ -40,35 +21,21 @@ const Variation3 = ({
   agendaSettings,
   moduleVariation,
 }) => {
-  const dispatch = useDispatch();
-  const [width, setWidth] = useState(window.innerWidth);
+  const {width}=useDimention()
+  const [value, setValue] = useState('');
+  const {search}=useDebounce(value)
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [value, setValue] = useState("");
-  const [search, setSearch] = useState("");
-  const [showDetail, setShowDetail] = useState(false);
-  const detailRef = useRef(null);
-  const [showFilter, setShowFilter] = useState(false);
   const [programsState, setProgramsState] = useState({
     id: 0,
     programArray: [],
   });
-  console.log(programsState, "programState");
   const onDateChange = (date) => {
     setSelectedDate(date);
   };
-  const onLocationChange = (location) => {
-    setSelectedLocation(location);
-  };
-  const onTrackChange = (track) => {
-    setSelectedTrack(track);
-  };
-  const handleItemClick = (item, programArray) => {
-    setProgramsState({ ...programsState, id: item.id, programArray });
-    dispatch(setProgramDetail({ id: item.id }));
-  };
+
   const handleResetFilters = () => {
     setValue("");
     setSelectedTrack({ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK });
@@ -97,35 +64,8 @@ const Variation3 = ({
     setProgramsLoc(programsObj);
   }, [selectedDate, selectedTrack, search, selectedLocation]);
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setSearch(value);
-    }, 500);
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value]);
 
-  React.useEffect(() => {
-    const link = document.createElement("link");
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <div
@@ -133,11 +73,7 @@ const Variation3 = ({
       className="module-section ebs-program-listing-wrapper ebs-transparent-box"
       style={bgStyle}
     >
-      <style dangerouslySetInnerHTML={{ __html: `
-      .timeline-container .ebs-list-workshop:first-of-type::before {background:${bgStyle.backgroundColor}}
-        .timeline-container .ebs-list-workshop:last-of-type::after {background:${bgStyle.backgroundColor}}
-        ` }} />
-
+    <StyleVariableForTimeline bgStyle={bgStyle}/>
       <div className="container">
         <div className="d-flex justify-content-start p-3 gap-4 flex-wrap shadow-light-4px-20px">
           {eventsiteSettings?.agenda_search_filter === 1 && (
@@ -189,74 +125,81 @@ const Variation3 = ({
           </div>
         </div>
         <div className="ebr_program_variation7-container ">
-         {
-           Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key,k)=>{
-            return(
-                <>
-                {programsLoc[key].map((item)=>{
-                    return(
-                        <>
-                         {item.workshop_id>0 && 
-                        <>
-                        <div className="ebr_session_title_container border d-flex justify-content-between align-items-center my-4">
-                            <div className="ebr-time-title-container d-flex  align-items-center">
-                            <p className='m-0 start_end fw-semibold'> 
-                                {/* {moment(`${item.date} ${item.start_time}`).format(
-                                    "HH:mm"
-                                )} -  {moment(`${item.date} ${item.end_time}`).format(
-                                    "HH:mm"
-                                )} */}
-                                09:00 - 12:30
-                            </p>
-                            <h4 className="m-0 fw-semibold">{item.program_workshop}</h4>
+          {Object.values(programsLoc).length > 0 &&
+            programsLoc &&
+            Object.keys(programsLoc).map((key, k) => {
+              return (
+                <Fragment>
+                  {programsLoc[key].map((item) => {
+                    return (
+                      <Fragment>
+                        {item.workshop_id > 0 && (
+                          <Fragment>
+                            <div className="ebr_session_title_container border d-flex justify-content-between align-items-center my-4">
+                              <div className="ebr-time-title-container d-flex  align-items-center">
+                                <p className="m-0 start_end fw-semibold">
+                                  {moment(
+                                    `${item.date} ${item.start_time}`
+                                  ).format("HH:mm")}{" "}
+                                  -{" "}
+                                  {moment(
+                                    `${item.date} ${item.end_time}`
+                                  ).format("HH:mm")}
+                                </p>
+                                <h4 className="m-0 fw-semibold">
+                                  {item.program_workshop}
+                                </h4>
+                              </div>
+                              <div className="d-flex gap-1 align-items-center location_container">
+                                <span className="material-symbols-outlined icon">
+                                  location_on
+                                </span>
+                                <p className="text m-0">
+                                  {`${
+                                    item.location.length > 25
+                                      ? item.location.substring(0, 25) + "...."
+                                      : item.location
+                                  }`}
+                                </p>
+                              </div>
                             </div>
-                            <div className="d-flex gap-1 align-items-center location_container">
-                            <span className="material-symbols-outlined icon">
-                                location_on
-                            </span>
-                            <p className="text m-0">
-                                {`${item.location.length>25?item.location.substring(0,25)+"....":item.location}`}
-                            </p>
+                            <div className="timeline-container">
+                              <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
+                                {item.workshop_programs.map((program) => {
+                                  return (
+                                    <>
+                                      <div className="ebr-time-title-container d-flex  align-items-center">
+                                        <p className="m-0 start_end fw-semibold">
+                                          {moment(
+                                            `${item.date} ${item.start_time}`
+                                          ).format("HH:mm")}{" "}
+                                          -{" "}
+                                          {moment(
+                                            `${item.date} ${item.end_time}`
+                                          ).format("HH:mm")}
+                                        </p>
+                                        <div className="d-flex align-items-center gap-5">
+                                          <Timeline />
+                                          <p className="m-0">{program.topic}</p>
+                                        </div>
+                                      </div>
+                                    </>
+                                  );
+                                })}
+                              </div>
                             </div>
-                        </div>
-                        <div className="timeline-container">
-                          <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
-                           {item.workshop_programs.map((program)=>{
-                            return(
-                            <>
-                            <div className="ebr-time-title-container d-flex  align-items-center">      
-                            <p className='m-0 start_end fw-semibold'> 
-                                {/* {moment(`${item.date} ${item.start_time}`).format(
-                                    "HH:mm"
-                                )} -  {moment(`${item.date} ${item.end_time}`).format(
-                                    "HH:mm"
-                                )} */}
-                                09:00 - 12:30
-                            </p>
-                            <div className="d-flex align-items-center ">
-                            <Timeline/>  
-                            <p className="m-0">{program.topic}</p>
-                            </div> 
-                            </div>
-                                </>
-                            )
-                           })}                            
-                          </div>
-                        
-                        </div>
-                         </>
-                         }
-                        </>
-                    )
-                })}
-                </>
-            )
-           })
-         }   
+                          </Fragment>
+                        )}
+                      </Fragment>
+                    );
+                  })}
+                </Fragment>
+              );
+            })}
         </div>
       </div>
     </div>
   );
 };
 
-export default Variation3;
+export default Variation7;
