@@ -19,7 +19,7 @@ const Variation1 = ({event, siteLabels}) => {
         }
         {event.eventsiteSettings.use_reg_form_footer === 1 && 
             <>
-            <footer id="ebs-footer" className="footer text-break">
+            <footer id="ebs-footer" className="footer ebs-variation-dark text-break">
                 <style dangerouslySetInnerHTML={{ __html: height }}></style>
                 <div style={{paddingLeft: 0, paddingRight:0, borderRadius: 0,margin: 0}} className="wrapper-box order-summry">
                     <div className="container">
@@ -28,20 +28,20 @@ const Variation1 = ({event, siteLabels}) => {
                             <div className="row">
                                 {event.eventOpeningHours.length > 0 && <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_ONE}</h5>
-                                    
-                                    { event.eventOpeningHours.map((item, i)=>(
+                                    {event.eventOpeningHours.map((item, i)=>(
                                         <div style={{marginBottom:"10px"}} key={i}>
                                             <p className='icon d-flex'>
                                                 <i className='material-icons'>date_range</i>
-                                                <time dateTime="2019-31-12">{`${localeMomentEventDates(item.date, event.language_id)}`}</time>
+                                                <time dateTime="2019-31-12" >{`${localeMomentEventDates(item.date, event.language_id)}`}</time>
                                             </p>
                                             <p className="icon d-flex" >
                                                 <i className='material-icons'>access_time</i>
-                                                {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
+                                               {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}
                                             </p>
-                                        </div> 
+                                        </div>
                                     ))}
-                                    {event.eventsiteSettings.calender_show == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">  {event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
+
+                                   {event.eventsiteSettings.calender_show == 1 && <a href={`${process.env.NEXT_APP_EVENTCENTER_URL}/event/${event.url}/detail/addToCalender`} style={{textDecoration: 'underline'}} className="link">{event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL !== undefined ? event.labels.EVENTSITE_ADD_TO_CALENDAR_LABEL : "Add to Calendar"}</a>}
                                 </div>}
                                 <div className="col-3">
                                     <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_TWO}</h5>
@@ -55,7 +55,7 @@ const Variation1 = ({event, siteLabels}) => {
                                         {event?.info?.location_address && (
                                             <React.Fragment>
                                                 {event?.info?.location_address}<br />
-                                            </React.Fragment>
+                                                </React.Fragment>
                                         )}
                                         
                                         {event?.country && (
@@ -70,10 +70,10 @@ const Variation1 = ({event, siteLabels}) => {
                                     <div className="col-3">
                                         <h5 className='link'>{event?.labels?.EVENT_SITE_FOOTER_TITLE_THREE}</h5>
                                         {event.eventContactPersons.length > 0 && event.eventContactPersons.map((person, i)=>(
-                                            <div style={{marginBottom:"10px"}} key={i}>
-                                                {(person.first_name !== '' || person.first_name !== '') && <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>}
-                                                {person.email !== '' && <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>}
-                                                {person.phone !== '' && <p>{event?.labels?.GENERAL_PHONE}: {person.phone}</p>}
+                                            <div style={{marginBottom:"10px"}}  key={i}>
+                                            {(person.first_name !== '' || person.first_name !== '') && <p style={{margin:"0px"}}>{person.first_name} {" "} {person.last_name}</p>}
+                                            {person.email !== '' && <p>{event?.labels?.REGISTRATION_FORM_EMAIL}: <a href={`mailto:${person.email}`}>{person.email}</a></p>}
+                                            {person.phone !== '' && <p>{event?.labels?.GENERAL_PHONE}: {person.phone}</p>}
                                             </div>
                                         ))}
                                     </div>
@@ -90,7 +90,7 @@ const Variation1 = ({event, siteLabels}) => {
                                         </div>
                                     )}
                                 </div>
-                                ) :null}
+                                 ) :null}
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import PageContent from "./modules/manage-packages/PageContent";
 import ReactFullpage from "@fullpage/react-fullpage";
 
 // Lazy imports
+import Footer from "./modules/Footer";
 const Speaker = lazy(() => import("components/modules/speakers/Speaker"));
 const Gallery = lazy(() => import("components/modules/Gallery"));
 const Video = lazy(() => import("components/modules/Video"));
@@ -115,6 +116,11 @@ const Index2 = () => {
               return (
                 <ReactFullpage.Wrapper>
                   {renderSections()}
+                  <div className="section">
+                    <div className="inner-section">
+                      <Footer  />
+                    </div>
+                  </div>
                 </ReactFullpage.Wrapper>
               );
             }}
