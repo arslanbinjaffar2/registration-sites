@@ -46,12 +46,12 @@ const Variation1 = (props) => {
           <div className="row d-flex ebs-about-event-section">
             <div className="col-lg-12">
               <div className="ebs-event-detail">
-                <div className="row align-items-center justify-content-center">
+                <div className="row pb-5 align-items-center justify-content-center">
                   {props.openingHours.length > 0 && 
                     <>
                       <div className='col-md-4 h-100'>
-                        <div className='ebs-eventinfo-v1 text-white h-100 border rounded-2 p-3 text-center'>
-                          <div className='ebs'>
+                        <div className='ebs-eventinfo-v1 text-white h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center'>
+                          <div className='ebs-eventinfo-top'>
                             <i className="material-icons d-block text-primary">date_range</i>
                             <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_DATES !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_DATES : "Dates"}</strong>
                           </div>
@@ -61,9 +61,11 @@ const Variation1 = (props) => {
                         </div>
                       </div>
                       <div className='col-md-4 h-100'>
-                        <div className='ebs-eventinfo-v1 text-white h-100 border rounded-2 p-3 text-center'>
-                          <i className="material-icons d-block text-primary">watch_later</i>
-                          <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
+                        <div className='ebs-eventinfo-v1 text-white h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center'>
+                        <div className='ebs-eventinfo-top'>
+                           <i className="material-icons d-block text-primary">watch_later</i>
+                           <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_OPENING_HOURS : "Opening Hours"}</strong>
+                         </div>
                           {props.openingHours.length > 0 && props.openingHours.map((item,i)=>(
                             <p className='m-0' key={i}> {localeMomentOpeningHours(item.date, props.event.language_id)} {" "} {`${moment(item?.date + ' ' + item?.start_time).format('HH:mm')} - ${moment(item?.date + ' ' + item?.end_time).format('HH:mm')}`}</p>
                           ))}
@@ -72,16 +74,18 @@ const Variation1 = (props) => {
                     </>
                   }
                   <div className='col-md-4 h-100'>
-                    <div className='ebs-eventinfo-v1 text-white h-100 border rounded-2 p-3 text-center'>
-                      <i className="material-icons d-block text-primary">location_on</i>
-                      <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_LOCATION !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_LOCATION : "Location"}</strong>
+                    <div className='ebs-eventinfo-v1 text-white h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center'>
+                     <div className='ebs-eventinfo-top'>
+                       <i className="material-icons d-block text-primary">location_on</i>
+                       <strong className="break">{props.labels.EVENT_SITE_EVENT_INFO_LOCATION !== undefined ? props.labels.EVENT_SITE_EVENT_INFO_LOCATION : "Location"}</strong>
+                     </div>
                       <p className='m-0'>{props.event.info && props.event.info.location_name}</p>
                       <p className='m-0'>{props.event.info && props.event.info.location_address}</p>
                       <p className='m-0'>{props.event.country}</p>
                     </div>
                   </div>
                 </div>
-                {(props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd &&  <div className='col-12 d-flex align-items-center justify-content-center'><a style={{border: '2px solid #fff', color: '#fff'}} href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid border-0 rounded-pill">{props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a></div>  }
+                {(props.event.description && props.event.description.info.show_register_now == 1) && props.registerDateEnd &&  <div className='col-12 d-flex align-items-center justify-content-center'><a href={props.regisrationUrl} rel="noopener" className="edgtf-btn edgtf-btn-medium edgtf-btn-solid border-0 rounded-pill">{props.event.labels.EVENTSITE_REGISTER_NOW2 ? props.event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'} </a></div>  }
               </div>
             </div>
             {/* {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.image !== undefined && <div className="col-lg-6 offset-lg-1">

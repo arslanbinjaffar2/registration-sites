@@ -1,4 +1,6 @@
 .ebs-master-theme-v2 {
+	word-break: break-word;
+	font-size: 16px;
 	.edge-title-separator {
 		display: none;
 	}
@@ -23,6 +25,58 @@
 				}
 			}
 		}
+	.ebs-newstheme-v1 {
+		.slick-slider {
+				margin-left: -10px;
+				margin-right: -10px;
+			}
+			.edgtf-post-title {
+				font-size: 24px;
+				margin-bottom: 15px;
+			}
+			.edgtf-post-info-date {
+				font-size: 14px;
+			}
+			.edgtf-post-excerpt {
+				color: $bordercc;
+				font-size: 18px;
+				line-height: 1.7;
+				h1,h2,h3,h5,h6 {
+					color: inherit;
+				}
+			}
+	}
+	.ebs-buttons-carousel {
+		position: absolute;
+		right: 0;
+		top: 15px;
+		z-index: 9;
+		display: flex;
+		gap: 15px;
+		.btn {
+			width: 48px;
+			height: 48px;
+			line-height: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.material-icons {
+				font-size: 38px;
+			}
+		}
+	}
+	.ebs-counter-themev2-v1 {
+		.countdown-amount {
+			font-size: 64px;
+			background: none;
+			border: 1px solid $border;
+			border-bottom: 3px solid var(--primary);
+		}
+		.countdown-period {
+			font-size: 18px;
+			text-transform: none;
+		}
+	}
 }
 .edgtf-team-list-holder.ebs-speaker-variation-v1 {
 	.edgtf-team-list-holder-inner {
@@ -62,4 +116,25 @@
 				}
 			}
 		}
+}
+.ebs-eventinfo-v1 {
+	margin-bottom: 24px;
+	min-height: 342px;
+	border-radius: 12px;
+	background: rgba($white, 0.1);
+	border: 1px solid rgba($white, 0.1);
+	backdrop-filter: blur(10px);
+	.ebs-eventinfo-top {
+		margin-bottom: 24px;
+		.material-icons {
+			font-size: 32px;
+			margin-bottom: 20px;
+		}
+		strong {
+			font-size: 24px;
+		}
+	}
+	p {
+		font-size: 16px;
+	}
 }

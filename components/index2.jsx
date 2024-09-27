@@ -87,6 +87,8 @@ const Index2 = () => {
           return wrapWithDiv(News, { homePage: true });
         case "count_down":
           return wrapWithDiv(Counter, { homePage: true });
+        case "registration_packages":
+          return wrapWithDiv(PageContent, { homePage: true });
         default:
           return null;
       }
