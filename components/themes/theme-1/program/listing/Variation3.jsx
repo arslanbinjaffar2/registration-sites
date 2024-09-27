@@ -10,7 +10,7 @@ import CustomFilter from '../components/customFilters'
 import WorkShopTitle from '../components/workshopTitle';
 import { useDispatch } from 'react-redux';
 import {setProgramDetail} from '../../../../../store/Slices/ProgramListingSlice'
-const customStyles = {
+export const customStyles = {
   control: base => ({
     ...base,
     height: 38,
@@ -110,7 +110,8 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
  
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={bgStyle}>
-      <style dangerouslySetInnerHTML={{ __html: `.timeline-container .ebs-list-workshop:first-of-type::before {background:${bgStyle.backgroundColor}}
+      <style dangerouslySetInnerHTML={{ __html: `
+      .timeline-container .ebs-list-workshop:first-of-type::before {background:${bgStyle.backgroundColor}}
         .timeline-container .ebs-list-workshop:last-of-type::after {background:${bgStyle.backgroundColor}}
         ` }} />
       {/* <div className="container">
@@ -164,7 +165,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
 export default Variation3
 
 
-const getProgramsByTrack = (programs, track) => {
+export const getProgramsByTrack = (programs, track) => {
   const newObject = {};
   Object.keys(programs).forEach((date) => {
     const items = programs[date].reduce((ack, program) => {
@@ -240,7 +241,7 @@ const worshopProgramsByLocation = (programs, location) => {
 }
 
 
-const searchThroughProgram = (programs, searchText) => {
+export const searchThroughProgram = (programs, searchText) => {
   const regex = new RegExp(searchText, 'i'); // create a case-insensitive regex
   const newObject = {};
   Object.keys(programs).forEach((date) => {
@@ -358,4 +359,28 @@ const searchThroughworshopPrograms = (programs, searchText) => {
    return regex.test(program.topic)
   })
   return items;
+}
+
+
+export const getProgramthroughWorkshopSessions=(programs,sessions)=>{
+  const regex = new RegExp(sessions, 'i'); // create a case-insensitive regex
+  const newObject = {};
+  Object.keys(programs).forEach((date) => {
+    const items = programs[date].reduce((ack, program) => {
+      let add = false;
+
+      // Search in program_workshop
+      if (program.program_workshop && regex.test(program.program_workshop)) {
+        add = true;
+      }
+      if (add) {
+        ack.push(program);
+      }
+      return ack;
+    }, []);
+    if (items.length > 0) {
+      newObject[date] = items;
+    }
+  });
+  return newObject;
 }
