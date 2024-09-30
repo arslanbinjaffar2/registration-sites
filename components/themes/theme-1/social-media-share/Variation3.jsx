@@ -44,7 +44,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
       return (
         <div
           style={{ backgroundImage: `url(${_bgimage})` }}
-          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper"
           ref={_parallax}
         >
           {children}
@@ -53,7 +53,7 @@ const Variation3 = ({ event, settings, socialMediaShare, labels }) => {
     } else {
       return (
         <div
-          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+          className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper"
           ref={_parallax}
         >
           {children}

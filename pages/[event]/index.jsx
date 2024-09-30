@@ -12,8 +12,8 @@ import { getCookie, setCookie } from 'cookies-next';
 const Index = (props) => {
 
     const { event, loading } = useSelector(eventSelector);
-      console.clear();
-      console.log(event?.theme?.slug, "this is the event");
+    console.clear();
+    console.log(event?.registration_site_theme_onepager,'theme settings');
 
     return (
         <>
@@ -21,8 +21,8 @@ const Index = (props) => {
             {event ? (
                 <>
                 <MasterLayoutRoute event={event}>
-                    {event?.theme?.slug === 'theme-1' && <Home />}
-                    {event?.theme?.slug === 'theme-2' && <Home2 />}
+                    {event?.registration_site_theme_onepager === 0 && <Home />}
+                    {event?.registration_site_theme_onepager === 1 && <Home2 />}
                 </MasterLayoutRoute>
                     </>
             ) : (

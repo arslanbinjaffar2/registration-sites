@@ -12,7 +12,7 @@ const in_array = require("in_array");
 
 const loadModule = (theme, variation) => {
   const Component = React.lazy(() =>
-    import(`components/themes/${theme}/sponsor/Variation1`)
+    import(`components/themes/${theme}/sponsor/${variation}`)
   );
   return Component;
 };

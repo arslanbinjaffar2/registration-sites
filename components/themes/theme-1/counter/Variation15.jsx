@@ -7,7 +7,7 @@ import Countdown, { zeroPad } from "react-countdown";
 const Completionist = ({ event, completed }) => (
   <div className="col-12">
   <div className="container">
-     {(event.eventsiteSettings.show_count_down_text == 0 || (completed && event.count_down_section && event.count_down_section.expiry_message)) && (
+    {(event.eventsiteSettings.show_count_down_text == 0 || (completed && event.count_down_section && event.count_down_section.expiry_message)) && (
       <div className="text-center fs-4 pt-5">
           <div dangerouslySetInnerHTML={{ __html: event.count_down_section.expiry_message }} />
       </div>
@@ -15,30 +15,53 @@ const Completionist = ({ event, completed }) => (
   </div>
   </div>
 );
-const Variation11 = ({ event, labels, settings }) => {
+
+const Variation15 = ({ event, labels, settings }) => {
     // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
+   
       return (
         <React.Fragment>
-          <div className="ebs-countdown-wrapp d-flex w-100 countdown-wrapp ebs-counter-v10">
+          <div className="ebs-countdown-wrapp d-flex w-100 countdown-wrapp ebs-counter-v10 ebs-counter-themev2-v1">
             {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days / 30))}<span className="countdown-period m-0 text-white">Months</span></div></span>
+              <span className="rounded-0 countdown-amount">
+                <div className="position-absolute top-50 start-50 translate-middle">
+                    <div className="">{zeroPad(Math.floor(days / 30))}</div>
+                    <span className="countdown-period text-primary lh-1 mt-3">Months</span>
+                </div>
+            </span>
             </span>}
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days % 30))} <span className="countdown-period m-0 text-white">Days</span></div></span>
-              
+              <span className="rounded-0 countdown-amount">
+                <div className="position-absolute top-50 start-50 translate-middle">
+                    <div className="">{zeroPad(Math.floor(days % 30))}</div>
+                    <span className="countdown-period text-primary lh-1 mt-3">Days</span>
+                </div>
+            </span>
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(hours)}<span className="countdown-period m-0 text-white">Hours</span></div></span>
-              
+              <span className="rounded-0 countdown-amount">
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                       <div className="">{zeroPad(hours)}</div>
+                       <span className="countdown-period text-primary lh-1 mt-3">Hours</span>
+                    </div>
+                </span>
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(minutes)}<span className="countdown-period m-0 text-white">Minutes</span></div></span>
-              
+              <span className="rounded-0 countdown-amount">
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                       <div className="">{zeroPad(minutes)}</div>
+                       <span className="countdown-period text-primary lh-1 mt-3">Minutes</span>
+                    </div>
+                </span>
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(seconds)}<span className="countdown-period m-0 text-white">Seconds</span></div></span>
-              
+              <span className="rounded-0 countdown-amount">
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                       <div className="">{zeroPad(seconds)}</div>
+                       <span className="countdown-period text-primary lh-1 mt-3">Seconds</span>
+                    </div>
+                </span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}
@@ -46,10 +69,10 @@ const Variation11 = ({ event, labels, settings }) => {
       );
     
   };
-  const bgStyle =
-    settings && settings.background_color !== ""
+  const bgStyle = settings && settings.background_color !== ""
       ? { backgroundColor: settings.background_color }
       : {};
+
  const expiryDate = event.count_down_section && event.count_down_section.expiry_date
     ? new Date(event.count_down_section.expiry_date.replace(' ', 'T'))
     : null;
@@ -63,7 +86,7 @@ const Variation11 = ({ event, labels, settings }) => {
         <HeadingElement
           dark={false}
           page_header={true}
-      label={event.count_down_section && event.count_down_section.title}
+         label={event.count_down_section && event.count_down_section.title}
           align={settings.text_align}
         />
         {event.count_down_section && <div className="edgtf-title-section-holder">
@@ -82,4 +105,4 @@ const Variation11 = ({ event, labels, settings }) => {
   );
 };
 
-export default Variation11;
+export default Variation15;

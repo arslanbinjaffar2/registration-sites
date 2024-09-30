@@ -8,7 +8,7 @@ import {
   incrementFetchLoadCount, incrementLoadCount
 } from "store/Slices/GlobalSlice";
 import PageLoader from 'components/ui-components/PageLoader';
-const PageContent = ({ isHome }) => {
+const Variation2 = ({ isHome }) => {
   const router = useRouter();
   const { event } = useSelector(eventSelector);
   const { packages, loading, package_currency } = useSelector(formPackageSelector);
@@ -23,15 +23,16 @@ const PageContent = ({ isHome }) => {
     if (isHome == false && packages != null && packages == 0) {
       router.push(`${process.env.NEXT_APP_REGISTRATION_FLOW_URL}/${event.url}/attendee`); 
     }
-  }, [packages])
+  }, [packages]);
   return (
     <React.Fragment>
-      {packages ? (packages.length > 0 ? <main className="ebs-manage-packages" role="main">
+      {packages ? (packages.length > 0 ? <main className="ebs-manage-packages ebs-manage-packages-v2 py-0 ebs-master-default-wrapper" role="main">
+        <div className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding text-white text-center w-100">
         <div className="ebs-header-packages">
            <div className="container">
              <div className="ebs-header-content mw-100">
-              <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : ""}</h1>
-               <div className='text-start' dangerouslySetInnerHTML={{ __html: event?.eventsiteSettings?.package_description }} />
+              <h1>{(event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== undefined && event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING !== "") ? event.labels.EVENTSITE_MANAGE_PACKAGE_HEADING : "Event Pricing"}</h1>
+               <div className='ebs-iframe-content text-white' dangerouslySetInnerHTML={{ __html: event?.eventsiteSettings?.package_description }} />
              </div>
             </div> 
         </div>
@@ -46,6 +47,7 @@ const PageContent = ({ isHome }) => {
             </div>
           </div>
         </div> 
+        </div>
       </main> : null) : 
         <PageLoader />
       }
@@ -53,4 +55,4 @@ const PageContent = ({ isHome }) => {
   )
 }
 
-export default PageContent
+export default Variation2

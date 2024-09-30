@@ -57,8 +57,8 @@ const Variation12 = ({ event, labels, settings }) => {
     return (
         <div>
       {isValidDate && (
-    <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder">
-      <div className="position-relative pt-4" style={{zIndex: 5}}>
+    <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder ebs-master-default-wrapper">
+      <div className="position-relative pt-4 w-100" style={{zIndex: 5}}>
       <div className="edgtf-container-inner container">
         <HeadingElement
           dark={true}

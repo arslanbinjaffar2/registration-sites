@@ -33,7 +33,6 @@ const MasterLayoutRoute = ({ children, event }) => {
     if (lastSegment == 'documents' && !isFound) {
         router.push(`/${event.url}`)
     }
-    console.log(event.theme.slug);
     return (
         <>
 
@@ -41,9 +40,9 @@ const MasterLayoutRoute = ({ children, event }) => {
                 <>
                     <Header />
                     {showLogin && <LoginScreen />}
-                    {event.theme.slug === 'theme-1' && {children}}
-                    {event.theme.slug === 'theme-2' && <div className='ebs-master-theme-v2'>{children}</div>}
-                    {event.theme.slug === 'theme-1' && <Footer />}
+                    {event?.registration_site_theme_onepager === 0 && <>{children}</>}
+                    {event?.registration_site_theme_onepager === 1 && <div className='ebs-master-theme-v2'>{children}</div>}
+                    {event?.registration_site_theme_onepager === 0 && <Footer />}
                     <CookiePolicy/>
                 </>
             ) : (

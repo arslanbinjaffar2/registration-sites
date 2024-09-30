@@ -104,7 +104,7 @@ const settings = {
   return (
     <React.Fragment>
       {programsLoc && (
-        <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box ebs-default-padding">
+        <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-program-listing-wrapper-v2 ebs-transparent-box ebs-default-padding min-vh-100">
       <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_PROGRAM} desc={siteLabels.EVENTSITE_PROGRAM_DETAIL} align={'center'} />
       </div>
@@ -134,34 +134,13 @@ const settings = {
         </div>
         </div>
         <div className="container">
-          <div className="ebs-programs-date px-0">
+          <div className="ebs-programs-date px-0 rounded-pill">
             <Slider {...settings}>
               {schedule && schedule.map((date,j)=>
               <div key={j} className={`ebs-date-box ${date === selectedDate ? 'ebs-active' : ''}`} onClick={()=>{ onDateChange(date) }}>
                 <a href="javascript:void(0)" >{localeProgramMomentHome(language_id,date)}</a>
               </div>
               )}
-              {/* <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">2 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">3 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">4 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">5 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">6 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">7 Oct</a>
-              </div>
-              <div  className={`ebs-date-box`}>
-                <a href="javascript:void(0)">8 Oct</a>
-              </div> */}
             </Slider>
           </div>
           <div className="ebs-main-program-listing">
@@ -184,20 +163,20 @@ export default Variation1;
 
 const getProgramsByTrack = (programs, track) =>{
     const items = programs.reduce((ack, program)=>{
-                        if(program.workshop_id > 0){
-                          const find = worshopProgramsByTracks(program.workshop_programs, track);
-                          if(find.length > 0){
-                            ack.push({...program, 'workshop_programs': find });
-                          }
-                        }
-                        else if(program.program_tracks.length > 0){
-                          const find = program.program_tracks.find((item)=>(item.name === track));
-                          if(find !== null && find !== undefined){
-                              ack.push(program);
-                          }
-                        }  
-                        return ack;         
-                  }, []);
+      if(program.workshop_id > 0){
+        const find = worshopProgramsByTracks(program.workshop_programs, track);
+        if(find.length > 0){
+          ack.push({...program, 'workshop_programs': find });
+        }
+      }
+      else if(program.program_tracks.length > 0){
+        const find = program.program_tracks.find((item)=>(item.name === track));
+        if(find !== null && find !== undefined){
+            ack.push(program);
+        }
+      }  
+      return ack;         
+  }, []);
   return items;
 }
 

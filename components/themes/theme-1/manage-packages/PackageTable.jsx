@@ -60,8 +60,8 @@ const PackageTable = ({ eventUrl, eventTimeZone, item, labels, package_currency 
       <h3>{item.heading}</h3>
       <p>{item.sub_heading}</p>
       {item.enable_price === 1 ? <div className="ebs-table-price">{item.price}<small>{package_currency}</small></div> : null}
-      <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{ __html: item.description }}>
-      </div>
+      {item.description && <div className="ebs-table-price-listing" dangerouslySetInnerHTML={{ __html: item.description }}>
+      </div>}
       {registerDateEnd && item.eventsite_setting.registration_end_date !== "0000-00-00 00:00:00" &&
         <div className="ebs-table-timer">
           <h4>{(labels.EVENTSITE_TIME_LEFT !== undefined && labels.EVENTSITE_TIME_LEFT !== "") ? labels.EVENTSITE_TIME_LEFT : "Time left:"}</h4>

@@ -67,8 +67,8 @@ const Variation8 = ({ event, labels, settings }) => {
     return (
         <div>
       {isValidDate && (
-    <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder" >
-      <div className="position-relative" style={{zIndex: 5}}>
+    <div style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-counter-holder ebs-master-default-wrapper" >
+      <div className="position-relative w-100" style={{zIndex: 5}}>
       <div style={{maxWidth: 1900}} className="container-fluid px-5">
         <div className="row py-5 d-flex align-items-center text-center text-sm-center text-md-start justify-content-center">
           {(event.count_down_section.title || event.count_down_section.description) && <div className="col-sm-4">

@@ -9,7 +9,7 @@ const Completionist = ({ labels }) =>
     <h2>{labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON ? labels.RESGISTRATION_SITE_THIS_EVENT_IS_GOING_ON : "This event is going on."}</h2>
   </div>;
 
-const Variation1 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
+const Variation7 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo ,labels, registerDateEnd, checkTickets, waitingList, moduleVariation, registrationUrl }) => {
 
   // Renderer callback with condition
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -81,7 +81,7 @@ const Variation1 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo ,lab
   }
   const ticket_settings = eventSiteSettings.eventsite_tickets_left === 1 ? true : false;
   return (
-    <div className="module-section">
+    <div className="module-section ebs-master-default-wrapper">
       <WrapperLayout
         moduleVariation={moduleVariation}>
         {registerDateEnd  && (
@@ -138,4 +138,4 @@ const Variation1 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo ,lab
   );
 };
 
-export default Variation1;
+export default Variation7;

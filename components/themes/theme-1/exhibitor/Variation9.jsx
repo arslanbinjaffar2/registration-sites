@@ -69,7 +69,7 @@ const Variation7 = ({ exhibitorsByCategories, labels, eventUrl, siteLabels, sett
     const bgStyle = (settings && settings.background_color !== "") ? { backgroundColor: settings.background_color} : { backgroundColor: '#f2f2f2' }
 
 	return (
-		<div style={bgStyle} className="module-section ebs-default-padding">
+		<div style={bgStyle} className="module-section ebs-default-padding ebs-master-default-wrapper">
          
 			{popup && <ExhibitorPopup data={data} eventUrl={eventUrl} onClick={handleClick} labels={siteLabels} />}
 			<div className="container">

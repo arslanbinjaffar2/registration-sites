@@ -23,7 +23,7 @@ const Variation6 = ({ event, socialMediaShare, labels, settings }) => {
   return (
     <div
       style={bgStyle}
-      className="edgtf-parallax-section-holder ebs-default-padding"
+      className="edgtf-parallax-section-holder ebs-default-padding ebs-master-default-wrapper"
     >
       <div className="container">
         <HeadingElement

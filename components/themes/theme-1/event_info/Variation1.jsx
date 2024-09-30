@@ -25,13 +25,13 @@ const Variation1 = (props) => {
 
     if (props.moduleVariation.background_image !== '') {
       return (
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding w-100">
           {props.children}
         </div>
       );
     } else {
       return (
-        <div ref={_parallax} style={{ backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+        <div ref={_parallax} style={{ backgroundPosition: "center", backgroundSize: 'cover' }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding w-100">
           {props.children}
         </div>
       );
@@ -39,7 +39,7 @@ const Variation1 = (props) => {
 
   }
     return (
-      <div className="module-section h-100">
+      <div className="module-section h-100 ebs-master-default-wrapper">
         <WrapperLayout moduleVariation={props.moduleVariation}>
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined && props.event.description.info.title !== "" && <HeadingElement dark={true} label={props.event.description.info.title}  align={'left'} />}

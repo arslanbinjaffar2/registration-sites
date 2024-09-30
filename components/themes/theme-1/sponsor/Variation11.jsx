@@ -3,7 +3,7 @@ import SponsorPopup from 'components/ui-components/SponsorPopup';
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Image from 'next/image'
 
-const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
+const Variation11 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settings }) => {
 	const [popup, setPopup] = useState(false);
 	const [data, setData] = useState('');
 	const handleClick = () => {
@@ -18,11 +18,12 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 			<div className="container">
 				<HeadingElement dark={false} label={siteLabels.EVENTSITE_SPONSORS} desc={siteLabels.EVENTSITE_SPONSORS_SUB} align={settings.text_align} />
 				{sponsorsByCategories.map((sponsorsCategory, i) => (
-					<div className={`sponsorsv3-wrapper row d-flex ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} key={i}>
+					<div className={`row d-flex ${settings.text_align === 'left' ? 'justify-content-start' : 'justify-content-center'}`} key={i}>
 						{sponsorsCategory.name ? <h4 style={{ textAlign: settings.text_align }}> {sponsorsCategory.name}</h4> : ""}
 						{sponsorsCategory.sponsors.map((sponsor, j) => {
-							return (<div className="col-sm-6 col-6 col-md-4" key={j}>
-								<figure onClick={() => { setData(sponsor); setPopup(true) }} className="bghover">
+							return (<div className="col-sm-6 col-6 col-md-3" key={j}>
+								<figure onClick={() => { setData(sponsor); setPopup(true) }} className="ratio ratio-1x1 border ebs-sponsor-v1">
+									<div className="d-flex align-items-center justify-content-center p-3">
 									{sponsor.logo && sponsor.logo !== '' ? (
 										<img
 											src={process.env.NEXT_APP_EVENTCENTER_URL + "/assets/sponsors/" + sponsor.logo}
@@ -36,6 +37,7 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 											alt="x"
 										/>
 									)}
+									</div>
 								</figure>
 							</div>)
 						})}
@@ -47,4 +49,4 @@ const Variation1 = ({ sponsorsByCategories, labels, eventUrl, siteLabels, settin
 	)
 }
 
-export default Variation1
+export default Variation11

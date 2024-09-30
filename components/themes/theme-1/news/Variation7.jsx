@@ -5,7 +5,7 @@ import Image from 'next/image'
 import HeadingElement from 'components/ui-components/HeadingElement';
 import Slider from "react-slick";
 
-const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
+const Variation7 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
   const [height, setHeight] = useState(0);
   const iframe = useRef();
   const sliderRef = useRef(null);
@@ -16,6 +16,24 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     slidesToShow: 3,
     slidesToScroll: 3,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
   };
   const next = () => {
     sliderRef.slickNext();
@@ -166,4 +184,4 @@ const Variation1 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
   );
 };
 
-export default Variation1;
+export default Variation7;
