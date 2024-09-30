@@ -11,6 +11,10 @@ import {useDimention,useDebounce} from '../utils/customHooks'
 import StyleVariableForTimeline from '../components/StyleVariableForTimeline'
 const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, eventLanguageId, filters, eventsiteSettings, agendaSettings,moduleVariation }) => {
   const dispatch=useDispatch()
+  const [programsState,setProgramsState]=useState({
+    id:0,
+    programArray:[]
+  })
   const [value, setValue] = useState('');
   const {width}=useDimention()
   const {search}=useDebounce(value)
@@ -86,7 +90,7 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
       {Object.values(programsLoc).length==0 && <div className='p-3 bg-body rounded-2 fw-medium text-capitalize text-center'>{siteLabels.EVENT_NORECORD_FOUND}</div>}
       <div className="container mt-30"  >
         <div className="ebs-main-program-listing">
-          {Object.values(programsLoc).length >0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
+          {Object.values(programsLoc).length>0 && programsLoc && Object.keys(programsLoc).map((key, k) => (
             <div className="ebs-program-parent" key={k}>
               {programsLoc[key][0] && <div className="ebs-date-background  rounded-4px">{localeProgramMoment(eventLanguageId, programsLoc[key][0].date)}</div>}
               {programsLoc[key].map((item, i) => (

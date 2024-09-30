@@ -46,12 +46,27 @@ export const useProgramId=()=>{
     id:0,
     programArray:[]
   })
-  console.log(programsState,"programstate")
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
     dispatch(setProgramDetail({id:item.id}))
   };
   return{
-    handleItemClick
+    handleItemClick,
+    programsState,
+    setProgramsState
   }
+}
+
+
+
+export const useFilteredProgramByDate=(programs,selectedDate,setProgramLoc)=>{
+  useEffect(() => {
+    let programsObj = programs;
+    if (selectedDate !== "All" && selectedDate !== "") {
+      programsObj = { [selectedDate]: programs[selectedDate] };
+      setProgramLoc(programsObj);
+    } else if (selectedDate == "All") {
+      setProgramLoc(programs);
+    }
+  }, [selectedDate]);
 }
