@@ -46,7 +46,7 @@ const Index = (props) => {
         if(event) {
             setLoading(true);
             const response = await axios.get(
-                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}&pg-src=unsubscribe_attendee`
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}&pg-src=attendee_not_attending`
             );
             setLoading(false);
             if (response.data.success) {

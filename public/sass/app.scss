@@ -2802,7 +2802,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  height: calc(1em * 1.7 * 3);
+  max-height: calc(1em * 1.7 * 3);
 }
 .ebs-edgtf-post-line-clamp {
   * {
@@ -4137,8 +4137,6 @@ font-size: 24px;
   
 }
 
-
-
 .ebs-scrollTop-btn{
   border-radius: 50%;
   width: 40px;
@@ -4148,7 +4146,7 @@ font-size: 24px;
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 0%;
+  bottom: 50px;
   right:10%;
 }
 .m-0{
