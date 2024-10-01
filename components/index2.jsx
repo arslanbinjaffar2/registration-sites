@@ -65,7 +65,7 @@ const Index2 = () => {
         case "newsletter_subscription":
           return wrapWithDiv(NewsLetterSubscription);
         case "agenda":
-          return wrapWithDiv(Program, { homePage: true });
+          return wrapWithDiv(Program);
         case "sponsor":
           return wrapWithDiv(Sponsor, { homePage: true });
         case "top_banner":
