@@ -126,7 +126,7 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
       </div>}
       <div className="ebs-bottom-wrapp">
         <div className="location"><i className="material-icons">place</i> {items.location}</div>
-        {Number(program_setting.agenda_display_time) === 1 && Number(program_setting.show_workshop_time) == 1  && (
+        {Number(program_setting.agenda_display_time) === 1  && (
           <div className="time"><i className="material-icons">access_time</i> {items.start_time} - {items.end_time}</div>
         )}
         <div className="ebs-box">

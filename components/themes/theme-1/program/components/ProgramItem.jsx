@@ -36,7 +36,7 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
         <div className="ebs-program-child">
             <div className="row d-flex">
                 <div className="col-lg-2">
-                    {parseInt(agendaSettings.agenda_display_time) === 1 && agendaSettings.show_workshop_time === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')} - {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</div>}
+                    {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')} - {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</div>}
                 </div>
                 <div className="col-lg-10">
                     <div ref={_ref} className="ebs-program-content">
