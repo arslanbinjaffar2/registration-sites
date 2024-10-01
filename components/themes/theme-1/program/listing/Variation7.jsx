@@ -9,6 +9,7 @@ import StyleVariableForTimeline from '../components/StyleVariableForTimeline'
 import Timeline from "../components/timeline";
 import {BgStyles,customStyles, getProgramsByLocation, getProgramsByTrack, searchThroughProgram} from '../utils/programs'
 import {useDimention,useDebounce} from '../utils/customHooks'
+
 const Variation7 = ({
   programs,
   eventUrl,
@@ -137,6 +138,7 @@ const Variation7 = ({
                           <Fragment>
                             <div className="ebr_session_title_container border d-flex justify-content-between align-items-center my-4">
                               <div className="ebr-time-title-container d-flex  align-items-center">
+                                {agendaSettings.show_workshop_time == 1 && moment(
                                 <p className="m-0 start_end fw-semibold">
                                   {moment(
                                     `${item.date} ${item.start_time}`
@@ -146,6 +148,7 @@ const Variation7 = ({
                                     `${item.date} ${item.end_time}`
                                   ).format("HH:mm")}
                                 </p>
+                                  )}
                                 <h4 className="m-0 fw-semibold">
                                   {item.program_workshop}
                                 </h4>
