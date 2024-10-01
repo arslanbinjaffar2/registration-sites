@@ -44,9 +44,10 @@ const Index = (props) => {
 
     async function getData() {
         if(event) {
+            const pgSrc = router.query['pg-src'];
             setLoading(true);
             const response = await axios.get(
-                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}&pg-src=attendee_not_attending`
+                `${process.env.NEXT_APP_URL}/event/${event?.url}/unsubscribe-attendee?id=${id}&event_id=${event_id}&email=${email}&pg-src=${pgSrc}`
             );
             setLoading(false);
             if (response.data.success) {
