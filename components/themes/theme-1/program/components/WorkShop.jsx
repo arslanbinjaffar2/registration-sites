@@ -8,8 +8,8 @@ const WorkShop = ({item, eventUrl, showWorkshop, labels, agendaSettings}) => {
     <div className="ebs-program-parent ebs-program-workshop">
     <div onClick={()=>{setOpen(!open)}} className="ebs-workshop-header">
       {item.program_workshop} 
-      {parseInt(item.hide_time) === 0 && parseInt(item.show_workshop_time) === 1  && <>
-      {" "}({moment(item?.program_workshop_start_time, "HH:mm:ss").format("HH:mm")} - {moment(item?.program_workshop_end_time, "HH:mm:ss").format("HH:mm")})
+      {parseInt(item.show_workshop_time) === 1  && <>
+     {" "}({moment(item?.workshop_programs[0]?.start_time, "HH:mm:ss").format("HH:mm")} - {moment(item?.workshop_programs[0]?.end_time, "HH:mm:ss").format("HH:mm")})
       </>}
       <i className="material-icons">{!open ? 'expand_less' : 'expand_more'}</i></div>
           {!open ? item.workshop_programs.map((program,i) =>
