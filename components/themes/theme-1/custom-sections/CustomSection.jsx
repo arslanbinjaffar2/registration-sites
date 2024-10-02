@@ -66,7 +66,7 @@ const CustomSection = ({ data }) => {
               obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
               obj.contentWindow.document.body.style.margin = '0';
               setTimeout(() => {
-                setHeight(obj.contentWindow.document.body.scrollHeight);
+                setHeight(obj.contentWindow?.document?.body.scrollHeight);
                 setLoading(false)
               }, 1000);
             }}
