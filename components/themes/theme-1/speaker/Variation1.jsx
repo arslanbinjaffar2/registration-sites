@@ -33,7 +33,7 @@ const Variation1 = ({ speakers, listing, searchBar, loadMore, event, settings, s
 
   return (
     <div style={bgStyle}
-      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper"
       ref={_parallax}
     >
       {!listing && <div className="container">

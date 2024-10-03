@@ -5,8 +5,8 @@ import {localeMomentEventDates, localeMomentOpeningHours} from "helpers/helper";
 const Variation1 = (props) => {
   const bgStyle = (props.moduleVariation && props.moduleVariation.background_color !== "") ? { backgroundColor: props.moduleVariation.background_color} : {}
     return (
-      <div style={bgStyle} className="module-section">
-        <div className="ebs-default-padding">
+      <div style={bgStyle} className="module-section ebs-master-default-wrapper">
+        <div className="ebs-default-padding w-100">
         <div className="container">
         {props.event.description !== undefined && props.event.description.info !== undefined && props.event.description.info.title !== undefined  && props.event.description.info.title !== "" && <HeadingElement dark={false} label={props.event.description.info.title}  align={'left'} />}
           <div className="row d-flex ebs-about-event-section">

@@ -8,6 +8,7 @@ console.log(data.settings.background_color)
   const _stylesheet = `
   :root {
     --primaryrgb: ${data.settings.primary_color ? hexToRGBA(data.settings.primary_color) : hexToRGBA('#0f58fb')};
+    --bs-primary-rgb: ${data.settings.primary_color ? hexToRGBA(data.settings.primary_color) : hexToRGBA('#0f58fb')};
     --primary: ${data.settings.primary_color ? data.settings.primary_color : '#000'};
     --secondaryrgb: ${data.settings.secondary_color ? hexToRGBA(data.settings.secondary_color) : hexToRGBA('#ec008c')};
     --secondary: ${data.settings.secondary_color ? data.settings.secondary_color : '#ec008c'};

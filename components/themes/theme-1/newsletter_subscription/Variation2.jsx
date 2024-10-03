@@ -39,7 +39,7 @@ const Variation2 = (props) =>  {
     return (
           <React.Fragment>
             {props.settings && <div className="module-section">
-              <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+              <div ref={_parallax} style={bgStyle} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper">
                   <div className="container">
                     <HeadingElement dark={true} label={props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING ? props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING : "Subscribe to our newsletter "}  align={'center'} />
                     {<p style={{color:"#fff", textAlign:"center"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />}

@@ -14,12 +14,12 @@ const Variation3 = (props) =>  {
     return (
       <React.Fragment>
         {props.settings && <div className="module-section">
-          <div style={bgStyle} className="ebs-default-padding">
+          <div style={bgStyle} className="ebs-default-padding ebs-master-default-wrapper">
           <div className="container-fluid">
             <HeadingElement dark={false} label={props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING ? props.event.labels.EVENTSITE_NEWSLETTER_SUBSCRIBE_HEADING : "Subscribe to our newsletter "}  align={'left'} />
             <p style={{color:"#fff"}} dangerouslySetInnerHTML={{__html: props.settings.content}} />
           </div>
-            <div className="ebs-sub-newsletter-sec ebs-dark-variation">
+            <div className="ebs-sub-newsletter-sec ebs-dark-variation w-100">
               {props.alert !== "" &&<p style={{color:"green"}}>
                           {props.alert}
               </p>}

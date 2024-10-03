@@ -50,7 +50,7 @@ const Variation5 = ({ eventSiteSettings, eventTimeZone,registrationFormInfo, lab
   };
 
   return (
-    <div style={bgStyle} className="module-section ebs-register-now-v5 ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-register-now-v5 ebs-default-padding ebs-master-default-wrapper">
       {registerDateEnd && (
         <div className="container">
           <div className="row d-flex align-items-center">

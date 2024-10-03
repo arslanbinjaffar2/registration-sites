@@ -70,8 +70,8 @@ console.log(event?.label?.COUNTDOWN_LABEL_HOURS);
     return (
         <div>
       {isValidDate && (
-    <div style={bgStyle} className="edgtf-container ebs-default-padding">
-      <div style={{maxWidth: 1900}} className="container-fluid px-5">
+    <div style={bgStyle} className="edgtf-container ebs-default-padding ebs-master-default-wrapper">
+      <div style={{maxWidth: 1900}} className="container-fluid px-5 w-100">
         <div className="row py-5 d-flex align-items-center justify-content-center">
            {(event.count_down_section.title || event.count_down_section.description) && <div className="col-sm-4">
             <div style={{textAlign: settings.text_align ? settings.text_align : 'left'}} className="edgtf-title-section-holder">

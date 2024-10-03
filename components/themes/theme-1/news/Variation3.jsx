@@ -10,7 +10,7 @@ const Variation3 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings 
   const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
 
   return (
-    <div style={{ padding: '80px 0', ...bgStyle}} className='edgtf-container'>
+    <div style={{ padding: '80px 0', ...bgStyle}} className='edgtf-container ebs-master-default-wrapper'>
       <div className="container">
         <div className={`${(!newsSettings.subscriber_id || homePage) ? 'edgtf-full-width-inner' : 'edgtf-two-columns-75-25'} clearfix`}>
         {homePage && <HeadingElement dark={false} label={siteLabels.EVENTSITE_NEWS_LABEL ? siteLabels.EVENTSITE_NEWS_LABEL : "News"}  align={'center'} />}

@@ -68,13 +68,13 @@ const Variation4 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo, la
 
     if (props.moduleVariation.background_image !== '') {
       return (
-        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center top", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+        <div ref={_parallax} style={{ backgroundImage: `url(${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/variation_background/' + props.moduleVariation.background_image}`, backgroundPosition: "center top", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper">
           {props.children}
         </div>
       );
     } else {
       return (
-        <div ref={_parallax} style={{ backgroundPosition: "center top", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding">
+        <div ref={_parallax} style={{ backgroundPosition: "center top", backgroundSize: 'cover', }} className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper">
           {props.children}
         </div>
       );

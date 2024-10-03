@@ -32,7 +32,7 @@ const Variation4 = ({ speakers, listing, searchBar, loadMore, event, settings, s
 
   return (
     <div style={bgStyle}
-      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding"
+      className="edgtf-parallax-section-holder ebs-bg-holder ebs-default-padding ebs-master-default-wrapper"
       ref={_parallax}>
       {!listing && <div className="container">
         <HeadingElement dark={true} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
