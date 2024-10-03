@@ -270,19 +270,22 @@ const SurveyForm = ({ surveyDetail, event, surveyResults, survey_id }) => {
                           {question.required_question == 1 ? <span style={{color: 'red', marginLeft:'5px'}}>*</span> : null}
                         </h5>
                         <Input
-                          type="number"
+                          type="text"
                           label={"Answer"}
                           value={
                             surveyResult[`answer_number${question.id}`] ?
                             surveyResult[`answer_number${question.id}`][0]: ''
                           }
                           onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === '' || /^[0-9]+$/.test(value)) {
                             updateResult(
                               `answer_number${question.id}`,
                               "number",
-                              e.target.value,
+                              value,
                               question.id
                             );
+                          }
                           }}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, surveyResult[`answer_number${question.id}`] !== undefined ? true : null, 'required')}
