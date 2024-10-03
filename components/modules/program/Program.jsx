@@ -47,13 +47,11 @@ const Program = (props) => {
       dispatch(incrementLoadCount());
     }
   }, [])
-
-
   return (
     <Suspense fallback={''}>
       {programs ? (
-        <React.Fragment>
-          <Component programs={programs} agendaSettings={event.agenda_settings} tracks={tracks} siteLabels={event.labels} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
+        <React.Fragment>  
+          <Component programs={programs}  agendaSettings={event.agenda_settings} tracks={tracks} siteLabels={event.labels} moduleVariation={moduleVariation[0]} eventUrl={eventUrl} language_id={event.language_id} showWorkshop={event.agenda_settings.agenda_collapse_workshop} />
         </React.Fragment>
       ) : null
       }

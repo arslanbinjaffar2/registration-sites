@@ -1,15 +1,12 @@
 import SliderCustom from "./components/SliderCustom";
 import React from "react";
-import { eventSelector } from "store/Slices/EventSlice";
-import { useSelector, useDispatch } from "react-redux";
 
 
 
 
-const Variation7 = ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
-
+const Variation7 =  ({ banner, event, countdown, regisrationUrl, settings, registerDateEnd }) => {
   const [newSliderHeight, setNewSliderHeight] = React.useState(720);
-  const [data, setData] = React.useState(JSON.parse(event.event_site_banner_management.data));
+  const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
 
@@ -31,12 +28,15 @@ const Variation7 = ({ banner, event, countdown, regisrationUrl, settings, regist
       
   }, [])
     React.useEffect(() => {
-      setData(JSON.parse(event.event_site_banner_management.data));
+      if (event.event_site_banner_management) {
+        setData(JSON.parse(event.event_site_banner_management.data));
+      }
     }, [event]);
     React.useEffect(() => {
-            if (data) {
+          if (data) {
                       // Now you can add CSS rules to this stylesheet
-          const extendedCssProperties = extendCssProperties(data.cssProperties);
+         
+          const extendedCssProperties = data.cssProperties !== undefined ? extendCssProperties(data.cssProperties) : {};
 
           data.cssProperties = extendedCssProperties;
           // Step 1: Calculate the aspect ratio
@@ -56,18 +56,22 @@ const Variation7 = ({ banner, event, countdown, regisrationUrl, settings, regist
           });
     }
       if (data) {
+        // check if cssProperties is not empty
+
+        if (data.cssProperties !== undefined && data.cssProperties !== null && Object.keys(data.cssProperties).length > 0) {
           const style = document.createElement("style");
           style.id = "dynamic-styles";
            document.head.appendChild(style);
         // Call the generateCSS function and keep track of the cleanup function
-        const cleanup = generateCSS(data.cssProperties);
+        const cleanup = generateCSS(data.cssProperties) || (() => {});
         window.addEventListener('resize', () => {
-          const cleanup = generateCSS(data.cssProperties);
+          const cleanup = generateCSS(data.cssProperties) || (() => {});
         });
 
 
         // Cleanup the generated CSS when the component unmounts or data changes
         return cleanup;
+      }
       }
 
     }, [data]);
@@ -137,10 +141,13 @@ function getMediaQueryForDevice(device) {
     Object.keys(cssProperties.desktop).forEach((selector) => {
       let selectorRules = `${selector} { `;
       Object.keys(cssProperties.desktop[selector]).forEach((property) => {
-          if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
+          if (property === 'z-index' || property === 'border-style' || property === 'border-color' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
             selectorRules += `${property}: ${cssProperties.desktop[selector][property]}; `;
           } else if (property === 'line-height') {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
+          } else if (property == 'width' || property == 'height') {
+            selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
+
           } else {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
           }
@@ -159,7 +166,7 @@ function getMediaQueryForDevice(device) {
       Object.keys(cssProperties[device]).forEach((selector) => {
         let selectorRules = `${selector} { `;
         Object.keys(cssProperties[device][selector]).forEach((property) => {
-            if (property === 'border-style' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
+            if (property === 'z-index' || property === 'border-style' || property === 'border-color' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
             selectorRules += `${property}: ${(cssProperties[device][selector][property])}; `;
           } else if (property === 'top') {
             if (device === 'tablet') {
@@ -192,7 +199,7 @@ function getMediaQueryForDevice(device) {
 function replaceDivWithATag(html) {
   // Create a temporary DOM element
   const tempElement = document.createElement('div');
-  tempElement.innerHTML = html;
+  tempElement.innerHTML = html.replace(/style="cursor: grab;"/g, "");
 
   // Select all divs with the class 'ebs-layer-has-link'
   const divsToReplace = tempElement.querySelectorAll('div.ebs-layer-has-link');
@@ -204,23 +211,28 @@ function replaceDivWithATag(html) {
     // Copy all attributes from the div to the a element
     for (const attr of div.attributes) {
       if (attr.name === 'data-href') {
-        a.setAttribute('href', attr.value); // Replace data-href with href
+        if (attr.value === 'REGISTER_NOW') {
+          a.setAttribute("href", regisrationUrl); // Replace data-href with href
+
+        } else {
+          a.setAttribute("href", attr.value); // Replace data-href with href
+        }
       } else {
         a.setAttribute(attr.name, attr.value);
       }
     }
-
     // Copy the inner HTML content
     a.innerHTML = div.innerHTML;
-
+    var hasLink =  a.getAttribute('href');
     // Replace the div with the a element
-    div.parentNode.replaceChild(a, div);
+    if (hasLink) {
+      div.parentNode.replaceChild(a, div);
+    }
   });
 
   // Return the modified HTML
   return tempElement.innerHTML;
 }
-  console.log(data, "event");
   return (
     <>
       {data && <div data-fixed="true" style={{lineHeight: 0}} className="main-slider-wrapper ebs-master-super-banner ebs-full-width-banner">
@@ -232,7 +244,31 @@ function replaceDivWithATag(html) {
 			  >
 				{data && data.banner.map((slides, i) =>
 					<div style={{fontSize: 16,height: newSliderHeight ? `${newSliderHeight}px`: '720px'}} key={i} className="slide-wrapper">
-            <div  dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}}  style={{height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.color}}>
+            {slides.background_image.video && (
+                <div className="ebs-video-fullscreen position-absolute">
+                  
+                  {slides.background_image.video.includes('youtube.com') || slides.background_image.video.includes('youtu.be') ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${slides.background_image.video
+                        .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2]
+                        .split(/[?&]/)[0]}?autoplay=1&mute=1&loop=1&playlist=${slides.background_image.video
+                        .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2]
+                        .split(/[?&]/)[0]}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video preload="auto" autoPlay playsInline muted src={slides.background_image.video} type="video/mp4"></video>
+                  )}
+                </div>
+              )}
+
+            <div  style={{backgroundRepeat: 'no-repeat',height: newSliderHeight ? `${newSliderHeight}px`: '720px',minHeight: 270,position: 'relative', backgroundImage: `${slides.background_image.video ? '' :slides.background_image.src}`, backgroundPosition: slides.background_image.position, backgroundSize: slides.background_image.size, backgroundColor: slides.background_image.video ? '' : slides.background_image.color}}>
+              {slides.background_image.link && <a style={{zIndex: 0}} href={slides.background_image.link} className="d-block w-100 h-100 position-absolute start-0 top-0" />}
+              <div style={{zIndex: 9}} dangerouslySetInnerHTML={{__html: replaceDivWithATag(slides.layerHTML)}} />
             </div>
 					</div>
 				)}

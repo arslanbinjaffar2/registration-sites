@@ -54,7 +54,12 @@ const ProgramListing = (props) => {
       dispatch(fetchPrograms(eventUrl));
     }
   }, []);
-
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
     <Suspense fallback={<PageLoader />}>
       {programs ? (
@@ -64,9 +69,11 @@ const ProgramListing = (props) => {
           </Head>
           <PageHeader desc={event.labels.EVENTSITE_PROGRAM_DETAIL} label={event.labels.EVENTSITE_PROGRAM}/>
           {Object.keys(programs).length > 0 ? 
-          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.agenda_settings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} eventsiteSettings={event.eventsiteSettings} /> :
+          <Component programs={programs} eventUrl={eventUrl} tracks={tracks} showWorkshop={event.agenda_settings.agenda_collapse_workshop} siteLabels={event.labels} agendaSettings={event.agenda_settings} eventLanguageId={event.language_id} filters={true} eventsiteSettings={event.eventsiteSettings} 
+          moduleVariation={moduleVariation[0]}
+          /> :
           <div style={{textAlign:"center"}}>
-            <h4>No programs found...</h4>
+            <h4>{event.siteLabels.EVENT_NORECORD_FOUND}</h4>
           </div>
           }
         </React.Fragment>

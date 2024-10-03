@@ -16,8 +16,10 @@ const SliderCustom = (props) => {
   var settings = {
     dots: true,
     arrows: props.sliderSettings.arrows === 'true' ? true :  false,
-    speed: 500,
+    speed: Number(props.sliderSettings.speed) ? Number(props.sliderSettings.speed) :  500,
     fade: true,
+    dots: props.sliderSettings.dots === 'true' ? true :  false,
+    arrows: props.sliderSettings.arrows === 'true' ? true :  false,
     autoplay: false,
     infinite: true,
     slidesToShow: 1,

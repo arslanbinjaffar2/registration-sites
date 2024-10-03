@@ -122,7 +122,6 @@ import moment from 'moment'
                {program?.program_speakers?.length>0 &&
                  <div className='mt-3 pt-3  d-flex align-items-lg-center gap-3 flex-column justify-content-start flex-lg-row border-top '>                    
                 <h5 className='m-0'>Speakers :</h5>
-                {/* track container */}
                 <div className="d-flex gap-3 align-items-center justify-content-start flex-wrap">
                         {program?.program_speakers?.map((speakers, o)=>(
                             <ActiveLink href={`/${eventUrl}/speakers/${speakers.id}`} key={o} className="d-flex align-items-center gap-12">

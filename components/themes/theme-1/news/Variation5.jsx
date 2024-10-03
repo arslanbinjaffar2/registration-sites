@@ -3,9 +3,9 @@ import Image from 'next/image'
 import ActiveLink from "components/atoms/ActiveLink";
 
 const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings, siteLabels, homePage, moduleVariation}) => {
-
+  const [isVisible, setIsVisible] = useState(false);
   const [ShowAllModules,setShowAllModules]=useState({
-    modules:3
+    modules:4
   })
   const [firstModule=[],secondModule=[],...rest]=news || []
   const firstTwoModule = useMemo(() => [firstModule, secondModule], [news]);
@@ -17,9 +17,7 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     link.rel = 'stylesheet';
     document.head.appendChild(link);
   }, []);
-  if (!news || news.length === 0) {
-    return <p>No news available.</p>;
-  }
+ 
 
  function FirstTwoNewsModules(){
   return(
@@ -39,9 +37,33 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
     }):""
   )
  }
+ 
+ const toggleVisibility = () => {
+  if (window.pageYOffset > 300) {
+    setIsVisible(true);
+  } else {
+    setIsVisible(false);
+  }
+};
+
+ const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+useEffect(() => {
+  window.addEventListener('scroll', toggleVisibility);
+  return () => window.removeEventListener('scroll', toggleVisibility);
+}, []);
  const handleViewAll = () => {
   setShowAllModules({ ...ShowAllModules, modules: news.length });
 };
+
+if (!news || news.length === 0) {
+  return <p>{siteLabels?.EVENT_NORECORD_FOUND}</p>;
+}
   return (
     <div style={bgStyle}  className="edgtf-container ebs-default-padding">
       <div className="container">
@@ -66,6 +88,11 @@ const Variation5 = ({ news, event_url, makeNewDetailURL, loadMore, newsSettings,
           <span class="Button-styles__ButtonIcon-sc-37ebb3b-1 jnfvHm button__icon"><span data-cy="icon-arrow-right" class="Icon-styles__IconDefinitions-sc-274238bf-1 hZWJIC">   
               <span className="material-symbols-outlined text-white d-flex justify-content-center align-items-center"> arrow_right_alt</span>
               </span></span>       
+         </button>}
+         {!homePage && isVisible && <button className="ebs-scrollTop-btn" onClick={scrollToTop}>
+         <span class="material-symbols-outlined">
+          arrow_upward
+          </span>
          </button>}
          </div>
         </div>

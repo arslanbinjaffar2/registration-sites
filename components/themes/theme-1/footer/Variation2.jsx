@@ -14,7 +14,7 @@ const Variation2 = ({event, siteLabels}) => {
 
   return (
     <>
-        {(event.eventsiteSettings.use_reg_form_footer == 0  && event.eventsiteSettings.reg_site_footer_image !== "") && 
+        {(event.eventsiteSettings.use_reg_form_footer == 0  && event.eventsiteSettings.reg_site_footer_image !== "" && event.eventsiteSettings.reg_site_footer_image) && 
           <img src={`${process.env.NEXT_APP_EVENTCENTER_URL + '/assets/event_site/upload_images/'}${event.eventsiteSettings.reg_site_footer_image}`} alt=""  style={{width:"100%"}}/>
         }
         {event.eventsiteSettings.use_reg_form_footer === 1 && 
