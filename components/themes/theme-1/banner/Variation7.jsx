@@ -141,7 +141,7 @@ function getMediaQueryForDevice(device) {
     Object.keys(cssProperties.desktop).forEach((selector) => {
       let selectorRules = `${selector} { `;
       Object.keys(cssProperties.desktop[selector]).forEach((property) => {
-          if (property === 'z-index' || property === 'border-style' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
+          if (property === 'z-index' || property === 'border-style' || property === 'border-color' || property === 'font-family' || property === 'left' || property === 'top' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform' || property === 'text-decoration') {
             selectorRules += `${property}: ${cssProperties.desktop[selector][property]}; `;
           } else if (property === 'line-height') {
             selectorRules += `${property}: ${(cssProperties.desktop[selector][property].replace('px',''))*_width_ratio}px; `;
@@ -166,7 +166,7 @@ function getMediaQueryForDevice(device) {
       Object.keys(cssProperties[device]).forEach((selector) => {
         let selectorRules = `${selector} { `;
         Object.keys(cssProperties[device][selector]).forEach((property) => {
-            if (property === 'z-index' || property === 'border-style' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
+            if (property === 'z-index' || property === 'border-style' || property === 'border-color' || property === 'font-family' || property === 'left' || property === 'color' || property === 'background-color' ||  property === 'text-align' || property === 'font-weight' || property === 'text-transform') {
             selectorRules += `${property}: ${(cssProperties[device][selector][property])}; `;
           } else if (property === 'top') {
             if (device === 'tablet') {
