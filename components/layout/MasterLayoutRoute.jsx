@@ -40,10 +40,23 @@ const MasterLayoutRoute = ({ children, event }) => {
                 <>
                     <Header />
                     {showLogin && <LoginScreen />}
-                    {event?.registration_site_theme_onepager === 0 && <>{children}</>}
-                    {event?.registration_site_theme_onepager === 1 && <div className='ebs-master-theme-v2'>{children}</div>}
+
+                    {event?.registration_site_theme_onepager === 0 && (
+                    <>
+                        {Array.isArray(children) ? children : null}
+                    </>
+                    )}
+
+                    {event?.registration_site_theme_onepager === 1 && (
+                    <div className='ebs-master-theme-v2'>
+                        {Array.isArray(children) ? children : null}
+                    </div>
+                    )}
+
                     {event?.registration_site_theme_onepager === 0 && <Footer />}
-                    <CookiePolicy/>
+
+                    <CookiePolicy />
+
                 </>
             ) : (
                 <PageLoader />
