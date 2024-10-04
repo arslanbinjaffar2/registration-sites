@@ -60,7 +60,7 @@ const Banner = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<div></div>}>
-      {banner && banner?.length > 0 ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} countdown={event.registration_form_info} /> : null}
+      {banner && banner?.length > 0 ||  event.event_site_banner_management ? <Component regisrationUrl={regisrationUrl} settings={settings} banner={banner} event={event} registerDateEnd={event.registration_end_date_passed === 0 ? true : false} countdown={event.registration_form_info} /> : null}
     </Suspense>
   );
 };

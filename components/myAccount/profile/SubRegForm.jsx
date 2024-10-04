@@ -423,19 +423,22 @@ const SubRegForm = ({ subRegistration, event, afterLogin,  updating, alert, erro
                       <div className="generic-form">
                         <h5>{question.info[0].value} {Number(question.required_question) === 1 &&  <span style={{color: 'red'}}>*</span>}</h5>
                         <Input
-                          type="number"
+                          type="text"
                           label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
                             subRegResult[`answer_number${question.id}`][0]: ''
                           }
                           onChange={(e) => {
-                            updateResult(
-                              `answer_number${question.id}`,
-                              "number",
-                              e.target.value,
-                              question.id
-                            );
+                            const value = e.target.value;
+                            if (value === '' || /^[0-9]+$/.test(value)) {
+                              updateResult(
+                                `answer_number${question.id}`,
+                                "number",
+                                value,
+                                question.id
+                              );
+                            }
                           }}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_number${question.id}`] !== undefined ? true : null, 'required')}
