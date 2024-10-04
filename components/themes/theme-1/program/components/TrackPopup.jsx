@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
-const TracksPopup = ({item }) => {
+const TracksPopup = ({item,showBorder }) => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const [trackHighlightClass,setTrackHightLightClass]=useState("ebs-more-track-shown-focus")
@@ -35,8 +35,11 @@ const TracksPopup = ({item }) => {
         {item?.program_tracks.length > 3 ? (
           <span
             onClick={handleIsShowTrackPopup}
-            className={`cursor-pointer ebs-more-track-shown border-black-color border fs-xsmall d-flex justify-content-center align-items-center
-              ${show? trackHighlightClass:""}`}>
+            className={`cursor-pointer ebs-more-track-shown   fs-xsmall d-flex justify-content-center align-items-center
+              ${show? trackHighlightClass:""}
+              ${showBorder ?"border border-black-color":""}
+              `}
+              >
             +{item.program_tracks.length - 3}
           </span>
         ) : null}

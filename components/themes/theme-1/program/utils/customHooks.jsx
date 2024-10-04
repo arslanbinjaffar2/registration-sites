@@ -1,4 +1,4 @@
-import  { useState,useEffect } from 'react'
+import  { useState,useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { setProgramDetail } from 'store/Slices/ProgramListingSlice';
 
@@ -41,6 +41,8 @@ export const useDebounce = (value) => {
 
 
 export const useProgramId=()=>{
+  const detailRef = useRef(null);
+  const [showDetail,setShowDetail]=useState(false)
   const dispatch=useDispatch()
   const [programsState,setProgramsState]=useState({
     id:0,
@@ -53,7 +55,10 @@ export const useProgramId=()=>{
   return{
     handleItemClick,
     programsState,
-    setProgramsState
+    setProgramsState,
+    showDetail,
+    setShowDetail,
+    detailRef
   }
 }
 

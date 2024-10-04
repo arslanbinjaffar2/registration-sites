@@ -9,7 +9,8 @@ import {
   workshopTitlesOptions,
   DateOptions,
 } from "../utils/programs";
-import {useDebounce } from "../utils/customHooks";
+import {useDebounce, useDimention, useProgramId } from "../utils/customHooks";
+import ProgramDetail from "../components/ProgramDetail";
 const Variation8 = ({
   programs,
   eventUrl,
@@ -19,6 +20,8 @@ const Variation8 = ({
   agendaSettings,
   eventsiteSettings,
 }) => {
+  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
+  const {width}=useDimention()
   const [value, setValue] = useState("");
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -97,11 +100,11 @@ const Variation8 = ({
             <Table responsive="sm" className="bg-transparent">
               <thead>
                 <tr>
-                  <th>DATE</th>
-                  <th>TIME</th>
-                  <th>TITLE</th>
-                  <th>LOCATION</th>
-                  <th>TRACKS</th>
+                  <th className="text-start">DATE</th>
+                  <th className="text-start">TIME</th>
+                  <th className="text-start">TITLE</th>
+                  <th className="text-start">LOCATION</th>
+                  <th className="text-start">TRACKS</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,10 +113,73 @@ const Variation8 = ({
                   Object.keys(programsLoc).map((key, k) => {
                     return (
                       <>
-                        {programsLoc[key].map((item) => {
+                        {programsLoc[key].map((item,index,programArray) => {
                           return (
-                            <tr key={item.date + key + k}>
-                              <td>{item.date}</td>
+                             <>
+                             {item.workshop_id>0?(
+                              <>
+                              {item.workshop_programs.map((program,index,workshop_programsArray)=>{
+                                return(
+                                  <tr key={item.date + key + k} >
+                                  <td>{moment(program.date).format("D MMM")}</td>
+                                  <td>
+                                    {moment(
+                                      `${program.date} ${program.start_time}`
+                                    ).format("HH:mm")}{" "}
+                                    -{" "}
+                                    {moment(`${program.date} ${program.end_time}`).format(
+                                      "HH:mm"
+                                    )}
+                                  </td>
+                                  <td className="text-start" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
+                                            handleItemClick(program,workshop_programsArray)
+                                            setShowDetail(true)
+                                        }}>
+                                  {/* {`${program.topic.length>25?program.topic.substring(0,25)+"....":program.topic}`} */}
+                                   {program.topic}
+                                  </td>
+                                  <td>{`${
+                                    program.location.length > 25
+                                      ? program.location.substring(0, 25) + "...."
+                                      : program.location
+                                  }`}</td>
+                                  <td>
+                                    {" "}
+                                    <div className="tracks_container d-flex algin-items-center gap-2">
+                                      {program?.program_tracks &&
+                                        program?.program_tracks.length > 0 &&
+                                        program.program_tracks
+                                          .slice(0, 3)
+                                          .map((track) => {
+                                            return (
+                                              <span
+                                                className="d-inline-block"
+                                                key={track.id + track.name}
+                                                data-title={track.name}
+                                                style={{
+                                                  backgroundColor: `${
+                                                    track.color
+                                                      ? track.color
+                                                      : "#000"
+                                                  }`,
+                                                  width: "20px",
+                                                  height: "20px",
+                                                  borderRadius: "50%",
+                                                }}
+                                              ></span>
+                                            );
+                                          })}
+                                      <TracksPopup item={program} />
+                                    </div>
+                                  </td>
+                                </tr>
+                                )
+                              })}
+                           
+                            </>
+                            
+                            ):(   <tr key={item.date + key + k}>
+                              <td>{moment(item.date).format("D MMM")}</td>
                               <td>
                                 {moment(
                                   `${item.date} ${item.start_time}`
@@ -123,7 +189,13 @@ const Variation8 = ({
                                   "HH:mm"
                                 )}
                               </td>
-                              <td>{item.topic}</td>
+                              <td className="text-start" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
+                                            handleItemClick(item,programArray)
+                                            setShowDetail(true)
+                                        }}>
+                                {/* {`${item.topic.length>25?item.topic.substring(0,25)+"....":item.topic}`} */}
+                                {item.topic}
+                                </td>
                               <td>{`${
                                 item.location.length > 25
                                   ? item.location.substring(0, 25) + "...."
@@ -158,7 +230,9 @@ const Variation8 = ({
                                   <TracksPopup item={item} />
                                 </div>
                               </td>
-                            </tr>
+                            </tr>)      
+                            }
+                             </>
                           );
                         })}
                       </>
@@ -169,6 +243,15 @@ const Variation8 = ({
           </div>
         </div>
       </div>
+      {width>570 &&
+      <ProgramDetail 
+      setShowDetail={setShowDetail} 
+      ref={detailRef} 
+      programs={programsState}  
+      showDetail={showDetail} 
+      agendaSettings={agendaSettings} 
+      eventUrl={eventUrl} 
+      labels={siteLabels}/> } 
     </div>
   );
 };
