@@ -231,7 +231,7 @@ const Variation3 = ({
               })}
                    <div className="border-start border-end border-top worksop_program_item border-bottom" >
                   <div className="session border-bottom p-3 fw-semibold text-center">
-                      other
+                     {siteLabels.GENERAL_OTHER}
                   </div>
                {Object.keys(programLoc).map((key) => {
                 return (
