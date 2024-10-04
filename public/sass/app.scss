@@ -5514,46 +5514,8 @@
   }
 }
 
-.ebs-button-layer {
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-width: 2px;
-  border-color: #fff;
-
-
-
-
 .ebs-reset-btn {
   cursor: pointer;
-
-//   &:active,
-//   &:focus,
-//   &:enabled
-//   {
-//     span:first-of-type { // Targets only the first span inside the button
-//       animation: RotateAnimation 1s normal 0.3s; // Adjust the duration and timing function as needed
-//     }
-//   }
-// }
-
-// // Define the keyframes for the rotation animation
-// @keyframes RotateAnimation {
-//   0% {
-//     transform: rotate(0deg); // Start rotation
-//     color: rgba(4, 113, 236, 0.623);
-//   }
-//   30%{
-//     transform: rotate(40deg);
-//     color: rgba(4, 113, 236, 0.623);
-//   }
-
-//   100% {
-//     transform: rotate(360deg); // Complete rotation
-//     // Start rotation
-//     color: rgba(4, 113, 236, 0.623);
-
-//   }
 }
 
 .ebs-form-control-search-new .fa{
@@ -5584,7 +5546,7 @@
   right:10%;
 }
 
-}
+
 
 .ebr_program_variaton_9_container{
   display: grid;
@@ -5783,61 +5745,7 @@
 
 }
 
-.ebs-master-super-banner {
-  position: relative;
 
-  .draggable {
-    position: absolute;
-    white-space: nowrap;
-
-    .material-icons {
-      vertical-align: middle;
-    }
-  }
-
-  .resize-container {
-    width: 100% !important;
-    height: 100% !important;
-
-    img {
-      width: 100% !important;
-      height: 100% !important;
-    }
-  }
-}
-
-* {
-  word-break: break-all;
-}
-
-
-.mobile-hidden {
-  display: none;
-}
-
-@media screen and (min-width: 601px) {
-  .mobile-hidden {
-    display: block;
-  }
-
-  .tablet-hidden {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 901px) {
-  .mobile-hidden {
-    display: block;
-  }
-
-  .tablet-hidden {
-    display: block;
-  }
-
-  .desktop-hidden {
-    display: none;
-  }
-}
 #dayfiltered{
     scrollbar-color: transparent transparent;
     scrollbar-width: thin;
