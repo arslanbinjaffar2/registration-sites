@@ -224,8 +224,8 @@ export const getProgramsByTrack = (programs, track) => {
 
 
 
-  export function BgStyles(moduleVariation){
-    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color} : {}
+  export function BgStyles(moduleVariation,padding=0){
+    const bgStyle = (moduleVariation && moduleVariation.background_color !== "") ? { backgroundColor: moduleVariation.background_color,padding:padding} : {}
   
     return bgStyle
   }
@@ -272,7 +272,7 @@ export const getProgramsByTrack = (programs, track) => {
     return Object.keys(programs).reduce(
       (ack, key) => [
         ...ack,
-        { value: key, label: moment(key).format("DD-MM-YYYY") },
+        { value: key, label: moment(key).format("D MMM") },
       ],
       [{ value: 0, label }]
     )
