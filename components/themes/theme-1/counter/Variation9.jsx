@@ -25,23 +25,23 @@ const Variation9 = ({ event, labels, settings }) => {
           <div className="ebs-countdown-wrapp d-flex w-100 countdown-wrapp ebs-counter-v10">
             {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(Math.floor(days / 30))}</div></span>
-              <span className="countdown-period">Months</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_MONTHS}</span>
             </span>}
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(Math.floor(days % 30))}</div></span>
-              <span className="countdown-period">DAYS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_DAYS}</span>
             </span>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(hours)}</div></span>
-              <span className="countdown-period">HOURS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_HOURS}</span>
             </span>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(minutes)}</div></span>
-              <span className="countdown-period">MINUTES</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_MINUTES}</span>
             </span>
             <span className="edgtf-countdown is-countdown">
               <span className="countdown-amount"><div className="position-absolute top-50 start-50 translate-middle">{zeroPad(seconds)}</div></span>
-              <span className="countdown-period">SECONDS</span>
+              <span className="countdown-period">{event?.labels?.COUNTDOWN_LABEL_SECONDS}</span>
             </span>
           </div>
             {<Completionist completed={completed} event={event} />}
