@@ -40,7 +40,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                 >
                   {Number(slides.video_type) === 2 && (
                     <div className="ebs-video-fullscreen">
-                      <video preload="auto" autoPlay playsInline muted src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
+                      <video preload="auto" autoPlay playsInline muted loop src={`${process.env.NEXT_APP_EVENTCENTER_URL}/${slides.image}`} type="video/mp4"></video>
                     </div>
                   )}
                   {Number(slides.video_type) === 1 && (
