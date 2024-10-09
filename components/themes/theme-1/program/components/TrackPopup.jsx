@@ -83,9 +83,9 @@ const TracksPopup = ({item,showBorder }) => {
                           borderRadius: "50%",
                         }}
                       ></span>
-                      <span className="fs-medium fw-light">
+                      <p className="fs-medium fw-light m-0">
                         {track.name}
-                      </span>
+                      </p>
                     </div>
                   ))}
                 </div>

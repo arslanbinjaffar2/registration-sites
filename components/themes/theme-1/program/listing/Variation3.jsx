@@ -64,6 +64,12 @@ const Variation3 = ({ programs, eventUrl, tracks, showWorkshop, siteLabels, even
     }
     setProgramsLoc(programsObj);
   }, [selectedDate, selectedTrack, search,selectedLocation]); 
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
     <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-transparent-box" style={BgStyles(moduleVariation)}>
      <StyleVariableForTimeline bgStyle={BgStyles(moduleVariation)}/>
