@@ -96,11 +96,62 @@ const Index2 = () => {
     });
   };
 
+
+  React.useEffect(() => {
+    if ((loadedSections === loadCount) && window.innerWidth >= 991) {
+      const elem = document.getElementById("ebs-header-master");
+      const banner = document.getElementsByClassName("main-slider-wrapper")[0];
+      if (elem && banner) {
+        elem.classList.remove("ebs-light-header");
+        var _nextSibling = banner.dataset.fixed;
+        if (_nextSibling === "true") {
+          elem.classList.add("ebs-fixed-header");
+        } else {
+          elem.classList.add("ebs-light-header");
+        }
+      }
+    }
+     return () => {
+      const elem = document.getElementById("ebs-header-master");
+      if (elem) {
+        elem.classList.remove("ebs-add-layer-header");
+       
+      }
+    
+     };
+
+  }, [loadedSections, loadCount]);
+  const handleResize = () => {
+    clearTimeout(window.resizedFinished);
+      window.resizedFinished = setTimeout(() => {
+      if (window.innerWidth >= 991) {
+        const elem = document.getElementById("ebs-header-master");
+        const banner = document.getElementsByClassName("main-slider-wrapper")[0];
+        if (elem && banner) {
+          elem.classList.remove("ebs-light-header");
+          var _nextSibling = banner.dataset.fixed;
+          if (_nextSibling === "true") {
+            elem.classList.add("ebs-fixed-header");
+          } else {
+            elem.classList.add("ebs-light-header");
+          }
+        }
+      }
+    }, 1000);
+  };
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+    return () => {
+      window.removeEventListener("resize", handleResize, false);
+    };
+  }, [loadedSections, loadCount]);
+  
+  
   return (
     <Suspense fallback={<PageLoader />}>
       <React.Fragment>
         {loadedSections !== loadCount && <PageLoader className="fixed" />}
-        {event && layoutSections && (
+        {event && layoutSections && window.innerWidth >= 991 && (
           <ReactFullpage
             pluginWrapper={pluginWrapper}
             licenseKey={"2M0Y7-J7Q98-3ZUK9-56J4J-JZJWP"}
@@ -112,19 +163,31 @@ const Index2 = () => {
             scrollHorizontally={true}
             navigation
             navigationPosition={"right"}
+            afterRender={() => {}}
+            onLeave={(origin, destination, direction) => {
+              console.log(destination.index,'destination.index');
+              if (destination.index === 0) {
+                document.querySelector("#ebs-header-master").classList.remove("ebs-add-layer-header");
+              } else {
+                document.querySelector("#ebs-header-master").classList.add("ebs-add-layer-header");
+              }
+            }}
             render={() => {
               return (
                 <ReactFullpage.Wrapper>
                   {renderSections()}
                   <div className="section">
                     <div className="inner-section">
-                      <Footer  />
+                      <Footer />
                     </div>
                   </div>
                 </ReactFullpage.Wrapper>
               );
             }}
           />
+        )}
+        {event && layoutSections && window.innerWidth < 991 && (
+          <>{renderSections()}</>
         )}
       </React.Fragment>
     </Suspense>

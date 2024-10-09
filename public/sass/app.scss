@@ -4158,4 +4158,8 @@ font-size: 24px;
   right:10%;
 }
 
-
+#ebs-header-master {
+  &.ebs-add-layer-header {
+    background: rgba($black, 0.5) !important;
+  }
+}
