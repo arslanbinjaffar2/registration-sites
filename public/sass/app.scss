@@ -45,7 +45,14 @@
   display: inline-block;
   line-height: 47px;
 }
-
+.tracks_container{
+  span{
+    background-color: var(--bg-track);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+}
 //
 .edgtf-year-schedule {
   .col-lg-4 {
@@ -5058,7 +5065,8 @@
   z-index: 2;
 }
 
-.css-1nmdiq5-menu {
+.css-1nmdiq5-menu{
+  position: relative;
   z-index: 99;
 }
 
@@ -5686,7 +5694,12 @@
            }
         }
         .tracks_container{
-
+          span{
+            background-color: var(--bg-track);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+          }
         }
       }
     }
@@ -5777,6 +5790,8 @@
 
 .ebr_program-variation8-container{
   background: transparent radial-gradient(closest-side at 50% 50%, #212121 0%, #000000 100%, #545454 100%) ;
+ 
+
   .module-section{
     background-color: #000000;
   }
@@ -5818,6 +5833,7 @@
 }
 .ebs-variation-table-container{
   padding-top: 60px;
+
   .table-responsive-sm,table,tbody,thead,tr,td,th {
     background-color: transparent ;
     color: white ;
@@ -5879,6 +5895,7 @@ gap: 27px;
     
        h4{
         font-size: 20px;
+        cursor: pointer;
        }
       // gap: 27px;
     }
@@ -5919,7 +5936,7 @@ gap: 27px;
           width: 2px;
           height: 50%; 
           left: 169px;
-          z-index: 3;
+          z-index: 2;
         }
       }
       &:last-of-type {
@@ -5980,6 +5997,8 @@ gap: 27px;
     }
   }
   .time_container{
+    width: 100px;
+    height: 100px;
     p{
       cursor: pointer;
       &:hover{
@@ -5990,7 +6009,7 @@ gap: 27px;
   .worksop_program_container{
      
     .worksop_program_item{
-      min-width:308px;
+      min-width:375px;
       h4{
         cursor: pointer;
         &:hover,&:active,&:focus{

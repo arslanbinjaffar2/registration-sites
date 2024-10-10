@@ -102,7 +102,7 @@ const Index = (props) => {
                                         </>
                                     )}
                                     {showCancellationOptions && <div className='border mt-3 p-2 rounded'>
-                                        <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
+                                        <div className="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
                                                 {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
                                         </div>
                                         <div className='form-check mb-0 form-check-inline me-5'>

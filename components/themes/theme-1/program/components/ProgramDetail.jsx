@@ -62,19 +62,19 @@ import moment from 'moment'
                 <div className="border-bottom pb-3 w-100">
                 <div className='d-flex justify-content-between align-items-center'>
                 {program?.topic &&  <h5 className='m-0 fs-2x1 fw-semibold'>{program.topic}</h5>}
-                <span class="material-symbols-outlined cursor-pointer"  style={{ fontSize: "30px" }} onClick={() => setShowDetail(false)}>close</span>
+                <span className="material-symbols-outlined cursor-pointer"  style={{ fontSize: "30px" }} onClick={() => setShowDetail(false)}>close</span>
                     </div>
                <div className='d-flex gap-4 align-items-center justify-content-start mt-3'>
                <div className='d-flex gap-1 align-items-center'>
-               <span class="material-symbols-outlined fs-small">calendar_month</span>
+               <span className="material-symbols-outlined fs-small">calendar_month</span>
                <span>{moment(program?.date).format('dddd')} , {moment(program?.date).format('MMMM D, YYYY')}</span>
                </div>
                {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program?.hide_time) === 0 &&   <div className='d-flex gap-1 align-items-center'>
-               <span class="material-symbols-outlined fs-small">schedule</span>
+               <span className="material-symbols-outlined fs-small">schedule</span>
                <span>   {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</span>
                </div>}
               {program?.location && <div className='d-flex gap-1 align-items-center'>
-                <span class="material-symbols-outlined fs-small">location_on</span>
+                <span className="material-symbols-outlined fs-small">location_on</span>
                <span>{program.location}</span>
                </div>}
                </div>
@@ -83,7 +83,7 @@ import moment from 'moment'
                <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program?.description }} />
                {program?.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more cursor-pointer fw-semibold fs-xsmall' onClick={() => {if(showText) {setTimeout(() => {
                                 _ref?.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-                 }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE} {showText ? <i class="fas fa-chevron-up"></i>:<i class="fas fa-chevron-down"></i>}</span>}
+                 }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE} {showText ? <i className="fas fa-chevron-up"></i>:<i className="fas fa-chevron-down"></i>}</span>}
                 </div>
                {program?.program_tracks.length > 0 && <div className={`pt-32 row d-flex flex-lg-row flex-column w-100 gap-2 ${program.program_tracks.length ==8 ?"align-items-center":"align-items-start"}`}>                    
                 <h5 className='m-0 col-lg-1'>Tracks :</h5>

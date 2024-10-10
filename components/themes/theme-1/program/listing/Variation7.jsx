@@ -71,7 +71,12 @@ const Variation7 = ({
   const flattenedItems = Object.keys(programsLoc).flatMap((key) =>
     programsLoc[key].map((item) => ({ ...item, key }))
   );
-
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
     <div
       data-fixed="false"
@@ -133,7 +138,7 @@ const Variation7 = ({
           <>
             <div className="ebr_program_variation7-container ">
               <Fragment>
-                {flattenedItems.slice(0, 5).map((item,index,workshop_programsArray) => {
+                {flattenedItems.map((item,index,workshop_programsArray) => {
                   return (
                     <Fragment key={item+index}>
                       {item.workshop_id > 0 && (
@@ -142,10 +147,10 @@ const Variation7 = ({
                             <div className="ebr-time-title-container d-flex  align-items-center gap-27">
                               <p className="m-0 start_end fw-semibold ebr_time" >
                                 {moment(
-                                  `${item.date} ${item.start_time}`
+                                  `${item.date} ${item.program_workshop_start_time}`
                                 ).format("HH:mm")}{" "}
                                 -{" "}
-                                {moment(`${item.date} ${item.end_time}`).format(
+                                {moment(`${item.date} ${item.program_workshop_end_time}`).format(
                                   "HH:mm"
                                 )}
                               </p>
@@ -156,18 +161,7 @@ const Variation7 = ({
                                 {item.program_workshop}
                               </h4>
                             </div>
-                            <div className="d-flex gap-1 align-items-center location_container">
-                              <span className="material-symbols-outlined icon">
-                                location_on
-                              </span>
-                              <p className="text m-0">
-                                {`${
-                                  item.location.length > 25
-                                    ? item.location.substring(0, 25) + "...."
-                                    : item.location
-                                }`}
-                              </p>
-                            </div>
+                          
                           </div>
                           <div className="timeline-container">
                             {item.workshop_programs
@@ -176,7 +170,7 @@ const Variation7 = ({
                                 return (
                                   <>
                                     <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
-                                      <div className="ebr-time-title-container d-flex  align-items-center">
+                                      <div className="ebr-time-title-container d-flex  align-items-center w-100">
                                         <p
                                           className="m-0 start_end fw-medium ebr_time"
                                           style={{ minWidth: "140px" }}
@@ -189,24 +183,39 @@ const Variation7 = ({
                                             `${program.date} ${program.end_time}`
                                           ).format("HH:mm")}
                                         </p>
-                                        <div className="d-flex align-items-center gap-5">
+                                        <div className="d-flex align-items-center gap-5 w-100">
                                           <Timeline />
+                                          <div className="d-flex justify-content-between w-100 align-items-center">
                                           <p className="m-0 ebr_topic" onClick={()=>{
                                             handleItemClick(program,array)
                                             setShowDetail(true)
                                         }}>
                                             {program.topic}
                                           </p>
+                                          <div className="d-flex gap-1 align-items-center location_container">
+                                          <span className="material-symbols-outlined icon">
+                                            location_on
+                                          </span>
+                                          <p className="text m-0">
+                                            {`${
+                                              item.location.length > 25
+                                                ? item.location.substring(0, 25) + "...."
+                                                : item.location
+                                            }`}
+                                          </p>
+                                        </div>
+                                        </div>
                                         </div>
                                       </div>
                                     </div>
                                     {index === 5 &&
-                                      index === array.length - 1 &&
-                                      showWorkshopPrograms < array.length && (
+                                     index === array.length - 1 &&
+                                     showAllOtherPrograms < item.workshop_programs.length && 
+                                         (
                                         <div className="ebs-list-workshop ebr_session_title_container d-flex justify-content-between align-items-start flex-column">
                                           <div className="ebr-time-title-container d-flex align-items-center">
                                             <p
-                                              className="m-0 start_end fw-medium"
+                                              className="m-0 start_end fw-medium ebr_time"
                                               style={{ minWidth: "140px" }}
                                             >
                                               {moment(
@@ -222,9 +231,7 @@ const Variation7 = ({
                                               <button
                                                 className="m-0 ebr_topic btn btn-outline-primary"
                                                 onClick={() =>
-                                                  setShowWorkshopPrograms(
-                                                    array.length
-                                                  )
+                                                  setShowWorkshopPrograms(item.workshop_programs.length)
                                                 }
                                               >
                                                 hidden {array.length - 5} items
@@ -247,7 +254,7 @@ const Variation7 = ({
             <div className="ebr_program_variation7-container ">
               <div className="ebr_session_title_container border d-flex justify-content-between align-items-center my-4">
                 <div className="ebr-time-title-container d-flex  align-items-center">
-                  <h4 className="m-0 fw-semibold">other</h4>
+                  <h4 className="m-0 fw-semibold text-capitalize">other</h4>
                 </div>
               </div>
               <div className="timeline-container">
@@ -259,9 +266,9 @@ const Variation7 = ({
                         <Fragment>
                           {/* {item.workshop_id<=0 && ( */}
                           <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
-                            <div className="ebr-time-title-container d-flex  align-items-center">
+                            <div className="ebr-time-title-container d-flex  align-items-center  w-100">
                               <p
-                                className="m-0 start_end fw-medium"
+                                className="m-0 start_end fw-medium ebr_time"
                                 style={{ minWidth: "140px" }}
                               >
                                 {moment(
@@ -272,12 +279,27 @@ const Variation7 = ({
                                   "HH:mm"
                                 )}
                               </p>
-                              <div className="d-flex align-items-center gap-5">
+                              <div className="d-flex align-items-center gap-5  w-100">
                                 <Timeline />
+                                <div className="d-flex justify-content-between w-100 align-items-center">
+
                                 <p className="m-0 ebr_topic" onClick={()=>{
                                             handleItemClick(item,array)
                                             setShowDetail(true)
-                                        }}>{item.topic}</p>
+                                  }}>{item.topic}</p>
+                             {item.location!=="" && <div className="d-flex gap-1 align-items-center location_container">
+                              <span className="material-symbols-outlined icon">
+                                location_on
+                              </span>
+                              <p className="text m-0">
+                                {`${
+                                  item.location.length > 25
+                                    ? item.location.substring(0, 20) + "...."
+                                    : item.location
+                                }`}
+                              </p>
+                              </div>}
+                              </div>
                               </div>
                             </div>
                           </div>
@@ -287,7 +309,7 @@ const Variation7 = ({
                               <div className="ebs-list-workshop ebr_session_title_container d-flex justify-content-between align-items-start flex-column">
                                 <div className="ebr-time-title-container d-flex align-items-center">
                                   <p
-                                    className="m-0 start_end fw-medium"
+                                    className="m-0 start_end fw-medium ebr_time"
                                     style={{ minWidth: "140px" }}
                                   >
                                     {moment(

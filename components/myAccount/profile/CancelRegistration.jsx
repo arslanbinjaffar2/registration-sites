@@ -66,7 +66,7 @@ const CancelRegistration = () => {
           </div>
             <div className="generic-form">
             {order_attendee_count > 1 && <div className='mb-3'>
-                <div class="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
+                <div className="mb-3" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>
                         {event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER !== undefined ? event.labels.REGISTRATION_CANCEL_COMPLETE_ORDER : 'Cancel complete order:'}
                 </div>
                 <div className='form-check mb-0 form-check-inline me-5'>
@@ -99,7 +99,7 @@ const CancelRegistration = () => {
                     </label>
                   </div>
             </div>}
-              <p class="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>{event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}</p>
+              <p className="mb-2 mt-0" style={{textAlign:'left', fontSize:'16px', color:'#000'}}>{event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}</p>
               <textarea
                 placeholder={event.labels.REGISTRATION_CANCEL_COMMENT_LABEL}
                 cols={30}

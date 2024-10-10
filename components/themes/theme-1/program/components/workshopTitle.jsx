@@ -171,7 +171,7 @@ function SingleProgram({
               <div className="d-flex gap-3 align-items-center flex-md-row flex-column">
                 {item.location && (
                   <div className="me-2 ebs-program-location d-flex">
-                    <span class="material-symbols-outlined fs-small">
+                    <span className="material-symbols-outlined fs-small">
                       location_on
                     </span>{" "}
                     <span className="fs-small fw-normal"> 
@@ -214,7 +214,7 @@ function SingleProgram({
                  ${programsState.id == programId && showProgramDetail ? "bg-black text-white":"bg-white text-black"}`}
                   style={{ height: "35px",width:"35px"}}
                 >
-                  <span class="material-symbols-outlined">more_horiz</span>
+                  <span className="material-symbols-outlined">more_horiz</span>
                 </div>
               </div>
             </div>

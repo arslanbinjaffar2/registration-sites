@@ -8,9 +8,12 @@ import {
   getProgramthroughWorkshopSessions,
   workshopTitlesOptions,
   DateOptions,
+  BgStyles,
 } from "../utils/programs";
 import {useDebounce, useDimention, useProgramId } from "../utils/customHooks";
 import ProgramDetail from "../components/ProgramDetail";
+import NoRecordFound from '../../../../../components/NoRecordFound'
+
 const Variation8 = ({
   programs,
   eventUrl,
@@ -19,6 +22,7 @@ const Variation8 = ({
   siteLabels,
   agendaSettings,
   eventsiteSettings,
+  moduleVariation
 }) => {
   const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
   const {width}=useDimention()
@@ -51,9 +55,14 @@ const Variation8 = ({
     }
     setProgramsLoc(programsObj);
   }, [selectedDate, selectedSession, search]);
-
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
-    <div className="ebr_program-variation8-container">
+    <div className="ebr_program-variation8-container" style={BgStyles(moduleVariation)}>
       <div style={{ padding: "60px 0 40px 0" }} className="module-section">
         <div className="container">
           <div className="ebs-variation8-filter-container d-flex justify-content-start gap-3">
@@ -96,7 +105,7 @@ const Variation8 = ({
               options={workshopTitlesOptions(programs)}
             />
           </div>
-          <div className="ebs-variation-table-container">
+         {Object.keys(programsLoc).length>0&& <div className="ebs-variation-table-container">
             <Table responsive="sm" className="bg-transparent">
               <thead>
                 <tr>
@@ -157,15 +166,8 @@ const Variation8 = ({
                                                 key={track.id + track.name}
                                                 data-title={track.name}
                                                 style={{
-                                                  backgroundColor: `${
-                                                    track.color
-                                                      ? track.color
-                                                      : "#000"
-                                                  }`,
-                                                  width: "20px",
-                                                  height: "20px",
-                                                  borderRadius: "50%",
-                                                }}
+                                                  "--bg-track":`${track.color?track.color:"#000"}`
+                                                 }}
                                               ></span>
                                             );
                                           })}
@@ -215,15 +217,8 @@ const Variation8 = ({
                                             key={track.id + track.name}
                                             data-title={track.name}
                                             style={{
-                                              backgroundColor: `${
-                                                track.color
-                                                  ? track.color
-                                                  : "#000"
-                                              }`,
-                                              width: "20px",
-                                              height: "20px",
-                                              borderRadius: "50%",
-                                            }}
+                                              "--bg-track":`${track.color?track.color:"#000"}`
+                                             }}
                                           ></span>
                                         );
                                       })}
@@ -240,7 +235,12 @@ const Variation8 = ({
                   })}
               </tbody>
             </Table>
-          </div>
+          </div>}
+          <div className="mt-4">
+          {Object.keys(programsLoc).length<=0 && 
+          <NoRecordFound siteLabels={siteLabels}/>
+        }
+        </div>
         </div>
       </div>
       {width>570 &&
