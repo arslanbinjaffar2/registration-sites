@@ -43,13 +43,13 @@ const MasterLayoutRoute = ({ children, event }) => {
 
                     {event?.registration_site_theme_onepager === 0 && (
                     <>
-                        {Array.isArray(children) ? children : null}
+                        {children}
                     </>
                     )}
 
                     {event?.registration_site_theme_onepager === 1 && (
                     <div className='ebs-master-theme-v2'>
-                        {Array.isArray(children) ? children : null}
+                        {children}
                     </div>
                     )}
 

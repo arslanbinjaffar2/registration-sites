@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import TracksPopup from "../components/TrackPopup";
-import { colorPalette, otherProgramTitleColor } from "../utils/programs";
+import { BgStyles, colorPalette, otherProgramTitleColor } from "../utils/programs";
+import { useDimention, useProgramId } from "../utils/customHooks";
+import ProgramDetail from "../components/ProgramDetail";
+import NoRecordFound from '../../../../../components/NoRecordFound'
 const Variation9 = ({
   programs,
   eventUrl,
@@ -9,7 +12,10 @@ const Variation9 = ({
   showWorkshop,
   siteLabels,
   agendaSettings,
+  moduleVariation
 }) => {
+  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
+  const {width}=useDimention()
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState("");
   const [workShopId, setWorkShopId] = useState(0);
@@ -39,7 +45,7 @@ const Variation9 = ({
   }, [programsLoc]);
 
   return (
-    <div style={{ padding: "60px 0 40px 0" }} className="module-section">
+    <div style={BgStyles(moduleVariation,"60px 0 40px 0" )} className="module-section">
       <div className="border-bottom">
         <div
           className="container overflow-auto ebs-day-filter-tabs"
@@ -58,13 +64,14 @@ const Variation9 = ({
                     }}
                     onClick={() => setSelectedDate(item)}
                   >
-                    Day {k + 1}
+                   {moment(item).format("ddd MMM yyy")}
                   </div>
                 );
               })}
           </div>
         </div>
       </div>
+    {Object.keys(programsLoc).length>0  &&
       <div className="ebr_program_variaton_9_container container">
         <div className="d-flex  gap-1 workshop_title_container algin-items-center">
           {Object.values(programsLoc).length > 0 &&
@@ -87,94 +94,65 @@ const Variation9 = ({
             ))}
         </div>
         <div className="program_container">
-          {Object.values(programsLoc).length > 0 &&
-            programsLoc &&
-            Object.keys(programsLoc).map((key, k) => (
-              <>
-                {selectedDate !== ""
-                  ? programsLoc[selectedDate].map((item, k) => {
-                      return (
-                        <>
-                          {item.workshop_id > 0 && workShopId !== 0 ? (
-                            <>
-                              {Object.keys(item)
-                                .filter(
-                                  (key) => item[key].workshop_id === workShopId
-                                )
-                                .flatMap((key) => item[key].workshop_programs)
-                                .map((program) => (
-                                  <ProgramItem9
-                                    item={program}
-                                    key={program.topic + k}
-                                    sessionColors={sessionColors}
-                                    workShopId={workShopId}
-                                  />
-                                ))}
-                            </>
-                          ) : (
-                            <ProgramItem9
-                              item={item}
-                              key={item.topic}
-                              sessionColors={sessionColors}
-                              workShopId={workShopId}
-                            />
-                          )}
-                        </>
-                      );
-                    })
-                  : programsLoc[key].map((item, k) => {
-                      return (
-                        <>
-                          {item.workshop_id > 0 && workShopId !== 0 ? (
-                            <>
-                              {Object.keys(item)
-                                .filter(
-                                  (key) => item[key].workshop_id === workShopId
-                                )
-                                .flatMap((key) => item[key].workshop_programs)
-                                .map((program) => (
-                                  <ProgramItem9
-                                    item={program}
-                                    key={program.id}
-                                    sessionColors={sessionColors}
-                                    workShopId={workShopId}
-                                  />
-                                ))}
-                            </>
-                          ) : (
-                            <ProgramItem9
-                              item={item}
-                              key={item.topic + item.id}
-                              sessionColors={sessionColors}
-                              workShopId={workShopId}
-                            />
-                          )}
-                        </>
-                      );
-                    })}
-              </>
-            ))}
+        {Object.keys(programsLoc).length>0 && Object.keys(programsLoc).filter((Date)=>selectedDate!==""?selectedDate==Date:Date).map((Date,k)=>{
+          return(
+            <>
+            {programsLoc[Date].
+            filter((item)=>item.workshop_id===workShopId ? item.workshop_programs:item)
+            .map((program,index,program_array)=>{
+              return(
+                <>
+            <ProgramItem9
+              item={program}
+              key={program.topic + k}
+              sessionColors={sessionColors}
+              workShopId={workShopId}
+              handleItemClick={handleItemClick}
+              setShowDetail={setShowDetail}
+              programArray={program_array}
+              />
+                </>
+              )
+            })
+            }
+            </>
+            )
+        })}
+       
         </div>
-      </div>
+      </div>}
+      {Object.keys(programsLoc).length<=0 && 
+        <NoRecordFound siteLabels={siteLabels}/>
+        }
+      {width>570 &&
+      <ProgramDetail 
+      setShowDetail={setShowDetail} 
+      ref={detailRef} 
+      programs={programsState}  
+      showDetail={showDetail} 
+      agendaSettings={agendaSettings} 
+      eventUrl={eventUrl} 
+      labels={siteLabels}/> }     
     </div>
   );
 };
 
 export default Variation9;
 
-const ProgramItem9 = ({ item, sessionColors, workShopId }) => {
+const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItemClick,setShowDetail}) => {
   const startTime = moment(`${item.date} ${item.start_time}`);
   const endTime = moment(`${item.date} ${item.end_time}`);
   const durationMinutes = endTime.diff(startTime, "minutes");
   const isHTML = containsHTMLTags(item.description);
   const workshopColor =
-    workShopId !== 0 ? sessionColors[workShopId] : otherProgramTitleColor;
+    workShopId !== 0 ? (sessionColors[workShopId] || sessionColors[item.workshop_id>0 ? item.workshop_id:0]) : otherProgramTitleColor;
   function containsHTMLTags(str) {
     return /<\/?[a-z][\s\S]*>/i.test(str);
   }
+  
+  console.log(workshopColor,"workshop")
   return (
-    <div className="program_item d-flex align-items-center">
-      {JSON.stringify(item.workShopId)}
+    <div className="program_item d-flex align-items-center" >
       <div
         className="time d-flex flex-column align-items-center"
         style={{ "--pseudo-bg-color": workshopColor }}
@@ -187,7 +165,10 @@ const ProgramItem9 = ({ item, sessionColors, workShopId }) => {
         <p className=" m-0 mt-6 minutes">{durationMinutes} min</p>
       </div>
       <div className="detail ">
-        <h4 className="m-0 title">{item.topic}</h4>
+        <h4 className="m-0 title" onClick={()=>{
+      handleItemClick(item,programArray)
+      setShowDetail(true)
+  }}>{item.topic}</h4>
         {isHTML ? (
           <div
             className="m-0 pt-3 description truncate ebs-edgtf-post-line-clamp"

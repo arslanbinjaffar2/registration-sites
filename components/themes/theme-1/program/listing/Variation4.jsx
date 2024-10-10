@@ -76,7 +76,7 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
     <div title={items.topic} className={`${items.program_workshop ? 'ebs-workshop' : ''} w-100 mb-5`}>
       <div className="d-flex gap-3">
         {Number(program_setting.agenda_display_time) === 1 && (
-          <div className="time">{items.start_time} - {items.end_time}</div>
+          <div className="time fw-medium">{items.start_time} - {items.end_time}</div>
         )}
      
           <div class="ebs-content">
@@ -84,7 +84,7 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
             <span>{items.topic}</span>
             <span class="material-icons">info</span>
             </div>
-            {items.program_tracks && <div className="tracks">
+            {items.program_tracks && <div className="tracks d-flex justify-content-start align-items-center flex-wrap gap-2">
               {items.program_tracks.map((track, k) =>
                 <span className='rounded-5 px-3 py-1 text-white fw-400 me-1' style={{backgroundColor: track.color ? track.color : '#000'}} key={k}>{track.name}
                 </span>
