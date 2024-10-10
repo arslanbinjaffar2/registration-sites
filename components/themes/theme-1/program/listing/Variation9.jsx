@@ -79,24 +79,31 @@ const Variation9 = ({
     {Object.keys(programsLoc).length>0  &&
       <div className="ebr_program_variaton_9_container container">
         <div className="d-flex  gap-1 workshop_title_container algin-items-center">
-          {Object.values(programsLoc).length > 0 &&
-            programsLoc &&
-            Object.keys(programsLoc).map((key, k, array) => (
+        {Object.values(programsLoc).length > 0 &&
+          programsLoc &&
+          (() => {
+            const renderedWorkshops = new Set();
+            return Object.keys(programsLoc).map((key, k, array) => (
               <>
                 {programsLoc[key].map((item, index) => {
-                  return (
-                    <WorkshopTitle9
-                      key={item + index}
-                      item={item}
-                      array={array}
-                      sessionColors={sessionColors}
-                      setWorkShopId={setWorkShopId}
-                      k={k}
-                    />
-                  );
+                  if (item.workshop_id > 0 && !renderedWorkshops.has(item.workshop_id)) {
+                    renderedWorkshops.add(item.workshop_id);
+                    return (
+                      <WorkshopTitle9
+                        key={item.workshop_id}
+                        item={item}
+                        array={array}
+                        sessionColors={sessionColors}
+                        setWorkShopId={setWorkShopId}
+                        k={k}
+                      />
+                    );
+                  }
+                  return null;
                 })}
               </>
-            ))}
+            ));
+          })()}
         </div>
         <div className="program_container">
         {Object.keys(programsLoc).length>0 && Object.keys(programsLoc).filter((Date)=>selectedDate!==""?selectedDate==Date:Date).map((Date,k)=>{

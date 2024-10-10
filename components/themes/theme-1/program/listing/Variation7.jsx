@@ -39,7 +39,9 @@ const Variation7 = ({
   const onDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  const onTrackChange = (track) =>{
+      setSelectedTrack(track);
+    }
   const handleResetFilters = () => {
     setValue("");
     setSelectedTrack({ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK });
@@ -104,27 +106,33 @@ const Variation7 = ({
               </div>
             </div>
           )}
-          {tracks.length > 0 && (
-            <div className="">
-              <ReactSelect
-                styles={customStyles}
-                placeholder={siteLabels.EVENTSITE_SELECT_DAY}
-                components={{ IndicatorSeparator: null }}
-                onChange={(date) => {
-                  onDateChange(date);
-                }}
-                className="custom-track-select"
-                value={selectedDate}
-                options={Object.keys(programs).reduce(
-                  (ack, key) => [
-                    ...ack,
-                    { value: key, label: moment(key).format("D MMM") },
-                  ],
-                  [{ value: 0, label: siteLabels.EVENTSITE_SELECT_DAY }]
-                )}
-              />
-            </div>
-          )}
+          {tracks.length > 0 && <div className="ebs-select-box">
+                          <ReactSelect
+                            styles={customStyles}
+                            placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
+                            components={{ IndicatorSeparator: null }}
+                            onChange={(track)=>{onTrackChange(track)}}
+                            value={selectedTrack}
+                            className='custom-track-select'
+                            options={tracks.reduce((ack, item,index, array) =>{
+                              console.log({ value: item.name, label: item.name }," value: item.name, label: item.name }")
+                              ack = [...ack, { value: item.name, label: item.name }];                          
+                              if (item.sub_tracks && item.sub_tracks.length > 0) {
+                                ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
+                                  const { info } = subItem;
+                                  const nameInfo = info.find((infoItem) => infoItem.name === 'name');
+                                  subAck = [...subAck, {
+                                    value: nameInfo.value,
+                                    label: `${nameInfo.value}`
+                                  }];
+                                  console.log({ subAck }," subAck label: item.name }")
+                                  return subAck;
+                                }, []));
+                              }
+                              return ack;
+                            },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
+                          />
+												</div>}
 
           {/* <div
             className="d-flex gap-1 align-items-center justify-content-end ms-auto ebs-reset-btn"

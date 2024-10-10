@@ -117,14 +117,33 @@ const settings = {
               <div className="row flex-row-reverse">
                
                 <div className="col-md-5 col-6">
-                  {tracks.length > 0 && <ReactSelect
-                    styles={customStyles}
-                    placeholder={siteLabels.EVENTSITE_SELECT_TRACK ? siteLabels.EVENTSITE_SELECT_TRACK : "Select track"}
-                    components={{ IndicatorSeparator: null }}
-                    onChange={(track)=>{onTrackChange(track)}}
-                    value={selectedTrack}
-                    options={tracks.reduce((ack, item)=>([...ack, {value:item.name,label:item.name}]),[{value:0, label:siteLabels.EVENTSITE_SELECT_TRACK}])}
-                  />}
+                 {tracks.length > 0 && <div className="ebs-select-box">
+                          <ReactSelect
+                            styles={customStyles}
+                            placeholder={siteLabels.EVENTSITE_SELECT_TRACK}
+                            components={{ IndicatorSeparator: null }}
+                            onChange={(track)=>{onTrackChange(track)}}
+                            value={selectedTrack}
+                            className='custom-track-select'
+                            options={tracks.reduce((ack, item,index, array) =>{
+                              console.log({ value: item.name, label: item.name }," value: item.name, label: item.name }")
+                              ack = [...ack, { value: item.name, label: item.name }];                          
+                              if (item.sub_tracks && item.sub_tracks.length > 0) {
+                                ack = ack.concat(item.sub_tracks.reduce((subAck, subItem) => {
+                                  const { info } = subItem;
+                                  const nameInfo = info.find((infoItem) => infoItem.name === 'name');
+                                  subAck = [...subAck, {
+                                    value: nameInfo.value,
+                                    label: `${nameInfo.value}`
+                                  }];
+                                  console.log({ subAck }," subAck label: item.name }")
+                                  return subAck;
+                                }, []));
+                              }
+                              return ack;
+                            },[{ value: 0, label: siteLabels.EVENTSITE_SELECT_TRACK }]) }
+                          />
+												</div>}
                 </div>
                 <div className="col-md-5 col-6">
                 </div>
