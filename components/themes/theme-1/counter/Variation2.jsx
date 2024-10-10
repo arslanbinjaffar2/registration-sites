@@ -46,6 +46,7 @@ const Variation2 = ({ event, labels, settings }) => {
                         onComplete={() => setCompleted(true)}
                         hideOnComplete={false}
                         className='flip-clock'
+                        labels={[event?.labels?.COUNTDOWN_LABEL_DAYS, event?.labels?.COUNTDOWN_LABEL_HOURS, event?.labels?.COUNTDOWN_LABEL_MINUTES, event?.labels?.COUNTDOWN_LABEL_SECONDS]}
                         to={expiryDate.getTime()}
                     />
                     <Completionist completed={completed} event={event} />

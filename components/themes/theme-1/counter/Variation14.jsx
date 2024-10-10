@@ -103,12 +103,18 @@ function Countdown({date,event}) {
     const formattedDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
     const [completed,setCompleted]=useState(false)
     const [targetDate, setTargetDate] = useState(new Date(formattedDate));
-    const [parts, setParts] = useState({
-      days: { text: ['days', 'day'], dots: 30 },
-      hours: { text: ['hours', 'hour'], dots: 24 },
-      minutes: { text: ['minutes', 'minute'], dots: 60 },
-      seconds: { text: ['seconds', 'second'], dots: 60 },
-    });
+   const labels = {
+    days: [event?.labels?.COUNTDOWN_LABEL_DAYS ],
+    hours: [event?.labels?.COUNTDOWN_LABEL_HOURS],
+    minutes: [event?.labels?.COUNTDOWN_LABEL_MINUTES],
+    seconds: [event?.labels?.COUNTDOWN_LABEL_SECONDS],
+  };
+  const [parts, setParts] = useState({
+    days: { text: labels.days, dots: 30 },
+    hours: { text: labels.hours, dots: 24 },
+    minutes: { text: labels.minutes, dots: 60 },
+    seconds: { text: labels.seconds, dots: 60 },
+  });
     // const [parts, setParts] = useState({
     //   days: { text: ['', 'day'], dots: 30 },
     //   hours: { text: ['', 'hour'], dots: 24 },
@@ -178,7 +184,7 @@ function Countdown({date,event}) {
               </div>
             ))}
           </div>
-             <span className="text m-0 text-white text-capitalize">{key}</span>
+            <span className="text m-0 text-capitalize">{value.text[0]}</span>
             </div>
         ))}
          

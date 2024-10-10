@@ -22,22 +22,22 @@ const Variation11 = ({ event, labels, settings }) => {
         <React.Fragment>
           <div className="ebs-countdown-wrapp d-flex w-100 countdown-wrapp ebs-counter-v10">
             {Math.floor(days / 30) > 0 && <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days / 30))}<span className="countdown-period m-0 text-white">Months</span></div></span>
+              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days / 30))}<span className="countdown-period m-0 text-white">{event?.labels?.COUNTDOWN_LABEL_MONTHS}</span></div></span>
             </span>}
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days % 30))} <span className="countdown-period m-0 text-white">Days</span></div></span>
+              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(Math.floor(days % 30))} <span className="countdown-period m-0 text-white">{event?.labels?.COUNTDOWN_LABEL_DAYS}</span></div></span>
               
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(hours)}<span className="countdown-period m-0 text-white">Hours</span></div></span>
+              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(hours)}<span className="countdown-period m-0 text-white">{event?.labels?.COUNTDOWN_LABEL_HOURS}</span></div></span>
               
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(minutes)}<span className="countdown-period m-0 text-white">Minutes</span></div></span>
+              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(minutes)}<span className="countdown-period m-0 text-white">{event?.labels?.COUNTDOWN_LABEL_MINUTES}</span></div></span>
               
             </span>
             <span className="edgtf-countdown is-countdown">
-              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(seconds)}<span className="countdown-period m-0 text-white">Seconds</span></div></span>
+              <span className="countdown-amount rounded-circle bg-primary"><div className="position-absolute top-50 start-50 translate-middle lh-base text-white">{zeroPad(seconds)}<span className="countdown-period m-0 text-white">{event?.labels?.COUNTDOWN_LABEL_SECONDS}</span></div></span>
               
             </span>
           </div>
