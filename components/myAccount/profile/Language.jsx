@@ -42,7 +42,7 @@ const Language = () => {
       {languages.length > 1 && (
       <div className="ebs-profile-top-area">
         <div onClick={handleClick} className="ebs-sideber-icond">
-          <div style={{ cursor: 'pointer' }} className="d-flex align-items-center border rounded-1 py-1 px-2">
+          <div style={{ cursor: 'pointer' }} className="d-flex bg-white align-items-center border rounded-1 py-1 px-2">
             <span className="d-block position-relative d-flex align-items-center">
               <img
                 className="ebs-image-solid"
