@@ -71,15 +71,15 @@ const MyProfile = () => {
                       </div>
                       <div className="ebs-profile-social-links">
                         {attendee.phone && <div className="ebs-profile-social-links-row align-items-center pb-2">
-                          <em class="material-icons fs-5">phone_iphone</em><span>{attendee.phone}</span>
+                          <em className="material-icons fs-5">phone_iphone</em><span>{attendee.phone}</span>
                         </div>
                         }
                         {attendee.email && <div className="ebs-profile-social-links-row align-items-center pb-2">
-                          <em class="material-icons fs-5 me-1">mail_outline</em>
+                          <em className="material-icons fs-5 me-1">mail_outline</em>
                           <a href={`mailto:${attendee.email}`}>{attendee.email}</a>
                         </div>}
                         {(attendee.info && attendee.info.website) && <div className="ebs-profile-social-links-row align-items-center pb-2">
-                          <em class="material-icons fs-5 me-1">language</em>
+                          <em className="material-icons fs-5 me-1">language</em>
                           <span><a target='_blank' rel="noreferrer" href={`${attendee.info.website_protocol}${attendee.info.website}`}>{`${attendee.info.website_protocol}${attendee.info.website}`}</a></span>
                         </div>}
                       </div>

@@ -43,7 +43,12 @@ const Variation9 = ({
       generateColors(allWorkshopIds);
     }
   }, [programsLoc]);
-
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
   return (
     <div style={BgStyles(moduleVariation,"60px 0 40px 0" )} className="module-section">
       <div className="border-bottom">
@@ -64,7 +69,7 @@ const Variation9 = ({
                     }}
                     onClick={() => setSelectedDate(item)}
                   >
-                   {moment(item).format("ddd MMM yyy")}
+                   {moment(item).format("ddd, MM MMM ")}
                   </div>
                 );
               })}
@@ -157,7 +162,6 @@ const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItem
     return /<\/?[a-z][\s\S]*>/i.test(str);
   }
   
-  console.log(workshopColor,"workshop")
   return (
     <div className="program_item d-flex align-items-center" >
       <div
@@ -210,10 +214,7 @@ const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItem
                     key={track.id + track.name}
                     data-title={track.name}
                     style={{
-                      backgroundColor: `${track.color ? track.color : "#000"}`,
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
+                     "--bg-track":`${track.color?track.color:"#000"}`
                     }}
                   ></span>
                 );

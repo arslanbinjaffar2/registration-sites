@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import ReactSelect from 'react-select';
 import Slider from "react-slick";
 import HeadingElement from "components/ui-components/HeadingElement";
-import ProgramItemv2 from "components/themes/theme-1/program/components/ProgramItemv2";
-import WorkShopv2 from "components/themes/theme-1/program/components/WorkShopv2";
+// import ProgramItemv2 from "components/themes/theme-1/program/components/ProgramItemv2";
+// import WorkShopv2 from "components/themes/theme-1/program/components/WorkShopv2";
 import { localeProgramMomentHome } from 'helpers/helper';
 
 function SampleNextArrow(props) {
@@ -166,8 +166,9 @@ const settings = {
               <div  className="ebs-program-parent">
                 {programsLoc && programsLoc.map((item,i) =>
                       item.workshop_id > 0  ? 
-                      <WorkShopv2 item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
-                      <ProgramItemv2 program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
+                      <></>:<></>
+                      // <WorkShopv2 item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
+                      // <ProgramItemv2 program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
                 )}
               </div>
           </div>

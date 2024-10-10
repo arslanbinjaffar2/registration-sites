@@ -79,10 +79,10 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
           <div className="time fw-medium">{items.start_time} - {items.end_time}</div>
         )}
      
-          <div class="ebs-content">
+          <div className="ebs-content">
             <div style={{cursor: 'pointer'}} onClick={() => onClick(items)} className="title  fw-semibold mb-2 d-flex gap-3 align-items-center">
             <span>{items.topic}</span>
-            <span class="material-icons">info</span>
+            <span className="material-icons">info</span>
             </div>
             {items.program_tracks && <div className="tracks d-flex justify-content-start align-items-center flex-wrap gap-2">
               {items.program_tracks.map((track, k) =>
@@ -239,7 +239,12 @@ const Variation4 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
 
 }, [selectedDate, selectedTrack, selectedLocation]);
 
-
+React.useEffect(() => {
+  const link = document.createElement('link');
+  link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+}, []);
 
     return (
        <div style={bgStyle} className="module-section">

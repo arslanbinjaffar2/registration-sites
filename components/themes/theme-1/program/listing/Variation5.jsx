@@ -391,6 +391,12 @@ const Variation5 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     }
     
   };
+  React.useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
     return (
        <div style={bgStyle} className="module-section border-bottom overflow-hidden responive-padding-style">
            <div className="container-fluid">
