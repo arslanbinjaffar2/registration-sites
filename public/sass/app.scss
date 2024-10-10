@@ -5999,4 +5999,10 @@ gap: 27px;
       }
     }
   }
+
+  #ebs-header-master {
+    &.ebs-add-layer-header {
+      background: rgba($black, 0.5) !important;
+    }
+  }
 }
