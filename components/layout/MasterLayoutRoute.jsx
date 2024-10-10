@@ -41,9 +41,8 @@ const MasterLayoutRoute = ({ children, event }) => {
                 <>
                     <Header />
                     {showLogin && <LoginScreen />}
-                    {event?.registration_site_theme_onepager === 0 && <>{children}</>}
-                    {event?.registration_site_theme_onepager === 1 && <div className='ebs-master-theme-v2'>{children}</div>}
-                    {(event?.registration_site_theme_onepager === 0) || (window.innerWidth <= 991) && <Footer />}
+                    {children}
+                    <Footer />
                     <CookiePolicy/>
                 </>
             ) : (
