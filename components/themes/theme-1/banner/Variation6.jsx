@@ -47,7 +47,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                     <img alt={settings.title === 1 && slides.info.title.length > 0 ? slides.info.title : ''} src={process.env.NEXT_APP_EVENTCENTER_URL + slides.image} />
                   </figure>
                 )}
-                {((settings.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
+                {((settings?.register_button === 1) || (settings.title === 1 && slides.info.title.length > 0) ||  (settings.caption === 1 && slides.info.message.length > 1)) && <div className="classic-caption-wrapp">
                   <div className="text-center classic-inner-caption-wrapp">
                     <div style={{ position: "relative" }}
                       className="parallax-text"
@@ -62,7 +62,7 @@ const Variation6 = ({ banner, event, countdown, regisrationUrl, settings, regist
                           {slides.info.message}
                         </h3>
                       )}
-                      {settings.register_button === 1 && registerDateEnd  && <div className="ebs-custom-button-holder">
+                      {settings?.register_button === 1 && registerDateEnd  && <div className="ebs-custom-button-holder">
                         <a href={regisrationUrl} className="edgtf-btn edgtf-btn-huge edgtf-btn-custom-border-hover edgtf-btn-custom-hover-bg edgtf-btn-custom-hover-color">{event.labels.EVENTSITE_REGISTER_NOW2 ? event.labels.EVENTSITE_REGISTER_NOW2 : 'Register Now'}</a>
                       </div>}
                     </div>
