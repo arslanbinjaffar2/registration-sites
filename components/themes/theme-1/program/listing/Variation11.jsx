@@ -126,7 +126,7 @@ const DataItem = ({  items, program_setting, onClick, showWorkshop }) => {
       </div>}
       <div className="ebs-bottom-wrapp">
         <div className="location"><i className="material-icons">place</i> {items.location}</div>
-        {Number(program_setting.agenda_display_time) === 1 && (
+        {Number(program_setting.agenda_display_time) === 1  && (
           <div className="time"><i className="material-icons">access_time</i> {items.start_time} - {items.end_time}</div>
         )}
         <div className="ebs-box">
@@ -244,7 +244,7 @@ return showWorkshop;
   )
 }
 
-const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings,moduleVariation}) => {
+const Variation11 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agendaSettings,eventsiteSettings,moduleVariation}) => {
 
     const [schedule, setSchedule] = useState(Object.keys(programs));
     const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'));
@@ -470,7 +470,7 @@ const Variation2 = ({programs, eventUrl, tracks, showWorkshop, siteLabels, agend
     )
 }
 
-export default Variation2
+export default Variation11
 
 const getProgramsByTrack = (programs, track, location) => {
 

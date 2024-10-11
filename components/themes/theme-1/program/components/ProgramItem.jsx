@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import moment from 'moment'
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
@@ -6,10 +6,34 @@ import Image from 'next/image'
 const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
     const [showText, setShowText] = useState(program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
     const _ref = React.useRef();
-    console.log(`${program.date} ${program.start_time}`);
-    console.log(program.description.replace(/<\/?[^>]+(>|$)/g, "").length,'length string')
+		const [isClamped, setIsClamped] = useState(false);
+		const contentRef = useRef(null);
+
+		// Function to check if content exceeds 3 lines
+		const checkIfClamped = () => {
+			const element = contentRef.current;
+			if (element) {
+				// Get the computed styles for line height
+				const computedStyles = window.getComputedStyle(element);
+				const lineHeight = parseFloat(computedStyles.lineHeight);
+				console.log(lineHeight,'lineHeight');
+
+				// Get the height of 3 lines
+				const maxHeightForThreeLines = lineHeight * 3.1;
+				// Check if content height exceeds the height of 3 lines
+				if (element.scrollHeight > maxHeightForThreeLines) {
+					setIsClamped(true);
+				} else {
+					setIsClamped(false);
+				}
+			}
+		};
+
+		useEffect(() => {
+			checkIfClamped();
+		}, [program.description]);
     return (
-        <div className="ebs-program-child">
+        <div className="ebs-program-child-new">
             <div className="row d-flex">
                 <div className="col-lg-2">
                     {parseInt(agendaSettings.agenda_display_time) === 1 && parseInt(program.hide_time) === 0 && <div className='ebs-program-date'>{moment(`${program.date} ${program.start_time}`).format('HH:mm')} - {moment(`${program.date} ${program.end_time}`).format('HH:mm')}</div>}
@@ -25,12 +49,34 @@ const ProgramItem = ({ program, eventUrl, labels, agendaSettings }) => {
                                 <span key={i} style={{ backgroundColor: `${track.color ? track.color : '#000'}` }}>{track.name}</span>
                             ))}
                         </div>}
-                        {program.description && <div className="ebs-description">
-                            <div className={`ebs-contain ${!showText ? 'truncate' : ''}`} dangerouslySetInnerHTML={{ __html: program.description }} />
-                            {program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 && <span className='ebs-more' onClick={() => {if(showText) {setTimeout(() => {
-                                _ref.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-                            }, 300);} setShowText(!showText) }}>{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}</span>}
-                        </div>}
+                        {program.description && (
+															<div className="ebs-description">
+																<div
+																	className={`ebs-contain ${!showText ? 'truncate' : ''}`}
+																	dangerouslySetInnerHTML={{ __html: program.description }}
+																	ref={contentRef}
+																/>
+																{isClamped && (
+																	<span
+																		className="ebs-more"
+																		onClick={() => {
+																			if (showText) {
+																				setTimeout(() => {
+																					_ref.current.scrollIntoView({
+																						behavior: "smooth",
+																						block: "center",
+																						inline: "nearest",
+																					});
+																				}, 300);
+																			}
+																			setShowText(!showText);
+																		}}
+																	>
+																		{showText ? labels.EVENTSITE_READLESS : labels.EVENTSITE_READMORE}
+																	</span>
+																)}
+															</div>
+														)}
 
                         {program.program_speakers.length > 0 && <div className="row d-flex ebs-program-speakers">
                             {program.program_speakers?.map((speakers, o) =>

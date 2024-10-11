@@ -405,7 +405,7 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                       >
                         <h5>{question.info[0].value}</h5>
                         <Input
-                          type="number"
+                          type="text"
                           label={"Answer"}
                           value={
                             subRegResult[`answer_number${question.id}`] ?
@@ -413,12 +413,15 @@ const MySubRegForm = ({ subRegistration, event,  updating, alert, error, limitEr
                           }
                           disabled={subRegSettings.answer === 1 ? false : true}
                           onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === '' || /^[0-9]+$/.test(value)) {
                             updateResult(
                               `answer_number${question.id}`,
                               "number",
-                              e.target.value,
+                              value,
                               question.id
                             );
+                          }
                           }}
                         />
                         {Number(question.required_question) === 1 && simpleValidator.current.message(`${question.question_type}-${question.id}`, subRegResult[`answer_number${question.id}`] !== undefined ? true : null, 'required')}
