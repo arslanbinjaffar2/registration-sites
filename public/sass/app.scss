@@ -6025,3 +6025,31 @@ gap: 27px;
     }
   }
 }
+* {
+  word-break: break-all;
+}
+
+
+.mobile-hidden {
+  display: none;
+}
+@media screen and (min-width: 601px) {
+  .mobile-hidden {
+    display: block;
+  }
+  .tablet-hidden {
+    display: none;
+  }
+}
+@media screen and (min-width: 901px) {
+  .mobile-hidden {
+    display: block;
+  }
+  .tablet-hidden {
+    display: block;
+  }
+  .desktop-hidden {
+    display: none;
+
+  }
+}
