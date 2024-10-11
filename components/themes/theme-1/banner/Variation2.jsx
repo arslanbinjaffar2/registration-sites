@@ -123,7 +123,7 @@ const Variation2 = ({
     const _bgLayer =
       (props.slides.info?.title.length > 0 && settings.title === 1) ||
       (props.slides.info?.message.length > 0 && settings.caption === 1) ||
-      settings.register_button === 1;
+      settings?.register_button === 1;
 
     if (props.slides && Number(props.slides.video_type) === 1) {
       return (
@@ -250,7 +250,7 @@ const Variation2 = ({
                             )}
                           </>
                         )}
-                        {settings.register_button === 1 && registerDateEnd && (
+                        {settings?.register_button === 1 && registerDateEnd && (
                           <div
                             className="edgtf-custom-font-holder ebs-custom-button-holder"
                             style={{
@@ -292,7 +292,7 @@ const Variation2 = ({
           </SliderBanner_2>
         )}
       </div>
-      {settings.register_button === 1 && registerDateEnd && (
+      {settings?.register_button === 1 && registerDateEnd && (
         <div className="ebs-mobile-register-button py-4 d-flex align-items-center justify-content-center">
           <div
             className="edgtf-custom-font-holder ebs-custom-button-holder"
