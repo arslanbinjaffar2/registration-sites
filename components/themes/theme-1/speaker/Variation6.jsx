@@ -8,7 +8,7 @@ const Variation6 = ({ speakers, listing, searchBar, loadMore, event, settings, s
 
   return (
     <div>
-      <div style={bgStyle} className="module-section ebs-default-padding">
+      <div style={bgStyle} className="module-section ebs-default-padding ebs-master-default-wrapper">
         {!listing && <div className="container">
           <HeadingElement dark={false} label={event.labels.EVENTSITE_SPEAKERS} desc={event.labels.EVENTSITE_AMAZING_SPEAKERS} align={settings.text_align} />
         </div>}

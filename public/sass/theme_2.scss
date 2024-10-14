@@ -1,0 +1,334 @@
+.ebs-master-theme-v2 {
+	word-break: break-word;
+	font-size: 16px;
+
+	#fullpage {
+		.ebs-master-default-wrapper {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.edge-title-separator {
+			display: none;
+		}
+
+		.edgtf-title-section-holder .edgtf-section-subtitle {
+			font-size: 16px;
+		}
+
+		.ebs-sponsor-v1 {
+			border-bottom-width: 3px !important;
+			border-bottom-color: var(--primary) !important;
+			border-radius: 4px;
+		}
+
+		.fp-overflow {
+			.inner-section {
+				.module-section {
+					.edgtf-parallax-section-holder {
+						min-height: 100vh;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+					}
+				}
+			}
+		}
+
+		.ebs-newstheme-v1 {
+			.slick-slider {
+				margin-left: -10px;
+				margin-right: -10px;
+			}
+
+			.edgtf-post-title {
+				font-size: 24px;
+				margin-bottom: 15px;
+			}
+
+			.edgtf-post-info-date {
+				font-size: 14px;
+			}
+
+			.edgtf-post-excerpt {
+				color: $bordercc;
+				font-size: 18px;
+				line-height: 1.7;
+
+				h1,
+				h2,
+				h3,
+				h5,
+				h6 {
+					color: inherit;
+				}
+			}
+		}
+
+		.ebs-buttons-carousel {
+			position: absolute;
+			right: 0;
+			top: 15px;
+			z-index: 9;
+			display: flex;
+			gap: 15px;
+
+			.btn {
+				width: 48px;
+				height: 48px;
+				line-height: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				.material-icons {
+					font-size: 38px;
+				}
+			}
+		}
+
+		.ebs-counter-themev2-v1 {
+			.countdown-amount {
+				font-size: 64px;
+				background: none;
+				border: 1px solid $border;
+				border-bottom: 3px solid var(--primary);
+			}
+
+			.countdown-period {
+				font-size: 18px;
+				text-transform: none;
+			}
+		}
+
+		.ebs-manage-packages.ebs-manage-packages-v2 {
+			.ebs-header-packages .ebs-header-content {
+				.ebs-iframe-content {
+					* {
+						color: $white;
+					}
+				}
+
+				h1 {
+					color: $white;
+
+					&::after {
+						display: none;
+					}
+				}
+			}
+
+			.ebs-package-table-wrapp {
+				border-radius: 12px;
+				background: rgba($white, 0.1);
+				border: 1px solid rgba($white, 0.1);
+				backdrop-filter: blur(10px);
+
+				>p {
+					color: $white;
+				}
+
+				>h5 {
+					color: $white;
+				}
+
+				>h3 {
+					font-size: 24px;
+					color: $white;
+				}
+
+				.ebs-table-price {
+					font-size: 42px;
+
+					small {
+						font-size: 16px;
+					}
+				}
+
+				.ebs-table-timer {
+
+					h4,
+					.ebs-countdown-period {
+						color: $white;
+					}
+				}
+
+				.ebs-countdown-wrapp {
+					background: rgba($white, 0.1);
+					border-radius: 12px;
+					color: $white;
+
+				}
+
+				.ebs-table-price-listing {
+					p {
+						font-weight: normal;
+					}
+
+					h1 {
+						font-size: 30px;
+					}
+
+					h2 {
+						font-size: 24px;
+					}
+
+					h3 {
+						font-size: 20px;
+					}
+
+					h4 {
+						font-size: 18px;
+					}
+
+					* {
+						color: $white;
+					}
+				}
+
+				.ebs-footer-table {
+					.btn-table {
+						font-size: 16px;
+						display: inline-block;
+						line-height: 1.2;
+						padding: 14px 20px;
+						width: auto;
+					}
+				}
+			}
+		}
+
+		.ebs-social-share-v2 {
+			max-width: 525px;
+
+			button {
+				svg {
+					border: 1px solid rgba($white, 0.2);
+
+					rect {
+						fill: rgba($white, 0.1) !important;
+					}
+				}
+
+				&:hover {
+					svg {
+						border: 1px solid rgba($white, 0.5);
+
+						path {
+							fill: var(--primary) !important;
+						}
+
+						rect {
+							fill: rgba($white, 0.3) !important;
+						}
+					}
+				}
+			}
+		}
+
+		.ebs-program-listing-wrapper.ebs-program-listing-wrapper-v2 {
+			.ebs-programs-date {
+				overflow: hidden;
+				border: 2px solid var(--primary);
+
+				.ebs-date-box {
+					padding: 20px 0;
+
+					&.ebs-active {
+						background: var(--primary);
+						color: $white;
+						border-color: transparent;
+
+						a {
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.edgtf-team-list-holder.ebs-speaker-variation-v1 {
+	.edgtf-team-list-holder-inner {
+		.edgtf-team-image {
+			.edgtf-team-social-holder {
+				&::after {
+					background-color: rgba($white, 0.8);
+					border-radius: 4px;
+				}
+
+				.social-icons {
+					a {
+						font-size: 16px;
+						margin: 0 5px;
+						color: var(--primary);
+					}
+				}
+
+				.ebs-border-wrapp {
+					a {
+						font-size: 12px;
+						color: $default-text-color;
+					}
+				}
+			}
+		}
+	}
+
+	.edgtf-team {
+		.edgtf-team-info {
+			margin-top: 20px;
+
+			.edgtf-team-name {
+				text-transform: none;
+				font-size: 24px;
+				margin: 0;
+			}
+
+			.ebs-attendee-designation {
+				padding-top: 5px;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.ebs-eventinfo-v1 {
+	margin-bottom: 24px;
+	min-height: 342px;
+	border-radius: 12px;
+	background: rgba($white, 0.1);
+	border: 1px solid rgba($white, 0.1);
+	backdrop-filter: blur(10px);
+
+	.ebs-eventinfo-top {
+		margin-bottom: 24px;
+
+		.material-icons {
+			font-size: 32px;
+			margin-bottom: 20px;
+		}
+
+		strong {
+			font-size: 24px;
+		}
+	}
+
+	p {
+		font-size: 16px;
+	}
+}
+
+#fp-nav {
+	background: $default-heading-color;
+	border-radius: 20px;
+
+	ul li span {
+		background: $white !important;
+	}
+}

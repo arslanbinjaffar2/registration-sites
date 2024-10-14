@@ -21,7 +21,7 @@ const Variation5 = ({ event, labels, settings }) => {
    
       return (
         <React.Fragment>
-          <div style={{background: '#F2F2F2'}} className="border rounded-3 ebs-counter-v5 mb-2 d-flex">
+          <div style={{background: '#F2F2F2'}} className="border rounded-3 ebs-counter-v5 mb-2 d-flex ">
             {Math.floor(days / 30) > 0 && (
               <>
                 <span className="edgtf-countdown is-countdown d-flex align-items-center justify-content-center">
@@ -71,7 +71,7 @@ const Variation5 = ({ event, labels, settings }) => {
     return (
         <div>
       {isValidDate && (
-    <div style={bgStyle} className="edgtf-container ebs-default-padding">
+    <div style={bgStyle} className="edgtf-container ebs-default-padding ebs-master-default-wrapper">
       <div className="edgtf-container-inner pt-4 container">
         <HeadingElement
           dark={false}

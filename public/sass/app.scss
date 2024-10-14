@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "main";
+@import "theme_2";
 /* width */
 /*
  *  STYLE 4
@@ -2339,6 +2340,25 @@
       }
     }
   }
+  &.ebs-popup-container-v2 {
+    .ebs-popup-wrapper {
+      .ebs-close-link {
+        top: 28px;
+        right: 24px;
+        i.material-icons {
+          font-size: 30px;
+        }
+      }
+      .ebs-popup-timeline {
+        .title {
+          font-size: 24px;
+          text-transform: none;
+          margin-bottom: 10px;
+          color: $default-heading-color;
+        }
+      }
+    }
+  }
 }
 .ebs-program-listing-wrapper {
   .ebs-program-top {
@@ -2466,6 +2486,64 @@
         }
       }
     
+    }
+    &.ebs-main-program-listingv2 {
+      .ebs-program-parent {
+        &.ebs-program-workshop {
+          background: $white;
+          border: 1px solid $border;
+          margin-bottom: 20px;
+          border-radius: 10px;
+          overflow: hidden;
+          .ebs-workshop-header {
+            background: $bordercc;
+            border-top: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            small {
+              font-size: 16px;
+            }
+            i.material-icons {
+              color: $default-heading-color;
+              top: 8px;
+            }
+          }
+          .ebs-program-child {
+            margin-bottom: 0;
+            padding-top: 25px;;
+            padding-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid $border;
+            border-radius: 0;
+            &:nth-last-child(1) {
+              border-bottom: none;
+            }
+          }
+        }
+        .ebs-program-child {
+          border-radius: 10px;
+          border: 1px solid $border;
+          margin-bottom: 20px;
+          overflow: hidden;
+          padding: 0;
+          padding-top: 25px;
+          padding-bottom: 18px;
+          .ebs-program-date {
+            font-weight: 400;
+            font-size: 16px;
+            color: $default-heading-color;
+          }
+          .ebs-program-location {
+            font-size: 14px;
+          }
+          .ebs-program-content {
+            h3 {
+              font-size: 24px;
+              margin-bottom: 12px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -5053,5 +5131,11 @@ font-size: 24px;
   .desktop-hidden {
     display: none;
 
+  }
+}
+
+#ebs-header-master {
+  &.ebs-add-layer-header {
+    background: rgba($black, 0.5) !important;
   }
 }

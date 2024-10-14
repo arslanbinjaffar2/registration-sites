@@ -50,7 +50,7 @@ const Variation1 = ({ eventSiteSettings, eventTimeZone, registrationFormInfo ,la
     }
   };
   return (
-    <div style={bgStyle} className="module-section ebs-default-padding">
+    <div style={bgStyle} className="module-section ebs-default-padding ebs-master-default-wrapper">
         {registerDateEnd &&  (
           <div className="container">
             <HeadingElement dark={false} label={labels.EVENTSITE_REGISTER_NOW} desc={labels.EVENTSITE_TICKETS_ARE_FLYING} align={'center'} />
