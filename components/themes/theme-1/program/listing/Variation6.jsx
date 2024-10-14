@@ -18,7 +18,7 @@ const Variation3 = ({
   moduleVariation,
 }) => {
   const { width } = useDimention();
-  const { handleItemClick, programsState } = useProgramId();
+  const { handleItemClick, programsState,selectedProgram } = useProgramId();
   const [programLoc, setProgramLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState("All");
   const [showDetail, setShowDetail] = useState(false);
@@ -92,8 +92,8 @@ const Variation3 = ({
                 );
               })}
             </div>
-            <div className="time_workshop_program_container d-flex gap-5 align-items-start ">
-              <div className="flex-column gap-5  mt-5 d-flex justify-content-between align-items-center">
+            <div className="time_workshop_program_container d-flex gap-5 align-items-start flex-md-row flex-column">
+              <div className=" gap-5  mt-5 d-flex justify-content-between align-items-center flex-md-column flex-row ">
                 {Object.keys(programLoc).map((key) => {
                   return (
                     <Fragment>
@@ -102,7 +102,7 @@ const Variation3 = ({
                           return (
                             <Fragment>
                               {workshop_id > 0 && (
-                                <div className="time_container d-flex justify-content-between align-items-center flex-column gap-5 ">
+                                <div className="time_container d-flex justify-content-between align-items-center flex-column gap-md-3 gap-1 ">
                                   <p className="fw-medium">{start_time}</p>
                                   <p className="fw-medium">{end_time}</p>
                                 </div>
@@ -282,98 +282,29 @@ const Variation3 = ({
                           } = item;
 
                           return (
-                            <>
-                              {workshop_id <= 0 && (
-                                <div className="d-flex flex-column">
-                                  <div className="p-3 border-top">
-                                    <h4
-                                      onClick={() => {
-                                        handleItemClick(item, programArray);
-                                        setShowDetail(true);
-                                      }}
-                                    >
-                                      {topic}
-                                    </h4>
-
-                                    <p>
-                                      {" "}
-                                      {moment(`${date} ${start_time}`).format(
-                                        "HH:mm"
-                                      )}{" "}
-                                      -{" "}
-                                      {moment(`${date} ${end_time}`).format(
-                                        "HH:mm"
-                                      )}{" "}
-                                      (
-                                      {calculateDuration({
-                                        date: date,
-                                        start_time: start_time,
-                                        end_time: end_time,
-                                      })}{" "}
-                                      mins)
-                                    </p>
-                                    {program_speakers?.length > 0 && (
-                                      <div className="d-flex gap-3 align-items-center justify-content-start ">
-                                        {program_speakers
-                                          ?.slice(0, 1)
-                                          .map(
-                                            ({ first_name, last_name }, o) => (
-                                              <h6 className="fs-small fw-bold m-0">
-                                                {first_name} {last_name}
-                                              </h6>
-                                            )
-                                          )}
-                                      </div>
-                                    )}
-                                    {/* {containsHTMLTags(description)} */}
-                                    {location !== "" && (
-                                      <div className="d-flex gap-1 align-items-center location_container">
-                                        <span className="material-symbols-outlined icon">
-                                          location_on
-                                        </span>
-                                        <p className="text m-0">{`${location.length > 25
-                                            ? location.substring(0, 25) + "...."
-                                            : location
-                                          }`}</p>
-                                      </div>
-                                    )}
-                                    <div className="tracks_container d-flex algin-items-center gap-2 mt-2">
-                                      {program_tracks &&
-                                        program_tracks.length > 0 &&
-                                        program_tracks
-                                          .slice(0, 3)
-                                          .map(({ name, color, id }) => {
-                                            return (
-                                              <span
-                                                className="d-inline-block"
-                                                key={id + name}
-                                                data-title={name}
-                                                style={{
-                                                  backgroundColor: `${color ? color : "#000"
-                                                    }`,
-                                                  width: "20px",
-                                                  height: "20px",
-                                                  borderRadius: "50%",
-                                                }}
-                                              ></span>
-                                            );
-                                          })}
-                                      <TracksPopup item={item} />
-                                    </div>
-                                  </div>
-                                  {width <= 570 && (
-                                    <ProgramDetailModal
-                                      program={item}
-                                      labels={siteLabels}
-                                      eventUrl={eventUrl}
-                                      agendaSettings={agendaSettings}
-                                      showDetail={showDetail}
-                                      setShowDetail={setShowDetail}
-                                    />
-                                  )}
-                                </div>
-                              )}
-                            </>
+                              <OtherPrograms
+                                agendaSettings={agendaSettings}
+                                date={date}
+                                description={description}
+                                end_time={end_time}
+                                eventUrl={eventUrl}
+                                item={item}
+                                location={location}
+                                programArray={programArray}
+                                program_speakers={program_speakers}
+                                program_tracks={program_tracks}
+                                setShowDetail={setShowDetail}
+                                showDetail={showDetail}
+                                siteLabels={siteLabels}
+                                start_time={start_time}
+                                topic={topic}
+                                workshop_id={workshop_id}
+                                calculateDuration={calculateDuration}
+                                handleItemClick={handleItemClick}
+                                width={width}
+                                selectedProgram={selectedProgram}
+                                key={`${date}-${start_time}-${topic}`}
+                              />
                           );
                         })}
                       </>
@@ -401,3 +332,114 @@ const Variation3 = ({
 };
 
 export default Variation3;
+
+function OtherPrograms({
+  topic,
+  date,
+  start_time,
+  end_time,
+  program_speakers,
+  description,
+  location,
+  program_tracks,
+  workshop_id,
+  siteLabels,
+  item,
+  programArray,
+  setShowDetail,
+  showDetail,
+  eventUrl,
+  agendaSettings,
+  calculateDuration,
+  width,
+  handleItemClick,
+  selectedProgram
+}) {
+
+  return (
+    <>
+      {workshop_id <= 0 && (
+        <>
+          <div className="d-flex flex-column">
+            <div className="p-3 border-top">
+              <h4
+                onClick={() => {
+                  handleItemClick(item, programArray);
+                  setShowDetail(true);
+                }}
+              >
+                {topic}
+              </h4>
+
+              <p>
+                {" "}
+                {moment(`${date} ${start_time}`).format("HH:mm")} -{" "}
+                {moment(`${date} ${end_time}`).format("HH:mm")} (
+                {calculateDuration({
+                  date: date,
+                  start_time: start_time,
+                  end_time: end_time,
+                })}{" "}
+                mins)
+              </p>
+              {program_speakers?.length > 0 && (
+                <div className="d-flex gap-3 align-items-center justify-content-start ">
+                  {program_speakers
+                    ?.slice(0, 1)
+                    .map(({ first_name, last_name }, o) => (
+                      <h6 className="fs-small fw-bold m-0">
+                        {first_name} {last_name}
+                      </h6>
+                    ))}
+                </div>
+              )}
+              {/* {containsHTMLTags(description)} */}
+              {location !== "" && (
+                <div className="d-flex gap-1 align-items-center location_container">
+                  <span className="material-symbols-outlined icon">
+                    location_on
+                  </span>
+                  <p className="text m-0">{`${
+                    location.length > 25
+                      ? location.substring(0, 25) + "...."
+                      : location
+                  }`}</p>
+                </div>
+              )}
+              <div className="tracks_container d-flex algin-items-center gap-2 mt-2">
+                {program_tracks &&
+                  program_tracks.length > 0 &&
+                  program_tracks.slice(0, 3).map(({ name, color, id }) => {
+                    return (
+                      <span
+                        className="d-inline-block"
+                        key={id + name}
+                        data-title={name}
+                        style={{
+                          backgroundColor: `${color ? color : "#000"}`,
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                        }}
+                      ></span>
+                    );
+                  })}
+                <TracksPopup item={item} />
+              </div>
+            </div>
+          </div>
+          {width <= 570 && (
+            <ProgramDetailModal
+              program={selectedProgram}
+              labels={siteLabels}
+              eventUrl={eventUrl}
+              agendaSettings={agendaSettings}
+              showDetail={showDetail}
+              setShowDetail={setShowDetail}
+            />
+          )}
+        </>
+      )}
+    </>
+  );
+}

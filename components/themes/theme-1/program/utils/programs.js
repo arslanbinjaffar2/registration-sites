@@ -295,3 +295,32 @@ export const getProgramsByTrack = (programs, track) => {
 
 export const otherProgramTitleColor = "#C0C0C0";
   
+
+
+
+
+export const getWorkshopId = (programs, workshopId) => {
+  const newObject = {};
+  Object.keys(programs).forEach((date) => {
+    const items = programs[date].reduce((ack, program) => {
+      let add = false;
+      // Search in program_workshop
+      if (program.workshop_id > 0 && workshopId==program.workshop_id ) {
+        add = true;
+      }
+      else if(workshopId==0){
+          add=true
+      }
+      if (add) {
+        ack.push(program);
+      }
+      return ack;
+    }, []);
+    if (items.length > 0) {
+      newObject[date] = items;
+    }
+  });
+  return newObject;
+}
+
+

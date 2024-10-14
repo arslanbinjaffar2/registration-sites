@@ -3,29 +3,21 @@ import Modal from 'react-bootstrap/Modal';
 import ActiveLink from "components/atoms/ActiveLink";
 import Image from 'next/image'
 import moment from 'moment'
+import { useDimention } from '../utils/customHooks';
 const ProgramDetailModal = ({program,labels,eventUrl,agendaSettings,showDetail,setShowDetail}) => {
-    const [showText, setShowText] = useState(program.description.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
+    const [showText, setShowText] = useState(program?.description?.replace(/<\/?[^>]+(>|$)/g, "").length > 450 ? false : true);
     const _ref = React.useRef();
-    const [fullscreen, setFullscreen] = useState(true);    
+    const [fullscreen, setFullscreen] = useState(true);   
+    const {width}=useDimention()
     useEffect(() => {
-      const handleResize = () => {
-        if (window.innerWidth > 570) {
+        if (width > 570) {
           setShowDetail(false)
         } else {
         }
-      };
-  
-      // Set the initial state based on the current window width
-      handleResize();
-  
-      // Attach the event listener for window resize
-      window.addEventListener('resize', handleResize);
-  
-      // Clean up the event listener on component unmount
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
     }, []);
+    if(Object.values(program).length<=0){
+      return null
+    }
       return (
         <>
           

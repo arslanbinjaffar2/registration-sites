@@ -48,9 +48,11 @@ export const useProgramId=()=>{
     id:0,
     programArray:[]
   })
+  const [selectedProgram, setSelectedProgram] = useState({});
   const handleItemClick = (item, programArray) => {
     setProgramsState({...programsState, id: item.id, programArray });
     dispatch(setProgramDetail({id:item.id}))
+    setSelectedProgram(item)
   };
   return{
     handleItemClick,
@@ -58,7 +60,8 @@ export const useProgramId=()=>{
     setProgramsState,
     showDetail,
     setShowDetail,
-    detailRef
+    detailRef,
+    selectedProgram
   }
 }
 

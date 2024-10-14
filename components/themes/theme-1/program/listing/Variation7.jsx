@@ -12,6 +12,7 @@ import {
 } from "../utils/programs";
 import { useDimention, useDebounce, useProgramId } from "../utils/customHooks";
 import ProgramDetail from "../components/ProgramDetail";
+import ProgramDetailModal from "../components/ProgramDetailModal";
 const Variation7 = ({
   programs,
   eventUrl,
@@ -24,7 +25,7 @@ const Variation7 = ({
   agendaSettings,
   moduleVariation,
 }) => {
-  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
+  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState,selectedProgram}=useProgramId()
   const { width } = useDimention();
   const [value, setValue] = useState("");
   const { search } = useDebounce(value);
@@ -88,7 +89,7 @@ const Variation7 = ({
       <StyleVariableForTimeline bgStyle={bgStyle} />
       <div className="container">
         <div className="d-flex justify-content-start p-3 gap-4 flex-wrap shadow-light-4px-20px">
-          {eventsiteSettings?.agenda_search_filter === 1 && (
+          {/* {eventsiteSettings?.agenda_search_filter === 1 && (
             <div>
               <div
                 style={{ minWidth: "280px", maxWidth: 440 }}
@@ -105,7 +106,7 @@ const Variation7 = ({
                 <span className="material-symbols-outlined fa">search</span>
               </div>
             </div>
-          )}
+          )} */}
           {tracks.length > 0 && <div className="ebs-select-box">
                           <ReactSelect
                             styles={customStyles}
@@ -152,8 +153,8 @@ const Variation7 = ({
                       {item.workshop_id > 0 && (
                         <Fragment>
                           <div className="ebr_session_title_container border d-flex justify-content-between align-items-center my-4">
-                            <div className="ebr-time-title-container d-flex  align-items-center gap-27">
-                              <p className="m-0 start_end fw-semibold ebr_time" >
+                            <div className="ebr-time-title-container d-flex  align-items-center gap-27 ">
+                              <p className="m-md-0 mt-3 start_end fw-semibold ebr_time" >
                                 {moment(
                                   `${item.date} ${item.program_workshop_start_time}`
                                 ).format("HH:mm")}{" "}
@@ -162,7 +163,7 @@ const Variation7 = ({
                                   "HH:mm"
                                 )}
                               </p>
-                              <h4 className="m-0 fw-semibold" onClick={()=>{
+                              <h4 className="m-0 fw-semibold fix-text" onClick={()=>{
                                             handleItemClick(item,workshop_programsArray)
                                             setShowDetail(true)
                                         }}>
@@ -177,10 +178,12 @@ const Variation7 = ({
                               .map((program, index, array) => {
                                 return (
                                   <>
+                               
                                     <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
+                                  
                                       <div className="ebr-time-title-container d-flex  align-items-center w-100">
                                         <p
-                                          className="m-0 start_end fw-medium ebr_time"
+                                          className="m-0 start_end fw-medium ebr_time d-md-block d-none"
                                           style={{ minWidth: "140px" }}
                                         >
                                           {moment(
@@ -193,8 +196,20 @@ const Variation7 = ({
                                         </p>
                                         <div className="d-flex align-items-center gap-5 w-100">
                                           <Timeline />
-                                          <div className="d-flex justify-content-between w-100 align-items-center">
-                                          <p className="m-0 ebr_topic" onClick={()=>{
+                                          <div className="d-flex justify-content-between w-100 align-items-md-center align-items-start flex-md-row flex-column gap-md-0 gap-2">
+                                          <p
+                                          className="start_end fw-medium ebr_time d-md-none d-block "
+                                          style={{ minWidth: "140px" }}
+                                        >
+                                          {moment(
+                                            `${program.date} ${program.start_time}`
+                                          ).format("HH:mm")}{" "}
+                                          -{" "}
+                                          {moment(
+                                            `${program.date} ${program.end_time}`
+                                          ).format("HH:mm")}
+                                        </p>
+                                          <p className="m-0 ebr_topic fix-text" onClick={()=>{
                                             handleItemClick(program,array)
                                             setShowDetail(true)
                                         }}>
@@ -221,9 +236,9 @@ const Variation7 = ({
                                      showAllOtherPrograms < item.workshop_programs.length && 
                                          (
                                         <div className="ebs-list-workshop ebr_session_title_container d-flex justify-content-between align-items-start flex-column">
-                                          <div className="ebr-time-title-container d-flex align-items-center">
+                                          <div className="ebr-time-title-container d-flex align-items-center ">
                                             <p
-                                              className="m-0 start_end fw-medium ebr_time"
+                                              className="m-0 start_end fw-medium ebr_time d-md-block d-none"
                                               style={{ minWidth: "140px" }}
                                             >
                                               {moment(
@@ -234,7 +249,7 @@ const Variation7 = ({
                                                 `${item.date} ${item.end_time}`
                                               ).format("HH:mm")}
                                             </p>
-                                            <div className="d-flex align-items-center gap-5">
+                                            <div className="d-flex align-items-center gap-5 align-items-md-center align-items-start flex-md-row flex-column gap-md-0 gap-2">
                                               <Timeline color={"#000"} />
                                               <button
                                                 className="m-0 ebr_topic btn btn-outline-primary"
@@ -246,8 +261,19 @@ const Variation7 = ({
                                               </button>
                                             </div>
                                           </div>
+                                  
                                         </div>
                                       )}
+                                         {width <= 570 && (
+                                    <ProgramDetailModal
+                                      program={selectedProgram}
+                                      labels={siteLabels}
+                                      eventUrl={eventUrl}
+                                      agendaSettings={agendaSettings}
+                                      showDetail={showDetail}
+                                      setShowDetail={setShowDetail}
+                                    />
+                                  )}
                                   </>
                                 );
                               })}
@@ -274,9 +300,9 @@ const Variation7 = ({
                         <Fragment>
                           {/* {item.workshop_id<=0 && ( */}
                           <div className="ebs-list-workshop ebr_session_title_container  d-flex justify-content-between align-items-start flex-column">
-                            <div className="ebr-time-title-container d-flex  align-items-center  w-100">
+                            <div className="ebr-time-title-container d-flex  align-items-center  w-100 ">
                               <p
-                                className="m-0 start_end fw-medium ebr_time"
+                                className="m-0 start_end fw-medium ebr_time d-md-block d-none"
                                 style={{ minWidth: "140px" }}
                               >
                                 {moment(
@@ -287,10 +313,21 @@ const Variation7 = ({
                                   "HH:mm"
                                 )}
                               </p>
-                              <div className="d-flex align-items-center gap-5  w-100">
+                              <div className="d-flex align-items-center gap-5  w-100 ">
                                 <Timeline />
-                                <div className="d-flex justify-content-between w-100 align-items-center">
-
+                                <div className="d-flex justify-content-between w-100  align-items-md-center align-items-start flex-md-row flex-column gap-md-0 gap-2">
+                                <p
+                                className="m-0 start_end fw-medium ebr_time d-md-none d-block"
+                                style={{ minWidth: "140px" }}
+                              >
+                                {moment(
+                                  `${item.date} ${item.start_time}`
+                                ).format("HH:mm")}{" "}
+                                -{" "}
+                                {moment(`${item.date} ${item.end_time}`).format(
+                                  "HH:mm"
+                                )}
+                              </p>
                                 <p className="m-0 ebr_topic" onClick={()=>{
                                             handleItemClick(item,array)
                                             setShowDetail(true)
@@ -317,7 +354,7 @@ const Variation7 = ({
                               <div className="ebs-list-workshop ebr_session_title_container d-flex justify-content-between align-items-start flex-column">
                                 <div className="ebr-time-title-container d-flex align-items-center">
                                   <p
-                                    className="m-0 start_end fw-medium ebr_time"
+                                    className="m-0 start_end fw-medium ebr_time d-md-block d-none"
                                     style={{ minWidth: "140px" }}
                                   >
                                     {moment(
@@ -328,7 +365,7 @@ const Variation7 = ({
                                       `${item.date} ${item.end_time}`
                                     ).format("HH:mm")}
                                   </p>
-                                  <div className="d-flex align-items-center gap-5">
+                                  <div className="d-flex align-items-center gap-5 ebr-time-title-container d-flex align-items-lg-center gap-27 ">
                                     <Timeline color={"#000"} />
                                     <button
                                       className="m-0 ebr_topic btn btn-outline-primary"
@@ -345,6 +382,16 @@ const Variation7 = ({
                               </div>
                             )}
                           {/* )} */}
+                                  {width <= 570 && (
+                                    <ProgramDetailModal
+                                      program={selectedProgram}
+                                      labels={siteLabels}
+                                      eventUrl={eventUrl}
+                                      agendaSettings={agendaSettings}
+                                      showDetail={showDetail}
+                                      setShowDetail={setShowDetail}
+                                    />
+                                  )}
                         </Fragment>
                       );
                     })}

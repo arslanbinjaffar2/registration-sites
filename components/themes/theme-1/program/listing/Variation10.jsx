@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import ReactSelect from 'react-select';
 import Slider from "react-slick";
 import HeadingElement from "components/ui-components/HeadingElement";
-// import ProgramItemv2 from "components/themes/theme-1/program/components/ProgramItemv2";
-// import WorkShopv2 from "components/themes/theme-1/program/components/WorkShopv2";
+import ProgramItemv2 from "components/themes/theme-1/program/components/ProgramItemv2";
+import WorkShopv2 from "components/themes/theme-1/program/components/WorkShopv2";
 import { localeProgramMomentHome } from 'helpers/helper';
-
+import { BgStyles } from "../utils/programs";
+import NoRecordFound from '../../../../../components/NoRecordFound'
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -43,7 +44,7 @@ const customStyles = {
   })
 };
 
-const Variation10 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl, language_id, agendaSettings }) => {
+const Variation10 = ({ programs, tracks, siteLabels, showWorkshop, eventUrl, language_id, agendaSettings ,  moduleVariation}) => {
   const [schedule, setSchedule] = useState(Object.keys(programs));
   const [programsLoc, setProgramsLoc] = useState(programs[schedule[0]]);
   const [selectedDate, setSelectedDate] = useState(schedule[0]);
@@ -104,7 +105,7 @@ const settings = {
   return (
     <React.Fragment>
       {programsLoc && (
-        <div data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-program-listing-wrapper-v2 ebs-transparent-box ebs-default-padding min-vh-100">
+        <div style={ BgStyles(moduleVariation) } data-fixed="false" className="module-section ebs-program-listing-wrapper ebs-program-listing-wrapper-v2 ebs-transparent-box ebs-default-padding min-vh-100">
       <div className="container">
         <HeadingElement dark={false} label={siteLabels.EVENTSITE_PROGRAM} desc={siteLabels.EVENTSITE_PROGRAM_DETAIL} align={'center'} />
       </div>
@@ -164,12 +165,17 @@ const settings = {
           </div>
           <div className="ebs-main-program-listing ebs-main-program-listingv2">
               <div  className="ebs-program-parent">
-                {programsLoc && programsLoc.map((item,i) =>
+                {Object.values(programsLoc).length> 0? programsLoc.map((item,i) =>
                       item.workshop_id > 0  ? 
-                      <></>:<></>
-                      // <WorkShopv2 item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
-                      // <ProgramItemv2 program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
-                )}
+                      <WorkShopv2 item={item} key={i} eventUrl={eventUrl} showWorkshop={showWorkshop} labels={siteLabels} agendaSettings={agendaSettings} />:
+                      <ProgramItemv2 program={item} key={i} eventUrl={eventUrl} labels={siteLabels} agendaSettings={agendaSettings} />
+                ):
+                (
+                  <>
+                  <NoRecordFound siteLabels={siteLabels}/>
+                  </>
+                )
+                }
               </div>
           </div>
         </div>

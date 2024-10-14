@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import TracksPopup from "../components/TrackPopup";
-import { BgStyles, colorPalette, otherProgramTitleColor } from "../utils/programs";
+import {
+  BgStyles,
+  colorPalette,
+  otherProgramTitleColor,
+} from "../utils/programs";
 import { useDimention, useProgramId } from "../utils/customHooks";
 import ProgramDetail from "../components/ProgramDetail";
-import NoRecordFound from '../../../../../components/NoRecordFound'
+import NoRecordFound from "../../../../../components/NoRecordFound";
+import ProgramDetailModal from "../components/ProgramDetailModal";
 const Variation9 = ({
   programs,
   eventUrl,
@@ -12,10 +17,18 @@ const Variation9 = ({
   showWorkshop,
   siteLabels,
   agendaSettings,
-  moduleVariation
+  moduleVariation,
 }) => {
-  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
-  const {width}=useDimention()
+  const {
+    handleItemClick,
+    showDetail,
+    setShowDetail,
+    detailRef,
+    programsState,
+    selectedProgram
+  } = useProgramId();
+  
+  const { width } = useDimention();
   const [programsLoc, setProgramsLoc] = useState(programs);
   const [selectedDate, setSelectedDate] = useState("");
   const [workShopId, setWorkShopId] = useState(0);
@@ -43,14 +56,19 @@ const Variation9 = ({
       generateColors(allWorkshopIds);
     }
   }, [programsLoc]);
+
   React.useEffect(() => {
-    const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
-    link.rel = 'stylesheet';
+    const link = document.createElement("link");
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
+    link.rel = "stylesheet";
     document.head.appendChild(link);
   }, []);
   return (
-    <div style={BgStyles(moduleVariation,"60px 0 40px 0" )} className="module-section">
+    <div
+      style={BgStyles(moduleVariation, "60px 0 40px 0")}
+      className="module-section"
+    >
       <div className="border-bottom">
         <div
           className="container overflow-auto ebs-day-filter-tabs"
@@ -67,106 +85,153 @@ const Variation9 = ({
                     style={{
                       borderBottom: selectedDate == item ? borderBottom : "",
                     }}
-                    onClick={() => setSelectedDate(item)}
+                    onClick={() => {
+                      setSelectedDate(item)
+                      setWorkShopId(0)
+                    }}
                   >
-                   {moment(item).format("ddd, MM MMM ")}
+                    {moment(item).format("ddd, MM MMM ")}
                   </div>
                 );
               })}
           </div>
         </div>
       </div>
-    {Object.keys(programsLoc).length>0  &&
-      <div className="ebr_program_variaton_9_container container">
-        <div className="d-flex  gap-1 workshop_title_container algin-items-center">
-        {Object.values(programsLoc).length > 0 &&
-          programsLoc &&
-          (() => {
-            const renderedWorkshops = new Set();
-            return Object.keys(programsLoc).map((key, k, array) => (
-              <>
-                {programsLoc[key].map((item, index) => {
-                  if (item.workshop_id > 0 && !renderedWorkshops.has(item.workshop_id)) {
-                    renderedWorkshops.add(item.workshop_id);
-                    return (
-                      <WorkshopTitle9
-                        key={item.workshop_id}
-                        item={item}
-                        array={array}
-                        sessionColors={sessionColors}
-                        setWorkShopId={setWorkShopId}
-                        k={k}
-                      />
-                    );
-                  }
-                  return null;
+      {Object.keys(programsLoc).length > 0 && (
+        <div className="ebr_program_variaton_9_container container">
+          <div className="d-flex  gap-1 workshop_title_container algin-items-center">
+            {Object.values(programsLoc).length > 0 &&
+              programsLoc &&
+              (() => {
+                const renderedWorkshops = new Set();
+                return Object.keys(programsLoc).map((key, k, array) => (
+                  <>
+                    {programsLoc[key].map((item, index) => {
+                      if (
+                        item.workshop_id > 0 &&
+                        !renderedWorkshops.has(item.workshop_id)
+                      ) {
+                        renderedWorkshops.add(item.workshop_id);
+                        return (
+                          <WorkshopTitle9
+                            key={item.workshop_id}
+                            item={item}
+                            array={array}
+                            sessionColors={sessionColors}
+                            setWorkShopId={setWorkShopId}
+                            k={k}
+                          />
+                        );
+                      }
+                      return null;
+                    })}
+                  </>
+                ));
+              })()}
+            <div
+              className="workshop_tab text-center"
+              style={{ backgroundColor: otherProgramTitleColor }}
+              onClick={() => setWorkShopId(0)}
+            >
+              {siteLabels.GENERAL_OTHER}
+            </div>
+          </div>
+          <div className="program_container">
+            {Object.keys(programsLoc).length>0 && Object.keys(programsLoc).filter((Date)=>selectedDate!==""?selectedDate==Date:Date).map((Date,k)=>{
+                  return (
+                    <>
+                      {programsLoc[Date].filter((item) => {
+                        if (
+                          item.workshop_id > 0 &&
+                          item.workshop_id === workShopId
+                        ) {
+                          return item.workshop_programs;
+                        } else if (workShopId == 0) {
+                          return item;
+                        }
+                      }).map((program, index, program_array) => {
+                        return (
+                          <>
+                              <ProgramItem9
+                                item={program}
+                                key={program.topic + k}
+                                sessionColors={sessionColors}
+                                workShopId={workShopId}
+                                handleItemClick={handleItemClick}
+                                setShowDetail={setShowDetail}
+                                programArray={program_array}
+                              />
+                            
+                          </>
+                        );
+                      })}
+                    </>
+                  );
                 })}
-              </>
-            ));
-          })()}
+          </div>
         </div>
-        <div className="program_container">
-        {Object.keys(programsLoc).length>0 && Object.keys(programsLoc).filter((Date)=>selectedDate!==""?selectedDate==Date:Date).map((Date,k)=>{
-          return(
-            <>
-            {programsLoc[Date].
-            filter((item)=>item.workshop_id===workShopId ? item.workshop_programs:item)
-            .map((program,index,program_array)=>{
-              return(
-                <>
-            <ProgramItem9
-              item={program}
-              key={program.topic + k}
-              sessionColors={sessionColors}
-              workShopId={workShopId}
-              handleItemClick={handleItemClick}
-              setShowDetail={setShowDetail}
-              programArray={program_array}
-              />
-                </>
-              )
-            })
-            }
-            </>
-            )
-        })}
-       
-        </div>
-      </div>}
-      {Object.keys(programsLoc).length<=0 && 
-        <NoRecordFound siteLabels={siteLabels}/>
-        }
-      {width>570 &&
-      <ProgramDetail 
-      setShowDetail={setShowDetail} 
-      ref={detailRef} 
-      programs={programsState}  
-      showDetail={showDetail} 
-      agendaSettings={agendaSettings} 
-      eventUrl={eventUrl} 
-      labels={siteLabels}/> }     
+      )}
+          {width <= 570 && (
+                                    <ProgramDetailModal
+                                      program={selectedProgram}
+                                      labels={siteLabels}
+                                      eventUrl={eventUrl}
+                                      agendaSettings={agendaSettings}
+                                      showDetail={showDetail}
+                                      setShowDetail={setShowDetail}
+                                    />
+                                  )}
+      {Object.keys(programsLoc).length <= 0 && (
+        <NoRecordFound siteLabels={siteLabels} />
+      )}
+      {width > 570 && (
+        <ProgramDetail
+          setShowDetail={setShowDetail}
+          ref={detailRef}
+          programs={programsState}
+          showDetail={showDetail}
+          agendaSettings={agendaSettings}
+          eventUrl={eventUrl}
+          labels={siteLabels}
+        />
+      )}
     </div>
   );
 };
 
 export default Variation9;
 
-const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItemClick,setShowDetail}) => {
+const ProgramItem9 = ({
+  item,
+  sessionColors,
+  workShopId,
+  programArray,
+  handleItemClick,
+  setShowDetail,
+}) => {
   const startTime = moment(`${item.date} ${item.start_time}`);
   const endTime = moment(`${item.date} ${item.end_time}`);
   const durationMinutes = endTime.diff(startTime, "minutes");
   const isHTML = containsHTMLTags(item.description);
+  sessionColors[item.workshop_id > 0 ? item.workshop_id : 0];
   const workshopColor =
-    workShopId !== 0 ? (sessionColors[workShopId] || sessionColors[item.workshop_id>0 ? item.workshop_id:0]) : otherProgramTitleColor;
+    workShopId !== 0
+      ? sessionColors[workShopId]
+      : workShopId == 0
+      ? sessionColors[item.workshop_id]
+      : otherProgramTitleColor;
   function containsHTMLTags(str) {
     return /<\/?[a-z][\s\S]*>/i.test(str);
   }
-  
   return (
-    <div className="program_item d-flex align-items-center" >
+    <div className="program_item d-flex align-items-center">
       <div
         className="time d-flex flex-column align-items-center"
-        style={{ "--pseudo-bg-color": workshopColor }}
+        style={{
+          "--pseudo-bg-color": workshopColor
+            ? workshopColor
+            : otherProgramTitleColor,
+        }}
       >
         <p className="m-0 start_end">
           {" "}
@@ -176,10 +241,15 @@ const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItem
         <p className=" m-0 mt-6 minutes">{durationMinutes} min</p>
       </div>
       <div className="detail ">
-        <h4 className="m-0 title" onClick={()=>{
-      handleItemClick(item,programArray)
-      setShowDetail(true)
-  }}>{item.topic}</h4>
+        <h4
+          className="m-0 title"
+          onClick={() => {
+            handleItemClick(item, programArray);
+            setShowDetail(true);
+          }}
+        >
+          {item.topic}
+        </h4>
         {isHTML ? (
           <div
             className="m-0 pt-3 description truncate ebs-edgtf-post-line-clamp"
@@ -214,7 +284,7 @@ const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItem
                     key={track.id + track.name}
                     data-title={track.name}
                     style={{
-                     "--bg-track":`${track.color?track.color:"#000"}`
+                      "--bg-track": `${track.color ? track.color : "#000"}`,
                     }}
                   ></span>
                 );
@@ -227,7 +297,14 @@ const ProgramItem9 = ({ item, sessionColors, workShopId,programArray, handleItem
   );
 };
 
-const WorkshopTitle9 = ({ item, sessionColors, array, setWorkShopId, k }) => {
+const WorkshopTitle9 = ({
+  item,
+  sessionColors,
+  array,
+  setWorkShopId,
+  k,
+  siteLabels,
+}) => {
   return (
     <>
       {item.workshop_id > 0 && (
@@ -241,15 +318,6 @@ const WorkshopTitle9 = ({ item, sessionColors, array, setWorkShopId, k }) => {
           }}
         >
           {item.program_workshop}
-        </div>
-      )}
-      {array.length - 1 == k && (
-        <div
-          className="workshop_tab text-center"
-          style={{ backgroundColor: otherProgramTitleColor }}
-          onClick={() => setWorkShopId(0)}
-        >
-          other
         </div>
       )}
     </>
