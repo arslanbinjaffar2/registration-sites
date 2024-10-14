@@ -5,7 +5,7 @@ import MasterLayoutRoute from "components/layout/MasterLayoutRoute";
 import MetaInfo from "components/layout/MetaInfo";
 import PageLoader from "components/ui-components/PageLoader";
 import Home from "components/Index";
-import Home2 from "components/Index2";
+import Home2 from "components/IndexFullPage";
 import { metaInfo } from 'helpers/helper';
 import { getCookie, setCookie } from 'cookies-next';
 
