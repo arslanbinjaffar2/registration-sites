@@ -84,28 +84,7 @@ const CmsDetail = ({ detail, labels ,moduleName, breadCrumbData, eventSiteModule
                         <div className="edgtf-post-text-inner">
                           {detail.description && (
                             <div>
-                              {Loading && 
-                              <div className="d-flex justify-content-center"> 
-                                <div style={{width: '6rem', height: '6rem'}} className="spinner-border"> <span className="sr-only">Loading...</span></div>
-                              </div>}
-                              <iframe
-                                ref={iframe}
-                                onLoad={() => {
-                                  const obj = iframe.current;
-                                  obj.contentWindow.document.body.style.fontFamily = '"Open Sans", sans-serif';
-                                  setHeight(
-                                    obj.contentWindow.document.body.scrollHeight +
-                                    200
-                                  );
-                                  setLoading(false)
-                                }}
-                                width="100%"
-                                height={height}
-                                title="test"
-                                itemProp="description"
-                                className="edgtf-post-excerpt"
-                                srcDoc={detail.description}
-                              />
+                              <div dangerouslySetInnerHTML={{ __html: detail.description }} />
                             </div>
                           )}
 
