@@ -49,6 +49,7 @@ const Variation1 = (props) => {
 
     floorPlanPins.forEach(pin => {
       const { id, type, exhibitor, sponsor, coordinateX, coordinateY } = pin;
+      if (!exhibitor && !sponsor) return;
       const categoryImage = getCategoryImage(pin);
       const detailLink= type === "exhibitor" ? `/${eventUrl}/exhibitors/${exhibitor.id}` : `/${eventUrl}/sponsors/${sponsor.id}`;
       const associatedGroups = getAssociatedGroups(pin);
