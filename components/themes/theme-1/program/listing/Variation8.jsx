@@ -13,7 +13,7 @@ import {
 import {useDebounce, useDimention, useProgramId } from "../utils/customHooks";
 import ProgramDetail from "../components/ProgramDetail";
 import NoRecordFound from '../../../../../components/NoRecordFound'
-
+import ProgramDetailModal from "../components/ProgramDetailModal";
 const Variation8 = ({
   programs,
   eventUrl,
@@ -24,7 +24,7 @@ const Variation8 = ({
   eventsiteSettings,
   moduleVariation
 }) => {
-  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState}=useProgramId()
+  const {handleItemClick,showDetail,setShowDetail,detailRef,programsState,selectedProgram}=useProgramId()
   const {width}=useDimention()
   const [value, setValue] = useState("");
   const [programsLoc, setProgramsLoc] = useState(programs);
@@ -65,7 +65,7 @@ const Variation8 = ({
     <div className="ebr_program-variation8-container" style={BgStyles(moduleVariation)}>
       <div style={{ padding: "60px 0 40px 0" }} className="module-section">
         <div className="container">
-          <div className="ebs-variation8-filter-container d-flex justify-content-start gap-3">
+          <div className="ebs-variation8-filter-container d-flex justify-content-lg-start justify-content-center gap-3 flex-wrap">
             {eventsiteSettings?.agenda_search_filter === 1 && (
               <div>
                 <div
@@ -140,7 +140,7 @@ const Variation8 = ({
                                       "HH:mm"
                                     )}
                                   </td>
-                                  <td className="text-start" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
+                                  <td className="text-start fix-text" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
                                             handleItemClick(program,workshop_programsArray)
                                             setShowDetail(true)
                                         }}>
@@ -177,7 +177,16 @@ const Variation8 = ({
                                 </tr>
                                 )
                               })}
-                           
+                              {width <= 570 && (
+                                    <ProgramDetailModal
+                                      program={selectedProgram}
+                                      labels={siteLabels}
+                                      eventUrl={eventUrl}
+                                      agendaSettings={agendaSettings}
+                                      showDetail={showDetail}
+                                      setShowDetail={setShowDetail}
+                                    />
+                                  )}
                             </>
                             
                             ):(   <tr key={item.date + key + k}>
@@ -191,11 +200,10 @@ const Variation8 = ({
                                   "HH:mm"
                                 )}
                               </td>
-                              <td className="text-start" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
+                              <td className="text-start fix-text" style={{width:"550px", textWrap:"wrap" }} onClick={()=>{
                                             handleItemClick(item,programArray)
                                             setShowDetail(true)
                                         }}>
-                                {/* {`${item.topic.length>25?item.topic.substring(0,25)+"....":item.topic}`} */}
                                 {item.topic}
                                 </td>
                               <td>{`${
@@ -227,6 +235,16 @@ const Variation8 = ({
                               </td>
                             </tr>)      
                             }
+                                {width <= 570 && (
+                                    <ProgramDetailModal
+                                      program={selectedProgram}
+                                      labels={siteLabels}
+                                      eventUrl={eventUrl}
+                                      agendaSettings={agendaSettings}
+                                      showDetail={showDetail}
+                                      setShowDetail={setShowDetail}
+                                    />
+                                  )}
                              </>
                           );
                         })}

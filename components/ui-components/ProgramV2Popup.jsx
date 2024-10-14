@@ -80,4 +80,3 @@ const ProgramV2Popup = ({ width, onClick, data }) => {
 }
 
 export default ProgramV2Popup;
-
