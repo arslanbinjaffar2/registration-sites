@@ -56,11 +56,13 @@ const Variation3 = ({
     }
   }, [selectedDate]);
   React.useEffect(() => {
-    const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
-    link.rel = 'stylesheet';
+    const link = document.createElement("link");
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
+    link.rel = "stylesheet";
     document.head.appendChild(link);
   }, []);
+  console.log(programLoc, "programLoc");
   return (
     <Fragment>
       <div
@@ -205,14 +207,13 @@ const Variation3 = ({
                                                   <span className="material-symbols-outlined icon">
                                                     location_on
                                                   </span>
-                                                  <p className="text m-0">{`${
-                                                    location.length > 25
+                                                  <p className="text m-0">{`${location.length > 25
                                                       ? location.substring(
-                                                          0,
-                                                          25
-                                                        ) + "...."
+                                                        0,
+                                                        25
+                                                      ) + "...."
                                                       : location
-                                                  }`}</p>
+                                                    }`}</p>
                                                 </div>
                                               )}
                                               <div className="tracks_container d-flex algin-items-center gap-2 mt-2">
@@ -228,11 +229,10 @@ const Variation3 = ({
                                                             key={id + name}
                                                             data-title={name}
                                                             style={{
-                                                              backgroundColor: `${
-                                                                color
+                                                              backgroundColor: `${color
                                                                   ? color
                                                                   : "#000"
-                                                              }`,
+                                                                }`,
                                                               width: "16px",
                                                               height: "16px",
                                                               borderRadius:
@@ -331,11 +331,10 @@ const Variation3 = ({
                                         <span className="material-symbols-outlined icon">
                                           location_on
                                         </span>
-                                        <p className="text m-0">{`${
-                                          location.length > 25
+                                        <p className="text m-0">{`${location.length > 25
                                             ? location.substring(0, 25) + "...."
                                             : location
-                                        }`}</p>
+                                          }`}</p>
                                       </div>
                                     )}
                                     <div className="tracks_container d-flex algin-items-center gap-2 mt-2">
@@ -350,9 +349,8 @@ const Variation3 = ({
                                                 key={id + name}
                                                 data-title={name}
                                                 style={{
-                                                  backgroundColor: `${
-                                                    color ? color : "#000"
-                                                  }`,
+                                                  backgroundColor: `${color ? color : "#000"
+                                                    }`,
                                                   width: "20px",
                                                   height: "20px",
                                                   borderRadius: "50%",
